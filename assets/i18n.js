@@ -43,7 +43,11 @@ const translations = {
     finish_msg: "Игра завершена! 🎉",
     play_again: "Играть снова",
     compare_game_title: "Сравни числа!",
-    compare_game_sub: "Где предметов больше? Выбери правильный знак"
+    compare_game_sub: "Где предметов больше? Выбери правильный знак",
+    hub_subtract_title: "Отними и узнай",
+    hub_subtract_desc: "Отними одно число от другого",
+    subtract_game_title: "Отними и узнай!",
+    subtract_game_sub: "Сколько осталось? Вычти и выбери ответ"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -85,7 +89,11 @@ const translations = {
     finish_msg: "Ойын аяқталды! 🎉",
     play_again: "Қайта ойнау",
     compare_game_title: "Сандарды салыстыр!",
-    compare_game_sub: "Қайсында зат көп? Дұрыс белгіні таңда"
+    compare_game_sub: "Қайсында зат көп? Дұрыс белгіні таңда",
+    hub_subtract_title: "Азайт та тап",
+    hub_subtract_desc: "Бір саннан екінші санды азайт",
+    subtract_game_title: "Азайт та тап!",
+    subtract_game_sub: "Қанша қалды? Азайтып, жауапты таңда"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -127,7 +135,11 @@ const translations = {
     finish_msg: "Game complete! 🎉",
     play_again: "Play again",
     compare_game_title: "Compare the Numbers!",
-    compare_game_sub: "Which side has more? Pick the right sign"
+    compare_game_sub: "Which side has more? Pick the right sign",
+    hub_subtract_title: "Subtract and Find Out",
+    hub_subtract_desc: "Take one number away from another",
+    subtract_game_title: "Subtract and Find Out!",
+    subtract_game_sub: "How many are left? Subtract and pick the answer"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -169,7 +181,11 @@ const translations = {
     finish_msg: "游戏完成！🎉",
     play_again: "再玩一次",
     compare_game_title: "比较数字！",
-    compare_game_sub: "哪边更多？选择正确的符号"
+    compare_game_sub: "哪边更多？选择正确的符号",
+    hub_subtract_title: "减一减，找答案",
+    hub_subtract_desc: "从一个数字中减去另一个",
+    subtract_game_title: "减一减，找答案！",
+    subtract_game_sub: "还剩多少？减一减，选出答案"
   }
 };
 
