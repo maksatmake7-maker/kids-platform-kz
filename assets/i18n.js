@@ -39,7 +39,11 @@ const translations = {
     hub_compare_title: "Сравни числа",
     hub_compare_desc: "Какое число больше?",
     addition_game_title: "Сложи и узнай!",
-    addition_game_sub: "Сколько всего? Сложи и выбери ответ"
+    addition_game_sub: "Сколько всего? Сложи и выбери ответ",
+    finish_msg: "Игра завершена! 🎉",
+    play_again: "Играть снова",
+    compare_game_title: "Сравни числа!",
+    compare_game_sub: "Где предметов больше? Выбери правильный знак"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -77,7 +81,11 @@ const translations = {
     hub_compare_title: "Сандарды салыстыр",
     hub_compare_desc: "Қай сан үлкен?",
     addition_game_title: "Қос та тап!",
-    addition_game_sub: "Барлығы қанша? Қосып, жауапты таңда"
+    addition_game_sub: "Барлығы қанша? Қосып, жауапты таңда",
+    finish_msg: "Ойын аяқталды! 🎉",
+    play_again: "Қайта ойнау",
+    compare_game_title: "Сандарды салыстыр!",
+    compare_game_sub: "Қайсында зат көп? Дұрыс белгіні таңда"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -115,7 +123,11 @@ const translations = {
     hub_compare_title: "Compare Numbers",
     hub_compare_desc: "Which number is bigger?",
     addition_game_title: "Add and Find Out!",
-    addition_game_sub: "How many in total? Add them up and pick the answer"
+    addition_game_sub: "How many in total? Add them up and pick the answer",
+    finish_msg: "Game complete! 🎉",
+    play_again: "Play again",
+    compare_game_title: "Compare the Numbers!",
+    compare_game_sub: "Which side has more? Pick the right sign"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -153,7 +165,11 @@ const translations = {
     hub_compare_title: "比较数字",
     hub_compare_desc: "哪个数字更大？",
     addition_game_title: "加一加，找答案！",
-    addition_game_sub: "一共有多少？加起来选出答案"
+    addition_game_sub: "一共有多少？加起来选出答案",
+    finish_msg: "游戏完成！🎉",
+    play_again: "再玩一次",
+    compare_game_title: "比较数字！",
+    compare_game_sub: "哪边更多？选择正确的符号"
   }
 };
 
