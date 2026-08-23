@@ -40,6 +40,30 @@ function initLetterGame(containerId){
   var questionIndex = 0;
   var currentAnswer = null; // full word entry [letter, word, emoji]
 
+  // "Колода без повторов": буквы раздаются перемешанными пачками,
+  // так одна и та же буква не подряд и не кластерами.
+  var bag = [];
+  var lastLetter = null;
+
+  function refillBag(){
+    bag = WORDS.slice();
+    for(var i=bag.length-1; i>0; i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var tmp = bag[i]; bag[i]=bag[j]; bag[j]=tmp;
+    }
+    // не даём новой пачке начаться с той же буквы, что была последней
+    if(lastLetter && bag.length > 1 && bag[0][0] === lastLetter){
+      var swapIdx = 1 + Math.floor(Math.random()*(bag.length-1));
+      var t = bag[0]; bag[0] = bag[swapIdx]; bag[swapIdx] = t;
+    }
+  }
+  function nextWord(){
+    if(bag.length === 0) refillBag();
+    var w = bag.pop();
+    lastLetter = w[0];
+    return w;
+  }
+
   function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -60,7 +84,7 @@ function initLetterGame(containerId){
     if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
 
-    currentAnswer = pick(WORDS);
+    currentAnswer = nextWord();
 
     var options = [currentAnswer];
     var pool = WORDS.filter(function(w){ return w[0] !== currentAnswer[0]; });
