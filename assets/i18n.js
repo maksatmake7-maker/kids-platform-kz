@@ -47,7 +47,14 @@ const translations = {
     hub_subtract_title: "Отними и узнай",
     hub_subtract_desc: "Отними одно число от другого",
     subtract_game_title: "Отними и узнай!",
-    subtract_game_sub: "Сколько осталось? Вычти и выбери ответ"
+    subtract_game_sub: "Сколько осталось? Вычти и выбери ответ",
+    back_reading: "← К играм по грамоте",
+    hub_letter_title: "Найди букву",
+    hub_letter_desc: "Выбери картинку на нужную букву",
+    hub_word_title: "Собери слово",
+    hub_word_desc: "Составь первое слово из букв",
+    letter_game_title: "Найди букву!",
+    letter_game_sub: "На какую букву начинается картинка? Найди её!"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -93,7 +100,14 @@ const translations = {
     hub_subtract_title: "Азайт та тап",
     hub_subtract_desc: "Бір саннан екінші санды азайт",
     subtract_game_title: "Азайт та тап!",
-    subtract_game_sub: "Қанша қалды? Азайтып, жауапты таңда"
+    subtract_game_sub: "Қанша қалды? Азайтып, жауапты таңда",
+    back_reading: "← Сауат ашу ойындарына",
+    hub_letter_title: "Әріпті тап",
+    hub_letter_desc: "Керекті әріпке сурет таңда",
+    hub_word_title: "Сөз құра",
+    hub_word_desc: "Әріптерден алғашқы сөзді құра",
+    letter_game_title: "Әріпті тап!",
+    letter_game_sub: "Сурет қай әріптен басталады? Тауып ал!"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -139,7 +153,14 @@ const translations = {
     hub_subtract_title: "Subtract and Find Out",
     hub_subtract_desc: "Take one number away from another",
     subtract_game_title: "Subtract and Find Out!",
-    subtract_game_sub: "How many are left? Subtract and pick the answer"
+    subtract_game_sub: "How many are left? Subtract and pick the answer",
+    back_reading: "← Back to Literacy games",
+    hub_letter_title: "Find the Letter",
+    hub_letter_desc: "Pick the picture for the letter",
+    hub_word_title: "Build a Word",
+    hub_word_desc: "Put letters together into your first word",
+    letter_game_title: "Find the Letter!",
+    letter_game_sub: "Which letter does the picture start with? Find it!"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -185,7 +206,14 @@ const translations = {
     hub_subtract_title: "减一减，找答案",
     hub_subtract_desc: "从一个数字中减去另一个",
     subtract_game_title: "减一减，找答案！",
-    subtract_game_sub: "还剩多少？减一减，选出答案"
+    subtract_game_sub: "还剩多少？减一减，选出答案",
+    back_reading: "← 返回识字游戏",
+    hub_letter_title: "找字母",
+    hub_letter_desc: "选择与字母匹配的图片",
+    hub_word_title: "拼单词",
+    hub_word_desc: "用字母拼出你的第一个单词",
+    letter_game_title: "找字母！",
+    letter_game_sub: "图片是以哪个字母开头的？找出来！"
   }
 };
 
