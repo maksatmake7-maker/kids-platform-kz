@@ -444,3 +444,49 @@ button.cta{
   opacity:0.25;
   filter:grayscale(70%);
 }
+
+/* ===== letter game ===== */
+.letter-target{
+  font-family:'Baloo 2',sans-serif;
+  font-size:5rem;
+  font-weight:800;
+  color:var(--coral);
+  background:var(--cream);
+  width:120px;
+  height:120px;
+  line-height:120px;
+  border-radius:28px;
+  margin:0 auto 28px;
+  box-shadow:0 6px 0 #F0DCC0;
+}
+.letter-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  max-width:420px;
+  margin:0 auto;
+}
+.letter-btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  font-family:'Nunito',sans-serif;
+  padding:16px 8px;
+  border:none;
+  border-radius:16px;
+  background:#EAF2FB;
+  color:var(--ink);
+  cursor:pointer;
+  box-shadow:0 5px 0 #C9DAEE;
+  transition:transform .12s ease, background .2s ease;
+}
+.letter-btn:hover{transform:translateY(-2px);}
+.letter-btn:active{transform:translateY(3px); box-shadow:0 2px 0 #C9DAEE;}
+.letter-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B;}
+.letter-btn.wrong{background:var(--coral); color:#fff; box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
+.letter-btn-emoji{font-size:2.4rem;}
+.letter-btn-word{font-weight:800; font-size:0.95rem;}
+@media (max-width:480px){
+  .letter-target{font-size:3.6rem; width:90px; height:90px; line-height:90px;}
+}
