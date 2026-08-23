@@ -1,7 +1,7 @@
 /* ===== Білім Аралы — игра "Найди букву" =====
    Ребёнку показывают букву, он выбирает картинку, название которой
    начинается с этой буквы, среди 4 вариантов.
-   Фиксированная сессия из 30 вопросов, затем финальный экран.
+   Сессия = ровно один проход по всем буквам (без повторов).
    Использование: initLetterGame('game-root') после загрузки DOM.
 */
 function initLetterGame(containerId){
@@ -35,33 +35,23 @@ function initLetterGame(containerId){
     ['Я','Яблоко','🍎']
   ];
 
-  var TOTAL = 30;
+  var TOTAL = WORDS.length; // сессия = ровно один проход по всем буквам, без повторов
   var score = 0;
   var questionIndex = 0;
   var currentAnswer = null; // full word entry [letter, word, emoji]
 
-  // "Колода без повторов": буквы раздаются перемешанными пачками,
-  // так одна и та же буква не подряд и не кластерами.
-  var bag = [];
-  var lastLetter = null;
+  // Одна перемешанная очередь на всю сессию — гарантированно без повторов.
+  var queue = [];
 
-  function refillBag(){
-    bag = WORDS.slice();
-    for(var i=bag.length-1; i>0; i--){
+  function buildQueue(){
+    queue = WORDS.slice();
+    for(var i=queue.length-1; i>0; i--){
       var j = Math.floor(Math.random()*(i+1));
-      var tmp = bag[i]; bag[i]=bag[j]; bag[j]=tmp;
-    }
-    // не даём новой пачке начаться с той же буквы, что была последней
-    if(lastLetter && bag.length > 1 && bag[0][0] === lastLetter){
-      var swapIdx = 1 + Math.floor(Math.random()*(bag.length-1));
-      var t = bag[0]; bag[0] = bag[swapIdx]; bag[swapIdx] = t;
+      var tmp = queue[i]; queue[i]=queue[j]; queue[j]=tmp;
     }
   }
   function nextWord(){
-    if(bag.length === 0) refillBag();
-    var w = bag.pop();
-    lastLetter = w[0];
-    return w;
+    return queue.pop();
   }
 
   function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
@@ -128,6 +118,7 @@ function initLetterGame(containerId){
       score = 0;
       questionIndex = 0;
       updateScore();
+      buildQueue();
       render();
     });
   }
@@ -151,5 +142,6 @@ function initLetterGame(containerId){
     }
   }
 
+  buildQueue();
   render();
 }
