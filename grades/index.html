@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Білім Аралы — учимся играя</title>
+<title>Математика 1 класс — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="../../../assets/styles.css">
 </head>
 <body>
 <div class="cloud cloud1"></div>
@@ -14,7 +14,7 @@
 <div class="cloud cloud3"></div>
 
 <header>
-  <a href="index.html" class="logo"><span class="logo-dot">🦉</span> Білім Аралы</a>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
   <div class="lang-toggle">
     <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
     <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
@@ -23,66 +23,27 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="mascot-wrap">
-    <svg class="mascot" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="100" cy="185" rx="46" ry="8" fill="rgba(29,53,87,0.12)"/>
-      <circle cx="100" cy="105" r="72" fill="#3FB088"/>
-      <path d="M40 95 Q30 60 55 45 Q60 65 68 78 Z" fill="#2E8F6B"/>
-      <path d="M160 95 Q170 60 145 45 Q140 65 132 78 Z" fill="#2E8F6B"/>
-      <ellipse cx="72" cy="112" rx="26" ry="28" fill="#fff"/>
-      <ellipse cx="128" cy="112" rx="26" ry="28" fill="#fff"/>
-      <circle cx="72" cy="114" r="12" fill="#1D3557"/>
-      <circle cx="128" cy="114" r="12" fill="#1D3557"/>
-      <circle cx="76" cy="110" r="4" fill="#fff"/>
-      <circle cx="132" cy="110" r="4" fill="#fff"/>
-      <path d="M100 118 L88 138 L112 138 Z" fill="#FFC93C"/>
-      <path d="M55 155 Q100 178 145 155 Q100 190 55 155 Z" fill="#F7B733"/>
-      <ellipse cx="100" cy="150" rx="30" ry="18" fill="#EAF7F0"/>
-    </svg>
-    <div class="speech"><span data-i18n="speech"></span></div>
-  </div>
-
-  <h1 data-i18n="hero_title"></h1>
-  <p class="sub" data-i18n="hero_sub"></p>
-  <a href="#subjects" class="cta" data-i18n="cta"></a>
-</section>
-
-<section class="subjects" id="subjects">
-  <span class="grade-tag" data-i18n="grade_tag"></span>
-  <h2 data-i18n="subjects_h2"></h2>
-  <p class="lead" data-i18n="subjects_lead"></p>
-
-  <div class="island-grid">
-    <a href="grades/grade-1/math/index.html" class="island math ready" style="text-decoration:none;">
-      <span class="emoji">🔢</span>
-      <h3 data-i18n="math_title"></h3>
-      <p data-i18n="math_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
-    <div class="island read locked">
-      <span class="emoji">📖</span>
-      <h3 data-i18n="read_title"></h3>
-      <p data-i18n="read_desc"></p>
-      <span class="badge" data-i18n="badge_soon"></span>
+<section class="game-shell">
+  <a href="../../../index.html" class="back-link" data-i18n="back_home"></a>
+  <div class="game-card">
+    <h1 data-i18n="math_game_title"></h1>
+    <p class="game-sub" data-i18n="math_game_sub"></p>
+    <div class="score-badge">
+      <span data-i18n="score_label"></span>
+      <span id="count-score-value">0</span>
     </div>
-    <div class="island kaz locked">
-      <span class="emoji">🌾</span>
-      <h3 data-i18n="kaz_title"></h3>
-      <p data-i18n="kaz_desc"></p>
-      <span class="badge" data-i18n="badge_soon"></span>
-    </div>
-    <div class="island game locked">
-      <span class="emoji">🧩</span>
-      <h3 data-i18n="game_title"></h3>
-      <p data-i18n="game_desc"></p>
-      <span class="badge" data-i18n="badge_soon"></span>
-    </div>
+    <div id="game-root"></div>
   </div>
 </section>
 
 <footer data-i18n="footer"></footer>
 
-<script src="assets/i18n.js"></script>
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../games/counting-game.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    initCountingGame('game-root');
+  });
+</script>
 </body>
 </html>
