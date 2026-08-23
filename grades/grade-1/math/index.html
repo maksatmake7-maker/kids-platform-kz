@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Математика 1 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+  </div>
+</header>
+
+<section class="game-shell">
+  <a href="../../../index.html" class="back-link" data-i18n="back_home"></a>
+  <div class="game-card">
+    <h1 data-i18n="math_game_title"></h1>
+    <p class="game-sub" data-i18n="math_game_sub"></p>
+    <div class="score-badge">
+      <span data-i18n="score_label"></span>
+      <span id="count-score-value">0</span>
+    </div>
+    <div id="game-root"></div>
+  </div>
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../games/counting-game.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    initCountingGame('game-root');
+  });
+</script>
+</body>
+</html>
