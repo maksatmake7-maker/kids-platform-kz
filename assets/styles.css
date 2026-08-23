@@ -438,3 +438,9 @@ button.cta{
   margin:0 auto;
 }
 .compare-btn{font-size:1.8rem;}
+
+/* ===== subtraction game — crossed-out objects ===== */
+.crossed-obj{
+  opacity:0.25;
+  filter:grayscale(70%);
+}
