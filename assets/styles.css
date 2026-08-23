@@ -279,3 +279,106 @@ footer{
 @media (prefers-reduced-motion: reduce){
   .mascot, .cloud1, .cloud2, .cloud3, .speech{animation:none !important;}
 }
+
+/* ===== game page shell ===== */
+.game-shell{
+  position:relative;
+  z-index:2;
+  max-width:640px;
+  margin:0 auto;
+  padding:10px 20px 80px;
+  text-align:center;
+}
+.back-link{
+  display:inline-block;
+  color:#fff;
+  font-weight:800;
+  text-decoration:none;
+  margin-bottom:18px;
+  opacity:0.9;
+}
+.back-link:hover{opacity:1;}
+.game-card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  padding:34px 24px;
+  box-shadow:0 12px 0 rgba(29,53,87,0.08), 0 18px 34px rgba(29,53,87,0.12);
+}
+.game-card h1{font-size:1.7rem; margin-bottom:6px;}
+.game-card .game-sub{color:#5C7690; font-weight:700; margin-bottom:10px;}
+.score-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--cream);
+  border-radius:999px;
+  padding:6px 18px;
+  font-family:'Baloo 2',sans-serif;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:22px;
+}
+
+/* ===== counting game ===== */
+.count-objects{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  min-height:100px;
+  align-items:center;
+  margin-bottom:26px;
+}
+.count-obj{
+  font-size:2.6rem;
+  animation:pop-in .35s ease backwards;
+}
+@keyframes pop-in{
+  0%{transform:scale(0); opacity:0;}
+  70%{transform:scale(1.15);}
+  100%{transform:scale(1); opacity:1;}
+}
+.count-options{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.count-btn{
+  font-family:'Baloo 2',sans-serif;
+  font-size:1.5rem;
+  font-weight:700;
+  padding:16px 0;
+  border:none;
+  border-radius:16px;
+  background:#EAF2FB;
+  color:var(--ink);
+  cursor:pointer;
+  box-shadow:0 5px 0 #C9DAEE;
+  transition:transform .12s ease, background .2s ease;
+}
+.count-btn:hover{transform:translateY(-2px);}
+.count-btn:active{transform:translateY(3px); box-shadow:0 2px 0 #C9DAEE;}
+.count-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B;}
+.count-btn.wrong{background:var(--coral); color:#fff; box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-6px);}
+  75%{transform:translateX(6px);}
+}
+.count-feedback{
+  margin-top:18px;
+  font-family:'Baloo 2',sans-serif;
+  font-weight:700;
+  font-size:1.1rem;
+  min-height:1.6em;
+  opacity:0;
+  transition:opacity .2s ease;
+}
+.count-feedback.show{opacity:1;}
+.count-feedback.correct{color:var(--meadow);}
+.count-feedback.wrong{color:var(--coral);}
+
+@media (max-width:480px){
+  .count-obj{font-size:2.1rem;}
+  .count-options{grid-template-columns:repeat(2,1fr);}
+}
