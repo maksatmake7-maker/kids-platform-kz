@@ -408,3 +408,33 @@ footer{
 @media (max-width:480px){
   .add-op{font-size:1.5rem;}
 }
+
+/* ===== game meta row (score + progress) ===== */
+.game-meta{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+}
+.game-meta .score-badge{margin-bottom:0;}
+
+/* ===== finish screen ===== */
+.finish-screen{padding:10px 0;}
+.finish-emoji{font-size:3.4rem; margin-bottom:8px;}
+.finish-msg{font-size:1.4rem; margin-bottom:8px;}
+.finish-score{color:#5C7690; font-weight:700; margin-bottom:26px; font-size:1.1rem;}
+button.cta{
+  border:none;
+  cursor:pointer;
+  font-family:'Baloo 2',sans-serif;
+  font-size:1.1rem;
+}
+
+/* ===== comparison game ===== */
+.compare-options{
+  grid-template-columns:repeat(3,1fr);
+  max-width:280px;
+  margin:0 auto;
+}
+.compare-btn{font-size:1.8rem;}
