@@ -23,27 +23,36 @@
   </div>
 </header>
 
-<section class="game-shell">
-  <a href="../../../index.html" class="back-link" data-i18n="back_home"></a>
-  <div class="game-card">
-    <h1 data-i18n="math_game_title"></h1>
-    <p class="game-sub" data-i18n="math_game_sub"></p>
-    <div class="score-badge">
-      <span data-i18n="score_label"></span>
-      <span id="count-score-value">0</span>
+<section class="subjects" id="subjects" style="padding-top:20px;">
+  <a href="../../../index.html" class="back-link" data-i18n="back_home" style="display:block; text-align:center; color:var(--ink); opacity:0.7;"></a>
+  <span class="grade-tag" data-i18n="math_title"></span>
+  <h2 data-i18n="hub_title"></h2>
+  <p class="lead" data-i18n="hub_lead"></p>
+
+  <div class="island-grid">
+    <a href="count.html" class="island math ready" style="text-decoration:none;">
+      <span class="emoji">🔢</span>
+      <h3 data-i18n="hub_count_title"></h3>
+      <p data-i18n="hub_count_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="addition.html" class="island math ready" style="text-decoration:none;">
+      <span class="emoji">➕</span>
+      <h3 data-i18n="hub_add_title"></h3>
+      <p data-i18n="hub_add_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <div class="island math locked">
+      <span class="emoji">⚖️</span>
+      <h3 data-i18n="hub_compare_title"></h3>
+      <p data-i18n="hub_compare_desc"></p>
+      <span class="badge" data-i18n="badge_soon"></span>
     </div>
-    <div id="game-root"></div>
   </div>
 </section>
 
 <footer data-i18n="footer"></footer>
 
 <script src="../../../assets/i18n.js"></script>
-<script src="../../../games/counting-game.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    initCountingGame('game-root');
-  });
-</script>
 </body>
 </html>
