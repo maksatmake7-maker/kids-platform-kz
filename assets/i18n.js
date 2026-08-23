@@ -28,7 +28,18 @@ const translations = {
     score_label: "Очки:",
     next_button: "Дальше →",
     correct_msg: "Отлично! 🎉",
-    wrong_msg: "Попробуй ещё раз"
+    wrong_msg: "Попробуй ещё раз",
+    back_math: "← К играм по математике",
+    hub_title: "Выбери игру",
+    hub_lead: "Потренируйся и заработай звёзды",
+    hub_count_title: "Посчитай и узнай",
+    hub_count_desc: "Сосчитай предметы на экране",
+    hub_add_title: "Сложи и узнай",
+    hub_add_desc: "Сложи два числа правильно",
+    hub_compare_title: "Сравни числа",
+    hub_compare_desc: "Какое число больше?",
+    addition_game_title: "Сложи и узнай!",
+    addition_game_sub: "Сколько всего? Сложи и выбери ответ"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -55,7 +66,18 @@ const translations = {
     score_label: "Ұпай:",
     next_button: "Келесі →",
     correct_msg: "Керемет! 🎉",
-    wrong_msg: "Тағы да көріп көр"
+    wrong_msg: "Тағы да көріп көр",
+    back_math: "← Математика ойындарына",
+    hub_title: "Ойынды таңда",
+    hub_lead: "Жаттығып, жұлдыз жина",
+    hub_count_title: "Санап шық",
+    hub_count_desc: "Экрандағы заттарды санап шық",
+    hub_add_title: "Қос та тап!",
+    hub_add_desc: "Екі санды дұрыс қос",
+    hub_compare_title: "Сандарды салыстыр",
+    hub_compare_desc: "Қай сан үлкен?",
+    addition_game_title: "Қос та тап!",
+    addition_game_sub: "Барлығы қанша? Қосып, жауапты таңда"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -82,7 +104,18 @@ const translations = {
     score_label: "Score:",
     next_button: "Next →",
     correct_msg: "Great job! 🎉",
-    wrong_msg: "Try again"
+    wrong_msg: "Try again",
+    back_math: "← Back to Math games",
+    hub_title: "Choose a game",
+    hub_lead: "Practice and earn stars",
+    hub_count_title: "Count and Find Out",
+    hub_count_desc: "Count the objects on screen",
+    hub_add_title: "Add and Find Out!",
+    hub_add_desc: "Add two numbers correctly",
+    hub_compare_title: "Compare Numbers",
+    hub_compare_desc: "Which number is bigger?",
+    addition_game_title: "Add and Find Out!",
+    addition_game_sub: "How many in total? Add them up and pick the answer"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -109,7 +142,18 @@ const translations = {
     score_label: "得分：",
     next_button: "下一题 →",
     correct_msg: "太棒了！🎉",
-    wrong_msg: "再试一次"
+    wrong_msg: "再试一次",
+    back_math: "← 返回数学游戏",
+    hub_title: "选择游戏",
+    hub_lead: "练习并赢得星星",
+    hub_count_title: "数一数吧",
+    hub_count_desc: "数一数屏幕上的物品",
+    hub_add_title: "加一加，找答案！",
+    hub_add_desc: "正确地把两个数字相加",
+    hub_compare_title: "比较数字",
+    hub_compare_desc: "哪个数字更大？",
+    addition_game_title: "加一加，找答案！",
+    addition_game_sub: "一共有多少？加起来选出答案"
   }
 };
 
