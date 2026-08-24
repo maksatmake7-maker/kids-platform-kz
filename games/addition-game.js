@@ -46,10 +46,12 @@ function initAdditionGame(containerId){
     var emoji = pick(EMOJIS);
 
     var options = [currentAnswer];
-    while(options.length < 4){
-      var candidate = Math.max(1, currentAnswer + (Math.floor(Math.random()*7) - 3));
-      if(options.indexOf(candidate) === -1) options.push(candidate);
+    var poolA = [1,2,3,4,5,6,7,8,9,10,11,12,13].filter(function(n){ return n !== currentAnswer; });
+    for(var p=poolA.length-1; p>0; p--){
+      var q = Math.floor(Math.random()*(p+1));
+      var tp = poolA[p]; poolA[p]=poolA[q]; poolA[q]=tp;
     }
+    options = options.concat(poolA.slice(0,3));
     for(var j=options.length-1; j>0; j--){
       var k = Math.floor(Math.random()*(j+1));
       var tmp = options[j]; options[j]=options[k]; options[k]=tmp;
