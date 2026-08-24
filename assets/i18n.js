@@ -54,7 +54,9 @@ const translations = {
     hub_word_title: "Собери слово",
     hub_word_desc: "Составь первое слово из букв",
     letter_game_title: "Найди букву!",
-    letter_game_sub: "На какую букву начинается картинка? Найди её!"
+    letter_game_sub: "На какую букву начинается картинка? Найди её!",
+    word_game_title: "Собери слово!",
+    word_game_sub: "Нажимай буквы по порядку, чтобы получилось слово"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -107,7 +109,9 @@ const translations = {
     hub_word_title: "Сөз құра",
     hub_word_desc: "Әріптерден алғашқы сөзді құра",
     letter_game_title: "Әріпті тап!",
-    letter_game_sub: "Сурет қай әріптен басталады? Тауып ал!"
+    letter_game_sub: "Сурет қай әріптен басталады? Тауып ал!",
+    word_game_title: "Сөзді құра!",
+    word_game_sub: "Сөз шығу үшін әріптерді ретімен бас"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -160,7 +164,9 @@ const translations = {
     hub_word_title: "Build a Word",
     hub_word_desc: "Put letters together into your first word",
     letter_game_title: "Find the Letter!",
-    letter_game_sub: "Which letter does the picture start with? Find it!"
+    letter_game_sub: "Which letter does the picture start with? Find it!",
+    word_game_title: "Build the Word!",
+    word_game_sub: "Tap the letters in order to spell the word"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -213,7 +219,9 @@ const translations = {
     hub_word_title: "拼单词",
     hub_word_desc: "用字母拼出你的第一个单词",
     letter_game_title: "找字母！",
-    letter_game_sub: "图片是以哪个字母开头的？找出来！"
+    letter_game_sub: "图片是以哪个字母开头的？找出来！",
+    word_game_title: "拼出单词！",
+    word_game_sub: "按顺序点击字母拼出单词"
   }
 };
 
