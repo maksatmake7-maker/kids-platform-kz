@@ -56,7 +56,17 @@ const translations = {
     letter_game_title: "Найди букву!",
     letter_game_sub: "На какую букву начинается картинка? Найди её!",
     word_game_title: "Собери слово!",
-    word_game_sub: "Нажимай буквы по порядку, чтобы получилось слово"
+    word_game_sub: "Нажимай буквы по порядку, чтобы получилось слово",
+    hub_vowel_title: "Гласная или согласная?",
+    hub_vowel_desc: "Определи тип буквы",
+    vowel_game_title: "Гласная или согласная?",
+    vowel_game_sub: "Определи, какая это буква",
+    btn_vowel: "Гласная",
+    btn_consonant: "Согласная",
+    hub_syllable_title: "Сколько слогов?",
+    hub_syllable_desc: "Раздели слово на слоги",
+    syllable_game_title: "Сколько слогов?",
+    syllable_game_sub: "Посчитай, сколько слогов в слове"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -111,7 +121,17 @@ const translations = {
     letter_game_title: "Әріпті тап!",
     letter_game_sub: "Сурет қай әріптен басталады? Тауып ал!",
     word_game_title: "Сөзді құра!",
-    word_game_sub: "Сөз шығу үшін әріптерді ретімен бас"
+    word_game_sub: "Сөз шығу үшін әріптерді ретімен бас",
+    hub_vowel_title: "Дауысты ма, дауыссыз ба?",
+    hub_vowel_desc: "Әріптің түрін анықта",
+    vowel_game_title: "Дауысты ма, дауыссыз ба?",
+    vowel_game_sub: "Бұл қандай әріп екенін анықта",
+    btn_vowel: "Дауысты",
+    btn_consonant: "Дауыссыз",
+    hub_syllable_title: "Неше буын?",
+    hub_syllable_desc: "Сөзді буындарға бөл",
+    syllable_game_title: "Неше буын?",
+    syllable_game_sub: "Сөзде неше буын бар, санап көр"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -166,7 +186,17 @@ const translations = {
     letter_game_title: "Find the Letter!",
     letter_game_sub: "Which letter does the picture start with? Find it!",
     word_game_title: "Build the Word!",
-    word_game_sub: "Tap the letters in order to spell the word"
+    word_game_sub: "Tap the letters in order to spell the word",
+    hub_vowel_title: "Vowel or Consonant?",
+    hub_vowel_desc: "Figure out the letter type",
+    vowel_game_title: "Vowel or Consonant?",
+    vowel_game_sub: "Decide what type of letter it is",
+    btn_vowel: "Vowel",
+    btn_consonant: "Consonant",
+    hub_syllable_title: "How Many Syllables?",
+    hub_syllable_desc: "Split the word into syllables",
+    syllable_game_title: "How Many Syllables?",
+    syllable_game_sub: "Count how many syllables are in the word"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -221,7 +251,17 @@ const translations = {
     letter_game_title: "找字母！",
     letter_game_sub: "图片是以哪个字母开头的？找出来！",
     word_game_title: "拼出单词！",
-    word_game_sub: "按顺序点击字母拼出单词"
+    word_game_sub: "按顺序点击字母拼出单词",
+    hub_vowel_title: "元音还是辅音？",
+    hub_vowel_desc: "判断字母的类型",
+    vowel_game_title: "元音还是辅音？",
+    vowel_game_sub: "判断这是哪种字母",
+    btn_vowel: "元音",
+    btn_consonant: "辅音",
+    hub_syllable_title: "有几个音节？",
+    hub_syllable_desc: "把单词拆分成音节",
+    syllable_game_title: "有几个音节？",
+    syllable_game_sub: "数一数这个单词有几个音节"
   }
 };
 
