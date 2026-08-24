@@ -490,3 +490,71 @@ button.cta{
 @media (max-width:480px){
   .letter-target{font-size:3.6rem; width:90px; height:90px; line-height:90px;}
 }
+
+/* ===== word-building game ===== */
+.word-emoji{
+  font-size:3.6rem;
+  margin-bottom:16px;
+}
+.word-slots{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:26px;
+  flex-wrap:wrap;
+}
+.word-slot{
+  width:52px;
+  height:60px;
+  border-radius:12px;
+  background:var(--cream);
+  box-shadow:inset 0 0 0 3px #F0DCC0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Baloo 2',sans-serif;
+  font-size:1.8rem;
+  font-weight:800;
+  color:var(--ink);
+}
+.word-slot.filled{
+  box-shadow:inset 0 0 0 3px var(--meadow);
+}
+.word-tiles{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  max-width:340px;
+  margin:0 auto;
+}
+.word-tile{
+  width:52px;
+  height:52px;
+  border-radius:12px;
+  border:none;
+  background:#EAF2FB;
+  color:var(--ink);
+  font-family:'Baloo 2',sans-serif;
+  font-size:1.6rem;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 4px 0 #C9DAEE;
+  transition:transform .12s ease;
+}
+.word-tile:hover{transform:translateY(-2px);}
+.word-tile:disabled{
+  opacity:0.25;
+  cursor:default;
+  box-shadow:none;
+  transform:none;
+}
+.word-tile.wrong{
+  animation:shake .35s ease;
+  background:var(--coral);
+  color:#fff;
+}
+@media (max-width:480px){
+  .word-slot{width:42px; height:50px; font-size:1.4rem;}
+  .word-tile{width:44px; height:44px; font-size:1.3rem;}
+}
