@@ -64,11 +64,15 @@ function initSyllableGame(containerId){
     var word = entry[0], count = entry[1], emoji = entry[2];
     currentAnswer = count;
 
-    var options = [count];
-    while(options.length < 4){
-      var candidate = Math.max(1, count + (Math.floor(Math.random()*5) - 2));
-      if(options.indexOf(candidate) === -1) options.push(candidate);
+    // Безопасная генерация вариантов без циклов и риска зависания:
+    // берём все теоретически возможные соседние числа (1..5 слогов),
+    // исключаем правильный ответ, перемешиваем, берём первые 3.
+    var pool = [1,2,3,4,5].filter(function(n){ return n !== count; });
+    for(var p=pool.length-1; p>0; p--){
+      var q = Math.floor(Math.random()*(p+1));
+      var tp = pool[p]; pool[p]=pool[q]; pool[q]=tp;
     }
+    var options = [count].concat(pool.slice(0,3));
     for(var j=options.length-1; j>0; j--){
       var k = Math.floor(Math.random()*(j+1));
       var tmp = options[j]; options[j]=options[k]; options[k]=tmp;
