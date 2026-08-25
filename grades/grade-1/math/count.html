@@ -65,7 +65,7 @@
 <script src="../../../games/counting-game.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
-    initSpeakButton('speak-btn', 'count_explain');
+    initSpeakButton('speak-btn', 'count_explain', '../../../assets/audio/');
     initStartGameButton('start-game-btn', 'explain-panel', 'game-panel', function(){
       initCountingGame('game-root');
     });
