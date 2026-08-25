@@ -633,3 +633,44 @@ button.cta{
   .memory-grid{gap:8px;}
   .memory-card{font-size:1.4rem; border-radius:10px;}
 }
+
+/* ===== explain block (объяснение перед игрой) ===== */
+.explain-card{
+  text-align:left;
+}
+.explain-card .explain-heading{
+  font-size:1.4rem;
+  margin-bottom:14px;
+  text-align:center;
+}
+.explain-text{
+  font-size:1.05rem;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--cream);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+}
+.explain-actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.speak-btn{
+  font-family:'Nunito',sans-serif;
+  font-weight:800;
+  font-size:0.95rem;
+  padding:12px 22px;
+  border:none;
+  border-radius:999px;
+  background:#EAF2FB;
+  color:var(--ink);
+  cursor:pointer;
+  box-shadow:0 4px 0 #C9DAEE;
+  transition:transform .12s ease;
+}
+.speak-btn:hover{transform:translateY(-2px);}
+.speak-btn:active{transform:translateY(2px); box-shadow:0 2px 0 #C9DAEE;}
+.speak-btn.speaking{background:var(--meadow); color:#fff; box-shadow:0 4px 0 #2E8F6B;}

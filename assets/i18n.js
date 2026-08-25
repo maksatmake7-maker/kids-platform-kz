@@ -85,7 +85,10 @@ const translations = {
     hub_memory_desc: "Переверни карточки и найди одинаковые",
     memory_game_title: "Найди пару!",
     memory_game_sub: "Переворачивай карточки и находи одинаковые пары",
-    moves_label: "Ходы:"
+    moves_label: "Ходы:",
+    explain_heading: "Что мы будем делать?",
+    speak_button: "🔊 Озвучить",
+    count_explain: "В математике мы учимся считать предметы: яблоки, звёзды, игрушки — всё что угодно! Считать можно по порядку: один, два, три… А ещё можно сравнивать — где предметов больше, а где меньше. Давай потренируемся!"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -169,7 +172,10 @@ const translations = {
     hub_memory_desc: "Карточкаларды аударып, бірдей жұпты тап",
     memory_game_title: "Жұбын тап!",
     memory_game_sub: "Карточкаларды аударып, бірдей жұптарды тап",
-    moves_label: "Қадам:"
+    moves_label: "Қадам:",
+    explain_heading: "Не істейміз?",
+    speak_button: "🔊 Дауыстап оқу",
+    count_explain: "Математикада біз заттарды санауды үйренеміз: алма, жұлдыз, ойыншық — не болса да! Санауды ретімен жасауға болады: бір, екі, үш… Тағы да салыстыруға болады — қай жерде зат көп, қай жерде аз. Келе жаттығайық!"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -253,7 +259,10 @@ const translations = {
     hub_memory_desc: "Flip the cards and find matching pairs",
     memory_game_title: "Match the Pairs!",
     memory_game_sub: "Flip cards and find the matching pairs",
-    moves_label: "Moves:"
+    moves_label: "Moves:",
+    explain_heading: "What are we going to do?",
+    speak_button: "🔊 Read aloud",
+    count_explain: "In math, we learn to count objects — apples, stars, toys, anything! We can count in order: one, two, three… We can also compare — where there are more, and where there are fewer. Let's practice!"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -337,7 +346,10 @@ const translations = {
     hub_memory_desc: "翻开卡片，找出相同的一对",
     memory_game_title: "找配对！",
     memory_game_sub: "翻开卡片，找出相同的配对",
-    moves_label: "步数："
+    moves_label: "步数：",
+    explain_heading: "我们要做什么？",
+    speak_button: "🔊 朗读",
+    count_explain: "在数学课上，我们学习数东西——苹果、星星、玩具，什么都可以！我们可以按顺序数：一、二、三……我们还可以比较——哪里的东西多，哪里的少。让我们练习一下吧！"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -421,7 +433,10 @@ const translations = {
     hub_memory_desc: "Карточкаларни ағдариб, бир хилларини топ",
     memory_game_title: "Жуфтини топ!",
     memory_game_sub: "Карточкаларни ағдариб, бир хил жуфтларни топ",
-    moves_label: "Юришлар:"
+    moves_label: "Юришлар:",
+    explain_heading: "Нима қиламиз?",
+    speak_button: "🔊 Овоз чиқариб ўқиш",
+    count_explain: "Математикада биз буюмларни санашни ўрганамиз: олма, юлдуз, ўйинчоқ — нима бўлса ҳам! Тартиб билан санаш мумкин: бир, икки, уч… Яна солиштириш ҳам мумкин — қаерда буюм кўп, қаерда кам. Машқ қилайлик!"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -505,7 +520,10 @@ const translations = {
     hub_memory_desc: "Кортҳоро гардон ва якхеларо ёб",
     memory_game_title: "Ҷуфтро ёб!",
     memory_game_sub: "Кортҳоро гардонда ҷуфтҳои якхеларо ёб",
-    moves_label: "Ҳаракатҳо:"
+    moves_label: "Ҳаракатҳо:",
+    explain_heading: "Мо чӣ кор мекунем?",
+    speak_button: "🔊 Хондан",
+    count_explain: "Дар математика мо чизҳоро шумурдан меомӯзем: себ, ситора, бозича — ҳар чиз! Метавон паиҳам шумурд: як, ду, се… Инчунин метавон муқоиса кард — дар куҷо чиз бештар аст, дар куҷо камтар. Биёед машқ кунем!"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -589,7 +607,10 @@ const translations = {
     hub_memory_desc: "كارتىلارنى ئۆرۈپ ئوخشاشلىرىنى تېپىڭ",
     memory_game_title: "جۈپىنى تېپىڭ!",
     memory_game_sub: "كارتىلارنى ئۆرۈپ ئوخشاش جۈپلەرنى تېپىڭ",
-    moves_label: "قەدەم:"
+    moves_label: "قەدەم:",
+    explain_heading: "بىز نېمە قىلىمىز؟",
+    speak_button: "🔊 ئوقۇپ بېرىش",
+    count_explain: "математикада بىز نەرسىلەرنى ساناشنى ئۆگىنىمىز: ئالما، يۇلتۇز، ئوينچۇق — نېمە بولسىمۇ! رەت بويىچە سانىغىلى بولىدۇ: بىر، ئىككى، ئۈچ… يەنە سېلىشتۇرغىلىمۇ بولىدۇ — قەيەردە نەرسە كۆپ، قەيەردە ئاز. مەشىق قىلايلى!"
   }
 };
 
