@@ -358,6 +358,14 @@ footer{
 }
 .count-btn:hover{transform:translateY(-2px);}
 .count-btn:active{transform:translateY(3px); box-shadow:0 2px 0 #C9DAEE;}
+/* модификатор для кнопок с текстом слов (а не цифрой) — 2 колонки, меньше шрифт */
+.count-options.word-options{
+  grid-template-columns:repeat(2,1fr);
+}
+.count-options.word-options .count-btn{
+  font-size:1.15rem;
+  padding:14px 8px;
+}
 .count-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B;}
 .count-btn.wrong{background:var(--coral); color:#fff; box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
 @keyframes shake{
