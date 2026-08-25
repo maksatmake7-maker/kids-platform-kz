@@ -121,7 +121,17 @@ const translations = {
     truefalse_game_sub: "Посмотри на равенство — оно верное или нет?",
     truefalse_explain: "Барыс проверяет равенства! Иногда числа складывают правильно, а иногда — специально ошибаются. Посмотри на пример на экране и подумай: слева и справа от знака «=» получается одно и то же число? Если да — это верное равенство, если нет — неверное. Готов проверять числа?",
     btn_true: "Верно",
-    btn_false: "Неверно"
+    btn_false: "Неверно",
+    hub_pattern_title: "Найди закономерность",
+    hub_pattern_desc: "Какое число будет следующим?",
+    pattern_game_title: "Найди закономерность!",
+    pattern_game_sub: "Посмотри на числа — какое следующее?",
+    pattern_explain: "Барыс любит числовые загадки! В последовательности чисел спрятан секретный порядок — например, каждое следующее число может быть на 2 больше предыдущего. Посмотри на числа на экране и разгадай, какое число должно быть следующим. Готов искать закономерности?",
+    hub_symbolseq_title: "Продолжи ряд",
+    hub_symbolseq_desc: "Какая картинка следующая?",
+    symbolseq_game_title: "Продолжи ряд!",
+    symbolseq_game_sub: "Посмотри на картинки — какая будет следующей?",
+    symbolseq_explain: "Барыс расставляет картинки по порядку! Иногда картинки повторяются друг за другом по своему правилу — например, звезда, сердце, звезда, сердце… Посмотри на ряд картинок и угадай, какая будет следующей. Готов продолжить ряд?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -241,7 +251,17 @@ const translations = {
     truefalse_game_sub: "Теңдікке қара — ол дұрыс па, бұрыс па?",
     truefalse_explain: "Барыс теңдіктерді тексереді! Кейде сандар дұрыс қосылады, кейде әдейі қателеседі. Экрандағы мысалға қара да ойлан: «=» белгісінің сол жағы мен оң жағында бірдей сан шыға ма? Егер иә болса — бұл дұрыс теңдік, болмаса — бұрыс. Сандарды тексеруге дайынсың ба?",
     btn_true: "Дұрыс",
-    btn_false: "Бұрыс"
+    btn_false: "Бұрыс",
+    hub_pattern_title: "Заңдылықты тап",
+    hub_pattern_desc: "Келесі сан қандай болады?",
+    pattern_game_title: "Заңдылықты тап!",
+    pattern_game_sub: "Сандарға қара — келесісі қандай?",
+    pattern_explain: "Барыс сандық жұмбақтарды жақсы көреді! Сандар тізбегінде құпия тәртіп жасырылған — мысалы, әр келесі сан алдыңғысынан 2-ге көп болуы мүмкін. Экрандағы сандарға қара да, келесі сан қандай болу керектігін тап. Заңдылықтарды іздеуге дайынсың ба?",
+    hub_symbolseq_title: "Қатарды жалғастыр",
+    hub_symbolseq_desc: "Келесі сурет қандай?",
+    symbolseq_game_title: "Қатарды жалғастыр!",
+    symbolseq_game_sub: "Суреттерге қара — келесісі қандай болады?",
+    symbolseq_explain: "Барыс суреттерді ретімен қояды! Кейде суреттер өз ережесі бойынша бір-бірінің артынан қайталанады — мысалы, жұлдыз, жүрек, жұлдыз, жүрек... Сурет қатарына қара да, келесісі қандай болатынын тап. Қатарды жалғастыруға дайынсың ба?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -361,7 +381,17 @@ const translations = {
     truefalse_game_sub: "Look at the equality — is it correct or not?",
     truefalse_explain: "Barys checks equalities! Sometimes numbers are added correctly, and sometimes there's a deliberate mistake. Look at the example on screen and think: do the left and right sides of the '=' sign give the same number? If yes — it's a true equality, if not — it's false. Ready to check numbers?",
     btn_true: "True",
-    btn_false: "False"
+    btn_false: "False",
+    hub_pattern_title: "Find the Pattern",
+    hub_pattern_desc: "What number comes next?",
+    pattern_game_title: "Find the Pattern!",
+    pattern_game_sub: "Look at the numbers — what comes next?",
+    pattern_explain: "Barys loves number puzzles! A number sequence hides a secret order — for example, each next number might be 2 more than the one before. Look at the numbers on screen and figure out which number should come next. Ready to find patterns?",
+    hub_symbolseq_title: "Continue the Row",
+    hub_symbolseq_desc: "Which picture comes next?",
+    symbolseq_game_title: "Continue the Row!",
+    symbolseq_game_sub: "Look at the pictures — which one comes next?",
+    symbolseq_explain: "Barys arranges pictures in order! Sometimes pictures repeat one after another following their own rule — for example, star, heart, star, heart… Look at the row of pictures and guess which one comes next. Ready to continue the row?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -481,7 +511,17 @@ const translations = {
     truefalse_game_sub: "看看这个等式——它是对的还是错的？",
     truefalse_explain: "巴雷斯在检查等式！有时候数字加对了，有时候是故意加错的。看看屏幕上的例子，想一想：「=」号左边和右边得到的是同一个数字吗？如果是——这就是正确的等式，如果不是——就是错误的。准备好检查数字了吗？",
     btn_true: "对",
-    btn_false: "错"
+    btn_false: "错",
+    hub_pattern_title: "找规律",
+    hub_pattern_desc: "下一个数字是什么？",
+    pattern_game_title: "找规律！",
+    pattern_game_sub: "看看这些数字——下一个是什么？",
+    pattern_explain: "巴雷斯喜欢数字谜题！数字序列里藏着一个秘密规律——比如，每个下一个数字可能比前一个多2。看看屏幕上的数字，猜猜下一个应该是什么数字。准备好寻找规律了吗？",
+    hub_symbolseq_title: "接着排列",
+    hub_symbolseq_desc: "下一张图片是什么？",
+    symbolseq_game_title: "接着排列！",
+    symbolseq_game_sub: "看看这些图片——下一张会是什么？",
+    symbolseq_explain: "巴雷斯按顺序排列图片！有时候图片会按照自己的规律一个接一个重复——比如，星星、爱心、星星、爱心……看看这排图片，猜猜下一个是什么。准备好接着排列了吗？"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -601,7 +641,17 @@ const translations = {
     truefalse_game_sub: "Тенгликка қара — у тўғрими ёки йўқми?",
     truefalse_explain: "Барыс тengликларни текшираяпти! Баъзан сонлар тўғри қўшилади, баъзан эса атайлаб хато қилинади. Экрандаги мисолга қара ва ўйла: «=» белгисининг чап ва ўнг томонида бир хил сон чиқадими? Агар ҳа бўлса — бу тўғри тенглик, бўлмаса — нотўғри. Сонларни текширишга тайёрмисан?",
     btn_true: "Тўғри",
-    btn_false: "Нотўғри"
+    btn_false: "Нотўғри",
+    hub_pattern_title: "Қонуниятни топ",
+    hub_pattern_desc: "Кейинги сон нима?",
+    pattern_game_title: "Қонуниятни топ!",
+    pattern_game_sub: "Сонларга қара — кейингиси қандай?",
+    pattern_explain: "Барыс сон жумбоқларини яхши кўради! Сонлар кетма-кетлигида сирли тартиб яширинган — масалан, ҳар кейинги сон олдингисидан 2 та кўп бўлиши мумкин. Экрандаги сонларга қара ва кейинги сон қандай бўлиши кераклигини топ. Қонуниятларни излашга тайёрмисан?",
+    hub_symbolseq_title: "Қаторни давом эттир",
+    hub_symbolseq_desc: "Кейинги расм қандай?",
+    symbolseq_game_title: "Қаторни давом эттир!",
+    symbolseq_game_sub: "Расмларга қара — кейингиси қандай бўлади?",
+    symbolseq_explain: "Барыс расмларни тартиб билан қўяди! Баъзан расмлар ўз қоидаси бўйича бир-бирининг кетидан такрорланади — масалан, юлдуз, юрак, юлдуз, юрак... Расмлар қаторига қара ва кейингиси қандай бўлишини топ. Қаторни давом эттиришга тайёрмисан?"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -721,7 +771,17 @@ const translations = {
     truefalse_game_sub: "Ба баробарӣ нигоҳ кун — он дуруст аст ё не?",
     truefalse_explain: "Барыс баробариҳоро месанҷад! Баъзан рақамҳо дуруст ҷамъ мешаванд, баъзан бошад қасдан хато карда мешавад. Ба мисоли дар экран нигоҳ кун ва фикр кун: тарафи чап ва рости аломати «=» як рақами якхела медиҳанд? Агар ҳа — ин баробарии дуруст аст, агар не — нодуруст. Омодаи санҷидани рақамҳо ҳастӣ?",
     btn_true: "Дуруст",
-    btn_false: "Нодуруст"
+    btn_false: "Нодуруст",
+    hub_pattern_title: "Қонунро ёб",
+    hub_pattern_desc: "Рақами баъдӣ кадом аст?",
+    pattern_game_title: "Қонунро ёб!",
+    pattern_game_sub: "Ба рақамҳо нигоҳ кун — баъдӣ кадом аст?",
+    pattern_explain: "Барыс муаммоҳои рақамиро дӯст медорад! Дар силсилаи рақамҳо тартиби пинҳонӣ ҳаст — масалан, ҳар рақами баъдӣ метавонад аз қаблӣ 2 адад бештар бошад. Ба рақамҳои дар экран нигоҳ кун ва бифаҳм, ки рақами баъдӣ кадом бояд бошад. Омодаи ёфтани қонунҳо ҳастӣ?",
+    hub_symbolseq_title: "Қаторро идома деҳ",
+    hub_symbolseq_desc: "Расми баъдӣ кадом аст?",
+    symbolseq_game_title: "Қаторро идома деҳ!",
+    symbolseq_game_sub: "Ба расмҳо нигоҳ кун — баъдӣ кадом мешавад?",
+    symbolseq_explain: "Барыс расмҳоро бо тартиб мегузорад! Баъзан расмҳо мувофиқи қоидаи худ паиҳам такрор мешаванд — масалан, ситора, дил, ситора, дил... Ба қатори расмҳо нигоҳ кун ва бифаҳм, ки баъдӣ кадом мешавад. Омодаи идома додани қатор ҳастӣ?"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -841,7 +901,17 @@ const translations = {
     truefalse_game_sub: "باراۋەرلىككە قاراڭ — ئۇ توغرىمۇ ياكى خاتامۇ؟",
     truefalse_explain: "بارىس باراۋەرلىكلەرنى تەكشۈرىدۇ! بەزىدە سانلار توغرا قوشۇلىدۇ، بەزىدە بولسا ئاتايىن خاتالىشىدۇ. ئېكراندىكى مىسالغا قاراڭ ۋە ئويلاڭ: «=» بەلگىسىنىڭ سول ۋە ئوڭ تەرىپىدە ئوخشاش سان چىقامدۇ؟ ئەگەر شۇنداق بولسا — بۇ توغرا باراۋەرلىك، بولمىسا — خاتا. سانلارنى تەكشۈرۈشكە تەييارمۇسىز؟",
     btn_true: "توغرا",
-    btn_false: "خاتا"
+    btn_false: "خاتا",
+    hub_pattern_title: "قانۇنىيەتنى تېپىڭ",
+    hub_pattern_desc: "كېيىنكى سان قايسى؟",
+    pattern_game_title: "قانۇنىيەتنى تېپىڭ!",
+    pattern_game_sub: "سانلارغا قاراڭ — كېيىنكىسى قايسى؟",
+    pattern_explain: "بارىس سان تاپماقلىرىنى ياخشى كۆرىدۇ! سانلار قاتارىدا مەخپىي تەرتىپ يوشۇرۇنغان — مەسىلەن، ھەر كېيىنكى سان ئالدىنقىسىدىن 2 كۆپ بولۇشى مۇمكىن. ئېكراندىكى سانلارغا قاراڭ ۋە كېيىنكى سان قايسى بولۇشى كېرەكلىكىنى تېپىڭ. قانۇنىيەتلەرنى ئىزدەشكە تەييارمۇسىز؟",
+    hub_symbolseq_title: "قاتارنى داۋاملاشتۇرۇڭ",
+    hub_symbolseq_desc: "كېيىنكى رەسىم قايسى؟",
+    symbolseq_game_title: "قاتارنى داۋاملاشتۇرۇڭ!",
+    symbolseq_game_sub: "رەسىملەرگە قاراڭ — كېيىنكىسى قايسى بولىدۇ؟",
+    symbolseq_explain: "بارىس رەسىملەرنى تەرتىپ بىلەن قويىدۇ! بەزىدە رەسىملەر ئۆز قائىدىسى بويىچە بىر-بىرىنىڭ ئارقىسىدىن تەكرارلىنىدۇ — مەسىلەن، يۇلتۇز، يۈرەك، يۇلتۇز، يۈرەك... رەسىملەر قاتارىغا قاراڭ ۋە كېيىنكىسى قايسى بولىدىغانلىقىنى تېپىڭ. قاتارنى داۋاملاشتۇرۇشقا تەييارمۇسىز؟"
   }
 };
 
