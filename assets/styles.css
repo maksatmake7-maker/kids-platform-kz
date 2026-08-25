@@ -590,3 +590,43 @@ button.cta{
 @media (max-width:480px){
   .syllable-word{font-size:1.6rem;}
 }
+
+/* ===== memory match game ===== */
+.memory-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:360px;
+  margin:0 auto;
+}
+.memory-card{
+  aspect-ratio:1/1;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(145deg, #7C9CFF, #5E7FE0);
+  cursor:pointer;
+  box-shadow:0 5px 0 #4A63B8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.8rem;
+  color:transparent;
+  transition:transform .12s ease, background .2s ease;
+}
+.memory-card:hover:not(.flipped):not(.matched){transform:translateY(-2px);}
+.memory-card.flipped, .memory-card.matched{
+  background:var(--cream);
+  color:initial;
+  box-shadow:0 5px 0 #F0DCC0;
+}
+.memory-card.matched{
+  background:var(--meadow);
+  box-shadow:0 5px 0 #2E8F6B;
+  opacity:0.85;
+  cursor:default;
+}
+.memory-card:disabled{cursor:default;}
+@media (max-width:480px){
+  .memory-grid{gap:8px;}
+  .memory-card{font-size:1.4rem; border-radius:10px;}
+}
