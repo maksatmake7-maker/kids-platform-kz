@@ -75,6 +75,23 @@ header{
   display:flex;align-items:center;justify-content:center;
   font-size:1.1rem;
 }
+.total-stars-badge{
+  display:flex;
+  align-items:center;
+  background:var(--sun);
+  color:var(--ink);
+  font-family:'Baloo 2',sans-serif;
+  font-weight:800;
+  font-size:0.95rem;
+  padding:8px 16px;
+  border-radius:999px;
+  box-shadow:0 3px 0 #E0A620;
+  white-space:nowrap;
+}
+@media (max-width:560px){
+  .total-stars-badge{font-size:0.8rem; padding:6px 12px;}
+}
+
 .lang-toggle{
   display:flex;
   flex-wrap:wrap;
