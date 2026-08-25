@@ -691,3 +691,45 @@ button.cta{
 .speak-btn:hover{transform:translateY(-2px);}
 .speak-btn:active{transform:translateY(2px); box-shadow:0 2px 0 #C9DAEE;}
 .speak-btn.speaking{background:var(--meadow); color:#fff; box-shadow:0 4px 0 #2E8F6B;}
+
+/* ===== shapes game (Найди линию) ===== */
+.shape-target-text{
+  display:inline-block;
+  font-family:'Baloo 2',sans-serif;
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--coral);
+  background:var(--cream);
+  padding:16px 28px;
+  border-radius:20px;
+  margin:0 auto 28px;
+  box-shadow:0 5px 0 #F0DCC0;
+  max-width:90%;
+}
+.shape-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  max-width:420px;
+  margin:0 auto;
+}
+.shape-btn{
+  border:none;
+  border-radius:16px;
+  background:#EAF2FB;
+  cursor:pointer;
+  box-shadow:0 5px 0 #C9DAEE;
+  transition:transform .12s ease, background .2s ease;
+  padding:14px;
+}
+.shape-btn svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.shape-btn:hover{transform:translateY(-2px);}
+.shape-btn.correct{background:var(--meadow); box-shadow:0 5px 0 #2E8F6B;}
+.shape-btn.wrong{background:var(--coral); box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
+@media (max-width:480px){
+  .shape-target-text{font-size:1.2rem; padding:12px 18px;}
+}
