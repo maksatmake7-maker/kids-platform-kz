@@ -114,7 +114,14 @@ const translations = {
     shape_lomanaya: "ЛОМАНАЯ",
     shape_otrezok: "ОТРЕЗОК",
     shape_luch: "ЛУЧ",
-    shape_ugol: "УГОЛ"
+    shape_ugol: "УГОЛ",
+    hub_truefalse_title: "Верно или неверно?",
+    hub_truefalse_desc: "Проверь равенство",
+    truefalse_game_title: "Верно или неверно?",
+    truefalse_game_sub: "Посмотри на равенство — оно верное или нет?",
+    truefalse_explain: "Барыс проверяет равенства! Иногда числа складывают правильно, а иногда — специально ошибаются. Посмотри на пример на экране и подумай: слева и справа от знака «=» получается одно и то же число? Если да — это верное равенство, если нет — неверное. Готов проверять числа?",
+    btn_true: "Верно",
+    btn_false: "Неверно"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -227,7 +234,14 @@ const translations = {
     shape_lomanaya: "СЫНЫҚ СЫЗЫҚ",
     shape_otrezok: "КЕСІНДІ",
     shape_luch: "СӘУЛЕ",
-    shape_ugol: "БҰРЫШ"
+    shape_ugol: "БҰРЫШ",
+    hub_truefalse_title: "Дұрыс па, бұрыс па?",
+    hub_truefalse_desc: "Теңдікті тексер",
+    truefalse_game_title: "Дұрыс па, бұрыс па?",
+    truefalse_game_sub: "Теңдікке қара — ол дұрыс па, бұрыс па?",
+    truefalse_explain: "Барыс теңдіктерді тексереді! Кейде сандар дұрыс қосылады, кейде әдейі қателеседі. Экрандағы мысалға қара да ойлан: «=» белгісінің сол жағы мен оң жағында бірдей сан шыға ма? Егер иә болса — бұл дұрыс теңдік, болмаса — бұрыс. Сандарды тексеруге дайынсың ба?",
+    btn_true: "Дұрыс",
+    btn_false: "Бұрыс"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -340,7 +354,14 @@ const translations = {
     shape_lomanaya: "BROKEN LINE",
     shape_otrezok: "SEGMENT",
     shape_luch: "RAY",
-    shape_ugol: "ANGLE"
+    shape_ugol: "ANGLE",
+    hub_truefalse_title: "True or False?",
+    hub_truefalse_desc: "Check the equality",
+    truefalse_game_title: "True or False?",
+    truefalse_game_sub: "Look at the equality — is it correct or not?",
+    truefalse_explain: "Barys checks equalities! Sometimes numbers are added correctly, and sometimes there's a deliberate mistake. Look at the example on screen and think: do the left and right sides of the '=' sign give the same number? If yes — it's a true equality, if not — it's false. Ready to check numbers?",
+    btn_true: "True",
+    btn_false: "False"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -453,7 +474,14 @@ const translations = {
     shape_lomanaya: "折线",
     shape_otrezok: "线段",
     shape_luch: "射线",
-    shape_ugol: "角"
+    shape_ugol: "角",
+    hub_truefalse_title: "对还是错？",
+    hub_truefalse_desc: "检查这个等式",
+    truefalse_game_title: "对还是错？",
+    truefalse_game_sub: "看看这个等式——它是对的还是错的？",
+    truefalse_explain: "巴雷斯在检查等式！有时候数字加对了，有时候是故意加错的。看看屏幕上的例子，想一想：「=」号左边和右边得到的是同一个数字吗？如果是——这就是正确的等式，如果不是——就是错误的。准备好检查数字了吗？",
+    btn_true: "对",
+    btn_false: "错"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -566,7 +594,14 @@ const translations = {
     shape_lomanaya: "СИНИҚ ЧИЗИҚ",
     shape_otrezok: "КЕСМА",
     shape_luch: "НУР",
-    shape_ugol: "БУРЧАК"
+    shape_ugol: "БУРЧАК",
+    hub_truefalse_title: "Тўғрими, нотўғрими?",
+    hub_truefalse_desc: "Тенгликни текшир",
+    truefalse_game_title: "Тўғрими, нотўғрими?",
+    truefalse_game_sub: "Тенгликка қара — у тўғрими ёки йўқми?",
+    truefalse_explain: "Барыс тengликларни текшираяпти! Баъзан сонлар тўғри қўшилади, баъзан эса атайлаб хато қилинади. Экрандаги мисолга қара ва ўйла: «=» белгисининг чап ва ўнг томонида бир хил сон чиқадими? Агар ҳа бўлса — бу тўғри тенглик, бўлмаса — нотўғри. Сонларни текширишга тайёрмисан?",
+    btn_true: "Тўғри",
+    btn_false: "Нотўғри"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -679,7 +714,14 @@ const translations = {
     shape_lomanaya: "ХАТИ ШИКАСТА",
     shape_otrezok: "ПОРЧА",
     shape_luch: "ШУОЪ",
-    shape_ugol: "КУНҶ"
+    shape_ugol: "КУНҶ",
+    hub_truefalse_title: "Дуруст ё нодуруст?",
+    hub_truefalse_desc: "Баробариро санҷ",
+    truefalse_game_title: "Дуруст ё нодуруст?",
+    truefalse_game_sub: "Ба баробарӣ нигоҳ кун — он дуруст аст ё не?",
+    truefalse_explain: "Барыс баробариҳоро месанҷад! Баъзан рақамҳо дуруст ҷамъ мешаванд, баъзан бошад қасдан хато карда мешавад. Ба мисоли дар экран нигоҳ кун ва фикр кун: тарафи чап ва рости аломати «=» як рақами якхела медиҳанд? Агар ҳа — ин баробарии дуруст аст, агар не — нодуруст. Омодаи санҷидани рақамҳо ҳастӣ?",
+    btn_true: "Дуруст",
+    btn_false: "Нодуруст"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -792,7 +834,14 @@ const translations = {
     shape_lomanaya: "سۇنۇق سىزىق",
     shape_otrezok: "كېسىندى",
     shape_luch: "نۇر",
-    shape_ugol: "بۇلۇڭ"
+    shape_ugol: "بۇلۇڭ",
+    hub_truefalse_title: "توغرىمۇ، خاتامۇ؟",
+    hub_truefalse_desc: "باراۋەرلىكنى تەكشۈرۈڭ",
+    truefalse_game_title: "توغرىمۇ، خاتامۇ؟",
+    truefalse_game_sub: "باراۋەرلىككە قاراڭ — ئۇ توغرىمۇ ياكى خاتامۇ؟",
+    truefalse_explain: "بارىس باراۋەرلىكلەرنى تەكشۈرىدۇ! بەزىدە سانلار توغرا قوشۇلىدۇ، بەزىدە بولسا ئاتايىن خاتالىشىدۇ. ئېكراندىكى مىسالغا قاراڭ ۋە ئويلاڭ: «=» بەلگىسىنىڭ سول ۋە ئوڭ تەرىپىدە ئوخشاش سان چىقامدۇ؟ ئەگەر شۇنداق بولسا — بۇ توغرا باراۋەرلىك، بولمىسا — خاتا. سانلارنى تەكشۈرۈشكە تەييارمۇسىز؟",
+    btn_true: "توغرا",
+    btn_false: "خاتا"
   }
 };
 

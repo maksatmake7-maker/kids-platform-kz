@@ -733,3 +733,12 @@ button.cta{
 @media (max-width:480px){
   .shape-target-text{font-size:1.2rem; padding:12px 18px;}
 }
+
+/* ===== true/false equation game ===== */
+.equation-text{
+  font-size:2.2rem;
+  letter-spacing:1px;
+}
+@media (max-width:480px){
+  .equation-text{font-size:1.6rem;}
+}
