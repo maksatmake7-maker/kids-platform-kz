@@ -80,6 +80,7 @@ function initSubtractionGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('subtract', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

@@ -84,6 +84,7 @@ function initVowelGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('vowel', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

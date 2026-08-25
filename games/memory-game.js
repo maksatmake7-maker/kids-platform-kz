@@ -8,7 +8,7 @@ function initMemoryGame(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
-  var EMOJIS = ['🦋','🌸','⭐','🍎','🐠','🎈','🌈','🍓'];
+  var EMOJIS = ['🦋','🌸','⭐','🍎','🐠','🎈','🌈','🍓','🐝','🍉'];
 
   var cards = [];
   var flipped = [];
@@ -85,6 +85,7 @@ function initMemoryGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('memory', EMOJIS.length, EMOJIS.length);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

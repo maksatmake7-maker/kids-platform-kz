@@ -131,6 +131,7 @@ function initWordGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('word', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

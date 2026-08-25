@@ -17,7 +17,10 @@ function initKazVocabGame(containerId){
     ['ОЙЫНШЫҚ','🧸'],
     ['ЖЕТІ','7️⃣'],
     ['ЕСІМ','🏷️'],
-    ['ОТЫРУ','🪑']
+    ['ОТЫРУ','🪑'],
+    ['МЕН','🙋'],
+    ['СЕН','👉'],
+    ['ОЛ','👤']
   ];
 
   var TOTAL = WORDS.length;
@@ -82,6 +85,7 @@ function initKazVocabGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('kazvocab', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

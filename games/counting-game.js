@@ -68,6 +68,7 @@ function initCountingGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('count', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

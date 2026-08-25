@@ -95,6 +95,7 @@ function initKazQwordsGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('kazqwords', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

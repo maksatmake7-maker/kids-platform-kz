@@ -106,6 +106,7 @@ function initLetterGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('letter', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

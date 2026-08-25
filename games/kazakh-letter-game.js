@@ -87,6 +87,7 @@ function initKazLetterGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('kazletter', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

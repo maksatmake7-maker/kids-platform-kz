@@ -113,6 +113,7 @@ function initSyllableGame(containerId){
   }
 
   function renderFinish(){
+    recordGameResult('syllable', score, TOTAL);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
