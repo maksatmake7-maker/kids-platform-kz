@@ -28,7 +28,21 @@
 
 <section class="game-shell">
   <a href="index.html" class="back-link" data-i18n="back_reading"></a>
-  <div class="game-card">
+
+  <div class="game-card explain-card" id="explain-panel">
+    <h2 class="explain-heading" data-i18n="explain_heading"></h2>
+    <p class="explain-text" data-i18n="syllable_explain"></p>
+    <div class="explain-actions">
+      <button class="speak-btn" id="speak-btn">
+        <span data-i18n="speak_button"></span>
+      </button>
+      <button class="cta" id="start-game-btn">
+        <span data-i18n="badge_play"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="game-card" id="game-panel" style="display:none;">
     <h1 data-i18n="syllable_game_title"></h1>
     <p class="game-sub" data-i18n="syllable_game_sub"></p>
     <div class="game-meta">
@@ -47,10 +61,14 @@
 <footer data-i18n="footer"></footer>
 
 <script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/explain.js"></script>
 <script src="../../../games/syllable-game.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
-    initSyllableGame('game-root');
+    initSpeakButton('speak-btn', 'syllable_explain', '../../../assets/audio/');
+    initStartGameButton('start-game-btn', 'explain-panel', 'game-panel', function(){
+      initSyllableGame('game-root');
+    });
   });
 </script>
 </body>
