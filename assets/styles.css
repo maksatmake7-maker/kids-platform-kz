@@ -742,3 +742,15 @@ button.cta{
 @media (max-width:480px){
   .equation-text{font-size:1.6rem;}
 }
+
+/* ===== word problem game ===== */
+.problem-text{
+  font-size:1.15rem;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--cream);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:24px;
+  text-align:left;
+}

@@ -131,7 +131,14 @@ const translations = {
     hub_symbolseq_desc: "Какая картинка следующая?",
     symbolseq_game_title: "Продолжи ряд!",
     symbolseq_game_sub: "Посмотри на картинки — какая будет следующей?",
-    symbolseq_explain: "Барыс расставляет картинки по порядку! Иногда картинки повторяются друг за другом по своему правилу — например, звезда, сердце, звезда, сердце… Посмотри на ряд картинок и угадай, какая будет следующей. Готов продолжить ряд?"
+    symbolseq_explain: "Барыс расставляет картинки по порядку! Иногда картинки повторяются друг за другом по своему правилу — например, звезда, сердце, звезда, сердце… Посмотри на ряд картинок и угадай, какая будет следующей. Готов продолжить ряд?",
+    hub_problem_title: "Реши задачу",
+    hub_problem_desc: "Прочитай и посчитай",
+    problem_game_title: "Реши задачу!",
+    problem_game_sub: "Прочитай условие и найди правильный ответ",
+    problem_explain: "Барыс читает задачи! В задаче написано, сколько было предметов сначала, и что с ними случилось — прибавили ещё или забрали часть. Внимательно прочитай условие, посчитай в уме и выбери правильный ответ. Готов решать задачи?",
+    problem_add_template: "Было {a} {emoji}. Добавили ещё {b} {emoji}. Сколько {emoji} стало?",
+    problem_subtract_template: "Было {a} {emoji}. Забрали {b} {emoji}. Сколько {emoji} осталось?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -261,7 +268,14 @@ const translations = {
     hub_symbolseq_desc: "Келесі сурет қандай?",
     symbolseq_game_title: "Қатарды жалғастыр!",
     symbolseq_game_sub: "Суреттерге қара — келесісі қандай болады?",
-    symbolseq_explain: "Барыс суреттерді ретімен қояды! Кейде суреттер өз ережесі бойынша бір-бірінің артынан қайталанады — мысалы, жұлдыз, жүрек, жұлдыз, жүрек... Сурет қатарына қара да, келесісі қандай болатынын тап. Қатарды жалғастыруға дайынсың ба?"
+    symbolseq_explain: "Барыс суреттерді ретімен қояды! Кейде суреттер өз ережесі бойынша бір-бірінің артынан қайталанады — мысалы, жұлдыз, жүрек, жұлдыз, жүрек... Сурет қатарына қара да, келесісі қандай болатынын тап. Қатарды жалғастыруға дайынсың ба?",
+    hub_problem_title: "Есепті шеш",
+    hub_problem_desc: "Оқы да санап шық",
+    problem_game_title: "Есепті шеш!",
+    problem_game_sub: "Шартты оқы да дұрыс жауапты тап",
+    problem_explain: "Барыс есептерді оқиды! Есепте алдымен неше зат болғаны және онымен не болғаны жазылған — тағы қосылды ма, әлде бөлігі алынды ма. Шартты мұқият оқы, ойша санап, дұрыс жауапты таңда. Есептерді шешуге дайынсың ба?",
+    problem_add_template: "{a} {emoji} болды. Тағы {b} {emoji} қосты. {emoji} неше болды?",
+    problem_subtract_template: "{a} {emoji} болды. {b} {emoji} алып кетті. {emoji} неше қалды?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -391,7 +405,14 @@ const translations = {
     hub_symbolseq_desc: "Which picture comes next?",
     symbolseq_game_title: "Continue the Row!",
     symbolseq_game_sub: "Look at the pictures — which one comes next?",
-    symbolseq_explain: "Barys arranges pictures in order! Sometimes pictures repeat one after another following their own rule — for example, star, heart, star, heart… Look at the row of pictures and guess which one comes next. Ready to continue the row?"
+    symbolseq_explain: "Barys arranges pictures in order! Sometimes pictures repeat one after another following their own rule — for example, star, heart, star, heart… Look at the row of pictures and guess which one comes next. Ready to continue the row?",
+    hub_problem_title: "Solve the Problem",
+    hub_problem_desc: "Read and count",
+    problem_game_title: "Solve the Problem!",
+    problem_game_sub: "Read the problem and find the right answer",
+    problem_explain: "Barys reads word problems! A problem tells you how many objects there were at first, and what happened to them — more were added, or some were taken away. Read the problem carefully, count in your head, and choose the right answer. Ready to solve problems?",
+    problem_add_template: "There were {a} {emoji}. {b} more {emoji} were added. How many {emoji} are there now?",
+    problem_subtract_template: "There were {a} {emoji}. {b} {emoji} were taken away. How many {emoji} are left?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -521,7 +542,14 @@ const translations = {
     hub_symbolseq_desc: "下一张图片是什么？",
     symbolseq_game_title: "接着排列！",
     symbolseq_game_sub: "看看这些图片——下一张会是什么？",
-    symbolseq_explain: "巴雷斯按顺序排列图片！有时候图片会按照自己的规律一个接一个重复——比如，星星、爱心、星星、爱心……看看这排图片，猜猜下一个是什么。准备好接着排列了吗？"
+    symbolseq_explain: "巴雷斯按顺序排列图片！有时候图片会按照自己的规律一个接一个重复——比如，星星、爱心、星星、爱心……看看这排图片，猜猜下一个是什么。准备好接着排列了吗？",
+    hub_problem_title: "解应用题",
+    hub_problem_desc: "读一读，算一算",
+    problem_game_title: "解应用题！",
+    problem_game_sub: "读题目，找出正确答案",
+    problem_explain: "巴雷斯在读应用题！题目会告诉你一开始有多少东西，以及后来发生了什么——是又加了一些，还是被拿走了一部分。仔细读题目，在心里算一算，然后选出正确答案。准备好解题了吗？",
+    problem_add_template: "原来有{a}个{emoji}。又添加了{b}个{emoji}。现在一共有多少个{emoji}？",
+    problem_subtract_template: "原来有{a}个{emoji}。拿走了{b}个{emoji}。还剩下多少个{emoji}？"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -651,7 +679,14 @@ const translations = {
     hub_symbolseq_desc: "Кейинги расм қандай?",
     symbolseq_game_title: "Қаторни давом эттир!",
     symbolseq_game_sub: "Расмларга қара — кейингиси қандай бўлади?",
-    symbolseq_explain: "Барыс расмларни тартиб билан қўяди! Баъзан расмлар ўз қоидаси бўйича бир-бирининг кетидан такрорланади — масалан, юлдуз, юрак, юлдуз, юрак... Расмлар қаторига қара ва кейингиси қандай бўлишини топ. Қаторни давом эттиришга тайёрмисан?"
+    symbolseq_explain: "Барыс расмларни тартиб билан қўяди! Баъзан расмлар ўз қоидаси бўйича бир-бирининг кетидан такрорланади — масалан, юлдуз, юрак, юлдуз, юрак... Расмлар қаторига қара ва кейингиси қандай бўлишини топ. Қаторни давом эттиришга тайёрмисан?",
+    hub_problem_title: "Масалани ечиш",
+    hub_problem_desc: "Ўқи ва сана",
+    problem_game_title: "Масалани ечиш!",
+    problem_game_sub: "Шартни ўқи ва тўғри жавобни топ",
+    problem_explain: "Барыс масалаларни ўқийди! Масалада аввал нечта буюм борлиги ва улар билан нима содир бўлгани ёзилган — яна қўшилдими ёки бир қисми олиб кетилдими. Шартни диққат билан ўқи, ичингда сана ва тўғри жавобни танла. Масалаларни ечишга тайёрмисан?",
+    problem_add_template: "{a} та {emoji} бор эди. Яна {b} та {emoji} қўшилди. Ҳозир нечта {emoji} бор?",
+    problem_subtract_template: "{a} та {emoji} бор эди. {b} та {emoji} олиб кетилди. Нечта {emoji} қолди?"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -781,7 +816,14 @@ const translations = {
     hub_symbolseq_desc: "Расми баъдӣ кадом аст?",
     symbolseq_game_title: "Қаторро идома деҳ!",
     symbolseq_game_sub: "Ба расмҳо нигоҳ кун — баъдӣ кадом мешавад?",
-    symbolseq_explain: "Барыс расмҳоро бо тартиб мегузорад! Баъзан расмҳо мувофиқи қоидаи худ паиҳам такрор мешаванд — масалан, ситора, дил, ситора, дил... Ба қатори расмҳо нигоҳ кун ва бифаҳм, ки баъдӣ кадом мешавад. Омодаи идома додани қатор ҳастӣ?"
+    symbolseq_explain: "Барыс расмҳоро бо тартиб мегузорад! Баъзан расмҳо мувофиқи қоидаи худ паиҳам такрор мешаванд — масалан, ситора, дил, ситора, дил... Ба қатори расмҳо нигоҳ кун ва бифаҳм, ки баъдӣ кадом мешавад. Омодаи идома додани қатор ҳастӣ?",
+    hub_problem_title: "Масъаларо ҳал кун",
+    hub_problem_desc: "Хон ва бишумор",
+    problem_game_title: "Масъаларо ҳал кун!",
+    problem_game_sub: "Шартро хон ва ҷавоби дурустро ёб",
+    problem_explain: "Барыс масъалаҳоро мехонад! Дар масъала навишта шудааст, ки аввал чанд чиз буд ва бо онҳо чӣ рӯй дод — боз илова карданд ё як қисмашро гирифтанд. Шартро бодиққат хон, дар дил бишумор ва ҷавоби дурустро интихоб кун. Омодаи ҳалли масъалаҳо ҳастӣ?",
+    problem_add_template: "{a} {emoji} буд. Боз {b} {emoji} илова карданд. Ҳоло чанд {emoji} ҳаст?",
+    problem_subtract_template: "{a} {emoji} буд. {b} {emoji}-ро гирифтанд. Чанд {emoji} монд?"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -911,7 +953,14 @@ const translations = {
     hub_symbolseq_desc: "كېيىنكى رەسىم قايسى؟",
     symbolseq_game_title: "قاتارنى داۋاملاشتۇرۇڭ!",
     symbolseq_game_sub: "رەسىملەرگە قاراڭ — كېيىنكىسى قايسى بولىدۇ؟",
-    symbolseq_explain: "بارىس رەسىملەرنى تەرتىپ بىلەن قويىدۇ! بەزىدە رەسىملەر ئۆز قائىدىسى بويىچە بىر-بىرىنىڭ ئارقىسىدىن تەكرارلىنىدۇ — مەسىلەن، يۇلتۇز، يۈرەك، يۇلتۇز، يۈرەك... رەسىملەر قاتارىغا قاراڭ ۋە كېيىنكىسى قايسى بولىدىغانلىقىنى تېپىڭ. قاتارنى داۋاملاشتۇرۇشقا تەييارمۇسىز؟"
+    symbolseq_explain: "بارىس رەسىملەرنى تەرتىپ بىلەن قويىدۇ! بەزىدە رەسىملەر ئۆز قائىدىسى بويىچە بىر-بىرىنىڭ ئارقىسىدىن تەكرارلىنىدۇ — مەسىلەن، يۇلتۇز، يۈرەك، يۇلتۇز، يۈرەك... رەسىملەر قاتارىغا قاراڭ ۋە كېيىنكىسى قايسى بولىدىغانلىقىنى تېپىڭ. قاتارنى داۋاملاشتۇرۇشقا تەييارمۇسىز؟",
+    hub_problem_title: "مەسىلىنى ھەل قىلىڭ",
+    hub_problem_desc: "ئوقۇڭ ۋە سانايىڭ",
+    problem_game_title: "مەسىلىنى ھەل قىلىڭ!",
+    problem_game_sub: "شەرتنى ئوقۇپ توغرا جاۋابنى تېپىڭ",
+    problem_explain: "بارىس مەسىلىلەرنى ئوقۇيدۇ! مەسىلىدە دەسلەپتە قانچە نەرسە بارلىقى ۋە ئۇلارغا نېمە بولغانلىقى يېزىلغان — يەنە قوشۇلدىمۇ ياكى بىر قىسمى ئېلىپ كېتىلدىمۇ. شەرتنى دىققەت بىلەن ئوقۇڭ، ئىچىڭىزدە سانا ۋە توغرا جاۋابنى تاللاڭ. مەسىلىلەرنى ھەل قىلىشقا تەييارمۇسىز؟",
+    problem_add_template: "{a} {emoji} بار ئىدى. يەنە {b} {emoji} قوشۇلدى. ھازىر قانچە {emoji} بار؟",
+    problem_subtract_template: "{a} {emoji} بار ئىدى. {b} {emoji} ئېلىپ كېتىلدى. قانچە {emoji} قالدى؟"
   }
 };
 
