@@ -79,7 +79,13 @@ const translations = {
     hub_qwords_title: "Вопросительные слова",
     hub_qwords_desc: "Кім? Не? Қандай? Неше?",
     qwords_game_title: "Вопросительные слова!",
-    qwords_game_sub: "Какой вопрос подходит к картинке?"
+    qwords_game_sub: "Какой вопрос подходит к картинке?",
+    back_playroom: "← В игровую комнату",
+    hub_memory_title: "Найди пару",
+    hub_memory_desc: "Переверни карточки и найди одинаковые",
+    memory_game_title: "Найди пару!",
+    memory_game_sub: "Переворачивай карточки и находи одинаковые пары",
+    moves_label: "Ходы:"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -157,7 +163,13 @@ const translations = {
     hub_qwords_title: "Сұрау есімдіктері",
     hub_qwords_desc: "Кім? Не? Қандай? Неше?",
     qwords_game_title: "Сұрау есімдіктері!",
-    qwords_game_sub: "Суретке қандай сұрақ келеді?"
+    qwords_game_sub: "Суретке қандай сұрақ келеді?",
+    back_playroom: "← Ойын бөлмесіне",
+    hub_memory_title: "Жұбын тап",
+    hub_memory_desc: "Карточкаларды аударып, бірдей жұпты тап",
+    memory_game_title: "Жұбын тап!",
+    memory_game_sub: "Карточкаларды аударып, бірдей жұптарды тап",
+    moves_label: "Қадам:"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -235,7 +247,13 @@ const translations = {
     hub_qwords_title: "Question Words",
     hub_qwords_desc: "Who? What? Which? How many?",
     qwords_game_title: "Question Words!",
-    qwords_game_sub: "Which question fits the picture?"
+    qwords_game_sub: "Which question fits the picture?",
+    back_playroom: "← Back to Game Room",
+    hub_memory_title: "Match the Pairs",
+    hub_memory_desc: "Flip the cards and find matching pairs",
+    memory_game_title: "Match the Pairs!",
+    memory_game_sub: "Flip cards and find the matching pairs",
+    moves_label: "Moves:"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -313,7 +331,13 @@ const translations = {
     hub_qwords_title: "疑问词",
     hub_qwords_desc: "谁？什么？哪种？多少？",
     qwords_game_title: "疑问词！",
-    qwords_game_sub: "哪个疑问词适合这张图片？"
+    qwords_game_sub: "哪个疑问词适合这张图片？",
+    back_playroom: "← 返回游戏室",
+    hub_memory_title: "找配对",
+    hub_memory_desc: "翻开卡片，找出相同的一对",
+    memory_game_title: "找配对！",
+    memory_game_sub: "翻开卡片，找出相同的配对",
+    moves_label: "步数："
   }
 };
 
