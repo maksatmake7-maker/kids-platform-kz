@@ -754,3 +754,6 @@ button.cta{
   margin-bottom:24px;
   text-align:left;
 }
+
+/* ===== riddle game ===== */
+.riddle-btn{font-size:2.2rem;}

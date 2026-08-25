@@ -138,7 +138,12 @@ const translations = {
     problem_game_sub: "Прочитай условие и найди правильный ответ",
     problem_explain: "Барыс читает задачи! В задаче написано, сколько было предметов сначала, и что с ними случилось — прибавили ещё или забрали часть. Внимательно прочитай условие, посчитай в уме и выбери правильный ответ. Готов решать задачи?",
     problem_add_template: "Было {a} {emoji}. Добавили ещё {b} {emoji}. Сколько {emoji} стало?",
-    problem_subtract_template: "Было {a} {emoji}. Забрали {b} {emoji}. Сколько {emoji} осталось?"
+    problem_subtract_template: "Было {a} {emoji}. Забрали {b} {emoji}. Сколько {emoji} осталось?",
+    hub_riddle_title: "Отгадай загадку",
+    hub_riddle_desc: "Прочитай и найди отгадку",
+    riddle_game_title: "Отгадай загадку!",
+    riddle_game_sub: "Прочитай загадку и выбери отгадку",
+    riddle_explain: "Барыс обожает загадки! В каждой загадке спрятан предмет — нужно внимательно прочитать подсказки и догадаться, что это. Прочитай загадку и выбери правильную картинку. Готов отгадывать?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -275,7 +280,12 @@ const translations = {
     problem_game_sub: "Шартты оқы да дұрыс жауапты тап",
     problem_explain: "Барыс есептерді оқиды! Есепте алдымен неше зат болғаны және онымен не болғаны жазылған — тағы қосылды ма, әлде бөлігі алынды ма. Шартты мұқият оқы, ойша санап, дұрыс жауапты таңда. Есептерді шешуге дайынсың ба?",
     problem_add_template: "{a} {emoji} болды. Тағы {b} {emoji} қосты. {emoji} неше болды?",
-    problem_subtract_template: "{a} {emoji} болды. {b} {emoji} алып кетті. {emoji} неше қалды?"
+    problem_subtract_template: "{a} {emoji} болды. {b} {emoji} алып кетті. {emoji} неше қалды?",
+    hub_riddle_title: "Жұмбақты шеш",
+    hub_riddle_desc: "Оқы да жауабын тап",
+    riddle_game_title: "Жұмбақты шеш!",
+    riddle_game_sub: "Жұмбақты оқы да жауабын таңда",
+    riddle_explain: "Барыс жұмбақтарды жақсы көреді! Әр жұмбақта бір зат жасырылған — сипаттамаларды мұқият оқып, не екенін тап. Жұмбақты оқы да дұрыс суретті таңда. Шешуге дайынсың ба?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -412,7 +422,12 @@ const translations = {
     problem_game_sub: "Read the problem and find the right answer",
     problem_explain: "Barys reads word problems! A problem tells you how many objects there were at first, and what happened to them — more were added, or some were taken away. Read the problem carefully, count in your head, and choose the right answer. Ready to solve problems?",
     problem_add_template: "There were {a} {emoji}. {b} more {emoji} were added. How many {emoji} are there now?",
-    problem_subtract_template: "There were {a} {emoji}. {b} {emoji} were taken away. How many {emoji} are left?"
+    problem_subtract_template: "There were {a} {emoji}. {b} {emoji} were taken away. How many {emoji} are left?",
+    hub_riddle_title: "Solve the Riddle",
+    hub_riddle_desc: "Read and find the answer",
+    riddle_game_title: "Solve the Riddle!",
+    riddle_game_sub: "Read the riddle and pick the answer",
+    riddle_explain: "Barys loves riddles! Each riddle hides an object — you need to read the clues carefully and guess what it is. Read the riddle and choose the correct picture. Ready to solve?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -549,7 +564,12 @@ const translations = {
     problem_game_sub: "读题目，找出正确答案",
     problem_explain: "巴雷斯在读应用题！题目会告诉你一开始有多少东西，以及后来发生了什么——是又加了一些，还是被拿走了一部分。仔细读题目，在心里算一算，然后选出正确答案。准备好解题了吗？",
     problem_add_template: "原来有{a}个{emoji}。又添加了{b}个{emoji}。现在一共有多少个{emoji}？",
-    problem_subtract_template: "原来有{a}个{emoji}。拿走了{b}个{emoji}。还剩下多少个{emoji}？"
+    problem_subtract_template: "原来有{a}个{emoji}。拿走了{b}个{emoji}。还剩下多少个{emoji}？",
+    hub_riddle_title: "猜谜语",
+    hub_riddle_desc: "读一读，找答案",
+    riddle_game_title: "猜谜语！",
+    riddle_game_sub: "读谜语，选出答案",
+    riddle_explain: "巴雷斯超爱猜谜语！每个谜语里都藏着一个东西——你需要仔细读线索，猜出它是什么。读谜语，选出正确的图片。准备好猜一猜了吗？"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -686,7 +706,12 @@ const translations = {
     problem_game_sub: "Шартни ўқи ва тўғри жавобни топ",
     problem_explain: "Барыс масалаларни ўқийди! Масалада аввал нечта буюм борлиги ва улар билан нима содир бўлгани ёзилган — яна қўшилдими ёки бир қисми олиб кетилдими. Шартни диққат билан ўқи, ичингда сана ва тўғри жавобни танла. Масалаларни ечишга тайёрмисан?",
     problem_add_template: "{a} та {emoji} бор эди. Яна {b} та {emoji} қўшилди. Ҳозир нечта {emoji} бор?",
-    problem_subtract_template: "{a} та {emoji} бор эди. {b} та {emoji} олиб кетилди. Нечта {emoji} қолди?"
+    problem_subtract_template: "{a} та {emoji} бор эди. {b} та {emoji} олиб кетилди. Нечта {emoji} қолди?",
+    hub_riddle_title: "Топишмоқни топ",
+    hub_riddle_desc: "Ўқи ва жавобини топ",
+    riddle_game_title: "Топишмоқни топ!",
+    riddle_game_sub: "Топишмоқни ўқи ва жавобини танла",
+    riddle_explain: "Барыс топишмоқларни яхши кўради! Ҳар топишмоқда бир нарса яширинган — уни топиш учун белгиларни диққат билан ўқишинг керак. Топишмоқни ўқи ва тўғри расмни танла. Топишга тайёрмисан?"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -823,7 +848,12 @@ const translations = {
     problem_game_sub: "Шартро хон ва ҷавоби дурустро ёб",
     problem_explain: "Барыс масъалаҳоро мехонад! Дар масъала навишта шудааст, ки аввал чанд чиз буд ва бо онҳо чӣ рӯй дод — боз илова карданд ё як қисмашро гирифтанд. Шартро бодиққат хон, дар дил бишумор ва ҷавоби дурустро интихоб кун. Омодаи ҳалли масъалаҳо ҳастӣ?",
     problem_add_template: "{a} {emoji} буд. Боз {b} {emoji} илова карданд. Ҳоло чанд {emoji} ҳаст?",
-    problem_subtract_template: "{a} {emoji} буд. {b} {emoji}-ро гирифтанд. Чанд {emoji} монд?"
+    problem_subtract_template: "{a} {emoji} буд. {b} {emoji}-ро гирифтанд. Чанд {emoji} монд?",
+    hub_riddle_title: "Чистонро ёб",
+    hub_riddle_desc: "Хон ва ҷавобашро ёб",
+    riddle_game_title: "Чистонро ёб!",
+    riddle_game_sub: "Чистонро хон ва ҷавобро интихоб кун",
+    riddle_explain: "Барыс чистонҳоро дӯст медорад! Дар ҳар чистон як чиз пинҳон аст — бояд аломатҳоро бодиққат хонда, бифаҳмӣ, ки он чист. Чистонро хон ва расми дурустро интихоб кун. Омодаи ёфтан ҳастӣ?"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -960,7 +990,12 @@ const translations = {
     problem_game_sub: "شەرتنى ئوقۇپ توغرا جاۋابنى تېپىڭ",
     problem_explain: "بارىس مەسىلىلەرنى ئوقۇيدۇ! مەسىلىدە دەسلەپتە قانچە نەرسە بارلىقى ۋە ئۇلارغا نېمە بولغانلىقى يېزىلغان — يەنە قوشۇلدىمۇ ياكى بىر قىسمى ئېلىپ كېتىلدىمۇ. شەرتنى دىققەت بىلەن ئوقۇڭ، ئىچىڭىزدە سانا ۋە توغرا جاۋابنى تاللاڭ. مەسىلىلەرنى ھەل قىلىشقا تەييارمۇسىز؟",
     problem_add_template: "{a} {emoji} بار ئىدى. يەنە {b} {emoji} قوشۇلدى. ھازىر قانچە {emoji} بار؟",
-    problem_subtract_template: "{a} {emoji} بار ئىدى. {b} {emoji} ئېلىپ كېتىلدى. قانچە {emoji} قالدى؟"
+    problem_subtract_template: "{a} {emoji} بار ئىدى. {b} {emoji} ئېلىپ كېتىلدى. قانچە {emoji} قالدى؟",
+    hub_riddle_title: "تېپىشماقنى تېپىڭ",
+    hub_riddle_desc: "ئوقۇپ جاۋابىنى تېپىڭ",
+    riddle_game_title: "تېپىشماقنى تېپىڭ!",
+    riddle_game_sub: "تېپىشماقنى ئوقۇپ جاۋابىنى تاللاڭ",
+    riddle_explain: "بارىس تېپىشماقلارنى ياخشى كۆرىدۇ! ھەر تېپىشماقتا بىر نەرسە يوشۇرۇنغان — بەلگىلەرنى دىققەت بىلەن ئوقۇپ، ئۇنىڭ نېمە ئىكەنلىكىنى تېپىش كېرەك. تېپىشماقنى ئوقۇپ توغرا رەسىمنى تاللاڭ. تېپىشقا تەييارمۇسىز؟"
   }
 };
 
