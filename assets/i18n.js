@@ -66,7 +66,20 @@ const translations = {
     hub_syllable_title: "Сколько слогов?",
     hub_syllable_desc: "Раздели слово на слоги",
     syllable_game_title: "Сколько слогов?",
-    syllable_game_sub: "Посчитай, сколько слогов в слове"
+    syllable_game_sub: "Посчитай, сколько слогов в слове",
+    back_kazakh: "← К играм по казахскому языку",
+    hub_kazletter_title: "Особые буквы",
+    hub_kazletter_desc: "Найди слово с казахской буквой",
+    kazletter_game_title: "Особые буквы!",
+    kazletter_game_sub: "В каком слове есть эта буква? Найди его!",
+    hub_kazvocab_title: "Всё обо мне",
+    hub_kazvocab_desc: "Выучи первые казахские слова",
+    kazvocab_game_title: "Всё обо мне!",
+    kazvocab_game_sub: "Как это будет по-казахски? Выбери слово",
+    hub_qwords_title: "Вопросительные слова",
+    hub_qwords_desc: "Кім? Не? Қандай? Неше?",
+    qwords_game_title: "Вопросительные слова!",
+    qwords_game_sub: "Какой вопрос подходит к картинке?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -131,7 +144,20 @@ const translations = {
     hub_syllable_title: "Неше буын?",
     hub_syllable_desc: "Сөзді буындарға бөл",
     syllable_game_title: "Неше буын?",
-    syllable_game_sub: "Сөзде неше буын бар, санап көр"
+    syllable_game_sub: "Сөзде неше буын бар, санап көр",
+    back_kazakh: "← Қазақ тілі ойындарына",
+    hub_kazletter_title: "Ерекше әріптер",
+    hub_kazletter_desc: "Қазақ әрпі бар сөзді тап",
+    kazletter_game_title: "Ерекше әріптер!",
+    kazletter_game_sub: "Бұл әріп қай сөзде бар? Тауып ал!",
+    hub_kazvocab_title: "Мен туралы бәрі",
+    hub_kazvocab_desc: "Алғашқы қазақша сөздерді үйрен",
+    kazvocab_game_title: "Мен туралы бәрі!",
+    kazvocab_game_sub: "Бұл қазақша қалай болады? Сөзді таңда",
+    hub_qwords_title: "Сұрау есімдіктері",
+    hub_qwords_desc: "Кім? Не? Қандай? Неше?",
+    qwords_game_title: "Сұрау есімдіктері!",
+    qwords_game_sub: "Суретке қандай сұрақ келеді?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -196,7 +222,20 @@ const translations = {
     hub_syllable_title: "How Many Syllables?",
     hub_syllable_desc: "Split the word into syllables",
     syllable_game_title: "How Many Syllables?",
-    syllable_game_sub: "Count how many syllables are in the word"
+    syllable_game_sub: "Count how many syllables are in the word",
+    back_kazakh: "← Back to Kazakh Language games",
+    hub_kazletter_title: "Special Letters",
+    hub_kazletter_desc: "Find the word with the Kazakh letter",
+    kazletter_game_title: "Special Letters!",
+    kazletter_game_sub: "Which word has this letter? Find it!",
+    hub_kazvocab_title: "All About Me",
+    hub_kazvocab_desc: "Learn your first Kazakh words",
+    kazvocab_game_title: "All About Me!",
+    kazvocab_game_sub: "How do you say this in Kazakh? Pick the word",
+    hub_qwords_title: "Question Words",
+    hub_qwords_desc: "Who? What? Which? How many?",
+    qwords_game_title: "Question Words!",
+    qwords_game_sub: "Which question fits the picture?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -261,7 +300,20 @@ const translations = {
     hub_syllable_title: "有几个音节？",
     hub_syllable_desc: "把单词拆分成音节",
     syllable_game_title: "有几个音节？",
-    syllable_game_sub: "数一数这个单词有几个音节"
+    syllable_game_sub: "数一数这个单词有几个音节",
+    back_kazakh: "← 返回哈萨克语游戏",
+    hub_kazletter_title: "特殊字母",
+    hub_kazletter_desc: "找出带有哈萨克字母的单词",
+    kazletter_game_title: "特殊字母！",
+    kazletter_game_sub: "哪个单词里有这个字母？找出来！",
+    hub_kazvocab_title: "关于我的一切",
+    hub_kazvocab_desc: "学习你的第一批哈萨克语单词",
+    kazvocab_game_title: "关于我的一切！",
+    kazvocab_game_sub: "这个用哈萨克语怎么说？选择单词",
+    hub_qwords_title: "疑问词",
+    hub_qwords_desc: "谁？什么？哪种？多少？",
+    qwords_game_title: "疑问词！",
+    qwords_game_sub: "哪个疑问词适合这张图片？"
   }
 };
 
