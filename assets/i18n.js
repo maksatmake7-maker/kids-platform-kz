@@ -169,7 +169,14 @@ const translations = {
     wildcult_game_sub: "Это растение выросло само по себе, или его вырастили люди?",
     wildcult_explain: "Барыс гуляет по лугу и по саду! Дикорастущие растения растут сами по себе, без помощи человека — в лесу, в поле, на лугу. А культурные растения специально сажают и выращивают люди — на грядках, в садах, на полях. Посмотри на растение и подумай: оно дикое или культурное? Готов разобраться?",
     btn_wild: "Дикорастущее",
-    btn_cultivated: "Культурное"
+    btn_cultivated: "Культурное",
+    hub_plantneeds_title: "Что нужно растению?",
+    hub_plantneeds_desc: "Вода, свет, тепло — а игрушки?",
+    plantneeds_game_title: "Что нужно растению?",
+    plantneeds_game_sub: "Растению это нужно для жизни, или нет?",
+    plantneeds_explain: "Барыс заботится о растениях! Чтобы расти, растению нужны особые условия: вода, солнечный свет и тепло. А вот игрушки, конфеты или машинки растению совсем не нужны! Посмотри на картинку и подумай: это нужно растению для жизни, или нет? Готов заботиться о растениях?",
+    btn_needed: "Нужно",
+    btn_not_needed: "Не нужно"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -337,7 +344,14 @@ const translations = {
     wildcult_game_sub: "Бұл өсімдік өзінен-өзі өсті ме, әлде адамдар өсіргені ме?",
     wildcult_explain: "Барыс шалғында да, бақшада да серуендейді! Жабайы өсімдіктер адам көмегінсіз өздігінен өседі — орманда, далада, шалғында. Ал мәдени өсімдіктерді адамдар арнайы отырғызып өсіреді — көлемде, бақшада, егістікте. Өсімдікке қара да ойлан: ол жабайы ма, мәдени ме? Түсінуге дайынсың ба?",
     btn_wild: "Жабайы",
-    btn_cultivated: "Мәдени"
+    btn_cultivated: "Мәдени",
+    hub_plantneeds_title: "Өсімдікке не керек?",
+    hub_plantneeds_desc: "Су, жарық, жылу — ал ойыншық керек пе?",
+    plantneeds_game_title: "Өсімдікке не керек?",
+    plantneeds_game_sub: "Бұл өсімдікке өмір сүру үшін керек пе, жоқ па?",
+    plantneeds_explain: "Барыс өсімдіктерге қамқорлық жасайды! Өсу үшін өсімдікке ерекше жағдайлар керек: су, күн сәулесі және жылу. Ал ойыншық, кәмпит немесе көлік өсімдікке мүлдем керек емес! Суретке қара да ойлан: бұл өсімдікке өмір сүру үшін керек пе, жоқ па? Өсімдіктерге қамқор болуға дайынсың ба?",
+    btn_needed: "Керек",
+    btn_not_needed: "Керек емес"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -505,7 +519,14 @@ const translations = {
     wildcult_game_sub: "Did this plant grow on its own, or did people grow it?",
     wildcult_explain: "Barys is walking through a meadow and a garden! Wild plants grow on their own, without human help — in forests, fields, meadows. Cultivated plants are specially planted and grown by people — in garden beds, orchards, farm fields. Look at the plant and think: is it wild or cultivated? Ready to figure it out?",
     btn_wild: "Wild",
-    btn_cultivated: "Cultivated"
+    btn_cultivated: "Cultivated",
+    hub_plantneeds_title: "What Does a Plant Need?",
+    hub_plantneeds_desc: "Water, light, warmth — but toys?",
+    plantneeds_game_title: "What Does a Plant Need?",
+    plantneeds_game_sub: "Does a plant need this to live, or not?",
+    plantneeds_explain: "Barys takes care of plants! To grow, a plant needs special conditions: water, sunlight, and warmth. But toys, candy, or toy cars are not needed by a plant at all! Look at the picture and think: does a plant need this to live, or not? Ready to take care of plants?",
+    btn_needed: "Needed",
+    btn_not_needed: "Not needed"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -673,7 +694,14 @@ const translations = {
     wildcult_game_sub: "这株植物是自己长出来的，还是人们种的？",
     wildcult_explain: "巴雷斯在草地和花园里散步！野生植物是自己生长的，不需要人的帮助——在森林里、田野里、草地上。栽培植物是人们专门种植和培育的——在菜园里、果园里、农田里。看看这株植物，想一想：它是野生的还是栽培的？准备好来分辨了吗？",
     btn_wild: "野生",
-    btn_cultivated: "栽培"
+    btn_cultivated: "栽培",
+    hub_plantneeds_title: "植物需要什么？",
+    hub_plantneeds_desc: "水、光、温暖——那玩具呢？",
+    plantneeds_game_title: "植物需要什么？",
+    plantneeds_game_sub: "植物的生长需要这个吗？",
+    plantneeds_explain: "巴雷斯在照顾植物！为了生长，植物需要特殊的条件：水、阳光和温暖。但是玩具、糖果或玩具车植物完全不需要！看看图片，想一想：植物生长需要这个吗？准备好照顾植物了吗？",
+    btn_needed: "需要",
+    btn_not_needed: "不需要"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -841,7 +869,14 @@ const translations = {
     wildcult_game_sub: "Бу ўсимлик ўзи ўсдими ёки одамлар ўстирдими?",
     wildcult_explain: "Барыс ўтлоқда ва боғда сайр қиляпти! Ёввойи ўсимликлар ўз-ўзидан, инсон ёрдамисиз ўсади — ўрмонда, далада, ўтлоқда. Маданий ўсимликларни эса одамлар махсус экиб ўстиради — томорқада, боғда, экинзорда. Ўсимликка қара ва ўйла: у ёввойими ёки маданийми? Тушунишга тайёрмисан?",
     btn_wild: "Ёввойи",
-    btn_cultivated: "Маданий"
+    btn_cultivated: "Маданий",
+    hub_plantneeds_title: "Ўсимликка нима керак?",
+    hub_plantneeds_desc: "Сув, ёруғлик, иссиқлик — ўйинчоқ керакми?",
+    plantneeds_game_title: "Ўсимликка нима керак?",
+    plantneeds_game_sub: "Бу ўсимликка яшаш учун керакми, йўқми?",
+    plantneeds_explain: "Барыс ўсимликларга ғамхўрлик қилади! Ўсиш учун ўсимликка алоҳида шароит керак: сув, қуёш нури ва иссиқлик. Аммо ўйинчоқ, конфет ёки машина ўсимликка умуман керак эмас! Расмга қара ва ўйла: бу ўсимликка яшаш учун керакми, йўқми? Ўсимликларга ғамхўрлик қилишга тайёрмисан?",
+    btn_needed: "Керак",
+    btn_not_needed: "Керак эмас"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1009,7 +1044,14 @@ const translations = {
     wildcult_game_sub: "Ин растанӣ худ рӯид ё одамон парвариш карданд?",
     wildcult_explain: "Барыс дар марғзор ва боғ қадам мезанад! Растаниҳои ваҳшӣ худ аз худ, бе кӯмаки инсон мерӯянд — дар ҷангал, дашт, марғзор. Растаниҳои зироатиро бошад одамон махсус шинонда парвариш мекунанд — дар полез, боғ, киштзор. Ба растанӣ нигоҳ кун ва фикр кун: он ваҳшӣ аст ё зироатӣ? Омодаи фаҳмидан ҳастӣ?",
     btn_wild: "Ваҳшӣ",
-    btn_cultivated: "Зироатӣ"
+    btn_cultivated: "Зироатӣ",
+    hub_plantneeds_title: "Ба растанӣ чӣ лозим аст?",
+    hub_plantneeds_desc: "Об, рӯшноӣ, гармӣ — бозича лозим аст?",
+    plantneeds_game_title: "Ба растанӣ чӣ лозим аст?",
+    plantneeds_game_sub: "Ин ба растанӣ барои зиндагӣ лозим аст ё не?",
+    plantneeds_explain: "Барыс ба растаниҳо ғамхорӣ мекунад! Барои калон шудан, растанӣ шароити махсус лозим дорад: об, нури офтоб ва гармӣ. Аммо бозича, қанд ё мошин ба растанӣ тамоман лозим нест! Ба расм нигоҳ кун ва фикр кун: ин ба растанӣ барои зиндагӣ лозим аст ё не? Омодаи ғамхорӣ ба растаниҳо ҳастӣ?",
+    btn_needed: "Лозим",
+    btn_not_needed: "Лозим нест"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1177,7 +1219,14 @@ const translations = {
     wildcult_game_sub: "بۇ ئۆسۈملۈك ئۆزلىكىدىن ئۆستىمۇ ياكى ئادەملەر ئۆستۈرگەنمۇ؟",
     wildcult_explain: "بارىس چىمەنزارلىق ۋە باغدا سەيلە قىلىۋاتىدۇ! ياۋايى ئۆسۈملۈكلەر ئىنسان ياردىمىسىز ئۆزلىكىدىن ئۆسىدۇ — ئورمانلىقتا، دالادا، چىمەنزارلىقتا. مەدەنىي ئۆسۈملۈكلەرنى بولسا ئادەملەر ئالاھىدە تىكىپ ئۆستۈرىدۇ — باغچىدا، باغدا، ئېكىنزارلىقتا. ئۆسۈملۈككە قاراپ ئويلاڭ: ئۇ ياۋايىمۇ ياكى مەدەنىيمۇ؟ چۈشىنىشكە تەييارمۇسىز؟",
     btn_wild: "ياۋايى",
-    btn_cultivated: "مەدەنىي"
+    btn_cultivated: "مەدەنىي",
+    hub_plantneeds_title: "ئۆسۈملۈككە نېمە كېرەك؟",
+    hub_plantneeds_desc: "سۇ، نۇر، ئىللىق — ئوينچۇق كېرەكمۇ؟",
+    plantneeds_game_title: "ئۆسۈملۈككە نېمە كېرەك؟",
+    plantneeds_game_sub: "بۇ ئۆسۈملۈككە ياشاش ئۈچۈن كېرەكمۇ، ئەمەسمۇ؟",
+    plantneeds_explain: "بارىس ئۆسۈملۈكلەرگە غامخورلۇق قىلىدۇ! ئۆسۈش ئۈچۈن ئۆسۈملۈككە ئالاھىدە شارائىت كېرەك: سۇ، قۇياش نۇرى ۋە ئىللىقلىق. ئەمما ئوينچۇق، شېكەر ياكى ماشىنا ئۆسۈملۈككە پۈتۈنلەي كېرەك ئەمەس! رەسىمگە قاراپ ئويلاڭ: بۇ ئۆسۈملۈككە ياشاش ئۈچۈن كېرەكمۇ، ئەمەسمۇ؟ ئۆسۈملۈكلەرگە غامخورلۇق قىلىشقا تەييارمۇسىز؟",
+    btn_needed: "كېرەك",
+    btn_not_needed: "كېرەك ئەمەس"
   }
 };
 
