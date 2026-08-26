@@ -183,7 +183,15 @@ const translations = {
     wildanimal_game_sub: "Это животное дикое, или домашнее?",
     wildanimal_explain: "Барыс дружит и с дикими зверями, и с домашними животными! Дикие животные сами добывают себе еду и живут в лесу, в степи, без помощи человека. А домашних животных выращивает и кормит человек — они живут рядом с людьми, на ферме или дома. Посмотри на животное и подумай: оно дикое или домашнее? Готов разобраться?",
     btn_wildanimal: "Дикое",
-    btn_domestic: "Домашнее"
+    btn_domestic: "Домашнее",
+    hub_adaptation_title: "Как звери готовятся к зиме?",
+    hub_adaptation_desc: "Перелёт, запасы или спячка?",
+    adaptation_game_title: "Как звери готовятся к зиме?",
+    adaptation_game_sub: "Как это животное переживает зиму?",
+    adaptation_explain: "Барыс изучает, как звери и птицы готовятся к холодной зиме! Одни птицы улетают в тёплые края, пока не наступит весна. Другие животные всё лето и осень запасают корм, чтобы хватило на всю зиму. А третьи просто засыпают глубоким сном на всю зиму — это называется спячка. Посмотри на животное и подумай, как оно переживает зиму. Готов узнать секреты зимовки?",
+    btn_migration: "Улетает",
+    btn_foodstore: "Запасает корм",
+    btn_hibernate: "Спит всю зиму"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -365,7 +373,15 @@ const translations = {
     wildanimal_game_sub: "Бұл жануар жабайы ма, әлде үй жануары ма?",
     wildanimal_explain: "Барыс жабайы аңдармен де, үй жануарларымен де дос! Жабайы жануарлар өздері тамақ табады және орманда, далада, адам көмегінсіз өмір сүреді. Ал үй жануарларын адам өсіріп, тамақтандырады — олар адамдардың жанында, фермада немесе үйде тұрады. Жануарға қара да ойлан: ол жабайы ма, үй жануары ма? Түсінуге дайынсың ба?",
     btn_wildanimal: "Жабайы",
-    btn_domestic: "Үй жануары"
+    btn_domestic: "Үй жануары",
+    hub_adaptation_title: "Аңдар қысқа қалай дайындалады?",
+    hub_adaptation_desc: "Ұшып кету, қор жинау, әлде ұйықтау ма?",
+    adaptation_game_title: "Аңдар қысқа қалай дайындалады?",
+    adaptation_game_sub: "Бұл жануар қысты қалай өткізеді?",
+    adaptation_explain: "Барыс аңдар мен құстардың қатты қысқа қалай дайындалатынын зерттейді! Кейбір құстар көктем келгенше жылы жаққа ұшып кетеді. Басқа жануарлар бүкіл жаз бен күз бойы қысқа жететін қор жинайды. Ал үшіншілері бүкіл қысты қатты ұйқыда өткізеді — бұл қысқы ұйқы деп аталады. Жануарға қара да, ол қысты қалай өткізетінін ойлан. Қыстау құпияларын білуге дайынсың ба?",
+    btn_migration: "Ұшып кетеді",
+    btn_foodstore: "Қор жинайды",
+    btn_hibernate: "Қыс бойы ұйықтайды"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -547,7 +563,15 @@ const translations = {
     wildanimal_game_sub: "Is this animal wild, or domestic?",
     wildanimal_explain: "Barys is friends with both wild animals and domestic ones! Wild animals find their own food and live in forests, in the steppe, without human help. Domestic animals are raised and fed by people — they live near people, on a farm or at home. Look at the animal and think: is it wild or domestic? Ready to figure it out?",
     btn_wildanimal: "Wild",
-    btn_domestic: "Domestic"
+    btn_domestic: "Domestic",
+    hub_adaptation_title: "How Do Animals Prepare for Winter?",
+    hub_adaptation_desc: "Migrate, store food, or hibernate?",
+    adaptation_game_title: "How Do Animals Prepare for Winter?",
+    adaptation_game_sub: "How does this animal survive the winter?",
+    adaptation_explain: "Barys is studying how animals and birds prepare for cold winter! Some birds fly away to warm places until spring comes. Other animals spend all summer and autumn storing food to last through winter. And others simply fall into a deep sleep for the whole winter — this is called hibernation. Look at the animal and think about how it survives winter. Ready to learn winter secrets?",
+    btn_migration: "Flies away",
+    btn_foodstore: "Stores food",
+    btn_hibernate: "Sleeps all winter"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -729,7 +753,15 @@ const translations = {
     wildanimal_game_sub: "这只动物是野生的，还是家养的？",
     wildanimal_explain: "巴雷斯和野生动物、家养动物都是朋友！野生动物自己寻找食物，生活在森林、草原里，不需要人的帮助。家养动物是人们饲养和喂养的——它们生活在人们身边，在农场或家里。看看这只动物，想一想：它是野生的还是家养的？准备好来分辨了吗？",
     btn_wildanimal: "野生",
-    btn_domestic: "家养"
+    btn_domestic: "家养",
+    hub_adaptation_title: "动物如何准备过冬？",
+    hub_adaptation_desc: "迁徙、储粮，还是冬眠？",
+    adaptation_game_title: "动物如何准备过冬？",
+    adaptation_game_sub: "这种动物是怎么过冬的？",
+    adaptation_explain: "巴雷斯在研究动物和鸟类是如何准备过冬的！有些鸟儿会飞到温暖的地方，直到春天来临。有些动物整个夏天和秋天都在储存食物，好度过整个冬天。还有些动物则整个冬天都在沉睡——这叫做冬眠。看看这种动物，想一想它是怎么过冬的。准备好了解过冬的秘密了吗？",
+    btn_migration: "飞走",
+    btn_foodstore: "储存食物",
+    btn_hibernate: "整个冬天睡觉"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -911,7 +943,15 @@ const translations = {
     wildanimal_game_sub: "Бу ҳайвон ёввойими ёки уй ҳайвоними?",
     wildanimal_explain: "Барыс ёввойи ҳайвонлар билан ҳам, уй ҳайвонлари билан ҳам дўст! Ёввойи ҳайвонлар ўзлари озиқ топади ва ўрмонда, даштда, инсон ёрдамисиз яшайди. Уй ҳайвонларини эса инсон боқади ва овқатлантиради — улар одамлар ёнида, фермада ёки уйда яшайди. Ҳайвонга қара ва ўйла: у ёввойими ёки уй ҳайвоними? Тушунишга тайёрмисан?",
     btn_wildanimal: "Ёввойи",
-    btn_domestic: "Уй ҳайвони"
+    btn_domestic: "Уй ҳайвони",
+    hub_adaptation_title: "Ҳайвонлар қишга қандай тайёрланади?",
+    hub_adaptation_desc: "Учиб кетиш, озиқ ғамлаш ёки ухлаш?",
+    adaptation_game_title: "Ҳайвонлар қишга қандай тайёрланади?",
+    adaptation_game_sub: "Бу ҳайвон қишни қандай ўтказади?",
+    adaptation_explain: "Барыс ҳайвонлар ва қушларнинг совуқ қишга қандай тайёрланишини ўрганяпти! Баъзи қушлар баҳор келгунча иссиқ жойларга учиб кетади. Бошқа ҳайвонлар бутун ёз ва куз давомида қишга етадиган озиқ ғамлайди. Учинчилари эса бутун қишни чуқур уйқуда ўтказади — бу қиш уйқуси деб аталади. Ҳайвонга қара ва у қишни қандай ўтказишини ўйла. Қишлаш сирларини билишга тайёрмисан?",
+    btn_migration: "Учиб кетади",
+    btn_foodstore: "Озиқ ғамлайди",
+    btn_hibernate: "Бутун қиш ухлайди"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1093,7 +1133,15 @@ const translations = {
     wildanimal_game_sub: "Ин ҳайвон ваҳшӣ аст ё хонагӣ?",
     wildanimal_explain: "Барыс ҳам бо ҳайвоноти ваҳшӣ, ҳам бо ҳайвоноти хонагӣ дӯст аст! Ҳайвоноти ваҳшӣ худашон хӯрок меёбанд ва дар ҷангал, дашт, бе кӯмаки инсон зиндагӣ мекунанд. Ҳайвоноти хонагиро бошад одам парвариш ва хӯрок медиҳад — онҳо дар паҳлӯи одамон, дарферма ё хона зиндагӣ мекунанд. Ба ҳайвон нигоҳ кун ва фикр кун: он ваҳшӣ аст ё хонагӣ? Омодаи фаҳмидан ҳастӣ?",
     btn_wildanimal: "Ваҳшӣ",
-    btn_domestic: "Хонагӣ"
+    btn_domestic: "Хонагӣ",
+    hub_adaptation_title: "Ҳайвонот ба зимистон чӣ тавр тайёр мешаванд?",
+    hub_adaptation_desc: "Парвоз, захира ё хоб?",
+    adaptation_game_title: "Ҳайвонот ба зимистон чӣ тавр тайёр мешаванд?",
+    adaptation_game_sub: "Ин ҳайвон зимистонро чӣ тавр мегузаронад?",
+    adaptation_explain: "Барыс меомӯзад, ки ҳайвонот ва парандагон ба зимистони сард чӣ тавр тайёр мешаванд! Баъзе паррандаҳо то расидани баҳор ба ҷойҳои гарм парвоз мекунанд. Дигар ҳайвонот тобистону тирамоҳ хӯрок захира мекунанд, то барои тамоми зимистон бирасад. Сеюминҳо бошанд тамоми зимистонро дар хоби чуқур мегузаронанд — инро хоби зимистонӣ меноманд. Ба ҳайвон нигоҳ кун ва фикр кун, ки он зимистонро чӣ тавр мегузаронад. Омодаи донистани сирри зимхобӣ ҳастӣ?",
+    btn_migration: "Парвоз мекунад",
+    btn_foodstore: "Захира мекунад",
+    btn_hibernate: "Тамоми зимистон мехобад"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1275,7 +1323,15 @@ const translations = {
     wildanimal_game_sub: "بۇ ھايۋان ياۋايىمۇ ياكى ئۆي ھايۋىنىمۇ؟",
     wildanimal_explain: "بارىس ياۋايى ھايۋانلار بىلەنمۇ، ئۆي ھايۋانلىرى بىلەنمۇ دوست! ياۋايى ھايۋانلار ئۆزلىرى ئوزۇق تاپىدۇ ۋە ئورمانلىقتا، دالادا، ئىنسان ياردىمىسىز ياشايدۇ. ئۆي ھايۋانلىرىنى بولسا ئىنسان بېقىدۇ ۋە ئوزۇقلاندۇرىدۇ — ئۇلار ئادەملەر يېنىدا، پەرمىدا ياكى ئۆيدە ياشايدۇ. ھايۋانغا قاراپ ئويلاڭ: ئۇ ياۋايىمۇ ياكى ئۆي ھايۋىنىمۇ؟ چۈشىنىشكە تەييارمۇسىز؟",
     btn_wildanimal: "ياۋايى",
-    btn_domestic: "ئۆي ھايۋىنى"
+    btn_domestic: "ئۆي ھايۋىنى",
+    hub_adaptation_title: "ھايۋانلار قىشقا قانداق تەييارلىنىدۇ؟",
+    hub_adaptation_desc: "ئۇچۇپ كېتىش، ئوزۇق توپلاش ياكى ئۇخلاش؟",
+    adaptation_game_title: "ھايۋانلار قىشقا قانداق تەييارلىنىدۇ؟",
+    adaptation_game_sub: "بۇ ھايۋان قىشنى قانداق ئۆتكۈزىدۇ؟",
+    adaptation_explain: "بارىس ھايۋانلار ۋە قۇشلارنىڭ سوغۇق قىشقا قانداق تەييارلىنىدىغانلىقىنى ئۆگىنىۋاتىدۇ! بەزى قۇشلار باھار كەلگۈچە ئىللىق جايلارغا ئۇچۇپ كېتىدۇ. باشقا ھايۋانلار پۈتۈن ياز ۋە كۈزدە قىشقا يېتىدىغان ئوزۇق توپلايدۇ. ئۈچىنچىلىرى بولسا پۈتۈن قىشنى چوڭقۇر ئۇيقۇدا ئۆتكۈزىدۇ — بۇنى قىش ئۇيقۇسى دەيدۇ. ھايۋانغا قاراپ، ئۇنىڭ قىشنى قانداق ئۆتكۈزىدىغانلىقىنى ئويلاڭ. قىشلاش سىرلىرىنى بىلىشكە تەييارمۇسىز؟",
+    btn_migration: "ئۇچۇپ كېتىدۇ",
+    btn_foodstore: "ئوزۇق توپلايدۇ",
+    btn_hibernate: "پۈتۈن قىش ئۇخلايدۇ"
   }
 };
 

@@ -387,6 +387,11 @@ footer{
   font-size:1.15rem;
   padding:14px 8px;
 }
+.count-options.stack-options{
+  grid-template-columns:1fr;
+  max-width:360px;
+  margin:0 auto;
+}
 .count-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B;}
 .count-btn.wrong{background:var(--coral); color:#fff; box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
 @keyframes shake{
