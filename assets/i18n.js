@@ -202,7 +202,17 @@ const translations = {
     part_nose: "НОС",
     part_mouth: "РОТ",
     part_hand: "РУКА",
-    part_leg: "НОГА"
+    part_leg: "НОГА",
+    hub_lifestages_title: "Этапы жизни",
+    hub_lifestages_desc: "От младенца до пожилого человека",
+    lifestages_game_title: "Этапы жизни!",
+    lifestages_game_sub: "Расставь этапы жизни человека по порядку",
+    lifestages_explain: "Барыс изучает, как человек растёт! Сначала человек — совсем маленький младенец, потом он подрастает и становится ребёнком, затем — взрослым человеком, а в конце жизни — пожилым человеком. Нажимай на картинки по порядку, от самого раннего этапа до самого позднего. Готов узнать этапы жизни?",
+    hub_humanneeds_title: "Что нужно ребёнку?",
+    hub_humanneeds_desc: "Питание и отдых — а игрушки?",
+    humanneeds_game_title: "Что нужно ребёнку?",
+    humanneeds_game_sub: "Это нужно ребёнку для роста, или нет?",
+    humanneeds_explain: "Барыс заботится о детях! Чтобы расти здоровым и сильным, ребёнку нужны правильное питание и хороший отдых — вкусная полезная еда и крепкий сон. А вот игрушки, мячи или машинки для роста не нужны, хотя с ними и весело играть! Посмотри на картинку и подумай: это нужно ребёнку для роста, или нет? Готов проверить?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -403,7 +413,17 @@ const translations = {
     part_nose: "МҰРЫН",
     part_mouth: "АУЫЗ",
     part_hand: "ҚОЛ",
-    part_leg: "АЯҚ"
+    part_leg: "АЯҚ",
+    hub_lifestages_title: "Өмір кезеңдері",
+    hub_lifestages_desc: "Нәрестеден қарт адамға дейін",
+    lifestages_game_title: "Өмір кезеңдері!",
+    lifestages_game_sub: "Адам өмірінің кезеңдерін ретімен қой",
+    lifestages_explain: "Барыс адамның қалай өсетінін зерттейді! Алдымен адам өте кішкентай нәресте болады, содан кейін ол өсіп, бала болады, кейін — ересек адам, ал өмірдің соңында — қарт адам. Суреттерді ең алғашқы кезеңнен ең соңғысына дейін ретімен бас. Өмір кезеңдерін білуге дайынсың ба?",
+    hub_humanneeds_title: "Балаға не керек?",
+    hub_humanneeds_desc: "Тамақтану мен демалыс — ал ойыншық керек пе?",
+    humanneeds_game_title: "Балаға не керек?",
+    humanneeds_game_sub: "Бұл балаға өсу үшін керек пе, жоқ па?",
+    humanneeds_explain: "Барыс балаларға қамқорлық жасайды! Дені сау және мықты болып өсу үшін балаға дұрыс тамақтану мен жақсы демалыс керек — дәмді пайдалы тамақ пен қатты ұйқы. Ал ойыншықтар, доптар немесе көліктер өсу үшін керек емес, дегенмен олармен ойнау қызық! Суретке қара да ойлан: бұл балаға өсу үшін керек пе, жоқ па? Тексеруге дайынсың ба?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -604,7 +624,17 @@ const translations = {
     part_nose: "NOSE",
     part_mouth: "MOUTH",
     part_hand: "HAND",
-    part_leg: "LEG"
+    part_leg: "LEG",
+    hub_lifestages_title: "Life Stages",
+    hub_lifestages_desc: "From baby to elderly person",
+    lifestages_game_title: "Life Stages!",
+    lifestages_game_sub: "Put the stages of human life in order",
+    lifestages_explain: "Barys is studying how a person grows! At first, a person is a tiny baby, then they grow up and become a child, then an adult, and at the end of life — an elderly person. Tap the pictures in order, from the earliest stage to the latest. Ready to learn the stages of life?",
+    hub_humanneeds_title: "What Does a Child Need?",
+    hub_humanneeds_desc: "Nutrition and rest — but toys?",
+    humanneeds_game_title: "What Does a Child Need?",
+    humanneeds_game_sub: "Does a child need this to grow, or not?",
+    humanneeds_explain: "Barys takes care of children! To grow healthy and strong, a child needs proper nutrition and good rest — tasty healthy food and sound sleep. But toys, balls, or toy cars are not needed for growth, even though they're fun to play with! Look at the picture and think: does a child need this to grow, or not? Ready to check?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -805,7 +835,17 @@ const translations = {
     part_nose: "鼻子",
     part_mouth: "嘴巴",
     part_hand: "手",
-    part_leg: "腿"
+    part_leg: "腿",
+    hub_lifestages_title: "人生阶段",
+    hub_lifestages_desc: "从婴儿到老年人",
+    lifestages_game_title: "人生阶段！",
+    lifestages_game_sub: "把人生的各个阶段按顺序排好",
+    lifestages_explain: "巴雷斯在研究人是怎么成长的！一开始，人是一个很小的婴儿，然后长大成为儿童，接着成为成年人，人生的最后阶段是老年人。按顺序点击图片，从最早的阶段到最后的阶段。准备好了解人生阶段了吗？",
+    hub_humanneeds_title: "孩子需要什么？",
+    hub_humanneeds_desc: "营养和休息——那玩具呢？",
+    humanneeds_game_title: "孩子需要什么？",
+    humanneeds_game_sub: "孩子成长需要这个吗？",
+    humanneeds_explain: "巴雷斯在照顾孩子们！为了健康茁壮地成长，孩子需要合理的营养和良好的休息——美味有益的食物和充足的睡眠。而玩具、球或玩具车对成长来说并不是必需的，尽管玩起来很开心！看看图片，想一想：孩子成长需要这个吗？准备好检验一下了吗？"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -1006,7 +1046,17 @@ const translations = {
     part_nose: "БУРУН",
     part_mouth: "ОҒИЗ",
     part_hand: "ҚЎЛ",
-    part_leg: "ОЁҚ"
+    part_leg: "ОЁҚ",
+    hub_lifestages_title: "Ҳаёт босқичлари",
+    hub_lifestages_desc: "Чақалоқдан кекса одамгача",
+    lifestages_game_title: "Ҳаёт босқичлари!",
+    lifestages_game_sub: "Инсон ҳаётининг босқичларини тартиб билан қўй",
+    lifestages_explain: "Барыс инсон қандай ўсишини ўрганяпти! Аввал инсон жуда кичкина чақалоқ бўлади, кейин у ўсиб, бола бўлади, сўнг — катта одам, ҳаётнинг охирида эса — кекса одам. Расмларни тартиб билан бос, энг эрта босқичдан энг охирги босқичгача. Ҳаёт босқичларини билишга тайёрмисан?",
+    hub_humanneeds_title: "Болага нима керак?",
+    hub_humanneeds_desc: "Овқатланиш ва дам олиш — ўйинчоқ керакми?",
+    humanneeds_game_title: "Болага нима керак?",
+    humanneeds_game_sub: "Бу болага ўсиш учун керакми, йўқми?",
+    humanneeds_explain: "Барыс болаларга ғамхўрлик қилади! Соғлом ва бақувват бўлиб ўсиш учун болага тўғри овқатланиш ва яхши дам олиш керак — мазали фойдали овқат ва мустаҳкам уйқу. Аммо ўйинчоқлар, тўплар ёки машиналар ўсиш учун керак эмас, гарчи улар билан ўйнаш қизиқарли бўлса ҳам! Расмга қара ва ўйла: бу болага ўсиш учун керакми, йўқми? Текширишга тайёрмисан?"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1207,7 +1257,17 @@ const translations = {
     part_nose: "БИНӢ",
     part_mouth: "ДАҲОН",
     part_hand: "ДАСТ",
-    part_leg: "ПОЙ"
+    part_leg: "ПОЙ",
+    hub_lifestages_title: "Марҳилаҳои ҳаёт",
+    hub_lifestages_desc: "Аз кӯдаки ширхӯра то пиронсол",
+    lifestages_game_title: "Марҳилаҳои ҳаёт!",
+    lifestages_game_sub: "Марҳилаҳои ҳаёти инсонро бо тартиб гузор",
+    lifestages_explain: "Барыс меомӯзад, ки инсон чӣ тавр калон мешавад! Аввал инсон кӯдаки хеле хурди ширхӯра аст, баъд калон шуда, кӯдак мешавад, сипас — калонсол, дар охири ҳаёт бошад — пиронсол. Расмҳоро бо тартиб пахш кун, аз марҳилаи аввалин то охирин. Омодаи донистани марҳилаҳои ҳаёт ҳастӣ?",
+    hub_humanneeds_title: "Ба кӯдак чӣ лозим аст?",
+    hub_humanneeds_desc: "Хӯрок ва истироҳат — бозича лозим аст?",
+    humanneeds_game_title: "Ба кӯдак чӣ лозим аст?",
+    humanneeds_game_sub: "Ин ба кӯдак барои калон шудан лозим аст ё не?",
+    humanneeds_explain: "Барыс ба кӯдакон ғамхорӣ мекунад! Барои саломат ва пурқувват калон шудан, кӯдак хӯроки дуруст ва истироҳати хуб лозим дорад — хӯроки болаззату муфид ва хоби мустаҳкам. Аммо бозича, тӯб ё мошин барои калон шудан лозим нестанд, гарчанде бо онҳо бозӣ кардан хуш аст! Ба расм нигоҳ кун ва фикр кун: ин ба кӯдак барои калон шудан лозим аст ё не? Омодаи санҷидан ҳастӣ?"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1408,7 +1468,17 @@ const translations = {
     part_nose: "بۇرۇن",
     part_mouth: "ئاغىز",
     part_hand: "قول",
-    part_leg: "پۇت"
+    part_leg: "پۇت",
+    hub_lifestages_title: "ھايات باسقۇچلىرى",
+    hub_lifestages_desc: "بوۋاقتىن قېرى ئادەمگىچە",
+    lifestages_game_title: "ھايات باسقۇچلىرى!",
+    lifestages_game_sub: "ئىنسان ھاياتىنىڭ باسقۇچلىرىنى تەرتىپ بىلەن قويۇڭ",
+    lifestages_explain: "بارىس ئىنساننىڭ قانداق چوڭ بولىدىغانلىقىنى ئۆگىنىۋاتىدۇ! ئالدى بىلەن ئىنسان كىچىك بوۋاق بولىدۇ، ئاندىن ئۇ چوڭ بولۇپ، بالا بولىدۇ، كېيىن — چوڭ ئادەم، ھاياتنىڭ ئاخىرىدا بولسا — قېرى ئادەم. رەسىملەرنى تەرتىپ بىلەن بېسىڭ، ئەڭ دەسلەپكى باسقۇچتىن ئەڭ ئاخىرقىسىغىچە. ھايات باسقۇچلىرىنى بىلىشكە تەييارمۇسىز؟",
+    hub_humanneeds_title: "بالىغا نېمە كېرەك؟",
+    hub_humanneeds_desc: "ئوزۇقلىنىش ۋە ئارام ئېلىش — ئوينچۇق كېرەكمۇ؟",
+    humanneeds_game_title: "بالىغا نېمە كېرەك؟",
+    humanneeds_game_sub: "بۇ بالىغا چوڭ بولۇش ئۈچۈن كېرەكمۇ، ئەمەسمۇ؟",
+    humanneeds_explain: "بارىس بالىلارغا غامخورلۇق قىلىدۇ! سالامەت ۋە كۈچلۈك چوڭ بولۇش ئۈچۈن بالىغا توغرا ئوزۇقلىنىش ۋە ياخشى ئارام ئېلىش كېرەك — تەملىك پايدىلىق تاماق ۋە مۇستەھكەم ئۇيقۇ. ئەمما ئوينچۇقلار، توپلار ياكى ماشىنىلار چوڭ بولۇش ئۈچۈن كېرەك ئەمەس، گەرچە ئۇلار بىلەن ئوينىش قىزىقارلىق بولسىمۇ! رەسىمگە قاراپ ئويلاڭ: بۇ بالىغا چوڭ بولۇش ئۈچۈن كېرەكمۇ، ئەمەسمۇ؟ تەكشۈرۈشكە تەييارمۇسىز؟"
   }
 };
 
