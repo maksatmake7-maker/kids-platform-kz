@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Естествознание 1 класс — Білім Аралы</title>
+<title>Білім Аралы — учимся играя</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 <div class="cloud cloud1"></div>
@@ -14,7 +14,7 @@
 <div class="cloud cloud3"></div>
 
 <header>
-  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
   <div class="lang-toggle">
     <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
     <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
@@ -26,35 +26,74 @@
   </div>
 </header>
 
-<section class="subjects" id="subjects" style="padding-top:20px;">
-  <a href="../../../index.html" class="back-link" data-i18n="back_home" style="display:block; text-align:center; color:var(--ink); opacity:0.7;"></a>
-  <span class="grade-tag" data-i18n="estestvo_title"></span>
-  <h2 data-i18n="hub_title"></h2>
-  <p class="lead" data-i18n="hub_lead"></p>
+<section class="hero">
+  <div class="mascot-wrap">
+    <svg class="mascot" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="100" cy="188" rx="48" ry="8" fill="rgba(29,53,87,0.12)"/>
+      <path d="M150 150 Q185 140 178 100 Q172 70 145 65 Q168 80 165 108 Q162 135 138 148 Z" fill="#C7D0DA"/>
+      <ellipse cx="146" cy="70" rx="10" ry="14" fill="#8B95A3" transform="rotate(-25 146 70)"/>
+      <circle cx="62" cy="55" r="17" fill="#C7D0DA"/>
+      <circle cx="138" cy="55" r="17" fill="#C7D0DA"/>
+      <circle cx="62" cy="57" r="9" fill="#7E8998"/>
+      <circle cx="138" cy="57" r="9" fill="#7E8998"/>
+      <ellipse cx="100" cy="118" rx="68" ry="64" fill="#DCE3EA"/>
+      <ellipse cx="100" cy="140" rx="40" ry="30" fill="#F5F8FA"/>
+      <ellipse cx="70" cy="95" rx="6" ry="5" fill="#8B95A3"/>
+      <ellipse cx="130" cy="95" rx="6" ry="5" fill="#8B95A3"/>
+      <ellipse cx="55" cy="120" rx="5" ry="4" fill="#8B95A3"/>
+      <ellipse cx="145" cy="120" rx="5" ry="4" fill="#8B95A3"/>
+      <ellipse cx="85" cy="80" rx="4" ry="4" fill="#8B95A3"/>
+      <ellipse cx="115" cy="80" rx="4" ry="4" fill="#8B95A3"/>
+      <ellipse cx="78" cy="115" rx="15" ry="17" fill="#1D3557"/>
+      <ellipse cx="122" cy="115" rx="15" ry="17" fill="#1D3557"/>
+      <circle cx="82" cy="110" r="4" fill="#fff"/>
+      <circle cx="126" cy="110" r="4" fill="#fff"/>
+      <path d="M100 132 L92 140 L108 140 Z" fill="#F4847A"/>
+      <path d="M100 140 Q100 148 90 150 M100 140 Q100 148 110 150" stroke="#1D3557" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M62 158 Q100 180 138 158 Q100 195 62 158 Z" fill="#FF6B5B"/>
+    </svg>
+    <div class="speech"><span data-i18n="speech"></span></div>
+  </div>
+
+  <h1 data-i18n="hero_title"></h1>
+  <p class="sub" data-i18n="hero_sub"></p>
+  <a href="#subjects" class="cta" data-i18n="cta"></a>
+</section>
+
+<section class="subjects" id="subjects">
+  <span class="grade-tag" data-i18n="grade_tag"></span>
+  <h2 data-i18n="subjects_h2"></h2>
+  <p class="lead" data-i18n="subjects_lead"></p>
 
   <div class="island-grid">
-    <a href="plantparts.html" class="island estestvo ready" style="text-decoration:none;">
+    <a href="grades/grade-1/math/index.html" class="island math ready" style="text-decoration:none;">
+      <span class="emoji">🔢</span>
+      <h3 data-i18n="math_title"></h3>
+      <p data-i18n="math_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="grades/grade-1/reading/index.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">📖</span>
+      <h3 data-i18n="read_title"></h3>
+      <p data-i18n="read_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="grades/grade-1/kazakh/index.html" class="island kaz ready" style="text-decoration:none;">
+      <span class="emoji">🌾</span>
+      <h3 data-i18n="kaz_title"></h3>
+      <p data-i18n="kaz_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="grades/grade-1/estestvo/index.html" class="island estestvo ready" style="text-decoration:none;">
       <span class="emoji">🌱</span>
-      <h3 data-i18n="hub_plantparts_title"></h3>
-      <p data-i18n="hub_plantparts_desc"></p>
+      <h3 data-i18n="estestvo_title"></h3>
+      <p data-i18n="estestvo_desc"></p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-    <a href="wildcult.html" class="island estestvo ready" style="text-decoration:none;">
-      <span class="emoji">🌵</span>
-      <h3 data-i18n="hub_wildcult_title"></h3>
-      <p data-i18n="hub_wildcult_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
-    <a href="plantneeds.html" class="island estestvo ready" style="text-decoration:none;">
-      <span class="emoji">💧</span>
-      <h3 data-i18n="hub_plantneeds_title"></h3>
-      <p data-i18n="hub_plantneeds_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
-    <a href="wildanimal.html" class="island estestvo ready" style="text-decoration:none;">
-      <span class="emoji">🦁</span>
-      <h3 data-i18n="hub_wildanimal_title"></h3>
-      <p data-i18n="hub_wildanimal_desc"></p>
+    <a href="playroom/index.html" class="island game ready" style="text-decoration:none;">
+      <span class="emoji">🧩</span>
+      <h3 data-i18n="game_title"></h3>
+      <p data-i18n="game_desc"></p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
@@ -62,7 +101,7 @@
 
 <footer data-i18n="footer"></footer>
 
-<script src="../../../assets/i18n.js"></script>
-<script src="../../../assets/progress.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/progress.js"></script>
 </body>
 </html>
