@@ -162,7 +162,14 @@ const translations = {
     part_leaf: "ЛИСТ",
     part_flower: "ЦВЕТОК",
     part_fruit: "ПЛОД",
-    part_seed: "СЕМЯ"
+    part_seed: "СЕМЯ",
+    hub_wildcult_title: "Дикое или культурное?",
+    hub_wildcult_desc: "Растение само выросло, или его посадили?",
+    wildcult_game_title: "Дикое или культурное?",
+    wildcult_game_sub: "Это растение выросло само по себе, или его вырастили люди?",
+    wildcult_explain: "Барыс гуляет по лугу и по саду! Дикорастущие растения растут сами по себе, без помощи человека — в лесу, в поле, на лугу. А культурные растения специально сажают и выращивают люди — на грядках, в садах, на полях. Посмотри на растение и подумай: оно дикое или культурное? Готов разобраться?",
+    btn_wild: "Дикорастущее",
+    btn_cultivated: "Культурное"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -323,7 +330,14 @@ const translations = {
     part_leaf: "ЖАПЫРАҚ",
     part_flower: "ГҮЛ",
     part_fruit: "ЖЕМІС",
-    part_seed: "ТҰҚЫМ"
+    part_seed: "ТҰҚЫМ",
+    hub_wildcult_title: "Жабайы ма, мәдени ме?",
+    hub_wildcult_desc: "Өсімдік өзі өсті ме, әлде оны еккен бе?",
+    wildcult_game_title: "Жабайы ма, мәдени ме?",
+    wildcult_game_sub: "Бұл өсімдік өзінен-өзі өсті ме, әлде адамдар өсіргені ме?",
+    wildcult_explain: "Барыс шалғында да, бақшада да серуендейді! Жабайы өсімдіктер адам көмегінсіз өздігінен өседі — орманда, далада, шалғында. Ал мәдени өсімдіктерді адамдар арнайы отырғызып өсіреді — көлемде, бақшада, егістікте. Өсімдікке қара да ойлан: ол жабайы ма, мәдени ме? Түсінуге дайынсың ба?",
+    btn_wild: "Жабайы",
+    btn_cultivated: "Мәдени"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -484,7 +498,14 @@ const translations = {
     part_leaf: "LEAF",
     part_flower: "FLOWER",
     part_fruit: "FRUIT",
-    part_seed: "SEED"
+    part_seed: "SEED",
+    hub_wildcult_title: "Wild or Cultivated?",
+    hub_wildcult_desc: "Did it grow on its own, or was it planted?",
+    wildcult_game_title: "Wild or Cultivated?",
+    wildcult_game_sub: "Did this plant grow on its own, or did people grow it?",
+    wildcult_explain: "Barys is walking through a meadow and a garden! Wild plants grow on their own, without human help — in forests, fields, meadows. Cultivated plants are specially planted and grown by people — in garden beds, orchards, farm fields. Look at the plant and think: is it wild or cultivated? Ready to figure it out?",
+    btn_wild: "Wild",
+    btn_cultivated: "Cultivated"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -645,7 +666,14 @@ const translations = {
     part_leaf: "叶",
     part_flower: "花",
     part_fruit: "果实",
-    part_seed: "种子"
+    part_seed: "种子",
+    hub_wildcult_title: "野生还是栽培？",
+    hub_wildcult_desc: "它是自己长出来的，还是被种植的？",
+    wildcult_game_title: "野生还是栽培？",
+    wildcult_game_sub: "这株植物是自己长出来的，还是人们种的？",
+    wildcult_explain: "巴雷斯在草地和花园里散步！野生植物是自己生长的，不需要人的帮助——在森林里、田野里、草地上。栽培植物是人们专门种植和培育的——在菜园里、果园里、农田里。看看这株植物，想一想：它是野生的还是栽培的？准备好来分辨了吗？",
+    btn_wild: "野生",
+    btn_cultivated: "栽培"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -806,7 +834,14 @@ const translations = {
     part_leaf: "БАРГ",
     part_flower: "ГУЛ",
     part_fruit: "МЕВА",
-    part_seed: "УРУҒ"
+    part_seed: "УРУҒ",
+    hub_wildcult_title: "Ёввойи ёки маданий?",
+    hub_wildcult_desc: "Ўсимлик ўзи ўсдими ёки экканми?",
+    wildcult_game_title: "Ёввойи ёки маданий?",
+    wildcult_game_sub: "Бу ўсимлик ўзи ўсдими ёки одамлар ўстирдими?",
+    wildcult_explain: "Барыс ўтлоқда ва боғда сайр қиляпти! Ёввойи ўсимликлар ўз-ўзидан, инсон ёрдамисиз ўсади — ўрмонда, далада, ўтлоқда. Маданий ўсимликларни эса одамлар махсус экиб ўстиради — томорқада, боғда, экинзорда. Ўсимликка қара ва ўйла: у ёввойими ёки маданийми? Тушунишга тайёрмисан?",
+    btn_wild: "Ёввойи",
+    btn_cultivated: "Маданий"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -967,7 +1002,14 @@ const translations = {
     part_leaf: "БАРГ",
     part_flower: "ГУЛ",
     part_fruit: "МЕВА",
-    part_seed: "ТУХМ"
+    part_seed: "ТУХМ",
+    hub_wildcult_title: "Ваҳшӣ ё зироатӣ?",
+    hub_wildcult_desc: "Растанӣ худ рӯид ё шинонда шуд?",
+    wildcult_game_title: "Ваҳшӣ ё зироатӣ?",
+    wildcult_game_sub: "Ин растанӣ худ рӯид ё одамон парвариш карданд?",
+    wildcult_explain: "Барыс дар марғзор ва боғ қадам мезанад! Растаниҳои ваҳшӣ худ аз худ, бе кӯмаки инсон мерӯянд — дар ҷангал, дашт, марғзор. Растаниҳои зироатиро бошад одамон махсус шинонда парвариш мекунанд — дар полез, боғ, киштзор. Ба растанӣ нигоҳ кун ва фикр кун: он ваҳшӣ аст ё зироатӣ? Омодаи фаҳмидан ҳастӣ?",
+    btn_wild: "Ваҳшӣ",
+    btn_cultivated: "Зироатӣ"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1128,7 +1170,14 @@ const translations = {
     part_leaf: "يوپۇرماق",
     part_flower: "گۈل",
     part_fruit: "مېۋە",
-    part_seed: "ئۇرۇق"
+    part_seed: "ئۇرۇق",
+    hub_wildcult_title: "ياۋايىمۇ ياكى مەدەنىيمۇ؟",
+    hub_wildcult_desc: "ئۆسۈملۈك ئۆزلىكىدىن ئۆستىمۇ ياكى تىكىلگەنمۇ؟",
+    wildcult_game_title: "ياۋايىمۇ ياكى مەدەنىيمۇ؟",
+    wildcult_game_sub: "بۇ ئۆسۈملۈك ئۆزلىكىدىن ئۆستىمۇ ياكى ئادەملەر ئۆستۈرگەنمۇ؟",
+    wildcult_explain: "بارىس چىمەنزارلىق ۋە باغدا سەيلە قىلىۋاتىدۇ! ياۋايى ئۆسۈملۈكلەر ئىنسان ياردىمىسىز ئۆزلىكىدىن ئۆسىدۇ — ئورمانلىقتا، دالادا، چىمەنزارلىقتا. مەدەنىي ئۆسۈملۈكلەرنى بولسا ئادەملەر ئالاھىدە تىكىپ ئۆستۈرىدۇ — باغچىدا، باغدا، ئېكىنزارلىقتا. ئۆسۈملۈككە قاراپ ئويلاڭ: ئۇ ياۋايىمۇ ياكى مەدەنىيمۇ؟ چۈشىنىشكە تەييارمۇسىز؟",
+    btn_wild: "ياۋايى",
+    btn_cultivated: "مەدەنىي"
   }
 };
 
