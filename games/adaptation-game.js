@@ -19,7 +19,7 @@ function initAdaptationGame(containerId){
     ['🐦','migration'],
     ['🐿️','foodstore'],
     ['🐹','foodstore'],
-    ['🦫','foodstore'],
+    ['🐜','foodstore'],
     ['🐻','hibernate'],
     ['🦔','hibernate'],
     ['🦇','hibernate']
