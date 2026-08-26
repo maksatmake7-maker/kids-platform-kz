@@ -279,6 +279,7 @@ header{
 .island.read{border-top:6px solid var(--coral);}
 .island.kaz{border-top:6px solid var(--meadow);}
 .island.game{border-top:6px solid #7C9CFF;}
+.island.estestvo{border-top:6px solid #6FBF73;}
 
 footer{
   position:relative;
