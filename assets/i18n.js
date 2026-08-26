@@ -191,7 +191,18 @@ const translations = {
     adaptation_explain: "Барыс изучает, как звери и птицы готовятся к холодной зиме! Одни птицы улетают в тёплые края, пока не наступит весна. Другие животные всё лето и осень запасают корм, чтобы хватило на всю зиму. А третьи просто засыпают глубоким сном на всю зиму — это называется спячка. Посмотри на животное и подумай, как оно переживает зиму. Готов узнать секреты зимовки?",
     btn_migration: "Улетает",
     btn_foodstore: "Запасает корм",
-    btn_hibernate: "Спит всю зиму"
+    btn_hibernate: "Спит всю зиму",
+    hub_bodyparts_title: "Части тела",
+    hub_bodyparts_desc: "Глаз, ухо, нос, рот...",
+    bodyparts_game_title: "Части тела!",
+    bodyparts_game_sub: "Как называется эта часть тела? Найди картинку",
+    bodyparts_explain: "Барыс изучает своё тело! У каждой части тела есть своя работа: глаза помогают видеть, уши — слышать, нос — чувствовать запахи, рот — говорить и есть, руки — держать вещи, а ноги — ходить и бегать. Посмотри на название части тела и найди подходящую картинку. Готов изучать своё тело?",
+    part_eye: "ГЛАЗ",
+    part_ear: "УХО",
+    part_nose: "НОС",
+    part_mouth: "РОТ",
+    part_hand: "РУКА",
+    part_leg: "НОГА"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -381,7 +392,18 @@ const translations = {
     adaptation_explain: "Барыс аңдар мен құстардың қатты қысқа қалай дайындалатынын зерттейді! Кейбір құстар көктем келгенше жылы жаққа ұшып кетеді. Басқа жануарлар бүкіл жаз бен күз бойы қысқа жететін қор жинайды. Ал үшіншілері бүкіл қысты қатты ұйқыда өткізеді — бұл қысқы ұйқы деп аталады. Жануарға қара да, ол қысты қалай өткізетінін ойлан. Қыстау құпияларын білуге дайынсың ба?",
     btn_migration: "Ұшып кетеді",
     btn_foodstore: "Қор жинайды",
-    btn_hibernate: "Қыс бойы ұйықтайды"
+    btn_hibernate: "Қыс бойы ұйықтайды",
+    hub_bodyparts_title: "Дене мүшелері",
+    hub_bodyparts_desc: "Көз, құлақ, мұрын, ауыз...",
+    bodyparts_game_title: "Дене мүшелері!",
+    bodyparts_game_sub: "Дененің бұл бөлігі қалай аталады? Суретті тап",
+    bodyparts_explain: "Барыс өз денесін зерттейді! Әр дене мүшесінің өз жұмысы бар: көз көруге көмектеседі, құлақ — естуге, мұрын — иісті сезуге, ауыз — сөйлеу мен тамақтануға, қолдар — заттарды ұстауға, ал аяқтар — жүру мен жүгіруге. Дене мүшесінің атауына қара да сәйкес суретті тап. Өз денеңді зерттеуге дайынсың ба?",
+    part_eye: "КӨЗ",
+    part_ear: "ҚҰЛАҚ",
+    part_nose: "МҰРЫН",
+    part_mouth: "АУЫЗ",
+    part_hand: "ҚОЛ",
+    part_leg: "АЯҚ"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -571,7 +593,18 @@ const translations = {
     adaptation_explain: "Barys is studying how animals and birds prepare for cold winter! Some birds fly away to warm places until spring comes. Other animals spend all summer and autumn storing food to last through winter. And others simply fall into a deep sleep for the whole winter — this is called hibernation. Look at the animal and think about how it survives winter. Ready to learn winter secrets?",
     btn_migration: "Flies away",
     btn_foodstore: "Stores food",
-    btn_hibernate: "Sleeps all winter"
+    btn_hibernate: "Sleeps all winter",
+    hub_bodyparts_title: "Body Parts",
+    hub_bodyparts_desc: "Eye, ear, nose, mouth...",
+    bodyparts_game_title: "Body Parts!",
+    bodyparts_game_sub: "What is this body part called? Find the picture",
+    bodyparts_explain: "Barys is studying his body! Every body part has its own job: eyes help you see, ears help you hear, the nose lets you smell, the mouth helps you talk and eat, hands hold things, and legs help you walk and run. Look at the body part's name and find the matching picture. Ready to study your body?",
+    part_eye: "EYE",
+    part_ear: "EAR",
+    part_nose: "NOSE",
+    part_mouth: "MOUTH",
+    part_hand: "HAND",
+    part_leg: "LEG"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -761,7 +794,18 @@ const translations = {
     adaptation_explain: "巴雷斯在研究动物和鸟类是如何准备过冬的！有些鸟儿会飞到温暖的地方，直到春天来临。有些动物整个夏天和秋天都在储存食物，好度过整个冬天。还有些动物则整个冬天都在沉睡——这叫做冬眠。看看这种动物，想一想它是怎么过冬的。准备好了解过冬的秘密了吗？",
     btn_migration: "飞走",
     btn_foodstore: "储存食物",
-    btn_hibernate: "整个冬天睡觉"
+    btn_hibernate: "整个冬天睡觉",
+    hub_bodyparts_title: "身体部位",
+    hub_bodyparts_desc: "眼睛、耳朵、鼻子、嘴巴……",
+    bodyparts_game_title: "身体部位！",
+    bodyparts_game_sub: "身体的这个部位叫什么？找出图片",
+    bodyparts_explain: "巴雷斯在研究自己的身体！每个身体部位都有自己的作用：眼睛帮助我们看，耳朵帮助我们听，鼻子让我们闻到气味，嘴巴帮助我们说话和吃东西，手用来拿东西，腿帮助我们走路和跑步。看看这个身体部位的名称，找出匹配的图片。准备好研究身体了吗？",
+    part_eye: "眼睛",
+    part_ear: "耳朵",
+    part_nose: "鼻子",
+    part_mouth: "嘴巴",
+    part_hand: "手",
+    part_leg: "腿"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -951,7 +995,18 @@ const translations = {
     adaptation_explain: "Барыс ҳайвонлар ва қушларнинг совуқ қишга қандай тайёрланишини ўрганяпти! Баъзи қушлар баҳор келгунча иссиқ жойларга учиб кетади. Бошқа ҳайвонлар бутун ёз ва куз давомида қишга етадиган озиқ ғамлайди. Учинчилари эса бутун қишни чуқур уйқуда ўтказади — бу қиш уйқуси деб аталади. Ҳайвонга қара ва у қишни қандай ўтказишини ўйла. Қишлаш сирларини билишга тайёрмисан?",
     btn_migration: "Учиб кетади",
     btn_foodstore: "Озиқ ғамлайди",
-    btn_hibernate: "Бутун қиш ухлайди"
+    btn_hibernate: "Бутун қиш ухлайди",
+    hub_bodyparts_title: "Тана қисмлари",
+    hub_bodyparts_desc: "Кўз, қулоқ, бурун, оғиз...",
+    bodyparts_game_title: "Тана қисмлари!",
+    bodyparts_game_sub: "Танaнинг бу қисми қандай аталади? Расмни топ",
+    bodyparts_explain: "Барыс ўз танасини ўрганяпти! Ҳар бир тана қисмининг ўз вазифаси бор: кўз кўришга ёрдам беради, қулоқ — эшитишга, бурун — ҳидни сезишга, оғиз — гапиришга ва овқатланишга, қўллар — нарсаларни ушлашга, оёқлар эса — юриш ва югуришга. Тана қисми номига қара ва мос расмни топ. Ўз танангни ўрганишга тайёрмисан?",
+    part_eye: "КЎЗ",
+    part_ear: "ҚУЛОҚ",
+    part_nose: "БУРУН",
+    part_mouth: "ОҒИЗ",
+    part_hand: "ҚЎЛ",
+    part_leg: "ОЁҚ"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1141,7 +1196,18 @@ const translations = {
     adaptation_explain: "Барыс меомӯзад, ки ҳайвонот ва парандагон ба зимистони сард чӣ тавр тайёр мешаванд! Баъзе паррандаҳо то расидани баҳор ба ҷойҳои гарм парвоз мекунанд. Дигар ҳайвонот тобистону тирамоҳ хӯрок захира мекунанд, то барои тамоми зимистон бирасад. Сеюминҳо бошанд тамоми зимистонро дар хоби чуқур мегузаронанд — инро хоби зимистонӣ меноманд. Ба ҳайвон нигоҳ кун ва фикр кун, ки он зимистонро чӣ тавр мегузаронад. Омодаи донистани сирри зимхобӣ ҳастӣ?",
     btn_migration: "Парвоз мекунад",
     btn_foodstore: "Захира мекунад",
-    btn_hibernate: "Тамоми зимистон мехобад"
+    btn_hibernate: "Тамоми зимистон мехобад",
+    hub_bodyparts_title: "Узвҳои бадан",
+    hub_bodyparts_desc: "Чашм, гӯш, бинӣ, даҳон...",
+    bodyparts_game_title: "Узвҳои бадан!",
+    bodyparts_game_sub: "Ин узви бадан чӣ ном дорад? Расмро ёб",
+    bodyparts_explain: "Барыс баданашро меомӯзад! Ҳар узви бадан вазифаи худро дорад: чашм ба дидан кӯмак мекунад, гӯш — ба шунидан, бинӣ — ба бӯй кардан, даҳон — ба гап задан ва хӯрок хӯрдан, дастҳо — ба чизҳоро доштан, пойҳо бошанд — ба гаштан ва давидан. Ба номи узви бадан нигоҳ кун ва расми мувофиқро ёб. Омодаи омӯхтани баданат ҳастӣ?",
+    part_eye: "ЧАШМ",
+    part_ear: "ГӮШ",
+    part_nose: "БИНӢ",
+    part_mouth: "ДАҲОН",
+    part_hand: "ДАСТ",
+    part_leg: "ПОЙ"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1331,7 +1397,18 @@ const translations = {
     adaptation_explain: "بارىس ھايۋانلار ۋە قۇشلارنىڭ سوغۇق قىشقا قانداق تەييارلىنىدىغانلىقىنى ئۆگىنىۋاتىدۇ! بەزى قۇشلار باھار كەلگۈچە ئىللىق جايلارغا ئۇچۇپ كېتىدۇ. باشقا ھايۋانلار پۈتۈن ياز ۋە كۈزدە قىشقا يېتىدىغان ئوزۇق توپلايدۇ. ئۈچىنچىلىرى بولسا پۈتۈن قىشنى چوڭقۇر ئۇيقۇدا ئۆتكۈزىدۇ — بۇنى قىش ئۇيقۇسى دەيدۇ. ھايۋانغا قاراپ، ئۇنىڭ قىشنى قانداق ئۆتكۈزىدىغانلىقىنى ئويلاڭ. قىشلاش سىرلىرىنى بىلىشكە تەييارمۇسىز؟",
     btn_migration: "ئۇچۇپ كېتىدۇ",
     btn_foodstore: "ئوزۇق توپلايدۇ",
-    btn_hibernate: "پۈتۈن قىش ئۇخلايدۇ"
+    btn_hibernate: "پۈتۈن قىش ئۇخلايدۇ",
+    hub_bodyparts_title: "بەدەن ئەزالىرى",
+    hub_bodyparts_desc: "كۆز، قۇلاق، بۇرۇن، ئاغىز...",
+    bodyparts_game_title: "بەدەن ئەزالىرى!",
+    bodyparts_game_sub: "بەدەننىڭ بۇ قىسمى قانداق ئاتىلىدۇ؟ رەسىمنى تېپىڭ",
+    bodyparts_explain: "بارىس ئۆز بەدىنىنى ئۆگىنىۋاتىدۇ! ھەر بىر بەدەن ئەزاسىنىڭ ئۆز ۋەزىپىسى بار: كۆز كۆرۈشكە ياردەم بېرىدۇ، قۇلاق — ئاڭلاشقا، بۇرۇن — پۇراشقا، ئاغىز — سۆزلەش ۋە يېيىشكە، قوللار — نەرسىلەرنى تۇتۇشقا، پۇتلار بولسا — مېڭىش ۋە يۈگۈرۈشكە. بەدەن ئەزاسىنىڭ ئاتىغا قاراپ ماس رەسىمنى تېپىڭ. ئۆز بەدىنىڭىزنى ئۆگىنىشكە تەييارمۇسىز؟",
+    part_eye: "كۆز",
+    part_ear: "قۇلاق",
+    part_nose: "بۇرۇن",
+    part_mouth: "ئاغىز",
+    part_hand: "قول",
+    part_leg: "پۇت"
   }
 };
 
