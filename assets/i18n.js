@@ -176,7 +176,14 @@ const translations = {
     plantneeds_game_sub: "Растению это нужно для жизни, или нет?",
     plantneeds_explain: "Барыс заботится о растениях! Чтобы расти, растению нужны особые условия: вода, солнечный свет и тепло. А вот игрушки, конфеты или машинки растению совсем не нужны! Посмотри на картинку и подумай: это нужно растению для жизни, или нет? Готов заботиться о растениях?",
     btn_needed: "Нужно",
-    btn_not_needed: "Не нужно"
+    btn_not_needed: "Не нужно",
+    hub_wildanimal_title: "Дикое или домашнее?",
+    hub_wildanimal_desc: "Кто живёт в лесу, а кто — рядом с человеком?",
+    wildanimal_game_title: "Дикое или домашнее?",
+    wildanimal_game_sub: "Это животное дикое, или домашнее?",
+    wildanimal_explain: "Барыс дружит и с дикими зверями, и с домашними животными! Дикие животные сами добывают себе еду и живут в лесу, в степи, без помощи человека. А домашних животных выращивает и кормит человек — они живут рядом с людьми, на ферме или дома. Посмотри на животное и подумай: оно дикое или домашнее? Готов разобраться?",
+    btn_wildanimal: "Дикое",
+    btn_domestic: "Домашнее"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -351,7 +358,14 @@ const translations = {
     plantneeds_game_sub: "Бұл өсімдікке өмір сүру үшін керек пе, жоқ па?",
     plantneeds_explain: "Барыс өсімдіктерге қамқорлық жасайды! Өсу үшін өсімдікке ерекше жағдайлар керек: су, күн сәулесі және жылу. Ал ойыншық, кәмпит немесе көлік өсімдікке мүлдем керек емес! Суретке қара да ойлан: бұл өсімдікке өмір сүру үшін керек пе, жоқ па? Өсімдіктерге қамқор болуға дайынсың ба?",
     btn_needed: "Керек",
-    btn_not_needed: "Керек емес"
+    btn_not_needed: "Керек емес",
+    hub_wildanimal_title: "Жабайы ма, үй жануары ма?",
+    hub_wildanimal_desc: "Кім орманда, кім адам жанында тұрады?",
+    wildanimal_game_title: "Жабайы ма, үй жануары ма?",
+    wildanimal_game_sub: "Бұл жануар жабайы ма, әлде үй жануары ма?",
+    wildanimal_explain: "Барыс жабайы аңдармен де, үй жануарларымен де дос! Жабайы жануарлар өздері тамақ табады және орманда, далада, адам көмегінсіз өмір сүреді. Ал үй жануарларын адам өсіріп, тамақтандырады — олар адамдардың жанында, фермада немесе үйде тұрады. Жануарға қара да ойлан: ол жабайы ма, үй жануары ма? Түсінуге дайынсың ба?",
+    btn_wildanimal: "Жабайы",
+    btn_domestic: "Үй жануары"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -526,7 +540,14 @@ const translations = {
     plantneeds_game_sub: "Does a plant need this to live, or not?",
     plantneeds_explain: "Barys takes care of plants! To grow, a plant needs special conditions: water, sunlight, and warmth. But toys, candy, or toy cars are not needed by a plant at all! Look at the picture and think: does a plant need this to live, or not? Ready to take care of plants?",
     btn_needed: "Needed",
-    btn_not_needed: "Not needed"
+    btn_not_needed: "Not needed",
+    hub_wildanimal_title: "Wild or Domestic?",
+    hub_wildanimal_desc: "Who lives in the forest, and who lives with people?",
+    wildanimal_game_title: "Wild or Domestic?",
+    wildanimal_game_sub: "Is this animal wild, or domestic?",
+    wildanimal_explain: "Barys is friends with both wild animals and domestic ones! Wild animals find their own food and live in forests, in the steppe, without human help. Domestic animals are raised and fed by people — they live near people, on a farm or at home. Look at the animal and think: is it wild or domestic? Ready to figure it out?",
+    btn_wildanimal: "Wild",
+    btn_domestic: "Domestic"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -701,7 +722,14 @@ const translations = {
     plantneeds_game_sub: "植物的生长需要这个吗？",
     plantneeds_explain: "巴雷斯在照顾植物！为了生长，植物需要特殊的条件：水、阳光和温暖。但是玩具、糖果或玩具车植物完全不需要！看看图片，想一想：植物生长需要这个吗？准备好照顾植物了吗？",
     btn_needed: "需要",
-    btn_not_needed: "不需要"
+    btn_not_needed: "不需要",
+    hub_wildanimal_title: "野生还是家养？",
+    hub_wildanimal_desc: "谁住在森林里，谁和人一起生活？",
+    wildanimal_game_title: "野生还是家养？",
+    wildanimal_game_sub: "这只动物是野生的，还是家养的？",
+    wildanimal_explain: "巴雷斯和野生动物、家养动物都是朋友！野生动物自己寻找食物，生活在森林、草原里，不需要人的帮助。家养动物是人们饲养和喂养的——它们生活在人们身边，在农场或家里。看看这只动物，想一想：它是野生的还是家养的？准备好来分辨了吗？",
+    btn_wildanimal: "野生",
+    btn_domestic: "家养"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -876,7 +904,14 @@ const translations = {
     plantneeds_game_sub: "Бу ўсимликка яшаш учун керакми, йўқми?",
     plantneeds_explain: "Барыс ўсимликларга ғамхўрлик қилади! Ўсиш учун ўсимликка алоҳида шароит керак: сув, қуёш нури ва иссиқлик. Аммо ўйинчоқ, конфет ёки машина ўсимликка умуман керак эмас! Расмга қара ва ўйла: бу ўсимликка яшаш учун керакми, йўқми? Ўсимликларга ғамхўрлик қилишга тайёрмисан?",
     btn_needed: "Керак",
-    btn_not_needed: "Керак эмас"
+    btn_not_needed: "Керак эмас",
+    hub_wildanimal_title: "Ёввойи ёки уй ҳайвони?",
+    hub_wildanimal_desc: "Ким ўрмонда, ким инсон ёнида яшайди?",
+    wildanimal_game_title: "Ёввойи ёки уй ҳайвони?",
+    wildanimal_game_sub: "Бу ҳайвон ёввойими ёки уй ҳайвоними?",
+    wildanimal_explain: "Барыс ёввойи ҳайвонлар билан ҳам, уй ҳайвонлари билан ҳам дўст! Ёввойи ҳайвонлар ўзлари озиқ топади ва ўрмонда, даштда, инсон ёрдамисиз яшайди. Уй ҳайвонларини эса инсон боқади ва овқатлантиради — улар одамлар ёнида, фермада ёки уйда яшайди. Ҳайвонга қара ва ўйла: у ёввойими ёки уй ҳайвоними? Тушунишга тайёрмисан?",
+    btn_wildanimal: "Ёввойи",
+    btn_domestic: "Уй ҳайвони"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1051,7 +1086,14 @@ const translations = {
     plantneeds_game_sub: "Ин ба растанӣ барои зиндагӣ лозим аст ё не?",
     plantneeds_explain: "Барыс ба растаниҳо ғамхорӣ мекунад! Барои калон шудан, растанӣ шароити махсус лозим дорад: об, нури офтоб ва гармӣ. Аммо бозича, қанд ё мошин ба растанӣ тамоман лозим нест! Ба расм нигоҳ кун ва фикр кун: ин ба растанӣ барои зиндагӣ лозим аст ё не? Омодаи ғамхорӣ ба растаниҳо ҳастӣ?",
     btn_needed: "Лозим",
-    btn_not_needed: "Лозим нест"
+    btn_not_needed: "Лозим нест",
+    hub_wildanimal_title: "Ваҳшӣ ё хонагӣ?",
+    hub_wildanimal_desc: "Кӣ дар ҷангал, кӣ дар паҳлӯи одам зиндагӣ мекунад?",
+    wildanimal_game_title: "Ваҳшӣ ё хонагӣ?",
+    wildanimal_game_sub: "Ин ҳайвон ваҳшӣ аст ё хонагӣ?",
+    wildanimal_explain: "Барыс ҳам бо ҳайвоноти ваҳшӣ, ҳам бо ҳайвоноти хонагӣ дӯст аст! Ҳайвоноти ваҳшӣ худашон хӯрок меёбанд ва дар ҷангал, дашт, бе кӯмаки инсон зиндагӣ мекунанд. Ҳайвоноти хонагиро бошад одам парвариш ва хӯрок медиҳад — онҳо дар паҳлӯи одамон, дарферма ё хона зиндагӣ мекунанд. Ба ҳайвон нигоҳ кун ва фикр кун: он ваҳшӣ аст ё хонагӣ? Омодаи фаҳмидан ҳастӣ?",
+    btn_wildanimal: "Ваҳшӣ",
+    btn_domestic: "Хонагӣ"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1226,7 +1268,14 @@ const translations = {
     plantneeds_game_sub: "بۇ ئۆسۈملۈككە ياشاش ئۈچۈن كېرەكمۇ، ئەمەسمۇ؟",
     plantneeds_explain: "بارىس ئۆسۈملۈكلەرگە غامخورلۇق قىلىدۇ! ئۆسۈش ئۈچۈن ئۆسۈملۈككە ئالاھىدە شارائىت كېرەك: سۇ، قۇياش نۇرى ۋە ئىللىقلىق. ئەمما ئوينچۇق، شېكەر ياكى ماشىنا ئۆسۈملۈككە پۈتۈنلەي كېرەك ئەمەس! رەسىمگە قاراپ ئويلاڭ: بۇ ئۆسۈملۈككە ياشاش ئۈچۈن كېرەكمۇ، ئەمەسمۇ؟ ئۆسۈملۈكلەرگە غامخورلۇق قىلىشقا تەييارمۇسىز؟",
     btn_needed: "كېرەك",
-    btn_not_needed: "كېرەك ئەمەس"
+    btn_not_needed: "كېرەك ئەمەس",
+    hub_wildanimal_title: "ياۋايىمۇ ياكى ئۆي ھايۋىنىمۇ؟",
+    hub_wildanimal_desc: "كىم ئورمانلىقتا، كىم ئىنسان يېنىدا ياشايدۇ؟",
+    wildanimal_game_title: "ياۋايىمۇ ياكى ئۆي ھايۋىنىمۇ؟",
+    wildanimal_game_sub: "بۇ ھايۋان ياۋايىمۇ ياكى ئۆي ھايۋىنىمۇ؟",
+    wildanimal_explain: "بارىس ياۋايى ھايۋانلار بىلەنمۇ، ئۆي ھايۋانلىرى بىلەنمۇ دوست! ياۋايى ھايۋانلار ئۆزلىرى ئوزۇق تاپىدۇ ۋە ئورمانلىقتا، دالادا، ئىنسان ياردىمىسىز ياشايدۇ. ئۆي ھايۋانلىرىنى بولسا ئىنسان بېقىدۇ ۋە ئوزۇقلاندۇرىدۇ — ئۇلار ئادەملەر يېنىدا، پەرمىدا ياكى ئۆيدە ياشايدۇ. ھايۋانغا قاراپ ئويلاڭ: ئۇ ياۋايىمۇ ياكى ئۆي ھايۋىنىمۇ؟ چۈشىنىشكە تەييارمۇسىز؟",
+    btn_wildanimal: "ياۋايى",
+    btn_domestic: "ئۆي ھايۋىنى"
   }
 };
 
