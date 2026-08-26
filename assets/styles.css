@@ -587,6 +587,16 @@ button.cta{
   .word-tile{width:44px; height:44px; font-size:1.3rem;}
 }
 
+/* ===== story sequencing game — bigger tiles for emoji ===== */
+.story-slot, .story-tile{
+  width:64px;
+  height:64px;
+  font-size:2.2rem;
+}
+@media (max-width:480px){
+  .story-slot, .story-tile{width:50px; height:50px; font-size:1.8rem;}
+}
+
 /* ===== vowel/consonant game ===== */
 .vowel-options{
   grid-template-columns:repeat(2,1fr);
