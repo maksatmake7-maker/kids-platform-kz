@@ -280,6 +280,7 @@ header{
 .island.kaz{border-top:6px solid var(--meadow);}
 .island.game{border-top:6px solid #7C9CFF;}
 .island.estestvo{border-top:6px solid #6FBF73;}
+.island.digital{border-top:6px solid #5EC3E8;}
 
 footer{
   position:relative;
