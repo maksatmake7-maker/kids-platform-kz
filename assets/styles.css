@@ -25,6 +25,7 @@ h1,h2,h3,.display{font-family:'Baloo 2',sans-serif;}
 /* clouds */
 .cloud{
   position:absolute;
+  z-index:1;
   background:rgba(255,255,255,0.85);
   border-radius:50px;
   filter:blur(0.3px);
@@ -35,7 +36,7 @@ h1,h2,h3,.display{font-family:'Baloo 2',sans-serif;}
   background:inherit;
   border-radius:50%;
 }
-.cloud1{width:120px;height:44px;top:8%;left:6%;animation:drift 38s linear infinite;}
+.cloud1{width:120px;height:44px;top:15%;left:6%;animation:drift 38s linear infinite;}
 .cloud1::before{width:60px;height:60px;top:-28px;left:14px;}
 .cloud1::after{width:44px;height:44px;top:-20px;left:60px;}
 .cloud2{width:90px;height:34px;top:16%;right:10%;animation:drift 46s linear infinite reverse;}
