@@ -286,7 +286,19 @@ const translations = {
     sign_pedestrian: "ПЕШЕХОДНЫЙ ПЕРЕХОД",
     sign_stop: "ЗНАК СТОП",
     sign_warning: "ПРЕДУПРЕЖДЕНИЕ",
-    sign_roadworks: "ДОРОЖНЫЕ РАБОТЫ"
+    sign_roadworks: "ДОРОЖНЫЕ РАБОТЫ",
+    hub_flag_title: "Флаг Казахстана",
+    hub_flag_desc: "Узнай флаг своей страны",
+    flag_game_title: "Флаг Казахстана!",
+    flag_game_sub: "Это флаг Казахстана, или другой страны?",
+    flag_explain: "Барыс гордится своей страной! У Казахстана есть свой особенный флаг — голубого цвета, с солнцем и орлом в центре. У других стран флаги совсем другие. Посмотри на флаг и подумай: это флаг Казахстана, или флаг другой страны? Готов узнавать флаг?",
+    btn_kazakhstan: "Флаг Казахстана",
+    btn_other: "Другая страна",
+    hub_seasons_title: "Времена года и отдых",
+    hub_seasons_desc: "Зима, весна, лето, осень — чем заняться?",
+    seasons_game_title: "Времена года и отдых!",
+    seasons_game_sub: "Чем можно заняться в это время года? Найди картинку",
+    seasons_explain: "Барыс любит отдыхать в разное время года по-разному! Зимой здорово кататься на лыжах, весной — на велосипеде, летом — плавать, а осенью пора собираться в школу. Посмотри на время года и найди подходящее занятие. Готов узнать, что делать в разные сезоны?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -571,7 +583,19 @@ const translations = {
     sign_pedestrian: "ЖАЯУ ЖҮРГІНШІЛЕР ӨТЕТІН ЖЕР",
     sign_stop: "СТОП БЕЛГІСІ",
     sign_warning: "ЕСКЕРТУ",
-    sign_roadworks: "ЖОЛ ЖҰМЫСТАРЫ"
+    sign_roadworks: "ЖОЛ ЖҰМЫСТАРЫ",
+    hub_flag_title: "Қазақстан туы",
+    hub_flag_desc: "Өз еліңнің туын таны",
+    flag_game_title: "Қазақстан туы!",
+    flag_game_sub: "Бұл Қазақстанның туы ма, әлде басқа елдікі ме?",
+    flag_explain: "Барыс өз елімен мақтанады! Қазақстанның өзіндік ерекше туы бар — көк түсті, ортасында күн мен қыран бейнеленген. Басқа елдердің туы мүлдем басқаша. Туға қара да ойлан: бұл Қазақстанның туы ма, әлде басқа елдікі ме? Туды тануға дайынсың ба?",
+    btn_kazakhstan: "Қазақстан туы",
+    btn_other: "Басқа ел",
+    hub_seasons_title: "Мезгілдер мен демалыс",
+    hub_seasons_desc: "Қыс, көктем, жаз, күз — немен айналысамыз?",
+    seasons_game_title: "Мезгілдер мен демалыс!",
+    seasons_game_sub: "Осы мезгілде немен айналысуға болады? Суретті тап",
+    seasons_explain: "Барыс әр мезгілде әртүрлі демалуды жақсы көреді! Қыста шаңғы тебу керемет, көктемде — велосипед тебу, жазда — жүзу, ал күзде мектепке жиналатын кез. Мезгілге қара да сәйкес шаруаны тап. Әр маусымда немен айналысатынымызды білуге дайынсың ба?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -856,7 +880,19 @@ const translations = {
     sign_pedestrian: "PEDESTRIAN CROSSING",
     sign_stop: "STOP SIGN",
     sign_warning: "WARNING",
-    sign_roadworks: "ROAD WORKS"
+    sign_roadworks: "ROAD WORKS",
+    hub_flag_title: "Kazakhstan's Flag",
+    hub_flag_desc: "Recognize your country's flag",
+    flag_game_title: "Kazakhstan's Flag!",
+    flag_game_sub: "Is this Kazakhstan's flag, or another country's?",
+    flag_explain: "Barys is proud of his country! Kazakhstan has its own special flag — sky blue, with a sun and an eagle in the center. Other countries have completely different flags. Look at the flag and think: is this Kazakhstan's flag, or another country's? Ready to recognize the flag?",
+    btn_kazakhstan: "Kazakhstan's flag",
+    btn_other: "Another country",
+    hub_seasons_title: "Seasons and Activities",
+    hub_seasons_desc: "Winter, spring, summer, autumn — what to do?",
+    seasons_game_title: "Seasons and Activities!",
+    seasons_game_sub: "What can you do in this season? Find the picture",
+    seasons_explain: "Barys loves resting differently in each season! In winter it's great to go skiing, in spring — cycling, in summer — swimming, and in autumn it's time to get ready for school. Look at the season and find the matching activity. Ready to learn what to do in different seasons?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -1141,7 +1177,19 @@ const translations = {
     sign_pedestrian: "人行横道",
     sign_stop: "停车标志",
     sign_warning: "警告标志",
-    sign_roadworks: "道路施工"
+    sign_roadworks: "道路施工",
+    hub_flag_title: "哈萨克斯坦国旗",
+    hub_flag_desc: "认识你祖国的国旗",
+    flag_game_title: "哈萨克斯坦国旗！",
+    flag_game_sub: "这是哈萨克斯坦的国旗，还是别的国家的？",
+    flag_explain: "巴雷斯为自己的祖国感到自豪！哈萨克斯坦有自己特别的国旗——天蓝色，中间有太阳和雄鹰。其他国家的国旗完全不同。看看这面旗，想一想：这是哈萨克斯坦的国旗，还是别的国家的？准备好认国旗了吗？",
+    btn_kazakhstan: "哈萨克斯坦国旗",
+    btn_other: "别的国家",
+    hub_seasons_title: "季节与活动",
+    hub_seasons_desc: "冬天、春天、夏天、秋天——做什么？",
+    seasons_game_title: "季节与活动！",
+    seasons_game_sub: "这个季节可以做什么？找出图片",
+    seasons_explain: "巴雷斯喜欢在不同的季节以不同的方式休息！冬天滑雪很棒，春天骑自行车，夏天游泳，秋天该准备上学了。看看这个季节，找出相应的活动。准备好了解不同季节该做什么了吗？"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -1426,7 +1474,19 @@ const translations = {
     sign_pedestrian: "ПИЁДАЛАР ЎТИШ ЖОЙИ",
     sign_stop: "СТОП БЕЛГИСИ",
     sign_warning: "ОГОҲЛАНТИРИШ",
-    sign_roadworks: "ЙЎЛ ИШЛАРИ"
+    sign_roadworks: "ЙЎЛ ИШЛАРИ",
+    hub_flag_title: "Қозоғистон байроғи",
+    hub_flag_desc: "Ўз ватанинг байроғини тани",
+    flag_game_title: "Қозоғистон байроғи!",
+    flag_game_sub: "Бу Қозоғистон байроғими ёки бошқа мамлакатникими?",
+    flag_explain: "Барыс ўз ватани билан фахрланади! Қозоғистоннинг ўзига хос байроғи бор — кўк рангли, марказида қуёш ва бургут тасвирланган. Бошқа мамлакатларнинг байроқлари бутунлай бошқача. Байроққа қара ва ўйла: бу Қозоғистон байроғими ёки бошқа мамлакатникими? Байроқни танишга тайёрмисан?",
+    btn_kazakhstan: "Қозоғистон байроғи",
+    btn_other: "Бошқа мамлакат",
+    hub_seasons_title: "Фасллар ва дам олиш",
+    hub_seasons_desc: "Қиш, баҳор, ёз, куз — нима қиламиз?",
+    seasons_game_title: "Фасллар ва дам олиш!",
+    seasons_game_sub: "Бу фаслда нима қилиш мумкин? Расмни топ",
+    seasons_explain: "Барыс ҳар фаслда турлича дам олишни яхши кўради! Қишда чанғи учиш ажойиб, баҳорда — велосипед миниш, ёзда — сузиш, кузда эса мактабга тайёргарлик вақти. Фаслга қара ва мос машғулотни топ. Ҳар фаслда нима қилишни билишга тайёрмисан?"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1711,7 +1771,19 @@ const translations = {
     sign_pedestrian: "ГУЗАРГОҲИ ПИЁДАГАРД",
     sign_stop: "АЛОМАТИ СТОП",
     sign_warning: "ОГОҲӢ",
-    sign_roadworks: "КОРҲОИ РОҲ"
+    sign_roadworks: "КОРҲОИ РОҲ",
+    hub_flag_title: "Парчами Қазоқистон",
+    hub_flag_desc: "Парчами ватанатро шинос",
+    flag_game_title: "Парчами Қазоқистон!",
+    flag_game_sub: "Ин парчами Қазоқистон аст ё кишвари дигар?",
+    flag_explain: "Барыс ба ватани худ ифтихор мекунад! Қазоқистон парчами хоси худро дорад — кабуди осмонӣ, дар марказаш офтоб ва уқоб тасвир шудааст. Парчами кишварҳои дигар тамоман фарқ мекунад. Ба парчам нигоҳ кун ва фикр кун: ин парчами Қазоқистон аст ё кишвари дигар? Омодаи шиносоии парчам ҳастӣ?",
+    btn_kazakhstan: "Парчами Қазоқистон",
+    btn_other: "Кишвари дигар",
+    hub_seasons_title: "Фаслҳо ва истироҳат",
+    hub_seasons_desc: "Зимистон, баҳор, тобистон, тирамоҳ — чӣ кор кунем?",
+    seasons_game_title: "Фаслҳо ва истироҳат!",
+    seasons_game_sub: "Дар ин фасл чӣ кор кардан мумкин аст? Расмро ёб",
+    seasons_explain: "Барыс дар ҳар фасл ба тарзи гуногун истироҳат карданро дӯст медорад! Дар зимистон лижаронӣ олиҷаноб аст, дар баҳор — дучархаронӣ, дар тобистон — шиноварӣ, дар тирамоҳ бошад вақти тайёр шудан ба мактаб аст. Ба фасл нигоҳ кун ва фаъолияти мувофиқро ёб. Омодаи донистани он ҳастӣ, ки дар фаслҳои гуногун чӣ бояд кард?"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -1996,7 +2068,19 @@ const translations = {
     sign_pedestrian: "پىيادىلەر ئۆتىدىغان يول",
     sign_stop: "STOP بەلگىسى",
     sign_warning: "ئاگاھلاندۇرۇش",
-    sign_roadworks: "يول ئىشلىرى"
+    sign_roadworks: "يول ئىشلىرى",
+    hub_flag_title: "قازاقىستان تۇغى",
+    hub_flag_desc: "ئۆز ۋەتىنىڭىزنىڭ تۇغىنى تونۇڭ",
+    flag_game_title: "قازاقىستان تۇغى!",
+    flag_game_sub: "بۇ قازاقىستاننىڭ تۇغىمۇ ياكى باشقا دۆلەتنىڭمۇ؟",
+    flag_explain: "بارىس ئۆز ۋەتىنى بىلەن پەخىرلىنىدۇ! قازاقىستاننىڭ ئۆزىگە خاس تۇغى بار — كۆك رەڭلىك، ئوتتۇرىسىدا قۇياش ۋە بۈركۈت سۈرەتلەنگەن. باشقا دۆلەتلەرنىڭ تۇغى پۈتۈنلەي باشقىچە. تۇغقا قاراپ ئويلاڭ: بۇ قازاقىستاننىڭ تۇغىمۇ ياكى باشقا دۆلەتنىڭمۇ؟ تۇغنى تونۇشقا تەييارمۇسىز؟",
+    btn_kazakhstan: "قازاقىستان تۇغى",
+    btn_other: "باشقا دۆلەت",
+    hub_seasons_title: "پەسىللەر ۋە ئارام ئېلىش",
+    hub_seasons_desc: "قىش، باھار، ياز، كۈز — نېمە قىلىمىز؟",
+    seasons_game_title: "پەسىللەر ۋە ئارام ئېلىش!",
+    seasons_game_sub: "بۇ پەسىلدە نېمە قىلغىلى بولىدۇ؟ رەسىمنى تېپىڭ",
+    seasons_explain: "بارىس ھەر پەسىلدە ھەر خىل ئارام ئېلىشنى ياخشى كۆرىدۇ! قىشتا چانا تېيىش ئاجايىپ، باھاردا — ۋېلىسىپىت مېڭىش، يازدا — ئۈزۈش، كۈزدە بولسا مەكتەپكە تەييارلىق ۋاقتى. پەسىلگە قاراپ ماس پائالىيەتنى تېپىڭ. ھەر پەسىلدە نېمە قىلىشنى بىلىشكە تەييارمۇسىز؟"
   }
 };
 
