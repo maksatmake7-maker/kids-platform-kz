@@ -298,7 +298,20 @@ const translations = {
     hub_seasons_desc: "Зима, весна, лето, осень — чем заняться?",
     seasons_game_title: "Времена года и отдых!",
     seasons_game_sub: "Чем можно заняться в это время года? Найди картинку",
-    seasons_explain: "Барыс любит отдыхать в разное время года по-разному! Зимой здорово кататься на лыжах, весной — на велосипеде, летом — плавать, а осенью пора собираться в школу. Посмотри на время года и найди подходящее занятие. Готов узнать, что делать в разные сезоны?"
+    seasons_explain: "Барыс любит отдыхать в разное время года по-разному! Зимой здорово кататься на лыжах, весной — на велосипеде, летом — плавать, а осенью пора собираться в школу. Посмотри на время года и найди подходящее занятие. Готов узнать, что делать в разные сезоны?",
+    muzyka_title: "Музыка",
+    muzyka_desc: "Инструменты, песни, ритм",
+    back_muzyka: "← К играм по музыке",
+    hub_instruments_title: "Музыкальные инструменты",
+    hub_instruments_desc: "Фортепиано, скрипка, домбра...",
+    instruments_game_title: "Музыкальные инструменты!",
+    instruments_game_sub: "Как называется этот инструмент? Найди картинку",
+    instruments_explain: "Барыс любит музыку! У каждого музыкального инструмента своё название и свой звук: фортепиано играют пальцами по клавишам, на скрипке водят смычком по струнам, домбра — казахский инструмент с двумя струнами, а на барабане отбивают ритм. Посмотри на название и найди подходящий инструмент. Готов изучать музыкальные инструменты?",
+    item_piano: "ФОРТЕПИАНО",
+    item_violin: "СКРИПКА",
+    item_dombra: "ДОМБРА",
+    item_drum: "БАРАБАН",
+    item_tambourine: "БУБЕН"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -595,7 +608,20 @@ const translations = {
     hub_seasons_desc: "Қыс, көктем, жаз, күз — немен айналысамыз?",
     seasons_game_title: "Мезгілдер мен демалыс!",
     seasons_game_sub: "Осы мезгілде немен айналысуға болады? Суретті тап",
-    seasons_explain: "Барыс әр мезгілде әртүрлі демалуды жақсы көреді! Қыста шаңғы тебу керемет, көктемде — велосипед тебу, жазда — жүзу, ал күзде мектепке жиналатын кез. Мезгілге қара да сәйкес шаруаны тап. Әр маусымда немен айналысатынымызды білуге дайынсың ба?"
+    seasons_explain: "Барыс әр мезгілде әртүрлі демалуды жақсы көреді! Қыста шаңғы тебу керемет, көктемде — велосипед тебу, жазда — жүзу, ал күзде мектепке жиналатын кез. Мезгілге қара да сәйкес шаруаны тап. Әр маусымда немен айналысатынымызды білуге дайынсың ба?",
+    muzyka_title: "Музыка",
+    muzyka_desc: "Аспаптар, әндер, ырғақ",
+    back_muzyka: "← Музыка ойындарына",
+    hub_instruments_title: "Музыкалық аспаптар",
+    hub_instruments_desc: "Фортепиано, скрипка, домбыра...",
+    instruments_game_title: "Музыкалық аспаптар!",
+    instruments_game_sub: "Бұл аспап қалай аталады? Суретті тап",
+    instruments_explain: "Барыс музыканы жақсы көреді! Әр музыкалық аспаптың өз атауы мен өз дыбысы бар: фортепианода саусақпен пернелерге басады, скрипкада ысқышпен ішектерді тартады, домбыра — екі ішекті қазақ аспабы, ал барабанда ырғақ соғады. Атауға қара да сәйкес аспапты тап. Музыкалық аспаптарды үйренуге дайынсың ба?",
+    item_piano: "ФОРТЕПИАНО",
+    item_violin: "СКРИПКА",
+    item_dombra: "ДОМБЫРА",
+    item_drum: "БАРАБАН",
+    item_tambourine: "БУБЕН"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -892,7 +918,20 @@ const translations = {
     hub_seasons_desc: "Winter, spring, summer, autumn — what to do?",
     seasons_game_title: "Seasons and Activities!",
     seasons_game_sub: "What can you do in this season? Find the picture",
-    seasons_explain: "Barys loves resting differently in each season! In winter it's great to go skiing, in spring — cycling, in summer — swimming, and in autumn it's time to get ready for school. Look at the season and find the matching activity. Ready to learn what to do in different seasons?"
+    seasons_explain: "Barys loves resting differently in each season! In winter it's great to go skiing, in spring — cycling, in summer — swimming, and in autumn it's time to get ready for school. Look at the season and find the matching activity. Ready to learn what to do in different seasons?",
+    muzyka_title: "Music",
+    muzyka_desc: "Instruments, songs, rhythm",
+    back_muzyka: "← Back to Music games",
+    hub_instruments_title: "Musical Instruments",
+    hub_instruments_desc: "Piano, violin, dombra...",
+    instruments_game_title: "Musical Instruments!",
+    instruments_game_sub: "What is this instrument called? Find the picture",
+    instruments_explain: "Barys loves music! Every musical instrument has its own name and its own sound: a piano is played with fingers on keys, a violin is played with a bow across the strings, a dombra is a Kazakh instrument with two strings, and a drum is used to beat out a rhythm. Look at the name and find the matching instrument. Ready to learn musical instruments?",
+    item_piano: "PIANO",
+    item_violin: "VIOLIN",
+    item_dombra: "DOMBRA",
+    item_drum: "DRUM",
+    item_tambourine: "TAMBOURINE"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -1189,7 +1228,20 @@ const translations = {
     hub_seasons_desc: "冬天、春天、夏天、秋天——做什么？",
     seasons_game_title: "季节与活动！",
     seasons_game_sub: "这个季节可以做什么？找出图片",
-    seasons_explain: "巴雷斯喜欢在不同的季节以不同的方式休息！冬天滑雪很棒，春天骑自行车，夏天游泳，秋天该准备上学了。看看这个季节，找出相应的活动。准备好了解不同季节该做什么了吗？"
+    seasons_explain: "巴雷斯喜欢在不同的季节以不同的方式休息！冬天滑雪很棒，春天骑自行车，夏天游泳，秋天该准备上学了。看看这个季节，找出相应的活动。准备好了解不同季节该做什么了吗？",
+    muzyka_title: "音乐",
+    muzyka_desc: "乐器、歌曲、节奏",
+    back_muzyka: "← 返回音乐游戏",
+    hub_instruments_title: "乐器",
+    hub_instruments_desc: "钢琴、小提琴、冬不拉……",
+    instruments_game_title: "乐器！",
+    instruments_game_sub: "这个乐器叫什么名字？找出图片",
+    instruments_explain: "巴雷斯喜欢音乐！每种乐器都有自己的名字和声音：钢琴是用手指按琴键弹奏的，小提琴是用弓在琴弦上拉奏的，冬不拉是一种哈萨克两弦乐器，鼓则用来打节奏。看看名字，找出匹配的乐器。准备好学习乐器了吗？",
+    item_piano: "钢琴",
+    item_violin: "小提琴",
+    item_dombra: "冬不拉",
+    item_drum: "鼓",
+    item_tambourine: "手鼓"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -1486,7 +1538,20 @@ const translations = {
     hub_seasons_desc: "Қиш, баҳор, ёз, куз — нима қиламиз?",
     seasons_game_title: "Фасллар ва дам олиш!",
     seasons_game_sub: "Бу фаслда нима қилиш мумкин? Расмни топ",
-    seasons_explain: "Барыс ҳар фаслда турлича дам олишни яхши кўради! Қишда чанғи учиш ажойиб, баҳорда — велосипед миниш, ёзда — сузиш, кузда эса мактабга тайёргарлик вақти. Фаслга қара ва мос машғулотни топ. Ҳар фаслда нима қилишни билишга тайёрмисан?"
+    seasons_explain: "Барыс ҳар фаслда турлича дам олишни яхши кўради! Қишда чанғи учиш ажойиб, баҳорда — велосипед миниш, ёзда — сузиш, кузда эса мактабга тайёргарлик вақти. Фаслга қара ва мос машғулотни топ. Ҳар фаслда нима қилишни билишга тайёрмисан?",
+    muzyka_title: "Мусиқа",
+    muzyka_desc: "Асбоблар, қўшиқлар, ритм",
+    back_muzyka: "← Мусиқа ўйинларига",
+    hub_instruments_title: "Мусиқа асбоблари",
+    hub_instruments_desc: "Фортепиано, скрипка, домбира...",
+    instruments_game_title: "Мусиқа асбоблари!",
+    instruments_game_sub: "Бу асбоб қандай аталади? Расмни топ",
+    instruments_explain: "Барыс мусиқани яхши кўради! Ҳар бир мусиқа асбобининг ўз номи ва ўз товуши бор: фортепианода бармоқлар билан клавишларга босилади, скрипкада ёй билан торлар тортилади, домбира — икки торли қозоқ асбоби, барабанда эса ритм чалинади. Номга қара ва мос асбобни топ. Мусиқа асбобларини ўрганишга тайёрмисан?",
+    item_piano: "ФОРТЕПИАНО",
+    item_violin: "СКРИПКА",
+    item_dombra: "ДОМБИРА",
+    item_drum: "БАРАБАН",
+    item_tambourine: "БУБЕН"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1783,7 +1848,20 @@ const translations = {
     hub_seasons_desc: "Зимистон, баҳор, тобистон, тирамоҳ — чӣ кор кунем?",
     seasons_game_title: "Фаслҳо ва истироҳат!",
     seasons_game_sub: "Дар ин фасл чӣ кор кардан мумкин аст? Расмро ёб",
-    seasons_explain: "Барыс дар ҳар фасл ба тарзи гуногун истироҳат карданро дӯст медорад! Дар зимистон лижаронӣ олиҷаноб аст, дар баҳор — дучархаронӣ, дар тобистон — шиноварӣ, дар тирамоҳ бошад вақти тайёр шудан ба мактаб аст. Ба фасл нигоҳ кун ва фаъолияти мувофиқро ёб. Омодаи донистани он ҳастӣ, ки дар фаслҳои гуногун чӣ бояд кард?"
+    seasons_explain: "Барыс дар ҳар фасл ба тарзи гуногун истироҳат карданро дӯст медорад! Дар зимистон лижаронӣ олиҷаноб аст, дар баҳор — дучархаронӣ, дар тобистон — шиноварӣ, дар тирамоҳ бошад вақти тайёр шудан ба мактаб аст. Ба фасл нигоҳ кун ва фаъолияти мувофиқро ёб. Омодаи донистани он ҳастӣ, ки дар фаслҳои гуногун чӣ бояд кард?",
+    muzyka_title: "Мусиқӣ",
+    muzyka_desc: "Созҳо, сурудҳо, рӯтм",
+    back_muzyka: "← Ба бозиҳои мусиқӣ",
+    hub_instruments_title: "Сози мусиқӣ",
+    hub_instruments_desc: "Фортепиано, скрипка, домбира...",
+    instruments_game_title: "Сози мусиқӣ!",
+    instruments_game_sub: "Ин соз чӣ ном дорад? Расмро ёб",
+    instruments_explain: "Барыс мусиқиро дӯст медорад! Ҳар соз номи худ ва садои худро дорад: фортепиано бо ангуштон дар клавишаҳо навохта мешавад, скрипка бо арфа дар риштаҳо навохта мешавад, домбира — соли дуторакии қазоқӣ, барабан бошад барои задани рӯтм истифода мешавад. Ба ном нигоҳ кун ва соли мувофиқро ёб. Омодаи омӯхтани созҳои мусиқӣ ҳастӣ?",
+    item_piano: "ФОРТЕПИАНО",
+    item_violin: "СКРИПКА",
+    item_dombra: "ДОМБИРА",
+    item_drum: "БАРАБАН",
+    item_tambourine: "БУБЕН"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -2080,7 +2158,20 @@ const translations = {
     hub_seasons_desc: "قىش، باھار، ياز، كۈز — نېمە قىلىمىز؟",
     seasons_game_title: "پەسىللەر ۋە ئارام ئېلىش!",
     seasons_game_sub: "بۇ پەسىلدە نېمە قىلغىلى بولىدۇ؟ رەسىمنى تېپىڭ",
-    seasons_explain: "بارىس ھەر پەسىلدە ھەر خىل ئارام ئېلىشنى ياخشى كۆرىدۇ! قىشتا چانا تېيىش ئاجايىپ، باھاردا — ۋېلىسىپىت مېڭىش، يازدا — ئۈزۈش، كۈزدە بولسا مەكتەپكە تەييارلىق ۋاقتى. پەسىلگە قاراپ ماس پائالىيەتنى تېپىڭ. ھەر پەسىلدە نېمە قىلىشنى بىلىشكە تەييارمۇسىز؟"
+    seasons_explain: "بارىس ھەر پەسىلدە ھەر خىل ئارام ئېلىشنى ياخشى كۆرىدۇ! قىشتا چانا تېيىش ئاجايىپ، باھاردا — ۋېلىسىپىت مېڭىش، يازدا — ئۈزۈش، كۈزدە بولسا مەكتەپكە تەييارلىق ۋاقتى. پەسىلگە قاراپ ماس پائالىيەتنى تېپىڭ. ھەر پەسىلدە نېمە قىلىشنى بىلىشكە تەييارمۇسىز؟",
+    muzyka_title: "مۇزىكا",
+    muzyka_desc: "ئەسۋاپلار، ناخشىلار، رىتىم",
+    back_muzyka: "← مۇزىكا ئويۇنلىرىغا",
+    hub_instruments_title: "مۇزىكا ئەسۋابلىرى",
+    hub_instruments_desc: "فورتېپىيانو، سكرىپكا، دومبىرا...",
+    instruments_game_title: "مۇزىكا ئەسۋابلىرى!",
+    instruments_game_sub: "بۇ ئەسۋاپ قانداق ئاتىلىدۇ؟ رەسىمنى تېپىڭ",
+    instruments_explain: "بارىس مۇزىكىنى ياخشى كۆرىدۇ! ھەر بىر مۇزىكا ئەسۋابىنىڭ ئۆز ئاتى ۋە ئۆز ئاۋازى بار: فورتېپىيانودا بارماق بىلەن كىلاۋىشلارغا بېسىلىدۇ، سكرىپكىدا يا بىلەن تارلار تارتىلىدۇ، دومبىرا — ئىككى تارلىق قازاق ئەسۋابى، بارابان بولسا رىتىم چېلىش ئۈچۈن ئىشلىتىلىدۇ. ئاتىغا قاراپ ماس ئەسۋاپنى تېپىڭ. مۇزىكا ئەسۋابلىرىنى ئۆگىنىشكە تەييارمۇسىز؟",
+    item_piano: "فورتېپىيانو",
+    item_violin: "سكرىپكا",
+    item_dombra: "دومبىرا",
+    item_drum: "بارابان",
+    item_tambourine: "بۇبەن"
   }
 };
 
