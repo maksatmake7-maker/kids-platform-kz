@@ -281,6 +281,7 @@ header{
 .island.game{border-top:6px solid #7C9CFF;}
 .island.estestvo{border-top:6px solid #6FBF73;}
 .island.digital{border-top:6px solid #5EC3E8;}
+.island.poznanie{border-top:6px solid #F0954C;}
 
 footer{
   position:relative;
@@ -602,6 +603,21 @@ button.cta{
 }
 @media (max-width:480px){
   .story-slot, .story-tile{width:50px; height:50px; font-size:1.8rem;}
+}
+
+/* ===== weekdays game — flexible-width text tiles ===== */
+.weekday-tiles{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  max-width:480px;
+  margin:0 auto;
+}
+.weekday-tile{
+  width:auto;
+  padding:12px 18px;
+  font-size:1rem;
 }
 
 /* ===== vowel/consonant game ===== */
