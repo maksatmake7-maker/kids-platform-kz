@@ -283,6 +283,30 @@ header{
 .island.digital{border-top:6px solid #5EC3E8;}
 .island.poznanie{border-top:6px solid #F0954C;}
 .island.muzyka{border-top:6px solid #C77DD9;}
+.island.izo{border-top:6px solid #E8618C;}
+.island.trud{border-top:6px solid #8C6F4E;}
+.island.fizra{border-top:6px solid #4DB6AC;}
+
+/* ===== video lesson pages ===== */
+.video-embed{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+  border-radius:16px;
+  margin-bottom:20px;
+  background:#000;
+}
+.video-embed iframe{
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  border:none;
+  border-radius:16px;
+}
+.video-done-btn{margin-top:8px;}
 
 footer{
   position:relative;
