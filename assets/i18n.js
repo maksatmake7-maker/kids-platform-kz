@@ -149,6 +149,10 @@ const translations = {
     story_game_title: "Собери историю!",
     story_game_sub: "Нажимай картинки в правильном порядке",
     story_explain: "Барыс рассказывает истории без слов — только картинками! Посмотри на все картинки внизу и подумай, что произошло сначала, а что потом. Нажимай на картинки по порядку, чтобы получилась правильная история. Готов складывать истории?",
+    hub_lecture_kazakh_title: "Видео-урок: Сәлем!",
+    hub_lecture_kazakh_desc: "Первые казахские слова и фразы",
+    lecture_kazakh_video_title: "Видео-урок: Сәлем!",
+    lecture_kazakh_explain: "Барыс приглашает тебя на видео-урок по казахскому языку! Учитель покажет, как поздороваться и спросить имя по-казахски — «Сәлем! Сенің атың кім?». Ты уже играл в наши игры про казахские слова, а теперь услышишь живую казахскую речь. Готов посмотреть?",
     estestvo_title: "Естествознание",
     estestvo_desc: "Растения, животные, природа",
     back_estestvo: "← К играм по естествознанию",
@@ -342,7 +346,7 @@ const translations = {
     hub_lecture_reading_title: "Видео-урок: звуки",
     hub_lecture_reading_desc: "Гласные и согласные звуки подробнее",
     lecture_reading_video_title: "Видео-урок: звуки!",
-    lecture_reading_explain: "Барыс приглашает тебя на видео-урок по грамоте! Это настоящий урок, который показывают по казахстанскому телеканалу для школьников. Учитель подробно объяснит, чем отличаются гласные и согласные звуки — ты уже играл в нашу игру про это, а теперь узнаешь ещё больше. Готов посмотреть?"
+    lecture_reading_explain: "Барыс приглашает тебя на видео-урок по грамоте! Учитель подробно объяснит, чем отличаются гласные и согласные звуки — ты уже играл в нашу игру про это, а теперь узнаешь ещё больше. Готов посмотреть?"
   },
   kz: {
     speech: "Сәлем! Мен Барыс — сенің серігің!",
@@ -490,6 +494,10 @@ const translations = {
     story_game_title: "Оқиғаны құра!",
     story_game_sub: "Суреттерді дұрыс ретімен бас",
     story_explain: "Барыс сөзсіз, тек суретпен әңгіме айтады! Төмендегі барлық суреттерге қара да, алдымен не болғанын, содан кейін не болғанын ойлан. Дұрыс оқиға шығуы үшін суреттерді ретімен бас. Оқиға құруға дайынсың ба?",
+    hub_lecture_kazakh_title: "Видео-сабақ: Сәлем!",
+    hub_lecture_kazakh_desc: "Алғашқы қазақша сөздер мен тіркестер",
+    lecture_kazakh_video_title: "Видео-сабақ: Сәлем!",
+    lecture_kazakh_explain: "Барыс сені қазақ тілі бойынша видео-сабаққа шақырады! Мұғалім қазақша қалай амандасу керектігін және атыңды қалай сұрау керектігін көрсетеді — «Сәлем! Сенің атың кім?». Сен біздің қазақша сөздер туралы ойындарымызды ойнадың, ал енді нағыз қазақша сөйлеуді естисің. Қарауға дайынсың ба?",
     estestvo_title: "Жаратылыстану",
     estestvo_desc: "Өсімдіктер, жануарлар, табиғат",
     back_estestvo: "← Жаратылыстану ойындарына",
@@ -683,7 +691,7 @@ const translations = {
     hub_lecture_reading_title: "Видео-сабақ: дыбыстар",
     hub_lecture_reading_desc: "Дауысты және дауыссыз дыбыстар туралы толығырақ",
     lecture_reading_video_title: "Видео-сабақ: дыбыстар!",
-    lecture_reading_explain: "Барыс сені грамотаға үйрету бойынша видео-сабаққа шақырады! Бұл қазақстандық телеарнада мектеп оқушыларына көрсетілетін нағыз сабақ. Мұғалім дауысты мен дауыссыз дыбыстардың айырмашылығын егжей-тегжейлі түсіндіреді — сен бұл туралы біздің ойынымызды ойнадың, ал енді тағы да көбірек білесің. Қарауға дайынсың ба?"
+    lecture_reading_explain: "Барыс сені грамотаға үйрету бойынша видео-сабаққа шақырады! Мұғалім дауысты мен дауыссыз дыбыстардың айырмашылығын егжей-тегжейлі түсіндіреді — сен бұл туралы біздің ойынымызды ойнадың, ал енді тағы да көбірек білесің. Қарауға дайынсың ба?"
   },
   en: {
     speech: "Hi! I'm Barys — your guide!",
@@ -831,6 +839,10 @@ const translations = {
     story_game_title: "Build the Story!",
     story_game_sub: "Tap the pictures in the right order",
     story_explain: "Barys tells stories without words — just pictures! Look at all the pictures below and think about what happened first, and what happened next. Tap the pictures in order to make the correct story. Ready to build stories?",
+    hub_lecture_kazakh_title: "Video Lesson: Sәlem!",
+    hub_lecture_kazakh_desc: "First Kazakh words and phrases",
+    lecture_kazakh_video_title: "Video Lesson: Sәlem!",
+    lecture_kazakh_explain: "Barys invites you to a Kazakh language video lesson! The teacher will show you how to greet someone and ask their name in Kazakh — 'Sәlem! Seniñ atyñ kim?'. You've already played our games about Kazakh words, and now you'll hear real Kazakh speech. Ready to watch?",
     estestvo_title: "Natural Science",
     estestvo_desc: "Plants, animals, nature",
     back_estestvo: "← Back to Natural Science games",
@@ -1024,7 +1036,7 @@ const translations = {
     hub_lecture_reading_title: "Video Lesson: Sounds",
     hub_lecture_reading_desc: "Vowel and consonant sounds in depth",
     lecture_reading_video_title: "Video Lesson: Sounds!",
-    lecture_reading_explain: "Barys invites you to a literacy video lesson! This is a real lesson shown on Kazakhstan's TV channel for schoolchildren. The teacher will explain in detail the difference between vowel and consonant sounds — you already played our game about this, and now you'll learn even more. Ready to watch?"
+    lecture_reading_explain: "Barys invites you to a literacy video lesson! The teacher will explain in detail the difference between vowel and consonant sounds — you already played our game about this, and now you'll learn even more. Ready to watch?"
   },
   zh: {
     speech: "你好！我是雪豹向导！",
@@ -1172,6 +1184,10 @@ const translations = {
     story_game_title: "拼故事！",
     story_game_sub: "按正确的顺序点击图片",
     story_explain: "巴雷斯不用语言讲故事——只用图片！看看下面所有的图片，想一想先发生了什么，后发生了什么。按顺序点击图片，拼出正确的故事。准备好拼故事了吗？",
+    hub_lecture_kazakh_title: "视频课：你好！",
+    hub_lecture_kazakh_desc: "最初的哈萨克语单词和短语",
+    lecture_kazakh_video_title: "视频课：你好！",
+    lecture_kazakh_explain: "巴雷斯邀请你上一节哈萨克语视频课！老师会教你如何用哈萨克语打招呼和问名字——「你好！你叫什么名字？」。你已经玩过我们关于哈萨克语单词的游戏了，现在你会听到真正的哈萨克语。准备好看了吗？",
     estestvo_title: "自然科学",
     estestvo_desc: "植物、动物、大自然",
     back_estestvo: "← 返回自然科学游戏",
@@ -1365,7 +1381,7 @@ const translations = {
     hub_lecture_reading_title: "视频课：发音",
     hub_lecture_reading_desc: "更详细地讲元音和辅音",
     lecture_reading_video_title: "视频课：发音！",
-    lecture_reading_explain: "巴雷斯邀请你上一节识字视频课！这是哈萨克斯坦电视台为学生播出的真实课程。老师会详细讲解元音和辅音的区别——你已经玩过我们关于这个的游戏，现在你会了解得更多。准备好看了吗？"
+    lecture_reading_explain: "巴雷斯邀请你上一节识字视频课！老师会详细讲解元音和辅音的区别——你已经玩过我们关于这个的游戏，现在你会了解得更多。准备好看了吗？"
   },
   uz: {
     speech: "Салом! Мен Барыс — сенинг йўлбошчинг!",
@@ -1513,6 +1529,10 @@ const translations = {
     story_game_title: "Ҳикояни туз!",
     story_game_sub: "Расмларни тўғри тартибда бос",
     story_explain: "Барыс сўзсиз, фақат расмлар билан ҳикоя айтади! Пастдаги барча расмларга қара ва аввал нима бўлгани, кейин нима бўлганини ўйла. Тўғри ҳикоя чиқиши учун расмларни тартиб билан бос. Ҳикоя тузишга тайёрмисан?",
+    hub_lecture_kazakh_title: "Видео-дарс: Сәлем!",
+    hub_lecture_kazakh_desc: "Биринчи қозоқча сўз ва иборалар",
+    lecture_kazakh_video_title: "Видео-дарс: Сәлем!",
+    lecture_kazakh_explain: "Барыс сени қозоқ тили бўйича видео-дарсга таклиф қиляпти! Ўқитувчи қозоқчада қандай саломлашиш ва исмни сўрашни кўрсатади — «Сәлем! Сенің атың кім?». Сен бизнинг қозоқча сўзлар ҳақидаги ўйинларимизни ўйнадинг, энди эса ҳақиқий қозоқча нутқни эшитасан. Томоша қилишга тайёрмисан?",
     estestvo_title: "Табиатшунослик",
     estestvo_desc: "Ўсимликлар, ҳайвонлар, табиат",
     back_estestvo: "← Табиатшунослик ўйинларига",
@@ -1706,7 +1726,7 @@ const translations = {
     hub_lecture_reading_title: "Видео-дарс: товушлар",
     hub_lecture_reading_desc: "Унли ва ундош товушлар батафсил",
     lecture_reading_video_title: "Видео-дарс: товушлар!",
-    lecture_reading_explain: "Барыс сени саводхонлик бўйича видео-дарсга таклиф қиляпти! Бу Қозоғистон телеканалида ўқувчилар учун кўрсатиладиган ҳақиқий дарс. Ўқитувчи унли ва ундош товушлар ўртасидаги фарқни батафсил тушунтиради — сен бу ҳақда бизнинг ўйинимизни ўйнадинг, энди эса яна кўпроқ биласан. Томоша қилишга тайёрмисан?"
+    lecture_reading_explain: "Барыс сени саводхонлик бўйича видео-дарсга таклиф қиляпти! Ўқитувчи унли ва ундош товушлар ўртасидаги фарқни батафсил тушунтиради — сен бу ҳақда бизнинг ўйинимизни ўйнадинг, энди эса яна кўпроқ биласан. Томоша қилишга тайёрмисан?"
   },
   tg: {
     speech: "Салом! Ман Барыс — роҳнамои ту!",
@@ -1854,6 +1874,10 @@ const translations = {
     story_game_title: "Ҳикояро туз!",
     story_game_sub: "Расмҳоро бо тартиби дуруст пахш кун",
     story_explain: "Барыс бе калима, фақат бо расмҳо ҳикоя мегӯяд! Ба ҳамаи расмҳои поён нигоҳ кун ва фикр кун, ки аввал чӣ рӯй дод ва баъд чӣ шуд. Барои ҳосил шудани ҳикояи дуруст расмҳоро бо тартиб пахш кун. Омодаи сохтани ҳикоя ҳастӣ?",
+    hub_lecture_kazakh_title: "Дарси видеоӣ: Сәлем!",
+    hub_lecture_kazakh_desc: "Аввалин калимаву ибораҳои қазоқӣ",
+    lecture_kazakh_video_title: "Дарси видеоӣ: Сәлем!",
+    lecture_kazakh_explain: "Барыс туро ба дарси видеоии забони қазоқӣ даъват мекунад! Муаллим нишон медиҳад, ки чӣ тавр бо забони қазоқӣ салом додан ва номро пурсидан мумкин аст — «Сәлем! Сенің атың кім?». Ту бозиҳои моро дар бораи калимаҳои қазоқӣ бозидӣ, ҳоло бошад нутқи воқеии қазоқиро мешунавӣ. Омодаи тамошо кардан ҳастӣ?",
     estestvo_title: "Табиатшиносӣ",
     estestvo_desc: "Растаниҳо, ҳайвонот, табиат",
     back_estestvo: "← Ба бозиҳои табиатшиносӣ",
@@ -2047,7 +2071,7 @@ const translations = {
     hub_lecture_reading_title: "Дарси видеоӣ: садоҳо",
     hub_lecture_reading_desc: "Садонок ва ҳамсадоҳо муфассал",
     lecture_reading_video_title: "Дарси видеоӣ: садоҳо!",
-    lecture_reading_explain: "Барыс туро ба дарси видеоии саводомӯзӣ даъват мекунад! Ин дарси воқеӣ аст, ки дар телеканали Қазоқистон барои хонандагон нишон дода мешавад. Муаллим фарқи садоноку ҳамсадоро муфассал шарҳ медиҳад — ту дар ин бора бозии моро бозидӣ, ҳоло бошад боз бештар медонӣ. Омодаи тамошо кардан ҳастӣ?"
+    lecture_reading_explain: "Барыс туро ба дарси видеоии саводомӯзӣ даъват мекунад! Муаллим фарқи садоноку ҳамсадоро муфассал шарҳ медиҳад — ту дар ин бора бозии моро бозидӣ, ҳоло бошад боз бештар медонӣ. Омодаи тамошо кардан ҳастӣ?"
   },
   ug: {
     speech: "ياخشىمۇسىز! مەن بارىس — يېتەكچىڭىز!",
@@ -2195,6 +2219,10 @@ const translations = {
     story_game_title: "ھېكايىنى تۈزۈڭ!",
     story_game_sub: "رەسىملەرنى توغرا تەرتىپتە بېسىڭ",
     story_explain: "بارىس سۆزسىز، پەقەت رەسىملەر بىلەن ھېكايە ئېيتىدۇ! تۆۋەندىكى بارلىق رەسىملەرگە قاراڭ ۋە ئالدى بىلەن نېمە بولغانلىقىنى، ئاندىن نېمە بولغانلىقىنى ئويلاڭ. توغرا ھېكايە چىقىشى ئۈچۈن رەسىملەرنى تەرتىپ بىلەن بېسىڭ. ھېكايە تۈزۈشكە تەييارمۇسىز؟",
+    hub_lecture_kazakh_title: "ۋىدېئو دەرس: سالەم!",
+    hub_lecture_kazakh_desc: "تۇنجى قازاقچە سۆز ۋە جۈملىلەر",
+    lecture_kazakh_video_title: "ۋىدېئو دەرس: سالەم!",
+    lecture_kazakh_explain: "بارىس سىزنى قازاق تىلى بويىچە ۋىدېئو دەرسكە تەكلىپ قىلىدۇ! ئوقۇتقۇچى قازاقچە قانداق سالام بېرىش ۋە ئىسمىنى سوراشنى كۆرسىتىدۇ — «سالەم! سېنىڭ ئاتىڭ كىم؟». سىز بىزنىڭ قازاقچە سۆزلەر ھەققىدىكى ئويۇنلىرىمىزنى ئوينىدىڭىز، ئەمدى ھەقىقىي قازاقچە سۆزلەشنى ئاڭلايسىز. كۆرۈشكە تەييارمۇسىز؟",
     estestvo_title: "تەبىئىي پەن",
     estestvo_desc: "ئۆسۈملۈكلەر، ھايۋانلار، تەبىئەت",
     back_estestvo: "← تەبىئىي پەن ئويۇنلىرىغا",
@@ -2388,7 +2416,7 @@ const translations = {
     hub_lecture_reading_title: "ۋىدېئو دەرس: ئاۋازلار",
     hub_lecture_reading_desc: "سوزۇق ۋە ئۈزۈك ئاۋازلارنى تەپسىلىي",
     lecture_reading_video_title: "ۋىدېئو دەرس: ئاۋازلار!",
-    lecture_reading_explain: "بارىس سىزنى سەۋات ئېچىش بويىچە ۋىدېئو دەرسكە تەكلىپ قىلىدۇ! بۇ قازاقىستان تېلېكانىلىدا ئوقۇغۇچىلار ئۈچۈن كۆرسىتىلىدىغان ھەقىقىي دەرس. ئوقۇتقۇچى سوزۇق ۋە ئۈزۈك ئاۋازلارنىڭ پەرقىنى تەپسىلىي چۈشەندۈرىدۇ — سىز بۇ ھەقتە بىزنىڭ ئويۇنىمىزنى ئوينىدىڭىز، ئەمدى تېخىمۇ كۆپ بىلىسىز. كۆرۈشكە تەييارمۇسىز؟"
+    lecture_reading_explain: "بارىس سىزنى سەۋات ئېچىش بويىچە ۋىدېئو دەرسكە تەكلىپ قىلىدۇ! ئوقۇتقۇچى سوزۇق ۋە ئۈزۈك ئاۋازلارنىڭ پەرقىنى تەپسىلىي چۈشەندۈرىدۇ — سىز بۇ ھەقتە بىزنىڭ ئويۇنىمىزنى ئوينىدىڭىز، ئەمدى تېخىمۇ كۆپ بىلىسىز. كۆرۈشكە تەييارمۇسىز؟"
   }
 };
 
