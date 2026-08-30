@@ -100,3 +100,39 @@ function initStartGameButton(startBtnId, explainPanelId, gamePanelId, gameInitFn
     if(typeof gameInitFn === 'function') gameInitFn();
   });
 }
+
+/**
+ * Листалка слайд-презентаций (стрелки вперёд/назад + счётчик).
+ * deckId — id контейнера .slide-deck, внутри которого лежат .slide.
+ * Первый .slide получает класс active автоматически.
+ */
+function initSlideDeck(deckId){
+  var deck = document.getElementById(deckId);
+  if(!deck) return;
+
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var prevBtn = deck.querySelector('.slide-prev');
+  var nextBtn = deck.querySelector('.slide-next');
+  var counter = deck.querySelector('.slide-counter');
+  var current = 0;
+
+  function render(){
+    slides.forEach(function(s, i){ s.classList.toggle('active', i === current); });
+    if(counter) counter.textContent = (current + 1) + ' / ' + slides.length;
+    if(prevBtn) prevBtn.disabled = (current === 0);
+    if(nextBtn) nextBtn.disabled = (current === slides.length - 1);
+  }
+
+  if(prevBtn){
+    prevBtn.addEventListener('click', function(){
+      if(current > 0){ current--; render(); }
+    });
+  }
+  if(nextBtn){
+    nextBtn.addEventListener('click', function(){
+      if(current < slides.length - 1){ current++; render(); }
+    });
+  }
+
+  render();
+}
