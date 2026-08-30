@@ -521,8 +521,14 @@ footer{
   max-width:360px;
   margin:0 auto;
 }
-.count-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B;}
+.count-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B; animation:correctPop .45s ease;}
 .count-btn.wrong{background:var(--coral); color:#fff; box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
+@keyframes correctPop{
+  0%{transform:scale(1);}
+  40%{transform:scale(1.18);}
+  70%{transform:scale(0.95);}
+  100%{transform:scale(1);}
+}
 @keyframes shake{
   0%,100%{transform:translateX(0);}
   25%{transform:translateX(-6px);}
@@ -583,7 +589,18 @@ footer{
 .game-meta .score-badge{margin-bottom:0;}
 
 /* ===== finish screen ===== */
-.finish-screen{padding:10px 0;}
+.finish-screen{padding:10px 0; animation:finishIn .5s ease;}
+@keyframes finishIn{
+  0%{opacity:0; transform:translateY(14px) scale(0.94);}
+  100%{opacity:1; transform:translateY(0) scale(1);}
+}
+.finish-emoji{animation:finishBounce .7s ease .15s both;}
+@keyframes finishBounce{
+  0%{transform:scale(0);}
+  55%{transform:scale(1.25);}
+  75%{transform:scale(0.92);}
+  100%{transform:scale(1);}
+}
 .finish-emoji{font-size:3.4rem; margin-bottom:8px;}
 .finish-msg{font-size:1.4rem; margin-bottom:8px;}
 .finish-score{color:#5C7690; font-weight:700; margin-bottom:26px; font-size:1.1rem;}
@@ -646,7 +663,7 @@ button.cta{
 }
 .letter-btn:hover{transform:translateY(-2px);}
 .letter-btn:active{transform:translateY(3px); box-shadow:0 2px 0 #C9DAEE;}
-.letter-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B;}
+.letter-btn.correct{background:var(--meadow); color:#fff; box-shadow:0 5px 0 #2E8F6B; animation:correctPop .45s ease;}
 .letter-btn.wrong{background:var(--coral); color:#fff; box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
 .letter-btn-emoji{font-size:2.4rem;}
 .letter-btn-word{font-weight:800; font-size:0.95rem;}
@@ -888,7 +905,7 @@ button.cta{
   display:block;
 }
 .shape-btn:hover{transform:translateY(-2px);}
-.shape-btn.correct{background:var(--meadow); box-shadow:0 5px 0 #2E8F6B;}
+.shape-btn.correct{background:var(--meadow); box-shadow:0 5px 0 #2E8F6B; animation:correctPop .45s ease;}
 .shape-btn.wrong{background:var(--coral); box-shadow:0 5px 0 #D9483A; animation:shake .35s ease;}
 @media (max-width:480px){
   .shape-target-text{font-size:1.2rem; padding:12px 18px;}
