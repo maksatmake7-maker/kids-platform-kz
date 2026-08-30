@@ -280,6 +280,42 @@ header{
 .island.read{border-top:6px solid var(--coral);}
 .island.kaz{border-top:6px solid var(--meadow);}
 .island.game{border-top:6px solid #7C9CFF;}
+
+/* ===== direction selector (главная страница — выбор языка обучения) ===== */
+.direction-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  max-width:640px;
+  margin:0 auto;
+}
+.direction-btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  padding:44px 24px;
+  border-radius:var(--radius-lg);
+  background:var(--white);
+  box-shadow:0 10px 0 rgba(29,53,87,0.08), 0 16px 30px rgba(29,53,87,0.1);
+  transition:transform .2s ease;
+  border-top:8px solid var(--coral);
+}
+.direction-btn.direction-kaz{border-top-color:var(--meadow);}
+.direction-btn:hover{transform:translateY(-6px);}
+.direction-emoji{font-size:3.5rem;}
+.direction-label{
+  font-family:'Baloo 2',sans-serif;
+  font-weight:800;
+  font-size:1.3rem;
+  color:var(--ink);
+  text-align:center;
+}
+@media (max-width:480px){
+  .direction-btn{padding:32px 18px;}
+  .direction-emoji{font-size:2.8rem;}
+  .direction-label{font-size:1.1rem;}
+}
 .island.estestvo{border-top:6px solid #6FBF73;}
 .island.digital{border-top:6px solid #5EC3E8;}
 .island.poznanie{border-top:6px solid #F0954C;}
