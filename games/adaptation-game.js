@@ -27,17 +27,23 @@ function initAdaptationGame(containerId){
 
   var STRATEGIES = ['migration', 'foodstore', 'hibernate'];
 
-  var TOTAL = ANIMALS.length;
+  var ROUND_SIZE = ANIMALS.length;
+  var ROUNDS = Math.ceil(15 / ROUND_SIZE);
+  var TOTAL = ROUND_SIZE * ROUNDS;
   var score = 0;
   var questionIndex = 0;
   var currentAnswer = '';
 
   var queue = [];
   function buildQueue(){
-    queue = ANIMALS.slice();
-    for(var i=queue.length-1; i>0; i--){
-      var j = Math.floor(Math.random()*(i+1));
-      var tmp = queue[i]; queue[i]=queue[j]; queue[j]=tmp;
+    queue = [];
+    for(var r=0; r<ROUNDS; r++){
+      var pass = ANIMALS.slice();
+      for(var i=pass.length-1; i>0; i--){
+        var j = Math.floor(Math.random()*(i+1));
+        var tmp = pass[i]; pass[i]=pass[j]; pass[j]=tmp;
+      }
+      queue = queue.concat(pass);
     }
   }
   function nextItem(){ return queue.pop(); }
