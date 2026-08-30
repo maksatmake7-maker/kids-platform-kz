@@ -3,22 +3,32 @@
    Ахмет Байтұрсынұлы әдісі бойынша ең алғашқы үйретілетін дыбыстар
    тобы: а, р, л, у, н (1-тоқсан). "у" дыбысы сөз басында сирек
    кездеседі және балаларға түсінікті нақты зат атауын табу қиын
-   болғандықтан, бұл ойында қалдырылды (адалдық принципі — тек
-   шынымен көрсетуге болатын мысалдар).
-   Сессия = барлық 4 әріп бойынша бір рет өту (қайталаусыз).
+   болғандықтан, бұл ойында қалдырылды.
+   Әр әріпте бірнеше сөз-мысал болуы мүмкін (әртүрлілік үшін) —
+   бірақ "р" мен "л" үшін бір-ақ сөз бар әдейі: қазақ тілінде бұл
+   дыбыстар сөз басында негізінен тек кірме сөздерде кездеседі
+   (Қазақ Уикипедиясы, "Л" мақаласы), нақты зат есептейтін екінші
+   мысал табылмады.
+   Сессия = бірнеше топтама (қайта араластырылып), кемінде 15
+   сұрақ болғанша.
    Қолдану: initAlippeLetters1Game('game-root') DOM жүктелгеннен кейін.
 */
 function initAlippeLetters1Game(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
-  // [әріп, эмодзи]
+  // [әріп, [эмодзи нұсқалары]]
   var LETTERS = [
-    ['А','🍎'], // алма
-    ['Р','🌹'], // раушан
-    ['Л','🍋'], // лимон
-    ['Н','🍞']  // нан
+    ['А', ['🍎','🐻','🦁','🐴']], // алма, аю, арыстан, ат
+    ['Р', ['🌹']],                // раушан
+    ['Л', ['🍋']],                // лимон
+    ['Н', ['🍞','🐫']]            // нан, нар
   ];
+
+  function pickEmoji(letterEntry){
+    var pool = letterEntry[1];
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
 
   var ROUND_SIZE = LETTERS.length;
   var ROUNDS = Math.ceil(15 / ROUND_SIZE);
@@ -74,7 +84,7 @@ function initAlippeLetters1Game(containerId){
     }
 
     var optionsHtml = options.map(function(l){
-      return '<button class="count-btn" data-key="' + l[0] + '" style="font-size:2rem;">' + l[1] + '</button>';
+      return '<button class="count-btn" data-key="' + l[0] + '" style="font-size:2rem;">' + pickEmoji(l) + '</button>';
     }).join('');
 
     root.innerHTML =
