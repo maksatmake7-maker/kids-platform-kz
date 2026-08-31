@@ -242,6 +242,24 @@ header{
   border-radius:999px;
   font-family:'Baloo 2',sans-serif;
 }
+.quarter-heading{
+  font-family:'Baloo 2',sans-serif;
+  font-weight:800;
+  font-size:1.3rem;
+  color:var(--ink);
+  text-align:center;
+  margin:38px 0 20px;
+  padding-top:10px;
+  border-top:3px dashed rgba(29,53,87,0.15);
+}
+.quarter-heading:first-of-type{border-top:none; margin-top:10px;}
+.quarter-empty{
+  text-align:center;
+  color:#5C7690;
+  font-weight:700;
+  opacity:0.7;
+  padding:10px 0 30px;
+}
 .island-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -693,6 +711,12 @@ button.cta{
 .word-emoji{
   font-size:3.6rem;
   margin-bottom:16px;
+}
+.word-emoji svg{
+  width:120px;
+  height:auto;
+  border-radius:8px;
+  box-shadow:0 3px 10px rgba(29,53,87,0.18);
 }
 .word-slots{
   display:flex;
