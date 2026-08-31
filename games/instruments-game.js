@@ -1,10 +1,15 @@
 /* ===== Білім Аралы — игра "Музыкальные инструменты" =====
    Музыка, 1 класс, по программе (приложение 33, базовое содержание,
    раздел "Слушание, анализ и исполнение музыки"): "названия
-   инструментов: фортепиано, скрипка, домбра... барабан... бубен".
-   Домбра — казахский народный инструмент, эмодзи для неё не
-   существует, поэтому нарисована собственная SVG-иконка.
-   Сессия = ровно один проход по всем инструментам (без повторов).
+   инструментов: фортепиано, скрипка, домбра, конырау, детские
+   шумовые инструменты: ксилофон, барабан, треугольник, маракасы,
+   бубен". 9 инструментов — почти весь список из документа
+   (асатаяк, туяктас, дауылпаз, металлофон пропущены — не нашлось
+   уверенного способа нарисовать их узнаваемо для ребёнка).
+   Домбра, конырау, ксилофон, треугольник, маракасы, бубен —
+   собственные SVG-иконки (эмодзи для них не существует или
+   слишком новые/ненадёжные).
+   Сессия = несколько кругов подряд, минимум 15 вопросов.
    Использование: initInstrumentsGame('game-root') после загрузки DOM.
 */
 function initInstrumentsGame(containerId){
@@ -34,6 +39,46 @@ function initInstrumentsGame(containerId){
         '<circle cx="74" cy="30" r="3" fill="#FFC93C"/>' +
         '<circle cx="50" cy="54" r="3" fill="#FFC93C"/>' +
         '<circle cx="26" cy="30" r="3" fill="#FFC93C"/>' +
+        '</svg>';
+    }],
+    ['item_xylophone', function(){
+      return '<svg viewBox="0 0 100 60">' +
+        '<rect x="8" y="46" width="84" height="10" rx="3" fill="' + BROWN + '"/>' +
+        '<rect x="10" y="6" width="66" height="7" rx="3" fill="#FF6B5B"/>' +
+        '<rect x="10" y="15" width="57" height="7" rx="3" fill="#FFC93C"/>' +
+        '<rect x="10" y="24" width="48" height="7" rx="3" fill="#3FB088"/>' +
+        '<rect x="10" y="33" width="40" height="7" rx="3" fill="#5EC3F0"/>' +
+        '</svg>';
+    }],
+    ['item_triangle_instr', function(){
+      return '<svg viewBox="0 0 100 60">' +
+        '<polyline points="50,4 78,54 22,54 50,4" fill="none" stroke="#9AA5B3" stroke-width="4" stroke-linejoin="round"/>' +
+        '<line x1="50" y1="0" x2="50" y2="4" stroke="#7E8998" stroke-width="2"/>' +
+        '<line x1="62" y1="30" x2="82" y2="48" stroke="#C77D5A" stroke-width="4"/>' +
+        '<circle cx="83" cy="49" r="4" fill="' + BROWN + '"/>' +
+        '</svg>';
+    }],
+    ['item_konyrau', function(){
+      return '<svg viewBox="0 0 100 60">' +
+        '<polygon points="50,10 32,52 68,52" fill="#FFC93C"/>' +
+        '<ellipse cx="50" cy="52" rx="20" ry="6" fill="#F0954C"/>' +
+        '<ellipse cx="50" cy="6" rx="5" ry="5" fill="' + BROWN + '"/>' +
+        '<rect x="47" y="0" width="6" height="8" fill="' + INK + '"/>' +
+        '<ellipse cx="50" cy="55" rx="4" ry="5" fill="' + INK + '"/>' +
+        '</svg>';
+    }],
+    ['item_maracas', function(){
+      return '<svg viewBox="0 0 100 60">' +
+        '<ellipse cx="35" cy="20" rx="14" ry="16" fill="#FF6B5B"/>' +
+        '<rect x="30" y="32" width="10" height="24" fill="' + BROWN + '"/>' +
+        '<ellipse cx="65" cy="20" rx="14" ry="16" fill="#3FB088"/>' +
+        '<rect x="60" y="32" width="10" height="24" fill="' + BROWN + '"/>' +
+        '<circle cx="30" cy="14" r="2" fill="#FFF3D6"/>' +
+        '<circle cx="40" cy="14" r="2" fill="#FFF3D6"/>' +
+        '<circle cx="35" cy="24" r="2" fill="#FFF3D6"/>' +
+        '<circle cx="60" cy="14" r="2" fill="#FFF3D6"/>' +
+        '<circle cx="70" cy="14" r="2" fill="#FFF3D6"/>' +
+        '<circle cx="65" cy="24" r="2" fill="#FFF3D6"/>' +
         '</svg>';
     }]
   ];
