@@ -544,6 +544,20 @@ footer::after{
   70%{transform:scale(1.15);}
   100%{transform:scale(1); opacity:1;}
 }
+.half-objects{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:24px;
+  font-size:2.2rem;
+  max-width:420px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.half-item{
+  animation:finishIn .3s ease;
+}
 .tens-sequence{
   display:flex;
   flex-wrap:wrap;
