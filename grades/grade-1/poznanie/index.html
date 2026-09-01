@@ -32,13 +32,8 @@
   <h2 data-i18n="hub_title"></h2>
   <p class="lead" data-i18n="hub_lead"></p>
 
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
-    <a href="emergency.html" class="island poznanie ready" style="text-decoration:none;">
-      <span class="emoji">🚑</span>
-      <h3 data-i18n="hub_emergency_title"></h3>
-      <p data-i18n="hub_emergency_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
     <a href="weekdays.html" class="island poznanie ready" style="text-decoration:none;">
       <span class="emoji">📅</span>
       <h3 data-i18n="hub_weekdays_title"></h3>
@@ -51,18 +46,6 @@
       <p data-i18n="hub_roadsigns_desc"></p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-    <a href="flag.html" class="island poznanie ready" style="text-decoration:none;">
-      <span class="emoji">🇰🇿</span>
-      <h3 data-i18n="hub_flag_title"></h3>
-      <p data-i18n="hub_flag_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
-    <a href="seasons.html" class="island poznanie ready" style="text-decoration:none;">
-      <span class="emoji">⛷️</span>
-      <h3 data-i18n="hub_seasons_title"></h3>
-      <p data-i18n="hub_seasons_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
     <a href="lecture.html" class="island poznanie ready" style="text-decoration:none;">
       <span class="emoji">📺</span>
       <h3 data-i18n="hub_lecture_poznanie_title"></h3>
@@ -70,6 +53,41 @@
       <span class="badge" data-i18n="btn_watch"></span>
     </a>
   </div>
+
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="weekdays,roadsigns,lecture_poznanie">
+    <a href="seasons.html" class="island poznanie ready" style="text-decoration:none;">
+      <span class="emoji">⛷️</span>
+      <h3 data-i18n="hub_seasons_title"></h3>
+      <p data-i18n="hub_seasons_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="weekdays,roadsigns,lecture_poznanie,seasons">
+    <a href="flag.html" class="island poznanie ready" style="text-decoration:none;">
+      <span class="emoji">🇰🇿</span>
+      <h3 data-i18n="hub_flag_title"></h3>
+      <p data-i18n="hub_flag_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+  <p class="quarter-empty" data-i18n="poznanie_q3_note"></p>
+
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="weekdays,roadsigns,lecture_poznanie,seasons,flag">
+    <a href="emergency.html" class="island poznanie ready" style="text-decoration:none;">
+      <span class="emoji">🚑</span>
+      <h3 data-i18n="hub_emergency_title"></h3>
+      <p data-i18n="hub_emergency_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+  <p class="quarter-empty" data-i18n="poznanie_q4_note"></p>
 </section>
 
 <footer data-i18n="footer"></footer>
