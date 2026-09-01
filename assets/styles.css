@@ -544,6 +544,21 @@ footer::after{
   70%{transform:scale(1.15);}
   100%{transform:scale(1); opacity:1;}
 }
+.measure-options{
+  grid-template-columns:repeat(3,1fr) !important;
+}
+.clock-wrap{
+  display:flex;
+  justify-content:center;
+  margin-bottom:24px;
+}
+.clock-face{
+  width:180px;
+  height:180px;
+}
+.clock-options{
+  grid-template-columns:repeat(2,1fr) !important;
+}
 .half-objects{
   display:flex;
   flex-wrap:wrap;
