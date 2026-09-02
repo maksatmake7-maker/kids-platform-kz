@@ -544,6 +544,34 @@ footer::after{
   70%{transform:scale(1.15);}
   100%{transform:scale(1); opacity:1;}
 }
+.sets-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+}
+.sets-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  max-width:140px;
+  background:var(--cream);
+  border-radius:14px;
+  padding:12px;
+  font-size:1.6rem;
+  justify-content:center;
+}
+.sets-vs{
+  font-family:'Baloo 2',sans-serif;
+  font-weight:800;
+  font-size:1.8rem;
+  color:var(--coral);
+}
+.sets-options{
+  grid-template-columns:repeat(3,1fr) !important;
+}
 .teens-blocks{
   display:flex;
   flex-wrap:wrap;
