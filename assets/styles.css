@@ -544,6 +544,14 @@ footer::after{
   70%{transform:scale(1.15);}
   100%{transform:scale(1); opacity:1;}
 }
+.spelling-options{
+  grid-template-columns:repeat(2,1fr) !important;
+  max-width:420px;
+  margin:0 auto;
+}
+.spelling-btn{
+  font-size:1.6rem !important;
+}
 .sets-wrap{
   display:flex;
   align-items:center;
