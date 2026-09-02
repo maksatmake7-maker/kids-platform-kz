@@ -544,6 +544,16 @@ footer::after{
   70%{transform:scale(1.15);}
   100%{transform:scale(1); opacity:1;}
 }
+.coin-wrap{
+  display:flex;
+  justify-content:center;
+  margin-bottom:24px;
+}
+.coin-svg{
+  width:130px;
+  height:130px;
+  filter:drop-shadow(0 4px 6px rgba(29,53,87,0.25));
+}
 .measure-options{
   grid-template-columns:repeat(3,1fr) !important;
 }
