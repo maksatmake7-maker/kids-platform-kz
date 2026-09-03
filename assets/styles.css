@@ -544,6 +544,23 @@ footer::after{
   70%{transform:scale(1.15);}
   100%{transform:scale(1); opacity:1;}
 }
+.punct-sentence{
+  font-family:'Baloo 2',sans-serif;
+  font-weight:700;
+  font-size:1.7rem;
+  color:var(--ink);
+  text-align:center;
+  margin-bottom:24px;
+  line-height:1.4;
+}
+.punct-blank{
+  color:var(--coral);
+  font-weight:800;
+}
+.punct-btn{
+  font-size:2rem !important;
+  font-weight:800;
+}
 .alphabet-pair{
   display:flex;
   align-items:center;
