@@ -21,6 +21,7 @@ body{
   overflow-x:hidden;
 }
 h1,h2,h3,.display{font-family:'Baloo 2',sans-serif;}
+a{color:inherit; text-decoration:none;}
 
 /* clouds */
 .cloud{
@@ -293,13 +294,20 @@ header{
   box-shadow:0 10px 0 rgba(29,53,87,0.08), 0 16px 30px rgba(29,53,87,0.1);
   position:relative;
   transition:transform .2s ease;
+  border:3px solid transparent;
 }
 .island:not(.locked){cursor:pointer;}
 .island:not(.locked):hover{transform:translateY(-6px);}
 .island .emoji{
-  font-size:3rem;
-  display:block;
-  margin-bottom:14px;
+  font-size:2.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:82px;
+  height:82px;
+  border-radius:50%;
+  margin:0 auto 16px;
+  background:var(--cream);
 }
 .island h3{
   font-size:1.3rem;
@@ -322,10 +330,14 @@ header{
 .island.ready .badge{background:var(--meadow);color:#fff;}
 .island.locked .badge{background:#EDEFF2;color:#94A3B8;}
 .island.locked{opacity:0.75;}
-.island.math{border-top:6px solid var(--sun);}
-.island.read{border-top:6px solid var(--coral);}
-.island.kaz{border-top:6px solid var(--meadow);}
-.island.game{border-top:6px solid #7C9CFF;}
+.island.math{border-color:var(--sun); background:#FFFBEE;}
+.island.math .emoji{background:var(--sun);}
+.island.read{border-color:var(--coral); background:#FFF3F1;}
+.island.read .emoji{background:var(--coral);}
+.island.kaz{border-color:var(--meadow); background:#F0FBF6;}
+.island.kaz .emoji{background:var(--meadow);}
+.island.game{border-color:#7C9CFF; background:#F2F5FF;}
+.island.game .emoji{background:#7C9CFF;}
 
 /* ===== direction selector (главная страница — выбор языка обучения) ===== */
 .direction-grid{
@@ -342,14 +354,24 @@ header{
   gap:16px;
   padding:44px 24px;
   border-radius:var(--radius-lg);
-  background:var(--white);
+  background:#FFF3F1;
   box-shadow:0 10px 0 rgba(29,53,87,0.08), 0 16px 30px rgba(29,53,87,0.1);
   transition:transform .2s ease;
-  border-top:8px solid var(--coral);
+  border:4px solid var(--coral);
 }
-.direction-btn.direction-kaz{border-top-color:var(--meadow);}
+.direction-btn.direction-kaz{border-color:var(--meadow); background:#F0FBF6;}
 .direction-btn:hover{transform:translateY(-6px);}
-.direction-emoji{font-size:3.5rem;}
+.direction-emoji{
+  font-size:2.2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:var(--coral);
+}
+.direction-btn.direction-kaz .direction-emoji{background:var(--meadow);}
 .direction-label{
   font-family:'Baloo 2',sans-serif;
   font-weight:800;
@@ -362,13 +384,20 @@ header{
   .direction-emoji{font-size:2.8rem;}
   .direction-label{font-size:1.1rem;}
 }
-.island.estestvo{border-top:6px solid #6FBF73;}
-.island.digital{border-top:6px solid #5EC3E8;}
-.island.poznanie{border-top:6px solid #F0954C;}
-.island.muzyka{border-top:6px solid #C77DD9;}
-.island.izo{border-top:6px solid #E8618C;}
-.island.trud{border-top:6px solid #8C6F4E;}
-.island.fizra{border-top:6px solid #4DB6AC;}
+.island.estestvo{border-color:#6FBF73; background:#EFFAF0;}
+.island.estestvo .emoji{background:#6FBF73;}
+.island.digital{border-color:#5EC3E8; background:#EDFAFE;}
+.island.digital .emoji{background:#5EC3E8;}
+.island.poznanie{border-color:#F0954C; background:#FEF3EB;}
+.island.poznanie .emoji{background:#F0954C;}
+.island.muzyka{border-color:#C77DD9; background:#FAF0FC;}
+.island.muzyka .emoji{background:#C77DD9;}
+.island.izo{border-color:#E8618C; background:#FEEEF3;}
+.island.izo .emoji{background:#E8618C;}
+.island.trud{border-color:#8C6F4E; background:#F7F2EC;}
+.island.trud .emoji{background:#8C6F4E;}
+.island.fizra{border-color:#4DB6AC; background:#EBF8F6;}
+.island.fizra .emoji{background:#4DB6AC;}
 
 /* ===== video lesson pages ===== */
 .video-embed{
