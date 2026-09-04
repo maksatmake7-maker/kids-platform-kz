@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Видео-сабақ: санау — Білім Аралы</title>
+<title>Санау — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../../assets/styles.css">
@@ -29,27 +29,52 @@
 <section class="game-shell">
   <a href="index.html" class="back-link" data-i18n="back_math"></a>
 
-  <div class="game-card explain-card" id="explain-panel">
-    <h2 class="explain-heading" data-i18n="explain_heading"></h2>
-    <p class="explain-text" data-i18n="lecture_math_explain"></p>
-    <div class="explain-actions">
-      <button class="speak-btn" id="speak-btn">
-        <span data-i18n="speak_button"></span>
-      </button>
-      <button class="cta" id="start-video-btn">
-        <span data-i18n="btn_watch"></span>
-      </button>
-    </div>
-  </div>
+  <div class="game-card">
+    <h1 style="text-align:center; margin-bottom:20px;" data-i18n="counting_pres_title"></h1>
 
-  <div class="game-card" id="video-panel" style="display:none;">
-    <h1 data-i18n="lecture_math_video_title"></h1>
-    <div class="video-embed">
-      <iframe src="https://www.youtube-nocookie.com/embed/WGzoFVf6x_c?rel=0" title="Видео-сабақ: санау" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="slide-deck" id="counting-deck">
+
+      <div class="slide">
+        <div class="slide-icon">🔢</div>
+        <div class="slide-title" data-i18n="cnt_s1_title"></div>
+        <div class="slide-text" data-i18n="cnt_s1_text"></div>
+      </div>
+
+      <div class="slide">
+        <div style="font-size:2.5rem; letter-spacing:8px;">🍎🍎🍎</div>
+        <div class="slide-title" data-i18n="cnt_s2_title"></div>
+        <div class="slide-text" data-i18n="cnt_s2_text"></div>
+      </div>
+
+      <div class="slide">
+        <div style="font-size:2.2rem; letter-spacing:6px;">⭐⭐⭐⭐⭐⭐⭐</div>
+        <div class="slide-title" data-i18n="cnt_s3_title"></div>
+        <div class="slide-text" data-i18n="cnt_s3_text"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-icon">👆</div>
+        <div class="slide-title" data-i18n="cnt_s4_title"></div>
+        <div class="slide-text" data-i18n="cnt_s4_text"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-icon">🐆</div>
+        <div class="slide-title" data-i18n="cnt_s5_title"></div>
+        <div class="slide-text" data-i18n="cnt_s5_text"></div>
+      </div>
+
+      <div class="slide-nav">
+        <button class="slide-nav-btn slide-prev" aria-label="Артқа">◀</button>
+        <span class="slide-counter">1 / 5</span>
+        <button class="slide-nav-btn slide-next" aria-label="Алға">▶</button>
+      </div>
+
     </div>
-    <button class="cta video-done-btn" id="done-btn">
-      <span data-i18n="btn_done"></span>
-    </button>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button class="cta" onclick="recordGameResult('lecture_math_kz',1,1); window.location.href='index.html';" data-i18n="btn_done"></button>
+    </div>
   </div>
 </section>
 
@@ -61,13 +86,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function(){
     applyLang('kz');
-    initSpeakButton('speak-btn', 'lecture_math_explain', '../../../assets/audio/');
-    initStartGameButton('start-video-btn', 'explain-panel', 'video-panel');
-    document.getElementById('done-btn').addEventListener('click', function(){
-      recordGameResult('lecture_math_kz', 1, 1);
-      this.textContent = '✓';
-      this.disabled = true;
-    });
+    initSlideDeck('counting-deck');
   });
 </script>
 </body>
