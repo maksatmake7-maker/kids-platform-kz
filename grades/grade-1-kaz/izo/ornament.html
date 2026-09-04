@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Өрнек саламыз — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button class="active" data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<section class="game-shell">
+  <a href="index.html" class="back-link" data-i18n="back_izo"></a>
+
+  <div class="game-card">
+    <h1 style="text-align:center; margin-bottom:20px;" data-i18n="orn_pres_title"></h1>
+
+    <div class="slide-deck" id="orn-deck">
+
+      <div class="slide">
+        <div class="slide-icon">🔶</div>
+        <div class="slide-title" data-i18n="or_s1_title"></div>
+        <div class="slide-text" data-i18n="or_s1_text"></div>
+      </div>
+
+      <div class="slide">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" style="width:200px; height:60px;">
+          <rect width="200" height="60" fill="#FFF9EE"/>
+          <circle cx="20" cy="30" r="14" fill="#FF6B5B"/>
+          <circle cx="60" cy="30" r="14" fill="#FFC93C"/>
+          <circle cx="100" cy="30" r="14" fill="#3FB088"/>
+          <circle cx="140" cy="30" r="14" fill="#7C9CFF"/>
+          <circle cx="180" cy="30" r="14" fill="#FF6B5B"/>
+        </svg>
+        <div class="slide-title" data-i18n="or_s2_title"></div>
+        <div class="slide-text" data-i18n="or_s2_text"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-icon">🐑</div>
+        <div class="slide-title" data-i18n="or_s3_title"></div>
+        <div class="slide-text" data-i18n="or_s3_text"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-icon">✏️</div>
+        <div class="slide-title" data-i18n="or_s4_title"></div>
+        <div class="slide-text" data-i18n="or_s4_text"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-icon">🐆</div>
+        <div class="slide-title" data-i18n="or_s5_title"></div>
+        <div class="slide-text" data-i18n="or_s5_text"></div>
+      </div>
+
+      <div class="slide-nav">
+        <button class="slide-nav-btn slide-prev" aria-label="Артқа">◀</button>
+        <span class="slide-counter">1 / 5</span>
+        <button class="slide-nav-btn slide-next" aria-label="Алға">▶</button>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button class="cta" onclick="recordGameResult('ornament_kz',1,1); window.location.href='index.html';" data-i18n="btn_done"></button>
+    </div>
+  </div>
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/explain.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    applyLang('kz');
+    initSlideDeck('orn-deck');
+  });
+</script>
+</body>
+</html>
