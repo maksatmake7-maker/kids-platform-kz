@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мой профиль — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <a href="profiles.html" style="color:#8B95A3; font-size:0.9rem; margin-left:auto; margin-right:16px;" data-i18n="profile_switch"></a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<section class="game-shell" style="max-width:600px;">
+
+  <div class="game-card" style="text-align:center;">
+    <span class="child-avatar" id="profile-avatar" style="font-size:5rem; display:block;">🐆</span>
+    <h1 id="profile-name" style="margin:10px 0 4px;"></h1>
+    <div id="profile-level-title" style="font-family:'Baloo 2',sans-serif; font-weight:700; color:var(--coral); margin-bottom:16px;"></div>
+
+    <div class="level-bar-track">
+      <div class="level-bar-fill" id="level-bar-fill" style="width:0%;"></div>
+    </div>
+    <div style="font-family:'Nunito',sans-serif; color:#8B95A3; font-size:0.9rem;" id="level-xp-text"></div>
+  </div>
+
+  <div class="game-card">
+    <h2 style="margin-bottom:16px;" data-i18n="profile_avatars_title"></h2>
+    <div id="avatar-grid" style="text-align:center;"></div>
+  </div>
+
+  <div class="game-card">
+    <h2 style="margin-bottom:16px;" data-i18n="profile_achievements_title"></h2>
+    <div id="achievements-grid" style="text-align:center; display:flex; flex-wrap:wrap; justify-content:center;"></div>
+  </div>
+
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/progress.js"></script>
+<script>
+  var catalogData = null;
+  var statsData = null;
+
+  function tr(key){
+    var lang = document.documentElement.getAttribute('data-current') || 'ru';
+    return (translations[lang] && translations[lang][key]) || translations.ru[key] || key;
+  }
+
+  function loadProfile(){
+    var childToken = getChildToken();
+    if(!childToken){ window.location.href = 'profiles.html'; return; }
+
+    Promise.all([
+      apiRequest('/api/gamification/catalog'),
+      apiRequestAuth('/api/children/me/stats', {}, childToken)
+    ]).then(function(results){
+      catalogData = results[0];
+      statsData = results[1];
+      renderProfile();
+    }).catch(function(e){
+      console.error(e);
+    });
+  }
+
+  function renderProfile(){
+    var currentAvatar = catalogData.avatars.find(function(a){ return a.id === statsData.selectedAvatarId; });
+    document.getElementById('profile-avatar').textContent = currentAvatar ? currentAvatar.emoji : (statsData.avatarEmoji || '🐆');
+    document.getElementById('profile-name').textContent = statsData.name;
+    document.getElementById('profile-level-title').textContent =
+      tr('profile_level_label') + ' ' + statsData.level.level + ' — ' + tr(statsData.level.title_key);
+
+    var levels = catalogData.levels;
+    var currentIdx = levels.findIndex(function(l){ return l.level === statsData.level.level; });
+    var nextLevel = levels[currentIdx + 1];
+    var currentThreshold = levels[currentIdx].xp_required;
+    var xpText;
+    var pct;
+    if(nextLevel){
+      var span = nextLevel.xp_required - currentThreshold;
+      var progress = statsData.starsTotal - currentThreshold;
+      pct = Math.min(100, Math.round((progress / span) * 100));
+      xpText = statsData.starsTotal + ' / ' + nextLevel.xp_required + ' ⭐ (' + tr('profile_next_level') + ' ' + nextLevel.level + ')';
+    } else {
+      pct = 100;
+      xpText = statsData.starsTotal + ' ⭐ (' + tr('profile_max_level') + ')';
+    }
+    document.getElementById('level-bar-fill').style.width = pct + '%';
+    document.getElementById('level-xp-text').textContent = xpText;
+
+    renderAvatars();
+    renderAchievements();
+  }
+
+  function renderAvatars(){
+    var grid = document.getElementById('avatar-grid');
+    grid.innerHTML = '';
+    catalogData.avatars.forEach(function(a){
+      var unlocked = statsData.level.level >= a.unlock_level;
+      var div = document.createElement('div');
+      div.className = 'avatar-option' + (a.id === statsData.selectedAvatarId ? ' selected' : '') + (unlocked ? '' : ' locked');
+      div.textContent = unlocked ? a.emoji : '🔒';
+      div.title = unlocked ? '' : (tr('profile_unlock_at_level') + ' ' + a.unlock_level);
+      if(unlocked){
+        div.addEventListener('click', function(){ pickAvatar(a.id); });
+      }
+      grid.appendChild(div);
+    });
+  }
+
+  function pickAvatar(avatarId){
+    var childToken = getChildToken();
+    apiRequestAuth('/api/children/me/avatar', { method: 'POST', body: { avatarId: avatarId } }, childToken)
+      .then(function(){
+        statsData.selectedAvatarId = avatarId;
+        var info = getChildInfo() || {};
+        info.avatarEmoji = catalogData.avatars.find(function(a){ return a.id === avatarId; }).emoji;
+        setChildInfo(info);
+        renderProfile();
+      }).catch(function(e){ alert(e.message); });
+  }
+
+  function renderAchievements(){
+    var grid = document.getElementById('achievements-grid');
+    grid.innerHTML = '';
+    var earnedIds = statsData.achievements.map(function(a){ return a.id; });
+    catalogData.achievements.forEach(function(a){
+      var earned = earnedIds.indexOf(a.id) !== -1;
+      var div = document.createElement('div');
+      div.className = 'badge-icon' + (earned ? '' : ' locked');
+      div.innerHTML = '<span class="icon">' + a.icon + '</span><span class="label">' + tr(a.title_key) + '</span>';
+      grid.appendChild(div);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', loadProfile);
+</script>
+</body>
+</html>
