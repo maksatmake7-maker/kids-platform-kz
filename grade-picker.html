@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Выбери класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<section class="subjects" id="subjects" style="padding-top:20px;">
+  <a href="index.html" class="back-link" data-i18n="grade_picker_back"></a>
+  <h2 data-i18n="grade_picker_title"></h2>
+  <p class="lead" data-i18n="grade_picker_lead"></p>
+
+  <div class="island-grid" style="margin-top:24px;">
+    <a href="#" id="grade-1-link" class="island math ready" style="text-decoration:none;">
+      <span class="emoji">1️⃣</span>
+      <h3 data-i18n="grade_picker_grade1"></h3>
+      <p data-i18n="grade_picker_grade1_desc"></p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="#" class="island" style="text-decoration:none; opacity:0.5; filter:grayscale(1); cursor:default;">
+      <span class="emoji">2️⃣</span>
+      <h3 data-i18n="grade_picker_grade2"></h3>
+      <p data-i18n="grade_picker_coming_soon"></p>
+      <span class="badge" style="background:#EDEFF2; color:#94A3B8;">🔒</span>
+    </a>
+  </div>
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/progress.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var params = new URLSearchParams(window.location.search);
+    var dir = params.get('dir') === 'kz' ? 'kz' : 'ru';
+    var target = dir === 'kz' ? 'grades/grade-1-kaz/index.html' : 'grades/grade-1/index.html';
+    document.getElementById('grade-1-link').setAttribute('href', target);
+  });
+</script>
+</body>
+</html>
