@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профили детей — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <a href="#" onclick="doLogout(); return false;" style="color:#8B95A3; font-size:0.9rem;">Выйти</a>
+</header>
+
+<section class="subjects" id="subjects" style="padding-top:20px;">
+  <h2>Кто сегодня играет?</h2>
+  <p class="lead">Выберите профиль или добавьте нового ребёнка</p>
+
+  <div class="island-grid" id="children-grid" style="margin-top:24px;">
+    <!-- профили детей вставляются сюда через JS -->
+  </div>
+
+  <!-- ФОРМА ДОБАВЛЕНИЯ РЕБЁНКА -->
+  <div class="game-card" id="add-child-form" style="max-width:480px; margin:32px auto 0; display:none; text-align:center;">
+    <h2 style="margin-bottom:20px;">Новый профиль</h2>
+    <div class="form-group">
+      <label class="form-label">Имя ребёнка</label>
+      <input type="text" class="form-input" id="child-name" placeholder="Например: Айгүл">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Направление обучения</label>
+      <div class="account-type-picker">
+        <div class="account-type-btn active" id="dir-ru" onclick="setDirection('ru')">🇷🇺 Русское</div>
+        <div class="account-type-btn" id="dir-kz" onclick="setDirection('kz')">🇰🇿 Қазақша</div>
+      </div>
+    </div>
+    <button class="cta" style="width:100%;" onclick="doCreateChild()">Создать профиль →</button>
+    <div class="form-error" id="child-error"></div>
+    <p style="margin-top:16px;">
+      <a href="#" onclick="toggleAddForm(false); return false;" style="color:#8B95A3; font-size:0.9rem;">Отмена</a>
+    </p>
+  </div>
+</section>
+
+<footer>Білім Аралы — растём и учимся вместе 🌟</footer>
+
+<script src="assets/auth.js"></script>
+<script src="assets/progress.js"></script>
+<script>
+  var currentDirection = 'ru';
+  var avatarChoices = ['🐆','🦁','🐻','🐰','🦊','🐼'];
+
+  function setDirection(dir){
+    currentDirection = dir;
+    document.getElementById('dir-ru').classList.toggle('active', dir === 'ru');
+    document.getElementById('dir-kz').classList.toggle('active', dir === 'kz');
+  }
+
+  function toggleAddForm(show){
+    document.getElementById('add-child-form').style.display = show ? 'block' : 'none';
+    document.getElementById('children-grid').style.display = show ? 'none' : 'grid';
+  }
+
+  function doLogout(){
+    logoutParent();
+    window.location.href = 'index.html';
+  }
+
+  function renderChildren(children){
+    var grid = document.getElementById('children-grid');
+    grid.innerHTML = '';
+
+    children.forEach(function(child){
+      var card = document.createElement('div');
+      card.className = 'island child-card';
+      card.style.textDecoration = 'none';
+      card.innerHTML =
+        '<span class="child-avatar">' + (child.avatar_emoji || '🐆') + '</span>' +
+        '<div class="child-name">' + child.name + '</div>' +
+        '<div class="child-stars">⭐ ' + (child.stars_total || 0) + '</div>';
+      card.addEventListener('click', function(){ pickChild(child); });
+      grid.appendChild(card);
+    });
+
+    var addCard = document.createElement('div');
+    addCard.className = 'island child-card add-child-card';
+    addCard.innerHTML = '<span class="child-avatar">➕</span><div class="child-name">Добавить ребёнка</div>';
+    addCard.addEventListener('click', function(){ toggleAddForm(true); });
+    grid.appendChild(addCard);
+  }
+
+  function pickChild(child){
+    selectChild(child.id, {
+      name: child.name,
+      avatarEmoji: child.avatar_emoji,
+      grade: child.grade,
+      direction: child.direction
+    }).then(function(){
+      window.location.href = 'index.html';
+    }).catch(function(e){
+      alert('Не удалось выбрать профиль: ' + e.message);
+    });
+  }
+
+  function doCreateChild(){
+    var name = document.getElementById('child-name').value.trim();
+    var errorEl = document.getElementById('child-error');
+    errorEl.textContent = '';
+
+    if(!name){
+      errorEl.textContent = 'Введите имя ребёнка';
+      return;
+    }
+    var avatar = avatarChoices[Math.floor(Math.random() * avatarChoices.length)];
+
+    createChild(name, 1, currentDirection, avatar).then(function(){
+      toggleAddForm(false);
+      return listChildren();
+    }).then(renderChildren).catch(function(e){
+      errorEl.textContent = e.message;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    if(!getParentToken()){
+      window.location.href = 'auth.html';
+      return;
+    }
+    listChildren().then(function(children){
+      if(children.length === 0){
+        toggleAddForm(true);
+      } else {
+        renderChildren(children);
+      }
+    }).catch(function(e){
+      if(e.message.indexOf('Токен') !== -1 || e.message.indexOf('вход') !== -1){
+        window.location.href = 'auth.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
