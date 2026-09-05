@@ -454,6 +454,133 @@ header{
   color:var(--ink);
   max-width:480px;
 }
+/* ===== формы: вход, регистрация, детские профили ===== */
+.auth-tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:24px;
+  background:var(--cream);
+  border-radius:999px;
+  padding:6px;
+}
+.auth-tab{
+  flex:1;
+  text-align:center;
+  padding:10px 16px;
+  border-radius:999px;
+  font-family:'Baloo 2',sans-serif;
+  font-weight:700;
+  font-size:0.95rem;
+  cursor:pointer;
+  color:#8B95A3;
+  transition:all .15s ease;
+}
+.auth-tab.active{
+  background:var(--white);
+  color:var(--ink);
+  box-shadow:0 2px 6px rgba(29,53,87,0.1);
+}
+.form-group{
+  margin-bottom:18px;
+  text-align:left;
+}
+.form-label{
+  display:block;
+  font-family:'Nunito',sans-serif;
+  font-weight:700;
+  font-size:0.9rem;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.form-input{
+  width:100%;
+  padding:12px 16px;
+  border-radius:14px;
+  border:2px solid #E5E9EF;
+  font-family:'Nunito',sans-serif;
+  font-size:1rem;
+  color:var(--ink);
+  background:var(--white);
+  transition:border-color .15s ease;
+  box-sizing:border-box;
+}
+.form-input:focus{
+  outline:none;
+  border-color:var(--meadow);
+}
+.form-error{
+  color:var(--coral);
+  font-family:'Nunito',sans-serif;
+  font-weight:700;
+  font-size:0.9rem;
+  margin-top:10px;
+  text-align:center;
+  min-height:1.2em;
+}
+.form-hint{
+  color:#8B95A3;
+  font-family:'Nunito',sans-serif;
+  font-size:0.85rem;
+  margin-top:6px;
+}
+.account-type-picker{
+  display:flex;
+  gap:12px;
+  margin-bottom:18px;
+}
+.account-type-btn{
+  flex:1;
+  padding:16px 10px;
+  border-radius:16px;
+  border:2px solid #E5E9EF;
+  background:var(--white);
+  font-family:'Baloo 2',sans-serif;
+  font-weight:700;
+  font-size:0.9rem;
+  color:var(--ink);
+  cursor:pointer;
+  text-align:center;
+  transition:all .15s ease;
+}
+.account-type-btn.active{
+  border-color:var(--meadow);
+  background:#F0FBF6;
+}
+.child-card{
+  background:var(--white);
+  border-radius:20px;
+  padding:24px 16px;
+  text-align:center;
+  box-shadow:0 8px 0 rgba(29,53,87,0.06), 0 12px 24px rgba(29,53,87,0.08);
+  cursor:pointer;
+  transition:transform .15s ease;
+  border:3px solid transparent;
+}
+.child-card:hover{transform:translateY(-4px);}
+.child-card .child-avatar{
+  font-size:3rem;
+  display:block;
+  margin-bottom:10px;
+}
+.child-card .child-name{
+  font-family:'Baloo 2',sans-serif;
+  font-weight:700;
+  font-size:1.1rem;
+  color:var(--ink);
+}
+.child-card .child-stars{
+  font-family:'Nunito',sans-serif;
+  font-size:0.85rem;
+  color:#8B95A3;
+  margin-top:4px;
+}
+.add-child-card{
+  border:3px dashed #C9D3DE;
+  background:transparent;
+  box-shadow:none;
+}
+.add-child-card:hover{border-color:var(--meadow);}
+
 .slide-nav{
   display:flex;
   align-items:center;

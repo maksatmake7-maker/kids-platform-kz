@@ -11,6 +11,7 @@
 */
 
 var PROGRESS_KEY = 'bilim_araly_progress_v1';
+var PROGRESS_API_BASE = 'https://kids-platform-backend-production.up.railway.app';
 
 function loadProgress(){
   try {
@@ -47,6 +48,26 @@ function recordGameResult(gameKey, score, total){
 
   saveProgress(data);
   updateProgressBadge();
+  syncProgressToServer(gameKey, score, total); // не блокирует и не ломает работу без входа
+}
+
+/**
+ * Если родитель вошёл и выбрал профиль ребёнка (childToken в localStorage) —
+ * отправляет результат на сервер в фоне. Если токена нет (сайт используется
+ * без входа, как раньше) — просто ничего не делает, localStorage уже сохранил.
+ * Сетевые ошибки тихо игнорируются — прогресс уже в безопасности локально.
+ */
+function syncProgressToServer(gameKey, score, total){
+  var token = null;
+  try { token = localStorage.getItem('bilim_araly_child_token'); } catch(e){ return; }
+  if(!token) return;
+  try {
+    fetch(PROGRESS_API_BASE + '/api/progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ gameKey: gameKey, score: score, total: total })
+    }).catch(function(){ /* нет связи — ничего страшного, попробуем в другой раз */ });
+  } catch(e){ /* fetch недоступен в этом окружении — просто пропускаем */ }
 }
 
 function getTotalStars(){
@@ -57,6 +78,42 @@ function updateProgressBadge(){
   var badge = document.getElementById('total-stars-badge');
   if(badge) badge.textContent = '⭐ ' + getTotalStars();
 }
+
+/**
+ * Проверяет, сыграна ли игра хотя бы один раз.
+ */
+function isGameCompleted(gameKey){
+  var data = loadProgress();
+  return !!(data.games && data.games[gameKey] && data.games[gameKey].timesPlayed > 0);
+}
+
+/**
+ * Разблокировка четвертей по прогрессу: следующая четверть открывается,
+ * только когда пройдены ВСЕ игры из более ранних непустых четвертей.
+ * Ищет на странице элементы с классом .island-grid[data-requires="key1,key2,..."]
+ * и .quarter-heading[data-requires="..."] — если хоть одна игра из списка
+ * не пройдена, блок помечается как заблокированный (класс .locked),
+ * ссылки внутри становятся некликабельными, показывается объяснение.
+ */
+function applyQuarterLocks(){
+  var blocks = document.querySelectorAll('[data-requires]');
+  blocks.forEach(function(block){
+    var required = block.getAttribute('data-requires');
+    if(!required) return;
+    var keys = required.split(',').map(function(k){ return k.trim(); }).filter(Boolean);
+    var allDone = keys.every(function(k){ return isGameCompleted(k); });
+
+    if(allDone){
+      block.classList.remove('locked');
+    } else {
+      block.classList.add('locked');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  applyQuarterLocks();
+});
 
 function injectProgressBadge(){
   var header = document.querySelector('header');
@@ -78,4 +135,32 @@ function injectProgressBadge(){
 
 document.addEventListener('DOMContentLoaded', function(){
   injectProgressBadge();
+  updateAuthLink();
 });
+
+/**
+ * Если родитель уже вошёл — меняет "Войти" на имя выбранного ребёнка
+ * (ссылка ведёт на выбор профиля) или на "Профили", если ребёнок ещё
+ * не выбран. Если не вошёл — оставляет "Войти" как есть.
+ */
+function updateAuthLink(){
+  var link = document.getElementById('auth-link');
+  if(!link) return;
+  var parentToken = null, childInfoRaw = null;
+  try {
+    parentToken = localStorage.getItem('bilim_araly_parent_token');
+    childInfoRaw = localStorage.getItem('bilim_araly_child_info');
+  } catch(e){ return; }
+
+  if(!parentToken) return; // не вошёл — оставляем "Войти"
+
+  link.href = 'profiles.html';
+  if(childInfoRaw){
+    try {
+      var info = JSON.parse(childInfoRaw);
+      link.textContent = (info.avatarEmoji || '🐆') + ' ' + info.name;
+    } catch(e){ link.textContent = 'Профили'; }
+  } else {
+    link.textContent = 'Профили';
+  }
+}
