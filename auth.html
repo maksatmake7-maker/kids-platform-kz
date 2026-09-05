@@ -15,68 +15,78 @@
 
 <header>
   <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
 </header>
 
 <section class="game-shell" style="max-width:480px;">
   <div class="game-card" style="text-align:center;">
-    <h1 style="margin-bottom:24px;">Вход для родителей и школ</h1>
+    <h1 style="margin-bottom:24px;" data-i18n="auth_title"></h1>
 
     <div class="auth-tabs">
-      <div class="auth-tab active" id="tab-login" onclick="showTab('login')">Вход</div>
-      <div class="auth-tab" id="tab-register" onclick="showTab('register')">Регистрация</div>
+      <div class="auth-tab active" id="tab-login" onclick="showTab('login')" data-i18n="auth_tab_login"></div>
+      <div class="auth-tab" id="tab-register" onclick="showTab('register')" data-i18n="auth_tab_register"></div>
     </div>
 
     <!-- ФОРМА ВХОДА -->
     <div id="form-login">
       <div class="form-group">
-        <label class="form-label">Email</label>
+        <label class="form-label" data-i18n="auth_email_label"></label>
         <input type="email" class="form-input" id="login-email" placeholder="you@example.com" autocomplete="email">
       </div>
       <div class="form-group">
-        <label class="form-label">Пароль</label>
+        <label class="form-label" data-i18n="auth_password_label"></label>
         <input type="password" class="form-input" id="login-password" placeholder="••••••••" autocomplete="current-password">
       </div>
-      <button class="cta" style="width:100%;" onclick="doLogin()">Войти →</button>
+      <button class="cta" style="width:100%;" onclick="doLogin()"><span data-i18n="auth_login_btn"></span></button>
       <div class="form-error" id="login-error"></div>
     </div>
 
     <!-- ФОРМА РЕГИСТРАЦИИ -->
     <div id="form-register" style="display:none;">
       <div class="account-type-picker">
-        <div class="account-type-btn active" id="type-individual" onclick="setAccountType('individual')">👨‍👩‍👧 Я родитель</div>
-        <div class="account-type-btn" id="type-organization" onclick="setAccountType('organization')">🏫 Я школа/центр</div>
+        <div class="account-type-btn active" id="type-individual" onclick="setAccountType('individual')">👨‍👩‍👧 <span data-i18n="auth_type_parent"></span></div>
+        <div class="account-type-btn" id="type-organization" onclick="setAccountType('organization')">🏫 <span data-i18n="auth_type_org"></span></div>
       </div>
 
       <div class="form-group" id="org-name-group" style="display:none;">
-        <label class="form-label">Название школы/центра</label>
-        <input type="text" class="form-input" id="register-orgname" placeholder="Например: Школа №5">
+        <label class="form-label" data-i18n="auth_orgname_label"></label>
+        <input type="text" class="form-input" id="register-orgname" data-i18n-placeholder="auth_orgname_placeholder">
       </div>
 
       <div class="form-group">
-        <label class="form-label">Ваше имя</label>
-        <input type="text" class="form-input" id="register-name" placeholder="Как к вам обращаться">
+        <label class="form-label" data-i18n="auth_name_label"></label>
+        <input type="text" class="form-input" id="register-name" data-i18n-placeholder="auth_name_placeholder">
       </div>
       <div class="form-group">
-        <label class="form-label">Email</label>
+        <label class="form-label" data-i18n="auth_email_label"></label>
         <input type="email" class="form-input" id="register-email" placeholder="you@example.com" autocomplete="email">
       </div>
       <div class="form-group">
-        <label class="form-label">Пароль</label>
-        <input type="password" class="form-input" id="register-password" placeholder="Не короче 6 символов" autocomplete="new-password">
-        <div class="form-hint">Регистрация бесплатна</div>
+        <label class="form-label" data-i18n="auth_password_label"></label>
+        <input type="password" class="form-input" id="register-password" data-i18n-placeholder="auth_password_placeholder" autocomplete="new-password">
+        <div class="form-hint" data-i18n="auth_free_hint"></div>
       </div>
-      <button class="cta" style="width:100%;" onclick="doRegister()">Создать аккаунт →</button>
+      <button class="cta" style="width:100%;" onclick="doRegister()"><span data-i18n="auth_register_btn"></span></button>
       <div class="form-error" id="register-error"></div>
     </div>
 
     <p style="margin-top:20px;">
-      <a href="index.html" style="color:#8B95A3; font-size:0.9rem;">← Продолжить без входа</a>
+      <a href="index.html" style="color:#8B95A3; font-size:0.9rem;" data-i18n="auth_continue_without"></a>
     </p>
   </div>
 </section>
 
-<footer>Білім Аралы — растём и учимся вместе 🌟</footer>
+<footer data-i18n="footer"></footer>
 
+<script src="assets/i18n.js"></script>
 <script src="assets/auth.js"></script>
 <script src="assets/progress.js"></script>
 <script>
@@ -96,6 +106,11 @@
     document.getElementById('org-name-group').style.display = type === 'organization' ? 'block' : 'none';
   }
 
+  function tr(key){
+    var lang = document.documentElement.getAttribute('data-current') || 'ru';
+    return (translations[lang] && translations[lang][key]) || translations.ru[key] || key;
+  }
+
   function doLogin(){
     var email = document.getElementById('login-email').value.trim();
     var password = document.getElementById('login-password').value;
@@ -103,7 +118,7 @@
     errorEl.textContent = '';
 
     if(!email || !password){
-      errorEl.textContent = 'Заполните email и пароль';
+      errorEl.textContent = tr('auth_err_fill_both');
       return;
     }
     loginAccount(email, password).then(function(){
@@ -122,11 +137,11 @@
     errorEl.textContent = '';
 
     if(!email || !password){
-      errorEl.textContent = 'Заполните email и пароль';
+      errorEl.textContent = tr('auth_err_fill_both');
       return;
     }
     if(currentAccountType === 'organization' && !orgName){
-      errorEl.textContent = 'Укажите название школы/центра';
+      errorEl.textContent = tr('auth_err_need_orgname');
       return;
     }
     registerAccount(currentAccountType, orgName, email, password, name).then(function(){

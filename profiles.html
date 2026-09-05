@@ -15,12 +15,21 @@
 
 <header>
   <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
-  <a href="#" onclick="doLogout(); return false;" style="color:#8B95A3; font-size:0.9rem;">Выйти</a>
+  <a href="#" onclick="doLogout(); return false;" style="color:#8B95A3; font-size:0.9rem; margin-left:auto; margin-right:16px;" data-i18n="profiles_logout"></a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
 </header>
 
 <section class="subjects" id="subjects" style="padding-top:20px;">
-  <h2>Кто сегодня играет?</h2>
-  <p class="lead">Выберите профиль или добавьте нового ребёнка</p>
+  <h2 data-i18n="profiles_title"></h2>
+  <p class="lead" data-i18n="profiles_lead"></p>
 
   <div class="island-grid" id="children-grid" style="margin-top:24px;">
     <!-- профили детей вставляются сюда через JS -->
@@ -28,33 +37,39 @@
 
   <!-- ФОРМА ДОБАВЛЕНИЯ РЕБЁНКА -->
   <div class="game-card" id="add-child-form" style="max-width:480px; margin:32px auto 0; display:none; text-align:center;">
-    <h2 style="margin-bottom:20px;">Новый профиль</h2>
+    <h2 style="margin-bottom:20px;" data-i18n="profiles_new_title"></h2>
     <div class="form-group">
-      <label class="form-label">Имя ребёнка</label>
-      <input type="text" class="form-input" id="child-name" placeholder="Например: Айгүл">
+      <label class="form-label" data-i18n="profiles_child_name_label"></label>
+      <input type="text" class="form-input" id="child-name" data-i18n-placeholder="profiles_child_name_placeholder">
     </div>
     <div class="form-group">
-      <label class="form-label">Направление обучения</label>
+      <label class="form-label" data-i18n="profiles_direction_label"></label>
       <div class="account-type-picker">
-        <div class="account-type-btn active" id="dir-ru" onclick="setDirection('ru')">🇷🇺 Русское</div>
-        <div class="account-type-btn" id="dir-kz" onclick="setDirection('kz')">🇰🇿 Қазақша</div>
+        <div class="account-type-btn active" id="dir-ru" onclick="setDirection('ru')">🇷🇺 <span data-i18n="profiles_dir_ru"></span></div>
+        <div class="account-type-btn" id="dir-kz" onclick="setDirection('kz')">🇰🇿 <span data-i18n="profiles_dir_kz"></span></div>
       </div>
     </div>
-    <button class="cta" style="width:100%;" onclick="doCreateChild()">Создать профиль →</button>
+    <button class="cta" style="width:100%;" onclick="doCreateChild()"><span data-i18n="profiles_create_btn"></span></button>
     <div class="form-error" id="child-error"></div>
     <p style="margin-top:16px;">
-      <a href="#" onclick="toggleAddForm(false); return false;" style="color:#8B95A3; font-size:0.9rem;">Отмена</a>
+      <a href="#" onclick="toggleAddForm(false); return false;" style="color:#8B95A3; font-size:0.9rem;" data-i18n="profiles_cancel"></a>
     </p>
   </div>
 </section>
 
-<footer>Білім Аралы — растём и учимся вместе 🌟</footer>
+<footer data-i18n="footer"></footer>
 
+<script src="assets/i18n.js"></script>
 <script src="assets/auth.js"></script>
 <script src="assets/progress.js"></script>
 <script>
   var currentDirection = 'ru';
   var avatarChoices = ['🐆','🦁','🐻','🐰','🦊','🐼'];
+
+  function tr(key){
+    var lang = document.documentElement.getAttribute('data-current') || 'ru';
+    return (translations[lang] && translations[lang][key]) || translations.ru[key] || key;
+  }
 
   function setDirection(dir){
     currentDirection = dir;
@@ -90,7 +105,7 @@
 
     var addCard = document.createElement('div');
     addCard.className = 'island child-card add-child-card';
-    addCard.innerHTML = '<span class="child-avatar">➕</span><div class="child-name">Добавить ребёнка</div>';
+    addCard.innerHTML = '<span class="child-avatar">➕</span><div class="child-name">' + tr('profiles_add_child') + '</div>';
     addCard.addEventListener('click', function(){ toggleAddForm(true); });
     grid.appendChild(addCard);
   }
@@ -104,7 +119,7 @@
     }).then(function(){
       window.location.href = 'index.html';
     }).catch(function(e){
-      alert('Не удалось выбрать профиль: ' + e.message);
+      alert(tr('profiles_err_select') + ': ' + e.message);
     });
   }
 
@@ -114,7 +129,7 @@
     errorEl.textContent = '';
 
     if(!name){
-      errorEl.textContent = 'Введите имя ребёнка';
+      errorEl.textContent = tr('profiles_err_need_name');
       return;
     }
     var avatar = avatarChoices[Math.floor(Math.random() * avatarChoices.length)];
