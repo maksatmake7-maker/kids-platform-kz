@@ -57,6 +57,7 @@
     var dir = params.get('dir') === 'kz' ? 'kz' : 'ru';
     var target = dir === 'kz' ? 'grades/grade-1-kaz/index.html' : 'grades/grade-1/index.html';
     document.getElementById('grade-1-link').setAttribute('href', target);
+    applyLang(dir);
   });
 </script>
 </body>
