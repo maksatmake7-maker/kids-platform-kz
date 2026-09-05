@@ -66,8 +66,77 @@ function syncProgressToServer(gameKey, score, total){
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ gameKey: gameKey, score: score, total: total })
-    }).catch(function(){ /* нет связи — ничего страшного, попробуем в другой раз */ });
+    }).then(function(r){ return r.json(); })
+      .then(handleProgressResponse)
+      .catch(function(){ /* нет связи — ничего страшного, попробуем в другой раз */ });
   } catch(e){ /* fetch недоступен в этом окружении — просто пропускаем */ }
+}
+
+/**
+ * Обрабатывает ответ сервера после сохранения прогресса: показывает
+ * праздничный попап для новых значков и для повышения уровня.
+ * Работает одинаково на ЛЮБОЙ странице игры, без правки самих игр —
+ * потому что вызывается прямо отсюда, а не из кода конкретной игры.
+ */
+function handleProgressResponse(data){
+  if(!data || !data.ok) return;
+
+  var prevLevel = 1;
+  try { prevLevel = parseInt(localStorage.getItem('bilim_araly_last_level') || '1', 10); } catch(e){}
+
+  var queue = [];
+  if(data.newAchievements && data.newAchievements.length > 0){
+    data.newAchievements.forEach(function(a){
+      queue.push({ type: 'achievement', icon: a.icon, titleKey: a.titleKey });
+    });
+  }
+  if(data.level && data.level.level > prevLevel){
+    queue.push({ type: 'level', icon: '🎖️', level: data.level.level, titleKey: data.level.title_key });
+    try { localStorage.setItem('bilim_araly_last_level', String(data.level.level)); } catch(e){}
+  }
+
+  if(queue.length > 0) showCelebrationQueue(queue);
+}
+
+function trText(key, fallback){
+  try {
+    var lang = document.documentElement.getAttribute('data-current') || 'ru';
+    if(typeof translations !== 'undefined' && translations[lang] && translations[lang][key] !== undefined){
+      return translations[lang][key];
+    }
+  } catch(e){}
+  return fallback || key;
+}
+
+function showCelebrationQueue(queue){
+  if(queue.length === 0) return;
+  var item = queue.shift();
+
+  var overlay = document.createElement('div');
+  overlay.className = 'celebration-overlay';
+
+  var titleText, bodyText;
+  if(item.type === 'achievement'){
+    titleText = trText('celebration_achievement_title', 'Новый значок!');
+    bodyText = trText(item.titleKey, item.titleKey);
+  } else {
+    titleText = trText('celebration_level_title', 'Новый уровень!') + ' ' + item.level;
+    bodyText = trText(item.titleKey, '');
+  }
+
+  overlay.innerHTML =
+    '<div class="celebration-card">' +
+      '<span class="celebration-icon">' + item.icon + '</span>' +
+      '<div class="celebration-title">' + titleText + '</div>' +
+      '<div class="celebration-text">' + bodyText + '</div>' +
+      '<button class="cta" id="celebration-ok-btn">' + trText('celebration_ok_btn', 'Ура!') + '</button>' +
+    '</div>';
+
+  document.body.appendChild(overlay);
+  document.getElementById('celebration-ok-btn').addEventListener('click', function(){
+    document.body.removeChild(overlay);
+    if(queue.length > 0) showCelebrationQueue(queue);
+  });
 }
 
 function getTotalStars(){
@@ -154,7 +223,7 @@ function updateAuthLink(){
 
   if(!parentToken) return; // не вошёл — оставляем "Войти"
 
-  link.href = 'profiles.html';
+  link.href = 'myprofile.html';
   if(childInfoRaw){
     try {
       var info = JSON.parse(childInfoRaw);
