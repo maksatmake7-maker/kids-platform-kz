@@ -38,11 +38,11 @@
       <p data-i18n="grade_picker_grade1_desc"></p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-    <a href="#" class="island" style="text-decoration:none; opacity:0.5; filter:grayscale(1); cursor:default;">
+    <a href="#" id="grade-2-link" class="island" style="text-decoration:none; opacity:0.5; filter:grayscale(1); cursor:default;">
       <span class="emoji">2️⃣</span>
       <h3 data-i18n="grade_picker_grade2"></h3>
-      <p data-i18n="grade_picker_coming_soon"></p>
-      <span class="badge" style="background:#EDEFF2; color:#94A3B8;">🔒</span>
+      <p id="grade-2-desc" data-i18n="grade_picker_coming_soon"></p>
+      <span class="badge" id="grade-2-badge" style="background:#EDEFF2; color:#94A3B8;">🔒</span>
     </a>
   </div>
 </section>
@@ -58,6 +58,19 @@
     var target = dir === 'kz' ? 'grades/grade-1-kaz/index.html' : 'grades/grade-1/index.html';
     document.getElementById('grade-1-link').setAttribute('href', target);
     applyLang(dir);
+
+    if(dir === 'ru'){
+      var g2 = document.getElementById('grade-2-link');
+      g2.setAttribute('href', 'grades/grade-2/index.html');
+      g2.classList.add('math', 'ready');
+      g2.style.opacity = '';
+      g2.style.filter = '';
+      g2.style.cursor = '';
+      document.getElementById('grade-2-desc').setAttribute('data-i18n', 'grade_picker_grade2_desc');
+      document.getElementById('grade-2-badge').removeAttribute('style');
+      document.getElementById('grade-2-badge').setAttribute('data-i18n', 'badge_play');
+      applyLang(dir); // повторно, чтобы новые data-i18n подхватились после смены атрибутов
+    }
   });
 </script>
 </body>
