@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Инструмент тестирования — Білім Аралы</title>
+<style>
+  body{font-family:sans-serif; max-width:700px; margin:30px auto; padding:0 16px; background:#f4f6f9;}
+  h1{font-size:1.3rem;}
+  .warn{background:#fff3cd; border:1px solid #ffe69c; padding:12px 16px; border-radius:8px; margin-bottom:24px; font-size:0.9rem;}
+  .subject{background:#fff; border-radius:10px; padding:14px 18px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .subject b{display:block;}
+  .subject span{font-size:0.85rem; color:#666;}
+  button{background:#3FB088; color:#fff; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-size:0.9rem;}
+  button:hover{background:#329873;}
+  .reset-btn{background:#E8618C;}
+  .reset-btn:hover{background:#d14b76;}
+  .direction-heading{margin-top:28px; color:#1D3557;}
+</style>
+</head>
+<body>
+<h1>🔧 Инструмент тестирования прогресса</h1>
+<div class="warn">
+  Эта страница не для обычных пользователей сайта — только для проверки блокировки четвертей. Ссылку никому не показывай и на сайт не добавляй.
+</div>
+
+<button class="reset-btn" onclick="resetAll()">🗑️ Очистить весь прогресс (начать с нуля)</button>
+
+<h2 class="direction-heading">Русское направление</h2>
+<div id="ru-subjects"></div>
+
+<h2 class="direction-heading">Қазақ бөлімі</h2>
+<div id="kz-subjects"></div>
+
+<script>
+  var SUBJECTS = {
+    ru: [
+      { name: 'Математика', keys: ['count','addition','subtract','compare','shapes','flatsolid','pattern','symbolseq','lecture_math','tens','half','clock','measure','truefalse','problem','coins','teens','sets'] },
+      { name: 'Естествознание', keys: ['plantparts','wildcult','plantneeds','wildanimal','adaptation','lecture_estestvo','bodyparts','lifestages','humanneeds','movement','spacetime','magnet','earthshape','heat','electricity','light','sound'] },
+      { name: 'ИЗО', keys: ['drawing','painting','ornament','architecture'] },
+      { name: 'Труд', keys: ['crafts','applique','weaving','grain'] },
+      { name: 'Физкультура', keys: ['exercise','natgames','jumprope','ballgames'] },
+      { name: 'Познание мира', keys: ['weekdays','roadsigns','lecture_poznanie','seasons','flag','emergency'] },
+      { name: 'Музыка', keys: ['instruments','lecture_muzyka'] },
+      { name: 'Цифровая грамотность', keys: ['computerdevices','lecture_digital'] },
+      { name: 'Математика 2 класс (Q1+Q2)', keys: ['placevalue','carryadd','problem2step','orderops','units','twodigitops','roman'] }
+    ],
+    kz: [
+      { name: 'Математика', keys: ['count_kz','addition_kz','subtract_kz','compare_kz','shapes_kz','flatsolid_kz','pattern_kz','symbolseq_kz','lecture_math_kz','tens_kz','half_kz','clock_kz','measure_kz','truefalse_kz','problem_kz','coins_kz','teens_kz','sets_kz'] },
+      { name: 'Жаратылыстану', keys: ['plantparts_kz','wildcult_kz','plantneeds_kz','wildanimal_kz','adaptation_kz','lecture_estestvo_kz','bodyparts_kz','lifestages_kz','humanneeds_kz','movement_kz','spacetime_kz','magnet_kz','earthshape_kz','heat_kz','electricity_kz','light_kz','sound_kz'] },
+      { name: 'Бейнелеу өнері', keys: ['drawing_kz','painting_kz','ornament_kz','architecture_kz'] },
+      { name: 'Еңбекке баулу', keys: ['crafts_kz','applique_kz','weaving_kz','grain_kz'] },
+      { name: 'Дене шынықтыру', keys: ['exercise_kz','natgames_kz','jumprope_kz','ballgames_kz'] },
+      { name: 'Дүниетану', keys: ['weekdays_kz','roadsigns_kz','lecture_poznanie_kz','seasons_kz','flag_kz','emergency_kz'] },
+      { name: 'Музыка', keys: ['instruments_kz','lecture_muzyka_kz'] },
+      { name: 'Цифрлық сауаттылық', keys: ['computerdevices_kz','lecture_digital_kz'] }
+    ]
+  };
+
+  function unlockSubject(keys){
+    var data = JSON.parse(localStorage.getItem('bilim_araly_progress_v1') || '{}');
+    if(!data.games) data.games = {};
+    keys.forEach(function(k){
+      data.games[k] = { bestScore: 1, total: 1, timesPlayed: 1 };
+    });
+    localStorage.setItem('bilim_araly_progress_v1', JSON.stringify(data));
+    alert('Готово! Обнови страницу предмета на сайте — всё должно разблокироваться.');
+  }
+
+  function resetAll(){
+    if(confirm('Точно очистить весь прогресс на этом устройстве?')){
+      localStorage.removeItem('bilim_araly_progress_v1');
+      alert('Прогресс очищен.');
+    }
+  }
+
+  function renderList(containerId, list){
+    var container = document.getElementById(containerId);
+    list.forEach(function(subj){
+      var div = document.createElement('div');
+      div.className = 'subject';
+      div.innerHTML = '<div><b>' + subj.name + '</b><span>' + subj.keys.length + ' элементов</span></div>';
+      var btn = document.createElement('button');
+      btn.textContent = 'Разблокировать всё';
+      btn.addEventListener('click', function(){ unlockSubject(subj.keys); });
+      div.appendChild(btn);
+      container.appendChild(div);
+    });
+  }
+
+  renderList('ru-subjects', SUBJECTS.ru);
+  renderList('kz-subjects', SUBJECTS.kz);
+</script>
+</body>
+</html>
