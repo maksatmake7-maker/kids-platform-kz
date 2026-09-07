@@ -982,9 +982,10 @@ footer::after{
   gap:12px;
 }
 .count-btn{
-  font-family:'Baloo 2',sans-serif;
-  font-size:1.5rem;
-  font-weight:700;
+  font-family:'Nunito',sans-serif;
+  font-size:1.15rem;
+  font-weight:800;
+  letter-spacing:0.2px;
   padding:16px 0;
   border:none;
   border-radius:16px;
@@ -1001,7 +1002,7 @@ footer::after{
   grid-template-columns:repeat(2,1fr);
 }
 .count-options.word-options .count-btn{
-  font-size:1.15rem;
+  font-size:0.95rem;
   padding:14px 8px;
 }
 .count-options.stack-options{
