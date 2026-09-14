@@ -42,6 +42,9 @@
 
   .pv2-example-icon { font-size:2.6rem; display:block; text-align:center; margin-bottom:6px; }
   .pv2-progress-note { text-align:center; font-size:0.8rem; color:#8B95A3; margin-top:4px; }
+  .pv2-photo-wrap { text-align:center; margin: 8px 0 14px; }
+  .pv2-photo-wrap img { max-width:100%; max-height:220px; border-radius:18px; box-shadow:0 6px 18px rgba(29,53,87,0.18); }
+  .pv2-photo-caption { font-size:0.78rem; color:#8B95A3; margin-top:6px; }
 </style>
 </head>
 <body>
@@ -61,6 +64,35 @@
     <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
   </div>
 </header>
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="pv2GradSoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4AD78"/>
+      <stop offset="100%" stop-color="#9C7647"/>
+    </linearGradient>
+    <linearGradient id="pv2GradStem" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3D8A46"/>
+      <stop offset="50%" stop-color="#5CB068"/>
+      <stop offset="100%" stop-color="#3D8A46"/>
+    </linearGradient>
+    <radialGradient id="pv2GradLeaf" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#7FC988"/>
+      <stop offset="100%" stop-color="#4C9A55"/>
+    </radialGradient>
+    <radialGradient id="pv2GradPetal" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#FFA39A"/>
+      <stop offset="100%" stop-color="#EE6B60"/>
+    </radialGradient>
+    <radialGradient id="pv2GradCenter" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#FFD37A"/>
+      <stop offset="100%" stop-color="#E8901F"/>
+    </radialGradient>
+    <filter id="pv2SoftShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1D3557" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+</svg>
 
 <section class="game-shell">
   <a href="index.html" class="back-link" data-i18n="back_estestvo"></a>
@@ -84,25 +116,27 @@
       <div class="slide" data-slide="1">
         <h2 class="slide-title">Знакомься: растение целиком</h2>
         <div class="pv2-diagram-wrap">
-          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" style="filter:url(#pv2SoftShadow);">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="url(#pv2GradSoil)"/>
             <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
             <g class="pv2-part" id="pv2-root">
               <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
             </g>
             <g class="pv2-part" id="pv2-stem">
-              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="url(#pv2GradStem)"/>
             </g>
             <g class="pv2-part" id="pv2-leaf">
-              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
-              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(-25 70 150)"/>
+              <line x1="46" y1="150" x2="94" y2="150" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(25 130 130)"/>
+              <line x1="106" y1="130" x2="154" y2="130" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(25 130 130)"/>
             </g>
             <g class="pv2-part" id="pv2-flower">
-              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
-              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
-              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <circle cx="100" cy="70" r="13" fill="url(#pv2GradCenter)"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
             </g>
           </svg>
         </div>
@@ -114,25 +148,27 @@
       <div class="slide" data-slide="2" data-highlight="pv2-root">
         <h2 class="slide-title">Корень</h2>
         <div class="pv2-diagram-wrap">
-          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" style="filter:url(#pv2SoftShadow);">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="url(#pv2GradSoil)"/>
             <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
             <g class="pv2-part" id="pv2-root-2">
               <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
             </g>
             <g class="pv2-part" id="pv2-stem-2">
-              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="url(#pv2GradStem)"/>
             </g>
             <g class="pv2-part" id="pv2-leaf-2">
-              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
-              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(-25 70 150)"/>
+              <line x1="46" y1="150" x2="94" y2="150" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(25 130 130)"/>
+              <line x1="106" y1="130" x2="154" y2="130" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(25 130 130)"/>
             </g>
             <g class="pv2-part" id="pv2-flower-2">
-              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
-              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
-              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <circle cx="100" cy="70" r="13" fill="url(#pv2GradCenter)"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
             </g>
           </svg>
         </div>
@@ -144,25 +180,27 @@
       <div class="slide" data-slide="3" data-highlight="pv2-stem-3">
         <h2 class="slide-title">Стебель</h2>
         <div class="pv2-diagram-wrap">
-          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" style="filter:url(#pv2SoftShadow);">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="url(#pv2GradSoil)"/>
             <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
             <g class="pv2-part" id="pv2-root-3">
               <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
             </g>
             <g class="pv2-part" id="pv2-stem-3">
-              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="url(#pv2GradStem)"/>
             </g>
             <g class="pv2-part" id="pv2-leaf-3">
-              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
-              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(-25 70 150)"/>
+              <line x1="46" y1="150" x2="94" y2="150" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(25 130 130)"/>
+              <line x1="106" y1="130" x2="154" y2="130" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(25 130 130)"/>
             </g>
             <g class="pv2-part" id="pv2-flower-3">
-              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
-              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
-              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <circle cx="100" cy="70" r="13" fill="url(#pv2GradCenter)"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
             </g>
           </svg>
         </div>
@@ -174,25 +212,27 @@
       <div class="slide" data-slide="4" data-highlight="pv2-leaf-4">
         <h2 class="slide-title">Лист</h2>
         <div class="pv2-diagram-wrap">
-          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" style="filter:url(#pv2SoftShadow);">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="url(#pv2GradSoil)"/>
             <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
             <g class="pv2-part" id="pv2-root-4">
               <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
             </g>
             <g class="pv2-part" id="pv2-stem-4">
-              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="url(#pv2GradStem)"/>
             </g>
             <g class="pv2-part" id="pv2-leaf-4">
-              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
-              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(-25 70 150)"/>
+              <line x1="46" y1="150" x2="94" y2="150" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(25 130 130)"/>
+              <line x1="106" y1="130" x2="154" y2="130" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(25 130 130)"/>
             </g>
             <g class="pv2-part" id="pv2-flower-4">
-              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
-              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
-              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <circle cx="100" cy="70" r="13" fill="url(#pv2GradCenter)"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
             </g>
           </svg>
         </div>
@@ -204,25 +244,27 @@
       <div class="slide" data-slide="5" data-highlight="pv2-flower-5">
         <h2 class="slide-title">Цветок</h2>
         <div class="pv2-diagram-wrap">
-          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" style="filter:url(#pv2SoftShadow);">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="url(#pv2GradSoil)"/>
             <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
             <g class="pv2-part" id="pv2-root-5">
               <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
             </g>
             <g class="pv2-part" id="pv2-stem-5">
-              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="url(#pv2GradStem)"/>
             </g>
             <g class="pv2-part" id="pv2-leaf-5">
-              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
-              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(-25 70 150)"/>
+              <line x1="46" y1="150" x2="94" y2="150" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="url(#pv2GradLeaf)" transform="rotate(25 130 130)"/>
+              <line x1="106" y1="130" x2="154" y2="130" stroke="#2F6B38" stroke-width="1.6" opacity="0.55" stroke-linecap="round" transform="rotate(25 130 130)"/>
             </g>
             <g class="pv2-part" id="pv2-flower-5">
-              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
-              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
-              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
-              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <circle cx="100" cy="70" r="13" fill="url(#pv2GradCenter)"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="url(#pv2GradPetal)"/>
             </g>
           </svg>
         </div>
@@ -317,6 +359,30 @@
     document.querySelectorAll('.pv2-speak-btn').forEach(function(b){ b.classList.remove('pv2-speaking'); });
   }
 
+  // Выбираем лучший доступный русский голос: сначала пробуем найти
+  // голоса от Google/Microsoft Natural (обычно звучат живее системных),
+  // и только если таких нет — берём любой русский голос.
+  var pv2BestVoice = null;
+  function pv2PickBestVoice(){
+    if (!window.speechSynthesis) return null;
+    var voices = window.speechSynthesis.getVoices();
+    var ruVoices = voices.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf('ru') === 0; });
+    if (!ruVoices.length) return null;
+    var preferredNamePatterns = [/google/i, /natural/i, /online/i, /neural/i];
+    for (var p = 0; p < preferredNamePatterns.length; p++){
+      var match = ruVoices.find(function(v){ return preferredNamePatterns[p].test(v.name); });
+      if (match) return match;
+    }
+    return ruVoices[0];
+  }
+  if (window.speechSynthesis){
+    pv2BestVoice = pv2PickBestVoice();
+    // В некоторых браузерах список голосов подгружается асинхронно
+    window.speechSynthesis.onvoiceschanged = function(){
+      pv2BestVoice = pv2PickBestVoice();
+    };
+  }
+
   function applyHighlight(slideEl){
     // Гасим все части на ВСЕХ схемах, зажигаем только нужную на текущем слайде
     document.querySelectorAll('.pv2-part').forEach(function(p){ p.classList.remove('pv2-active'); });
@@ -368,6 +434,7 @@
     var utter = new SpeechSynthesisUtterance(fullText);
     utter.lang = 'ru-RU';
     utter.rate = 0.95;
+    if (pv2BestVoice) utter.voice = pv2BestVoice;
     utter.onend = function(){ btn.classList.remove('pv2-speaking'); };
     utter.onerror = function(){ btn.classList.remove('pv2-speaking'); };
     btn.classList.add('pv2-speaking');
