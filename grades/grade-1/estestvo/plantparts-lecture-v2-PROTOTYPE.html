@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок: Части растения (углублённый) — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<style>
+  /* Стили только для этого прототипа — не трогают остальной сайт */
+  .pv2-diagram-wrap { display:flex; justify-content:center; margin: 8px 0 18px; }
+  .pv2-diagram { width: 180px; height: 240px; }
+  .pv2-part { transition: opacity 0.35s ease, filter 0.35s ease; opacity: 0.28; }
+  .pv2-part.pv2-active { opacity: 1; filter: drop-shadow(0 0 10px rgba(255,193,7,0.65)); }
+  .pv2-soil { opacity: 1 !important; filter: none !important; }
+
+  .pv2-speak-btn {
+    display:inline-flex; align-items:center; gap:6px;
+    background: var(--card, #fff); border: 2px solid #1D3557;
+    color:#1D3557; font-family:'Baloo 2',sans-serif; font-weight:700;
+    padding:8px 16px; border-radius:999px; cursor:pointer; font-size:0.95rem;
+    margin: 6px auto 14px; display:flex;
+  }
+  .pv2-speak-btn:hover { background:#1D3557; color:#fff; }
+  .pv2-speak-btn.pv2-speaking { background:#F4847A; border-color:#F4847A; color:#fff; }
+
+  .pv2-quiz-options { display:flex; flex-direction:column; gap:10px; max-width:360px; margin:14px auto 0; }
+  .pv2-quiz-opt {
+    font-family:'Nunito',sans-serif; font-weight:700; font-size:1rem;
+    padding:12px 18px; border-radius:14px; border:2px solid #DCE3EA;
+    background:#F5F8FA; color:#1D3557; cursor:pointer; text-align:left;
+    transition: all 0.2s ease;
+  }
+  .pv2-quiz-opt:hover:not(:disabled) { border-color:#1D3557; }
+  .pv2-quiz-opt:disabled { cursor:default; }
+  .pv2-quiz-opt.pv2-correct { background:#DFF5E1; border-color:#3FAE5A; color:#1D6B2E; }
+  .pv2-quiz-opt.pv2-wrong { background:#FBE4E1; border-color:#E0574A; color:#8C2A20; }
+  .pv2-quiz-feedback { margin-top:14px; font-weight:800; min-height:1.4em; font-family:'Baloo 2',sans-serif; }
+  .pv2-quiz-feedback.pv2-fb-correct { color:#1D6B2E; }
+  .pv2-quiz-feedback.pv2-fb-wrong { color:#8C2A20; }
+
+  .pv2-example-icon { font-size:2.6rem; display:block; text-align:center; margin-bottom:6px; }
+  .pv2-progress-note { text-align:center; font-size:0.8rem; color:#8B95A3; margin-top:4px; }
+</style>
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<section class="game-shell">
+  <a href="index.html" class="back-link" data-i18n="back_estestvo"></a>
+
+  <div class="game-card">
+    <h1 style="text-align:center; margin-bottom:6px;">Урок: Части растения</h1>
+    <p class="game-sub" style="text-align:center;">Подробный разбор — с примерами и проверкой себя</p>
+    <p class="pv2-progress-note">🧪 Пробный формат — сравни с обычным уроком и скажи, что думаешь</p>
+
+    <div class="slide-deck" id="slide-deck">
+
+      <!-- Слайд 1 — вступление -->
+      <div class="slide active" data-slide="0">
+        <span class="slide-icon">🐆</span>
+        <h2 class="slide-title">Части растения: подробный урок</h2>
+        <p class="slide-text">Барыс приготовил для тебя большой урок! Сегодня разберём растение по кусочкам, увидим настоящие примеры и проверим себя по пути. Готов начать большое путешествие?</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 2 — общая схема -->
+      <div class="slide" data-slide="1">
+        <h2 class="slide-title">Знакомься: растение целиком</h2>
+        <div class="pv2-diagram-wrap">
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+            <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
+            <g class="pv2-part" id="pv2-root">
+              <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+            <g class="pv2-part" id="pv2-stem">
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+            </g>
+            <g class="pv2-part" id="pv2-leaf">
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+            </g>
+            <g class="pv2-part" id="pv2-flower">
+              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+            </g>
+          </svg>
+        </div>
+        <p class="slide-text">Вот как устроено растение. У него есть четыре главные части: корень, стебель, лист и цветок. Дальше разберём каждую по очереди — а на схеме будет подсвечиваться именно та часть, о которой говорим.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 3 — корень -->
+      <div class="slide" data-slide="2" data-highlight="pv2-root">
+        <h2 class="slide-title">Корень</h2>
+        <div class="pv2-diagram-wrap">
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+            <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
+            <g class="pv2-part" id="pv2-root-2">
+              <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+            <g class="pv2-part" id="pv2-stem-2">
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+            </g>
+            <g class="pv2-part" id="pv2-leaf-2">
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+            </g>
+            <g class="pv2-part" id="pv2-flower-2">
+              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+            </g>
+          </svg>
+        </div>
+        <p class="slide-text">Корень прячется под землёй. Он крепко держит растение и пьёт для него воду из почвы, как соломинка.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 4 — стебель -->
+      <div class="slide" data-slide="3" data-highlight="pv2-stem-3">
+        <h2 class="slide-title">Стебель</h2>
+        <div class="pv2-diagram-wrap">
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+            <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
+            <g class="pv2-part" id="pv2-root-3">
+              <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+            <g class="pv2-part" id="pv2-stem-3">
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+            </g>
+            <g class="pv2-part" id="pv2-leaf-3">
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+            </g>
+            <g class="pv2-part" id="pv2-flower-3">
+              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+            </g>
+          </svg>
+        </div>
+        <p class="slide-text">Стебель — как мостик между корнем и остальным растением. Он держит растение прямо и несёт воду наверх, к листьям.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 5 — лист -->
+      <div class="slide" data-slide="4" data-highlight="pv2-leaf-4">
+        <h2 class="slide-title">Лист</h2>
+        <div class="pv2-diagram-wrap">
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+            <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
+            <g class="pv2-part" id="pv2-root-4">
+              <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+            <g class="pv2-part" id="pv2-stem-4">
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+            </g>
+            <g class="pv2-part" id="pv2-leaf-4">
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+            </g>
+            <g class="pv2-part" id="pv2-flower-4">
+              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+            </g>
+          </svg>
+        </div>
+        <p class="slide-text">Листья ловят солнечный свет, как маленькие солнечные батарейки. Это помогает растению делать себе еду и расти.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 6 — цветок -->
+      <div class="slide" data-slide="5" data-highlight="pv2-flower-5">
+        <h2 class="slide-title">Цветок</h2>
+        <div class="pv2-diagram-wrap">
+          <svg class="pv2-diagram" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <rect class="pv2-soil" x="0" y="200" width="200" height="60" fill="#C8A165"/>
+            <line class="pv2-soil" x1="0" y1="200" x2="200" y2="200" stroke="#8a6a3f" stroke-width="2"/>
+            <g class="pv2-part" id="pv2-root-5">
+              <path d="M100 200 Q80 225 60 235 M100 200 Q120 225 140 235 M100 200 Q95 230 90 250 M100 200 Q105 230 112 250" stroke="#8a5a2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+            <g class="pv2-part" id="pv2-stem-5">
+              <rect x="95" y="90" width="10" height="110" rx="4" fill="#4C9A55"/>
+            </g>
+            <g class="pv2-part" id="pv2-leaf-5">
+              <ellipse cx="70" cy="150" rx="26" ry="14" fill="#63B36A" transform="rotate(-25 70 150)"/>
+              <ellipse cx="130" cy="130" rx="26" ry="14" fill="#63B36A" transform="rotate(25 130 130)"/>
+            </g>
+            <g class="pv2-part" id="pv2-flower-5">
+              <circle cx="100" cy="70" r="13" fill="#F2A03D"/>
+              <ellipse cx="100" cy="45" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="100" cy="95" rx="11" ry="17" fill="#F4847A"/>
+              <ellipse cx="75" cy="70" rx="17" ry="11" fill="#F4847A"/>
+              <ellipse cx="125" cy="70" rx="17" ry="11" fill="#F4847A"/>
+            </g>
+          </svg>
+        </div>
+        <p class="slide-text">Цветок — самая яркая часть. Со временем на его месте появляется плод, а внутри плода прячутся семена — из них могут вырасти новые растения.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 7 — пример яблоня -->
+      <div class="slide" data-slide="6">
+        <span class="pv2-example-icon">🍎</span>
+        <h2 class="slide-title">Пример: яблоня</h2>
+        <p class="slide-text">У яблони корень держится в земле сада. Толстый ствол — это стебель. Зелёные листья ловят солнце. А из цветов яблони появляются настоящие яблоки — это её плоды!</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 8 — пример подсолнух -->
+      <div class="slide" data-slide="7">
+        <span class="pv2-example-icon">🌻</span>
+        <h2 class="slide-title">Пример: подсолнух</h2>
+        <p class="slide-text">У подсолнуха тоже есть корень, стебель, листья и цветок — только цветок огромный и жёлтый! Кстати, подсолнух умеет поворачивать цветок вслед за солнцем в течение дня.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 9 — проверка 1 -->
+      <div class="slide" data-slide="8">
+        <span class="slide-icon">❓</span>
+        <h2 class="slide-title">Проверь себя!</h2>
+        <p class="slide-text">Какая часть растения пьёт воду из земли?</p>
+        <div class="pv2-quiz-options" id="pv2-quiz-1">
+          <button class="pv2-quiz-opt" onclick="pv2CheckQuiz(this, false, 'pv2-fb-1', 'Не совсем. Воду из земли пьёт корень.')">Лист</button>
+          <button class="pv2-quiz-opt" onclick="pv2CheckQuiz(this, true, 'pv2-fb-1', 'Верно! Корень пьёт воду из почвы для всего растения.')">Корень</button>
+          <button class="pv2-quiz-opt" onclick="pv2CheckQuiz(this, false, 'pv2-fb-1', 'Не совсем. Воду из земли пьёт корень.')">Цветок</button>
+        </div>
+        <p class="pv2-quiz-feedback" id="pv2-fb-1"></p>
+      </div>
+
+      <!-- Слайд 10 — проверка 2 -->
+      <div class="slide" data-slide="9">
+        <span class="slide-icon">❓</span>
+        <h2 class="slide-title">Проверь себя ещё раз!</h2>
+        <p class="slide-text">Что происходит с цветком, когда проходит время?</p>
+        <div class="pv2-quiz-options" id="pv2-quiz-2">
+          <button class="pv2-quiz-opt" onclick="pv2CheckQuiz(this, true, 'pv2-fb-2', 'Точно! Цветок со временем становится плодом с семенами внутри.')">Превращается в плод с семенами</button>
+          <button class="pv2-quiz-opt" onclick="pv2CheckQuiz(this, false, 'pv2-fb-2', 'Почти! На самом деле цветок со временем превращается в плод.')">Превращается в корень</button>
+          <button class="pv2-quiz-opt" onclick="pv2CheckQuiz(this, false, 'pv2-fb-2', 'Почти! На самом деле цветок со временем превращается в плод.')">Превращается в лист</button>
+        </div>
+        <p class="pv2-quiz-feedback" id="pv2-fb-2"></p>
+      </div>
+
+      <!-- Слайд 11 — интересный факт -->
+      <div class="slide" data-slide="10">
+        <span class="pv2-example-icon">🥕</span>
+        <h2 class="slide-title">А ты знал?</h2>
+        <p class="slide-text">Морковь, которую ты ешь, — это на самом деле корень! Она выросла под землёй и накопила там много вкусных веществ для растения.</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+      <!-- Слайд 12 — итог -->
+      <div class="slide" data-slide="11">
+        <span class="slide-icon">⭐</span>
+        <h2 class="slide-title">Ты прошёл большой урок!</h2>
+        <p class="slide-text">Барыс гордится тобой — теперь ты знаешь части растения намного лучше: корень, стебель, лист, цветок, и даже видел настоящие примеры! Готов проверить себя в игре?</p>
+        <button class="pv2-speak-btn" onclick="pv2Speak(this)">🔊 Слушать</button>
+      </div>
+
+    </div>
+
+    <div class="slide-nav">
+      <button class="slide-nav-btn" id="prev-btn" onclick="prevSlide()" aria-label="Previous">←</button>
+      <span class="slide-counter" id="slide-counter">1 / 12</span>
+      <button class="slide-nav-btn" id="next-btn" onclick="nextSlide()" aria-label="Next">→</button>
+    </div>
+
+    <div class="explain-actions" style="margin-top:22px;">
+      <a href="plantparts.html" class="speak-btn video-done-btn" style="text-decoration:none; display:inline-block;">Играть →</a>
+    </div>
+  </div>
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script>
+(function(){
+  var current = 0;
+  var slides = document.querySelectorAll('#slide-deck .slide');
+  var total = slides.length;
+
+  function stopSpeech(){
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    document.querySelectorAll('.pv2-speak-btn').forEach(function(b){ b.classList.remove('pv2-speaking'); });
+  }
+
+  function applyHighlight(slideEl){
+    // Гасим все части на ВСЕХ схемах, зажигаем только нужную на текущем слайде
+    document.querySelectorAll('.pv2-part').forEach(function(p){ p.classList.remove('pv2-active'); });
+    var targetId = slideEl.getAttribute('data-highlight');
+    if (targetId){
+      var el = document.getElementById(targetId);
+      if (el) el.classList.add('pv2-active');
+    } else {
+      // Слайд с общей схемой (без выделения) — показываем все части одинаково ярко
+      var svg = slideEl.querySelector('svg');
+      if (svg) svg.querySelectorAll('.pv2-part').forEach(function(p){ p.classList.add('pv2-active'); });
+    }
+  }
+
+  function render(){
+    stopSpeech();
+    slides.forEach(function(s, i){
+      s.classList.toggle('active', i === current);
+    });
+    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('prev-btn').disabled = (current === 0);
+    document.getElementById('next-btn').disabled = (current === total - 1);
+    applyHighlight(slides[current]);
+  }
+
+  window.nextSlide = function(){
+    if (current < total - 1){ current++; render(); }
+  };
+  window.prevSlide = function(){
+    if (current > 0){ current--; render(); }
+  };
+
+  // Озвучка слайда через встроенный синтез речи браузера
+  window.pv2Speak = function(btn){
+    if (!window.speechSynthesis){
+      alert('Озвучка не поддерживается в этом браузере.');
+      return;
+    }
+    var slide = btn.closest('.slide');
+    var title = slide.querySelector('.slide-title');
+    var text = slide.querySelector('.slide-text');
+    var fullText = (title ? title.textContent + '. ' : '') + (text ? text.textContent : '');
+
+    if (btn.classList.contains('pv2-speaking')){
+      stopSpeech();
+      return;
+    }
+    stopSpeech();
+    var utter = new SpeechSynthesisUtterance(fullText);
+    utter.lang = 'ru-RU';
+    utter.rate = 0.95;
+    utter.onend = function(){ btn.classList.remove('pv2-speaking'); };
+    utter.onerror = function(){ btn.classList.remove('pv2-speaking'); };
+    btn.classList.add('pv2-speaking');
+    window.speechSynthesis.speak(utter);
+  };
+
+  // Проверка ответа в мини-вопросе
+  window.pv2CheckQuiz = function(btn, isCorrect, feedbackId, feedbackText){
+    var group = btn.parentElement;
+    var buttons = group.querySelectorAll('.pv2-quiz-opt');
+    buttons.forEach(function(b){ b.disabled = true; });
+    btn.classList.add(isCorrect ? 'pv2-correct' : 'pv2-wrong');
+    var fb = document.getElementById(feedbackId);
+    fb.textContent = feedbackText;
+    fb.className = 'pv2-quiz-feedback ' + (isCorrect ? 'pv2-fb-correct' : 'pv2-fb-wrong');
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
