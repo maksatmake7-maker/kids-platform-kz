@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тренажёр: Сложение (бесконечный) — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<style>
+  .am-note { text-align:center; font-size:0.8rem; color:#8B95A3; margin-top:4px; margin-bottom:10px; }
+
+  .am-level-badge {
+    display:inline-block; margin: 0 auto 16px; padding:6px 16px; border-radius:999px;
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:0.85rem;
+    background:#EAF3EA; color:#2E7D3A;
+  }
+  .am-level-wrap { text-align:center; }
+  .am-level-badge.am-level-2 { background:#FFF3D6; color:#A6710B; }
+  .am-level-badge.am-level-3 { background:#FDE3E0; color:#B8402F; }
+
+  .am-streak-wrap { display:flex; justify-content:center; gap:10px; margin: 4px 0 22px; }
+  .am-streak-dot {
+    width:26px; height:26px; border-radius:50%; background:#E5EAF0;
+    display:flex; align-items:center; justify-content:center; font-size:0.95rem;
+    transition: all 0.3s ease; transform: scale(1);
+  }
+  .am-streak-dot.am-filled { background:#FFD54A; transform: scale(1.15); }
+  .am-streak-dot.am-pop { animation: amPop 0.4s ease; }
+  @keyframes amPop { 0%{transform:scale(1);} 50%{transform:scale(1.4);} 100%{transform:scale(1.15);} }
+
+  .am-problem {
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:2.6rem; color:#1D3557;
+    margin: 10px 0 26px;
+  }
+  .am-problem .am-num { min-width:56px; text-align:center; }
+  .am-problem .am-op { color:#F2A03D; }
+
+  .am-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:340px; margin:0 auto; }
+  .am-opt {
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.5rem;
+    padding:16px 0; border-radius:16px; border:2px solid #DCE3EA;
+    background:#F5F8FA; color:#1D3557; cursor:pointer; transition: all 0.2s ease;
+  }
+  .am-opt:hover:not(:disabled) { border-color:#1D3557; }
+  .am-opt:disabled { cursor:default; }
+  .am-opt.am-correct { background:#DFF5E1; border-color:#3FAE5A; color:#1D6B2E; }
+  .am-opt.am-wrong { background:#FBE4E1; border-color:#E0574A; color:#8C2A20; }
+
+  .am-feedback { text-align:center; font-weight:800; min-height:1.6em; margin-top:16px; font-family:'Baloo 2',sans-serif; font-size:1.05rem; }
+  .am-feedback.am-fb-correct { color:#1D6B2E; }
+  .am-feedback.am-fb-wrong { color:#8C2A20; }
+
+  .am-mastery { text-align:center; }
+  .am-mastery .am-trophy { font-size:4rem; display:block; margin-bottom:10px; }
+  .am-mastery h2 { font-family:'Baloo 2',sans-serif; color:#1D3557; margin-bottom:8px; }
+  .am-mastery p { color:#5C6B7A; margin-bottom:20px; }
+  .am-mastery-stats { display:flex; justify-content:center; gap:24px; margin-bottom:22px; }
+  .am-mastery-stat { text-align:center; }
+  .am-mastery-stat .am-stat-num { font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.6rem; color:#1D3557; display:block; }
+  .am-mastery-stat .am-stat-label { font-size:0.78rem; color:#8B95A3; }
+  .am-again-btn {
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:1rem;
+    background:#1D3557; color:#fff; border:none; border-radius:999px;
+    padding:12px 28px; cursor:pointer;
+  }
+  .am-again-btn:hover { background:#16283F; }
+</style>
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<section class="game-shell">
+  <a href="index.html" class="back-link" data-i18n="back_math"></a>
+
+  <div class="game-card">
+    <h1 style="text-align:center; margin-bottom:6px;">Тренажёр: Сложение</h1>
+    <p class="game-sub" style="text-align:center;">Примеры никогда не кончаются — отвечай верно 5 раз подряд, чтобы освоить тему</p>
+    <p class="am-note">🧪 Пробный формат — как у Khan Academy: бесконечная генерация + счётчик «в ударе»</p>
+
+    <div id="am-practice-view">
+      <div class="am-level-wrap">
+        <span class="am-level-badge" id="am-level-badge">Лёгкий уровень</span>
+      </div>
+
+      <div class="am-streak-wrap" id="am-streak-wrap"></div>
+
+      <div class="am-problem" id="am-problem"></div>
+
+      <div class="am-options" id="am-options"></div>
+
+      <p class="am-feedback" id="am-feedback"></p>
+    </div>
+
+    <div id="am-mastery-view" class="am-mastery" style="display:none;">
+      <span class="am-trophy">🏆</span>
+      <h2>Тема освоена!</h2>
+      <p>Барыс гордится тобой — ты ответил верно 5 раз подряд!</p>
+      <div class="am-mastery-stats">
+        <div class="am-mastery-stat">
+          <span class="am-stat-num" id="am-stat-total">0</span>
+          <span class="am-stat-label">всего примеров</span>
+        </div>
+        <div class="am-mastery-stat">
+          <span class="am-stat-num" id="am-stat-mistakes">0</span>
+          <span class="am-stat-label">ошибок по пути</span>
+        </div>
+      </div>
+      <button class="am-again-btn" onclick="amRestart()">Тренироваться ещё раз</button>
+    </div>
+  </div>
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script>
+(function(){
+  var STREAK_NEEDED = 5;
+  var streak = 0;
+  var totalAnswered = 0;
+  var totalMistakes = 0;
+  var currentAnswer = 0;
+  var busy = false; // блокируем клики, пока идёт переход к следующему примеру
+
+  var encourageMessages = [
+    "Отлично!", "Так держать!", "Верно!", "Супер!", "Ты в ударе!"
+  ];
+
+  function pickRange(){
+    // Сложность растёт вместе со «стриком» — чем больше подряд верных, тем крупнее числа.
+    if (streak <= 1) return { min: 1, max: 4, level: 1 };
+    if (streak <= 3) return { min: 1, max: 7, level: 2 };
+    return { min: 1, max: 9, level: 3 };
+  }
+
+  function updateLevelBadge(level){
+    var badge = document.getElementById('am-level-badge');
+    badge.classList.remove('am-level-2', 'am-level-3');
+    if (level === 1){ badge.textContent = 'Лёгкий уровень'; }
+    else if (level === 2){ badge.textContent = 'Средний уровень'; badge.classList.add('am-level-2'); }
+    else { badge.textContent = 'Уверенный уровень'; badge.classList.add('am-level-3'); }
+  }
+
+  function renderStreakDots(justFilled){
+    var wrap = document.getElementById('am-streak-wrap');
+    wrap.innerHTML = '';
+    for (var i = 0; i < STREAK_NEEDED; i++){
+      var dot = document.createElement('span');
+      dot.className = 'am-streak-dot';
+      if (i < streak){
+        dot.classList.add('am-filled');
+        dot.textContent = '★';
+        if (justFilled && i === streak - 1) dot.classList.add('am-pop');
+      }
+      wrap.appendChild(dot);
+    }
+  }
+
+  function generateProblem(){
+    var range = pickRange();
+    updateLevelBadge(range.level);
+    var a = range.min + Math.floor(Math.random() * (range.max - range.min + 1));
+    var b = range.min + Math.floor(Math.random() * (range.max - range.min + 1));
+    currentAnswer = a + b;
+
+    document.getElementById('am-problem').innerHTML =
+      '<span class="am-num">' + a + '</span>' +
+      '<span class="am-op">+</span>' +
+      '<span class="am-num">' + b + '</span>' +
+      '<span class="am-op">=</span>' +
+      '<span class="am-num">?</span>';
+
+    var options = [currentAnswer];
+    var attempts = 0;
+    while (options.length < 4 && attempts < 30){
+      attempts++;
+      var delta = [1,-1,2,-2,3,-3][Math.floor(Math.random()*6)];
+      var candidate = currentAnswer + delta;
+      if (candidate >= 0 && options.indexOf(candidate) === -1){
+        options.push(candidate);
+      }
+    }
+    // перемешиваем
+    for (var j = options.length - 1; j > 0; j--){
+      var k = Math.floor(Math.random() * (j + 1));
+      var tmp = options[j]; options[j] = options[k]; options[k] = tmp;
+    }
+
+    var optWrap = document.getElementById('am-options');
+    optWrap.innerHTML = '';
+    options.forEach(function(val){
+      var btn = document.createElement('button');
+      btn.className = 'am-opt';
+      btn.textContent = val;
+      btn.addEventListener('click', function(){ checkAnswer(val, btn); });
+      optWrap.appendChild(btn);
+    });
+
+    document.getElementById('am-feedback').textContent = '';
+    document.getElementById('am-feedback').className = 'am-feedback';
+    busy = false;
+  }
+
+  function checkAnswer(value, btn){
+    if (busy) return;
+    busy = true;
+    totalAnswered++;
+    var allBtns = document.querySelectorAll('.am-opt');
+    allBtns.forEach(function(b){ b.disabled = true; });
+
+    var fb = document.getElementById('am-feedback');
+
+    if (value === currentAnswer){
+      btn.classList.add('am-correct');
+      streak++;
+      renderStreakDots(true);
+      fb.textContent = encourageMessages[Math.min(streak - 1, encourageMessages.length - 1)];
+      fb.className = 'am-feedback am-fb-correct';
+
+      if (streak >= STREAK_NEEDED){
+        setTimeout(showMastery, 700);
+      } else {
+        setTimeout(generateProblem, 900);
+      }
+    } else {
+      btn.classList.add('am-wrong');
+      totalMistakes++;
+      streak = 0;
+      renderStreakDots(false);
+      fb.textContent = 'Не страшно — правильный ответ: ' + currentAnswer + '. Пробуем следующий!';
+      fb.className = 'am-feedback am-fb-wrong';
+      setTimeout(generateProblem, 1400);
+    }
+  }
+
+  function showMastery(){
+    document.getElementById('am-practice-view').style.display = 'none';
+    document.getElementById('am-mastery-view').style.display = 'block';
+    document.getElementById('am-stat-total').textContent = totalAnswered;
+    document.getElementById('am-stat-mistakes').textContent = totalMistakes;
+  }
+
+  window.amRestart = function(){
+    streak = 0; totalAnswered = 0; totalMistakes = 0;
+    document.getElementById('am-mastery-view').style.display = 'none';
+    document.getElementById('am-practice-view').style.display = 'block';
+    renderStreakDots(false);
+    generateProblem();
+  };
+
+  renderStreakDots(false);
+  generateProblem();
+})();
+</script>
+</body>
+</html>
