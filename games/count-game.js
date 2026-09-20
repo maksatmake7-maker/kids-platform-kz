@@ -1,16 +1,16 @@
-/* ===== Білім Аралы — игра "Отними и узнай" (v2 — бесконечный режим) =====
-   Математика, 1 класс, тема "Вычитание".
-   Визуальная механика "гаснущих" картинок сохранена как была: показываем
-   все предметы, последние b штук "гаснут" — наглядно видно, что осталось.
+/* ===== Білім Аралы — игра "Посчитай и узнай" (v2 — бесконечный режим) =====
+   Математика, 1 класс, тема "Счёт".
+   Показываем случайное количество предметов, ребёнок считает и выбирает число.
    Числа никогда не заканчиваются; чтобы "освоить" тему — нужно ответить
    верно 10 раз ПОДРЯД. Ошибка сбрасывает серию, но не прерывает игру.
-   Использование: initSubtractionGame('game-root') — subtract.html не трогать.
+   Сложность (сколько предметов показываем) растёт вместе с серией.
+   Использование: initCountGame('game-root') — страницу count.html трогать не нужно.
 */
-function initSubtractionGame(containerId){
+function initCountGame(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
-  var EMOJIS = ['🍎','⭐','🐻','🎈','🐟','🌸','🦋','🍓'];
+  var EMOJIS = ['🍎','⭐','🐻','🎈','🐟','🌸','🦋','🍓','🐝','🍊'];
   var STREAK_NEEDED = 10;
   var streak = 0;
   var totalCorrect = 0;
@@ -18,17 +18,15 @@ function initSubtractionGame(containerId){
   var currentAnswer = 0;
   var busy = false;
 
-  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
     return (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
   }
 
-  function objectsHtml(n, emoji, crossedCount){
+  function objectsHtml(n, emoji){
     var h = '';
     for(var i=0; i<n; i++){
-      var crossed = i >= (n - crossedCount);
-      h += '<span class="count-obj' + (crossed ? ' crossed-obj' : '') + '" style="animation-delay:' + (i*0.06) + 's">' + emoji + '</span>';
+      h += '<span class="count-obj" style="animation-delay:' + (i*0.06) + 's">' + emoji + '</span>';
     }
     return h;
   }
@@ -43,18 +41,16 @@ function initSubtractionGame(containerId){
   }
 
   function pickRange(){
-    // range задаёт диапазон уменьшаемого (a); вычитаемое (b) всегда меньше a
-    if (streak <= 1) return { min: 2, max: 5 };
-    if (streak <= 4) return { min: 3, max: 7 };
+    if (streak <= 1) return { min: 2, max: 4 };
+    if (streak <= 4) return { min: 3, max: 6 };
     return { min: 4, max: 9 };
   }
 
   function render(){
     var range = pickRange();
-    var a = range.min + Math.floor(Math.random()*(range.max - range.min + 1));
-    var b = 1 + Math.floor(Math.random()*(a-1)); // 1..a-1, результат всегда >= 1
-    currentAnswer = a - b;
-    var emoji = pick(EMOJIS);
+    var n = range.min + Math.floor(Math.random()*(range.max - range.min + 1));
+    var emoji = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    currentAnswer = n;
     updateProgress();
 
     var m = msgs();
@@ -62,9 +58,9 @@ function initSubtractionGame(containerId){
     var attempts = 0;
     while(options.length < 4 && attempts < 30){
       attempts++;
-      var delta = [1,-1,2,-2,3,-3][Math.floor(Math.random()*6)];
+      var delta = [1,-1,2,-2][Math.floor(Math.random()*4)];
       var candidate = currentAnswer + delta;
-      if(candidate >= 0 && options.indexOf(candidate) === -1){
+      if(candidate > 0 && options.indexOf(candidate) === -1){
         options.push(candidate);
       }
     }
@@ -78,13 +74,7 @@ function initSubtractionGame(containerId){
     }).join('');
 
     root.innerHTML =
-      '<div class="add-row">' +
-        '<div class="add-group">' + objectsHtml(a, emoji, b) + '</div>' +
-        '<span class="add-op">−</span>' +
-        '<span class="add-op">' + b + '</span>' +
-        '<span class="add-op">=</span>' +
-        '<span class="add-op">?</span>' +
-      '</div>' +
+      '<div class="count-row"><div class="add-group">' + objectsHtml(n, emoji) + '</div></div>' +
       '<div class="count-options">' + optionsHtml + '</div>' +
       '<div class="count-feedback" id="count-feedback"></div>';
 
@@ -98,7 +88,7 @@ function initSubtractionGame(containerId){
   }
 
   function renderFinish(){
-    recordGameResult('subtract', STREAK_NEEDED, STREAK_NEEDED);
+    recordGameResult('count', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +

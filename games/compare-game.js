@@ -1,12 +1,11 @@
-/* ===== Білім Аралы — игра "Отними и узнай" (v2 — бесконечный режим) =====
-   Математика, 1 класс, тема "Вычитание".
-   Визуальная механика "гаснущих" картинок сохранена как была: показываем
-   все предметы, последние b штук "гаснут" — наглядно видно, что осталось.
+/* ===== Білім Аралы — игра "Сравни числа" (v2 — бесконечный режим) =====
+   Математика, 1 класс, тема "Сравнение".
+   Показываем две группы предметов, ребёнок выбирает знак: >, < или =.
    Числа никогда не заканчиваются; чтобы "освоить" тему — нужно ответить
    верно 10 раз ПОДРЯД. Ошибка сбрасывает серию, но не прерывает игру.
-   Использование: initSubtractionGame('game-root') — subtract.html не трогать.
+   Использование: initCompareGame('game-root') — compare.html не трогать.
 */
-function initSubtractionGame(containerId){
+function initCompareGame(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
@@ -15,20 +14,18 @@ function initSubtractionGame(containerId){
   var streak = 0;
   var totalCorrect = 0;
   var totalAnswered = 0;
-  var currentAnswer = 0;
+  var currentSign = '=';
   var busy = false;
 
-  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
     return (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
   }
 
-  function objectsHtml(n, emoji, crossedCount){
+  function objectsHtml(n, emoji){
     var h = '';
     for(var i=0; i<n; i++){
-      var crossed = i >= (n - crossedCount);
-      h += '<span class="count-obj' + (crossed ? ' crossed-obj' : '') + '" style="animation-delay:' + (i*0.06) + 's">' + emoji + '</span>';
+      h += '<span class="count-obj" style="animation-delay:' + (i*0.06) + 's">' + emoji + '</span>';
     }
     return h;
   }
@@ -43,62 +40,50 @@ function initSubtractionGame(containerId){
   }
 
   function pickRange(){
-    // range задаёт диапазон уменьшаемого (a); вычитаемое (b) всегда меньше a
-    if (streak <= 1) return { min: 2, max: 5 };
-    if (streak <= 4) return { min: 3, max: 7 };
-    return { min: 4, max: 9 };
+    if (streak <= 1) return { min: 1, max: 4 };
+    if (streak <= 4) return { min: 2, max: 6 };
+    return { min: 3, max: 9 };
   }
 
   function render(){
     var range = pickRange();
     var a = range.min + Math.floor(Math.random()*(range.max - range.min + 1));
-    var b = 1 + Math.floor(Math.random()*(a-1)); // 1..a-1, результат всегда >= 1
-    currentAnswer = a - b;
-    var emoji = pick(EMOJIS);
+    var b;
+    if (Math.random() < 0.3){
+      b = a; // специально даём случай равенства, иначе он выпадал бы редко
+    } else {
+      b = range.min + Math.floor(Math.random()*(range.max - range.min + 1));
+    }
+    currentSign = a > b ? '>' : (a < b ? '<' : '=');
     updateProgress();
 
-    var m = msgs();
-    var options = [currentAnswer];
-    var attempts = 0;
-    while(options.length < 4 && attempts < 30){
-      attempts++;
-      var delta = [1,-1,2,-2,3,-3][Math.floor(Math.random()*6)];
-      var candidate = currentAnswer + delta;
-      if(candidate >= 0 && options.indexOf(candidate) === -1){
-        options.push(candidate);
-      }
-    }
-    for(var j=options.length-1; j>0; j--){
-      var k = Math.floor(Math.random()*(j+1));
-      var tmp = options[j]; options[j]=options[k]; options[k]=tmp;
-    }
-
-    var optionsHtml = options.map(function(o){
-      return '<button class="count-btn" data-value="' + o + '">' + o + '</button>';
-    }).join('');
+    var emojiA = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    var emojiB = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
 
     root.innerHTML =
       '<div class="add-row">' +
-        '<div class="add-group">' + objectsHtml(a, emoji, b) + '</div>' +
-        '<span class="add-op">−</span>' +
-        '<span class="add-op">' + b + '</span>' +
-        '<span class="add-op">=</span>' +
+        '<div class="add-group">' + objectsHtml(a, emojiA) + '</div>' +
         '<span class="add-op">?</span>' +
+        '<div class="add-group">' + objectsHtml(b, emojiB) + '</div>' +
       '</div>' +
-      '<div class="count-options">' + optionsHtml + '</div>' +
+      '<div class="count-options">' +
+        '<button class="count-btn" data-value="&gt;">&gt;</button>' +
+        '<button class="count-btn" data-value="&lt;">&lt;</button>' +
+        '<button class="count-btn" data-value="=">=</button>' +
+      '</div>' +
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.count-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
         if(busy) return;
-        checkAnswer(parseInt(btn.getAttribute('data-value'),10), btn);
+        checkAnswer(btn.getAttribute('data-value'), btn);
       });
     });
     busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('subtract', STREAK_NEEDED, STREAK_NEEDED);
+    recordGameResult('compare', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
@@ -121,7 +106,7 @@ function initSubtractionGame(containerId){
     var m = msgs();
     root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
 
-    if(value === currentAnswer){
+    if(value === currentSign){
       totalCorrect++;
       streak++;
       updateScore();
