@@ -91,8 +91,6 @@
 
   <div class="game-card">
     <h1 style="text-align:center; margin-bottom:6px;">Тренажёр: Сложение</h1>
-    <p class="game-sub" style="text-align:center;">Примеры никогда не кончаются — отвечай верно 5 раз подряд, чтобы освоить тему</p>
-    <p class="am-note">🧪 Пробный формат — как у Khan Academy: бесконечная генерация + счётчик «в ударе»</p>
 
     <div id="am-practice-view">
       <div class="am-level-wrap">
@@ -133,7 +131,7 @@
 <script src="../../../assets/progress.js"></script>
 <script>
 (function(){
-  var STREAK_NEEDED = 5;
+  var STREAK_NEEDED = 10;
   var streak = 0;
   var totalAnswered = 0;
   var totalMistakes = 0;
@@ -141,13 +139,14 @@
   var busy = false; // блокируем клики, пока идёт переход к следующему примеру
 
   var encourageMessages = [
-    "Отлично!", "Так держать!", "Верно!", "Супер!", "Ты в ударе!"
+    "Отлично!", "Так держать!", "Верно!", "Супер!", "Ты в ударе!",
+    "Ещё немного!", "Красота!", "Почти у цели!", "Невероятно!", "Ты мастер!"
   ];
 
   function pickRange(){
     // Сложность растёт вместе со «стриком» — чем больше подряд верных, тем крупнее числа.
     if (streak <= 1) return { min: 1, max: 4, level: 1 };
-    if (streak <= 3) return { min: 1, max: 7, level: 2 };
+    if (streak <= 4) return { min: 1, max: 7, level: 2 };
     return { min: 1, max: 9, level: 3 };
   }
 
