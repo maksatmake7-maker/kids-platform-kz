@@ -1,10 +1,13 @@
-/* ===== Білім Аралы — игра "Найди линию" =====
+/* ===== Білім Аралы — игра "Найди линию" (v2 — режим освоения) =====
    Математика, 1 класс, по программе (приложение 26, цель 1.3.1.1):
    "распознавать и называть геометрические фигуры: точка, прямая,
    кривая, ломаная, замкнутая и незамкнутая линии, отрезок, луч, угол".
    Показываем название, ребёнок находит подходящую SVG-иконку среди 4.
-   Сессия = ровно один проход по всем понятиям (без повторов).
-   Использование: initShapesGame('game-root') после загрузки DOM.
+   Понятий всего 7 — они не заканчиваются, а случайно повторяются;
+   чтобы "освоить" тему, нужно ответить верно 10 раз ПОДРЯД (без повтора
+   одного и того же понятия два раза подряд). Ошибка сбрасывает серию,
+   но не прерывает игру — сразу следующий вопрос.
+   Использование: initShapesGame('game-root') — shapes.html не трогать.
 */
 function initShapesGame(containerId){
   var root = document.getElementById(containerId);
@@ -51,26 +54,13 @@ function initShapesGame(containerId){
     }]
   ];
 
-  var ROUND_SIZE = SHAPES.length;
-  var ROUNDS = Math.ceil(15 / ROUND_SIZE);
-  var TOTAL = ROUND_SIZE * ROUNDS;
-  var score = 0;
-  var questionIndex = 0;
+  var STREAK_NEEDED = 10;
+  var streak = 0;
+  var totalCorrect = 0;
+  var totalAnswered = 0;
   var currentAnswer = null;
-
-  var queue = [];
-  function buildQueue(){
-    queue = [];
-    for(var r=0; r<ROUNDS; r++){
-      var pass = SHAPES.slice();
-      for(var i=pass.length-1; i>0; i--){
-        var j = Math.floor(Math.random()*(i+1));
-        var tmp = pass[i]; pass[i]=pass[j]; pass[j]=tmp;
-      }
-      queue = queue.concat(pass);
-    }
-  }
-  function nextShape(){ return queue.pop(); }
+  var lastKey = null;
+  var busy = false;
 
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -78,20 +68,28 @@ function initShapesGame(containerId){
   }
   function updateProgress(){
     var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
+    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
   }
   function updateScore(){
     var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
+    if(el) el.textContent = totalCorrect;
+  }
+
+  function pickShape(){
+    var candidate;
+    var attempts = 0;
+    do {
+      candidate = SHAPES[Math.floor(Math.random()*SHAPES.length)];
+      attempts++;
+    } while (candidate[0] === lastKey && attempts < 10);
+    lastKey = candidate[0];
+    return candidate;
   }
 
   function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
-
     var m = msgs();
-    currentAnswer = nextShape();
+    currentAnswer = pickShape();
 
     var options = [currentAnswer];
     var pool = SHAPES.filter(function(s){ return s[0] !== currentAnswer[0]; });
@@ -115,48 +113,60 @@ function initShapesGame(containerId){
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.shape-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(btn.getAttribute('data-key'), btn); });
+      btn.addEventListener('click', function(){
+        if(busy) return;
+        checkAnswer(btn.getAttribute('data-key'), btn);
+      });
     });
+    busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('shapes', score, TOTAL);
+    recordGameResult('shapes', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
         '<div class="finish-emoji">🏆</div>' +
         '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
+        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
         '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
       '</div>';
     document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
+      streak = 0; totalCorrect = 0; totalAnswered = 0; lastKey = null;
       updateScore();
-      buildQueue();
       render();
     });
   }
 
   function checkAnswer(key, btn){
+    busy = true;
+    totalAnswered++;
     var feedback = document.getElementById('count-feedback');
     var m = msgs();
+    root.querySelectorAll('.shape-btn').forEach(function(b){ b.disabled = true; });
 
     if(key === currentAnswer[0]){
-      score++;
+      totalCorrect++;
+      streak++;
       updateScore();
+      updateProgress();
       btn.classList.add('correct');
       feedback.textContent = m.correct_msg || 'Great job! 🎉';
       feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
+      if(streak >= STREAK_NEEDED){
+        setTimeout(renderFinish, 900);
+      } else {
+        setTimeout(render, 900);
+      }
     } else {
+      streak = 0;
+      updateProgress();
       btn.classList.add('wrong');
       feedback.textContent = m.wrong_msg || 'Try again';
       feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+      setTimeout(render, 1200);
     }
   }
 
-  buildQueue();
   render();
 }
