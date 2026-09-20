@@ -1,20 +1,24 @@
-/* ===== Білім Аралы — игра "Продолжи ряд" =====
+/* ===== Білім Аралы — игра "Продолжи ряд" (v2 — режим освоения) =====
    Математика, 1 класс, по программе (приложение 26, цель 1.4.3.1):
    "определять закономерность в последовательности рисунков, фигур,
    символов". Показываем чередующийся ряд из 2 картинок (АБАБАБ),
-   ребёнок находит следующий элемент.
-   Сессия = 10 вопросов, генерируются процедурно из пула эмодзи.
-   Использование: initSymbolSeqGame('game-root') после загрузки DOM.
+   ребёнок находит следующий элемент. Пары эмодзи генерируются заново
+   каждый раз — никогда не заканчиваются; чтобы "освоить" тему, нужно
+   ответить верно 10 раз ПОДРЯД. Ошибка сбрасывает серию, но не
+   прерывает игру.
+   Использование: initSymbolSeqGame('game-root') — symbolseq.html не трогать.
 */
 function initSymbolSeqGame(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
   var EMOJIS = ['⭐','❤️','🔵','🟡','🌸','🍎','🦋','🎈','🍓','🌙'];
-  var TOTAL = 10;
-  var score = 0;
-  var questionIndex = 0;
+  var STREAK_NEEDED = 10;
+  var streak = 0;
+  var totalCorrect = 0;
+  var totalAnswered = 0;
   var currentAnswer = '';
+  var busy = false;
 
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -22,11 +26,11 @@ function initSymbolSeqGame(containerId){
   }
   function updateProgress(){
     var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
+    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
   }
   function updateScore(){
     var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
+    if(el) el.textContent = totalCorrect;
   }
   function pickTwoDistinct(){
     var pool = EMOJIS.slice();
@@ -38,8 +42,6 @@ function initSymbolSeqGame(containerId){
   }
 
   function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
 
     var pair = pickTwoDistinct();
@@ -74,44 +76,58 @@ function initSymbolSeqGame(containerId){
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(btn.getAttribute('data-value'), btn); });
+      btn.addEventListener('click', function(){
+        if(busy) return;
+        checkAnswer(btn.getAttribute('data-value'), btn);
+      });
     });
+    busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('symbolseq', score, TOTAL);
+    recordGameResult('symbolseq', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
         '<div class="finish-emoji">🏆</div>' +
         '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
+        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
         '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
       '</div>';
     document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
+      streak = 0; totalCorrect = 0; totalAnswered = 0;
       updateScore();
       render();
     });
   }
 
   function checkAnswer(value, btn){
+    busy = true;
+    totalAnswered++;
     var feedback = document.getElementById('count-feedback');
     var m = msgs();
+    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
 
     if(value === currentAnswer){
-      score++;
+      totalCorrect++;
+      streak++;
       updateScore();
+      updateProgress();
       btn.classList.add('correct');
       feedback.textContent = m.correct_msg || 'Great job! 🎉';
       feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
+      if(streak >= STREAK_NEEDED){
+        setTimeout(renderFinish, 900);
+      } else {
+        setTimeout(render, 900);
+      }
     } else {
+      streak = 0;
+      updateProgress();
       btn.classList.add('wrong');
       feedback.textContent = m.wrong_msg || 'Try again';
       feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+      setTimeout(render, 1200);
     }
   }
 
