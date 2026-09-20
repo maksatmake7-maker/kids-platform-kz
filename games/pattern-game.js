@@ -1,20 +1,23 @@
-/* ===== Білім Аралы — игра "Найди закономерность" =====
+/* ===== Білім Аралы — игра "Найди закономерность" (v2 — режим освоения) =====
    Математика, 1 класс, по программе (приложение 26, цель 1.4.3.1):
    "составлять последовательность чисел... определять закономерность
    в последовательности... чисел в пределах 100".
    Показываем 4 числа по порядку (шаг +1, +2 или +3), ребёнок находит
-   следующее число.
-   Сессия = 10 вопросов, генерируются процедурно.
-   Использование: initPatternGame('game-root') после загрузки DOM.
+   следующее число. Числа генерируются заново каждый раз — никогда не
+   заканчиваются; чтобы "освоить" тему, нужно ответить верно 10 раз
+   ПОДРЯД. Ошибка сбрасывает серию, но не прерывает игру.
+   Использование: initPatternGame('game-root') — pattern.html не трогать.
 */
 function initPatternGame(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
-  var TOTAL = 10;
-  var score = 0;
-  var questionIndex = 0;
+  var STREAK_NEEDED = 10;
+  var streak = 0;
+  var totalCorrect = 0;
+  var totalAnswered = 0;
   var currentAnswer = 0;
+  var busy = false;
 
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -22,20 +25,26 @@ function initPatternGame(containerId){
   }
   function updateProgress(){
     var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
+    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
   }
   function updateScore(){
     var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
+    if(el) el.textContent = totalCorrect;
+  }
+
+  function pickStepRange(){
+    // Шаг растёт вместе со «стриком»: сначала только +1, потом до +2, потом до +3
+    if (streak <= 2) return 1;
+    if (streak <= 5) return 2;
+    return 3;
   }
 
   function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
 
+    var maxStep = pickStepRange();
     var start = 1 + Math.floor(Math.random()*10); // 1..10
-    var step = 1 + Math.floor(Math.random()*3); // 1..3
+    var step = 1 + Math.floor(Math.random()*maxStep);
     var terms = [];
     for(var i=0; i<4; i++){ terms.push(start + step*i); }
     currentAnswer = start + step*4;
@@ -69,44 +78,58 @@ function initPatternGame(containerId){
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(parseInt(btn.getAttribute('data-value'), 10), btn); });
+      btn.addEventListener('click', function(){
+        if(busy) return;
+        checkAnswer(parseInt(btn.getAttribute('data-value'), 10), btn);
+      });
     });
+    busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('pattern', score, TOTAL);
+    recordGameResult('pattern', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
         '<div class="finish-emoji">🏆</div>' +
         '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
+        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
         '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
       '</div>';
     document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
+      streak = 0; totalCorrect = 0; totalAnswered = 0;
       updateScore();
       render();
     });
   }
 
   function checkAnswer(value, btn){
+    busy = true;
+    totalAnswered++;
     var feedback = document.getElementById('count-feedback');
     var m = msgs();
+    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
 
     if(value === currentAnswer){
-      score++;
+      totalCorrect++;
+      streak++;
       updateScore();
+      updateProgress();
       btn.classList.add('correct');
       feedback.textContent = m.correct_msg || 'Great job! 🎉';
       feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
+      if(streak >= STREAK_NEEDED){
+        setTimeout(renderFinish, 900);
+      } else {
+        setTimeout(render, 900);
+      }
     } else {
+      streak = 0;
+      updateProgress();
       btn.classList.add('wrong');
       feedback.textContent = m.wrong_msg || 'Try again';
       feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+      setTimeout(render, 1200);
     }
   }
 
