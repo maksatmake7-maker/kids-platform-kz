@@ -1,22 +1,25 @@
-/* ===== Білім Аралы — игра "Реши задачу" =====
+/* ===== Білім Аралы — игра "Реши задачу" (v2 — режим освоения) =====
    Математика, 1 класс, по программе (приложение 26, цели 1.5.1.3/1.5.1.4):
    "анализировать и решать задачи на нахождение суммы и остатка",
    "на увеличение, уменьшение числа на несколько единиц".
-   Показываем текстовую задачу (нейтральную, без имён — чтобы не
-   зависеть от грамматического рода на разных языках), ребёнок
-   считает и выбирает верный ответ.
-   Сессия = 10 вопросов, генерируются процедурно.
-   Использование: initProblemGame('game-root') после загрузки DOM.
+   Показываем текстовую задачу (нейтральную, без имён), ребёнок
+   считает и выбирает верный ответ. Задачи генерируются заново
+   каждый раз — никогда не заканчиваются; чтобы "освоить" тему,
+   нужно ответить верно 10 раз ПОДРЯД. Ошибка сбрасывает серию, но
+   не прерывает игру. Диапазон чисел растёт вместе со «стриком».
+   Использование: initProblemGame('game-root') — problem.html не трогать.
 */
 function initProblemGame(containerId){
   var root = document.getElementById(containerId);
   if(!root) return;
 
   var EMOJIS = ['🍎','⭐','🎈','🐟','🍓','🧸','🌸','🐧'];
-  var TOTAL = 10;
-  var score = 0;
-  var questionIndex = 0;
+  var STREAK_NEEDED = 10;
+  var streak = 0;
+  var totalCorrect = 0;
+  var totalAnswered = 0;
   var currentAnswer = 0;
+  var busy = false;
 
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -24,33 +27,40 @@ function initProblemGame(containerId){
   }
   function updateProgress(){
     var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
+    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
   }
   function updateScore(){
     var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
+    if(el) el.textContent = totalCorrect;
   }
   function fillTemplate(tpl, a, b, emoji){
     return tpl.replace(/{a}/g, a).replace(/{b}/g, b).replace(/{emoji}/g, emoji);
   }
 
+  function pickTier(){
+    if (streak <= 1) return 1;
+    if (streak <= 4) return 2;
+    return 3;
+  }
+
   function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
 
     var m = msgs();
     var emoji = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
     var isAddition = Math.random() < 0.5;
+    var tier = pickTier();
     var a, b, tpl;
 
     if(isAddition){
-      a = 3 + Math.floor(Math.random()*6); // 3..8
-      b = 1 + Math.floor(Math.random()*5); // 1..5
+      var addBase = [2,3,4][tier-1], addSpan = [3,5,7][tier-1];
+      a = addBase + Math.floor(Math.random()*addSpan);
+      b = 1 + Math.floor(Math.random()*[3,5,6][tier-1]);
       currentAnswer = a + b;
       tpl = m.problem_add_template || 'There were {a} {emoji}. {b} more {emoji} were added. How many {emoji} are there now?';
     } else {
-      a = 5 + Math.floor(Math.random()*5); // 5..9
+      var subBase = [4,5,6][tier-1], subSpan = [4,5,5][tier-1];
+      a = subBase + Math.floor(Math.random()*subSpan);
       b = 1 + Math.floor(Math.random()*(a-1)); // 1..a-1, гарантирует ответ >= 1
       currentAnswer = a - b;
       tpl = m.problem_subtract_template || 'There were {a} {emoji}. {b} {emoji} were taken away. How many {emoji} are left?';
@@ -85,44 +95,58 @@ function initProblemGame(containerId){
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(parseInt(btn.getAttribute('data-value'), 10), btn); });
+      btn.addEventListener('click', function(){
+        if(busy) return;
+        checkAnswer(parseInt(btn.getAttribute('data-value'), 10), btn);
+      });
     });
+    busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('problem', score, TOTAL);
+    recordGameResult('problem', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
         '<div class="finish-emoji">🏆</div>' +
         '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
+        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
         '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
       '</div>';
     document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
+      streak = 0; totalCorrect = 0; totalAnswered = 0;
       updateScore();
       render();
     });
   }
 
   function checkAnswer(value, btn){
+    busy = true;
+    totalAnswered++;
     var feedback = document.getElementById('count-feedback');
     var m = msgs();
+    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
 
     if(value === currentAnswer){
-      score++;
+      totalCorrect++;
+      streak++;
       updateScore();
+      updateProgress();
       btn.classList.add('correct');
       feedback.textContent = m.correct_msg || 'Great job! 🎉';
       feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
+      if(streak >= STREAK_NEEDED){
+        setTimeout(renderFinish, 900);
+      } else {
+        setTimeout(render, 900);
+      }
     } else {
+      streak = 0;
+      updateProgress();
       btn.classList.add('wrong');
       feedback.textContent = m.wrong_msg || 'Try again';
       feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+      setTimeout(render, 1200);
     }
   }
 
