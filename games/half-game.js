@@ -1,11 +1,13 @@
-/* ===== Білім Аралы — игра "Половина числа" =====
+/* ===== Білім Аралы — игра "Половина числа" (v2 — режим освоения) =====
    Математика, 1 класс, по программе (приложение 26, 2-я четверть):
    1.1.1.5 "находить половину числа 2, 4, 6, 8, 10 предметов путем
    практического действия" — в документе названы РОВНО эти 5 чисел,
-   поэтому ровно 5 вопросов в базовом наборе (не больше и не
-   меньше — не выдумываем других чисел).
-   Сессия = несколько кругов подряд, минимум 15 вопросов.
-   Использование: initHalfGame('game-root') после загрузки DOM.
+   поэтому в базе ровно 5 вопросов (не больше и не меньше — не
+   выдумываем других чисел). Они не заканчиваются, а случайно
+   повторяются (без повтора одного и того же числа два раза подряд);
+   чтобы "освоить" тему, нужно ответить верно 10 раз ПОДРЯД. Ошибка
+   сбрасывает серию, но не прерывает игру.
+   Использование: initHalfGame('game-root') — half.html не трогать.
 */
 function initHalfGame(containerId){
   var root = document.getElementById(containerId);
@@ -14,26 +16,13 @@ function initHalfGame(containerId){
   var NUMBERS = [2, 4, 6, 8, 10]; // ровно из документа
   var EMOJIS = ['🍎','⭐','🎈','🐟','🌸','🦋','🍓','🌟'];
 
-  var ROUND_SIZE = NUMBERS.length;
-  var ROUNDS = Math.ceil(15 / ROUND_SIZE);
-  var TOTAL = ROUND_SIZE * ROUNDS;
-  var score = 0;
-  var questionIndex = 0;
+  var STREAK_NEEDED = 10;
+  var streak = 0;
+  var totalCorrect = 0;
+  var totalAnswered = 0;
   var currentAnswer = 0;
-
-  var queue = [];
-  function buildQueue(){
-    queue = [];
-    for(var r=0; r<ROUNDS; r++){
-      var pass = NUMBERS.slice();
-      for(var i=pass.length-1; i>0; i--){
-        var j = Math.floor(Math.random()*(i+1));
-        var tmp = pass[i]; pass[i]=pass[j]; pass[j]=tmp;
-      }
-      queue = queue.concat(pass);
-    }
-  }
-  function nextNumber(){ return queue.pop(); }
+  var lastN = null;
+  var busy = false;
 
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -41,19 +30,28 @@ function initHalfGame(containerId){
   }
   function updateProgress(){
     var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
+    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
   }
   function updateScore(){
     var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
+    if(el) el.textContent = totalCorrect;
+  }
+
+  function pickNumber(){
+    var candidate;
+    var attempts = 0;
+    do {
+      candidate = NUMBERS[Math.floor(Math.random()*NUMBERS.length)];
+      attempts++;
+    } while (candidate === lastN && attempts < 10);
+    lastN = candidate;
+    return candidate;
   }
 
   function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
 
-    var n = nextNumber();
+    var n = pickNumber();
     currentAnswer = n / 2;
     var emoji = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
 
@@ -88,48 +86,60 @@ function initHalfGame(containerId){
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(parseInt(btn.getAttribute('data-value'), 10), btn); });
+      btn.addEventListener('click', function(){
+        if(busy) return;
+        checkAnswer(parseInt(btn.getAttribute('data-value'), 10), btn);
+      });
     });
+    busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('half', score, TOTAL);
+    recordGameResult('half', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
         '<div class="finish-emoji">🏆</div>' +
         '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
+        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
         '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
       '</div>';
     document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
+      streak = 0; totalCorrect = 0; totalAnswered = 0; lastN = null;
       updateScore();
-      buildQueue();
       render();
     });
   }
 
   function checkAnswer(value, btn){
+    busy = true;
+    totalAnswered++;
     var feedback = document.getElementById('count-feedback');
     var m = msgs();
+    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
 
     if(value === currentAnswer){
-      score++;
+      totalCorrect++;
+      streak++;
       updateScore();
+      updateProgress();
       btn.classList.add('correct');
       feedback.textContent = m.correct_msg || 'Great job! 🎉';
       feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
+      if(streak >= STREAK_NEEDED){
+        setTimeout(renderFinish, 900);
+      } else {
+        setTimeout(render, 900);
+      }
     } else {
+      streak = 0;
+      updateProgress();
       btn.classList.add('wrong');
       feedback.textContent = m.wrong_msg || 'Try again';
       feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+      setTimeout(render, 1200);
     }
   }
 
-  buildQueue();
   render();
 }
