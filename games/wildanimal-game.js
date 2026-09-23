@@ -1,9 +1,12 @@
-/* ===== Білім Аралы — игра "Дикое или домашнее животное?" =====
+/* ===== Білім Аралы — игра "Дикое или домашнее животное?" (v2 — режим освоения) =====
    Естествознание, 1 класс, по программе (приложение 28, цель 1.2.2.2):
    "различать диких и домашних животных".
    Показываем животное, ребёнок определяет — дикое оно или домашнее.
-   Сессия = ровно один проход по всем животным (без повторов).
-   Использование: initWildAnimalGame('game-root') после загрузки DOM.
+   Животных всего 10 — они не заканчиваются, а случайно повторяются
+   (без повтора одного и того же животного два раза подряд); чтобы
+   "освоить" тему, нужно ответить верно 10 раз ПОДРЯД. Ошибка
+   сбрасывает серию, но не прерывает игру.
+   Использование: initWildAnimalGame('game-root') — wildanimal.html не трогать.
 */
 function initWildAnimalGame(containerId){
   var root = document.getElementById(containerId);
@@ -23,20 +26,13 @@ function initWildAnimalGame(containerId){
     ['🐈','domestic']
   ];
 
-  var TOTAL = ANIMALS.length;
-  var score = 0;
-  var questionIndex = 0;
+  var STREAK_NEEDED = 10;
+  var streak = 0;
+  var totalCorrect = 0;
+  var totalAnswered = 0;
   var currentAnswer = '';
-
-  var queue = [];
-  function buildQueue(){
-    queue = ANIMALS.slice();
-    for(var i=queue.length-1; i>0; i--){
-      var j = Math.floor(Math.random()*(i+1));
-      var tmp = queue[i]; queue[i]=queue[j]; queue[j]=tmp;
-    }
-  }
-  function nextItem(){ return queue.pop(); }
+  var lastEmoji = null;
+  var busy = false;
 
   function msgs(){
     var lang = document.documentElement.getAttribute('data-current') || 'ru';
@@ -44,20 +40,28 @@ function initWildAnimalGame(containerId){
   }
   function updateProgress(){
     var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
+    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
   }
   function updateScore(){
     var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
+    if(el) el.textContent = totalCorrect;
+  }
+
+  function pickItem(){
+    var candidate;
+    var attempts = 0;
+    do {
+      candidate = ANIMALS[Math.floor(Math.random()*ANIMALS.length)];
+      attempts++;
+    } while (candidate[0] === lastEmoji && attempts < 10);
+    lastEmoji = candidate[0];
+    return candidate;
   }
 
   function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
     updateProgress();
-
     var m = msgs();
-    var item = nextItem();
+    var item = pickItem();
     currentAnswer = item[1];
 
     root.innerHTML =
@@ -69,48 +73,60 @@ function initWildAnimalGame(containerId){
       '<div class="count-feedback" id="count-feedback"></div>';
 
     root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(btn.getAttribute('data-value'), btn); });
+      btn.addEventListener('click', function(){
+        if(busy) return;
+        checkAnswer(btn.getAttribute('data-value'), btn);
+      });
     });
+    busy = false;
   }
 
   function renderFinish(){
-    recordGameResult('wildanimal', score, TOTAL);
+    recordGameResult('wildanimal', STREAK_NEEDED, STREAK_NEEDED);
     var m = msgs();
     root.innerHTML =
       '<div class="finish-screen">' +
         '<div class="finish-emoji">🏆</div>' +
         '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
+        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
         '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
       '</div>';
     document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
+      streak = 0; totalCorrect = 0; totalAnswered = 0; lastEmoji = null;
       updateScore();
-      buildQueue();
       render();
     });
   }
 
   function checkAnswer(value, btn){
+    busy = true;
+    totalAnswered++;
     var feedback = document.getElementById('count-feedback');
     var m = msgs();
+    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
 
     if(value === currentAnswer){
-      score++;
+      totalCorrect++;
+      streak++;
       updateScore();
+      updateProgress();
       btn.classList.add('correct');
       feedback.textContent = m.correct_msg || 'Great job! 🎉';
       feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
+      if(streak >= STREAK_NEEDED){
+        setTimeout(renderFinish, 900);
+      } else {
+        setTimeout(render, 900);
+      }
     } else {
+      streak = 0;
+      updateProgress();
       btn.classList.add('wrong');
       feedback.textContent = m.wrong_msg || 'Try again';
       feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+      setTimeout(render, 1200);
     }
   }
 
-  buildQueue();
   render();
 }
