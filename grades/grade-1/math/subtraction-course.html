@@ -48,7 +48,7 @@
   .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
   .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
   .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
-  .ac-mascot{font-size:2.6rem;line-height:1;flex:none;animation:acBob 3s ease-in-out infinite;}
+  .ac-mascot{width:104px;flex:none;}
   @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
   .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
   .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
@@ -142,10 +142,10 @@
   .ac-link{text-decoration:none;display:inline-block;}
   @media (max-width:520px){
     .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
-    .ac-mascot{font-size:2rem;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
     .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
   }
-  @media (prefers-reduced-motion:reduce){.ac-mascot,.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
 </style>
 </head>
 <body>
@@ -182,6 +182,7 @@
   <section id="ac-v-map">
     <a href="index.html" class="ac-back" style="margin-bottom:14px">← Математика</a>
     <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Вычитание</h1>
       <p class="ac-sub">5 уроков · числа до 10 · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
@@ -206,7 +207,7 @@
       </div>
       <h2 id="ac-title"></h2>
       <div class="ac-guide">
-        <div class="ac-mascot" aria-hidden="true">🐆</div>
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
         <div class="ac-bubble" id="ac-bubble"></div>
       </div>
       <div class="ac-speakrow">
@@ -225,7 +226,7 @@
   <!-- ===== ИТОГ УРОКА ===== -->
   <section id="ac-v-end" style="display:none">
     <div class="ac-card ac-finish">
-      <div style="font-size:3.4rem">🏆</div>
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
       <h2 id="ac-endtitle">Урок пройден!</h2>
       <div class="ac-stars" id="ac-endstars"></div>
       <p class="ac-sub" id="ac-endtext"></p>
@@ -240,6 +241,7 @@
 
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
 <script>
 (function(){
 'use strict';
@@ -346,6 +348,11 @@ function staticLine(a, b){ // рисунок для вопроса: старт �
    1) пробуем готовый mp3: assets/audio/subtraction/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
    2) если файла нет — читает голос браузера. */
 let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
 function ttsClean(t){
   return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
 }
@@ -357,7 +364,7 @@ function bestVoice(){
   return ru.sort((a, b) => score(b) - score(a))[0];
 }
 function stopSpeak(){
-  speakToken++;
+  speakToken++; bsTalk(false);
   try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
   try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
   const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
@@ -365,7 +372,7 @@ function stopSpeak(){
 function speak(id, text){
   stopSpeak();
   const tok = speakToken, btn = $('#ac-speak');
-  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; } };
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
   const tts = () => {
     if (tok !== speakToken || !window.speechSynthesis) return end();
     const u = new SpeechSynthesisUtterance(ttsClean(text));
@@ -374,7 +381,7 @@ function speak(id, text){
     u.onend = end; u.onerror = end;
     speechSynthesis.speak(u);
   };
-  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп';
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
   let fell = false;
   const fallback = () => { if (fell) return; fell = true; tts(); };
   try {
@@ -839,13 +846,14 @@ function renderStep(){
   stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
   const next = $('#ac-next'), prev = $('#ac-prev');
   next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
   next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
   prev.disabled = S.si === 0;
   const ctx = {
     alive: () => tok === S.token,
-    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
     miss: () => { S.mist++; },
-    fb: (t, kind) => { const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
   };
   renderDots();
   SCENES[st.scene](stage, st, ctx);
@@ -861,6 +869,9 @@ function finishLesson(){
   $('#ac-endstars').innerHTML = h;
   $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
   $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
   view('end');
 }
 $('#ac-next').onclick = function(){
@@ -868,7 +879,7 @@ $('#ac-next').onclick = function(){
   if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
 };
 $('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
-$('#ac-tomap').onclick = function(){ stopSpeak(); S.token++; renderMap(); view('map'); };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
 $('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
 $('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
 $('#ac-speak').onclick = function(){
