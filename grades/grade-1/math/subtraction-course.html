@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Вычитание — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{font-size:2.6rem;line-height:1;flex:none;animation:acBob 3s ease-in-out infinite;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{font-size:2rem;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-mascot,.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+</style>
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Математика</a>
+    <div class="ac-card">
+      <h1>Курс: Вычитание</h1>
+      <p class="ac-sub">5 уроков · числа до 10 · с играми и проверкой</p>
+      <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 5</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" aria-hidden="true">🐆</div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div style="font-size:3.4rem">🏆</div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= рисунки ================= */
+function appleG(r, color){
+  const g = color === 'green' ? 'g-green' : 'g-red';
+  return '<ellipse cx="0" cy="' + (r*.08) + '" rx="' + r + '" ry="' + (r*.92) + '" fill="url(#' + g + ')" filter="url(#f-soft)"/>' +
+    '<path d="M0 ' + (-r*.78) + ' q' + (r*.05) + ' ' + (-r*.45) + ' ' + (r*.3) + ' ' + (-r*.58) + '" stroke="#6B4423" stroke-width="' + Math.max(1.5, r*.12) + '" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="' + (r*.45) + '" cy="' + (-r*.95) + '" rx="' + (r*.36) + '" ry="' + (r*.16) + '" transform="rotate(-28 ' + (r*.45) + ' ' + (-r*.95) + ')" fill="#4CAF50"/>' +
+    '<ellipse cx="' + (-r*.4) + '" cy="' + (-r*.25) + '" rx="' + (r*.14) + '" ry="' + (r*.28) + '" transform="rotate(20 ' + (-r*.4) + ' ' + (-r*.25) + ')" fill="#fff" opacity=".4"/>';
+}
+function appleInline(color, size){ return '<svg class="ac-ap" width="' + size + '" height="' + size + '" viewBox="-21 -26 42 46" aria-hidden="true">' + appleG(17, color) + '</svg>'; }
+function apples(n, color, size){ let s = ''; for (let i = 0; i < n; i++) s += appleInline(color, size || 34); return s; }
+function basketSVG(cx, w, top, h){
+  const x1 = cx - w/2, x2 = cx + w/2, i = w*.07;
+  let s = '<g filter="url(#f-soft)"><path d="M' + x1 + ' ' + top + ' L' + x2 + ' ' + top + ' L' + (x2 - i) + ' ' + (top + h) + ' Q' + cx + ' ' + (top + h + 8) + ' ' + (x1 + i) + ' ' + (top + h) + ' Z" fill="url(#g-basket)"/></g>';
+  for (let k = 1; k <= 3; k++){ const y = top + k*h/4; s += '<line x1="' + (x1 + i*k/4) + '" y1="' + y + '" x2="' + (x2 - i*k/4) + '" y2="' + y + '" stroke="#7A4B17" stroke-opacity=".35" stroke-width="2"/>'; }
+  for (let x = x1 + w/6; x < x2 - 2; x += w/6){ s += '<line x1="' + x + '" y1="' + top + '" x2="' + (x - (x - cx)*.07) + '" y2="' + (top + h) + '" stroke="#7A4B17" stroke-opacity=".22" stroke-width="2"/>'; }
+  s += '<rect x="' + (x1 - 5) + '" y="' + (top - 5) + '" width="' + (w + 10) + '" height="12" rx="6" fill="#B8792F"/>';
+  return s;
+}
+function hareG(){
+  const st = 'fill="#fff" stroke="#B8C4D2" stroke-width="1.5"';
+  return '<g class="hf"><ellipse cx="0" cy="-8" rx="17" ry="13" ' + st + '/>' +
+    '<circle cx="-17" cy="-9" r="5.5" ' + st + '/>' +
+    '<ellipse cx="9" cy="-28" rx="4.5" ry="13" ' + st + ' transform="rotate(-8 9 -28)"/><ellipse cx="9.5" cy="-28" rx="2" ry="9" fill="#FFB6C1" transform="rotate(-8 9 -28)"/>' +
+    '<ellipse cx="18" cy="-27" rx="4.5" ry="12" ' + st + ' transform="rotate(12 18 -27)"/><ellipse cx="18" cy="-27" rx="2" ry="8" fill="#FFB6C1" transform="rotate(12 18 -27)"/>' +
+    '<circle cx="14" cy="-14" r="10" ' + st + '/><circle cx="18" cy="-16" r="1.8" fill="#1D3557"/><ellipse cx="23.5" cy="-12" rx="2" ry="1.4" fill="#FF8FA3"/>' +
+    '<ellipse cx="-4" cy="-1" rx="7" ry="4" ' + st + '/></g>';
+}
+
+/* числовой луч */
+function Line(maxN){
+  const W = 680, X0 = 34, DX = (W - 2*X0) / maxN, LY = 128, HY = 112;
+  const xAt = n => X0 + n * DX;
+  let s = '<svg class="ac-nl" viewBox="0 0 ' + W + ' 180" role="img" aria-label="Числовой луч">';
+  s += '<line x1="' + (X0 - 14) + '" y1="' + LY + '" x2="' + (W - X0 + 18) + '" y2="' + LY + '" stroke="#1D3557" stroke-width="4" stroke-linecap="round"/>';
+  s += '<path d="M' + (W - X0 + 10) + ' ' + (LY - 8) + ' L' + (W - X0 + 22) + ' ' + LY + ' L' + (W - X0 + 10) + ' ' + (LY + 8) + '" fill="none" stroke="#1D3557" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>';
+  s += '<g class="nl-arcs"></g>';
+  for (let n = 0; n <= maxN; n++){
+    s += '<line x1="' + xAt(n) + '" y1="' + (LY - 6) + '" x2="' + xAt(n) + '" y2="' + (LY + 6) + '" stroke="#1D3557" stroke-width="3"/>';
+    s += '<g class="ac-nlnum" data-n="' + n + '"><circle cx="' + xAt(n) + '" cy="' + (LY + 30) + '" r="16"/><text x="' + xAt(n) + '" y="' + (LY + 36) + '" text-anchor="middle">' + n + '</text></g>';
+  }
+  s += '<g class="nl-hare" transform="translate(' + xAt(0) + ',' + HY + ')">' + hareG() + '</g></svg>';
+  return { html: s, xAt: xAt, LY: LY, HY: HY, maxN: maxN };
+}
+function placeHare(root, L, n){ root.querySelector('.nl-hare').setAttribute('transform', 'translate(' + L.xAt(n) + ',' + L.HY + ')'); }
+function hopTo(root, L, from, to, dur){
+  dur = dur || 440;
+  const hare = root.querySelector('.nl-hare'), x0 = L.xAt(from), x1 = L.xAt(to);
+  return new Promise(function(res){
+    const t0 = performance.now();
+    (function f(t){
+      const k = Math.min(1, (t - t0) / dur);
+      hare.setAttribute('transform', 'translate(' + (x0 + (x1 - x0) * k) + ',' + (L.HY - Math.sin(Math.PI * k) * 36) + ')');
+      if (k < 1) requestAnimationFrame(f); else res();
+    })(t0);
+  });
+}
+function addArc(root, L, from, to, label){
+  const x0 = L.xAt(from), x1 = L.xAt(to), m = (x0 + x1) / 2;
+  root.querySelector('.nl-arcs').insertAdjacentHTML('beforeend',
+    '<path d="M' + x0 + ' ' + (L.LY - 4) + ' Q' + m + ' ' + (L.LY - 62) + ' ' + x1 + ' ' + (L.LY - 4) + '" fill="none" stroke="#FF6B5B" stroke-width="3" stroke-dasharray="5 5" stroke-linecap="round"/>' +
+    '<circle cx="' + m + '" cy="' + (L.LY - 33) + '" r="10" fill="#FF6B5B"/><text x="' + m + '" y="' + (L.LY - 29) + '" text-anchor="middle" font-size="12" fill="#fff">' + label + '</text>');
+}
+function lightNum(root, n, cls){ const g = root.querySelector('.ac-nlnum[data-n="' + n + '"]'); if (g) g.classList.add(cls || 'on'); }
+async function runHops(root, L, a, b, alive){
+  placeHare(root, L, a); lightNum(root, a);
+  let cur = a;
+  for (let k = 1; k <= b; k++){
+    await hopTo(root, L, cur, cur + 1);
+    if (!alive()) return false;
+    addArc(root, L, cur, cur + 1, k); cur++; lightNum(root, cur);
+    await sleep(120);
+  }
+  return true;
+}
+function staticLine(a, b){ // рисунок для вопроса: старт и прыжки
+  const L = Line(12), tmp = document.createElement('div');
+  tmp.innerHTML = L.html;
+  const root = tmp;
+  placeHare(root, L, a); lightNum(root, a);
+  for (let k = 1; k <= b; k++) addArc(root, L, a + k - 1, a + k, k);
+  return tmp.innerHTML;
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/subtraction/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  const score = v => (/natural|online|neural/i.test(v.name) ? 4 : 0) + (/google/i.test(v.name) ? 3 : 0) + (/milena|yandex|alena|katya|svetlana|dariya/i.test(v.name) ? 2 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++;
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1.05;
+    const v = bestVoice(); if (v) u.voice = v;
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп';
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/subtraction/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_subcourse_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= вспомогательное для вычитания ================= */
+const STORY_ITEMS = [['яблоко', 'яблока', 'яблок'], ['шарик', 'шарика', 'шариков'], ['конфета', 'конфеты', 'конфет'], ['машинка', 'машинки', 'машинок'], ['карандаш', 'карандаша', 'карандашей']];
+function pl(n, f){ const m10 = n % 10, m100 = n % 100; if (m10 === 1 && m100 !== 11) return f[0]; if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return f[1]; return f[2]; }
+function storyText(a, b, it){ return 'У Барсика было ' + a + ' ' + pl(a, it) + '. ' + b + ' из них он отдал друзьям. Сколько осталось?'; }
+function flipHare(root, on){ const hf = root.querySelector('.nl-hare .hf'); if (hf) hf.setAttribute('transform', on ? 'scale(-1,1)' : ''); }
+async function runHopsBack(root, L, a, b, alive){
+  flipHare(root, true); placeHare(root, L, a); lightNum(root, a);
+  let cur = a;
+  for (let k = 1; k <= b; k++){
+    await hopTo(root, L, cur, cur - 1);
+    if (!alive()) return false;
+    addArc(root, L, cur, cur - 1, k); cur--; lightNum(root, cur);
+    await sleep(120);
+  }
+  return true;
+}
+function staticLineBack(a){
+  const L = Line(12), tmp = document.createElement('div');
+  tmp.innerHTML = L.html; placeHare(tmp, L, a); lightNum(tmp, a); flipHare(tmp, true);
+  return tmp.innerHTML;
+}
+function faded(n, size){ let s = ''; for (let i = 0; i < n; i++) s += '<span style="opacity:.22;filter:grayscale(.6)">' + appleInline('red', size) + '</span>'; return s; }
+
+/* ================= генераторы вопросов ================= */
+const GENS = {
+  takePics(){
+    const a = rnd(3, 9), b = rnd(1, Math.min(5, a - 1)), r = a - b;
+    return { html: '<div class="ac-qpics"><div class="ac-tray">' + apples(r, 'red', 40) + faded(b, 40) + '</div></div><div class="ac-qtxt">Бледные яблоки ушли. Сколько яблок осталось?</div>',
+      opts: nums(r, 0, 9), ans: r, hint: 'Было ' + a + ', ушло ' + b + ': <b>' + a + ' − ' + b + ' = ' + r + '</b>.' };
+  },
+  numMinus(){
+    const a = rnd(1, 10), b = rnd(0, a), r = a - b;
+    return { html: '<div class="ac-bigeq">' + a + ' − ' + b + ' = ?</div>', opts: nums(r, 0, 10), ans: r,
+      hint: 'Из ' + a + ' убираем ' + b + ': остаётся <b>' + r + '</b>.' };
+  },
+  compsMinus(){
+    const a = rnd(2, 10), b = rnd(1, a - 1), r = a - b, k = rnd(0, 2);
+    const names = ['уменьшаемое', 'вычитаемое', 'разность'], val = [a, b, r][k];
+    return { html: '<div class="ac-bigeq"><span class="ac-red">' + a + '</span> − <span class="ac-grn">' + b + '</span> = <b>' + r + '</b></div><div class="ac-qtxt">Как называется число <b>' + val + '</b>?</div>',
+      opts: shuffle(names), ans: names[k], wide: true,
+      hint: '<b>Уменьшаемое</b> — из него вычитают. <b>Вычитаемое</b> — его вычитают. <b>Разность</b> — результат.' };
+  },
+  lineBack(){
+    const a = rnd(5, 12), b = rnd(2, Math.min(5, a)), r = a - b;
+    return { html: '<div class="ac-qtxt">Заяц стоит на числе <span class="ac-red">' + a + '</span> и делает <span class="ac-red">' + b + '</span> ' + (b < 5 ? 'прыжка' : 'прыжков') + ' влево. На каком числе он остановится?</div>' + staticLineBack(a),
+      opts: nums(r, 0, 12), ans: r, hint: 'Считаем назад: ' + Array.from({ length: b }, (_, k) => a - k - 1).join(', ') + '. Заяц на <b>' + r + '</b>.' };
+  },
+  famQ(){
+    const a = rnd(1, 8), b = rnd(1, 9 - a + 1), s = a + b, ask = Math.random() < .5 ? a : b, r = s - ask;
+    return { html: '<div class="ac-bigeq">' + a + ' + ' + b + ' = ' + s + '</div><div class="ac-qtxt">Чему равно <b>' + s + ' − ' + ask + '</b>?</div>',
+      opts: nums(r, 0, 10), ans: r, hint: 'Числа дружат: из ' + a + ' + ' + b + ' = ' + s + ' получаем ' + s + ' − ' + a + ' = ' + b + ' и ' + s + ' − ' + b + ' = ' + a + '. Ответ: <b>' + r + '</b>.' };
+  },
+  checkQ(){
+    let a, b, d; do { a = rnd(3, 10); b = rnd(1, a - 1); d = a - b; } while (b === d);
+    const right = d + ' + ' + b + ' = ' + a;
+    const wrong = [a + ' + ' + b + ' = ' + (a + b), d + ' − ' + b + ' = ' + Math.abs(d - b), b + ' + ' + b + ' = ' + (b + b)];
+    return { html: '<div class="ac-bigeq">' + a + ' − ' + b + ' = ' + d + '</div><div class="ac-qtxt">Какое сложение проверяет это вычитание?</div>',
+      opts: shuffle([right].concat(wrong)), ans: right, wide: true,
+      hint: 'Чтобы проверить, прибавь разность к вычитаемому: <b>' + right + '</b> — получилось уменьшаемое, значит верно.' };
+  },
+  zeroQ(){
+    const a = rnd(1, 9), t = pick(['0', 'same', 'ten']);
+    if (t === '0') return { html: '<div class="ac-bigeq">' + a + ' − 0 = ?</div>', opts: nums(a, 0, 10), ans: a, hint: 'Вычесть ноль — ничего не убрать. Число не меняется: <b>' + a + '</b>.' };
+    if (t === 'same') return { html: '<div class="ac-bigeq">' + a + ' − ' + a + ' = ?</div>', opts: nums(0, 0, 10), ans: 0, hint: 'Убрали всё, что было, — ничего не осталось: <b>0</b>.' };
+    return { html: '<div class="ac-bigeq">10 − ' + a + ' = ?</div>', opts: nums(10 - a, 0, 10), ans: 10 - a, hint: 'Вспомни состав десяти: ' + a + ' + ' + (10 - a) + ' = 10, значит 10 − ' + a + ' = <b>' + (10 - a) + '</b>.' };
+  },
+  storyQ(){
+    const a = rnd(4, 10), b = rnd(1, Math.min(6, a - 1)), r = a - b, it = pick(STORY_ITEMS);
+    return { html: '<div class="ac-qtxt" style="max-width:520px;margin:6px auto 14px">' + storyText(a, b, it) + '</div>', opts: nums(r, 0, 10), ans: r,
+      hint: 'Запишем коротко. Было: ' + a + '. Отдал: ' + b + '. Осталось: ? Значит <b>' + a + ' − ' + b + ' = ' + r + '</b>.' };
+  }
+};
+
+/* ================= сцены ================= */
+const SCENES = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+
+/* --- Урок 1: забираем яблоки --- */
+SCENES.take = function(stage, st, ctx){
+  let a = 5, b = 2, busy = false, taken = false;
+  stage.innerHTML = '<svg class="ac-join" viewBox="0 55 640 195" aria-label="Корзина с яблоками"></svg><div class="ac-eq" id="j-eq"></div><div class="ac-actions"><button class="ac-btn" id="j-go">Забрать ➜</button></div>';
+  const svg = $('.ac-join', stage), eq = $('#j-eq', stage), go = $('#j-go', stage);
+  const TOP = 150, CA = 200, CB = 500;
+  const pos = (i, n, cx, per) => { const row = i < per ? 0 : 1, cnt = row === 0 ? Math.min(n, per) : n - per, col = row === 0 ? i : i - per; return [cx + (col - (cnt - 1) / 2) * 40, TOP - 12 - row * 30]; };
+  function draw(){
+    let s = '';
+    for (let i = 0; i < a; i++){ const p = pos(i, a, CA, 5); s += '<g class="ac-mv" data-k="' + i + '" style="transform:translate(' + p[0] + 'px,' + p[1] + 'px);transition-delay:' + (i * 70) + 'ms">' + appleG(17, 'red') + '</g>'; }
+    s += basketSVG(CA, 220, TOP, 76) + basketSVG(CB, 150, TOP, 76);
+    s += '<text x="' + CB + '" y="' + (TOP + 100) + '" text-anchor="middle" font-size="15" fill="#5C7690" font-weight="800" font-family="Baloo 2, sans-serif">ушли</text>';
+    svg.innerHTML = s;
+    eq.innerHTML = '<span class="n1">' + a + '</span> − <span class="n2">' + b + '</span> = ?';
+    taken = false; go.textContent = 'Забрать ➜';
+  }
+  draw();
+  go.addEventListener('click', async function(){
+    if (busy) return;
+    if (taken){ a = rnd(4, 9); b = rnd(1, Math.min(5, a - 1)); draw(); return; }
+    busy = true; go.disabled = true;
+    for (let k = a - b; k < a; k++){ const p = pos(k - (a - b), b, CB, 3), g = $('[data-k="' + k + '"]', svg); g.style.transform = 'translate(' + p[0] + 'px,' + p[1] + 'px)'; }
+    await sleep(1500 + b * 90); if (!ctx.alive()) return;
+    eq.innerHTML = '<span class="n1">' + a + '</span> − <span class="n2">' + b + '</span> = <b>' + (a - b) + '</b>';
+    ctx.fb('Было ' + a + ', забрали ' + b + ' — осталось ' + (a - b) + '.', 'ok');
+    taken = true; busy = false; go.disabled = false; go.textContent = 'Ещё раз, с другими числами ↻'; ctx.done();
+  });
+};
+
+/* --- Урок 1: убираем сами --- */
+SCENES.builderMinus = function(stage, st, ctx){
+  let A = 8, R = 5, removed = 0, solved = false;
+  stage.innerHTML = '<div class="ac-goal" id="m-goal"></div><div class="ac-frame" id="m-frame"></div><div class="ac-eq" id="m-eq"></div>' +
+    '<div class="ac-steprow"><div class="ac-stp">Убрано<button id="m-minus" aria-label="вернуть кружок">−</button><span class="v" id="m-v"></span><button id="m-plus" aria-label="убрать кружок">+</button></div></div>' +
+    '<div class="ac-actions"><button class="ac-btn" id="m-check">Проверить</button><button class="ac-btn ac-alt" id="m-more" style="display:none">Ещё одна цель ↻</button></div>';
+  function newTarget(){ A = rnd(5, 10); R = rnd(1, A - 2); removed = 0; solved = false; $('#m-more', stage).style.display = 'none'; $('#m-check', stage).disabled = false; ctx.fb('', 'info'); paint(); }
+  function paint(){
+    $('#m-goal', stage).innerHTML = 'Было <span class="ac-red" style="font-size:1.5rem">' + A + '</span>. Убери столько, чтобы осталось <span class="ac-red" style="font-size:1.5rem">' + R + '</span>';
+    let h = ''; for (let i = 0; i < 10; i++){ h += i < A - removed ? '<div class="ac-cell a"></div>' : i < A ? '<div class="ac-cell" style="opacity:.5;background:#F1F4F7"></div>' : '<div class="ac-cell" style="opacity:.25"></div>'; }
+    $('#m-frame', stage).innerHTML = h;
+    $('#m-eq', stage).innerHTML = '<span class="n1">' + A + '</span> − <span class="n2">' + removed + '</span> = <b>' + (A - removed) + '</b>';
+    $('#m-v', stage).textContent = removed; $('#m-minus', stage).disabled = removed <= 0 || solved; $('#m-plus', stage).disabled = removed >= A || solved;
+  }
+  $('#m-minus', stage).onclick = () => { removed--; paint(); }; $('#m-plus', stage).onclick = () => { removed++; paint(); };
+  $('#m-check', stage).onclick = function(){
+    if (A - removed === R){ solved = true; paint(); this.disabled = true; $('#m-more', stage).style.display = ''; ctx.fb('Верно! ' + A + ' − ' + removed + ' = ' + R + ' ✓', 'ok'); ctx.done(); }
+    else { ctx.miss(); ctx.fb('Сейчас осталось ' + (A - removed) + ', а нужно ' + R + (A - removed > R ? '. Убери ещё!' : '. Верни немного!'), 'bad'); }
+  };
+  $('#m-more', stage).onclick = newTarget; newTarget();
+};
+
+/* --- Урок 1: названия чисел --- */
+SCENES.parts = function(stage, st, ctx){
+  let a, b, seen;
+  stage.innerHTML = '<div class="ac-chips" id="p-chips"></div><div class="ac-chipname" id="p-name">Нажми на число 👆</div><div class="ac-actions"><button class="ac-btn ac-alt" id="p-more">Другой пример ↻</button></div>';
+  const NAMES = [['', 'Это <b>уменьшаемое</b> — число, из которого вычитают.'], ['', 'Это <b>вычитаемое</b> — число, которое вычитают.'], ['', 'Это <b>разность</b> — результат вычитания, ответ.']];
+  function newEx(){
+    a = rnd(3, 10); b = rnd(1, a - 1); seen = {};
+    $('#p-chips', stage).innerHTML = '<button class="ac-chip k0" data-k="0">' + a + '</button><span class="ac-op">−</span><button class="ac-chip k1" data-k="1">' + b + '</button><span class="ac-op">=</span><button class="ac-chip k2" data-k="2">' + (a - b) + '</button>';
+    $('#p-name', stage).innerHTML = 'Нажми на число 👆';
+    $$('.ac-chip', stage).forEach(function(c){
+      c.onclick = function(){ const k = +c.dataset.k; seen[k] = 1; c.classList.add('on'); $('#p-name', stage).innerHTML = NAMES[k][1];
+        if (Object.keys(seen).length === 3){ ctx.fb('Теперь ты знаешь, как называются все числа ✓', 'ok'); ctx.done(); } };
+    });
+  }
+  $('#p-more', stage).onclick = newEx; newEx();
+};
+
+/* --- Урок 2: заяц прыгает влево --- */
+SCENES.nlDemoBack = function(stage, st, ctx){
+  let a = 7, b = 3, busy = false;
+  const L = Line(12);
+  stage.innerHTML = L.html +
+    '<div class="ac-steprow"><div class="ac-stp">Старт<button id="d-a-minus">−</button><span class="v" id="d-av"></span><button id="d-a-plus">+</button></div>' +
+    '<div class="ac-stp">Прыжков<button id="d-b-minus">−</button><span class="v" id="d-bv"></span><button id="d-b-plus">+</button></div></div>' +
+    '<div class="ac-eq" id="d-eq"></div><div class="ac-actions"><button class="ac-btn" id="d-go">Прыгай! 🐰</button></div>';
+  const root = stage;
+  function reset(){
+    $$('.ac-nlnum', root).forEach(n => n.classList.remove('on')); $('.nl-arcs', root).innerHTML = '';
+    flipHare(root, true); placeHare(root, L, a); lightNum(root, a);
+    $('#d-av', root).textContent = a; $('#d-bv', root).textContent = b;
+    $('#d-a-minus', root).disabled = a <= 1 || b > a - 1 || busy; $('#d-a-plus', root).disabled = a >= 12 || busy;
+    $('#d-b-minus', root).disabled = b <= 1 || busy; $('#d-b-plus', root).disabled = b >= a || b >= 6 || busy;
+    $('#d-eq', root).innerHTML = '<span class="n1">' + a + '</span> − <span class="n2">' + b + '</span> = ?';
+  }
+  $('#d-a-minus', root).onclick = () => { a--; reset(); }; $('#d-a-plus', root).onclick = () => { a++; reset(); };
+  $('#d-b-minus', root).onclick = () => { b--; reset(); }; $('#d-b-plus', root).onclick = () => { b++; reset(); };
+  $('#d-go', root).onclick = async function(){
+    if (busy) return; busy = true; reset(); this.disabled = true;
+    const ok = await runHopsBack(root, L, a, b, ctx.alive); if (!ok) return;
+    ctx.fb('Заяц прыгнул ' + b + ' раза влево и попал на ' + (a - b) + '.', 'ok');
+    busy = false; this.disabled = false; const eqh = '<span class="n1">' + a + '</span> − <span class="n2">' + b + '</span> = <b>' + (a - b) + '</b>';
+    reset(); $('#d-eq', root).innerHTML = eqh; ctx.done();
+  };
+  reset();
+};
+
+SCENES.nlPredictBack = function(stage, st, ctx){
+  const ROUNDS = 3; let round = 0, a, b, busy = false;
+  const L = Line(12);
+  stage.innerHTML = '<div class="ac-qcount" id="n-cnt"></div><div class="ac-qtxt" id="n-q"></div>' + L.html + '<div class="ac-hint" id="n-hint" style="display:none"></div>';
+  const root = stage;
+  function newRound(){
+    a = rnd(5, 12); b = rnd(2, Math.min(5, a)); busy = false;
+    $$('.ac-nlnum', root).forEach(n => { n.classList.remove('on', 'bad', 'good'); n.classList.add('click'); });
+    $('.nl-arcs', root).innerHTML = ''; flipHare(root, true); placeHare(root, L, a); lightNum(root, a);
+    $('#n-cnt', root).textContent = 'Задача ' + (round + 1) + ' из ' + ROUNDS;
+    $('#n-q', root).innerHTML = 'Заяц на числе <span class="ac-red">' + a + '</span>. Он прыгает на <span class="ac-red">' + b + '</span> влево. Нажми на число, где он окажется.';
+    $('#n-hint', root).style.display = 'none'; ctx.fb('', 'info');
+  }
+  $$('.ac-nlnum', root).forEach(function(g){
+    g.addEventListener('click', async function(){
+      if (busy) return; const n = +g.dataset.n, r = a - b;
+      if (n === r){
+        busy = true; g.classList.add('good');
+        await runHopsBack(root, L, a, b, ctx.alive); if (!ctx.alive()) return;
+        ctx.fb(pick(PRAISE) + ' ' + a + ' − ' + b + ' = ' + r, 'ok');
+        round++; await sleep(1300); if (!ctx.alive()) return;
+        if (round >= ROUNDS){ $$('.ac-nlnum', root).forEach(x => x.classList.remove('click')); ctx.fb('Три задачи решены! 🎉', 'ok'); ctx.done(); } else newRound();
+      } else {
+        g.classList.add('bad'); ctx.miss(); ctx.fb('Не совсем. Смотри на прыжки!', 'bad');
+        const h = $('#n-hint', root); h.style.display = ''; h.innerHTML = 'Считаем назад по одному: ' + Array.from({ length: b }, (_, k) => a - k - 1).join(', ') + '. Зайцу нужно на <b>' + r + '</b>.';
+      }
+    });
+  });
+  newRound();
+};
+
+SCENES.countBack = function(stage, st, ctx){
+  let a = 9, b = 3, busy = false;
+  stage.innerHTML = '<div class="ac-bigeq" id="c-eq"></div><div class="ac-count" id="c-row"></div><div class="ac-chipname" id="c-txt"></div><div class="ac-actions"><button class="ac-btn" id="c-go">Отсчитать ◀</button><button class="ac-btn ac-alt" id="c-more">Другой пример ↻</button></div>';
+  function show(){
+    $('#c-eq', stage).innerHTML = '<span class="ac-grn">' + a + '</span> − <span class="ac-red">' + b + '</span> = ?';
+    $('#c-row', stage).innerHTML = '<span class="ac-big">' + a + '</span>';
+    $('#c-txt', stage).innerHTML = 'Начинаем с числа <b>' + a + '</b> и отступаем назад на ' + b + ' ' + (b < 5 ? 'шага' : 'шагов') + '.';
+  }
+  show();
+  $('#c-go', stage).onclick = async function(){
+    if (busy) return; busy = true; show();
+    const row = $('#c-row', stage);
+    for (let k = 1; k <= b; k++){
+      await sleep(750); if (!ctx.alive()) return;
+      row.insertAdjacentHTML('beforeend', '<span class="ac-sign">›</span><span class="ac-pop">' + (a - k) + '</span>');
+      $('#c-txt', stage).innerHTML = 'Шаг назад ' + k + ' из ' + b + ' — это <b>' + (a - k) + '</b>.';
+    }
+    await sleep(500);
+    $('#c-eq', stage).innerHTML = '<span class="ac-grn">' + a + '</span> − <span class="ac-red">' + b + '</span> = <b>' + (a - b) + '</b>';
+    ctx.fb('Вычитать можно, считая назад: сколько шагов — столько и вычитаем.', 'ok'); busy = false; ctx.done();
+  };
+  $('#c-more', stage).onclick = function(){ if (busy) return; a = rnd(6, 10); b = rnd(2, 4); show(); ctx.fb('', 'info'); };
+};
+
+/* --- Урок 3: семья из трёх чисел --- */
+SCENES.family = function(stage, st, ctx){
+  let a = 3, b = 4, changed = 0;
+  stage.innerHTML = '<div class="ac-chips" id="f-trio"></div><div class="ac-pairs" id="f-list" style="grid-template-columns:1fr 1fr"></div><div class="ac-actions"><button class="ac-btn ac-alt" id="f-more">Другая тройка ↻</button></div>';
+  function c(n, cls){ return '<span class="' + cls + '">' + n + '</span>'; }
+  function paint(){
+    const s = a + b;
+    $('#f-trio', stage).innerHTML = '<span class="ac-pop" style="color:#E8453C;border-color:#E8453C;background:#FFE3DF">' + a + '</span><span class="ac-pop" style="color:#5B9A1E;border-color:#7CB342;background:#EAF6D8">' + b + '</span><span class="ac-pop">' + s + '</span>';
+    const eqs = [c(a, 'ac-red') + ' + ' + c(b, 'ac-grn') + ' = ' + s, c(b, 'ac-grn') + ' + ' + c(a, 'ac-red') + ' = ' + s, s + ' − ' + c(a, 'ac-red') + ' = ' + c(b, 'ac-grn'), s + ' − ' + c(b, 'ac-grn') + ' = ' + c(a, 'ac-red')];
+    $('#f-list', stage).innerHTML = eqs.map((e, i) => '<div class="ac-pair" style="animation-delay:' + (i * 250) + 'ms;justify-content:center;font-size:1.5rem">' + e + '</div>').join('');
+  }
+  $('#f-more', stage).onclick = function(){ let x, y; do { x = rnd(1, 8); y = rnd(1, 9 - x); } while (x === y || (x === a && y === b) || x + y > 10); a = x; b = y; paint(); changed++; if (changed >= 1){ ctx.fb('Из трёх чисел — четыре равенства: два сложения и два вычитания ✓', 'ok'); ctx.done(); } };
+  paint();
+};
+
+SCENES.check = function(stage, st, ctx){
+  let a = 9, b = 4, shown = false;
+  stage.innerHTML = '<div class="ac-eq" id="k-main"></div><div class="ac-eq" id="k-chk" style="min-height:1.5em"></div><div class="ac-chipname" id="k-note"></div><div class="ac-actions"><button class="ac-btn" id="k-go">Проверить сложением ✓</button><button class="ac-btn ac-alt" id="k-more">Другой пример ↻</button></div>';
+  function show(){ shown = false; $('#k-main', stage).innerHTML = '<span class="ac-red">' + a + '</span> − <span class="ac-grn">' + b + '</span> = ' + (a - b); $('#k-chk', stage).innerHTML = ''; $('#k-note', stage).textContent = 'Верно ли решили? Проверим!'; }
+  show();
+  $('#k-go', stage).onclick = function(){
+    $('#k-chk', stage).innerHTML = '<span class="ac-pop" style="font-size:2rem">' + (a - b) + ' + ' + b + ' = ' + a + ' ✓</span>';
+    $('#k-note', stage).innerHTML = 'Разность <b>' + (a - b) + '</b> прибавили к вычитаемому <b>' + b + '</b> — получили уменьшаемое <b>' + a + '</b>. Значит, вычитание верное!';
+    ctx.fb('Вычитание всегда можно проверить сложением.', 'ok'); ctx.done();
+  };
+  $('#k-more', stage).onclick = function(){ a = rnd(4, 10); b = rnd(1, a - 1); show(); };
+};
+
+/* --- Урок 4: из десяти --- */
+SCENES.tenMinus = function(stage, st, ctx){
+  let a = 3; const seen = {};
+  stage.innerHTML = '<div class="ac-actions" id="t-chips" style="margin-top:0"></div><div class="ac-frame" id="t-frame"></div><div class="ac-eq" id="t-eq"></div><div class="ac-chipname" id="t-note"></div><div class="ac-qcount" id="t-seen"></div>';
+  let chips = ''; for (let n = 1; n <= 9; n++) chips += '<button class="ac-tab" data-n="' + n + '">' + n + '</button>';
+  $('#t-chips', stage).innerHTML = chips;
+  function paint(){
+    $$('#t-chips .ac-tab', stage).forEach(t => t.classList.toggle('on', +t.dataset.n === a));
+    let h = ''; for (let i = 0; i < 10; i++) h += i < 10 - a ? '<div class="ac-cell a"></div>' : '<div class="ac-cell" style="background:#F1F4F7;border:2px dashed #C9D5E2;opacity:.6"></div>';
+    $('#t-frame', stage).innerHTML = h;
+    $('#t-eq', stage).innerHTML = '10 − <span class="n2">' + a + '</span> = <b>' + (10 - a) + '</b>';
+    $('#t-note', stage).innerHTML = 'Проверь: ' + (10 - a) + ' + ' + a + ' = 10. Вместе кружки снова дают десять.';
+    seen[a] = 1; const n = Object.keys(seen).length;
+    $('#t-seen', stage).textContent = n >= 3 ? 'Отлично, примеров достаточно ✓' : 'Попробуй разные числа: ' + n + ' из 3';
+    if (n >= 3) ctx.done();
+  }
+  $$('#t-chips .ac-tab', stage).forEach(t => t.onclick = () => { a = +t.dataset.n; paint(); });
+  paint();
+};
+
+SCENES.minusSpecial = function(stage, st, ctx){
+  let tab = '0', a = 4; const seen = {};
+  stage.innerHTML = '<div class="ac-tabs"><button class="ac-tab" data-t="0">− 0</button><button class="ac-tab" data-t="same">− столько же</button></div><div id="z-body"></div><div class="ac-actions"><button class="ac-btn ac-alt" id="z-more">Другое число ↻</button></div>';
+  function paint(){
+    seen[tab] = 1;
+    $$('.ac-tab', stage).forEach(t => t.classList.toggle('on', t.dataset.t === tab));
+    const body = $('#z-body', stage);
+    if (tab === '0'){
+      body.innerHTML = '<div class="ac-row"><div class="ac-tray">' + apples(a, 'red', 42) + '</div><span class="ac-sign">−</span><div class="ac-tray empty">0</div><span class="ac-sign">=</span><div class="ac-tray">' + apples(a, 'red', 42) + '</div></div>' +
+        '<div class="ac-eq"><span class="n1">' + a + '</span> − 0 = <b>' + a + '</b></div><div class="ac-chipname">Вычесть <b>ноль</b> — значит ничего не убрать. Число <b>не изменилось</b>.</div>';
+    } else {
+      body.innerHTML = '<div class="ac-row"><div class="ac-tray">' + apples(a, 'red', 42) + '</div><span class="ac-sign">−</span><div class="ac-tray">' + apples(a, 'red', 42) + '</div><span class="ac-sign">=</span><div class="ac-tray empty">0</div></div>' +
+        '<div class="ac-eq"><span class="n1">' + a + '</span> − <span class="n1">' + a + '</span> = <b>0</b></div><div class="ac-chipname">Убрали <b>всё</b>, что было, — не осталось ничего. Получился <b>ноль</b>.</div>';
+    }
+    if (seen['0'] && seen['same']){ ctx.fb('Теперь ты знаешь два особых случая ✓', 'ok'); ctx.done(); }
+  }
+  $$('.ac-tab', stage).forEach(t => t.onclick = () => { tab = t.dataset.t; paint(); });
+  $('#z-more', stage).onclick = () => { let n; do { n = rnd(1, 5); } while (n === a); a = n; paint(); };
+  paint();
+};
+
+/* --- Урок 5: краткая запись задачи --- */
+SCENES.story = function(stage, st, ctx){
+  let a, b, it, busy = false, done = false;
+  stage.innerHTML = '<div class="ac-qtxt" id="y-text" style="max-width:520px;margin:6px auto 14px"></div>' +
+    '<div class="ac-row" id="y-rec" style="gap:10px"></div><div class="ac-eq" id="y-eq" style="font-size:2rem"></div>' +
+    '<div class="ac-actions"><button class="ac-btn" id="y-go">Составить краткую запись</button><button class="ac-btn ac-alt" id="y-more">Другая задача ↻</button></div>';
+  function newStory(){ a = rnd(5, 10); b = rnd(1, Math.min(6, a - 1)); it = pick(STORY_ITEMS); done = false;
+    $('#y-text', stage).textContent = storyText(a, b, it); $('#y-rec', stage).innerHTML = ''; $('#y-eq', stage).innerHTML = ''; }
+  const box = (label, val, color) => '<div class="ac-pop" style="min-width:110px;background:' + color + '"><div style="font-size:.85rem;color:#5C7690">' + label + '</div><div>' + val + '</div></div>';
+  $('#y-go', stage).onclick = async function(){
+    if (busy || done) return; busy = true; this.disabled = true;
+    const rec = $('#y-rec', stage);
+    rec.insertAdjacentHTML('beforeend', box('Было', a, '#FFE3DF')); await sleep(700); if (!ctx.alive()) return;
+    rec.insertAdjacentHTML('beforeend', box('Отдал', b, '#FFF1C9')); await sleep(700); if (!ctx.alive()) return;
+    rec.insertAdjacentHTML('beforeend', box('Осталось', '?', '#EAF6D8')); await sleep(800); if (!ctx.alive()) return;
+    $('#y-eq', stage).innerHTML = '<span class="ac-red">' + a + '</span> − <span class="ac-grn">' + b + '</span> = ?'; await sleep(900); if (!ctx.alive()) return;
+    $('#y-eq', stage).innerHTML = '<span class="ac-red">' + a + '</span> − <span class="ac-grn">' + b + '</span> = <b>' + (a - b) + '</b>';
+    ctx.fb('Ответ: осталось ' + (a - b) + '.', 'ok'); done = true; busy = false; this.disabled = false; ctx.done();
+  };
+  $('#y-more', stage).onclick = function(){ if (busy) return; newStory(); $('#y-go', stage).disabled = false; ctx.fb('', 'info'); };
+  newStory();
+};
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться без конца — примеры каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="subtract.html">Тренажёр «Вычитание» →</a></div></div>';
+};
+
+/* --- общий исполнитель вопросов --- */
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = q.wide ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+/* ================= содержание курса ================= */
+const LESSONS = [
+  { id: 'l1', icon: '🍎', title: 'Что такое вычитание?', goal: 'Убирать часть и читать запись 7 − 3 = 4',
+    steps: [
+      { id: 'l1s1', scene: 'take', gate: true, title: 'Забираем яблоки',
+        text: 'Привет! Это снова Барсик. В большой корзине лежат яблоки. Когда мы <b>забираем</b> часть, мы выполняем <b>вычитание</b>. Нажми «Забрать» и посмотри, сколько останется!' },
+      { id: 'l1s2', scene: 'builderMinus', gate: true, title: 'Убираем сами',
+        text: 'Теперь твоя очередь! Сначала в рамке лежат все кружки. Нажимай «плюс», чтобы убрать кружки, пока не останется нужное число.' },
+      { id: 'l1s3', scene: 'parts', gate: true, title: 'Как называются числа',
+        text: 'В записи вычитания у чисел тоже есть имена. Нажми на каждое число, и я расскажу, как оно называется.' },
+      { id: 'l1s4', scene: 'quiz', gate: true, count: 4, gens: ['takePics'], title: 'Сколько осталось?',
+        text: 'Проверим! Бледные яблоки уже ушли. Сосчитай, сколько яблок осталось.' },
+      { id: 'l1s5', scene: 'quiz', gate: true, count: 5, gens: ['numMinus', 'compsMinus'], title: 'Примеры и названия',
+        text: 'Последняя проверка урока: примеры на вычитание и названия чисел.' }
+    ] },
+  { id: 'l2', icon: '🐰', title: 'Вычитание на числовом луче', goal: 'Вычитать прыжками влево по числовому лучу',
+    steps: [
+      { id: 'l2s1', scene: 'nlDemoBack', gate: true, title: 'Заяц прыгает назад',
+        text: 'Складывая, заяц прыгал вправо. Чтобы вычесть, он прыгает <b>влево</b>. Выбери, где он стоит и сколько прыжков сделает, и нажми «Прыгай»!' },
+      { id: 'l2s2', scene: 'nlPredictBack', gate: true, title: 'Куда он приземлится?',
+        text: 'Теперь попробуй угадать! Заяц прыгает налево. Нажми на число, где он окажется.' },
+      { id: 'l2s3', scene: 'countBack', title: 'Считаем назад',
+        text: 'Вычитать можно, считая назад. Например, девять минус три: начинаем с девяти и отступаем назад на три шага. Нажми «Отсчитать»!' },
+      { id: 'l2s4', scene: 'quiz', gate: true, count: 5, gens: ['lineBack', 'numMinus'], title: 'Проверяем себя',
+        text: 'Проверим, как у тебя получается прыгать назад. Отвечай на вопросы!' }
+    ] },
+  { id: 'l3', icon: '🤝', title: 'Сложение и вычитание — друзья', goal: 'Понимать, как связаны сложение и вычитание',
+    steps: [
+      { id: 'l3s1', scene: 'family', gate: true, title: 'Семья из трёх чисел',
+        text: 'Три числа могут дружить: из них получается сразу четыре равенства — два на сложение и два на вычитание. Нажми «Другая тройка», чтобы посмотреть ещё.' },
+      { id: 'l3s2', scene: 'check', gate: true, title: 'Проверка вычитания',
+        text: 'Вычитание можно проверить сложением. Если разность прибавить к вычитаемому, получится уменьшаемое. Нажми «Проверить»!' },
+      { id: 'l3s3', scene: 'quiz', gate: true, count: 5, gens: ['famQ'], title: 'Если известно сложение…',
+        text: 'Дружба чисел помогает: зная сложение, быстро находим вычитание.' },
+      { id: 'l3s4', scene: 'quiz', gate: true, count: 4, gens: ['checkQ', 'famQ'], title: 'Проверка и семья',
+        text: 'Последние задания урока. Читай внимательно!' }
+    ] },
+  { id: 'l4', icon: '🔟', title: 'Вычитание из 10 и особые случаи', goal: 'Вычитать из 10, вычитать ноль и столько же',
+    steps: [
+      { id: 'l4s1', scene: 'tenMinus', gate: true, title: 'Из десяти',
+        text: 'Десять — очень удобное число. Выбирай, сколько кружков забрать из десяти, и смотри, сколько останется. Заметь: то, что осталось, и то, что забрали, вместе снова дают десять!' },
+      { id: 'l4s2', scene: 'minusSpecial', gate: true, title: 'Минус ноль и минус столько же',
+        text: 'Есть два особых случая: вычесть ноль и вычесть столько же, сколько было. Переключай вкладки!' },
+      { id: 'l4s3', scene: 'quiz', gate: true, count: 5, gens: ['zeroQ'], title: 'Особые случаи',
+        text: 'Используй новые знания: ноль, столько же и вычитание из десяти.' },
+      { id: 'l4s4', scene: 'quiz', gate: true, count: 5, gens: ['zeroQ', 'numMinus'], title: 'Ещё примеры',
+        text: 'Ещё примеры на вычитание. Ты справишься!' }
+    ] },
+  { id: 'l5', icon: '📝', title: 'Задачи на вычитание', goal: 'Решать задачи и записывать их кратко',
+    steps: [
+      { id: 'l5s1', scene: 'story', gate: true, title: 'Как записать задачу',
+        text: 'Задача — это маленькая история с вопросом. Её удобно записать коротко: что было, что ушло, что осталось. Нажми «Составить краткую запись» и смотри!' },
+      { id: 'l5s2', scene: 'quiz', gate: true, count: 4, gens: ['storyQ'], title: 'Решаем задачи',
+        text: 'Читай задачу внимательно и выбери ответ. Если ошибёшься — я покажу краткую запись.' },
+      { id: 'l5s3', scene: 'quiz', gate: true, count: 6, gens: ['storyQ', 'famQ', 'numMinus'], title: 'Смешанные задания',
+        text: 'Теперь разные задания: задачи, примеры и связь сложения с вычитанием.' },
+      { id: 'l5s4', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты знаешь, что такое вычитание, умеешь отсчитывать назад по числовому лучу, помнишь про дружбу со сложением и решаешь задачи. Дальше — тренировка без конца!' }
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  P[L.id] = Math.max(P[L.id] || 0, stars); saveP(P);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
