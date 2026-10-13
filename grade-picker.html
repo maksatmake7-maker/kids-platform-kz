@@ -53,11 +53,18 @@
 
 /* лодка-флажок */
 .boat-row{display:flex; justify-content:center; margin-top:8px; position:relative; z-index:2;}
-.boat{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.92); border:none; border-radius:999px; padding:6px 20px 6px 8px; cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.02rem; color:var(--ink); box-shadow:0 5px 0 rgba(29,53,87,.14), 0 10px 20px rgba(29,53,87,.14); transition:transform .15s;}
-.boat:hover{transform:translateY(-2px);}
+.boat{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.92); border:none; border-radius:999px; padding:6px 10px 6px 8px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.02rem; color:var(--ink); box-shadow:0 5px 0 rgba(29,53,87,.14), 0 10px 20px rgba(29,53,87,.14); transition:transform .15s;}
 .boat svg.bt{width:60px; height:46px; animation:bobb 4.2s ease-in-out infinite;}
 @keyframes bobb{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(2px) rotate(2deg);}}
-.boat .swap{width:18px; height:18px; opacity:.55;}
+.boat-sw{display:flex; align-items:center; gap:4px; padding:4px; border-radius:999px; background:#EAF3FB;}
+.boat-sw button{border:none; cursor:pointer; font:inherit; font-size:.95rem; color:#5B7089; background:transparent; padding:9px 16px; border-radius:999px; white-space:nowrap; transition:background .2s,color .2s,transform .15s;}
+.boat-sw button:hover{transform:translateY(-1px); color:var(--ink);}
+.boat-sw button.on{background:#fff; color:var(--ink); box-shadow:0 2px 0 rgba(29,53,87,.14); cursor:default;}
+.boat-sw button[data-d=ru].on{background:#FF6B5B; color:#fff;}
+.boat-sw button[data-d=kz].on{background:#3FB088; color:#fff;}
+.boat-sw button.on:hover{transform:none;}
+.boat-sw button:focus-visible{outline:3px solid var(--sun,#FFD34D); outline-offset:2px;}
+@media (max-width:480px){ .boat{gap:6px; padding:5px 8px 5px 4px;} .boat svg.bt{width:44px; height:34px;} .boat-sw button{font-size:.82rem; padding:8px 10px;} }
 
 @media (max-width:760px){
   .archi{grid-template-columns:repeat(2,1fr); gap:6px 12px;}
@@ -121,11 +128,13 @@
   </div>
 
   <div class="boat-row">
-    <button type="button" class="boat" id="boat" aria-label="Сменить язык обучения / Оқыту тілін ауыстыру">
+    <div class="boat" id="boat" role="group" aria-label="Язык обучения / Оқыту тілі">
       <svg class="bt" viewBox="0 0 60 46" aria-hidden="true"><path d="M30 3 L30 30 L12 30Z" fill="#fff" stroke="#DCE6F2" stroke-width="1"/><path d="M33 9 L33 30 L49 30Z" fill="#FFE9A8"/><path d="M30 2 V32" stroke="#8B5A2B" stroke-width="2"/><path id="flagp" d="M30 2 L44 5.5 L30 9Z" fill="#FF6B5B"/><path d="M4 32 H56 L48 43 H13 Z" fill="#8B5A2B"/><path d="M6 33.5 H54" stroke="#C99650" stroke-width="2"/></svg>
-      <span id="boat-label"></span>
-      <svg class="swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h15l-4-4M20 16H5l4 4"/></svg>
-    </button>
+      <div class="boat-sw">
+        <button type="button" data-d="ru">Русское отделение</button>
+        <button type="button" data-d="kz">Қазақ бөлімі</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -148,8 +157,7 @@
     4:{ru:'4 класс',kz:'4 сынып',en:'Grade 4',zh:'四年级',uz:'4-sinf',tg:'Синфи 4',ug:'4-سىنىپ'},
     5:{ru:'5–11 классы',kz:'5–11 сыныптар',en:'Grades 5–11',zh:'5–11年级',uz:'5–11-sinflar',tg:'Синфҳои 5–11',ug:'5–11-سىنىپلار'}
   };
-  var BOAT={ru:'Русское отделение',kz:'Қазақ бөлімі'};
-  function labels(lang){
+    function labels(lang){
     if(!GN[3][lang]) lang='ru';
     $$('[data-gn]').forEach(function(h){ h.textContent=GN[h.getAttribute('data-gn')][lang]; });
   }
@@ -212,7 +220,7 @@
       g2.setAttribute('href','#'); g2.classList.add('fog'); g2.classList.remove('ready'); g2.setAttribute('aria-disabled','true'); g2.setAttribute('tabindex','-1');
       g2d.setAttribute('data-i18n','grade_picker_coming_soon'); g2b.removeAttribute('data-i18n'); g2b.textContent='🔒';
     }
-    $('#boat-label').textContent=BOAT[d]; $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
+    $$('#boat-sw button, .boat-sw button').forEach(function(b){ var on=b.getAttribute('data-d')===d; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }); $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
     try{ history.replaceState(null,'','?dir='+d); }catch(e){}
     applyLang(d);
     if(!quiet){ if(cur>1 && !g2.classList.contains('ready')) hopTo(0); }
@@ -267,7 +275,7 @@
       hopTo(i,function(){ setTimeout(function(){ location.href=href; },reduce?0:260); });
     });
   });
-  $('#boat').addEventListener('click',function(){ setDir(dir==='ru'?'kz':'ru'); });
+  $$('.boat-sw button').forEach(function(b){ b.addEventListener('click',function(){ var d=b.getAttribute('data-d'); if(d!==dir) setDir(d); }); });
 
   /* ---------- запуск ---------- */
   document.addEventListener('DOMContentLoaded',function(){
