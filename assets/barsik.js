@@ -2,6 +2,7 @@
    Подключение: <script src="…/assets/barsik.js"></script>
    Использование:
      var b = Barsik.mount(document.getElementById('куда'));
+     Barsik.mount(el,{grade:1..11, track:true}) — взрослеет по классам (рюкзак, шарф, очки, наушники) и следит глазами за курсором
      b.talk(true / false)        — говорит (рот двигается)
      b.react('happy', 1400)      — временное состояние, потом возвращается к основному
      b.set('cheer')              — основное состояние
@@ -20,6 +21,7 @@
     '.bs-earR{transform-origin:150px 62px;} .bs-earL{transform-origin:50px 62px;animation-delay:.4s;}',
     '.bs-lid{animation:bsBlink 4.8s infinite;}',
     '.bs-pupils{transition:transform .35s ease;}',
+    '.bs-tracked .bs-pupils{transition:none;}',
     '.bs-armL{transform-origin:64px 156px;transition:transform .45s ease;} .bs-armR{transform-origin:136px 156px;transition:transform .45s ease;}',
     '.bs-happyeyes,.bs-brows,.bs-sad,.bs-q,.bs-spark,.bs-open{opacity:0;}',
     '.bs-blush{opacity:0;transition:opacity .3s;}',
@@ -76,7 +78,28 @@
     return '<polygon class="bs-spark" style="transform-origin:' + cx + 'px ' + cy + 'px;animation-delay:' + (cls || 0) + 's" points="' + p + '" fill="' + color + '"/>';
   }
 
-  function svg(id){
+  /* аксессуары по классам: 1 — малыш; 2 — рюкзак; 3 — +шарф; 4–6 — +очки; 7+ — +наушники */
+  function accessories(grade){
+    var a = {bag:'', straps:'', scarf:'', glasses:'', phones:''};
+    grade = grade || 1;
+    if (grade >= 2){
+      a.bag = '<g class="bs-bag"><rect x="38" y="132" width="124" height="72" rx="26" fill="#E8584A"/><rect x="44" y="176" width="112" height="22" rx="11" fill="#D9483A"/></g>';
+      a.straps = '<g stroke="#D9483A" stroke-width="9" stroke-linecap="round" fill="none"><path d="M70 140 Q63 166 72 196"/><path d="M130 140 Q137 166 128 196"/></g><g fill="#FFC93C"><rect x="64" y="170" width="11" height="8" rx="2"/><rect x="125" y="170" width="11" height="8" rx="2"/></g>';
+    }
+    if (grade >= 3){
+      a.scarf = '<path d="M62 147 Q100 172 138 147 L140 161 Q100 188 60 161Z" fill="#3FB088"/><g stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M78 157 l4 14"/><path d="M95 161 l1 16"/><path d="M113 160 l-3 15"/><path d="M127 154 l-5 13"/></g><path d="M116 168 L132 200 L119 205 L108 174Z" fill="#3FB088"/><path d="M114 184 L128 190" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>';
+    }
+    if (grade >= 4){
+      a.glasses = '<g fill="rgba(255,255,255,.14)" stroke="#1D3557" stroke-width="3.6"><circle cx="72" cy="86" r="21"/><circle cx="128" cy="86" r="21"/></g><g fill="none" stroke="#1D3557" stroke-width="3.2" stroke-linecap="round"><path d="M92 83 Q100 77 108 83"/><path d="M51 83 L38 77"/><path d="M149 83 L162 77"/></g>';
+    }
+    if (grade >= 7){
+      a.phones = '<path d="M38 92 C30 6 170 6 162 92" fill="none" stroke="#1D3557" stroke-width="8" stroke-linecap="round"/><rect x="24" y="72" width="20" height="42" rx="10" fill="#FF6B5B" stroke="#1D3557" stroke-width="3"/><rect x="156" y="72" width="20" height="42" rx="10" fill="#FF6B5B" stroke="#1D3557" stroke-width="3"/>';
+    }
+    return a;
+  }
+
+  function svg(id, grade){
+    var acc = accessories(grade);
     var g = function(n){ return 'bs' + id + n; };
     var W = '#FFF7E3', INK = '#3B2A1A', SPOT = '#7A4620';
     return '<svg class="bs" viewBox="0 0 200 215" role="img" aria-label="Барсик" data-state="idle">' +
@@ -88,17 +111,19 @@
       /* хвост */
       '<g class="bs-tail"><path d="M148 180 C186 178 198 140 180 112" fill="none" stroke="#EE9524" stroke-width="15" stroke-linecap="round"/>' +
         '<path d="M170 162 l9 -4 M178 147 l10 -2 M180 131 l10 1" stroke="' + SPOT + '" stroke-width="4" stroke-linecap="round"/><circle cx="180" cy="112" r="8.5" fill="' + SPOT + '"/></g>' +
+      acc.bag +
       '<g class="bs-bodyg">' +
         /* туловище */
         '<ellipse cx="100" cy="172" rx="50" ry="38" fill="url(#' + g('b') + ')"/>' +
         '<ellipse cx="100" cy="182" rx="29" ry="25" fill="' + W + '"/>' +
         '<g fill="' + SPOT + '"><ellipse cx="66" cy="160" rx="5" ry="4"/><ellipse cx="136" cy="158" rx="5" ry="4"/><ellipse cx="74" cy="178" rx="4" ry="3"/><ellipse cx="128" cy="180" rx="4" ry="3"/><ellipse cx="60" cy="178" rx="3.5" ry="3"/></g>' +
+        acc.straps + acc.scarf +
         /* лапки-ноги */
         '<ellipse cx="74" cy="206" rx="19" ry="9" fill="#F8AE3F"/><ellipse cx="126" cy="206" rx="19" ry="9" fill="#F8AE3F"/>' +
         '<path d="M66 208 v-5 M74 209 v-6 M82 208 v-5 M118 208 v-5 M126 209 v-6 M134 208 v-5" stroke="' + SPOT + '" stroke-width="1.8" stroke-linecap="round" opacity=".55"/>' +
       '</g>' +
       /* голова */
-      '<g class="bs-head">' +
+      '<g class="bs-look"><g class="bs-head">' +
         '<g class="bs-ear bs-earL"><circle cx="48" cy="54" r="23" fill="#F8AE3F"/><circle cx="49" cy="57" r="13" fill="#FFB4A8"/><path d="M30 44 Q38 34 50 34" stroke="' + SPOT + '" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>' +
         '<g class="bs-ear bs-earR"><circle cx="152" cy="54" r="23" fill="#F8AE3F"/><circle cx="151" cy="57" r="13" fill="#FFB4A8"/><path d="M170 44 Q162 34 150 34" stroke="' + SPOT + '" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>' +
         '<ellipse cx="100" cy="94" rx="66" ry="57" fill="url(#' + g('f') + ')"/>' +
@@ -127,7 +152,8 @@
         '<g class="bs-sad" fill="none" stroke="#7A3B2E" stroke-width="2.6" stroke-linecap="round"><path d="M100 113 V119"/><path d="M88 128 Q100 117 112 128"/></g>' +
         /* усы */
         '<g stroke="' + SPOT + '" stroke-width="1.7" stroke-linecap="round" opacity=".55"><path d="M72 117 L32 108"/><path d="M72 122 L30 124"/><path d="M74 127 L36 140"/><path d="M128 117 L168 108"/><path d="M128 122 L170 124"/><path d="M126 127 L164 140"/></g>' +
-      '</g>' +
+        acc.glasses + acc.phones +
+      '</g></g>' +
       /* передние лапы (поверх головы, чтобы поднятые были видны) */
         '<g class="bs-armL"><ellipse cx="62" cy="170" rx="12" ry="24" fill="url(#' + g('b') + ')" transform="rotate(14 62 170)"/><ellipse cx="57" cy="192" rx="12" ry="9" fill="#FFE4A8"/><path d="M52 194 v-4 M57 195 v-5 M62 194 v-4" stroke="' + SPOT + '" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g>' +
         '<g class="bs-armR"><ellipse cx="138" cy="170" rx="12" ry="24" fill="url(#' + g('b') + ')" transform="rotate(-14 138 170)"/><ellipse cx="143" cy="192" rx="12" ry="9" fill="#FFE4A8"/><path d="M138 194 v-4 M143 195 v-5 M148 194 v-4" stroke="' + SPOT + '" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g>' +
@@ -137,12 +163,46 @@
       '</g></svg>';
   }
 
+  /* ---------- слежение глазами за курсором (общий цикл на все экземпляры) ---------- */
+  var tracked = [], ptr = null, loop = false, lastT = 0;
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function damp(c, t, r, dt){ return c + (t - c) * (1 - Math.exp(-r * dt)); }
+  function onMove(e){ ptr = {x: e.clientX, y: e.clientY, t: performance.now() / 1000}; }
+  function frame(ts){
+    var t = ts / 1000, dt = Math.min(.05, t - lastT || .016); lastT = t;
+    for (var i = tracked.length - 1; i >= 0; i--){
+      var k = tracked[i];
+      if (!document.body.contains(k.svg)){ tracked.splice(i, 1); continue; }
+      var r = k.svg.getBoundingClientRect(); if (!r.width) continue;
+      var cx = r.left + r.width / 2, cy = r.top + r.height * .42, tx = 0, ty = 0, hx = 0, hy = 0;
+      if (ptr && t - ptr.t < 3.5){
+        var dx = ptr.x - cx, dy = ptr.y - cy, d = Math.hypot(dx, dy) || 1, m = Math.tanh(d / (r.width * 2.2)), hm = Math.tanh(d / (r.width * 3.5));
+        tx = dx / d * m * 4.8; ty = dy / d * m * 6; hx = dx / d * hm; hy = dy / d * hm; k.idleAt = t + 1;
+      } else if (!reduce){
+        if (t > k.idleAt){ k.gx = (Math.random() - .5) * 8; k.gy = (Math.random() - .35) * 6; k.idleAt = t + 1.2 + Math.random() * 2.4; }
+        tx = k.gx; ty = k.gy; hx = k.gx / 8; hy = k.gy / 6;
+      }
+      k.ex = damp(k.ex, tx, 20, dt); k.ey = damp(k.ey, ty, 20, dt); k.hx = damp(k.hx, hx, 5, dt); k.hy = damp(k.hy, hy, 5, dt);
+      k.pupils.setAttribute('transform', 'translate(' + k.ex.toFixed(2) + ' ' + k.ey.toFixed(2) + ')');
+      k.look.setAttribute('transform', 'translate(' + (k.hx * 3.2).toFixed(2) + ' ' + (k.hy * 2).toFixed(2) + ') rotate(' + (k.hx * 3).toFixed(2) + ' 100 150)');
+    }
+    if (tracked.length) requestAnimationFrame(frame); else loop = false;
+  }
+  function track(node){
+    var k = {svg: node, pupils: node.querySelector('.bs-pupils'), look: node.querySelector('.bs-look'), ex: 0, ey: 0, hx: 0, hy: 0, gx: 0, gy: 0, idleAt: 0};
+    if (!k.pupils || !k.look) return;
+    node.classList.add('bs-tracked'); tracked.push(k);
+    if (!window.__bsMove){ window.__bsMove = true; window.addEventListener('pointermove', onMove, {passive: true}); window.addEventListener('pointerdown', onMove, {passive: true}); }
+    if (!loop){ loop = true; requestAnimationFrame(frame); }
+  }
+
   window.Barsik = {
     mount: function(el, opts){
       inject();
-      el.innerHTML = svg(uid++);
+      el.innerHTML = svg(uid++, opts && opts.grade);
       var node = el.querySelector('svg'), base = (opts && opts.state) || 'idle', timer = null;
       node.setAttribute('data-state', base);
+      if (opts && opts.track) track(node);
       return {
         el: node,
         set: function(state){ base = state; clearTimeout(timer); timer = null; node.setAttribute('data-state', state); },
