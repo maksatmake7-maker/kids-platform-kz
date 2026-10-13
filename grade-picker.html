@@ -7,8 +7,70 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/world.css">
+<style>
+.gp{position:relative; z-index:2; max-width:1040px; margin:0 auto; padding:6px 20px 30px; text-align:center; overflow-x:clip;}
+.gp h2{font-size:clamp(1.7rem,3.6vw,2.4rem); color:var(--txt); text-shadow:0 2px 0 var(--txs); margin:16px 0 6px;}
+.gp .lead{color:var(--txt); font-weight:700; text-shadow:0 1px 3px var(--txs); margin:0 auto; max-width:34em;}
+
+/* архипелаг */
+.archi{position:relative; margin-top:22px; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; align-items:start; padding-bottom:18px;}
+.route{position:absolute; left:0; top:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:visible;}
+.route path{fill:none; stroke:#fff; stroke-width:4; stroke-linecap:round; stroke-dasharray:1 11; opacity:.9; animation:dots 24s linear infinite;}
+.route path.dim{opacity:.4;}
+@keyframes dots{to{stroke-dashoffset:-240;}}
+.isle{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-decoration:none; color:var(--ink); outline:none; -webkit-tap-highlight-color:transparent;}
+.isle.g2,.isle.g4{margin-top:58px;}
+.isle-art{position:relative; display:block; width:100%; max-width:210px; aspect-ratio:240/170; transition:transform .3s ease;}
+.isle-art svg.art{width:100%; height:100%; display:block; overflow:visible;}
+.isle:not(.fog):hover .isle-art,.isle:not(.fog):focus-visible .isle-art{transform:translateY(-6px) scale(1.03);}
+.isle:focus-visible .isle-plate{outline:3px dashed var(--coral); outline-offset:3px;}
+.isle-plate{position:relative; margin-top:-12px; background:#fff; border:3px solid var(--c,#FF6B5B); border-radius:18px; padding:8px 14px 10px; min-width:132px; max-width:100%; box-shadow:0 5px 0 rgba(29,53,87,.12), 0 10px 20px rgba(29,53,87,.12);}
+.isle-plate h3{font-size:1.2rem; line-height:1.15; margin:0 0 3px;}
+.isle-plate p{font-size:.8rem; line-height:1.3; color:#5C7690; font-weight:700; margin:0 0 7px;}
+.isle .badge{display:inline-block; font-family:'Baloo 2',sans-serif; font-size:.8rem; font-weight:700; padding:4px 14px; border-radius:999px; background:var(--meadow); color:#fff;}
+.isle.fog .badge{background:#EDEFF2; color:#94A3B8;}
+.isle.g1{--c:#FF6B5B;} .isle.g2{--c:#FFC93C;} .isle.g3{--c:#3FB088;} .isle.g4{--c:#5EC3E8;} .isle.g5{--c:#C77DD9;}
+.isle.fog{cursor:default;}
+.isle.fog .isle-art svg.art{filter:saturate(.3) brightness(1.12);}
+.isle.fog .isle-plate{background:rgba(255,255,255,.78); border-color:rgba(255,255,255,.9);}
+.isle.fog h3,.isle.fog p{opacity:.8;}
+.fogc{position:absolute; inset:-8% -10% 8% -10%; pointer-events:none; display:none; z-index:3;
+  background:radial-gradient(ellipse 38% 30% at 28% 58%,rgba(255,255,255,.72) 0 50%,transparent 100%),radial-gradient(ellipse 40% 32% at 72% 56%,rgba(255,255,255,.7) 0 50%,transparent 100%),radial-gradient(ellipse 46% 28% at 50% 74%,rgba(240,246,255,.75) 0 50%,transparent 100%),radial-gradient(ellipse 30% 22% at 50% 30%,rgba(255,255,255,.4) 0 50%,transparent 100%);
+  filter:blur(3px); animation:fogd 9s ease-in-out infinite alternate;}
+.isle.fog .fogc{display:block;}
+.isle.g4 .fogc{animation-delay:-3s;} .isle.g5 .fogc{animation-delay:-6s;}
+@keyframes fogd{from{transform:translateX(-5px);}to{transform:translateX(7px);}}
+.lock{position:absolute; left:50%; top:68%; transform:translate(-50%,-50%); z-index:5; width:32px; height:32px; border-radius:50%; background:#fff; display:none; place-items:center; box-shadow:0 4px 10px rgba(29,53,87,.2); color:#64748B;}
+.lock svg{width:17px; height:17px;}
+.isle.fog .lock{display:grid;}
+.ghost{position:absolute; left:50%; bottom:36%; transform:translateX(-50%); width:var(--gw,58px); opacity:1; filter:brightness(0) opacity(.34) blur(.6px); z-index:4; pointer-events:none; display:none;}
+.isle.fog .ghost{display:block;}
+
+/* Барсик-ходок */
+.walker{position:absolute; left:0; top:0; z-index:6; pointer-events:none; will-change:transform; width:72px;}
+.walker .shadow{position:absolute; left:14%; right:14%; bottom:-2px; height:8px; border-radius:50%; background:rgba(20,70,50,.28); filter:blur(2px);}
+
+/* лодка-флажок */
+.boat-row{display:flex; justify-content:center; margin-top:8px; position:relative; z-index:2;}
+.boat{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.92); border:none; border-radius:999px; padding:6px 20px 6px 8px; cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.02rem; color:var(--ink); box-shadow:0 5px 0 rgba(29,53,87,.14), 0 10px 20px rgba(29,53,87,.14); transition:transform .15s;}
+.boat:hover{transform:translateY(-2px);}
+.boat svg.bt{width:60px; height:46px; animation:bobb 4.2s ease-in-out infinite;}
+@keyframes bobb{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(2px) rotate(2deg);}}
+.boat .swap{width:18px; height:18px; opacity:.55;}
+
+@media (max-width:760px){
+  .archi{grid-template-columns:repeat(2,1fr); gap:6px 12px;}
+  .isle.g2,.isle.g4{margin-top:40px;}
+  .isle.g5{grid-column:1 / -1; margin-top:6px;}
+  .isle-art{max-width:190px;}
+  .isle.g5 .isle-art{max-width:230px;}
+  .gp{padding-inline:14px;}
+}
+@media (prefers-reduced-motion: reduce){ .route path,.fogc,.boat svg.bt{animation:none!important;} }
+</style>
 </head>
-<body>
+<body class="w-page">
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
 <div class="cloud cloud3"></div>
@@ -26,24 +88,44 @@
   </div>
 </header>
 
-<section class="subjects" id="subjects" style="padding-top:20px;">
+<section class="gp" id="subjects">
   <a href="index.html" class="back-link" data-i18n="grade_picker_back"></a>
   <h2 data-i18n="grade_picker_title"></h2>
   <p class="lead" data-i18n="grade_picker_lead"></p>
 
-  <div class="island-grid" style="margin-top:24px;">
-    <a href="#" id="grade-1-link" class="island math ready" style="text-decoration:none;">
-      <span class="emoji">1️⃣</span>
-      <h3 data-i18n="grade_picker_grade1"></h3>
-      <p data-i18n="grade_picker_grade1_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
+  <div class="archi" id="archi">
+    <svg class="route" id="route" aria-hidden="true"></svg>
+
+    <a href="#" id="grade-1-link" class="isle g1 ready" data-g="1">
+      <span class="isle-art" data-art="1"></span>
+      <span class="isle-plate"><h3 data-i18n="grade_picker_grade1"></h3><p data-i18n="grade_picker_grade1_desc"></p><span class="badge" data-i18n="badge_play"></span></span>
     </a>
-    <a href="#" id="grade-2-link" class="island" style="text-decoration:none; opacity:0.5; filter:grayscale(1); cursor:default;">
-      <span class="emoji">2️⃣</span>
-      <h3 data-i18n="grade_picker_grade2"></h3>
-      <p id="grade-2-desc" data-i18n="grade_picker_coming_soon"></p>
-      <span class="badge" id="grade-2-badge" style="background:#EDEFF2; color:#94A3B8;">🔒</span>
+    <a href="#" id="grade-2-link" class="isle g2 fog" data-g="2">
+      <span class="isle-art" data-art="2" data-ghost="2"></span>
+      <span class="isle-plate"><h3 data-i18n="grade_picker_grade2"></h3><p id="grade-2-desc" data-i18n="grade_picker_coming_soon"></p><span class="badge" id="grade-2-badge">🔒</span></span>
     </a>
+    <a href="#" class="isle g3 fog" data-g="3" aria-disabled="true" tabindex="-1">
+      <span class="isle-art" data-art="3" data-ghost="3"></span>
+      <span class="isle-plate"><h3 data-gn="3"></h3><p data-i18n="grade_picker_coming_soon"></p><span class="badge">🔒</span></span>
+    </a>
+    <a href="#" class="isle g4 fog" data-g="4" aria-disabled="true" tabindex="-1">
+      <span class="isle-art" data-art="4" data-ghost="4"></span>
+      <span class="isle-plate"><h3 data-gn="4"></h3><p data-i18n="grade_picker_coming_soon"></p><span class="badge">🔒</span></span>
+    </a>
+    <a href="#" class="isle g5 fog" data-g="5" aria-disabled="true" tabindex="-1">
+      <span class="isle-art" data-art="5" data-ghost="7"></span>
+      <span class="isle-plate"><h3 data-gn="5"></h3><p data-i18n="grade_picker_coming_soon"></p><span class="badge">🔒</span></span>
+    </a>
+
+    <div class="walker" id="walker" aria-hidden="true"></div>
+  </div>
+
+  <div class="boat-row">
+    <button type="button" class="boat" id="boat" aria-label="Сменить язык обучения / Оқыту тілін ауыстыру">
+      <svg class="bt" viewBox="0 0 60 46" aria-hidden="true"><path d="M30 3 L30 30 L12 30Z" fill="#fff" stroke="#DCE6F2" stroke-width="1"/><path d="M33 9 L33 30 L49 30Z" fill="#FFE9A8"/><path d="M30 2 V32" stroke="#8B5A2B" stroke-width="2"/><path id="flagp" d="M30 2 L44 5.5 L30 9Z" fill="#FF6B5B"/><path d="M4 32 H56 L48 43 H13 Z" fill="#8B5A2B"/><path d="M6 33.5 H54" stroke="#C99650" stroke-width="2"/></svg>
+      <span id="boat-label"></span>
+      <svg class="swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h15l-4-4M20 16H5l4 4"/></svg>
+    </button>
   </div>
 </section>
 
@@ -51,27 +133,153 @@
 
 <script src="assets/i18n.js"></script>
 <script src="assets/progress.js"></script>
+<script src="assets/barsik.js"></script>
+<script src="assets/world.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    var params = new URLSearchParams(window.location.search);
-    var dir = params.get('dir') === 'kz' ? 'kz' : 'ru';
-    var target = dir === 'kz' ? 'grades/grade-1-kaz/index.html' : 'grades/grade-1/index.html';
-    document.getElementById('grade-1-link').setAttribute('href', target);
-    applyLang(dir);
+(function(){
+  'use strict';
+  var $ = function(s,r){ return (r||document).querySelector(s); }, $$ = function(s,r){ return [].slice.call((r||document).querySelectorAll(s)); };
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var NS='http://www.w3.org/2000/svg';
 
-    if(dir === 'ru'){
-      var g2 = document.getElementById('grade-2-link');
-      g2.setAttribute('href', 'grades/grade-2/index.html');
-      g2.classList.add('math', 'ready');
-      g2.style.opacity = '';
-      g2.style.filter = '';
-      g2.style.cursor = '';
-      document.getElementById('grade-2-desc').setAttribute('data-i18n', 'grade_picker_grade2_desc');
-      document.getElementById('grade-2-badge').removeAttribute('style');
-      document.getElementById('grade-2-badge').setAttribute('data-i18n', 'badge_play');
-      applyLang(dir); // повторно, чтобы новые data-i18n подхватились после смены атрибутов
+  /* ---------- подписи, которых нет в i18n.js ---------- */
+  var GN={
+    3:{ru:'3 класс',kz:'3 сынып',en:'Grade 3',zh:'三年级',uz:'3-sinf',tg:'Синфи 3',ug:'3-سىنىپ'},
+    4:{ru:'4 класс',kz:'4 сынып',en:'Grade 4',zh:'四年级',uz:'4-sinf',tg:'Синфи 4',ug:'4-سىنىپ'},
+    5:{ru:'5–11 классы',kz:'5–11 сыныптар',en:'Grades 5–11',zh:'5–11年级',uz:'5–11-sinflar',tg:'Синфҳои 5–11',ug:'5–11-سىنىپلار'}
+  };
+  var BOAT={ru:'Русское отделение',kz:'Қазақ бөлімі'};
+  function labels(lang){
+    if(!GN[3][lang]) lang='ru';
+    $$('[data-gn]').forEach(function(h){ h.textContent=GN[h.getAttribute('data-gn')][lang]; });
+  }
+  var _al=window.applyLang; window.applyLang=function(l){ var r=_al.apply(this,arguments); labels(l); layout(); return r; };
+
+  /* ---------- рисунки островов ---------- */
+  function leaf(a,c){ return '<g transform="rotate('+a+')"><path d="M0 0 C12 -16 38 -18 56 -2 C38 -8 18 -6 0 0Z" fill="'+c+'"/></g>'; }
+  function palm(x,y,s,delay){
+    return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M-3 0 C3 -24 -5 -48 -7 -70 L3 -70 C4 -48 12 -24 8 0Z" fill="#B5793F"/>'+
+      '<g transform="translate(-2 -70)"><g><animateTransform attributeName="transform" type="rotate" values="-2 0 0;3 0 0;-2 0 0" dur="'+(4+delay)+'s" repeatCount="indefinite"/>'+
+      leaf(-170,'#2E9A74')+leaf(-130,'#35A878')+leaf(-82,'#3FB088')+leaf(-34,'#2E9A74')+leaf(8,'#35A878')+'</g><circle cx="-2" cy="4" r="5" fill="#7F4F25"/><circle cx="6" cy="5" r="5" fill="#8F5B2C"/></g></g>';
+  }
+  function flag(x,y,h,color,txt,tc){
+    return '<g transform="translate('+x+' '+y+')"><rect x="-1.5" y="'+(-h)+'" width="3" height="'+h+'" rx="1.5" fill="#8B5A2B"/>'+
+      '<path d="M1.5 '+(-h)+' H32 Q28 '+(-h+9)+' 32 '+(-h+18)+' H1.5Z" fill="'+color+'"/>'+
+      '<text x="16" y="'+(-h+14)+'" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="15" fill="'+(tc||'#fff')+'">'+txt+'</text></g>';
+  }
+  function art(n){
+    var s='<svg class="art" viewBox="0 0 240 170" aria-hidden="true"><defs>'+
+      '<linearGradient id="sa'+n+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE6B0"/><stop offset="1" stop-color="#F3CC82"/></linearGradient>'+
+      '<linearGradient id="gr'+n+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ED69A"/><stop offset="1" stop-color="#3FB088"/></linearGradient></defs>'+
+      '<ellipse cx="120" cy="146" rx="112" ry="19" fill="#0B6E9E" opacity=".2"/>'+
+      '<ellipse cx="120" cy="138" rx="108" ry="24" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3"><animate attributeName="rx" values="108;113;108" dur="'+(4.5+n*.4)+'s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".6;.3;.6" dur="'+(4.5+n*.4)+'s" repeatCount="indefinite"/></ellipse>'+
+      '<path d="M26 112 C26 140 70 152 120 152 C170 152 214 140 214 112Z" fill="#DDAA5E"/>'+
+      '<ellipse cx="120" cy="112" rx="94" ry="34" fill="url(#sa'+n+')"/>'+
+      '<ellipse cx="120" cy="107" rx="78" ry="26" fill="#2E9A74"/><ellipse cx="120" cy="101" rx="78" ry="26" fill="url(#gr'+n+')"/>';
+    if(n===1){
+      s+=palm(62,104,.95,0)+flag(168,104,46,'#FF6B5B','1')+'<circle cx="128" cy="112" r="4" fill="#fff"/><circle cx="136" cy="116" r="3.2" fill="#FFD34D"/>';
+    } else if(n===2){
+      s+=palm(62,106,.8,.3)+palm(92,110,.55,.8)+flag(172,104,46,'#FFC93C','2','#1D3557')+
+        '<rect x="120" y="104" width="26" height="7" rx="2" fill="#2F8FD1"/><rect x="123" y="97" width="22" height="7" rx="2" fill="#FF6B5B"/><rect x="121" y="90" width="24" height="7" rx="2" fill="#3FB088"/>';
+    } else if(n===3){
+      s+=flag(70,104,44,'#3FB088','3')+
+        '<path d="M142 106 L150 52 L170 52 L178 106Z" fill="#fff"/><path d="M146 84 L174 84 L172 96 L148 96Z" fill="#E8584A"/><path d="M149 62 L171 62 L170 70 L150 70Z" fill="#E8584A"/><rect x="148" y="42" width="24" height="10" rx="2" fill="#FFD34D"/><path d="M144 42 L160 30 L176 42Z" fill="#E8584A"/>'+
+        '<ellipse cx="160" cy="108" rx="24" ry="5" fill="#2E9A74" opacity=".5"/>';
+    } else if(n===4){
+      s+=flag(66,104,44,'#5EC3E8','4','#1D3557')+
+        '<rect x="128" y="78" width="60" height="32" fill="#FFE9C9"/><path d="M122 80 L158 56 L194 80Z" fill="#E8584A"/><rect x="150" y="92" width="16" height="18" rx="3" fill="#8B5A2B"/><rect x="132" y="86" width="12" height="11" rx="2" fill="#7BC8FF"/><rect x="172" y="86" width="12" height="11" rx="2" fill="#7BC8FF"/><rect x="156" y="50" width="3" height="10" fill="#8B5A2B"/><path d="M159 50 l10 3 l-10 3z" fill="#FFC93C"/>';
+    } else {
+      s+='<path d="M52 108 L96 52 L128 96 L152 64 L190 108Z" fill="#8E9BC9"/><path d="M96 52 L84 68 L96 64 L104 70Z" fill="#fff" opacity=".9"/><path d="M152 64 L144 76 L152 72 L160 78Z" fill="#fff" opacity=".9"/>'+flag(200,108,40,'#C77DD9','5+');
     }
+    return s+'</svg>';
+  }
+  $$('.isle-art').forEach(function(a){
+    var n=+a.getAttribute('data-art'); a.innerHTML=art(n)+'<span class="fogc"></span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>';
+    var g=a.getAttribute('data-ghost');
+    if(g){ var gh=document.createElement('span'); gh.className='ghost'; var G=+g; gh.style.setProperty('--gw',(52+G*3)+'px'); a.appendChild(gh); Barsik.mount(gh,{grade:G}); }
   });
+
+  /* ---------- направление: ru / kz ---------- */
+  var params=new URLSearchParams(location.search), dir=params.get('dir')==='kz'?'kz':'ru';
+  var g1=$('#grade-1-link'), g2=$('#grade-2-link'), g2d=$('#grade-2-desc'), g2b=$('#grade-2-badge');
+  function setDir(d, quiet){
+    dir=d;
+    g1.setAttribute('href', d==='kz'?'grades/grade-1-kaz/index.html':'grades/grade-1/index.html');
+    if(d==='ru'){
+      g2.setAttribute('href','grades/grade-2/index.html'); g2.classList.remove('fog'); g2.classList.add('ready'); g2.removeAttribute('aria-disabled'); g2.removeAttribute('tabindex');
+      g2d.setAttribute('data-i18n','grade_picker_grade2_desc'); g2b.setAttribute('data-i18n','badge_play'); g2b.textContent='';
+    } else {
+      g2.setAttribute('href','#'); g2.classList.add('fog'); g2.classList.remove('ready'); g2.setAttribute('aria-disabled','true'); g2.setAttribute('tabindex','-1');
+      g2d.setAttribute('data-i18n','grade_picker_coming_soon'); g2b.removeAttribute('data-i18n'); g2b.textContent='🔒';
+    }
+    $('#boat-label').textContent=BOAT[d]; $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
+    try{ history.replaceState(null,'','?dir='+d); }catch(e){}
+    applyLang(d);
+    if(!quiet){ if(cur>1 && !g2.classList.contains('ready')) hopTo(0); }
+  }
+
+  /* ---------- маршрут и Барсик-ходок ---------- */
+  var archi=$('#archi'), route=$('#route'), walker=$('#walker'), isles=$$('.isle'), bs=null, curGrade=0, cur=1, pos={x:0,y:0}, hopping=false;
+  var SIZE={1:64,2:74,3:82,4:90};
+  function artRect(i){ var a=$('.isle-art',isles[i]).getBoundingClientRect(), r=archi.getBoundingClientRect(); return {cx:a.left-r.left+a.width/2, top:a.top-r.top, w:a.width, h:a.height}; }
+  function spot(i){ var a=artRect(i), w=SIZE[i+1]||72; return {x:a.cx-w/2, y:a.top+a.h*.64-w*1.075*.94, w:w}; }
+  function setSize(w){ walker.style.width=w+'px'; }
+  function mountBs(grade){
+    if(curGrade===grade) return;
+    var first=(curGrade===0); curGrade=grade;
+    bs=Barsik.mount(walker,{grade:grade,track:true});
+    var sh=document.createElement('span'); sh.className='shadow'; walker.appendChild(sh);
+    if(!first) bs.react('cheer',1100);
+  }
+  function place(i){ var p=spot(i); pos={x:p.x,y:p.y}; setSize(p.w); walker.style.transform='translate('+p.x+'px,'+p.y+'px)'; }
+  function layout(){
+    // линия маршрута через центры островов
+    var r=archi.getBoundingClientRect(); route.setAttribute('viewBox','0 0 '+r.width+' '+r.height);
+    var pts=isles.map(function(_,i){ var a=artRect(i); return {x:a.cx, y:a.top+a.h*.66}; });
+    function seg(a,b){ var mx=(a.x+b.x)/2, my=(a.y+b.y)/2+22; return 'M'+a.x.toFixed(1)+' '+a.y.toFixed(1)+' Q'+mx.toFixed(1)+' '+my.toFixed(1)+' '+b.x.toFixed(1)+' '+b.y.toFixed(1); }
+    var d1='', d2='';
+    for(var i=0;i<pts.length-1;i++){ var open=!isles[i+1].classList.contains('fog'); (open?(d1+=seg(pts[i],pts[i+1])):(d2+=seg(pts[i],pts[i+1]))); }
+    route.innerHTML='<path class="dim" d="'+d2+'"/><path d="'+d1+'"/>';
+    if(!hopping){ place(cur-1); }
+  }
+  function ease(t){ return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
+  function hopTo(i, done){
+    if(hopping){ return; }
+    if(i===cur-1){ if(bs) bs.react('happy',900); done&&setTimeout(done,350); return; }
+    var from=pos, to=spot(i), dist=Math.hypot(to.x-from.x,to.y-from.y); hopping=true;
+    if(bs) bs.react('happy',reduce?500:Math.min(1500,dist*1.6+500));
+    var dur=reduce?1:Math.min(1000,420+dist*.9), t0=performance.now(), H=Math.min(90,34+dist*.12), w0=parseFloat(walker.style.width)||64;
+    function step(now){
+      var p=Math.min(1,(now-t0)/dur), e=ease(p), x=from.x+(to.x-from.x)*e, y=from.y+(to.y-from.y)*e-Math.sin(Math.PI*p)*H;
+      walker.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)'; setSize(w0+(to.w-w0)*e);
+      if(p<1){ requestAnimationFrame(step); }
+      else { hopping=false; cur=i+1; pos={x:to.x,y:to.y}; mountBs(+isles[i].getAttribute('data-g')); layout(); done&&done(); }
+    }
+    requestAnimationFrame(step);
+  }
+  isles.forEach(function(el,i){
+    var locked=function(){ return el.classList.contains('fog'); };
+    el.addEventListener('pointerenter',function(e){ if(e.pointerType==='touch') return; if(locked()){ if(bs && !hopping) bs.react('think',1500); } else hopTo(i); });
+    el.addEventListener('focus',function(){ if(!locked()) hopTo(i); });
+    el.addEventListener('click',function(e){
+      if(locked()){ e.preventDefault(); if(bs && !hopping) bs.react('oops',1100); return; }
+      e.preventDefault(); var href=el.getAttribute('href'); if(!href||href==='#') return;
+      hopTo(i,function(){ setTimeout(function(){ location.href=href; },reduce?0:260); });
+    });
+  });
+  $('#boat').addEventListener('click',function(){ setDir(dir==='ru'?'kz':'ru'); });
+
+  /* ---------- запуск ---------- */
+  document.addEventListener('DOMContentLoaded',function(){
+    labels(dir); setDir(dir,true); mountBs(1);
+    layout();
+    var rs; window.addEventListener('resize',function(){ clearTimeout(rs); rs=setTimeout(layout,80); });
+    if(window.ResizeObserver) new ResizeObserver(function(){ if(!hopping) layout(); }).observe(archi);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+    window.addEventListener('load',layout);
+  });
+  window.__gp={hopTo:hopTo,state:function(){ return {cur:cur,hopping:hopping,dir:dir,grade:curGrade}; }};
+})();
 </script>
 </body>
 </html>
