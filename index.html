@@ -7,105 +7,1008 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ===== Главная: остров знаний (макет-предложение) ===== */
+body.home{background:#FFF8E8;}
+.stage{
+  --W:min(740px,56vw);
+  --pb:26px;
+  --sk1:#5DBEEF; --sk2:#8FD6F5; --sk3:#C4ECFA; --sk4:#DDF4FF;
+  --se1:#A3E4F1; --se2:#5CC8E1; --se3:#33A9D8; --se4:#1E88C2;
+  --txt:#1D3557; --txs:rgba(255,255,255,.65);
+  position:relative; overflow:hidden;
+  background:linear-gradient(180deg,var(--sk1) 0%,var(--sk2) 34%,var(--sk3) 64%,var(--sk4) 100%);
+}
+.stage[data-tod=dawn]{--sk1:#8FA9EC; --sk2:#D6B6E4; --sk3:#FFC9B0; --sk4:#FFE3B8; --se1:#FFD3B0; --se2:#8FB8D8; --se3:#4C8FC4; --se4:#2B6AA6;}
+.stage[data-tod=sunset]{--sk1:#4A57BE; --sk2:#B0679F; --sk3:#F29A7C; --sk4:#FFC07A; --se1:#FFB878; --se2:#D77A92; --se3:#6A5AA8; --se4:#2F3A86; --txt:#fff; --txs:rgba(30,20,80,.45);}
+.stage[data-tod=night]{--sk1:#0A1440; --sk2:#18286A; --sk3:#2B4286; --sk4:#42609E; --se1:#4B6FAE; --se2:#2B4C90; --se3:#173070; --se4:#0B1A52; --txt:#fff; --txs:rgba(0,0,30,.5);}
+.stage[data-tod=night] #world{filter:brightness(.7) saturate(.9) hue-rotate(6deg);}
+.stage[data-tod=sunset] #world{filter:brightness(.94) saturate(1.1) sepia(.22);}
+.stage[data-tod=dawn] #world{filter:brightness(.98) sepia(.12);}
+.stage[data-tod=night] .cl{filter:brightness(.5); opacity:.35;}
+.stage[data-tod=sunset] .cl{filter:sepia(.5) saturate(1.6) brightness(1.02);}
+.stage[data-tod=dawn] .cl{filter:sepia(.25) saturate(1.3);}
+.star{position:absolute; width:3px; height:3px; border-radius:50%; background:#fff; opacity:0;}
+.stage[data-tod=night] .star{animation:tw 3s ease-in-out infinite;}
+@keyframes tw{0%,100%{opacity:.2;}50%{opacity:1;}}
+.sky,.sea{position:absolute; left:0; right:0; pointer-events:none;}
+.sky{top:0; bottom:0; z-index:0;}
+.sea{
+  bottom:0; z-index:1;
+  height:calc(var(--W)*.317 + 4px + var(--pb));
+  background:linear-gradient(180deg,var(--se1) 0%,var(--se2) 26%,var(--se3) 68%,var(--se4) 100%);
+  box-shadow:0 -1px 0 rgba(255,255,255,.75);
+  overflow:hidden;
+}
+.waves{position:absolute; inset:0; opacity:.8;
+  background-image:var(--w1),var(--w2),var(--w3);
+  background-repeat:repeat-x;
+  background-size:120px 12px,180px 16px,90px 9px;
+  background-position:0 14%,40px 46%,20px 78%;
+  animation:wv 14s linear infinite;
+  --w1:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='12' viewBox='0 0 120 12'%3E%3Cpath d='M0 6 Q15 0 30 6 T60 6 T90 6 T120 6' fill='none' stroke='white' stroke-opacity='.5' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --w2:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='16' viewBox='0 0 180 16'%3E%3Cpath d='M0 8 Q22 0 45 8 T90 8 T135 8 T180 8' fill='none' stroke='white' stroke-opacity='.35' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  --w3:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='9' viewBox='0 0 90 9'%3E%3Cpath d='M0 4.5 Q11 0 22 4.5 T45 4.5 T67 4.5 T90 4.5' fill='none' stroke='white' stroke-opacity='.4' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@keyframes wv{to{background-position:120px 14%,-140px 46%,110px 78%;}}
+.glint{position:absolute; width:14px; height:2px; border-radius:2px; background:#fff; opacity:0; animation:glint 4s ease-in-out infinite;}
+@keyframes glint{0%,100%{opacity:0; transform:scaleX(.4);}50%{opacity:.8; transform:scaleX(1);}}
+
+/* облака */
+.cl{position:absolute; left:-220px; width:150px; opacity:.92; animation:cloudgo 120s linear infinite;}
+.cl svg{display:block; width:100%; height:auto;}
+.cl.c1{top:15%; transform:scale(1);}
+.cl.c2{top:28%; width:110px; opacity:.8; animation-duration:170s;}
+.cl.c3{top:7%; width:190px; opacity:.7; animation-duration:210s;}
+.cl.c4{top:40%; width:90px; opacity:.65; animation-duration:150s;}
+@keyframes cloudgo{from{transform:translateX(0);}to{transform:translateX(calc(100vw + 440px));}}
+
+/* шапка */
+.top{
+  position:absolute; top:0; left:0; right:0; z-index:30;
+  display:flex; align-items:center; gap:10px;
+  padding:14px clamp(16px,4vw,56px);
+}
+.top .logo{color:var(--txt); text-shadow:none; font-size:1.3rem; gap:9px; white-space:nowrap;}
+.top .logo svg{width:38px; height:38px; flex:none; filter:drop-shadow(0 2px 0 rgba(29,53,87,.18));}
+#auth-link{
+  margin-left:auto; margin-right:0;
+  background:#fff; color:var(--ink)!important; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:.95rem;
+  padding:7px 18px; border-radius:999px; box-shadow:0 3px 0 rgba(29,53,87,.16);
+  transition:transform .15s ease;
+}
+#auth-link:hover{transform:translateY(-2px);}
+.mbtn{width:36px; height:36px; border-radius:50%; border:none; cursor:pointer; background:#fff; color:var(--ink); display:flex; align-items:center; justify-content:center; box-shadow:0 3px 0 rgba(29,53,87,.16); flex:none; padding:0;}
+.mbtn svg{width:20px; height:20px;}
+.mbtn .off{display:block;} .mbtn .on{display:none;}
+.mbtn[aria-pressed=true]{background:var(--sun);}
+.mbtn[aria-pressed=true] .off{display:none;} .mbtn[aria-pressed=true] .on{display:block;}
+.bubble .spk{display:inline-block; width:15px; height:15px; vertical-align:-2px; margin-inline-end:6px; color:var(--coral);}
+.top .lang-toggle{position:relative; display:block; background:none; padding:0; max-width:none; border-radius:0;}
+.top .lang-cur{
+  display:flex; align-items:center; gap:7px;
+  background:#fff; color:var(--ink); border:none; cursor:pointer;
+  font-family:'Baloo 2',sans-serif; font-weight:800; font-size:.95rem;
+  padding:7px 14px; border-radius:999px; box-shadow:0 3px 0 rgba(29,53,87,.16);
+}
+.top .lang-cur svg{width:18px; height:18px;}
+.top .lang-cur .car{width:10px; height:10px; transition:transform .2s;}
+.top .lang-toggle.open .car{transform:rotate(180deg);}
+.top .lang-menu{
+  display:none; position:absolute; top:calc(100% + 8px); right:0; z-index:40;
+  flex-direction:column; min-width:176px; padding:6px;
+  background:#fff; border-radius:18px; box-shadow:0 12px 30px rgba(29,53,87,.22);
+}
+html[dir=rtl] .top .lang-menu{right:auto; left:0;}
+.top .lang-toggle.open .lang-menu{display:flex;}
+.top .lang-menu button{
+  width:100%; text-align:start; padding:10px 14px; border-radius:12px; font-size:.95rem; font-weight:800;
+  font-family:'Nunito',sans-serif; background:none; border:none; cursor:pointer; color:var(--ink);
+}
+.top .lang-menu button:hover{background:#EAF6FF;}
+.top .lang-menu button.active{background:var(--coral); color:#fff;}
+
+/* сетка героя */
+.hero-grid{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:minmax(0,1fr) var(--W); grid-template-rows:1fr auto;
+  column-gap:2vw; padding:0 clamp(16px,4vw,56px) var(--pb);
+  min-height:calc(var(--W)*.737 + 76px + var(--pb));
+}
+.copy{grid-column:1; grid-row:1; align-self:center; padding:92px 0 22px;}
+.copy h1{
+  font-size:clamp(2rem,4.3vw,3.6rem); line-height:1.1; color:var(--txt);
+  text-shadow:0 2px 0 var(--txs); margin-bottom:12px; text-wrap:balance;
+}
+.copy p.sub{
+  font-size:clamp(1rem,1.7vw,1.2rem); color:var(--txt); font-weight:700; opacity:.95; text-shadow:0 1px 3px var(--txs);
+  max-width:30em; margin:0; line-height:1.4;
+}
+.subjects{grid-column:1; grid-row:2; align-self:start; padding:0 0 60px; margin:0; max-width:none;}
+.subjects .direction-grid{grid-template-columns:1fr; gap:12px; max-width:430px; margin:0;}
+.subjects .direction-btn{
+  flex-direction:row; justify-content:flex-start; gap:14px; padding:12px 18px 12px 12px; border-width:3px;
+  box-shadow:0 5px 0 rgba(29,53,87,.14), 0 10px 22px rgba(29,53,87,.12);
+  position:relative;
+}
+.subjects .direction-btn::after{content:"›"; margin-inline-start:auto; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:2rem; line-height:1; color:var(--ink); opacity:.5;}
+html[dir=rtl] .subjects .direction-btn::after{content:"‹";}
+.subjects .direction-emoji{width:56px; height:56px; font-size:1.6rem; flex:none;}
+.subjects .direction-label{font-size:1.15rem; text-align:start;}
+.subjects .direction-btn:hover{transform:translateY(-3px);}
+
+/* сцена */
+.scene{grid-column:2; grid-row:1 / span 2; align-self:end; position:relative; z-index:3; line-height:0;}
+.scene svg#isle{width:100%; height:auto; display:block; overflow:visible;}
+.scene .boat{position:absolute; left:86%; bottom:42.6%; width:7%; line-height:0; z-index:0; animation:bob 5s ease-in-out infinite;}
+.scene .boat svg{width:100%; height:auto;}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(2px) rotate(2deg);}}
+.bubble{
+  position:absolute; left:57%; top:1%; z-index:4; max-width:40%;
+  background:#fff; color:var(--ink); font-family:'Baloo 2',sans-serif; font-weight:800; line-height:1.25;
+  font-size:clamp(.85rem,1.55vw,1.05rem); padding:10px 16px; border-radius:18px;
+  box-shadow:0 8px 18px rgba(29,53,87,.18);
+  opacity:0; transform:scale(.7) translateY(10px); transform-origin:0 100%; pointer-events:none;
+  transition:opacity .25s ease, transform .35s cubic-bezier(.3,1.5,.5,1);
+}
+.bubble::after{content:""; position:absolute; left:14px; bottom:-9px; border:9px solid transparent; border-top-color:#fff; border-bottom:0; border-left-width:4px;}
+.bubble.show{opacity:1; transform:none;}
+#hit{cursor:pointer; outline:none;}
+#hit:focus-visible{stroke:var(--coral); stroke-width:4; stroke-dasharray:8 6;}
+
+/* волна под героем */
+.wave-edge{
+  position:absolute; left:0; right:0; bottom:-1px; height:34px; z-index:5; pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 22 Q150 0 300 20 T600 20 T900 20 T1200 20 V40 H0Z' fill='%23FFF8E8'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;
+}
+
+/* ===== узкий экран ===== */
+@media (max-width:880px){
+  .stage{--W:min(100%,560px);}
+  .sea{display:none;}
+  .hero-grid{display:flex; flex-direction:column; padding:0; min-height:0;}
+  .copy{padding:78px 20px 6px; text-align:center;}
+  .copy h1{font-size:clamp(1.9rem,8.2vw,2.8rem);}
+  .copy p.sub{margin:0 auto; font-size:1rem;}
+  .scene{width:100%; align-self:stretch;}
+  .scene::before{
+    content:""; position:absolute; left:0; right:0; bottom:0; top:57%; z-index:0;
+    background:linear-gradient(180deg,var(--se1) 0%,var(--se2) 26%,var(--se3) 68%,var(--se4) 100%);
+    box-shadow:0 -1px 0 rgba(255,255,255,.75);
+  }
+  .scene .waves-m{display:block;}
+  .scene svg#isle{position:relative; z-index:1; width:min(100%,560px); margin:0 auto;}
+  .scene .boat{left:auto; right:3%; bottom:42.6%;}
+  .bubble{left:auto; right:3%; top:2%; max-width:46%;}
+  .subjects{background:#FFF8E8; padding:6px 20px 36px; position:relative; align-self:stretch;}
+  .subjects::before{
+    content:""; position:absolute; left:0; right:0; top:-27px; height:28px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 22 Q150 0 300 20 T600 20 T900 20 T1200 20 V40 H0Z' fill='%23FFF8E8'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;
+  }
+  .subjects .direction-grid{max-width:460px; margin:0 auto;}
+  .wave-edge{display:none;}
+  .top .logo{font-size:1.15rem;}
+}
+@media (max-width:400px){
+  .mbtn{width:32px; height:32px;}
+  .bubble{font-size:.78rem; padding:7px 11px; max-width:40%; right:1%; top:0;}
+  .top{gap:6px; padding-inline:12px;}
+  .top .logo{font-size:.95rem; gap:5px;}
+  .top .logo svg{width:32px; height:32px;}
+  #auth-link{padding:6px 12px; font-size:.88rem;}
+  .top .lang-cur{padding:6px 10px; font-size:.88rem;}
+}
+@media (prefers-reduced-motion: reduce){
+  .waves,.glint,.cl,.boat{animation:none!important;}
+  .cl{left:12%;}
+  .cl.c2{left:60%;} .cl.c3{left:34%;} .cl.c4{left:78%;}
+}
+</style>
 </head>
-<body>
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-<div class="cloud cloud3"></div>
-
-<header>
-  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
-  <a href="auth.html" id="auth-link" style="color:#fff; font-weight:700; font-family:'Baloo 2',sans-serif; font-size:0.95rem; margin-left:auto; margin-right:16px;">Войти</a>
-  <div class="lang-toggle">
-    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
-    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
-    <button data-lang="en" onclick="applyLang('en')">EN</button>
-    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
-    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
-    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
-    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+<body class="home">
+<div class="stage" id="stage">
+  <div class="sky" aria-hidden="true" id="sky">
+    <div class="cl c1"><svg viewBox="0 0 150 60"><path d="M22 52 C6 52 4 34 20 32 C20 18 38 12 50 22 C56 6 84 4 92 22 C108 14 128 24 124 40 C140 40 146 52 130 52 Z" fill="#fff"/></svg></div>
+    <div class="cl c2" style="animation-delay:-60s"><svg viewBox="0 0 150 60"><path d="M22 52 C6 52 4 34 20 32 C20 18 38 12 50 22 C56 6 84 4 92 22 C108 14 128 24 124 40 C140 40 146 52 130 52 Z" fill="#fff"/></svg></div>
+    <div class="cl c3" style="animation-delay:-130s"><svg viewBox="0 0 150 60"><path d="M22 52 C6 52 4 34 20 32 C20 18 38 12 50 22 C56 6 84 4 92 22 C108 14 128 24 124 40 C140 40 146 52 130 52 Z" fill="#fff"/></svg></div>
+    <div class="cl c4" style="animation-delay:-20s"><svg viewBox="0 0 150 60"><path d="M22 52 C6 52 4 34 20 32 C20 18 38 12 50 22 C56 6 84 4 92 22 C108 14 128 24 124 40 C140 40 146 52 130 52 Z" fill="#fff"/></svg></div>
+    <div id="starfield"></div>
+    <svg id="gull" width="38" height="18" viewBox="0 0 38 18" style="position:absolute;left:0;top:0;opacity:0;overflow:visible"><g id="gullW" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9 Q10 0 0 6"/><path d="M19 9 Q28 0 38 6"/></g></svg>
   </div>
-</header>
+  <div class="sea" aria-hidden="true"><div class="waves"></div></div>
 
-<section class="hero">
-  <div class="mascot-wrap">
-    <svg class="mascot" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="120" cy="250" rx="66" ry="9" fill="rgba(29,53,87,0.12)"/>
-      <ellipse cx="172" cy="195" rx="20" ry="23" fill="#D7DEE6"/>
-      <ellipse cx="188" cy="178" rx="19" ry="22" fill="#D7DEE6"/>
-      <ellipse cx="200" cy="155" rx="18" ry="21" fill="#D7DEE6"/>
-      <ellipse cx="207" cy="128" rx="17" ry="19" fill="#D7DEE6"/>
-      <ellipse cx="207" cy="102" rx="15.5" ry="18" fill="#D7DEE6"/>
-      <ellipse cx="200" cy="80" rx="14" ry="16" fill="#D7DEE6"/>
-      <ellipse cx="188" cy="62" rx="12.5" ry="14" fill="#D7DEE6"/>
-      <ellipse cx="176" cy="50" rx="11" ry="12" fill="#8B95A3"/>
-      <ellipse cx="196" cy="150" rx="4.5" ry="4.5" fill="#9AA5B3"/>
-      <ellipse cx="202" cy="115" rx="4" ry="4" fill="#9AA5B3"/>
-      <ellipse cx="194" cy="75" rx="3.5" ry="3.5" fill="#9AA5B3"/>
-      <ellipse cx="90" cy="232" rx="24" ry="15" fill="#C7D0DA"/>
-      <ellipse cx="155" cy="232" rx="24" ry="15" fill="#C7D0DA"/>
-      <ellipse cx="90" cy="238" rx="14" ry="8" fill="#F5F8FA"/>
-      <ellipse cx="155" cy="238" rx="14" ry="8" fill="#F5F8FA"/>
-      <ellipse cx="120" cy="183" rx="60" ry="56" fill="#DCE3EA"/>
-      <ellipse cx="120" cy="198" rx="37" ry="33" fill="#F5F8FA"/>
-      <ellipse cx="80" cy="163" rx="6" ry="5" fill="#8B95A3"/>
-      <ellipse cx="163" cy="158" rx="6" ry="5" fill="#8B95A3"/>
-      <ellipse cx="68" cy="193" rx="5" ry="4" fill="#8B95A3"/>
-      <ellipse cx="173" cy="190" rx="5" ry="4" fill="#8B95A3"/>
-      <ellipse cx="98" cy="143" rx="4" ry="4" fill="#8B95A3"/>
-      <ellipse cx="143" cy="140" rx="4" ry="4" fill="#8B95A3"/>
-      <ellipse cx="174" cy="195" rx="15" ry="20" fill="#DCE3EA"/>
-      <ellipse cx="180" cy="213" rx="11" ry="10" fill="#F5F8FA"/>
-      <ellipse cx="66" cy="178" rx="14" ry="17" fill="#DCE3EA" class="mascot-wave"/>
-      <ellipse cx="52" cy="152" rx="13" ry="17" fill="#DCE3EA" class="mascot-wave"/>
-      <ellipse cx="43" cy="130" rx="11" ry="11" fill="#F5F8FA" class="mascot-wave"/>
-      <ellipse cx="120" cy="126" rx="32" ry="18" fill="#DCE3EA"/>
-      <circle cx="87" cy="58" r="18" fill="#C7D0DA"/>
-      <circle cx="153" cy="58" r="18" fill="#C7D0DA"/>
-      <circle cx="87" cy="60" r="9" fill="#7E8998"/>
-      <circle cx="153" cy="60" r="9" fill="#7E8998"/>
-      <ellipse cx="120" cy="93" rx="54" ry="50" fill="#DCE3EA"/>
-      <ellipse cx="120" cy="110" rx="33" ry="25" fill="#F5F8FA"/>
-      <ellipse cx="93" cy="71" rx="4.5" ry="4" fill="#8B95A3"/>
-      <ellipse cx="147" cy="71" rx="4.5" ry="4" fill="#8B95A3"/>
-      <ellipse cx="78" cy="93" rx="4" ry="3.5" fill="#8B95A3"/>
-      <ellipse cx="162" cy="93" rx="4" ry="3.5" fill="#8B95A3"/>
-      <ellipse cx="99" cy="88" rx="12" ry="14" fill="#1D3557"/>
-      <ellipse cx="141" cy="88" rx="12" ry="14" fill="#1D3557"/>
-      <circle cx="103" cy="82" r="3.8" fill="#fff"/>
-      <circle cx="145" cy="82" r="3.8" fill="#fff"/>
-      <circle cx="96" cy="92" r="1.8" fill="#fff" opacity="0.7"/>
-      <circle cx="138" cy="92" r="1.8" fill="#fff" opacity="0.7"/>
-      <path d="M120 104 L112 112 L128 112 Z" fill="#F4847A"/>
-      <path d="M120 112 Q120 120 107 123 M120 112 Q120 120 133 123" stroke="#1D3557" stroke-width="2.3" fill="none" stroke-linecap="round"/>
-      <ellipse cx="83" cy="105" rx="7" ry="4.5" fill="#FF6B5B" opacity="0.28"/>
-      <ellipse cx="157" cy="105" rx="7" ry="4.5" fill="#FF6B5B" opacity="0.28"/>
-      <path d="M68 106 Q48 103 36 106 M68 113 Q48 116 38 120" stroke="#8B95A3" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.55"/>
-      <path d="M172 106 Q192 103 204 106 M172 113 Q192 116 202 120" stroke="#8B95A3" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.55"/>
-    </svg>
-    <div class="speech"><span data-i18n="speech"></span></div>
-  </div>
-
-  <h1 data-i18n="hero_title"></h1>
-  <p class="sub" data-i18n="landing_lead"></p>
-</section>
-
-<section class="subjects" id="subjects">
-  <div class="direction-grid">
-    <a href="grade-picker.html?dir=ru" class="direction-btn direction-rus" style="text-decoration:none;">
-      <span class="direction-emoji">📕</span>
-      <span class="direction-label">С русским языком обучения</span>
+  <header class="top">
+    <a href="index.html" class="logo" aria-label="Білім Аралы">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#FFC93C"/><circle cx="9" cy="10" r="6" fill="#F8AE3F"/><circle cx="31" cy="10" r="6" fill="#F8AE3F"/><circle cx="9.5" cy="11" r="3" fill="#FFB4A8"/><circle cx="30.5" cy="11" r="3" fill="#FFB4A8"/><ellipse cx="20" cy="22" rx="14" ry="13" fill="#F8AE3F"/><ellipse cx="20" cy="27" rx="8" ry="6" fill="#FFF7E3"/><ellipse cx="13.5" cy="20" rx="3.6" ry="4.2" fill="#fff" stroke="#3B2A1A" stroke-width="1"/><ellipse cx="26.5" cy="20" rx="3.6" ry="4.2" fill="#fff" stroke="#3B2A1A" stroke-width="1"/><circle cx="14" cy="20.6" r="2.3" fill="#3B2A1A"/><circle cx="26" cy="20.6" r="2.3" fill="#3B2A1A"/><path d="M17.5 24.5 Q20 23 22.5 24.5 Q21 27 20 27 Q19 27 17.5 24.5Z" fill="#E5707F"/></svg>
+      Білім Аралы
     </a>
-    <a href="grade-picker.html?dir=kz" class="direction-btn direction-kaz" style="text-decoration:none;">
-      <span class="direction-emoji">📗</span>
-      <span class="direction-label">Қазақ тілінде оқыту</span>
-    </a>
+    <a href="auth.html" id="auth-link">Войти</a>
+    <button type="button" class="mbtn" id="musicbtn" aria-pressed="false" aria-label="Музыка" title="Музыка">
+      <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/><path d="M3 3l18 18" stroke="#FF6B5B"/></svg>
+      <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+    </button>
+    <div class="lang-toggle" id="langbox">
+      <button type="button" class="lang-cur" id="langcur" aria-haspopup="true" aria-expanded="false" aria-label="Язык / Language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>
+        <span id="langcode">RU</span>
+        <svg class="car" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg>
+      </button>
+      <div class="lang-menu" id="langmenu">
+        <button class="active" data-lang="ru" data-code="RU" onclick="applyLang('ru')">Русский</button>
+        <button data-lang="kz" data-code="ҚАЗ" onclick="applyLang('kz')">Қазақша</button>
+        <button data-lang="en" data-code="EN" onclick="applyLang('en')">English</button>
+        <button data-lang="zh" data-code="中文" onclick="applyLang('zh')">中文</button>
+        <button data-lang="uz" data-code="O'ZB" onclick="applyLang('uz')">Oʻzbekcha</button>
+        <button data-lang="tg" data-code="ТҶК" onclick="applyLang('tg')">Тоҷикӣ</button>
+        <button data-lang="ug" data-code="ئۇيغۇر" onclick="applyLang('ug')">ئۇيغۇرچە</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero-grid">
+    <div class="copy">
+      <h1 data-i18n="hero_title"></h1>
+      <p class="sub" data-i18n="landing_lead"></p>
+    </div>
+
+    <div class="scene" id="scene">
+      <div class="boat" aria-hidden="true"><svg viewBox="0 0 60 56"><path d="M30 4 L30 38 L10 38 Z" fill="#fff"/><path d="M33 12 L33 38 L50 38 Z" fill="#FFE9A8"/><path d="M4 40 H56 L48 52 H13 Z" fill="#FF6B5B"/><path d="M30 2 V40" stroke="#8B5A2B" stroke-width="2"/><path d="M30 2 L38 5 L30 8Z" fill="#FFC93C"/></svg></div>
+      <svg id="isle" viewBox="0 0 760 560" role="img" aria-label="Остров знаний: Барсик сидит за партой">
+        <defs>
+          <linearGradient id="gSand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE6B0"/><stop offset="1" stop-color="#F3CC82"/></linearGradient>
+          <linearGradient id="gGrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ED69A"/><stop offset="1" stop-color="#3FB088"/></linearGradient>
+          <linearGradient id="gWood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDB677"/><stop offset="1" stop-color="#DDA05E"/></linearGradient>
+          <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8AE3F"/><stop offset="1" stop-color="#EE9524"/></linearGradient>
+          <radialGradient id="gFace" gradientUnits="userSpaceOnUse" cx="100" cy="82.6" r="92" gradientTransform="translate(0 82.6) scale(1 .87) translate(0 -82.6)"><stop offset="0" stop-color="#FFD27A"/><stop offset=".7" stop-color="#F8AE3F"/><stop offset="1" stop-color="#EE9524"/></radialGradient>
+          <radialGradient id="gGlobe" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#0A3A6B" stop-opacity=".35"/></radialGradient>
+          <linearGradient id="gCone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1A8" stop-opacity=".75"/><stop offset="1" stop-color="#FFF1A8" stop-opacity="0"/></linearGradient>
+          <radialGradient id="gLamp"><stop offset="0" stop-color="#FFE9A0" stop-opacity=".3"/><stop offset=".6" stop-color="#FFD27A" stop-opacity=".08"/><stop offset="1" stop-color="#FFD27A" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gGlow"><stop offset="0" stop-color="#FFE0A8" stop-opacity=".9"/><stop offset="1" stop-color="#FFE0A8" stop-opacity="0"/></radialGradient>
+          <clipPath id="clipEyeL"><ellipse cx="72" cy="86" rx="16.5" ry="18.5"/></clipPath>
+          <clipPath id="clipEyeR"><ellipse cx="128" cy="86" rx="16.5" ry="18.5"/></clipPath>
+          <clipPath id="clipMouth"><path id="mClip" d="M86 118 Q100 146 114 118 Q100 124 86 118Z"/></clipPath>
+          <clipPath id="clipGlobe"><circle cx="620" cy="384" r="25"/></clipPath>
+        </defs>
+
+        <!-- солнце -->
+        <g id="sun" transform="translate(86 76)">
+          <circle id="sunglow" r="78" fill="url(#gGlow)" opacity="0"/>
+          <g id="rays"></g>
+          <circle id="sunA" r="31" fill="#FFD34D"/><circle id="sunB" r="23" fill="#FFE27A"/>
+        </g>
+        <g id="moon" transform="translate(86 76)" opacity="0">
+          <circle r="46" fill="#FFF3C4" opacity=".16"/><circle r="34" fill="#FFF3C4" opacity=".18"/>
+          <circle r="26" fill="#FFF6D6"/><circle cx="-8" cy="-6" r="5" fill="#EADFB4"/><circle cx="9" cy="6" r="6.5" fill="#EADFB4"/><circle cx="-4" cy="12" r="3" fill="#EADFB4"/><circle cx="10" cy="-10" r="3" fill="#EADFB4"/>
+        </g>
+        <circle id="aSky" cx="640" cy="40" r="2" fill="none"/>
+
+        <g id="world">
+        <!-- вода вокруг острова -->
+        <ellipse cx="380" cy="488" rx="372" ry="58" fill="#0B6E9E" opacity=".22"/>
+        <ellipse cx="380" cy="478" rx="354" ry="62" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="5">
+          <animate attributeName="rx" values="354;362;354" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="ry" values="62;65;62" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values=".7;.35;.7" dur="5s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="380" cy="486" rx="374" ry="66" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3">
+          <animate attributeName="rx" values="374;384;374" dur="6.5s" begin="-2s" repeatCount="indefinite"/>
+          <animate attributeName="ry" values="66;70;66" dur="6.5s" begin="-2s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values=".35;.1;.35" dur="6.5s" begin="-2s" repeatCount="indefinite"/>
+        </ellipse>
+
+        <!-- остров -->
+        <path d="M52 440 C52 496 160 522 380 522 C600 522 708 496 708 440 Z" fill="#DDAA5E"/>
+        <path d="M70 470 C140 506 260 514 380 514 C500 514 620 506 690 470" fill="none" stroke="#C99650" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+        <ellipse cx="380" cy="440" rx="328" ry="74" fill="url(#gSand)"/>
+        <g fill="#E8BE76" opacity=".8"><ellipse cx="170" cy="494" rx="9" ry="3"/><ellipse cx="480" cy="505" rx="12" ry="3.5"/><ellipse cx="640" cy="470" rx="8" ry="3"/><ellipse cx="300" cy="508" rx="8" ry="2.6"/></g>
+        <ellipse cx="380" cy="432" rx="288" ry="56" fill="#2E9A74"/>
+        <ellipse cx="380" cy="424" rx="288" ry="56" fill="url(#gGrass)"/>
+        <g fill="#2E9A74" opacity=".65">
+          <path d="M104 420 l4 -10 l4 10Z"/><path d="M120 412 l3 -8 l3 8Z"/><path d="M640 418 l4 -10 l4 10Z"/><path d="M660 430 l3 -8 l3 8Z"/><path d="M200 466 l3 -8 l3 8Z"/><path d="M520 462 l4 -9 l4 9Z"/><path d="M290 472 l3 -8 l3 8Z"/><path d="M450 474 l3 -8 l3 8Z"/>
+        </g>
+        <ellipse cx="380" cy="440" rx="190" ry="26" fill="#2E9A74" opacity=".18"/>
+
+        <!-- тень парты -->
+        <ellipse cx="380" cy="438" rx="186" ry="15" fill="#1D5E49" opacity=".28"/>
+
+        <!-- пальма -->
+        <g id="palm">
+          <ellipse cx="156" cy="437" rx="40" ry="9" fill="#1D5E49" opacity=".25"/>
+          <path d="M142 436 C154 360 118 300 114 226 L132 224 C138 296 176 360 170 436 Z" fill="#B5793F"/>
+          <path d="M156 436 C164 360 140 300 126 226 L132 224 C138 296 176 360 170 436 Z" fill="#9A6330" opacity=".45"/>
+          <g fill="none" stroke="#7F4F25" stroke-width="2.5" stroke-linecap="round" opacity=".7"><path d="M141 412 q15 5 30 0"/><path d="M138 384 q15 5 30 0"/><path d="M132 354 q16 5 30 0"/><path d="M126 322 q16 5 28 0"/><path d="M121 290 q15 5 27 0"/><path d="M118 258 q14 5 26 0"/></g>
+          <g transform="translate(124 224)">
+            <g><animateTransform attributeName="transform" type="rotate" values="-2 0 0;3 0 0;-2 0 0" dur="5s" repeatCount="indefinite"/>
+              <g transform="rotate(168)"><path d="M0 0 C26 -36 84 -42 128 -2 C88 -14 46 -10 0 0Z" fill="#2E9A74"/><path d="M0 0 C50 -10 90 -8 126 -2" stroke="#1F7C5A" stroke-width="2.5" fill="none"/></g>
+              <g transform="rotate(205) scale(.9)"><path d="M0 0 C26 -36 84 -42 128 -2 C88 -14 46 -10 0 0Z" fill="#35A878"/><path d="M0 0 C50 -10 90 -8 126 -2" stroke="#1F7C5A" stroke-width="2.5" fill="none"/></g>
+              <g transform="rotate(-100) scale(.85)"><path d="M0 0 C26 -36 84 -42 128 -2 C88 -14 46 -10 0 0Z" fill="#35A878"/><path d="M0 0 C50 -10 90 -8 126 -2" stroke="#1F7C5A" stroke-width="2.5" fill="none"/></g>
+            </g>
+            <g><animateTransform attributeName="transform" type="rotate" values="2 0 0;-3 0 0;2 0 0" dur="4.2s" repeatCount="indefinite"/>
+              <g transform="rotate(-55)"><path d="M0 0 C26 -36 84 -42 128 -2 C88 -14 46 -10 0 0Z" fill="#3FB088"/><path d="M0 0 C50 -10 90 -8 126 -2" stroke="#1F7C5A" stroke-width="2.5" fill="none"/></g>
+              <g transform="rotate(-12)"><path d="M0 0 C26 -36 84 -42 128 -2 C88 -14 46 -10 0 0Z" fill="#2E9A74"/><path d="M0 0 C50 -10 90 -8 126 -2" stroke="#1F7C5A" stroke-width="2.5" fill="none"/></g>
+              <g transform="rotate(28) scale(.95)"><path d="M0 0 C26 -36 84 -42 128 -2 C88 -14 46 -10 0 0Z" fill="#35A878"/><path d="M0 0 C50 -10 90 -8 126 -2" stroke="#1F7C5A" stroke-width="2.5" fill="none"/></g>
+            </g>
+            <circle cx="-4" cy="8" r="9" fill="#7F4F25"/><circle cx="10" cy="10" r="9" fill="#8F5B2C"/><circle cx="3" cy="19" r="8.5" fill="#7F4F25"/>
+          </g>
+          <circle id="aPalm" cx="124" cy="230" r="2" fill="none"/>
+        </g>
+
+        <!-- глобус -->
+        <g id="globe">
+          <ellipse cx="620" cy="440" rx="26" ry="6" fill="#1D5E49" opacity=".28"/>
+          <rect x="617" y="408" width="6" height="30" fill="#A8703B"/>
+          <ellipse cx="620" cy="438" rx="16" ry="5" fill="#A8703B"/>
+          <circle cx="620" cy="384" r="25" fill="#3FA7E0"/>
+          <g clip-path="url(#clipGlobe)">
+            <g id="continents">
+              <g id="contA"><path d="M596 372 q10 -8 20 -2 q6 10 -2 16 q-10 4 -16 -4Z" fill="#6ED69A"/><path d="M628 388 q10 -6 18 2 q2 10 -8 12 q-8 -2 -10 -14Z" fill="#6ED69A"/><path d="M620 366 q6 -4 12 0 q0 6 -6 6Z" fill="#6ED69A"/></g>
+              <use href="#contA" x="58"/><use href="#contA" x="-58"/><use href="#contA" x="116"/><use href="#contA" x="-116"/>
+              <animateTransform attributeName="transform" type="translate" values="0 0;58 0" dur="14s" repeatCount="indefinite"/>
+            </g>
+          </g>
+          <circle cx="620" cy="384" r="25" fill="url(#gGlobe)"/>
+          <path d="M593 392 A29 29 0 0 0 645 372" fill="none" stroke="#A8703B" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+
+        <!-- цветы -->
+        <g id="flowers">
+          <g stroke="#2E9A74" stroke-width="3" stroke-linecap="round"><path d="M552 466 q-2 -14 0 -26"/><path d="M570 472 q2 -12 -1 -22"/><path d="M536 470 q-3 -10 -2 -18"/></g>
+          <g><circle cx="552" cy="438" r="7" fill="#FF6B5B"/><circle cx="552" cy="438" r="3" fill="#FFD34D"/>
+            <animateTransform attributeName="transform" type="rotate" values="-3 552 466;3 552 466;-3 552 466" dur="3.6s" repeatCount="indefinite"/></g>
+          <g><circle cx="569" cy="448" r="6.5" fill="#FFD34D"/><circle cx="569" cy="448" r="2.8" fill="#FF6B5B"/>
+            <animateTransform attributeName="transform" type="rotate" values="3 570 472;-3 570 472;3 570 472" dur="4.1s" repeatCount="indefinite"/></g>
+          <g><circle cx="534" cy="450" r="6" fill="#fff"/><circle cx="534" cy="450" r="2.6" fill="#FFD34D"/>
+            <animateTransform attributeName="transform" type="rotate" values="-3 536 470;3 536 470;-3 536 470" dur="3.2s" repeatCount="indefinite"/></g>
+        </g>
+
+        <!-- ===== Барсик ===== -->
+        <g id="bs" transform="translate(250 94) scale(1.3)">
+          <!-- стул -->
+          <rect x="22" y="126" width="156" height="72" rx="24" fill="#E8584A"/>
+          <rect x="22" y="126" width="156" height="16" rx="8" fill="#FF8A7C"/>
+          <!-- хвост -->
+          <g id="tail"><path d="M148 180 C186 178 198 140 180 112" fill="none" stroke="#EE9524" stroke-width="15" stroke-linecap="round"/>
+            <path d="M170 162 l9 -4 M178 147 l10 -2 M180 131 l10 1" stroke="#7A4620" stroke-width="4" stroke-linecap="round"/><circle cx="180" cy="112" r="8.5" fill="#7A4620"/></g>
+          <g id="lean">
+            <g id="bodyg">
+              <ellipse cx="100" cy="172" rx="50" ry="38" fill="url(#gBody)"/>
+              <ellipse cx="100" cy="182" rx="29" ry="25" fill="#FFF7E3"/>
+              <g fill="#7A4620"><ellipse cx="66" cy="160" rx="5" ry="4"/><ellipse cx="136" cy="158" rx="5" ry="4"/><ellipse cx="74" cy="178" rx="4" ry="3"/><ellipse cx="128" cy="180" rx="4" ry="3"/></g>
+            </g>
+            <g id="head">
+              <g id="earL"><circle cx="48" cy="54" r="23" fill="#F8AE3F"/><circle cx="49" cy="57" r="13" fill="#FFB4A8"/><path d="M30 44 Q38 34 50 34" stroke="#7A4620" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+              <g id="earR"><circle cx="152" cy="54" r="23" fill="#F8AE3F"/><circle cx="151" cy="57" r="13" fill="#FFB4A8"/><path d="M170 44 Q162 34 150 34" stroke="#7A4620" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+              <ellipse cx="100" cy="94" rx="66" ry="57" fill="url(#gFace)"/>
+              <g fill="#7A4620"><ellipse cx="100" cy="44" rx="4.5" ry="6"/><ellipse cx="85" cy="48" rx="4" ry="5.5" transform="rotate(-18 85 48)"/><ellipse cx="115" cy="48" rx="4" ry="5.5" transform="rotate(18 115 48)"/>
+                <ellipse cx="42" cy="100" rx="4" ry="3.2"/><ellipse cx="48" cy="114" rx="3.4" ry="2.8"/><ellipse cx="158" cy="100" rx="4" ry="3.2"/><ellipse cx="152" cy="114" rx="3.4" ry="2.8"/>
+                <ellipse cx="62" cy="52" rx="3.2" ry="4" transform="rotate(-30 62 52)"/><ellipse cx="138" cy="52" rx="3.2" ry="4" transform="rotate(30 138 52)"/></g>
+              <!-- мордочка -->
+              <g id="muzzle">
+                <ellipse cx="100" cy="116" rx="32" ry="23" fill="#FFF7E3"/><circle cx="86" cy="118" r="15" fill="#FFF7E3"/><circle cx="114" cy="118" r="15" fill="#FFF7E3"/>
+                <g fill="#7A4620" opacity=".5"><circle cx="82" cy="116" r="1.5"/><circle cx="88" cy="121" r="1.5"/><circle cx="118" cy="116" r="1.5"/><circle cx="112" cy="121" r="1.5"/></g>
+                <path d="M91 103 Q100 98 109 103 Q105 112 100 113 Q95 112 91 103Z" fill="#E5707F"/><ellipse cx="97" cy="103" rx="2.6" ry="1.4" fill="#fff" opacity=".6"/>
+                <g id="mClosed" fill="none" stroke="#7A3B2E" stroke-width="2.6" stroke-linecap="round"><path d="M100 113 V119"/><path d="M100 119 Q93 128 85 121"/><path d="M100 119 Q107 128 115 121"/></g>
+                <g id="mOpen" opacity="0"><path id="mPath" d="M86 118 Q100 146 114 118 Q100 124 86 118Z" fill="#8E2F3A" stroke="#7A3B2E" stroke-width="2" stroke-linejoin="round"/>
+                  <g clip-path="url(#clipMouth)"><ellipse id="tongue" cx="100" cy="132" rx="7" ry="4.5" fill="#F18AA0"/></g>
+                  <path d="M100 113 V119" stroke="#7A3B2E" stroke-width="2.6" stroke-linecap="round"/></g>
+                <g id="whisk" stroke="#7A4620" stroke-width="1.7" stroke-linecap="round" opacity=".55"><path d="M72 117 L32 108"/><path d="M72 122 L30 124"/><path d="M74 127 L36 140"/><path d="M128 117 L168 108"/><path d="M128 122 L170 124"/><path d="M126 127 L164 140"/></g>
+              </g>
+              <ellipse id="blushL" cx="56" cy="106" rx="11" ry="6.5" fill="#FF8FA3" opacity=".5"/><ellipse id="blushR" cx="144" cy="106" rx="11" ry="6.5" fill="#FF8FA3" opacity=".5"/>
+              <!-- глаза -->
+              <g id="eyesPar">
+                <g id="browL"><path d="M56 63 Q72 55 88 62" fill="none" stroke="#8A4E22" stroke-width="3.4" stroke-linecap="round"/></g>
+                <g id="browR"><path d="M112 62 Q128 55 144 63" fill="none" stroke="#8A4E22" stroke-width="3.4" stroke-linecap="round"/></g>
+                <g id="eyes">
+                  <ellipse cx="72" cy="86" rx="16.5" ry="18.5" fill="#fff"/><ellipse cx="128" cy="86" rx="16.5" ry="18.5" fill="#fff"/>
+                  <g clip-path="url(#clipEyeL)">
+                    <g id="irisL"><circle cx="72" cy="86" r="11.5" fill="#8DB23F"/><circle cx="72" cy="86" r="11.5" fill="none" stroke="#6E8F2B" stroke-width="1.6"/><circle id="pupilL" cx="72" cy="86" r="6.5" fill="#3B2A1A"/></g>
+                    <g id="glintL"><circle cx="67.5" cy="80.5" r="3.6" fill="#fff"/><circle cx="77" cy="91.5" r="1.7" fill="#fff" opacity=".8"/></g>
+                    <path id="lidL" d="" fill="url(#gFace)"/>
+                  </g>
+                  <g clip-path="url(#clipEyeR)">
+                    <g id="irisR"><circle cx="128" cy="86" r="11.5" fill="#8DB23F"/><circle cx="128" cy="86" r="11.5" fill="none" stroke="#6E8F2B" stroke-width="1.6"/><circle id="pupilR" cx="128" cy="86" r="6.5" fill="#3B2A1A"/></g>
+                    <g id="glintR"><circle cx="123.5" cy="80.5" r="3.6" fill="#fff"/><circle cx="133" cy="91.5" r="1.7" fill="#fff" opacity=".8"/></g>
+                    <path id="lidR" d="" fill="url(#gFace)"/>
+                  </g>
+                  <path id="edgeL" d="" fill="none" stroke="#3B2A1A" stroke-width="2.4" stroke-linecap="round"/><path id="edgeR" d="" fill="none" stroke="#3B2A1A" stroke-width="2.4" stroke-linecap="round"/>
+                  <ellipse id="eyeOutL" cx="72" cy="86" rx="16.5" ry="18.5" fill="none" stroke="#3B2A1A" stroke-width="2"/><ellipse id="eyeOutR" cx="128" cy="86" rx="16.5" ry="18.5" fill="none" stroke="#3B2A1A" stroke-width="2"/>
+                </g>
+                <g id="happy" opacity="0" fill="none" stroke="#3B2A1A" stroke-width="5" stroke-linecap="round"><path d="M56 92 Q72 71 88 92"/><path d="M112 92 Q128 71 144 92"/></g>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <!-- ===== парта ===== -->
+        <g id="desk">
+          <rect x="226" y="372" width="20" height="62" rx="5" fill="#B77740"/><rect x="514" y="372" width="20" height="62" rx="5" fill="#B77740"/>
+          <rect x="236" y="372" width="10" height="62" rx="4" fill="#9C5F2F" opacity=".5"/><rect x="524" y="372" width="10" height="62" rx="4" fill="#9C5F2F" opacity=".5"/>
+          <rect x="232" y="364" width="296" height="40" rx="6" fill="#C98B52"/>
+          <rect x="332" y="372" width="96" height="26" rx="6" fill="#B77740"/><rect x="332" y="372" width="96" height="26" rx="6" fill="none" stroke="#9C5F2F" stroke-width="2"/>
+          <rect x="370" y="380" width="20" height="8" rx="4" fill="#FFD34D"/>
+          <path d="M240 330 L520 330 L544 364 L216 364Z" fill="url(#gWood)"/>
+          <path d="M216 364 H544 V374 H216Z" fill="#C98B52"/>
+          <path d="M216 364 H544" stroke="#F6CE98" stroke-width="2"/>
+          <g stroke="#C98B52" stroke-width="1.6" opacity=".55" fill="none" stroke-linecap="round"><path d="M262 346 H322"/><path d="M440 340 H500"/><path d="M290 357 H340"/><path d="M420 358 H520"/></g>
+          <!-- книга -->
+          <path d="M296 332 L464 332 L472 368 L380 371 L288 368Z" fill="#2F8FD1"/>
+          <path d="M306 336 L380 339 L380 365 L300 362Z" fill="#FFFDF4"/><path d="M380 339 L454 336 L460 362 L380 365Z" fill="#FFFDF4"/>
+          <path d="M380 339 V365" stroke="#D8D2BD" stroke-width="2"/>
+          <g stroke="#C9D3DE" stroke-width="1.8" stroke-linecap="round"><path d="M314 345 L368 347"/><path d="M313 351 L368 353"/><path d="M312 357 L350 358"/></g>
+          <g fill="none" stroke="#FF6B5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M410 346 l3 5 l5 0 l-4 3.5 l1.5 5 l-5.5 -3 l-5.5 3 l1.5 -5 l-4 -3.5 l5 0Z" fill="#FFD34D" stroke="#E0A620" stroke-width="1.6"/></g>
+          <path id="scribble" d="" fill="none" stroke="#3B2A1A" stroke-width="1.6" stroke-linecap="round" opacity="0"/>
+          <circle id="aBook" cx="380" cy="352" r="2" fill="none"/>
+          <!-- кружка с карандашами -->
+          <g id="mug">
+            <path d="M262 316 l-6 -22" stroke="#FF6B5B" stroke-width="4" stroke-linecap="round"/><path d="M268 316 l2 -26" stroke="#3FB088" stroke-width="4" stroke-linecap="round"/><path d="M274 316 l8 -20" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/>
+            <rect x="254" y="314" width="30" height="30" rx="6" fill="#5CC8E1"/><rect x="254" y="314" width="30" height="8" rx="4" fill="#8FDCEC"/><path d="M284 322 q10 0 10 9 q0 8 -10 8" fill="none" stroke="#5CC8E1" stroke-width="4"/>
+            <circle cx="269" cy="332" r="5" fill="#FFD34D"/>
+          </g>
+          <!-- яблоко -->
+          <g id="apple"><ellipse cx="502" cy="343" rx="12" ry="11" fill="#E8453C"/><ellipse cx="498" cy="339" rx="3.5" ry="4.5" fill="#fff" opacity=".35"/><path d="M502 333 q0 -7 4 -9" stroke="#7A4620" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M504 328 q7 -6 11 0 q-6 4 -11 0Z" fill="#3FB088"/></g>
+          <!-- лампа -->
+          <g id="lamp"><polygon id="lcone" points="506,308 524,310 470,364 400,352" fill="url(#gCone)" opacity="0"/>
+            <ellipse cx="526" cy="337" rx="12" ry="3.6" fill="#4B5E73"/><path d="M526 335 L524 304 L514 292" fill="none" stroke="#6B7F95" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="504,288 524,284 530,302 498,302" fill="#FF6B5B"/><ellipse cx="514" cy="302" rx="16" ry="3.4" fill="#FFF1A8"/></g>
+        </g>
+
+        <!-- руки на парте -->
+        <g id="armsG" transform="translate(250 94) scale(1.3)">
+          <g id="armL"><path d="M64 150 L74 190" stroke="#F3A235" stroke-width="22" stroke-linecap="round"/>
+            <ellipse cx="74" cy="198" rx="13" ry="9.5" fill="#FFE4A8"/><path d="M68 200 v-4 M74 201 v-5 M80 200 v-4" stroke="#7A4620" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g>
+          <g id="armR">
+            <path d="M136 150 L128 190" stroke="#F3A235" stroke-width="22" stroke-linecap="round"/>
+            <g id="pencil"><path d="M146 166 L129 197" stroke="#FFC93C" stroke-width="6.5" stroke-linecap="round"/><path d="M146 166 L148 162" stroke="#FF8FA3" stroke-width="6.5" stroke-linecap="round"/><path d="M129.6 196 L125 205 L132.4 199Z" fill="#F2D3A3"/><path d="M125 205 L126.6 202.2 L127.8 203.3Z" fill="#3B2A1A"/><path d="M143 168 L127 195" stroke="#E0A620" stroke-width="1.4" opacity=".7"/></g>
+            <ellipse cx="128" cy="198" rx="13" ry="9.5" fill="#FFE4A8"/><path d="M122 200 v-4 M128 201 v-5" stroke="#7A4620" stroke-width="1.6" stroke-linecap="round" opacity=".6"/><ellipse cx="133.5" cy="192" rx="5" ry="4.5" fill="#FFE4A8"/>
+          </g>
+        </g>
+
+        <!-- табличка -->
+        <g id="sign" transform="rotate(-3 270 490)">
+          <rect x="266" y="470" width="8" height="42" rx="3" fill="#A8703B"/>
+          <rect x="190" y="458" width="160" height="38" rx="9" fill="#EDB677" stroke="#B77740" stroke-width="3"/>
+          <text x="270" y="484" text-anchor="middle" font-family="'Baloo 2',sans-serif" font-weight="800" font-size="21" fill="#5A3A1C">Білім Аралы</text>
+        </g>
+
+        <!-- краб -->
+        <g id="crab" transform="translate(580 494)">
+          <ellipse cx="0" cy="10" rx="17" ry="4" fill="#B8862F" opacity=".35"/>
+          <g stroke="#D9473C" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M-12 4 l-8 4 M-11 8 l-8 6 M12 4 l8 4 M11 8 l8 6"/></g>
+          <path d="M-14 -2 q-10 -12 -2 -16 q8 2 4 12Z" fill="#E8584A"/><path d="M14 -2 q10 -12 2 -16 q-8 2 -4 12Z" fill="#E8584A"/>
+          <ellipse cx="0" cy="3" rx="15" ry="10" fill="#E8584A"/><ellipse cx="-3" cy="-1" rx="7" ry="3.5" fill="#FF8A7C" opacity=".6"/>
+          <path d="M-5 -7 v-5 M5 -7 v-5" stroke="#E8584A" stroke-width="2.4"/>
+          <circle cx="-5" cy="-14" r="4.2" fill="#fff"/><circle cx="5" cy="-14" r="4.2" fill="#fff"/>
+          <circle id="crabPL" cx="-5" cy="-14" r="2.2" fill="#1D3557"/><circle id="crabPR" cx="5" cy="-14" r="2.2" fill="#1D3557"/>
+          <path d="M-5 6 q5 4 10 0" fill="none" stroke="#7A1F1F" stroke-width="1.8" stroke-linecap="round"/>
+        </g>
+
+        <!-- бабочка -->
+        <g id="bfly" transform="translate(560 350)">
+          <g id="bflyW"><path d="M0 0 C-14 -16 -22 -4 -8 4 C-18 10 -8 18 0 6Z" fill="#FF8FA3"/><path d="M0 0 C14 -16 22 -4 8 4 C18 10 8 18 0 6Z" fill="#FF8FA3"/><circle cx="-10" cy="-2" r="2.4" fill="#fff" opacity=".8"/><circle cx="10" cy="-2" r="2.4" fill="#fff" opacity=".8"/></g>
+          <ellipse cx="0" cy="3" rx="1.8" ry="6" fill="#3B2A1A"/>
+        </g>
+
+        </g><!-- /world -->
+        <ellipse id="lampglow" cx="470" cy="330" rx="200" ry="140" fill="url(#gLamp)" opacity="0"/>
+        <!-- эффекты -->
+        <g id="fx"></g>
+        <!-- зона нажатия на Барсика -->
+        <ellipse id="hit" cx="380" cy="262" rx="108" ry="112" fill="transparent" tabindex="0" role="button" aria-label="Поздороваться с Барсиком"/>
+      </svg>
+      <div class="bubble" id="bubble" role="status"><svg class="spk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg><span id="hello" data-i18n="home_hello"></span></div>
+    </div>
+
+    <section class="subjects" id="subjects">
+      <div class="direction-grid">
+        <a href="grade-picker.html?dir=ru" class="direction-btn direction-rus" style="text-decoration:none;">
+          <span class="direction-emoji">📕</span>
+          <span class="direction-label">С русским языком обучения</span>
+        </a>
+        <a href="grade-picker.html?dir=kz" class="direction-btn direction-kaz" style="text-decoration:none;">
+          <span class="direction-emoji">📗</span>
+          <span class="direction-label">Қазақ тілінде оқыту</span>
+        </a>
+      </div>
+    </section>
   </div>
-</section>
+  <div class="wave-edge" aria-hidden="true"></div>
+</div>
 
 <footer data-i18n="footer"></footer>
 
 <script src="assets/i18n.js"></script>
 <script src="assets/progress.js"></script>
+<script>
+/* ===== выпадающий список языков ===== */
+(function(){
+  var box=document.getElementById('langbox'), cur=document.getElementById('langcur'), code=document.getElementById('langcode');
+  function close(){ box.classList.remove('open'); cur.setAttribute('aria-expanded','false'); }
+  cur.addEventListener('click',function(e){ e.stopPropagation(); var o=box.classList.toggle('open'); cur.setAttribute('aria-expanded',o?'true':'false'); });
+  box.querySelectorAll('.lang-menu button').forEach(function(b){
+    b.addEventListener('click',function(){ code.textContent=b.getAttribute('data-code'); close(); });
+  });
+  document.addEventListener('click',function(e){ if(!box.contains(e.target)) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+<script>
+/* ===== фоновая музыка: нежная мелодия, синтезируется в браузере (без файлов), включается кнопкой ===== */
+(function(){
+  'use strict';
+  var btn=document.getElementById('musicbtn'); if(!btn) return;
+  var AC=window.AudioContext||window.webkitAudioContext; if(!AC){ btn.style.display='none'; return; }
+  var ctx=null, master=null, timer=null, nextT=0, step=0, on=false, pending=false;
+  var CH=[[48,55,64],[45,52,60],[41,48,57],[43,50,59]];                 // C, Am, F, G
+  var MEL=[[76,0,79,0,76,0,74,72],[72,0,76,0,81,0,79,0],[81,0,79,0,76,0,74,0],[74,0,76,0,79,0,0,0],
+           [79,0,81,0,79,76,0,74],[76,0,72,0,74,0,76,0],[72,74,76,0,79,0,76,0],[74,0,72,0,0,0,0,0]];
+  var EIGHTH=.4;
+  function hz(m){ return 440*Math.pow(2,(m-69)/12); }
+  function tone(m,t,dur,vol,type){
+    var o=ctx.createOscillator(), g=ctx.createGain(); o.type=type||'sine'; o.frequency.value=hz(m);
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.012); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t+dur+.05);
+  }
+  function bell(m,t,vol){ tone(m,t,1.4,vol,'sine'); tone(m+12,t,.5,vol*.22,'sine'); }
+  function schedule(){
+    while (nextT < ctx.currentTime+1.2){
+      var bar=Math.floor(step/8)%8, k=step%8, chord=CH[bar%4];
+      if (k===0){ chord.forEach(function(m,i){ tone(m,nextT,EIGHTH*8*.98,.05,'sine'); }); }
+      var arp=[0,1,2,1,2,1,2,1][k]; tone(chord[arp]+12,nextT,.5,.075,'triangle');
+      var mm=MEL[bar][k]; if (mm) bell(mm,nextT,.1);
+      nextT+=EIGHTH; step++;
+    }
+  }
+  function start(){
+    if (on) return; on=true; btn.setAttribute('aria-pressed','true');
+    try{ localStorage.setItem('bilim_music','1'); }catch(e){}
+    if(!ctx){ ctx=new AC(); master=ctx.createGain(); master.gain.value=0; master.connect(ctx.destination); }
+    ctx.resume(); master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setValueAtTime(master.gain.value,ctx.currentTime);
+    master.gain.linearRampToValueAtTime(.55,ctx.currentTime+2); nextT=ctx.currentTime+.1; schedule(); timer=setInterval(schedule,300);
+  }
+  function stop(save){
+    if (!on) return; on=false; btn.setAttribute('aria-pressed','false');
+    if (save!==false){ try{ localStorage.setItem('bilim_music','0'); }catch(e){} }
+    clearInterval(timer); timer=null;
+    master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setValueAtTime(master.gain.value,ctx.currentTime); master.gain.linearRampToValueAtTime(0,ctx.currentTime+.6);
+  }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); pending=false; on?stop():start(); });
+  document.addEventListener('visibilitychange',function(){ if(!ctx) return; if(document.hidden){ ctx.suspend(); } else if(on){ ctx.resume(); } });
+  // если ребёнок включал музыку раньше — запускаем при первом касании (браузеры не разрешают играть звук без касания)
+  var was=false; try{ was=localStorage.getItem('bilim_music')==='1'; }catch(e){}
+  if (was){ btn.setAttribute('aria-pressed','true'); pending=true;
+    var kick=function(){ document.removeEventListener('pointerdown',kick,true); document.removeEventListener('keydown',kick,true);
+      if(pending){ btn.setAttribute('aria-pressed','false'); start(); } };
+    document.addEventListener('pointerdown',kick,true); document.addEventListener('keydown',kick,true);
+  }
+  window.__music={start:start,stop:stop,state:function(){ return {on:on, ctx:ctx&&ctx.state}; }};
+})();
+</script>
+<script>
+/* ===== живой Барсик: глаза следят за курсором, моргает, дышит, пишет, реагирует ===== */
+(function(){
+  'use strict';
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var $ = function(id){ return document.getElementById(id); };
+  var svg = $('isle'); if(!svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var E = {};
+  ['lean','bodyg','head','earL','earR','eyesPar','muzzle','irisL','irisR','pupilL','pupilR','glintL','glintR','lidL','lidR','edgeL','edgeR','eyes','happy','browL','browR','mClosed','mOpen','mPath','mClip','tongue','blushL','blushR','whisk','armsG','armL','armR','tail','eyeOutL','eyeOutR','hit','fx','crab','crabPL','crabPR','bfly','bflyW','aBook','aPalm','aSky','gull','gullW','bubble','scribble','rays','scene','sky','sun','sunA','sunB','sunglow','moon','lampglow','lcone','hello','starfield','stage']
+    .forEach(function(id){ E[id]=$(id); });
+  var BASE = 'translate(250 94) scale(1.3)';
+
+  /* лучи солнца */
+  for (var i=0;i<12;i++){
+    var r=document.createElementNS(NS,'path');
+    r.setAttribute('d','M0 -40 V-52'); r.setAttribute('stroke','#FFD34D'); r.setAttribute('stroke-width','6'); r.setAttribute('stroke-linecap','round');
+    r.setAttribute('transform','rotate('+(i*30)+')'); E.rays.appendChild(r);
+  }
+  if(!reduce){ var an=document.createElementNS(NS,'animateTransform'); an.setAttribute('attributeName','transform'); an.setAttribute('type','rotate'); an.setAttribute('from','0'); an.setAttribute('to','360'); an.setAttribute('dur','90s'); an.setAttribute('repeatCount','indefinite'); E.rays.appendChild(an); }
+
+  /* блики на воде */
+  var sea = document.querySelector('.sea');
+  for (var g=0; g<16; g++){
+    var d=document.createElement('i'); d.className='glint';
+    d.style.left=(Math.random()*96)+'%'; d.style.top=(18+Math.random()*74)+'%';
+    d.style.animationDelay=(-Math.random()*4)+'s'; d.style.animationDuration=(3+Math.random()*3)+'s';
+    sea.appendChild(d);
+  }
+
+  /* ---------- время суток по часам зрителя ---------- */
+  var SUNRISE=[8,7.5,7,6,5.5,5,5.5,6,6.5,7,7.5,8], SUNSET=[17,18,19,20,20.5,21,21,20,19,18,17,16.5];
+  var TOD='day';
+  function calcTod(){
+    var m=/[?&]tod=(dawn|day|sunset|night)/.exec(location.search); if(m) return m[1];
+    var d=new Date(), h=d.getHours()+d.getMinutes()/60, mo=d.getMonth(), sr=SUNRISE[mo], ss=SUNSET[mo];
+    if (h>=sr-1 && h<sr+1.5) return 'dawn';
+    if (h>=sr+1.5 && h<ss-1.5) return 'day';
+    if (h>=ss-1.5 && h<ss+1) return 'sunset';
+    return 'night';
+  }
+  var starsBuilt=false;
+  function applyTod(){
+    TOD=calcTod(); E.stage.setAttribute('data-tod',TOD);
+    var sx=86, sy=76, a='#FFD34D', b='#FFE27A', glow=0, sunOp=1, moonOp=0, lamp=0;
+    if (TOD==='dawn'){ sx=62; sy=288; a='#FFB067'; b='#FFD08A'; glow=.45; }
+    else if (TOD==='sunset'){ sx=590; sy=286; a='#FF7A3D'; b='#FFA463'; glow=.6; }
+    else if (TOD==='night'){ sunOp=0; moonOp=1; lamp=1; }
+    E.sun.setAttribute('transform','translate('+sx+' '+sy+')'); E.sun.setAttribute('opacity',sunOp);
+    E.sunA.setAttribute('fill',a); E.sunB.setAttribute('fill',b); E.sunglow.setAttribute('opacity',glow);
+    E.moon.setAttribute('opacity',moonOp); E.lampglow.setAttribute('opacity',lamp); E.lcone.setAttribute('opacity',lamp);
+    if (TOD==='night' && !starsBuilt){
+      starsBuilt=true;
+      for (var i=0;i<46;i++){ var st=document.createElement('i'); st.className='star'; st.style.left=(Math.random()*100)+'%'; st.style.top=(Math.random()*52)+'%';
+        var sz=1.5+Math.random()*2.5; st.style.width=st.style.height=sz+'px'; st.style.animationDelay=(-Math.random()*3)+'s'; st.style.animationDuration=(2+Math.random()*3)+'s'; E.starfield.appendChild(st); }
+    }
+  }
+  applyTod(); setInterval(applyTod, 300000);
+
+  /* ---------- приветствие: текст на 7 языках, голос ---------- */
+  var HELLO={
+    ru:'Привет! Я Барсик — твой проводник по острову знаний!',
+    kz:'Сәлем! Мен Барсикпін — білім аралындағы сенің жолбасшыңмын!',
+    en:'Hi! I\u2019m Barsik \u2014 your guide to the Island of Knowledge!',
+    zh:'你好！我是巴尔西克，你的知识岛向导！',
+    uz:'Салом! Мен Барсикман — билим оролида сенинг йўлбошчингман!',
+    tg:'Салом! Ман Барсик — роҳнамои ту дар ҷазираи дониш!',
+    ug:'ياخشىمۇسىز! مەن بارسىك — بىلىم ئارىلىدىكى يېتەكچىڭىز!'
+  };
+  var LANGTAG={ru:'ru-RU',kz:'kk-KZ',en:'en-US',zh:'zh-CN',uz:'uz-UZ',tg:'tg-TJ',ug:'ug-CN'};
+  var curLang='ru';
+  function setLang(l){ if(!HELLO[l]) l='ru'; curLang=l; E.hello.textContent=HELLO[l]; }
+  var _al=window.applyLang; window.applyLang=function(l){ _al.apply(this,arguments); setLang(l); };
+  setLang('ru');
+
+  /* ---------- утилиты ---------- */
+  function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+  function rand(a,b){ return a+Math.random()*(b-a); }
+  function damp(cur,tar,rate,dt){ return cur+(tar-cur)*(1-Math.exp(-rate*dt)); }
+  function center(el){ var r=el.getBoundingClientRect(); return {x:r.left+r.width/2, y:r.top+r.height/2, w:r.width}; }
+  function f(n){ return (Math.round(n*100)/100); }
+
+  /* ---------- курсор ---------- */
+  var ptr = {x:null,y:null,t:-99}, T = 0, hover=false, onCard=false, visible=true, pressed=false;
+  function seen(e){ ptr.x=e.clientX; ptr.y=e.clientY; ptr.t=T; }
+  addEventListener('pointermove', seen, {passive:true});
+  addEventListener('pointerdown', function(e){ seen(e); pressed=true; }, {passive:true});
+  addEventListener('pointerup', function(){ pressed=false; }, {passive:true});
+  document.documentElement.addEventListener('mouseleave', function(){ ptr.t = T-10; });
+  E.hit.addEventListener('pointerenter', function(){ hover=true; });
+  E.hit.addEventListener('pointerleave', function(){ hover=false; });
+  E.hit.addEventListener('focus', function(){ hover=true; });
+  E.hit.addEventListener('blur', function(){ hover=false; });
+  document.querySelectorAll('.direction-btn').forEach(function(b){
+    b.addEventListener('pointerenter', function(){ onCard=true; });
+    b.addEventListener('pointerleave', function(){ onCard=false; });
+  });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }, {threshold:0}).observe(E.scene);
+
+  /* ---------- состояние ---------- */
+  var S = {
+    ex:[0,0], ey:[0,0],           // смещение радужек
+    hx:0, hy:0,                    // поворот головы (-1..1)
+    pupil:6.5, lidBase:.02, squint:0, mouth:0, brow:0, tilt:0, blush:.35,
+    angL:0, angR:0, tailPh:0, tailAmp:9, tailF:.45, wag:0,
+    jumpT:-9, jumpN:1, jumpAmp:16, shake:0, roll:0, yaw:0
+  };
+  var mode='idle', modeT0=0, modeDur=0, talkUntil=0, nextEvent=6, idleSince=0;
+  var blink={next:2.2, t0:-9, dbl:false}, ears=[ {t0:-9,next:3}, {t0:-9,next:5} ], wh={t0:-9,next:4};
+  var gz={name:'viewer', until:0};
+  var clicks=[], lastLid=[-1,-1], lastMouth=-1, lastShown='';
+
+  function setMode(m,dur){ mode=m; modeT0=T; modeDur=dur||0; }
+  function jump(n,amp){ S.jumpT=T; S.jumpN=n||1; S.jumpAmp=amp||16; }
+
+  /* ---------- частицы ---------- */
+  var parts=[];
+  function heartPath(){ return 'M0 -3 C-5 -11 -13 -2 0 8 C13 -2 5 -11 0 -3Z'; }
+  function starPath(){ return 'M0 -8 L2.4 -2.4 L8 0 L2.4 2.4 L0 8 L-2.4 2.4 L-8 0 L-2.4 -2.4Z'; }
+  function burst(n, kinds){
+    if (reduce) return;
+    for (var i=0;i<n;i++){
+      var k = kinds[i%kinds.length], p=document.createElementNS(NS,'path');
+      p.setAttribute('d', k==='h'?heartPath():starPath());
+      p.setAttribute('fill', k==='h' ? '#FF6B8A' : (i%2?'#FFD34D':'#7BC8FF'));
+      E.fx.appendChild(p);
+      parts.push({el:p, x:380+rand(-50,50), y:168+rand(-20,20), vx:rand(-60,60), vy:rand(-150,-70), life:0, max:rand(.9,1.5), s:rand(.9,1.8), rot:rand(-40,40)});
+    }
+  }
+  function stepParts(dt){
+    for (var i=parts.length-1;i>=0;i--){
+      var p=parts[i]; p.life+=dt;
+      if (p.life>=p.max){ E.fx.removeChild(p.el); parts.splice(i,1); continue; }
+      p.vy+=140*dt; p.x+=p.vx*dt; p.y+=p.vy*dt; var a=1-p.life/p.max;
+      p.el.setAttribute('transform','translate('+f(p.x)+' '+f(p.y)+') rotate('+f(p.rot*p.life)+') scale('+f(p.s*(0.4+a*.6))+')');
+      p.el.setAttribute('opacity', f(Math.min(1,a*1.6)));
+    }
+  }
+
+  /* ---------- реплика ---------- */
+  var bt=null;
+  function say(ms){
+    E.bubble.classList.add('show'); talkUntil = T + Math.min(ms/1000-.4, 3.2);
+    clearTimeout(bt); bt=setTimeout(function(){ E.bubble.classList.remove('show'); }, ms);
+  }
+
+  /* ---------- голос ---------- */
+  var talking=false, lastVoice=-99, voiceGuard=null, voiceAudio=null;
+  function endVoice(){ talking=false; clearTimeout(voiceGuard); setTimeout(function(){ E.bubble.classList.remove('show'); },700); }
+  function speak(){
+    if (talking || T-lastVoice<4) return; lastVoice=T; talking=true;
+    E.bubble.classList.add('show'); clearTimeout(bt);
+    voiceGuard=setTimeout(endVoice, 12000);
+    var used=false;
+    function fallback(){
+      if (used) return; used=true;
+      if (!('speechSynthesis' in window)){ setTimeout(endVoice,3200); return; }
+      try{
+        var u=new SpeechSynthesisUtterance(HELLO[curLang]); u.lang=LANGTAG[curLang]||'ru-RU'; u.rate=.95; u.pitch=1.1;
+        u.onend=u.onerror=endVoice; speechSynthesis.cancel(); speechSynthesis.speak(u);
+      }catch(e){ setTimeout(endVoice,3200); }
+    }
+    try{
+      voiceAudio=new Audio('assets/audio/home/hello-'+curLang+'.mp3');
+      voiceAudio.onended=endVoice; voiceAudio.onerror=fallback;
+      var pr=voiceAudio.play(); if (pr && pr.catch) pr.catch(fallback);
+    }catch(e){ fallback(); }
+  }
+
+  /* ---------- клик по Барсику ---------- */
+  function poke(){
+    clicks.push(T); clicks=clicks.filter(function(c){ return T-c<2.4; });
+    var n=clicks.length;
+    idleSince=0;
+    if (n>=5){ setMode('cheer',1.7); jump(2,20); burst(14,['s','h','s']); }
+    else if (n>=3){ setMode('giggle',1.5); jump(1,8); burst(7,['h']); }
+    else { setMode('happy',1.1); jump(1,14); burst(6,['h','s']); speak(); }
+  }
+  E.hit.addEventListener('click', poke);
+  E.hit.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); poke(); } });
+
+  /* ---------- краб, бабочка, чайка ---------- */
+  var crab={x:0,tx:0,next:4,dir:0};
+  var gull={on:false,t0:0,dur:16,dirR:true,y0:60,next:7};
+  function updateCrab(dt){
+    var c=center(E.crab), pa = ptr.x!==null && T-ptr.t<3.2;
+    if (pa){
+      var dx=ptr.x-c.x, dy=ptr.y-c.y, d=Math.hypot(dx,dy);
+      if (d<110){ crab.tx=clamp(crab.x-(dx>0?1:-1)*70,-70,70); crab.next=T+2; }
+      var m=Math.tanh(d/120), ux=d?dx/d:0, uy=d?dy/d:0;
+      E.crabPL.setAttribute('cx',f(-5+ux*1.7*m)); E.crabPR.setAttribute('cx',f(5+ux*1.7*m));
+      E.crabPL.setAttribute('cy',f(-14+uy*1.5*m)); E.crabPR.setAttribute('cy',f(-14+uy*1.5*m));
+    }
+    if (!reduce && T>crab.next){ crab.tx=rand(-60,60); crab.next=T+rand(4,8); }
+    var dd=crab.tx-crab.x, step=Math.sign(dd)*Math.min(Math.abs(dd), (reduce?0:70)*dt); crab.x+=step;
+    var moving=Math.abs(step)>0.01;
+    E.crab.setAttribute('transform','translate('+f(580+crab.x)+' '+f(494+(moving?Math.sin(T*40)*1.2:0))+') rotate('+f(moving?Math.sin(T*28)*4:0)+')');
+  }
+  function updateButterfly(){
+    if (reduce){ return; }
+    var x=560+70*Math.sin(T*.5)+26*Math.sin(T*1.3), y=352+26*Math.sin(T*.8)+12*Math.sin(T*2.1);
+    var fl=.25+.75*Math.abs(Math.sin(T*15));
+    E.bfly.setAttribute('transform','translate('+f(x)+' '+f(y)+') rotate('+f(Math.cos(T*.5)*14)+')');
+    E.bflyW.setAttribute('transform','scale('+f(fl)+' 1)');
+  }
+  function updateGull(dt){
+    if (reduce) return;
+    var sk=E.sky.getBoundingClientRect(), W=sk.width;
+    if (!gull.on && T>gull.next){ gull.on=true; gull.t0=T; gull.dirR=Math.random()<.5; gull.dur=rand(14,20); gull.y0=sk.height*rand(.1,.2); }
+    if (gull.on){
+      var p=(T-gull.t0)/gull.dur;
+      if (p>=1){ gull.on=false; gull.next=T+rand(22,40); E.gull.style.opacity=0; return; }
+      var x = gull.dirR ? -50+(W+100)*p : W+50-(W+100)*p, y = gull.y0+22*Math.sin(p*Math.PI*3);
+      var fl = Math.sin(T*9);
+      E.gull.style.transform='translate('+f(x)+'px,'+f(y)+'px) scaleX('+(gull.dirR?1:-1)+')';
+      E.gull.style.opacity=1;
+      E.gullW.setAttribute('transform','translate(0 8) scale(1 '+f(.2+.8*fl)+') translate(0 -8)');
+    }
+  }
+
+  /* ---------- взгляд ---------- */
+  var IDLE_WANDER=[['viewer',.22],['book',.12],['palm',.1],['sky',.1],['gull',.2],['bfly',.14],['crab',.1],['cursor',.07],['cards',.09]];
+  function anchor(name){
+    switch(name){
+      case 'viewer': return null;
+      case 'book': return center(E.aBook);
+      case 'palm': return center(E.aPalm);
+      case 'sky':  return center(E.aSky);
+      case 'bfly': return center(E.bfly);
+      case 'crab': return center(E.crab);
+      case 'gull': return gull.on ? center(E.gull) : null;
+      case 'cards': var c=document.querySelector('.direction-grid'); return c?center(c):null;
+      case 'cursor': return ptr.x!==null?{x:ptr.x,y:ptr.y}:null;
+    }
+    return null;
+  }
+  function pickGaze(){
+    var tot=0, i; for(i=0;i<IDLE_WANDER.length;i++){ var n=IDLE_WANDER[i][0]; if((n==='gull'&&!gull.on)||(n==='cursor'&&ptr.x===null)) continue; tot+=IDLE_WANDER[i][1]; }
+    var r=Math.random()*tot, acc=0;
+    for(i=0;i<IDLE_WANDER.length;i++){ n=IDLE_WANDER[i][0]; if((n==='gull'&&!gull.on)||(n==='cursor'&&ptr.x===null)) continue; acc+=IDLE_WANDER[i][1]; if(r<=acc) return n; }
+    return 'viewer';
+  }
+
+  /* ---------- пути ---------- */
+  function lidD(cx,cy,a){
+    var y0 = cy-19.5 + a*40 - 6, ct = cy-19.5 + a*40 + 6 + 0;
+    var mid = cy-20.5 + a*40;           // середина края века
+    var b = 5*(1-a)+1.5;
+    var ya = mid-b, yc = mid+b;
+    return {fill:'M'+f(cx-22)+' '+f(cy-28)+' H'+f(cx+22)+' V'+f(ya)+' Q'+f(cx)+' '+f(yc)+' '+f(cx-22)+' '+f(ya)+' Z',
+            edge:'M'+f(cx-17)+' '+f(ya)+' Q'+f(cx)+' '+f(yc)+' '+f(cx+17)+' '+f(ya)};
+  }
+  function setLids(a){
+    if (Math.abs(a-lastLid[0])<.004) return; lastLid[0]=a;
+    var L=lidD(72,86,a), R=lidD(128,86,a);
+    E.lidL.setAttribute('d',L.fill); E.lidR.setAttribute('d',R.fill);
+    E.edgeL.setAttribute('d',L.edge); E.edgeR.setAttribute('d',R.edge);
+    var o = a<.03?0:1; E.edgeL.setAttribute('opacity',o); E.edgeR.setAttribute('opacity',o);
+  }
+  function setMouth(m){
+    m = clamp(m,0,1);
+    if (Math.abs(m-lastMouth)<.01) return; lastMouth=m;
+    if (m<.06){ E.mClosed.setAttribute('opacity',1); E.mOpen.setAttribute('opacity',0); return; }
+    var hw=13+6*m, ctl=118+50*m, d='M'+f(100-hw)+' 118 Q100 '+f(ctl)+' '+f(100+hw)+' 118 Q100 '+f(124+2*m)+' '+f(100-hw)+' 118Z';
+    E.mPath.setAttribute('d',d); E.mClip.setAttribute('d',d);
+    var depth=(ctl-118)/2;
+    E.tongue.setAttribute('cy',f(118+depth*.82)); E.tongue.setAttribute('rx',f(6+3*m)); E.tongue.setAttribute('ry',f(4+1.4*m));
+    E.mClosed.setAttribute('opacity',0); E.mOpen.setAttribute('opacity',1);
+  }
+  function tw(o,dur){ var p=(T-o.t0)/dur; return (p>=0&&p<1) ? Math.sin(p*Math.PI*3)*(1-p) : 0; }
+
+  /* ---------- главный цикл ---------- */
+  var last=0;
+  function frame(ts){
+    requestAnimationFrame(frame);
+    var t=ts/1000, dt=Math.min(.05, t-last||.016); last=t; T=t;
+    if(!visible || document.hidden) return;
+    update(dt);
+  }
+
+  function update(dt){
+    var pAct = ptr.x!==null && (T-ptr.t<3.2);
+    var busy = pAct || hover || onCard || mode!=='idle';
+    if (pAct || hover) idleSince=0; else idleSince+=dt;
+
+    /* --- режимы --- */
+    if (mode!=='idle' && modeDur && T-modeT0>modeDur) setMode('idle');
+    if (mode==='idle' && !pAct && !hover && !reduce && T>nextEvent){
+      var r=Math.random();
+      if (idleSince>(TOD==='night'?10:22) && r<(TOD==='night'?.4:.25)){ setMode('yawn',2.4); }
+      else if (r<.6){ setMode('write',rand(3.2,5.5)); }
+      else if (r<.8){ setMode('grin',1.6); }
+      else { ears[Math.random()<.5?0:1].t0=T; }
+      nextEvent=T+rand(5,10);
+    }
+    if (mode==='write' && (pAct||hover)) setMode('idle');
+
+    /* --- цель взгляда --- */
+    var G=null;
+    if (mode==='write') G=anchor('book');
+    else if (mode==='wave' || mode==='cheer' || mode==='happy' || mode==='giggle' || mode==='yawn') G = (pAct||hover) ? {x:ptr.x,y:ptr.y} : null;
+    else if (pAct || hover){ G={x:ptr.x,y:ptr.y}; }
+    else if (reduce){ G=null; }
+    else {
+      if (T>gz.until){ gz.name=pickGaze(); gz.until=T+(gz.name==='viewer'?rand(2,4.5):rand(1.3,3)); }
+      G=anchor(gz.name);
+    }
+
+    /* --- глаза и голова --- */
+    var cL=center(E.eyeOutL), cR=center(E.eyeOutR), cH={x:(cL.x+cR.x)/2, y:(cL.y+cR.y)/2+6};
+    var tEx=[0,0], tEy=[0,0], hxT=0, hyT=0, dMin=999;
+    if (G){
+      var cs=[cL,cR];
+      for (var i=0;i<2;i++){
+        var dx=G.x-cs[i].x, dy=G.y-cs[i].y, d=Math.hypot(dx,dy)||1, m=Math.tanh(d/(cs[i].w*4.2));
+        tEx[i]=dx/d*m*7.2; tEy[i]=dy/d*m*8.6; if(d<dMin) dMin=d;
+      }
+      var hdx=G.x-cH.x, hdy=G.y-cH.y, hd=Math.hypot(hdx,hdy)||1, hm=Math.tanh(hd/(cL.w*7));
+      hxT=hdx/hd*hm; hyT=hdy/hd*hm;
+    }
+    var eRate = reduce?60:24;
+    for (i=0;i<2;i++){ S.ex[i]=damp(S.ex[i],tEx[i],eRate,dt); S.ey[i]=damp(S.ey[i],tEy[i],eRate,dt); }
+    S.hx=damp(S.hx,hxT,reduce?60:5,dt); S.hy=damp(S.hy,hyT,reduce?60:5,dt);
+
+    /* --- целевые выражения --- */
+    var tLid=(TOD==='night'?.1:.02) + .16*Math.max(0,(S.ey[0]+S.ey[1])/2/8.6), tSq=0, tMouth=0, tBrow=1.3, tTilt=0, tBlush=.5, tPupil=6.5;
+    var tAngL=0, tAngR=0, tAmp=9, tF=.45, tRoll=0, tShake=0, tYawY=0;
+    if (G && dMin<260) tPupil+=1.1;
+    if (pAct && dMin<140) { tBrow+=2.2; tPupil+=.8; }
+    if (hover){ tBlush=.7; tBrow+=2; tMouth=.22; tAmp=14; tF=.9; tPupil+=1; }
+    if (onCard){ tBrow+=3; tTilt=5; tAmp=13; tF=.8; }
+    if (pressed && pAct) tPupil+=.8;
+    if (mode==='idle' && !busy){ var gp=(Math.sin(T*.35)+1)/2; tMouth=Math.max(tMouth, gp>.9?.14:0); }
+    if (mode==='write'){
+      tAngR = 3.6*Math.sin(T*19)+2*Math.sin(T*7.3)+1; tLid=Math.max(tLid,.2); tTilt=-2; tMouth=.12+.1*Math.sin(T*3)*Math.sin(T*3); tRoll=-2;
+    } else if (mode==='grin'){
+      var p=(T-modeT0)/modeDur; tMouth=.45*Math.sin(Math.PI*p); tSq=.5*Math.sin(Math.PI*p); tBlush=.7;
+    } else if (mode==='yawn'){
+      var p2=(T-modeT0)/modeDur, s=Math.sin(Math.PI*clamp(p2,0,1));
+      tMouth=s; tLid=Math.max(tLid,.92*Math.min(1,s*1.6)); tBrow=3*s; tYawY=-1.4*s; tAngL=-8*s; tAngR=8*s; tAmp=3;
+    } else if (mode==='happy'){
+      tSq=1; tMouth=.55; tBlush=.8; tAmp=18; tF=1.6; tBrow=2; tPupil+=1.5; tAngR=-18;
+    } else if (mode==='giggle'){
+      tSq=1; tMouth=.5+.3*Math.abs(Math.sin(T*13)); tBlush=.9; tShake=1.6*Math.sin(T*42); tAmp=20; tF=2.2; tRoll=3*Math.sin(T*11);
+    } else if (mode==='cheer'){
+      tSq=1; tMouth=.85; tBlush=.9; tAmp=24; tF=2.6; tAngL=152; tAngR=-152; tPupil+=2;
+    } else if (mode==='wave'){
+      tSq=.55; tMouth=.4+.2*Math.abs(Math.sin(T*10)); tBlush=.7; tAngL=140+20*Math.sin(T*13); tAmp=15; tF=1.2;
+    }
+    if ((talking || T<talkUntil) && (mode==='idle'||mode==='wave'||mode==='write'||mode==='happy')) tMouth=Math.max(tMouth,.3+.32*Math.abs(Math.sin(T*11)));
+
+    S.lidBase=damp(S.lidBase,tLid,16,dt); S.squint=damp(S.squint,tSq,14,dt);
+    S.mouth=damp(S.mouth,tMouth,18,dt); S.brow=damp(S.brow,tBrow,12,dt); S.tilt=damp(S.tilt,tTilt,10,dt);
+    S.blush=damp(S.blush,tBlush,6,dt); S.pupil=damp(S.pupil,tPupil,7,dt);
+    S.angL=damp(S.angL,tAngL,mode==='wave'?20:9,dt); S.angR=damp(S.angR,tAngR,mode==='write'?30:9,dt);
+    S.tailAmp=damp(S.tailAmp,reduce?0:tAmp,3,dt); S.tailF=damp(S.tailF,tF,3,dt);
+    S.roll=damp(S.roll,tRoll,8,dt); S.shake=tShake; S.yaw=damp(S.yaw,tYawY,6,dt);
+    S.tailPh+=Math.PI*2*S.tailF*dt;
+
+    /* --- моргание --- */
+    if (!reduce || true){
+      if (T>blink.next){ blink.t0=T; blink.dbl=Math.random()<.2; blink.next=T+rand(2.4,5.6); }
+    }
+    var bl=0, bp=(T-blink.t0)/.17;
+    if (bp>=0&&bp<1) bl=Math.sin(bp*Math.PI);
+    else if (blink.dbl){ var bp2=(T-blink.t0-.28)/.17; if(bp2>=0&&bp2<1) bl=Math.sin(bp2*Math.PI); }
+    var sqz = S.squint>.55;
+    var lid = Math.max(S.lidBase + S.squint*.3, bl);
+    setLids(clamp(lid,0,1));
+    E.eyes.setAttribute('opacity', sqz?0:1); E.happy.setAttribute('opacity', sqz?1:0);
+
+    /* --- применение --- */
+    var br = Math.sin(T*Math.PI*2/3.4), jy=0, ju=(T-S.jumpT)/(.42*S.jumpN);
+    if (ju>=0&&ju<1) jy=Math.abs(Math.sin(ju*Math.PI*S.jumpN))*S.jumpAmp;
+    if (reduce) jy=0;
+    var lean = 'translate('+f(S.shake)+' '+f(-jy+S.yaw*0)+') rotate('+f(S.hx*1.2)+' 100 205)';
+    E.lean.setAttribute('transform', lean);
+    E.armsG.setAttribute('transform', BASE+' '+lean);
+    var sy = 1+.02*br;
+    E.bodyg.setAttribute('transform','matrix(1 0 0 '+f(sy)+' 0 '+f(205*(1-sy))+')');
+    var hxp=S.hx, hyp=S.hy;
+    E.head.setAttribute('transform','translate('+f(hxp*3.6)+' '+f(hyp*2.4 - br*.9 + S.yaw*2)+') rotate('+f(hxp*3.2+S.roll+S.yaw*2)+' 100 150)');
+    E.eyesPar.setAttribute('transform','translate('+f(hxp*2.6)+' '+f(hyp*1.8)+')');
+    E.muzzle.setAttribute('transform','translate('+f(hxp*1.7)+' '+f(hyp*1.2)+')');
+    E.browL.setAttribute('transform','translate(0 '+f(-S.brow+(sqz?-2:0))+') rotate('+f(-S.tilt)+' 72 62)');
+    E.browR.setAttribute('transform','translate(0 '+f(-S.brow+(sqz?-2:0))+') rotate('+f(S.tilt)+' 128 62)');
+    // радужки / зрачки / блики
+    var pr=S.pupil, ir=11.5-(pr-6.5)*.3;
+    [['L',0],['R',1]].forEach(function(a){
+      var k=a[1];
+      E['iris'+a[0]].setAttribute('transform','translate('+f(S.ex[k])+' '+f(S.ey[k])+')');
+      E['pupil'+a[0]].setAttribute('r',f(pr));
+      E['glint'+a[0]].setAttribute('transform','translate('+f(S.ex[k]*.3)+' '+f(S.ey[k]*.3)+')');
+    });
+    // уши
+    var eT0=tw(ears[0],.5), eT1=tw(ears[1],.5);
+    if (T>ears[0].next){ if(!reduce && mode==='idle') ears[0].t0=T; ears[0].next=T+rand(6,14); }
+    if (T>ears[1].next){ if(!reduce && mode==='idle') ears[1].t0=T; ears[1].next=T+rand(7,16); }
+    var perk = hover?-5:0;
+    E.earL.setAttribute('transform','rotate('+f(-perk*-1 + (-S.hx*3) + eT0*14)+' 50 62)'.replace('-perk*-1','0'));
+    E.earR.setAttribute('transform','rotate('+f(perk*-1 + (-S.hx*3) - eT1*14)+' 150 62)');
+    // усы
+    if (T>wh.next){ wh.t0=T; wh.next=T+rand(3,8); }
+    var wv=tw(wh,.5); E.whisk.setAttribute('transform','translate(100 118) rotate('+f(wv*2.2)+') translate(-100 -118)');
+    // румянец, рот
+    E.blushL.setAttribute('opacity',f(S.blush)); E.blushR.setAttribute('opacity',f(S.blush));
+    setMouth(S.mouth);
+    // руки
+    E.armL.setAttribute('transform','rotate('+f(S.angL)+' 64 150)');
+    E.armR.setAttribute('transform','rotate('+f(S.angR)+' 136 150)');
+    // хвост
+    E.tail.setAttribute('transform','rotate('+f(Math.sin(S.tailPh)*S.tailAmp+2)+' 150 178)');
+
+    updateCrab(dt); updateButterfly(); updateGull(dt); stepParts(dt);
+  }
+  S.tailAmp=9; S.tailF=.45;
+
+  /* ---------- приветствие ---------- */
+  setTimeout(function(){
+    if (reduce){ say(5200); return; }
+    setMode('wave',2.4); say(4300); jump(1,10); nextEvent=T+7;
+  }, 900);
+
+  requestAnimationFrame(frame);
+  window.__home = {S:S, poke:poke, setMode:setMode, state:function(){ return {mode:mode, gz:gz.name}; }};
+})();
+</script>
 </body>
 </html>
