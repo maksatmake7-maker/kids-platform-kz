@@ -26,7 +26,7 @@
       var shape = (i%7===3);
       var c = MATH_COL[Math.floor(rnd(i+3)*MATH_COL.length)];
       var m = $e('s-m'+(i%2?' opt':''));
-      var px=rnd(i)*92+1, py=Math.max(rnd(i+40)*48+1, 11);
+      var px=rnd(i)*92+1, py=Math.max(rnd(i+40)*48+1, 20);
       /* середина верхней части занята заголовком — знаки уходят к краям */
       if (px>20 && px<80 && py<34) px = px<50 ? 1+px*.28 : 99-(100-px)*.28-4;
       m.style.setProperty('--x',px.toFixed(1)+'%');
@@ -71,7 +71,7 @@
     for (var i=0;i<7;i++){
       var b=$e('s-buoy',String(1+Math.floor(rnd(i+300)*9)));
       b.style.setProperty('--x',(6+rnd(i+310)*86).toFixed(1)+'%');
-      b.style.setProperty('--y',(16+rnd(i+320)*52).toFixed(1)+'%');
+      b.style.setProperty('--y',(8+rnd(i+320)*42).toFixed(1)+'%');
       b.style.setProperty('--sz',(28+rnd(i+330)*14).toFixed(0)+'px');
       b.style.setProperty('--dur',(4.4+rnd(i+340)*2.4).toFixed(1)+'s');
       b.style.setProperty('--dl',(-rnd(i+350)*5).toFixed(1)+'s');
