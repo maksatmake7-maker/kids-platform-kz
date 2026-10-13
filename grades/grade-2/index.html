@@ -7,11 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/styles.css">
+<link rel="stylesheet" href="../../assets/world.css">
+<link rel="stylesheet" href="../../assets/hub.css">
 </head>
-<body>
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-<div class="cloud cloud3"></div>
+<body class="w-page">
 
 <header>
   <a href="../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
@@ -26,31 +25,34 @@
   </div>
 </header>
 
-<section class="subjects" id="subjects" style="padding-top:20px;">
-  <a href="../../grade-picker.html?dir=ru" class="back-link" data-i18n="grade_picker_back" style="display:block; text-align:center; color:var(--ink); opacity:0.7;"></a>
-  <span class="grade-tag" data-i18n="rus_direction_grade2_title"></span>
-  <h2 data-i18n="subjects_h2"></h2>
-  <p class="lead" data-i18n="subjects_lead"></p>
+<div class="hub-top"><a href="../../grade-picker.html?dir=ru" class="back-link" id="hubBack">← К выбору класса</a></div>
 
-  <div class="island-grid">
-    <a href="math/index.html" class="island math ready" style="text-decoration:none;">
-      <span class="emoji">🔢</span>
-      <h3 data-i18n="math_title"></h3>
-      <p data-i18n="math_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
-    <a href="estestvo/index.html" class="island estestvo ready" style="text-decoration:none;">
-      <span class="emoji">🌱</span>
-      <h3 data-i18n="estestvo_title"></h3>
-      <p data-i18n="hub_animalclass_desc"></p>
-      <span class="badge" data-i18n="badge_play"></span>
-    </a>
-  </div>
-</section>
+<div id="hub"></div>
 
 <footer data-i18n="footer"></footer>
 
 <script src="../../assets/i18n.js"></script>
 <script src="../../assets/progress.js"></script>
+<script src="../../assets/barsik.js"></script>
+<script src="../../assets/world.js"></script>
+<script>
+window.HUB = {
+  grade: 2, dir: 'ru', lang: 'ru', tag: 'rus_direction_grade2_title',
+  subjects: [
+    {id:'math2',    keys:['placevalue','carryadd','problem2step','orderops','units','twodigitops','roman','clockread','setslogic','multiply','divide','angletype','tenge','multdivproblem','perimeter','findside','turns'],
+                    href:'math/index.html',     art:'math',     color:'#FFC93C', title:'math_title',     desc:'math_desc'},
+    {id:'estestvo2',keys:['animalclass','plantfunc','seasonplant','waterprops','bodyhealth'],
+                    href:'estestvo/index.html', art:'estestvo', color:'#6FBF73', title:'estestvo_title', desc:'hub_animalclass_desc'},
+    {id:'kaz',      soon:true, art:'kaz',      color:'#3FB088', title:'kaz_title',      desc:'kaz_desc'},
+    {id:'poznanie', soon:true, art:'poznanie', color:'#F0954C', title:'poznanie_title', desc:'poznanie_desc'},
+    {id:'muzyka',   soon:true, art:'muzyka',   color:'#C77DD9', title:'muzyka_title',   desc:'muzyka_desc'},
+    {id:'izo',      soon:true, art:'izo',      color:'#E8618C', title:'izo_title',      desc:'izo_desc'},
+    {id:'trud',     soon:true, art:'trud',     color:'#8C6F4E', title:'trud_title',     desc:'trud_desc'},
+    {id:'fizra',    soon:true, art:'fizra',    color:'#4DB6AC', title:'fizra_title',    desc:'fizra_desc'},
+    {id:'digital',  soon:true, art:'digital',  color:'#5EC3E8', title:'digital_title',  desc:'digital_desc'}
+  ]
+};
+</script>
+<script src="../../assets/hub.js"></script>
 </body>
 </html>
