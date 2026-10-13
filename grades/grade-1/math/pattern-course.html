@@ -568,6 +568,25 @@ const GENS = {
     return { html: '<div class="ac-qtxt">Какой знак потерялся?</div>' + symRow(seq, bi), opts: shuffle(set.slice()), ans: ans,
       hint: 'Ряд повторяется группами по ' + L + '. Возьми такое же место в другой группе: там <b>' + ans + '</b>.' };
   },
+  brokenNum(){
+    const step = pick([1, 2, 3, 5, 10, -1, -2]), start = step > 0 ? (step === 10 ? 10 * rnd(0, 3) : rnd(0, 6)) : rnd(12, 18), arr = numSeq(step, 6, start), bi = rnd(1, 4), good = arr[bi], cand = [];
+    for (let k = 1; k <= 6; k++) [good + k, good - k].forEach(x => { if (x >= 0 && x <= 100 && arr.indexOf(x) < 0) cand.push(x); });
+    const wrong = pick(cand), row = arr.slice(), others = shuffle(arr.filter((v, i) => i !== bi)).slice(0, 3); row[bi] = wrong;
+    return { html: '<div class="ac-qtxt">Одно число нарушает закономерность. Какое?</div>' + symRow(row, -1), opts: shuffle([wrong].concat(others)), ans: wrong,
+      hint: 'В этом ряду ' + stepText(step) + '. На этом месте должно стоять <b>' + good + '</b>, а стоит ' + wrong + '. Значит, число ' + wrong + ' не подходит.' };
+  },
+  brokenSym(){
+    const core = pick(['AB', 'AAB', 'ABB', 'AABB']), set = pick(SYMSETS), L = core.length, seq = tokens(core, set, 3 * L), bi = rnd(1, 3 * L - 2), good = seq[bi], wrong = set[2];
+    seq[bi] = wrong;
+    return { html: '<div class="ac-qtxt">Один знак нарушает закономерность. Какой?</div>' + symRow(seq, -1), opts: shuffle(set.slice()), ans: wrong,
+      hint: 'Ряд повторяется из двух знаков: ' + set[0] + ' и ' + set[1] + '. Знак ' + wrong + ' в этот ряд не подходит, на его месте должен стоять ' + good + '.' };
+  },
+  brokenPic(){
+    const core = pick(['AB', 'AAB', 'ABB', 'AABB']), alpha = alphabetPics(3), L = core.length, seq = tokens(core, alpha, 3 * L), bi = rnd(1, 3 * L - 2), wrong = alpha[2];
+    seq[bi] = wrong;
+    return { html: '<div class="ac-qtxt">Одна фигура нарушает закономерность. Какая?</div>' + patRow(seq, -1), opts: shuffle(alpha.map(x => itemSVG(x, 44))), ans: itemSVG(wrong, 44), svgopts: true,
+      hint: 'Узор повторяется из двух разных фигур. Третья фигура в него не подходит, это и есть нарушение.' };
+  },
   odd(){
     const S = shuffle(SHAPES.slice()), base = S[0], oddS = S[1], C = shuffle(COLS.slice()), list = [];
     for (let i = 0; i < 3; i++) list.push({ s: base, c: C[i] });
@@ -717,14 +736,16 @@ const LESSONS = [
       { id: 'p4s3', scene: 'quiz', gate: true, count: 6, gens: ['symMissing'], title: 'Какой знак потерялся?',
         text: 'Один знак потерялся. Найди такое же место в другой группе и выбери нужный знак.' }
     ] },
-  { id: 'p5', icon: '🔍', title: 'Ищем закономерность', goal: 'Находить лишнее и повторять всё изученное',
+  { id: 'p5', icon: '🔍', title: 'Ищем закономерность', goal: 'Находить лишнее и нарушение закономерности, повторять всё изученное',
     steps: [
       { id: 'p5s1', scene: 'quiz', gate: true, count: 5, gens: ['odd'], title: 'Что лишнее?',
         text: 'Иногда нужно найти того, кто не подходит к остальным. Три фигуры одной формы, а одна другая. Найди лишнюю.' },
-      { id: 'p5s2', scene: 'quiz', gate: true, count: 7, gens: ['nextItem', 'missingItem', 'patternCore', 'seqNext', 'seqMissing', 'seqRule', 'symNext', 'symMissing'], title: 'Смешанные задания',
-        text: 'Последняя проверка курса: узоры из фигур, числовые ряды и ряды знаков.' },
-      { id: 'p5s3', scene: 'finale', title: 'Курс пройден!',
-        text: 'Теперь ты умеешь находить повторяющуюся группу, продолжать узоры и ряды из фигур, чисел и знаков. Дальше — тренировка без конца в играх. Я буду рядом!' }
+      { id: 'p5s2', scene: 'quiz', gate: true, count: 6, gens: ['brokenNum', 'brokenSym', 'brokenPic'], title: 'Нарушение закономерности',
+        text: 'Иногда в ряду есть ошибка: одно число, знак или фигура не подходит. Найди тот элемент, который нарушает закономерность.' },
+      { id: 'p5s3', scene: 'quiz', gate: true, count: 8, gens: ['nextItem', 'missingItem', 'patternCore', 'seqNext', 'seqMissing', 'seqRule', 'symNext', 'symMissing', 'brokenNum', 'brokenSym', 'brokenPic'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса: узоры из фигур, числовые ряды, ряды знаков и поиск ошибки.' },
+      { id: 'p5s4', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты умеешь находить повторяющуюся группу, продолжать узоры и ряды из фигур, чисел и знаков, а ещё находить, где закономерность нарушена. Дальше — тренировка без конца в играх. Я буду рядом!' }
     ] }
 ];
 
