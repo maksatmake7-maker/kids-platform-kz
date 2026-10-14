@@ -1,22 +1,24 @@
 /* ===== Білім Аралы — «Посчитай и узнай: Звёздная ночь» (v3) =====
    Математика, 1 класс: счёт и числа 1–20 (цели 1.1.1.1, 1.1.1.3, 1.1.1.5, 1.4.3.1, 1.5.2.3 приказа №399).
-   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js подгружаются сами —
-   страницу менять не надо. Режим освоения: 10 заданий подряд без ошибки.
+   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js + заставка games/mathx-hero.js
+   подгружаются сами — страницу менять не надо. Режим освоения: 10 заданий подряд без ошибки.
 */
+window.__mxHeroCfg = {theme:'night', icons:['⭐','👆','🔢']};
 (function(){
   var cs = document.currentScript;
   var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
   window.__mxBase = window.__mxBase || base;
   function load(src, cb){ var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = cb; document.head.appendChild(s); }
-  window.__mxLoad = window.__mxLoad || function(cb){
-    if(window.MX) return cb();
-    if(window.__mxLoading){ window.__mxLoading.push(cb); return; }
-    window.__mxLoading = [cb];
-    var chain = [];
+  if(!window.__mxLoad){
+    var waiting = [], done = false, chain = [];
     if(!window.Barsik) chain.push(base + '../assets/barsik.js');
-    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js');
-    (function next(){ if(!chain.length){ var q = window.__mxLoading; window.__mxLoading = null; q.forEach(function(f){ f(); }); return; } load(chain.shift(), next); })();
-  };
+    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js'); chain.push(base + 'mathx-hero.js');
+    (function next(){
+      if(!chain.length){ done = true; try { if(window.MXHero) (document.readyState === 'loading' ? document.addEventListener.bind(document, 'DOMContentLoaded') : function(f){ f(); })(MXHero.init); } catch(e){} waiting.forEach(function(f){ f(); }); waiting = []; return; }
+      load(chain.shift(), next);
+    })();
+    window.__mxLoad = function(cb){ if(done) cb(); else waiting.push(cb); };
+  }
 })();
 
 function initCountingGame(containerId){
@@ -45,7 +47,7 @@ function initCountingGame(containerId){
       var t = pick(['count','count','build','next','prev','between']), n, a, arr;
       if(t === 'count'){
         n = rnd(2,10);
-        return S('c'+n, Object.assign(M.countTap({ n:n, em:STAR, expr:'<span class="mxs-expr s">⭐ ⭐ ⭐ ?</span>', say:V.tpl('q',{k:'count'}), opts:M.numOpts(n,1,10) }), { hintSay:[n], hintExpr:eqs([OK(n)]), hint:starHint(n) }));
+        return S('c'+n, Object.assign(M.countTap({ n:n, em:STAR, expr:'', say:V.tpl('q',{k:'count'}), opts:M.numOpts(n,1,10) }), { hintSay:[n], hintExpr:eqs([OK(n)]), hint:starHint(n) }));
       }
       if(t === 'build'){
         n = rnd(2,10);
@@ -61,12 +63,12 @@ function initCountingGame(containerId){
       var t = pick(['tap','frame','nb','after','before','two']), n, a, arr, bi;
       if(t === 'tap'){
         n = rnd(11,20);
-        return S('t'+n, Object.assign(M.countTap({ n:n, em:STAR, expr:'<span class="mxs-expr s">⭐ ⭐ ⭐ ?</span>', say:V.tpl('q',{k:'count'}), opts:M.numOpts(n,11,20,[n-1,n+1]) }), { hintSay:[n], hintExpr:eqs([OK(n)]), hint:starHint(n) }));
+        return S('t'+n, Object.assign(M.countTap({ n:n, em:STAR, expr:'', say:V.tpl('q',{k:'count'}), opts:M.numOpts(n,11,20,[n-1,n+1]) }), { hintSay:[n], hintExpr:eqs([OK(n)]), hint:starHint(n) }));
       }
       if(t === 'frame'){
         n = rnd(11,20);
         return S('f'+n, Object.assign({
-          expr:'<span class="mxs-expr s">⭐ ⭐ ⭐ ?</span>', say:V.tpl('q',{k:'howmany'}), ans:String(n), opts:M.numOpts(n,11,20,[n-1,n+1]),
+          expr:'', say:V.tpl('q',{k:'howmany'}), ans:String(n), opts:M.numOpts(n,11,20,[n-1,n+1]),
           field:function(el){ el.innerHTML = M.frames(n, STAR); }
         }, { hintSay:[n], hintExpr:eqs([OK(n)]), hint:starHint(n) }));
       }

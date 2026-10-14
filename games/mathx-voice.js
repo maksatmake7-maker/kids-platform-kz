@@ -160,7 +160,7 @@
         var u = new SpeechSynthesisUtterance(text);
         u.lang = L === 'en' ? 'en-US' : (L === 'kz' ? 'kk-KZ' : 'ru-RU'); u.rate = .9; u.pitch = 1;
         var v = bestVoice(L); if(v){ u.voice = v; u.lang = v.lang; }
-        if(!v || !MALE_RE.test(v.name)) u.pitch = .6;   // нет мужского голоса → ниже тон, чтобы не звучало по-девичьи
+        if(!v || !MALE_RE.test(v.name)) u.pitch = .85;   // нет мужского голоса → чуть ниже тон (сильнее нельзя: звучит жутко)
         u.onend = done; u.onerror = done;
         speechSynthesis.speak(u);
       };
