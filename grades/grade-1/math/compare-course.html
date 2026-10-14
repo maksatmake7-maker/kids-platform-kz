@@ -417,13 +417,16 @@ let BSE = null;
 const bsTalk = on => { if (BS) BS.talk(on); };
 const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
 function ttsClean(t){
-  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
 }
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
 function bestVoice(){
   const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
   const ru = vs.filter(v => /^ru/i.test(v.lang));
   if (!ru.length) return null;
-  const score = v => (/natural|online|neural/i.test(v.name) ? 4 : 0) + (/google/i.test(v.name) ? 3 : 0) + (/milena|yandex|alena|katya|svetlana|dariya/i.test(v.name) ? 2 : 0) + (v.localService ? 0 : 1);
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
   return ru.sort((a, b) => score(b) - score(a))[0];
 }
 function stopSpeak(){
@@ -439,8 +442,8 @@ function speak(id, text){
   const tts = () => {
     if (tok !== speakToken || !window.speechSynthesis) return end();
     const u = new SpeechSynthesisUtterance(ttsClean(text));
-    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1.05;
-    const v = bestVoice(); if (v) u.voice = v;
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
     u.onend = end; u.onerror = end;
     speechSynthesis.speak(u);
   };
