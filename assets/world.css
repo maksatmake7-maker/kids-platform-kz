@@ -96,6 +96,7 @@ header.w-top .lang-menu button{
 header.w-top .lang-menu button:hover{background:#EAF6FF;}
 header.w-top .lang-menu button.active{background:var(--coral); color:#fff;}
 @media (max-width:560px){ header.w-top .logo{font-size:1.15rem;} }
+header.w-top .logo-tx{white-space:nowrap;}
 @media (max-width:400px){
   header.w-top{gap:6px; padding-inline:12px;}
   header.w-top .logo{font-size:.95rem; gap:5px;}
@@ -103,6 +104,23 @@ header.w-top .lang-menu button.active{background:var(--coral); color:#fff;}
   header.w-top #auth-link{padding:6px 12px; font-size:.88rem!important;}
   header.w-top .lang-cur{padding:6px 10px; font-size:.88rem;}
   .mbtn{width:32px; height:32px;}
+}
+@media (max-width:460px){
+  header.w-top{flex-wrap:nowrap;}
+  header.w-top .lang-toggle{flex:none;}
+  /* на телефоне название уходит под мордочку Барсика */
+  header.w-top .logo{flex-direction:column; align-items:center; justify-content:center; gap:2px; line-height:1;}
+  header.w-top .logo svg{width:34px; height:34px;}
+  header.w-top .logo-tx{display:block; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:.66rem; line-height:1; letter-spacing:.01em; white-space:nowrap;}
+}
+@media (max-width:360px){
+  header.w-top{gap:4px; padding-inline:8px;}
+  header.w-top #auth-link{padding:6px 9px; font-size:.8rem!important;}
+  header.w-top .lang-cur{padding:6px 8px; gap:4px;}
+  header.w-top .lang-cur svg{width:16px; height:16px;}
+  header.w-top .lang-cur .car{display:none;}
+  header.w-top .logo-tx{font-size:.6rem;}
+  .mbtn{width:30px; height:30px;}
 }
 /* подвал и ссылка «назад» на общем фоне */
 body.w-page footer{color:#fff; text-shadow:0 1px 3px rgba(0,30,60,.4);}
