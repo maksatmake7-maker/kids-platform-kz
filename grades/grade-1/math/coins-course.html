@@ -285,7 +285,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Монеты и покупки</h1>
-      <p class="ac-sub">4 урока · монеты тенге, счёт денег, покупки и сдача · с играми и проверкой</p>
+      <p class="ac-sub">4 урока · монеты 1, 2, 5, 10, 20 тенге, счёт денег, покупки и сдача · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -507,11 +507,10 @@ function range(a, n, d){ return Array.from({ length: n }, (_, k) => a + k * (d |
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* Условные монеты: номиналы в тенге, рисунок нарисован нами (не копия реальных монет) */
-const COIN_VALUES = [1, 2, 5, 10, 20, 50, 100];
-const COIN_COL = { 1: ['#E3A26A', '#B9783B'], 2: ['#E3A26A', '#B9783B'], 5: ['#E3A26A', '#B9783B'], 10: ['#DCE3EA', '#98A6B5'], 20: ['#DCE3EA', '#98A6B5'], 50: ['#DCE3EA', '#98A6B5'], 100: ['#FFD966', '#D9A400'] };
-const COIN_SIZE = { 1: 34, 2: 36, 5: 38, 10: 40, 20: 42, 50: 44, 100: 48 };
+const COIN_VALUES = [1, 2, 5, 10, 20];
+const COIN_COL = { 1: ['#E3A26A', '#B9783B'], 2: ['#E3A26A', '#B9783B'], 5: ['#E3A26A', '#B9783B'], 10: ['#DCE3EA', '#98A6B5'], 20: ['#DCE3EA', '#98A6B5'] };
 function coinSVG(v, size){
-  const c = COIN_COL[v], sz = size || 56, f = v >= 100 ? 15 : v >= 10 ? 19 : 24;
+  const c = COIN_COL[v], sz = size || 56, f = v >= 10 ? 19 : 24;
   return '<svg viewBox="0 0 60 60" width="' + sz + '" height="' + sz + '" role="img" aria-label="Монета"><circle cx="30" cy="30" r="27" fill="' + c[0] + '" stroke="' + c[1] + '" stroke-width="4"/><circle cx="30" cy="30" r="21" fill="none" stroke="' + c[1] + '" stroke-width="1.6" stroke-dasharray="2.5 3"/>' +
     '<text x="30" y="' + (30 + f * .36) + '" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="' + f + '" fill="#4A3410">' + v + '</text></svg>';
 }
@@ -534,13 +533,14 @@ const GENS = {
     return { html: '<div class="ac-qtxt">Сколько всего тенге?</div>' + coinsRow(arr), opts: nums(s, 1, 25), ans: s,
       hint: 'Сложи номиналы монет: <b>' + arr.join(' + ') + ' = ' + s + '</b> (тг).' };
   },
-  coinTens(){
-    const pool = [10, 20, 50], n = rnd(2, 3); let arr, s;
-    do { arr = Array.from({ length: n }, () => pick(pool)); s = arr.reduce((x, y) => x + y, 0); } while (s > 100);
-    arr.sort((x, y) => y - x);
-    const set = new Set([s]); [s - 10, s + 10, s - 20, s + 20, s - 30, s + 30, s - 40].forEach(x => { if (x >= 10 && x <= 100 && set.size < 4) set.add(x); });
-    return { html: '<div class="ac-qtxt">Сколько всего тенге?</div>' + coinsRow(arr), opts: shuffle(Array.from(set)), ans: s,
-      hint: 'Считай десятками: <b>' + arr.join(' + ') + ' = ' + s + '</b> (тг).' };
+  exchange(){
+    if (Math.random() < .4) return { html: '<div class="ac-qtxt">Сколько монет по 10 тенге нужно, чтобы получить 20 тенге?</div>' + coinsRow([20], 64), opts: nums(2, 1, 5), ans: 2,
+      hint: 'Монета в 20 тенге — это два десятка: <b>10 + 10 = 20</b>. Нужно 2 монеты.' };
+    const good = pick([[10, 10], [10, 5, 5], [10, 5, 2, 2, 1], [5, 5, 5, 5], [10, 5, 2, 2, 1]]), g = good.reduce((x, y) => x + y, 0);
+    const bad = shuffle([[10, 5], [10, 5, 2], [5, 5, 5], [10, 10, 1], [10, 5, 5, 1], [5, 5, 2, 2], [10, 2, 2]].filter(a => a.reduce((x, y) => x + y, 0) !== 20)).slice(0, 3);
+    const toS = a => a.join(' + ');
+    return { html: '<div class="ac-qtxt">Продавец разменивает монету в 20 тенге. Какой набор монет равен 20 тенге?</div>' + coinsRow([20], 64), opts: shuffle(bad.map(toS).concat([toS(good)])), ans: toS(good), wide: false,
+      hint: 'Сложи монеты в каждом варианте. Нужно получить 20: <b>' + toS(good) + ' = 20</b>.' };
   },
   priceTotal(){
     const a = rnd(1, 8), b = rnd(1, 9 - a), i = shuffle(ITEMS), s = a + b;
@@ -548,20 +548,20 @@ const GENS = {
       hint: 'Сложи цены: <b>' + a + ' + ' + b + ' = ' + s + '</b> (тг).' };
   },
   canBuy(){
-    const i = pick(ITEMS), price = rnd(3, 12); let have; do { have = rnd(2, 14); } while (have === price);
+    const i = pick(ITEMS), price = rnd(3, 14); let have; do { have = rnd(2, 20); } while (have === price);
     const ok = have >= price;
     return { html: '<div class="ac-qtxt">У Барсика ' + tg(have) + '. ' + i[0] + ' ' + i[1][0].toUpperCase() + i[1].slice(1) + ' стоит ' + tg(price) + '. Хватит ли денег?</div>', opts: ['Да', 'Нет'], ans: ok ? 'Да' : 'Нет',
       hint: 'Сравни: у Барсика ' + have + ', нужно ' + price + '. ' + (ok ? have + ' больше, чем ' + price + ', денег хватит.' : have + ' меньше, чем ' + price + ', денег не хватит.') };
   },
   change(){
-    const i = pick(ITEMS), price = rnd(2, 9), ch = 10 - price;
-    return { html: '<div class="ac-qtxt">Барсик купил ' + i[2] + ' за ' + tg(price) + ' и заплатил монетой в 10 тенге. Сколько тенге ему вернут сдачи?</div>' + coinsRow([10], 64), opts: nums(ch, 1, 9), ans: ch,
-      hint: 'Сдача — это то, что останется от 10 тенге: <b>10 − ' + price + ' = ' + ch + '</b> (тг).' };
+    const i = pick(ITEMS), big = Math.random() < .4, pay = big ? 20 : 10, price = big ? rnd(11, 19) : rnd(2, 9), ch = pay - price;
+    return { html: '<div class="ac-qtxt">Барсик купил ' + i[2] + ' за ' + tg(price) + ' и заплатил монетой в ' + pay + ' тенге. Сколько тенге ему вернут сдачи?</div>' + coinsRow([pay], 64), opts: nums(ch, 1, 9), ans: ch,
+      hint: 'Сдача — это то, что останется от ' + pay + ' тенге: <b>' + pay + ' − ' + price + ' = ' + ch + '</b> (тг).' };
   },
   whichCoins(){
-    const targets = [[7, [5, 2]], [8, [5, 2, 1]], [12, [10, 2]], [15, [10, 5]], [6, [5, 1]], [11, [10, 1]]];
+    const targets = [[7, [5, 2]], [8, [5, 2, 1]], [12, [10, 2]], [15, [10, 5]], [6, [5, 1]], [11, [10, 1]], [17, [10, 5, 2]], [13, [10, 2, 1]], [20, [10, 5, 5]]];
     const t = pick(targets), s = t[0];
-    const wrong = shuffle([[5, 1], [2, 2, 1], [10, 5], [10, 1], [5, 2], [5, 5]].filter(a => a.reduce((x, y) => x + y, 0) !== s)).slice(0, 3);
+    const wrong = shuffle([[5, 1], [2, 2, 1], [10, 5], [10, 1], [5, 2], [5, 5], [10, 2], [10, 5, 1], [10, 5, 5, 1]].filter(a => a.reduce((x, y) => x + y, 0) !== s)).slice(0, 3);
     const toS = a => a.join(' + ');
     return { html: '<div class="ac-qtxt">Чем можно заплатить ровно ' + tg(s) + '?</div>', opts: shuffle(wrong.map(toS).concat([toS(t[1])])), ans: toS(t[1]), wide: false,
       hint: 'Сложи монеты в каждом варианте. Нужно получить ' + s + ': <b>' + toS(t[1]) + ' = ' + s + '</b>.' };
@@ -582,8 +582,8 @@ SCENES.coinTap = function(stage, st, ctx){
     $$('.cn-pk', purse).forEach(x => x.classList.remove('cur')); b.classList.add('cur');
     if (!seen[v]){ seen[v] = 1; n++; }
     $('#c-big', stage).innerHTML = coinSVG(v, 120);
-    $('#c-txt', stage).innerHTML = 'Монета в <b>' + v + ' тенге</b>. ' + (v === 1 ? 'Это самая маленькая монета.' : v === 100 ? 'Это самая большая по стоимости из наших монет.' : v === 10 ? '10 тенге — это один десяток.' : 'Чем больше число на монете, тем она дороже.');
-    if (n >= 6){ ctx.fb('Деньги Казахстана называются тенге.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено монет: ' + n + '. Нужно хотя бы 6.', 'info');
+    $('#c-txt', stage).innerHTML = 'Монета в <b>' + v + ' тенге</b>. ' + (v === 1 ? 'Это самая маленькая монета.' : v === 20 ? 'Из этих монет 20 тенге — самая дорогая. Это два десятка.' : v === 10 ? '10 тенге — это один десяток.' : 'Чем больше число на монете, тем она дороже.');
+    if (n >= 5){ ctx.fb('Деньги Казахстана называются тенге.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено монет: ' + n + '. Нужно осмотреть все 5.', 'info');
   });
 };
 
@@ -618,10 +618,10 @@ SCENES.coinPay = function(stage, st, ctx){
 
 /* ================= содержание курса ================= */
 const LESSONS = [
-  { id: 'c1', icon: '🪙', title: 'Монеты Казахстана', goal: 'Знать монеты в 1, 2, 5, 10, 20, 50 и 100 тенге',
+  { id: 'c1', icon: '🪙', title: 'Монеты Казахстана', goal: 'Знать монеты в 1, 2, 5, 10 и 20 тенге',
     steps: [
       { id: 'c1s1', scene: 'coinTap', gate: true, title: 'Знакомимся с монетами',
-        text: 'Привет! Это Барсик. В Казахстане платят тенге. Есть монеты в 1, 2, 5, 10, 20, 50 и 100 тенге. Нажимай на каждую монету и смотри.' },
+        text: 'Привет! Это Барсик. В Казахстане платят тенге. Есть монеты в 1, 2, 5, 10 и 20 тенге. Нажимай на каждую монету и смотри.' },
       { id: 'c1s2', scene: 'quiz', gate: true, count: 6, gens: ['coinBig'], title: 'Какая дороже?',
         text: 'Чем больше число на монете, тем монета дороже. Сравни числа и выбери нужную монету.' }
     ] },
@@ -629,8 +629,8 @@ const LESSONS = [
     steps: [
       { id: 'c2s1', scene: 'quiz', gate: true, count: 6, gens: ['coinCount'], title: 'Считаем монеты',
         text: 'Чтобы узнать, сколько всего денег, сложи числа на монетах. Начни с самых больших монет.' },
-      { id: 'c2s2', scene: 'quiz', gate: true, count: 5, gens: ['coinTens'], title: 'Считаем десятками',
-        text: 'Монеты в 10, 20 и 50 тенге — это целые десятки. Считай десятками: десять, двадцать, тридцать.' }
+      { id: 'c2s2', scene: 'quiz', gate: true, count: 5, gens: ['exchange'], title: 'Разменяем монету',
+        text: 'Монета в 20 тенге — это два десятка. Её можно разменять на монеты поменьше. Сколько денег получится, всегда должно сойтись.' }
     ] },
   { id: 'c3', icon: '🛒', title: 'Покупаем', goal: 'Платить ровно столько, сколько стоит покупка',
     steps: [
@@ -647,7 +647,7 @@ const LESSONS = [
         text: 'Сравни, сколько денег есть и сколько стоит вещь. Если денег не меньше, чем цена, то хватит.' },
       { id: 'c4s2', scene: 'quiz', gate: true, count: 6, gens: ['change'], title: 'Сдача',
         text: 'Если заплатить больше, чем стоит покупка, продавец вернёт сдачу. Чтобы найти сдачу, вычти цену из заплаченных денег.' },
-      { id: 'c4s3', scene: 'quiz', gate: true, count: 8, gens: ['coinBig', 'coinCount', 'coinTens', 'priceTotal', 'canBuy', 'change', 'whichCoins'], title: 'Смешанные задания',
+      { id: 'c4s3', scene: 'quiz', gate: true, count: 8, gens: ['coinBig', 'coinCount', 'exchange', 'priceTotal', 'canBuy', 'change', 'whichCoins'], title: 'Смешанные задания',
         text: 'Последняя проверка курса: монеты, счёт денег, покупки и сдача.' },
       { id: 'c4s4', scene: 'finale', title: 'Курс пройден!',
         text: 'Теперь ты знаешь наши монеты, умеешь считать деньги, платить за покупки и находить сдачу. Дальше — тренировка без конца в игре. Я буду рядом!' }

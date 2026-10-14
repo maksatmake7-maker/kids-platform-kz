@@ -232,7 +232,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Числа и счёт</h1>
-      <p class="ac-sub">5 уроков · числа до 10 и счёт по 2, 5, 10 · с играми и проверкой</p>
+      <p class="ac-sub">4 урока · числа от 0 до 10, счёт вперёд и назад · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -529,19 +529,6 @@ const GENS = {
     return { html: '<div class="ac-qtxt">Какое число стоит <b>' + INSTR[k] + '</b> по счёту?</div>' + '<div class="nc-seq">' + seq.map(v => '<span class="nc-cell">' + v + '</span>').join('') + '</div>',
       opts: shuffle(set), ans: ans, hint: 'Считаем слева направо: ' + seq.slice(0, k).map((v, i) => ORD[i + 1] + ' — ' + v).join(', ') + '. Ответ: <b>' + ans + '</b>.' };
   },
-  skipMissing(){
-    const step = pick([2, 5, 10]), s = step * rnd(0, 2) + (step === 10 ? 10 : step), arr = range(s, 5, step), bi = rnd(1, 3);
-    return { html: '<div class="ac-qtxt">Считаем по ' + step + '. Какое число потерялось?</div>' + seqHTML(arr, bi), opts: optsAround(arr[bi], step, 0, 100), ans: arr[bi],
-      hint: 'Каждый раз прибавляем ' + step + ': ' + arr.join(', ') + '. Потерялось <b>' + arr[bi] + '</b>.' };
-  },
-  skipPics(){
-    const step = pick([2, 5, 10]), g = step === 2 ? rnd(3, 8) : step === 5 ? rnd(2, 6) : rnd(2, 6), total = step * g;
-    const cols = step === 2 ? 2 : 5; let h = '<div class="nc-grps">';
-    for (let i = 0; i < g; i++) h += '<div class="nc-grp" style="grid-template-columns:repeat(' + cols + ',14px)">' + '<i></i>'.repeat(step) + '</div>';
-    h += '</div>';
-    return { html: '<div class="ac-qtxt">В каждой рамке по ' + step + ' ' + pl(step, ['кружок', 'кружка', 'кружков']) + '. Сколько кружков всего? Считай по ' + step + '.</div>' + h,
-      opts: optsAround(total, step, 0, 100), ans: total, hint: 'Рамок ' + g + ', в каждой по ' + step + '. Считаем: ' + range(step, g, step).join(', ') + '. Всего <b>' + total + '</b>.' };
-  }
 };
 
 /* ================= сцены ================= */
@@ -701,25 +688,6 @@ SCENES.ordTap = function(stage, st, ctx){
   next();
 };
 
-/* --- Урок 5: счёт по 2, 5, 10 --- */
-SCENES.skip = function(stage, st, ctx){
-  let step = 2, busy = false; const ran = {};
-  stage.innerHTML = '<div class="nc-tabs" id="k-tabs"></div><div class="nc-skip" id="k-row"></div><div class="ac-actions"><button class="ac-btn ac-go" id="k-go"></button></div>';
-  const tabs = $('#k-tabs', stage), row = $('#k-row', stage), go = $('#k-go', stage);
-  function paintTabs(){ tabs.innerHTML = [2, 5, 10].map(s => '<button class="ac-tab' + (s === step ? ' on' : '') + '" data-s="' + s + '">По ' + s + (ran[s] ? ' ✓' : '') + '</button>').join(''); go.textContent = 'Считать по ' + step + ' ➜';
-    $$('.ac-tab', tabs).forEach(b => b.onclick = function(){ if (busy) return; step = +b.dataset.s; row.innerHTML = ''; ctx.fb('', 'info'); paintTabs(); }); }
-  go.onclick = async function(){
-    if (busy) return; busy = true; go.disabled = true; row.innerHTML = '';
-    for (let i = 1; i <= 10; i++){
-      row.insertAdjacentHTML('beforeend', '<div class="ac-pop">' + (i * step) + '</div>'); await sleep(420); if (!ctx.alive()) return;
-    }
-    ran[step] = true; busy = false; go.disabled = false; paintTabs();
-    const left = [2, 5, 10].filter(s => !ran[s]);
-    if (!left.length){ ctx.fb('Все три счёта пройдены!', 'ok'); ctx.done(); }
-    else ctx.fb('Считали по ' + step + '. Попробуй ещё: по ' + left.join(' и по ') + '.', 'ok');
-  };
-  paintTabs();
-};
 
 SCENES.finale = function(stage, st, ctx){
   stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться без конца — задания каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="count.html">Тренажёр «Счёт» →</a></div></div>';
@@ -797,20 +765,11 @@ const LESSONS = [
       { id: 'n4s2', scene: 'ordTap', gate: true, title: 'Найди шарик по номеру',
         text: 'Я называю номер, а ты находишь шарик. Считай слева направо: первый, второй, третий…' },
       { id: 'n4s3', scene: 'quiz', gate: true, count: 5, gens: ['ordPic', 'ordWord', 'ordBefore'], title: 'Проверяем порядковый счёт',
-        text: 'Проверим! Здесь нужно понять, каким по счёту стоит предмет, и сколько предметов стоит перед ним.' }
-    ] },
-  { id: 'n5', icon: '✋', title: 'Считаем по 2, по 5 и по 10', goal: 'Считать группами: по 2, по 5 и по 10',
-    steps: [
-      { id: 'n5s1', scene: 'skip', gate: true, title: 'Счёт группами',
-        text: 'Большие числа удобно считать группами. По 2: два, четыре, шесть. По 5: пять, десять, пятнадцать. По 10: десять, двадцать, тридцать. Попробуй все три счёта!' },
-      { id: 'n5s2', scene: 'quiz', gate: true, count: 6, gens: ['skipMissing'], title: 'Продолжи счёт',
-        text: 'В ряду потерялось число. Посмотри, как меняются числа, и выбери то, которое подходит.' },
-      { id: 'n5s3', scene: 'quiz', gate: true, count: 5, gens: ['skipPics'], title: 'Считаем группами',
-        text: 'Здесь кружки лежат группами. Считай группами, так намного быстрее, чем по одному!' },
-      { id: 'n5s4', scene: 'quiz', gate: true, count: 6, gens: ['skipMissing', 'skipPics', 'missing'], title: 'Смешанные задания',
-        text: 'Последняя проверка курса: счёт по одному и группами.' },
-      { id: 'n5s5', scene: 'finale', title: 'Курс пройден!',
-        text: 'Теперь ты умеешь считать предметы, знаешь цифры, называешь соседей числа, считаешь назад и группами. Дальше — тренировка без конца в игре «Счёт». Играй, и я буду рядом!' }
+        text: 'Проверим! Здесь нужно понять, каким по счёту стоит предмет, и сколько предметов стоит перед ним.' },
+      { id: 'n4s4', scene: 'quiz', gate: true, count: 6, gens: ['missing', 'backMissing', 'nextprev', 'backNext'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса: счёт вперёд и назад, соседи числа.' },
+      { id: 'n4s5', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты умеешь считать предметы, знаешь цифры от нуля до десяти, называешь соседей числа, считаешь назад и знаешь порядковый счёт. Дальше — тренировка без конца в игре «Счёт». Играй, и я буду рядом!' }
     ] }
 ];
 

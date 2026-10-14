@@ -675,6 +675,34 @@ SCENES.measureIt = function(stage, st, ctx){
   more.onclick = fresh; fresh();
 };
 
+/* --- Урок 1: чертим отрезок заданной длины --- */
+SCENES.drawSeg = function(stage, st, ctx){
+  let rounds = 0, len, locked = false; const used = {};
+  stage.innerHTML = '<div class="ac-qcount" id="ds-cnt"></div><div class="ac-qtxt" id="ds-q"></div><div id="ds-ruler"></div><div class="ac-actions"><button class="ac-btn ac-alt" id="ds-more" style="display:none">Дальше ›</button></div>';
+  const more = $('#ds-more', stage);
+  function ruler(){
+    let r = rulerSVG([], true);
+    r = r.replace(/viewBox="0 0 (\d+) (\d+)"/, function(m, w, h){ return 'viewBox="0 0 ' + w + ' ' + (+h + 40) + '"'; }).replace('aria-label="Линейка">', 'aria-label="Линейка"><g transform="translate(0,40)">').replace('</svg>', '</g><g id="ds-seg"></g></svg>');
+    return r;
+  }
+  function seg(k, ok){
+    const x0 = X0, x1 = X0 + k * CM, c = ok ? '#3FAE5A' : '#E8453C';
+    $('#ds-seg', stage).innerHTML = '<line x1="' + x0 + '" y1="22" x2="' + x1 + '" y2="22" stroke="' + c + '" stroke-width="6" stroke-linecap="round"/><circle cx="' + x0 + '" cy="22" r="7" fill="' + c + '"/><circle cx="' + x1 + '" cy="22" r="7" fill="' + c + '"/><line x1="' + x1 + '" y1="22" x2="' + x1 + '" y2="48" stroke="' + c + '" stroke-width="2" stroke-dasharray="4 4"/>';
+  }
+  function fresh(){
+    const left = range(2, 9).filter(x => !used[x]); len = pick(left); used[len] = 1; locked = false; more.style.display = 'none'; ctx.fb('', 'info');
+    $('#ds-cnt', stage).textContent = 'Задание ' + (rounds + 1) + ' из 3';
+    $('#ds-q', stage).innerHTML = 'Начерти отрезок длиной <b>' + len + '</b> ' + pl(len, ['сантиметр', 'сантиметра', 'сантиметров']) + '. Начало отрезка стоит у нуля. Нажми на число, где он должен закончиться.';
+    $('#ds-ruler', stage).innerHTML = ruler();
+    $$('.ms-n', stage).forEach(g => g.onclick = function(){
+      if (locked) return; const k = +g.dataset.n; if (k === 0){ ctx.fb('Это начало. Нажми на число, где отрезок заканчивается.', 'info'); return; }
+      if (k === len){ locked = true; rounds++; seg(k, true); g.classList.add('good'); ctx.fb('Верно! Длина отрезка — ' + len + ' см.', 'ok'); if (rounds >= 3) ctx.done(); else more.style.display = ''; }
+      else { ctx.miss(); seg(k, false); ctx.fb('Получился отрезок в ' + k + ' см, а нужно ' + len + ' см. Попробуй другое число.', 'bad'); }
+    });
+  }
+  more.onclick = fresh; fresh();
+};
+
 /* --- Урок 2: дециметр --- */
 SCENES.dmStrip = function(stage, st, ctx){
   let cm = 0;
@@ -746,12 +774,14 @@ SCENES.liters = function(stage, st, ctx){
 
 /* ================= содержание курса ================= */
 const LESSONS = [
-  { id: 'm1', icon: '📏', title: 'Сантиметр', goal: 'Измерять длину линейкой в сантиметрах',
+  { id: 'm1', icon: '📏', title: 'Сантиметр', goal: 'Измерять длину линейкой и чертить отрезок заданной длины',
     steps: [
       { id: 'm1s1', scene: 'rulerLearn', gate: true, title: 'Линейка и сантиметры',
         text: 'Привет! Это Барсик. Длину измеряют линейкой. Карандаш кладут началом на ноль, а число у его конца показывает длину в сантиметрах. Нажимай на числа и смотри.' },
       { id: 'm1s2', scene: 'measureIt', gate: true, title: 'Измерь сам',
         text: 'Теперь твоя очередь. Найди, у какого числа заканчивается карандаш, и нажми на это число.' },
+      { id: 'm1s2b', scene: 'drawSeg', gate: true, title: 'Начерти отрезок',
+        text: 'Линейкой можно не только измерять, но и чертить. Чтобы начертить отрезок нужной длины, начни с нуля и закончи у нужного числа.' },
       { id: 'm1s3', scene: 'quiz', gate: true, count: 6, gens: ['lenRead'], title: 'Какова длина?',
         text: 'Посмотри, где заканчивается карандаш, и выбери его длину в сантиметрах.' },
       { id: 'm1s4', scene: 'quiz', gate: true, count: 5, gens: ['lenCompare'], title: 'Длиннее и короче',

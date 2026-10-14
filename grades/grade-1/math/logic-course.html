@@ -257,6 +257,10 @@
   .tm-round{width:40px;height:40px;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.3rem 'Baloo 2',sans-serif;cursor:pointer;flex:none;line-height:1;padding:0;}
   .tm-round:hover{background:#1D3557;color:#fff;}
   @media (max-width:520px){.lg-lab{width:86px;font-size:.85rem;} .lg-ic{font-size:1.5rem;} .tm-round{width:36px;height:36px;}}
+
+  .cb-set{display:flex;flex-direction:column;gap:8px;align-items:center;}
+  .cb-set .nc-chip{height:auto;min-height:46px;padding:6px 14px;font-size:1.15rem;}
+
 </style>
 </head>
 <body class="w-page" data-subject="math">
@@ -292,7 +296,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Логика и данные</h1>
-      <p class="ac-sub">3 урока · верно или неверно, признаки, пиктограммы · с играми и проверкой</p>
+      <p class="ac-sub">5 уроков · верно или неверно, признаки, пиктограммы, ребусы, комбинации · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -605,6 +609,37 @@ const GENS = {
     return { html: '<div class="ac-qtxt">Сколько ' + (byColor ? nameC[want] + ' фигур' : nameK[want]) + '?</div><div class="cn-row">' + list.map(x => shapeSVG(x.k, x.c, 42)).join('') + '</div>', opts: nums(cnt, 0, 9), ans: cnt,
       hint: 'Нажимай глазами по очереди и считай только ' + (byColor ? nameC[want] + ' фигуры' : nameK[want]) + '. Их <b>' + cnt + '</b>.' };
   },
+  rebus(){
+    const E = shuffle([['🍎', '🍌'], ['🐱', '🐶'], ['🍓', '🍐'], ['⚽', '🎈']])[0], A = E[0], B = E[1], t = pick([1, 2, 3, 4]);
+    const line = h => '<div class="ac-bigeq" style="font-size:2.1rem;margin:4px 0">' + h + '</div>';
+    if (t === 1){ const a = rnd(1, 5); return { html: '<div class="ac-qtxt">Одинаковые картинки — одинаковые числа. Чему равна картинка ' + A + '?</div>' + line(A + ' + ' + A + ' = ' + 2 * a), opts: nums(a, 1, 9), ans: a, hint: 'Два одинаковых числа в сумме дают ' + 2 * a + '. Подбери: ' + a + ' + ' + a + ' = ' + 2 * a + '. Значит, ' + A + ' = <b>' + a + '</b>.' }; }
+    if (t === 2){ const a = rnd(1, 3); return { html: '<div class="ac-qtxt">Чему равна картинка ' + A + '?</div>' + line(A + ' + ' + A + ' + ' + A + ' = ' + 3 * a), opts: nums(a, 1, 9), ans: a, hint: 'Три одинаковых числа в сумме дают ' + 3 * a + '. Подбери: ' + a + ' + ' + a + ' + ' + a + ' = ' + 3 * a + '. Значит, ' + A + ' = <b>' + a + '</b>.' }; }
+    if (t === 3){ const a = rnd(1, 5), b = rnd(1, 9 - a); return { html: '<div class="ac-qtxt">Чему равна картинка ' + B + '?</div>' + line(A + ' = ' + a) + line(A + ' + ' + B + ' = ' + (a + b)), opts: nums(b, 1, 9), ans: b, hint: 'Вместо ' + A + ' поставь ' + a + ': ' + a + ' + ' + B + ' = ' + (a + b) + '. Значит, ' + B + ' = <b>' + b + '</b>.' }; }
+    const b = rnd(1, 3), a = b + rnd(1, 3); return { html: '<div class="ac-qtxt">Чему равна картинка ' + B + '?</div>' + line(A + ' + ' + A + ' = ' + 2 * a) + line(A + ' + ' + B + ' = ' + (a + b)), opts: nums(b, 1, 9), ans: b, hint: 'Сначала найди ' + A + ': ' + a + ' + ' + a + ' = ' + 2 * a + ', значит, ' + A + ' = ' + a + '. Потом ' + a + ' + ' + B + ' = ' + (a + b) + ', значит, ' + B + ' = <b>' + b + '</b>.' };
+  },
+  orderLogic(){
+    const N = shuffle([['Аня', 'Ани'], ['Тим', 'Тима'], ['Соня', 'Сони'], ['Ерлан', 'Ерлана'], ['Дина', 'Дины'], ['Айдар', 'Айдара']]).slice(0, 4), t = N.slice(0, 3), tall = Math.random() < .5;
+    const txt = t[0][0] + ' выше, чем ' + t[1][1] + '. ' + t[1][0] + ' выше, чем ' + t[2][1] + '.', ans = tall ? t[0][0] : t[2][0];
+    return { html: '<div class="ac-qtxt">' + txt + '<br>Кто ' + (tall ? '<b>самый высокий</b>' : '<b>самый низкий</b>') + '?</div>', opts: shuffle(N.map(n => n[0])), ans: ans,
+      hint: 'Выстрой по порядку от самого высокого: ' + t[0][0] + ', ' + t[1][0] + ', ' + t[2][0] + '. ' + (tall ? 'Самый высокий' : 'Самый низкий') + ' — <b>' + ans + '</b>.' };
+  },
+  matchLogic(){
+    const N = shuffle(['Аня', 'Тим', 'Соня', 'Ерлан', 'Дина']).slice(0, 3), C = shuffle([['красный', 'красного'], ['синий', 'синего'], ['жёлтый', 'жёлтого']]), who = rnd(0, 2);
+    const o = [0, 1, 2].filter(i => i !== who), ans = C[who][0];
+    const txt = 'У ' + N.length + ' друзей (' + N.join(', ') + ') шарики трёх цветов: красный, синий, жёлтый. У ' + (N[who] === 'Аня' ? 'Ани' : N[who] === 'Соня' ? 'Сони' : N[who] === 'Дина' ? 'Дины' : N[who] + 'а') + ' шарик не ' + C[o[0]][1] + ' и не ' + C[o[1]][1] + '.';
+    return { html: '<div class="ac-qtxt">' + txt + '<br>Какого цвета шарик?</div>', opts: ['красный', 'синий', 'жёлтый'], ans: ans, hint: 'Исключи два цвета, останется <b>' + ans + '</b>.' };
+  },
+  pairsCount(){
+    const k = pick([2, 2, 3]), m = k === 3 ? 2 : pick([2, 3]), tops = ['🔴', '🔵', '🟢'].slice(0, k), hats = ['⬜', '🟨', '🟧'].slice(0, m);
+    const all = []; tops.forEach(a => hats.forEach(b => all.push(a + b)));
+    return { html: '<div class="ac-qtxt">У Барсика ' + k + ' ' + pl(k, ['футболка', 'футболки', 'футболок']) + ' (' + tops.join(' ') + ') и ' + m + ' ' + pl(m, ['шапка', 'шапки', 'шапок']) + ' (' + hats.join(' ') + '). Он надевает одну футболку и одну шапку. Сколько разных нарядов можно составить?</div>', opts: nums(k * m, 2, 9), ans: k * m,
+      hint: 'К каждой футболке подбери по очереди каждую шапку: ' + all.join(', ') + '. Всего <b>' + k * m + '</b>.' };
+  },
+  pairsOf3(){
+    const E = pick([['🔴', '🔵', '🟡'], ['🍎', '🍌', '🍐'], ['🐱', '🐶', '🐰']]);
+    return { html: '<div class="ac-qtxt">Из трёх предметов ' + E.join(' ') + ' нужно выбрать два. Сколько разных пар получится? (Пары ' + E[0] + E[1] + ' и ' + E[1] + E[0] + ' считаем одной.)</div>', opts: nums(3, 1, 6), ans: 3,
+      hint: 'Составь пары по порядку: ' + E[0] + E[1] + ', ' + E[0] + E[2] + ', ' + E[1] + E[2] + '. Всего <b>3</b> пары.' };
+  },
   pictoRead(){
     let counts, cats = shuffle(FRUITS).slice(0, 3), tries = 0;
     do { counts = cats.map(() => rnd(1, 4)); tries++; } while ((counts.reduce((a, b) => a + b, 0) > 10 || new Set(counts).size < 2) && tries < 200);
@@ -640,7 +675,23 @@ SCENES.sortShapes = function(stage, st, ctx){
   runSort(stage, ctx, [R1, R2]);
 };
 
-/* --- Урок 3: нарисуй пиктограмму --- */
+/* --- Урок 5: составляем наряды (комбинации по два) --- */
+SCENES.comboBuild = function(stage, st, ctx){
+  const TOPS = [['🔴', 'красная футболка'], ['🔵', 'синяя футболка']], HATS = [['🟨', 'жёлтая шапка'], ['🟩', 'зелёная шапка']], found = {}; let n = 0, ti = -1;
+  stage.innerHTML = '<div class="ac-qtxt">Составь все наряды: сначала нажми на футболку, потом на шапку. Всего нарядов будет 4.</div><div class="so-boxes" style="margin:4px 0"><div id="cb-tops" class="cb-set"></div><div id="cb-hats" class="cb-set"></div></div><div class="ac-qtxt" id="cb-list" style="min-height:2.6em">Найдено нарядов: 0 из 4</div>';
+  const tops = $('#cb-tops', stage), hats = $('#cb-hats', stage);
+  TOPS.forEach((t, i) => { const b = document.createElement('button'); b.className = 'nc-chip cb-top'; b.textContent = t[0] + ' ' + t[1]; b.onclick = function(){ ti = i; $$('.cb-top', tops).forEach(x => x.classList.remove('cur')); b.classList.add('cur'); ctx.fb('Теперь выбери шапку.', 'info'); }; tops.appendChild(b); });
+  HATS.forEach((h, j) => { const b = document.createElement('button'); b.className = 'nc-chip cb-hat'; b.textContent = h[0] + ' ' + h[1]; b.onclick = function(){
+    if (ti < 0){ ctx.fb('Сначала выбери футболку.', 'info'); return; }
+    const key = ti + '-' + j;
+    if (found[key]){ ctx.fb('Такой наряд уже есть. Составь другой.', 'info'); return; }
+    found[key] = 1; n++; $('#cb-list', stage).innerHTML = 'Найдено нарядов: ' + n + ' из 4<br>' + Object.keys(found).map(k => TOPS[+k[0]][0] + HATS[+k[2]][0]).join('  ');
+    $$('.cb-top', tops).forEach(x => x.classList.remove('cur')); ti = -1;
+    if (n === 4){ ctx.fb('Все наряды составлены! 2 футболки и 2 шапки дают 4 разных наряда.', 'ok'); ctx.done(); } else ctx.fb('Верно! Найди ещё.', 'ok');
+  }; hats.appendChild(b); });
+};
+
+/* --- Урок 3:  нарисуй пиктограмму --- */
 SCENES.pictoBuild = function(stage, st, ctx){
   let cats, target, cur, locked = false, tries = 0;
   cats = shuffle(FRUITS).slice(0, 3);
@@ -686,14 +737,29 @@ const LESSONS = [
       { id: 'l3s1', scene: 'pictoBuild', gate: true, title: 'Рисуем пиктограмму',
         text: 'Пиктограмма — это картинка с данными: один значок значит один предмет. Так удобно считать и сравнивать. Нарисуй пиктограмму по рассказу Барсика.' },
       { id: 'l3s2', scene: 'quiz', gate: true, count: 6, gens: ['pictoRead'], title: 'Читаем пиктограмму',
-        text: 'Смотри на длину строки: чем больше значков, тем больше предметов. Отвечай на вопросы по пиктограмме.' },
-      { id: 'l3s3', scene: 'quiz', gate: true, count: 8, gens: ['tfCount', 'tfNum', 'tfShape', 'attrCount', 'oddOne', 'pictoRead'], title: 'Смешанные задания',
-        text: 'Последняя проверка курса: верно или неверно, признаки, лишнее и пиктограммы.' },
-      { id: 'l3s4', scene: 'finale', title: 'Курс пройден!',
-        text: 'Теперь ты умеешь проверять утверждения, раскладывать предметы по признакам, находить лишнее и читать пиктограммы. Дальше — тренировка без конца в игре. Я буду рядом!' }
+        text: 'Смотри на длину строки: чем больше значков, тем больше предметов. Отвечай на вопросы по пиктограмме.' }
+    ] },
+  { id: 'l4', icon: '🔮', title: 'Ребусы и логические задачи', goal: 'Решать ребусы и простые логические задачи',
+    steps: [
+      { id: 'l4s1', scene: 'quiz', gate: true, count: 6, gens: ['rebus'], title: 'Ребусы с картинками',
+        text: 'В ребусе одинаковые картинки значат одинаковые числа. Подбери число, чтобы запись стала верной.' },
+      { id: 'l4s2', scene: 'quiz', gate: true, count: 5, gens: ['orderLogic'], title: 'Кто выше?',
+        text: 'Выстрой героев по порядку и найди самого высокого или самого низкого. Рассуждай по шагам.' },
+      { id: 'l4s3', scene: 'quiz', gate: true, count: 5, gens: ['matchLogic'], title: 'Какого цвета шарик?',
+        text: 'Исключай то, что не подходит. Что останется, то и будет ответом.' }
+    ] },
+  { id: 'l5', icon: '👕', title: 'Комбинации', goal: 'Составлять варианты комбинаций «по два»',
+    steps: [
+      { id: 'l5s1', scene: 'comboBuild', gate: true, title: 'Составляем наряды',
+        text: 'Комбинация — это сочетание двух предметов, например, футболки и шапки. Составь все возможные пары и не пропусти ни одной.' },
+      { id: 'l5s2', scene: 'quiz', gate: true, count: 5, gens: ['pairsCount', 'pairsOf3'], title: 'Сколько вариантов?',
+        text: 'Чтобы не запутаться, составляй пары по порядку: с первым предметом, потом со вторым и так далее.' },
+      { id: 'l5s3', scene: 'quiz', gate: true, count: 8, gens: ['tfCount', 'tfNum', 'tfShape', 'attrCount', 'oddOne', 'pictoRead', 'rebus', 'orderLogic', 'matchLogic', 'pairsCount'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса: верно или неверно, признаки, пиктограммы, ребусы, логика и комбинации.' },
+      { id: 'l5s4', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты умеешь проверять утверждения, раскладывать предметы по признакам, читать пиктограммы, решать ребусы и составлять комбинации. Дальше — тренировка без конца в игре. Я буду рядом!' }
     ] }
 ];
-
 
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){

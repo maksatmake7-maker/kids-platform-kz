@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Курс: Десяток и числа 11–19 — Білім Аралы</title>
+<title>Курс: Десяток и числа 11–20 — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../../assets/styles.css">
@@ -249,8 +249,8 @@
     <a href="index.html" class="ac-back" style="margin-bottom:14px">← Математика</a>
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
-      <h1>Курс: Десяток и числа 11–19</h1>
-      <p class="ac-sub">5 уроков · десяток и числа до 20 · с играми и проверкой</p>
+      <h1>Курс: Десяток и числа 11–20</h1>
+      <p class="ac-sub">6 уроков · десяток, числа до 20 и счёт по 2 · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -466,7 +466,7 @@ function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e
 function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
 function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
 
-/* ================= вспомогательное для десятка и чисел 11–19 ================= */
+/* ================= вспомогательное для десятка и чисел 11–20 ================= */
 function pl(n, f){ const m10 = n % 10, m100 = n % 100; if (m10 === 1 && m100 !== 11) return f[0]; if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return f[1]; return f[2]; }
 function range(a, n, d){ return Array.from({ length: n }, (_, k) => a + k * (d || 1)); }
 const SG = { '>': '&gt;', '<': '&lt;', '=': '=' };
@@ -508,12 +508,12 @@ const GENS = {
     return { html: '<div class="ac-qtxt">Какое число получится?</div><div class="ac-bigeq">10 + ' + u + ' = ?</div>', opts: nums(n, 10, 19), ans: n, hint: 'Десяток и ' + u + ' единиц: 10 + ' + u + ' = <b>' + n + '</b>.' };
   },
   teenWord(){
-    const n = rnd(11, 19);
+    const n = rnd(11, 20);
     if (Math.random() < .5){
-      const set = [n]; shuffle(range(11, 9).filter(x => x !== n)).slice(0, 3).forEach(x => set.push(x));
+      const set = [n]; shuffle(range(11, 10).filter(x => x !== n)).slice(0, 3).forEach(x => set.push(x));
       return { html: '<div class="ac-qtxt">Как читается число?</div><div class="ac-bigeq">' + n + '</div>', opts: shuffle(set).map(TW), ans: TW(n), hint: 'Число ' + n + ' читается: <b>' + TW(n) + '</b>.' };
     }
-    return { html: '<div class="ac-qtxt">Каким числом записывается слово?</div><div class="ac-bigeq" style="font-size:2.2rem;color:#E8453C">' + TW(n) + '</div>', opts: nums(n, 10, 19), ans: n, hint: '«' + TW(n) + '» — это <b>' + n + '</b>: десяток и ' + (n - 10) + '.' };
+    return { html: '<div class="ac-qtxt">Каким числом записывается слово?</div><div class="ac-bigeq" style="font-size:2.2rem;color:#E8453C">' + TW(n) + '</div>', opts: nums(n, 10, 20), ans: n, hint: n === 20 ? '«двадцать» — это <b>20</b>: два десятка.' : '«' + TW(n) + '» — это <b>' + n + '</b>: десяток и ' + (n - 10) + '.' };
   },
   teenDigit(){
     const n = rnd(11, 19), u = n - 10;
@@ -534,6 +534,30 @@ const GENS = {
   teenSign(){
     let a = rnd(10, 20), b = rnd(10, 20); if (Math.random() < .15) b = a;
     return { html: '<div class="ac-qtxt">Поставь нужный знак</div><div class="ac-bigeq">' + a + ' <span class="nc-sign">?</span> ' + b + '</div>', opts: SIGNS.slice(), ans: cmpS(a, b), hint: why(a, b) };
+  },
+  skip2Missing(){
+    const s = 2 * rnd(1, 4), arr = range(s, 5, 2), bi = rnd(1, 3), c = arr[bi];
+    const cand = [c, c + 2, c - 2, c + 1, c - 1].filter(x => x >= 0 && x <= 20 && (x !== c ? true : true));
+    const set = [c].concat(shuffle(cand.filter(x => x !== c)).slice(0, 3));
+    return { html: '<div class="ac-qtxt">Считаем по 2. Какое число потерялось?</div><div class="nc-seq">' + arr.map((v, i) => '<span class="nc-cell' + (i === bi ? ' q' : '') + '">' + (i === bi ? '?' : v) + '</span>').join('') + '</div>', opts: shuffle(set), ans: c,
+      hint: 'Каждый раз прибавляем 2: ' + arr.join(', ') + '. Потерялось <b>' + c + '</b>.' };
+  },
+  skip2Pics(){
+    const g = rnd(3, 10), total = 2 * g; let h = '<div class="nc-grps">';
+    for (let i = 0; i < g; i++) h += '<div class="nc-grp" style="grid-template-columns:repeat(2,14px)"><i></i><i></i></div>';
+    h += '</div>';
+    return { html: '<div class="ac-qtxt">В каждой рамке по 2 кружка. Сколько кружков всего? Считай по 2.</div>' + h, opts: nums(total, 2, 20), ans: total,
+      hint: 'Рамок ' + g + ', в каждой по 2. Считаем: ' + range(2, g, 2).join(', ') + '. Всего <b>' + total + '</b>.' };
+  },
+  skip2Pair(){
+    const g = rnd(2, 10), total = 2 * g, t = pick([['ботинка', 'ботинок'], ['варежки', 'варежек'], ['носка', 'носков']]);
+    return { html: '<div class="ac-qtxt">У каждого из ' + g + ' ребят по 2 ' + t[0] + '. Сколько всего ' + t[1] + '? Считай по 2.</div>', opts: nums(total, 2, 20), ans: total,
+      hint: 'Считаем по 2: ' + range(2, g, 2).join(', ') + '. Всего <b>' + total + '</b>.' };
+  },
+  tenAddQ(){
+    const u = rnd(1, 8), a = 10 + u, add = Math.random() < .5;
+    if (add){ const b = rnd(1, 9 - u); return { html: '<div class="ac-bigeq">' + a + ' + ' + b + ' = ?</div>', opts: nums(a + b, 10, 19), ans: a + b, hint: 'Складывай единицы: ' + u + ' + ' + b + ' = ' + (u + b) + '. Десяток остаётся: <b>' + a + ' + ' + b + ' = ' + (a + b) + '</b>.' }; }
+    const b = rnd(1, u); return { html: '<div class="ac-bigeq">' + a + ' − ' + b + ' = ?</div>', opts: nums(a - b, 10, 19), ans: a - b, hint: 'Вычитай из единиц: ' + u + ' − ' + b + ' = ' + (u - b) + '. Десяток остаётся: <b>' + a + ' − ' + b + ' = ' + (a - b) + '</b>.' };
   },
   tenPlusQ(){
     const u = rnd(1, 9), left = Math.random() < .5;
@@ -582,7 +606,7 @@ SCENES.teenBuild = function(stage, st, ctx){
   paint();
 };
 
-/* --- Урок 3: читаем и пишем числа 11–19 --- */
+/* --- Урок 3: читаем и пишем числа 11–20 --- */
 SCENES.teenWords = function(stage, st, ctx){
   const seen = {}; let nSeen = 0;
   stage.innerHTML = '<div class="nc-chips" id="w-chips"></div><div class="nc-show" id="w-show"><div class="ac-qtxt" style="margin-top:30px">Нажми на число 👆</div></div>';
@@ -689,6 +713,21 @@ SCENES.quiz = function(stage, st, ctx){
   next();
 };
 
+/* --- счёт по 2 до 20 (программа 1 кл., 4 четверть) --- */
+SCENES.skip2 = function(stage, st, ctx){
+  let busy = false, runs = 0;
+  stage.innerHTML = '<div class="nc-skip" id="k-row"></div><div class="ac-actions"><button class="ac-btn ac-go" id="k-go">Считать по 2 ➜</button></div>';
+  const row = $('#k-row', stage), go = $('#k-go', stage);
+  go.onclick = async function(){
+    if (busy) return; busy = true; go.disabled = true; row.innerHTML = '';
+    for (let i = 1; i <= 10; i++){
+      row.insertAdjacentHTML('beforeend', '<div class="ac-pop">' + (i * 2) + '</div>'); await sleep(420); if (!ctx.alive()) return;
+    }
+    runs++; busy = false; go.disabled = false; go.textContent = 'Ещё раз ➜';
+    ctx.fb('Два, четыре, шесть… двадцать! Так считают по 2.', 'ok'); ctx.done();
+  };
+};
+
 SCENES.finale = function(stage, st, ctx){
   stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться без конца — задания каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="teens.html">Тренажёр «Числа 11–19» →</a></div></div>';
 };
@@ -713,7 +752,7 @@ const LESSONS = [
       { id: 't2s3', scene: 'quiz', gate: true, count: 6, gens: ['teenSplit'], title: 'Десяток и единицы',
         text: 'Разложи число на десяток и единицы или собери число из десятка и единиц.' }
     ] },
-  { id: 't3', icon: '📖', title: 'Читаем и пишем числа 11–19', goal: 'Читать, называть и записывать числа от 11 до 19',
+  { id: 't3', icon: '📖', title: 'Читаем и пишем числа 11–20', goal: 'Читать, называть и записывать числа от 11 до 20',
     steps: [
       { id: 't3s1', scene: 'teenWords', gate: true, title: 'Как называется число',
         text: 'У каждого числа есть своё имя. В названии слышно «надцать», то есть «на десять». Нажимай на числа, и я покажу, как они записываются и читаются. Слева стоит десяток, справа единицы.' },
@@ -733,7 +772,16 @@ const LESSONS = [
       { id: 't4s4', scene: 'arrange', lo: 10, n: 11, gate: true, title: 'Расставь по порядку',
         text: 'Расставь числа от меньшего к большему. Нажимай на числа по очереди: сначала самое маленькое.' }
     ] },
-  { id: 't5', icon: '➕', title: 'Десяток плюс единицы', goal: 'Складывать 10 + 4 и вычитать 14 − 4, 14 − 10',
+  { id: 't6', icon: '✌️', title: 'Считаем по 2 до двадцати', goal: 'Считать группами по 2 в пределах 20',
+    steps: [
+      { id: 't6s1', scene: 'skip2', gate: true, title: 'Счёт по 2',
+        text: 'Предметы можно считать парами, то есть по два: два, четыре, шесть и так до двадцати. Нажми кнопку и посчитай вместе со мной!' },
+      { id: 't6s2', scene: 'quiz', gate: true, count: 6, gens: ['skip2Missing'], title: 'Продолжи счёт',
+        text: 'В ряду потерялось число. Каждое следующее число больше на 2. Найди пропущенное.' },
+      { id: 't6s3', scene: 'quiz', gate: true, count: 5, gens: ['skip2Pics', 'skip2Pair'], title: 'Считаем парами',
+        text: 'Предметы лежат парами. Считай по 2 — так быстрее, чем по одному!' }
+    ] },
+  { id: 't5', icon: '➕', title: 'Складываем и вычитаем до 20', goal: 'Складывать и вычитать в пределах 20: 10 + 4, 12 + 5, 14 − 4, 17 − 3',
     steps: [
       { id: 't5s1', scene: 'tenPlus', gate: true, title: 'Три равенства из одного числа',
         text: 'Из десятка и единиц получаются сразу три равенства. Например, десять плюс четыре равно четырнадцать. Если убрать единицы, останется десяток. Если убрать десяток, останутся единицы. Выбери число и нажми «Показать»!' },
@@ -741,7 +789,9 @@ const LESSONS = [
         text: 'Прибавь единицы к десятку. Это легко: десяток и столько же единиц.' },
       { id: 't5s3', scene: 'quiz', gate: true, count: 6, gens: ['tenMinusQ'], title: 'Убираем десяток или единицы',
         text: 'Вычитай десяток или единицы из числа от 11 до 19. Подумай, что останется.' },
-      { id: 't5s4', scene: 'quiz', gate: true, count: 6, gens: ['tenPlusQ', 'tenMinusQ', 'teenSplit', 'teenSign'], title: 'Смешанные задания',
+      { id: 't5s3b', scene: 'quiz', gate: true, count: 6, gens: ['tenAddQ'], title: 'Прибавляем и вычитаем единицы',
+        text: 'Десяток не трогаем, считаем только единицы. Например, 12 + 5: два плюс пять — семь, и десяток остаётся. Получается 17.' },
+      { id: 't5s4', scene: 'quiz', gate: true, count: 6, gens: ['tenAddQ', 'tenPlusQ', 'tenMinusQ', 'teenSplit', 'teenSign'], title: 'Смешанные задания',
         text: 'Последняя проверка курса: десяток, единицы, сложение, вычитание и сравнение.' },
       { id: 't5s5', scene: 'finale', title: 'Курс пройден!',
         text: 'Теперь ты знаешь, что десять единиц — это десяток, умеешь читать и записывать числа от одиннадцати до девятнадцати, считать до двадцати и складывать десяток с единицами. Дальше — тренировка без конца в игре про числа. Я буду рядом!' }

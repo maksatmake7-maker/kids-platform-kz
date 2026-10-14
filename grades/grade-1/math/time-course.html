@@ -290,7 +290,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Время и часы</h1>
-      <p class="ac-sub">4 урока · утро и вечер, раньше и позже, часы с точностью до часа · с играми и проверкой</p>
+      <p class="ac-sub">5 уроков · части суток, раньше и позже, часы, неделя, месяц, год · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -534,6 +534,11 @@ const PARTS = [
   { id: 'night', name: 'Ночь', icon: '🌙', text: 'Ночью темно, видны луна и звёзды. Барсик спит.' }
 ];
 
+const DAYS = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+const MONTHS = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+const UNITS = ['минута', 'час', 'день', 'неделя', 'месяц', 'год'];
+const cap = w => w[0].toUpperCase() + w.slice(1);
+
 /* ================= генераторы вопросов ================= */
 const GENS = {
   partOfDay(){
@@ -567,6 +572,27 @@ const GENS = {
     const q = pick(bank);
     return { html: '<div class="ac-qtxt">' + q[0] + '<br>Когда это происходит: уже было, сейчас или ещё будет?</div>', opts: ['Вчера', 'Сегодня', 'Завтра'], ans: q[1],
       hint: '«Вчера» — это уже было. «Сегодня» — это сейчас. «Завтра» — это ещё будет. В предложении есть слово «' + q[1].toLowerCase() + '».' };
+  },
+  dayNext(){
+    const i = rnd(0, 6), after = Math.random() < .5, j = (i + (after ? 1 : 6)) % 7;
+    return { html: '<div class="ac-qtxt">Какой день недели идёт ' + (after ? '<b>после</b>' : '<b>перед</b>') + ' днём «' + DAYS[i] + '»?</div>', opts: shuffle([j].concat(shuffle([0, 1, 2, 3, 4, 5, 6].filter(x => x !== j && x !== i)).slice(0, 3))).map(x => cap(DAYS[x])), ans: cap(DAYS[j]),
+      hint: 'Дни недели идут по кругу: ' + DAYS.map(cap).join(', ') + '. ' + (after ? 'После' : 'Перед') + ' днём «' + DAYS[i] + '» — <b>' + DAYS[j] + '</b>.' };
+  },
+  monthNext(){
+    const i = rnd(0, 11), after = Math.random() < .5, j = (i + (after ? 1 : 11)) % 12;
+    return { html: '<div class="ac-qtxt">Какой месяц идёт ' + (after ? '<b>после</b>' : '<b>перед</b>') + ' месяцем «' + MONTHS[i] + '»?</div>', opts: shuffle([j].concat(shuffle(range(0, 12).filter(x => x !== j && x !== i)).slice(0, 3))).map(x => cap(MONTHS[x])), ans: cap(MONTHS[j]),
+      hint: 'Месяцы идут по порядку, а после декабря снова январь. ' + (after ? 'После' : 'Перед') + ' месяцем «' + MONTHS[i] + '» — <b>' + MONTHS[j] + '</b>.' };
+  },
+  howManyUnits(){
+    const bank = [['Сколько дней в неделе?', 7, 'В неделе 7 дней: ' + DAYS.join(', ') + '.'], ['Сколько месяцев в году?', 12, 'В году 12 месяцев: от января до декабря.']];
+    const q = pick(bank);
+    return { html: '<div class="ac-qtxt">' + q[0] + '</div>', opts: nums(q[1], 5, 14), ans: q[1], hint: q[2] };
+  },
+  longerUnit(){
+    let a = rnd(0, 5), b; do { b = rnd(0, 5); } while (b === a);
+    const longer = Math.random() < .5, w = longer ? Math.max(a, b) : Math.min(a, b);
+    return { html: '<div class="ac-qtxt">Что длится ' + (longer ? '<b>дольше</b>' : '<b>короче</b>') + ': ' + UNITS[a] + ' или ' + UNITS[b] + '?</div>', opts: shuffle([UNITS[a], UNITS[b]]).map(cap), ans: cap(UNITS[w]),
+      hint: 'Единицы времени от короткой к длинной: ' + UNITS.join(' → ') + '. ' + (longer ? 'Дольше' : 'Короче') + ' — <b>' + UNITS[w] + '</b>.' };
   },
   readClock(){
     const h = rnd(1, 12);
@@ -622,6 +648,25 @@ SCENES.orderDay = function(stage, st, ctx){
         row.innerHTML += '<span class="tm-step">' + next + '. ' + p.icon + ' ' + p.name + '</span>';
         if (next === 4){ locked = true; ctx.fb('Утро → день → вечер → ночь. Так проходят сутки!', 'ok'); ctx.done(); } else ctx.fb('Верно! Что идёт дальше?', 'ok');
       } else { ctx.miss(); b.classList.add('bad'); setTimeout(() => b.classList.remove('bad'), 400); ctx.fb('Сейчас нужно «' + PARTS[next].name.toLowerCase() + '». Подумай, что идёт после «' + (next ? PARTS[next - 1].name.toLowerCase() : 'ночи') + '».', 'bad'); }
+    };
+    box.appendChild(b);
+  });
+};
+
+/* --- Урок: дни недели по порядку --- */
+SCENES.weekTap = function(stage, st, ctx){
+  let next = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qtxt">В неделе 7 дней. Нажимай на дни по порядку, начиная с понедельника.</div><div class="tm-parts" id="w-btns"></div><div class="tm-order" id="w-row" style="min-height:2.4em"></div>';
+  const box = $('#w-btns', stage), row = $('#w-row', stage);
+  shuffle(DAYS.map((d, i) => i)).forEach(i => {
+    const b = document.createElement('button'); b.className = 'tm-part'; b.innerHTML = cap(DAYS[i]);
+    b.onclick = function(){
+      if (locked || b.disabled) return;
+      if (i === next){
+        b.disabled = true; b.classList.add('seen'); next++;
+        row.innerHTML += '<span class="tm-step">' + next + '. ' + cap(DAYS[i]) + '</span>';
+        if (next === 7){ locked = true; ctx.fb('Семь дней — это одна неделя. После воскресенья снова понедельник!', 'ok'); ctx.done(); } else ctx.fb('Верно! Какой день дальше?', 'ok');
+      } else { ctx.miss(); b.classList.add('bad'); setTimeout(() => b.classList.remove('bad'), 400); ctx.fb('Сейчас нужен день «' + DAYS[next] + '». Подумай, какой день идёт после «' + (next ? DAYS[next - 1] : 'воскресенья') + '».', 'bad'); }
     };
     box.appendChild(b);
   });
@@ -694,16 +739,27 @@ const LESSONS = [
       { id: 't3s3', scene: 'quiz', gate: true, count: 6, gens: ['readClock'], title: 'Сколько часов?',
         text: 'Смотри, на какое число показывает короткая красная стрелка. Это и есть час.' }
     ] },
+  { id: 't5', icon: '📅', title: 'Неделя, месяц, год', goal: 'Различать единицы времени: день, неделя, месяц, год',
+    steps: [
+      { id: 't5s1', scene: 'weekTap', gate: true, title: 'Дни недели',
+        text: 'Сутки — это один день. Семь дней вместе — это неделя. Расставь дни недели по порядку.' },
+      { id: 't5s2', scene: 'quiz', gate: true, count: 6, gens: ['dayNext', 'howManyUnits'], title: 'Какой день дальше?',
+        text: 'Дни недели идут по кругу. После воскресенья снова начинается понедельник.' },
+      { id: 't5s3', scene: 'quiz', gate: true, count: 6, gens: ['monthNext', 'howManyUnits'], title: 'Месяцы и год',
+        text: 'Двенадцать месяцев вместе — это год. Месяцы идут по порядку, а после декабря снова январь.' },
+      { id: 't5s4', scene: 'quiz', gate: true, count: 6, gens: ['longerUnit'], title: 'Что длится дольше?',
+        text: 'Минута, час, день, неделя, месяц, год — это единицы времени. Каждая следующая длится дольше предыдущей.' }
+    ] },
   { id: 't4', icon: '🕗', title: 'Время в нашем дне', goal: 'Связывать время на часах с событиями дня',
     steps: [
       { id: 't4s1', scene: 'quiz', gate: true, count: 5, gens: ['routine'], title: 'Какие часы нужны?',
         text: 'Барсик рассказывает, когда он что делает. Найди часы, которые показывают это время.' },
       { id: 't4s2', scene: 'quiz', gate: true, count: 5, gens: ['hourLater'], title: 'Через час и час назад',
         text: 'Через час — это на один час позже, значит, число увеличивается на один. Час назад — на один раньше, число уменьшается на один.' },
-      { id: 't4s3', scene: 'quiz', gate: true, count: 8, gens: ['partOfDay', 'beforeAfter', 'ydt', 'readClock', 'routine', 'hourLater'], title: 'Смешанные задания',
-        text: 'Последняя проверка курса: части суток, раньше и позже, часы и события дня.' },
+      { id: 't4s3', scene: 'quiz', gate: true, count: 8, gens: ['partOfDay', 'beforeAfter', 'ydt', 'readClock', 'routine', 'hourLater', 'dayNext', 'monthNext', 'longerUnit'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса: части суток, раньше и позже, часы, дни недели, месяцы и события дня.' },
       { id: 't4s4', scene: 'finale', title: 'Курс пройден!',
-        text: 'Теперь ты знаешь части суток, умеешь сказать, что было раньше и что позже, и читаешь часы с точностью до часа. Минуты и полчаса будут впереди. Дальше — тренировка без конца в игре. Я буду рядом!' }
+        text: 'Теперь ты знаешь части суток, умеешь сказать, что было раньше и что позже, и читаешь часы с точностью до часа, знаешь дни недели, месяцы и год. Минуты на часах будут впереди. Дальше — тренировка без конца в игре. Я буду рядом!' }
     ] }
 ];
 
