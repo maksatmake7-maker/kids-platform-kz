@@ -69,6 +69,11 @@
     var h=$q('header'); if(!h || h.classList.contains('w-top')) return;
     h.classList.add('w-top');
     var dot=$q('.logo-dot',h); if (dot) dot.outerHTML=FACE;
+    var lg=$q('.logo',h);
+    if (lg){ /* текст названия — в span, чтобы на телефоне его можно было скрыть и всё влезло в шапку */
+      lg.setAttribute('aria-label','Білім Аралы');
+      [].slice.call(lg.childNodes).forEach(function(n){ if(n.nodeType===3 && n.textContent.trim()){ var s=document.createElement('span'); s.className='logo-tx'; s.textContent=n.textContent.trim(); lg.replaceChild(s,n); } });
+    }
     var lt=$q('.lang-toggle',h);
     if (lt && !$q('.lang-menu',lt)){
       var btns=[].slice.call(lt.querySelectorAll('button[data-lang]'));
