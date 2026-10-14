@@ -1,150 +1,108 @@
-/* ===== Білім Аралы — игра "Сложи и узнай" (v2 — бесконечный режим) =====
-   Математика, 1 класс, тема "Сложение".
-   Новая механика вместо фиксированного числа вопросов:
-   — числа генерируются заново каждый раз (никогда не заканчиваются);
-   — чтобы "освоить" тему, нужно ответить верно 10 раз ПОДРЯД;
-   — ошибка сбрасывает серию, но НЕ прерывает игру — сразу следующий пример;
-   — сложность растёт вместе с серией (числа крупнее).
-   Использование: initAdditionGame('game-root') после загрузки DOM —
-   вызывается так же, как и раньше, страницу addition.html трогать не нужно.
+/* ===== Білім Аралы — игра «Сложи и узнай» (v3, «Игры 2.0») =====
+   Математика, 1 класс: сложение (цели 1.1.2.1, 1.1.2.3, 1.1.2.5, 1.5.2.2, 1.5.2.3, 1.2.1.5 приказа №399).
+   «Игры 2.0»: 3 уровня, разные типы заданий, картинка-разбор после ошибки.
+   Работает на движке games/mathx.js (подгружается сам — страницу менять не надо).
+   Нужно ответить верно 10 раз подряд.
 */
+(function(){
+  var cs = document.currentScript;
+  var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
+  window.__mxLoad = window.__mxLoad || function(cb){
+    if(window.MX) return cb();
+    var s = document.createElement('script'); s.src = base + 'mathx.js'; s.onload = cb;
+    document.head.appendChild(s);
+  };
+})();
+
 function initAdditionGame(containerId){
-  var root = document.getElementById(containerId);
-  if(!root) return;
+  __mxLoad(function(){
+    var M = MX, rnd = M.rnd, pick = M.pick, T = M.T, eq = M.eq, BOX = M.BOX, ok = M.ok;
+    function S(sig, t){ t.sig = sig; return t; }
+    // слагаемые для суммы s: a в [lo..], b = s-a
+    function split(s, lo){ var a = rnd(lo, s-lo); return [a, s-a]; }
 
-  var EMOJIS = ['🍎','⭐','🐻','🎈','🐟','🌸','🦋','🍓'];
-  var STREAK_NEEDED = 10;
-  var streak = 0;
-  var totalCorrect = 0;
-  var totalAnswered = 0;
-  var currentAnswer = 0;
-  var busy = false;
-  var sessionEmoji = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
-
-  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-  function msgs(){
-    var lang = document.documentElement.getAttribute('data-current') || 'ru';
-    return (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
-  }
-
-  function objectsHtml(n, emoji){
-    var h = '';
-    for(var i=0; i<n; i++){
-      h += '<span class="count-obj" style="animation-delay:' + (i*0.06) + 's">' + emoji + '</span>';
+    // Уровень 1 (⭐): картинки, сумма до 10
+    function L1(em){
+      var a = rnd(1,6), b = rnd(1,Math.min(6,10-a)), s = a+b;
+      return S('1:'+a+'+'+b, T(
+        M.pair(M.objs(a,em), M.op('+'), M.objs(b,em)) + eq(['=',M.box('?')]),
+        s, M.numOpts(s,1,10),
+        eq([a,'+',b,'=',ok(s)],true) + M.objs(s,em,{hl:b})));
     }
-    return h;
-  }
 
-  // Прогресс теперь показывает серию верных ответов подряд, а не номер вопроса из фиксированного набора
-  function updateProgress(){
-    var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
-  }
-  function updateScore(){
-    var el = document.getElementById('count-score-value');
-    if(el) el.textContent = totalCorrect;
-  }
-
-  function pickRange(){
-    if (streak <= 1) return { min: 1, max: 3 };
-    if (streak <= 4) return { min: 1, max: 5 };
-    return { min: 1, max: 6 };
-  }
-
-  function render(){
-    var range = pickRange();
-    var a = range.min + Math.floor(Math.random()*(range.max - range.min + 1));
-    var b = range.min + Math.floor(Math.random()*(range.max - range.min + 1));
-    currentAnswer = a + b;
-    updateProgress();
-
-    var m = msgs();
-    var options = [currentAnswer];
-    var attempts = 0;
-    while(options.length < 4 && attempts < 30){
-      attempts++;
-      var delta = [1,-1,2,-2,3,-3][Math.floor(Math.random()*6)];
-      var candidate = currentAnswer + delta;
-      if(candidate > 0 && options.indexOf(candidate) === -1){
-        options.push(candidate);
+    // Уровень 2 (⭐⭐): цифры, пропущенное слагаемое, переместительное свойство, сравнение сумм, числовой луч, ноль
+    function L2(em){
+      var t = pick(['num','num','miss','comm','cmp','line','zero']), a, b, c, d, s, sy;
+      if(t === 'num'){
+        a = rnd(2,9); b = rnd(1,10-a); s = a+b;
+        return S('n'+a+'+'+b, T(eq([a,'+',b,'=',M.box('?')]), s, M.numOpts(s,2,10),
+          eq([a,'+',b,'=',ok(s)],true) + M.objs(s,em,{hl:b})));
       }
-    }
-    for(var j=options.length-1; j>0; j--){
-      var k = Math.floor(Math.random()*(j+1));
-      var tmp = options[j]; options[j]=options[k]; options[k]=tmp;
-    }
-
-    var optionsHtml = options.map(function(o){
-      return '<button class="count-btn" data-value="' + o + '">' + o + '</button>';
-    }).join('');
-
-    root.innerHTML =
-      '<div class="add-row">' +
-        '<div class="add-group">' + objectsHtml(a, sessionEmoji) + '</div>' +
-        '<span class="add-op">+</span>' +
-        '<div class="add-group">' + objectsHtml(b, sessionEmoji) + '</div>' +
-        '<span class="add-op">=</span>' +
-        '<span class="add-op">?</span>' +
-      '</div>' +
-      '<div class="count-options">' + optionsHtml + '</div>' +
-      '<div class="count-feedback" id="count-feedback"></div>';
-
-    root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        if(busy) return;
-        checkAnswer(parseInt(btn.getAttribute('data-value'),10), btn);
-      });
-    });
-    busy = false;
-  }
-
-  function renderFinish(){
-    recordGameResult('addition', STREAK_NEEDED, STREAK_NEEDED);
-    var m = msgs();
-    root.innerHTML =
-      '<div class="finish-screen">' +
-        '<div class="finish-emoji">🏆</div>' +
-        '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
-        '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
-      '</div>';
-    document.getElementById('play-again-btn').addEventListener('click', function(){
-      streak = 0; totalCorrect = 0; totalAnswered = 0;
-      sessionEmoji = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
-      updateScore();
-      render();
-    });
-  }
-
-  function checkAnswer(value, btn){
-    busy = true;
-    totalAnswered++;
-    var feedback = document.getElementById('count-feedback');
-    var m = msgs();
-    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
-
-    if(value === currentAnswer){
-      totalCorrect++;
-      streak++;
-      updateScore();
-      updateProgress();
-      btn.classList.add('correct');
-      feedback.textContent = m.correct_msg || 'Great job! 🎉';
-      feedback.className = 'count-feedback show correct';
-      if(streak >= STREAK_NEEDED){
-        setTimeout(renderFinish, 900);
-      } else {
-        setTimeout(render, 900);
+      if(t === 'zero'){
+        a = rnd(1,10);
+        return S('z'+a, T(eq(Math.random()<.5 ? [a,'+',0,'=',M.box('?')] : [0,'+',a,'=',M.box('?')]),
+          a, M.numOpts(a,0,10,[0]),
+          eq([a,'+',0,'=',ok(a)],true) + M.objs(a,em)));
       }
-    } else {
-      streak = 0;
-      updateProgress();
-      btn.classList.add('wrong');
-      feedback.textContent = m.wrong_msg || 'Try again';
-      feedback.className = 'count-feedback show wrong';
-      setTimeout(render, 1200);
+      if(t === 'miss'){
+        s = rnd(3,10); a = rnd(1,s-1); b = s-a;
+        return S('m'+a+'+'+s, T(eq([a,'+',BOX(),'=',s]), b, M.numOpts(b,0,10,[s,a]),
+          eq([a,'+',ok(b),'=',s],true) + M.objs(s,em,{hl:b})));
+      }
+      if(t === 'comm'){
+        do { a = rnd(1,8); b = rnd(1,9-a); } while(a === b);
+        return S('c'+a+'+'+b, T(eq([a,'+',b,'=',BOX(),'+',a]), b, M.numOpts(b,1,10,[a,a+b]),
+          eq([a,'+',b,'=',ok(b),'+',a],true) + M.pair(M.objs(a,em), M.op('+'), M.objs(b,em))));
+      }
+      if(t === 'cmp'){
+        a = rnd(1,8); b = rnd(1,10-a);
+        if(Math.random() < .3){ var p = split(a+b,1); c = p[0]; d = p[1]; }
+        else { c = rnd(1,9); d = rnd(1,10-c); }
+        sy = M.cmpSym(a+b,c+d);
+        return S('k'+a+b+c+d, T(eq([a,'+',b,BOX(),c,'+',d]), sy, M.SYM3,
+          eq([a+'+'+b,'=',ok(a+b)],true) + eq([c+'+'+d,'=',ok(c+d)],true) + eq([a+b,ok(sy),c+d],true), 'sym'));
+      }
+      a = rnd(1,8); b = rnd(1,10-a); s = a+b;   // числовой луч: прыжок вперёд на b
+      return S('l'+a+'+'+b, T(
+        M.numline(10,[{v:a,color:'#3B82F6'}],[a,s]) + eq([a,'+',b,'=',M.box('?')],true), s, M.numOpts(s,2,10),
+        eq([a,'+',b,'=',ok(s)],true) + M.numline(10,[{v:s,color:'#3FB68B'}],[a,s])));
     }
-  }
 
-  render();
+    // Уровень 3 (⭐⭐⭐): в пределах 20 без перехода через десяток; состав числа; сравнение сумм; луч до 20
+    function L3(em){
+      var t = pick(['num','num','miss','comp','cmp','line']), a, b, c, d, s, n, sy;
+      if(t === 'num'){
+        a = rnd(10,19); b = rnd(1,20-a); s = a+b;
+        return S('N'+a+'+'+b, T(eq([a,'+',b,'=',M.box('?')]), s, M.numOpts(s,11,20,[a]),
+          eq([a,'+',b,'=',ok(s)],true) + M.frames(s,em)));
+      }
+      if(t === 'miss'){
+        a = rnd(10,18); s = rnd(a+1,Math.min(20,a+9)); b = s-a;
+        return S('M'+a+'+'+s, T(eq([a,'+',BOX(),'=',s]), b, M.numOpts(b,1,10,[s,a]),
+          eq([a,'+',ok(b),'=',s],true) + M.frames(s,em)));
+      }
+      if(t === 'comp'){ // разрядные слагаемые
+        n = rnd(11,19); var u = n-10;
+        if(Math.random() < .5)
+          return S('C'+n, T(eq([n,'=',10,'+',BOX()]), u, M.numOpts(u,1,9,[n-10+1]),
+            eq([n,'=',10,'+',ok(u)],true) + M.frames(n,em)));
+        return S('D'+n, T(eq([BOX(),'+',u,'=',n]), 10, M.numOpts(10,1,20,[u,n]),
+          eq([ok(10),'+',u,'=',n],true) + M.frames(n,em)));
+      }
+      if(t === 'cmp'){
+        a = rnd(10,16); b = rnd(1,20-a);
+        if(Math.random() < .3){ c = rnd(10,16); d = a+b-c; if(d < 1 || d > 20-c) { c = a; d = b; } }
+        else { c = rnd(10,16); d = rnd(1,20-c); }
+        sy = M.cmpSym(a+b,c+d);
+        return S('K'+a+b+c+d, T(eq([a,'+',b,BOX(),c,'+',d],true), sy, M.SYM3,
+          eq([a+'+'+b,'=',ok(a+b)],true) + eq([c+'+'+d,'=',ok(c+d)],true) + eq([a+b,ok(sy),c+d],true), 'sym'));
+      }
+      a = rnd(10,18); b = rnd(1,Math.min(5,20-a)); s = a+b;
+      return S('L'+a+'+'+b, T(
+        M.numline(20,[{v:a,color:'#3B82F6'}],[a,s]) + eq([a,'+',b,'=',M.box('?')],true), s, M.numOpts(s,11,20),
+        eq([a,'+',b,'=',ok(s)],true) + M.numline(20,[{v:s,color:'#3FB68B'}],[a,s])));
+    }
+
+    M.run({ root:containerId, key:'addition', need:10, levels:[L1,L2,L3] });
+  });
 }
