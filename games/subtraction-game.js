@@ -1,111 +1,146 @@
-/* ===== Білім Аралы — игра «Вычти и узнай» (v3, «Игры 2.0») =====
+/* ===== Білім Аралы — «Отними и узнай: Шарики Барсика» (v3) =====
    Математика, 1 класс: вычитание (цели 1.1.2.1, 1.1.2.2, 1.1.2.5, 1.5.2.2, 1.5.2.3 приказа №399).
-   «Игры 2.0»: 3 уровня, разные типы заданий, картинка-разбор после ошибки.
-   Работает на движке games/mathx.js (подгружается сам — страницу менять не надо).
-   Нужно ответить верно 10 раз подряд.
+   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js подгружаются сами —
+   страницу менять не надо. Режим освоения: 10 заданий подряд без ошибки.
 */
 (function(){
   var cs = document.currentScript;
   var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
+  window.__mxBase = window.__mxBase || base;
+  function load(src, cb){ var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = cb; document.head.appendChild(s); }
   window.__mxLoad = window.__mxLoad || function(cb){
     if(window.MX) return cb();
-    var s = document.createElement('script'); s.src = base + 'mathx.js'; s.onload = cb;
-    document.head.appendChild(s);
+    if(window.__mxLoading){ window.__mxLoading.push(cb); return; }
+    window.__mxLoading = [cb];
+    var chain = [];
+    if(!window.Barsik) chain.push(base + '../assets/barsik.js');
+    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js');
+    (function next(){ if(!chain.length){ var q = window.__mxLoading; window.__mxLoading = null; q.forEach(function(f){ f(); }); return; } load(chain.shift(), next); })();
   };
 })();
 
 function initSubtractionGame(containerId){
   __mxLoad(function(){
-    var M = MX, rnd = M.rnd, pick = M.pick, T = M.T, eq = M.eq, BOX = M.BOX, ok = M.ok;
+    var M = MX, rnd = M.rnd, pick = M.pick, V = MXV;
     function S(sig, t){ t.sig = sig; return t; }
+    function eqs(parts){ return M.exprHtml(parts); }
+    function solved(tokens, parts, vis){
+      return { hintExpr: eqs(parts), hintSay: tokens, hint: function(el){ el.innerHTML = '<div class="mxs-expr s">' + eqs(parts) + '</div>' + (vis || ''); } };
+    }
+    function crossVis(a, b, em){ var h = '<div class="mxs-grp">'; for(var i=0;i<a;i++) h += '<span class="mxs-o" style="' + (i >= a-b ? 'opacity:.3;filter:grayscale(1)' : '') + '">' + em + '</span>'; return h + '</div>'; }
+    var Q = M.Q(), QB = M.QB(), OK = M.OKV;
 
-    // Уровень 1 (⭐): картинки, часть предметов убрали
+    /* ===== Уровень 1 (⭐): шарики — лопни или улетают ===== */
     function L1(em){
       var a = rnd(3,10), b = rnd(1,a-1), r = a-b;
-      return S('1:'+a+'-'+b, T(
-        M.objs(a,em,{cross:b}) + eq([a,'−',b,'=',M.box('?')]),
-        r, M.numOpts(r,1,10),
-        eq([a,'−',b,'=',ok(r)],true) + M.objs(a,em,{cross:b})));
+      var h = solved([a,'−',b,'=',r], [a,'−',b,'=',OK(r)], crossVis(a,b,'🎈'));
+      if(Math.random() < .6){
+        return S('1p'+a+b, Object.assign(M.popBalloons({ a:a, b:b, expr:eqs([a,'−',b,'=',Q]), say:V.tpl('pop',{n:b}), opts:M.numOpts(r,1,10) }), h));
+      }
+      return S('1f'+a+b, Object.assign({
+        expr:eqs([a,'−',b,'=',Q]), say:V.tpl('q',{k:'fly'}), ans:String(r), opts:M.numOpts(r,1,10),
+        field:function(el, X, task){
+          var sc = document.createElement('div'); sc.className = 'mxs-scatter'; sc.style.height = '150px'; el.appendChild(sc);
+          var W = Math.min(el.clientWidth || 320, 320), cols = a > 10 ? 7 : 5, rows = Math.ceil(a/cols), cw = (W-30)/cols, ch = 150/rows, colors = M.shuffle(M.BALLOON_COLORS), bl = [];
+          for(var i=0;i<a;i++){
+            var b0 = document.createElement('span'); b0.className = 'mxs-pb'; b0.style.left = ((i%cols)*cw + 6) + 'px'; b0.style.top = (Math.floor(i/cols)*ch) + 'px'; b0.style.setProperty('--bc', colors[i%colors.length]); b0.style.animationDelay = (-(Math.random()*3)).toFixed(2) + 's'; sc.appendChild(b0); bl.push(b0);
+          }
+          task.afterSay = function(){
+            var fl = M.shuffle(bl).slice(0, b), i = 0;
+            (function go(){ if(i >= fl.length){ X.sleep(900).then(function(ok){ if(ok) X.say(['f:left']); }); return; } fl[i].classList.add('fly'); X.sfx.pop(); i++; X.sleep(420).then(function(ok){ if(ok) go(); }); })();
+          };
+        }
+      }, h));
     }
 
-    // Уровень 2 (⭐⭐): цифры, ноль, пропущенное число, обратное действие, сравнение, луч
+    /* ===== Уровень 2 (⭐⭐): прыжки назад, пропуски, обратное действие, качели, ноль ===== */
     function L2(em){
-      var t = pick(['num','num','missSub','missMin','inv','cmp','line','zero']), a, b, c, d, r, s, sy;
-      if(t === 'num'){
+      var t = pick(['hop','hop','missSub','missMin','inv','seesaw','zero']), a, b, c, d, r, s, sy;
+      if(t === 'hop'){
         a = rnd(3,10); b = rnd(1,a-1); r = a-b;
-        return S('n'+a+'-'+b, T(eq([a,'−',b,'=',M.box('?')]), r, M.numOpts(r,1,10),
-          eq([a,'−',b,'=',ok(r)],true) + M.objs(a,em,{cross:b})));
+        return S('2h'+a+b, Object.assign({
+          expr:eqs([a,'−',b,'=',Q]), say:V.tpl('expr',{tokens:[a,'−',b,'=','?'], q:'howmuch'}), ans:String(r), opts:M.numOpts(r,1,10),
+          field:function(el, X, task){ var h = M.hops(el, X, a, r, 10); task.afterSay = function(){ h.run(); }; }
+        }, solved([a,'−',b,'=',r], [a,'−',b,'=',OK(r)], crossVis(a,b,em))));
       }
       if(t === 'zero'){
-        a = rnd(1,10);
-        var z = Math.random() < .5;           // a − 0  или  a − a
-        r = z ? a : 0;
-        return S('z'+a+z, T(eq(z ? [a,'−',0,'=',M.box('?')] : [a,'−',a,'=',M.box('?')]), r, M.numOpts(r,0,10,[a,0]),
-          eq(z ? [a,'−',0,'=',ok(a)] : [a,'−',a,'=',ok(0)],true) + M.objs(a,em,{cross: z ? 0 : a})));
+        a = rnd(1,10); var z = Math.random() < .5; r = z ? a : 0;
+        var tk = z ? [a,'−',0,'=','?'] : [a,'−',a,'=','?'];
+        return S('2z'+a+z, Object.assign({
+          expr:eqs(z ? [a,'−',0,'=',Q] : [a,'−',a,'=',Q]), say:V.tpl('expr',{tokens:tk, q:'missing'}), ans:String(r), opts:M.numOpts(r,0,10,[a,0]),
+          field:function(el){ el.innerHTML = M.grp(a, em); }
+        }, solved(z ? [a,'−',0,'=',a] : [a,'−',a,'=',0], z ? [a,'−',0,'=',OK(a)] : [a,'−',a,'=',OK(0)], z ? M.grp(a, em) : crossVis(a,a,em))));
       }
-      if(t === 'missSub'){   // a − ☐ = c
+      if(t === 'missSub'){
         a = rnd(3,10); r = rnd(1,a-1); b = a-r;
-        return S('s'+a+'-'+r, T(eq([a,'−',BOX(),'=',r]), b, M.numOpts(b,1,10,[r,a]),
-          eq([a,'−',ok(b),'=',r],true) + M.objs(a,em,{cross:b})));
+        return S('2s'+a+r, Object.assign({
+          expr:eqs([a,'−',QB,'=',r]), say:V.tpl('expr',{tokens:[a,'−','?','=',r], q:'missing'}), ans:String(b), opts:M.numOpts(b,1,10,[r,a]),
+          field:function(el){ el.innerHTML = M.grp(a, em); }
+        }, solved([a,'−',b,'=',r], [a,'−',OK(b),'=',r], crossVis(a,b,em))));
       }
-      if(t === 'missMin'){   // ☐ − b = c
+      if(t === 'missMin'){
         b = rnd(1,8); r = rnd(1,10-b); a = b+r;
-        return S('m'+a+'-'+b, T(eq([BOX(),'−',b,'=',r]), a, M.numOpts(a,2,10,[r,b]),
-          eq([ok(a),'−',b,'=',r],true) + M.objs(a,em,{cross:b})));
+        return S('2m'+a+b, Object.assign({
+          expr:eqs([QB,'−',b,'=',r]), say:V.tpl('expr',{tokens:['?','−',b,'=',r], q:'missing'}), ans:String(a), opts:M.numOpts(a,2,10,[r,b]),
+          field:function(el){ el.innerHTML = M.grp(r, em); }
+        }, solved([a,'−',b,'=',r], [OK(a),'−',b,'=',r], crossVis(a,b,em))));
       }
-      if(t === 'inv'){       // 4 + 3 = 7  →  7 − 3 = ☐
+      if(t === 'inv'){
         a = rnd(1,8); b = rnd(1,9-a); s = a+b;
-        return S('i'+a+'+'+b, T(eq([a,'+',b,'=',s],true) + eq([s,'−',b,'=',BOX()]), a, M.numOpts(a,1,9,[b,s]),
-          eq([s,'−',b,'=',ok(a)],true) + M.objs(s,em,{cross:b})));
+        return S('2i'+a+b, Object.assign({
+          expr:eqs([a,'+',b,'=',s,'<br>',s,'−',b,'=',QB]), say:V.tpl('expr',{tokens:[a,'+',b,'=',s,'.',s,'−',b,'=','?'], q:'missing'}), ans:String(a), opts:M.numOpts(a,1,9,[b,s]),
+          field:function(el){ el.innerHTML = M.grp(s, em); }
+        }, solved([s,'−',b,'=',a], [s,'−',b,'=',OK(a)], crossVis(s,b,em))));
       }
-      if(t === 'cmp'){
-        a = rnd(3,10); b = rnd(1,a-1); c = rnd(3,10); d = rnd(1,c-1);
-        if(Math.random() < .3){ c = rnd(3,10); d = c - (a-b); if(d < 1){ c = a; d = b; } }
-        sy = M.cmpSym(a-b,c-d);
-        return S('k'+a+b+c+d, T(eq([a,'−',b,BOX(),c,'−',d]), sy, M.SYM3,
-          eq([a+'−'+b,'=',ok(a-b)],true) + eq([c+'−'+d,'=',ok(c-d)],true) + eq([a-b,ok(sy),c-d],true), 'sym'));
-      }
-      a = rnd(3,10); b = rnd(1,a-1); r = a-b;      // числовой луч: прыжок назад
-      return S('l'+a+'-'+b, T(
-        M.numline(10,[{v:a,color:'#3B82F6'}],[a,r]) + eq([a,'−',b,'=',M.box('?')],true), r, M.numOpts(r,1,10),
-        eq([a,'−',b,'=',ok(r)],true) + M.numline(10,[{v:r,color:'#3FB68B'}],[a,r])));
+      a = rnd(3,10); b = rnd(1,a-1); c = rnd(3,10); d = rnd(1,c-1);
+      if(Math.random() < .3){ c = rnd(3,10); d = c-(a-b); if(d < 1){ c = a; d = b; } }
+      sy = M.cmpSym(a-b, c-d);
+      return S('2q'+a+b+c+d, Object.assign({
+        expr:eqs([a,'−',b,QB,c,'−',d]), say:V.tpl('expr',{tokens:[a,'−',b,'?',c,'−',d], q:'pickSign'}), ans:sy, opts:M.SYM3, layout:'sym',
+        field:function(el, X, task){ var sw = M.seesaw(el, '<span class="mxs-wt">' + a + '−' + b + '</span>', '<span class="mxs-wt">' + c + '−' + d + '</span>', X); task.reveal = function(){ sw.reveal(sy); }; }
+      }, solved([a-b,'=',a-b], [a+'−'+b,'=',OK(a-b),'<br>',c+'−'+d,'=',OK(c-d)], '')));
     }
 
-    // Уровень 3 (⭐⭐⭐): в пределах 20 без перехода через десяток
+    /* ===== Уровень 3 (⭐⭐⭐): до 20 без перехода через десяток ===== */
     function L3(em){
-      var t = pick(['num','num','missSub','missMin','inv','cmp','tens']), a, b, c, d, r, s, sy;
-      if(t === 'num'){
-        a = rnd(11,20); b = rnd(1,a-10); r = a-b;
-        return S('N'+a+'-'+b, T(eq([a,'−',b,'=',M.box('?')]), r, M.numOpts(r,10,19,[a]),
-          eq([a,'−',b,'=',ok(r)],true) + M.frames(a,em)));
-      }
-      if(t === 'tens'){      // 10 + b − b  /  1x − 10
-        a = rnd(11,20); b = a-10;
-        return S('T'+a, T(eq([a,'−',10,'=',M.box('?')]), b, M.numOpts(b,1,10,[a]),
-          eq([a,'−',10,'=',ok(b)],true) + M.frames(a,em)));
+      var t = pick(['frame','frame','tens','missSub','missMin','inv','seesaw']), a, b, c, d, r, s, sy;
+      if(t === 'frame' || t === 'tens'){
+        a = rnd(11,20); b = t === 'tens' ? 10 : rnd(1,a-10); r = a-b;
+        return S('3f'+a+b, Object.assign({
+          expr:eqs([a,'−',b,'=',Q]), say:V.tpl('expr',{tokens:[a,'−',b,'=','?'], q:'howmuch'}), ans:String(r), opts:M.numOpts(r,1,19,[a]),
+          field:function(el, X, task){ var f = M.framesAnim(el, a, em); task.afterSay = function(){ f.remove(b, X); }; }
+        }, solved([a,'−',b,'=',r], [a,'−',b,'=',OK(r)], crossVis(a,b,em))));
       }
       if(t === 'missSub'){
         a = rnd(11,20); r = rnd(10,a-1); b = a-r;
-        return S('S'+a+'-'+r, T(eq([a,'−',BOX(),'=',r]), b, M.numOpts(b,1,10,[r,a]),
-          eq([a,'−',ok(b),'=',r],true) + M.frames(a,em)));
+        return S('3s'+a+r, Object.assign({
+          expr:eqs([a,'−',QB,'=',r]), say:V.tpl('expr',{tokens:[a,'−','?','=',r], q:'missing'}), ans:String(b), opts:M.numOpts(b,1,10,[r,a]),
+          field:function(el){ el.innerHTML = M.frames(a, em); }
+        }, solved([a,'−',b,'=',r], [a,'−',OK(b),'=',r], M.frames(a, em))));
       }
       if(t === 'missMin'){
         b = rnd(1,9); r = rnd(10,20-b); a = b+r;
-        return S('M'+a+'-'+b, T(eq([BOX(),'−',b,'=',r]), a, M.numOpts(a,11,20,[r,b]),
-          eq([ok(a),'−',b,'=',r],true) + M.frames(a,em)));
+        return S('3m'+a+b, Object.assign({
+          expr:eqs([QB,'−',b,'=',r]), say:V.tpl('expr',{tokens:['?','−',b,'=',r], q:'missing'}), ans:String(a), opts:M.numOpts(a,11,20,[r,b]),
+          field:function(el){ el.innerHTML = M.frames(r, em); }
+        }, solved([a,'−',b,'=',r], [OK(a),'−',b,'=',r], M.frames(a, em))));
       }
       if(t === 'inv'){
         a = rnd(10,19); b = rnd(1,20-a); s = a+b;
-        return S('I'+a+'+'+b, T(eq([a,'+',b,'=',s],true) + eq([s,'−',b,'=',BOX()]), a, M.numOpts(a,10,19,[b,s]),
-          eq([s,'−',b,'=',ok(a)],true) + M.frames(s,em)));
+        return S('3i'+a+b, Object.assign({
+          expr:eqs([a,'+',b,'=',s,'<br>',s,'−',b,'=',QB]), small:true, say:V.tpl('expr',{tokens:[a,'+',b,'=',s,'.',s,'−',b,'=','?'], q:'missing'}), ans:String(a), opts:M.numOpts(a,10,19,[b,s]),
+          field:function(el){ el.innerHTML = M.frames(s, em); }
+        }, solved([s,'−',b,'=',a], [s,'−',b,'=',OK(a)], M.frames(s, em))));
       }
       a = rnd(11,20); b = rnd(1,a-10); c = rnd(11,20); d = rnd(1,c-10);
-      if(Math.random() < .3){ c = rnd(11,20); d = c - (a-b); if(d < 1 || d > c-10){ c = a; d = b; } }
-      sy = M.cmpSym(a-b,c-d);
-      return S('K'+a+b+c+d, T(eq([a,'−',b,BOX(),c,'−',d],true), sy, M.SYM3,
-        eq([a+'−'+b,'=',ok(a-b)],true) + eq([c+'−'+d,'=',ok(c-d)],true) + eq([a-b,ok(sy),c-d],true), 'sym'));
+      if(Math.random() < .3){ c = rnd(11,20); d = c-(a-b); if(d < 1 || d > c-10){ c = a; d = b; } }
+      sy = M.cmpSym(a-b, c-d);
+      return S('3q'+a+b+c+d, Object.assign({
+        expr:eqs([a,'−',b,QB,c,'−',d]), small:true, say:V.tpl('expr',{tokens:[a,'−',b,'?',c,'−',d], q:'pickSign'}), ans:sy, opts:M.SYM3, layout:'sym',
+        field:function(el, X, task){ var sw = M.seesaw(el, '<span class="mxs-wt">' + a + '−' + b + '</span>', '<span class="mxs-wt">' + c + '−' + d + '</span>', X); task.reveal = function(){ sw.reveal(sy); }; }
+      }, solved([a-b,'=',a-b], [a+'−'+b,'=',OK(a-b),'<br>',c+'−'+d,'=',OK(c-d)], '')));
     }
 
-    M.run({ root:containerId, key:'subtract', need:10, levels:[L1,L2,L3] });
+    M.run({ root:containerId, key:'subtract', need:10, theme:'sky', levels:[L1,L2,L3] });
   });
 }

@@ -1,99 +1,80 @@
-/* ===== Білім Аралы — игра «Сравни числа» (v3, «Игры 2.0») =====
-   Математика, 1 класс: сравнение чисел и выражений, знаки <, =, >, ≠ (цели 1.1.1.2, 1.2.1.5, 1.5.2.2, 1.5.2.3 приказа №399).
-   «Игры 2.0»: 3 уровня, разные типы заданий, картинка-разбор после ошибки.
-   Работает на движке games/mathx.js (подгружается сам — страницу менять не надо).
-   Нужно ответить верно 10 раз подряд.
+/* ===== Білім Аралы — «Сравни числа: Качели Барсика» (v3) =====
+   Математика, 1 класс: сравнение чисел и выражений <, =, >, ≠ (цели 1.1.1.2, 1.2.1.5, 1.5.2.2 приказа №399).
+   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js подгружаются сами —
+   страницу менять не надо. Режим освоения: 10 заданий подряд без ошибки.
 */
 (function(){
   var cs = document.currentScript;
   var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
+  window.__mxBase = window.__mxBase || base;
+  function load(src, cb){ var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = cb; document.head.appendChild(s); }
   window.__mxLoad = window.__mxLoad || function(cb){
     if(window.MX) return cb();
-    var s = document.createElement('script'); s.src = base + 'mathx.js'; s.onload = cb;
-    document.head.appendChild(s);
+    if(window.__mxLoading){ window.__mxLoading.push(cb); return; }
+    window.__mxLoading = [cb];
+    var chain = [];
+    if(!window.Barsik) chain.push(base + '../assets/barsik.js');
+    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js');
+    (function next(){ if(!chain.length){ var q = window.__mxLoading; window.__mxLoading = null; q.forEach(function(f){ f(); }); return; } load(chain.shift(), next); })();
   };
 })();
 
 function initComparisonGame(containerId){
   __mxLoad(function(){
-    var M = MX, rnd = M.rnd, pick = M.pick, T = M.T, eq = M.eq, BOX = M.BOX, ok = M.ok;
+    var M = MX, rnd = M.rnd, pick = M.pick, V = MXV;
     function S(sig, t){ t.sig = sig; return t; }
-    var NE = [{v:'=',h:'='},{v:'≠',h:'≠'}];
+    function eqs(parts){ return M.exprHtml(parts); }
+    var Q = M.Q(), QB = M.QB(), OK = M.OKV;
+    function wt(x){ return '<span class="mxs-wt">' + x + '</span>'; }
+    function pan(n, em){ var h = ''; for(var i=0;i<n;i++) h += M.o(em, i); return h; }
+    function seeTask(sig, a, b, leftHtml, rightHtml, opts, layout, tokens, solvedParts, small){
+      var sy = (opts === M.NE) ? (a === b ? '=' : '≠') : M.cmpSym(a, b);
+      return S(sig, {
+        expr:eqs(tokens.expr), small:small, say:V.tpl('expr',{tokens:tokens.say, q:'pickSign'}), ans:sy, opts:opts, layout:layout,
+        field:function(el, X, task){ var sw = M.seesaw(el, leftHtml, rightHtml, X); task.reveal = function(){ sw.reveal(opts === M.NE ? (a === b ? '=' : (a > b ? '>' : '<')) : sy); }; },
+        hintExpr:eqs(solvedParts), hintSay:['f:look'],
+        hint:function(el){ el.innerHTML = '<div class="mxs-expr s">' + eqs(solvedParts) + '</div>'; }
+      });
+    }
 
-    // Уровень 1 (⭐): картинки, 1–10
-    function L1(em, em2){
+    /* ===== Уровень 1 (⭐): предметы на качелях, 1–10 ===== */
+    function L1(em){
       var a = rnd(1,10), b = Math.random() < .2 ? a : rnd(1,10);
       var e1 = pick(M.EMOJIS), e2 = pick(M.EMOJIS.filter(function(e){ return e !== e1; }));
       var sy = M.cmpSym(a,b);
-      return S('1:'+a+'_'+b, T(
-        M.pair(M.objs(a,e1), M.box('?'), M.objs(b,e2)), sy, M.SYM3,
-        eq([a,ok(sy),b],true) + M.pair(M.objs(a,e1), '<span></span>', M.objs(b,e2)), 'sym'));
+      return seeTask('1:'+a+'_'+b, a, b, pan(a,e1), pan(b,e2), M.SYM3, 'sym', {expr:[a,QB,b], say:[a,'.',b]}, [a,OK(sy),b], false);
     }
 
-    // Уровень 2 (⭐⭐): цифры 0–20, числовой луч, «равно / не равно»
+    /* ===== Уровень 2 (⭐⭐): цифры 0–20, «равно / не равно» ===== */
     function L2(em){
-      var t = pick(['num','num','teen','line','ne','zero']), a, b, sy;
-      if(t === 'num'){
-        a = rnd(1,10); b = Math.random() < .15 ? a : rnd(1,10);
-        sy = M.cmpSym(a,b);
-        return S('n'+a+'_'+b, T(eq([a,BOX(),b]), sy, M.SYM3, eq([a,ok(sy),b],true) + M.numline(10,[{v:a,color:'#3B82F6'},{v:b,color:'#F2A93B'}]), 'sym'));
-      }
-      if(t === 'zero'){
-        a = rnd(1,10); b = 0;
-        if(Math.random()<.5){ var x=a; a=b; b=x; }
-        sy = M.cmpSym(a,b);
-        return S('z'+a+'_'+b, T(eq([a,BOX(),b]), sy, M.SYM3, eq([a,ok(sy),b],true) + M.numline(10,[{v:a,color:'#3B82F6'},{v:b,color:'#F2A93B'}]), 'sym'));
-      }
-      if(t === 'teen'){
-        a = rnd(10,20); b = Math.random() < .15 ? a : rnd(10,20);
-        sy = M.cmpSym(a,b);
-        return S('t'+a+'_'+b, T(eq([a,BOX(),b]), sy, M.SYM3, eq([a,ok(sy),b],true) + M.numline(20,[{v:a,color:'#3B82F6'},{v:b,color:'#F2A93B'}]), 'sym'));
-      }
-      if(t === 'line'){      // два кружка на числовом луче: левее — меньше
-        a = rnd(0,10); b = Math.random() < .12 ? a : rnd(0,10);
-        if(a === b){ b = a; }
-        sy = M.cmpSym(a,b);
-        var pts = a === b ? [{v:a,color:'#8B5CF6'}] : [{v:a,color:'#3B82F6',label:'1'},{v:b,color:'#F2A93B',label:'2'}];
-        return S('l'+a+'_'+b, T(
-          '<div class="mx-row"><span class="mx-eq s" style="color:#3B82F6">①</span>' + BOX() + '<span class="mx-eq s" style="color:#E08A00">②</span></div>' + M.numline(10,pts),
-          sy, M.SYM3,
-          eq(['①',ok(sy),'②'],true) + M.numline(10,pts), 'sym'));
-      }
-      // равно / не равно
+      var t = pick(['num','num','teen','zero','ne']), a, b;
+      if(t === 'num'){ a = rnd(1,10); b = Math.random() < .15 ? a : rnd(1,10); return seeTask('n'+a+'_'+b, a, b, wt(a), wt(b), M.SYM3, 'sym', {expr:[a,QB,b], say:[a,'.',b]}, [a,OK(M.cmpSym(a,b)),b]); }
+      if(t === 'zero'){ a = rnd(1,10); b = 0; if(Math.random() < .5){ var x = a; a = b; b = x; } return seeTask('z'+a+'_'+b, a, b, wt(a), wt(b), M.SYM3, 'sym', {expr:[a,QB,b], say:[a,'.',b]}, [a,OK(M.cmpSym(a,b)),b]); }
+      if(t === 'teen'){ a = rnd(10,20); b = Math.random() < .15 ? a : rnd(10,20); return seeTask('t'+a+'_'+b, a, b, wt(a), wt(b), M.SYM3, 'sym', {expr:[a,QB,b], say:[a,'.',b]}, [a,OK(M.cmpSym(a,b)),b]); }
       a = rnd(1,10); b = Math.random() < .5 ? a : rnd(1,10);
-      sy = a === b ? '=' : '≠';
-      return S('e'+a+'_'+b, T(eq([a,BOX(),b]), sy, NE, eq([a,ok(sy),b],true), 'sym2'));
+      return seeTask('e'+a+'_'+b, a, b, wt(a), wt(b), M.NE, 'sym2', {expr:[a,QB,b], say:[a,'.',b]}, [a,OK(a === b ? '=' : '≠'),b]);
     }
 
-    // Уровень 3 (⭐⭐⭐): сравнение выражений, соседи, «≠»
+    /* ===== Уровень 3 (⭐⭐⭐): сравнение выражений ===== */
     function L3(em){
-      var t = pick(['expr','expr','expr2','tens','ne']), a, b, c, d, sy;
-      if(t === 'expr'){      // 7 ☐ 3 + 5
-        a = rnd(2,20); b = rnd(1,9); c = rnd(1,10); if(Math.random()<.3) a = b + c;
-        if(a > 20) a = 20;
-        sy = M.cmpSym(a, b+c);
-        return S('e'+a+'_'+b+'_'+c, T(eq([a,BOX(),b,'+',c]), sy, M.SYM3,
-          eq([b+'+'+c,'=',ok(b+c)],true) + eq([a,ok(sy),b+c],true), 'sym'));
+      var t = pick(['expr','expr','expr2','tens','ne']), a, b, c, d;
+      if(t === 'expr'){
+        b = rnd(1,9); c = rnd(1,10); a = rnd(2,19); if(Math.random() < .3) a = b + c; if(a > 20) a = 20;
+        return seeTask('e'+a+'_'+b+'_'+c, a, b+c, wt(a), wt(b+'+'+c), M.SYM3, 'sym', {expr:[a,QB,b,'+',c], say:[a,'.',b,'+',c]}, [b+'+'+c,'=',OK(b+c),'<br>',a,OK(M.cmpSym(a,b+c)),b+c], true);
       }
-      if(t === 'expr2'){     // 9 − 4 ☐ 6
-        b = rnd(3,10); c = rnd(1,b-1); a = rnd(1,10); if(Math.random()<.3) a = b - c;
-        sy = M.cmpSym(b-c, a);
-        return S('f'+b+'_'+c+'_'+a, T(eq([b,'−',c,BOX(),a]), sy, M.SYM3,
-          eq([b+'−'+c,'=',ok(b-c)],true) + eq([b-c,ok(sy),a],true), 'sym'));
+      if(t === 'expr2'){
+        b = rnd(3,10); c = rnd(1,b-1); a = rnd(1,10); if(Math.random() < .3) a = b-c;
+        return seeTask('f'+b+'_'+c+'_'+a, b-c, a, wt(b+'−'+c), wt(a), M.SYM3, 'sym', {expr:[b,'−',c,QB,a], say:[b,'−',c,'.',a]}, [b+'−'+c,'=',OK(b-c),'<br>',b-c,OK(M.cmpSym(b-c,a)),a], true);
       }
-      if(t === 'tens'){      // 10 + 3 ☐ 14
-        a = rnd(11,19); b = rnd(11,19); c = a-10; if(Math.random() < .5) b = a;
-        sy = M.cmpSym(a,b);
-        return S('t'+a+'_'+b, T(eq([10,'+',c,BOX(),b]), sy, M.SYM3,
-          eq([10+'+'+c,'=',ok(a)],true) + eq([a,ok(sy),b],true), 'sym'));
+      if(t === 'tens'){
+        a = rnd(11,19); b = rnd(11,19); if(Math.random() < .5) b = a; c = a-10;
+        return seeTask('t'+a+'_'+b, a, b, wt('10+'+c), wt(b), M.SYM3, 'sym', {expr:[10,'+',c,QB,b], say:[10,'+',c,'.',b]}, [a,OK(M.cmpSym(a,b)),b], true);
       }
-      a = rnd(2,10); b = rnd(1,9); c = rnd(1,10);    // 5 + 4 ☐ 9 : равно или нет
-      if(Math.random() < .5){ d = a + b; } else { do { d = a + b + pick([-2,-1,1,2]); } while(d < 0 || d > 20); }
-      sy = (a+b === d) ? '=' : '≠';
-      return S('n'+a+'_'+b+'_'+d, T(eq([a,'+',b,BOX(),d]), sy, NE,
-        eq([a+'+'+b,'=',ok(a+b)],true) + eq([a+b,ok(sy),d],true), 'sym2'));
+      a = rnd(2,10); b = rnd(1,9); var s = a+b, dd;
+      if(Math.random() < .5) dd = s; else { do { dd = s + pick([-2,-1,1,2]); } while(dd < 0 || dd > 20); }
+      return seeTask('n'+a+'_'+b+'_'+dd, s, dd, wt(a+'+'+b), wt(dd), M.NE, 'sym2', {expr:[a,'+',b,QB,dd], say:[a,'+',b,'.',dd]}, [a+'+'+b,'=',OK(s),'<br>',s,OK(s === dd ? '=' : '≠'),dd], true);
     }
 
-    M.run({ root:containerId, key:'compare', need:10, levels:[L1,L2,L3] });
+    M.run({ root:containerId, key:'compare', need:10, theme:'play', levels:[L1,L2,L3] });
   });
 }
