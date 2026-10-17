@@ -1,135 +1,131 @@
-/* ===== Білім Аралы — игра "Продолжи ряд" (v2 — режим освоения) =====
-   Математика, 1 класс, по программе (приложение 26, цель 1.4.3.1):
-   "определять закономерность в последовательности рисунков, фигур,
-   символов". Показываем чередующийся ряд из 2 картинок (АБАБАБ),
-   ребёнок находит следующий элемент. Пары эмодзи генерируются заново
-   каждый раз — никогда не заканчиваются; чтобы "освоить" тему, нужно
-   ответить верно 10 раз ПОДРЯД. Ошибка сбрасывает серию, но не
-   прерывает игру.
-   Использование: initSymbolSeqGame('game-root') — symbolseq.html не трогать.
+/* ===== Білім Аралы — «Продолжи узор: Бусы Барсика» (v3) =====
+   Математика, 1 класс (цель 1.4.3.1 приказа №399): закономерность в последовательности рисунков, фигур, символов. Уровни: АБАБ → ААБ, АББ, АБВ → спрятанная бусина и «продолжи узор».
+   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js + заставка games/mathx-hero.js
+   подгружаются сами — страницу менять не надо. Режим освоения: 10 заданий подряд без ошибки.
 */
+window.__mxHeroCfg = {theme:'rainbow',icons:['🔴','🟡','🔵']};
+(function(){
+  var cs = document.currentScript;
+  var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
+  window.__mxBase = window.__mxBase || base;
+  function load(src, cb){ var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = cb; document.head.appendChild(s); }
+  if(!window.__mxLoad){
+    var waiting = [], done = false, chain = [];
+    if(!window.Barsik) chain.push(base + '../assets/barsik.js');
+    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js'); chain.push(base + 'mathx-hero.js');
+    (function next(){
+      if(!chain.length){ done = true; try { if(window.MXHero) (document.readyState === 'loading' ? document.addEventListener.bind(document, 'DOMContentLoaded') : function(f){ f(); })(MXHero.init); } catch(e){} waiting.forEach(function(f){ f(); }); waiting = []; return; }
+      load(chain.shift(), next);
+    })();
+    window.__mxLoad = function(cb){ if(done) cb(); else waiting.push(cb); };
+  }
+})();
 function initSymbolSeqGame(containerId){
-  var root = document.getElementById(containerId);
-  if(!root) return;
+  __mxLoad(function(){
+    var M = MX, rnd = M.rnd, pick = M.pick, V = MXV, shuffle = M.shuffle, OK = M.OKV;
+    function S(sig, t){ t.sig = sig; return t; }
+    var POOL = ['⭐','❤️','🔵','🟡','🌸','🍎','🦋','🎈','🍓','🌙','🔺','🟩','🐟','🍄','🔶','🐞'];
 
-  var EMOJIS = ['⭐','❤️','🔵','🟡','🌸','🍎','🦋','🎈','🍓','🌙'];
-  var STREAK_NEEDED = 10;
-  var streak = 0;
-  var totalCorrect = 0;
-  var totalAnswered = 0;
-  var currentAnswer = '';
-  var busy = false;
+    (function(){
+      if(document.getElementById('mxq-css')) return;
+      var s = document.createElement('style'); s.id = 'mxq-css';
+      s.textContent = ''
+      + '.mxq-thread{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;width:min(100%,326px);padding:12px 8px 14px;border-radius:22px;background:rgba(255,255,255,.55);box-shadow:inset 0 -6px 0 rgba(0,0,0,.08),0 5px 0 rgba(0,0,0,.12);}'
+      + '.mxq-bd{width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #fff;box-shadow:0 3px 0 rgba(0,0,0,.2),inset -3px -4px 0 rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;font-size:1.3rem;line-height:1;animation:mxIn .35s backwards;position:relative;}'
+      + '.mxq-thread.dense .mxq-bd{width:31px;height:31px;font-size:1.05rem;border-width:2px;}.mxq-thread.dense{gap:3px;}'
+      + '.mxq-bd.q{background:#FF6B5B;border-color:#FFB4AA;color:#fff;font:800 1.35rem "Baloo 2",sans-serif;box-shadow:0 3px 0 #D9483A;animation:mxIn .35s backwards,mxBob 1.6s ease-in-out infinite alternate;}'
+      + '.mxq-bd.u{border-color:#FFC93C;box-shadow:0 0 0 3px rgba(255,201,60,.55),0 3px 0 rgba(0,0,0,.2);}'
+      + '.mxq-bd.ok{border-color:#33C28A;box-shadow:0 0 0 3px rgba(51,194,138,.55),0 3px 0 rgba(0,0,0,.2);}'
+      + '.mxq-bd.slot{background:rgba(255,255,255,.4);border:3px dashed #7E6BD6;box-shadow:none;cursor:pointer;color:#7E6BD6;font:800 1.2rem "Baloo 2",sans-serif;}'
+      + '.mxq-bd.slot.f{background:#fff;border:3px solid #7E6BD6;box-shadow:0 3px 0 rgba(0,0,0,.2);}'
+      + '.mxq-tray{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}'
+      + '.mxq-tr{width:54px;height:54px;border-radius:16px;border:none;background:#fff;box-shadow:0 5px 0 rgba(0,0,0,.2);font-size:1.9rem;line-height:1;cursor:pointer;animation:mxIn .35s backwards;}'
+      + '.mxq-tr:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.2);}'
+      + '.mxs-balloon .b .em{font-size:2rem;text-shadow:none;}'
+      + '@media (prefers-reduced-motion:reduce){.mxq-bd,.mxq-tr{animation:none !important}}';
+      document.head.appendChild(s);
+    })();
 
-  function msgs(){
-    var lang = document.documentElement.getAttribute('data-current') || 'ru';
-    return (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
-  }
-  function updateProgress(){
-    var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = streak + ' / ' + STREAK_NEEDED;
-  }
-  function updateScore(){
-    var el = document.getElementById('count-score-value');
-    if(el) el.textContent = totalCorrect;
-  }
-  function pickTwoDistinct(){
-    var pool = EMOJIS.slice();
-    var i1 = Math.floor(Math.random()*pool.length);
-    var a = pool.splice(i1, 1)[0];
-    var i2 = Math.floor(Math.random()*pool.length);
-    var b = pool.splice(i2, 1)[0];
-    return [a, b];
-  }
-
-  function render(){
-    updateProgress();
-
-    var pair = pickTwoDistinct();
-    var A = pair[0], B = pair[1];
-    // Ряд АБАБА — следующий элемент Б (5 элементов показываем, спрашиваем 6-й)
-    var sequence = [A, B, A, B, A];
-    currentAnswer = B;
-
-    var sequenceHtml = sequence.map(function(e){
-      return '<span class="count-obj">' + e + '</span>';
-    }).join('') + '<span class="count-obj" style="opacity:0.35;">❓</span>';
-
-    var options = [A, B];
-    var restPool = EMOJIS.filter(function(e){ return e !== A && e !== B; });
-    for(var p=restPool.length-1; p>0; p--){
-      var q = Math.floor(Math.random()*(p+1));
-      var tp = restPool[p]; restPool[p]=restPool[q]; restPool[q]=tp;
+    function bead(e, cls, i){ return '<span class="mxq-bd ' + (cls || '') + '" style="animation-delay:' + ((i || 0)*0.04) + 's">' + e + '</span>'; }
+    function seqOf(unit, n){ var a = []; for(var i = 0; i < n; i++) a.push(unit[i % unit.length]); return a; }
+    function pickUnit(len){ return shuffle(POOL).slice(0, len); }
+    function unitShape(len){            // 2: АБ; 3: ААБ, АББ, АБВ
+      if(len === 2) return [0, 1];
+      return pick([[0,0,1],[0,1,1],[0,1,2],[0,1,2]]);
     }
-    options = options.concat(restPool.slice(0,2));
-    for(var j=options.length-1; j>0; j--){
-      var k = Math.floor(Math.random()*(j+1));
-      var tmp = options[j]; options[j]=options[k]; options[k]=tmp;
+    function makeUnit(shape){ var k = Math.max.apply(null, shape) + 1, em = pickUnit(k); return shape.map(function(i){ return em[i]; }); }
+    function optsFor(ans, unit){
+      var set = [ans];
+      shuffle(unit.filter(function(e, i, a){ return e !== ans && a.indexOf(e) === i; })).forEach(function(e){ if(set.length < 3) set.push(e); });
+      shuffle(POOL.filter(function(e){ return set.indexOf(e) < 0 && unit.indexOf(e) < 0; })).forEach(function(e){ if(set.length < 4) set.push(e); });
+      return shuffle(set).map(function(e){ return { v:e, h:'<span class="em">' + e + '</span>' }; });
     }
-
-    var optionsHtml = options.map(function(e){
-      return '<button class="count-btn" data-value="' + e + '">' + e + '</button>';
-    }).join('');
-
-    root.innerHTML =
-      '<div class="count-objects">' + sequenceHtml + '</div>' +
-      '<div class="count-options">' + optionsHtml + '</div>' +
-      '<div class="count-feedback" id="count-feedback"></div>';
-
-    root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        if(busy) return;
-        checkAnswer(btn.getAttribute('data-value'), btn);
+    function thread(seq, hidden, unitLen, okIdx){
+      var h = '<div class="mxq-thread' + (seq.length > 8 ? ' dense' : '') + '">';
+      seq.forEach(function(e, i){
+        if(hidden.indexOf(i) >= 0) h += bead('?', 'q', i);
+        else h += bead(e, (i < unitLen ? 'u ' : '') + (okIdx && okIdx.indexOf(i) >= 0 ? 'ok' : ''), i);
       });
-    });
-    busy = false;
-  }
-
-  function renderFinish(){
-    recordGameResult('symbolseq', STREAK_NEEDED, STREAK_NEEDED);
-    var m = msgs();
-    root.innerHTML =
-      '<div class="finish-screen">' +
-        '<div class="finish-emoji">🏆</div>' +
-        '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + totalCorrect + ' / ' + totalAnswered + '</p>' +
-        '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
-      '</div>';
-    document.getElementById('play-again-btn').addEventListener('click', function(){
-      streak = 0; totalCorrect = 0; totalAnswered = 0;
-      updateScore();
-      render();
-    });
-  }
-
-  function checkAnswer(value, btn){
-    busy = true;
-    totalAnswered++;
-    var feedback = document.getElementById('count-feedback');
-    var m = msgs();
-    root.querySelectorAll('.count-btn').forEach(function(b){ b.disabled = true; });
-
-    if(value === currentAnswer){
-      totalCorrect++;
-      streak++;
-      updateScore();
-      updateProgress();
-      btn.classList.add('correct');
-      feedback.textContent = m.correct_msg || 'Great job! 🎉';
-      feedback.className = 'count-feedback show correct';
-      if(streak >= STREAK_NEEDED){
-        setTimeout(renderFinish, 900);
-      } else {
-        setTimeout(render, 900);
-      }
-    } else {
-      streak = 0;
-      updateProgress();
-      btn.classList.add('wrong');
-      feedback.textContent = m.wrong_msg || 'Try again';
-      feedback.className = 'count-feedback show wrong';
-      setTimeout(render, 1200);
+      return h + '</div>';
     }
-  }
+    function hintThread(full, unitLen, okIdx){
+      return function(el){ el.innerHTML = thread(full, [], unitLen, okIdx); };
+    }
 
-  render();
+    /* «какая бусина следующая?» */
+    function nextTask(unit, n){
+      var seq = seqOf(unit, n + 1), ans = seq[n], shown = seq.slice(0, n);
+      return S('n' + unit.join('') + n, {
+        expr:'', say:V.tpl('q',{k:'nextbead'}), ans:ans, opts:optsFor(ans, unit),
+        field:function(el){ el.innerHTML = thread(shown.concat(['?']), [n], 0); },
+        hintSay:['f:repeats'], hintExpr:'', hint:hintThread(seq, unit.length, [n])
+      });
+    }
+    /* «какая бусина спряталась?» в середине узора */
+    function midTask(unit, n, idx){
+      var seq = seqOf(unit, n), ans = seq[idx];
+      return S('m' + unit.join('') + n + idx, {
+        expr:'', say:V.tpl('q',{k:'missbead'}), ans:ans, opts:optsFor(ans, unit),
+        field:function(el){ el.innerHTML = thread(seq, [idx], 0); },
+        hintSay:['f:repeats'], hintExpr:'', hint:hintThread(seq, unit.length, [idx])
+      });
+    }
+    /* «продолжи узор»: выбери две бусины подряд */
+    function buildTask(unit, n){
+      var seq = seqOf(unit, n + 2), a1 = seq[n], a2 = seq[n + 1], shown = seq.slice(0, n);
+      var set = unit.filter(function(e, i, a){ return a.indexOf(e) === i; });
+      shuffle(POOL.filter(function(e){ return set.indexOf(e) < 0; })).forEach(function(e){ if(set.length < 4) set.push(e); });
+      var trayItems = shuffle(set);
+      return S('b' + unit.join('') + n, {
+        expr:'', say:V.tpl('q',{k:'buildbeads'}), ans:a1 + '|' + a2, gate:false,
+        field:function(el, X, task){
+          el.innerHTML = '<div class="mxq-thread' + (n + 2 > 8 ? ' dense' : '') + '">' + shown.map(function(e, i){ return bead(e, i < unit.length ? 'u' : '', i); }).join('') + bead('', 'slot', n) + bead('', 'slot', n + 1) + '</div><div class="mxq-tray">'
+            + trayItems.map(function(e, i){ return '<button type="button" class="mxq-tr" data-e="' + e + '" style="animation-delay:' + (i*.05) + 's">' + e + '</button>'; }).join('') + '</div>';
+          var slots = [].slice.call(el.querySelectorAll('.slot')), val = [null, null];
+          function fin(){ if(val[0] && val[1] && !task._done){ task._done = true; X.sleep(350).then(function(ok){ if(ok) task.submit(val[0] + '|' + val[1], slots[1]); }); } }
+          function put(e){ if(task._done) return false; var i = val[0] ? (val[1] ? -1 : 1) : 0; if(i < 0) return false; val[i] = e; slots[i].textContent = e; slots[i].classList.add('f'); X.sfx.tap(i + 1); fin(); return true; }
+          slots.forEach(function(sl, i){ sl.addEventListener('click', function(){ if(task._done || !val[i]) return; if(i === 0 && val[1]) return; val[i] = null; sl.textContent = ''; sl.classList.remove('f'); }); });
+          [].slice.call(el.querySelectorAll('.mxq-tr')).forEach(function(b){ b.addEventListener('click', function(){ put(b.getAttribute('data-e')); }); });
+          task.auto = function(wrong){
+            if(wrong){ var bad = trayItems.filter(function(e){ return e !== a1; })[0]; put(bad); put(a2); }
+            else { put(a1); put(a2); }
+          };
+        },
+        hintSay:['f:repeats'], hintExpr:'', hint:hintThread(seq, unit.length, [n, n + 1])
+      });
+    }
+
+    /* ⭐: узор из двух бусин (АБАБА…), что дальше */
+    function L1(){ var u = makeUnit(unitShape(2)); return nextTask(u, pick([5, 5, 7])); }
+    /* ⭐⭐: узор из трёх (ААБ, АББ, АБВ), что дальше */
+    function L2(){ var u = makeUnit(unitShape(3)); return nextTask(u, pick([7, 8, 7])); }
+    /* ⭐⭐⭐: спрятана бусина в середине / продолжи узор двумя бусинами */
+    function L3(){
+      var len = pick([2, 3, 3]), u = makeUnit(unitShape(len)), t = pick(['mid','mid','build']);
+      if(t === 'mid'){ var n = pick([8, 9]); return midTask(u, n, rnd(len, n - 2)); }
+      return buildTask(u, pick([6, 7]));
+    }
+
+    M.run({ root:containerId, key:'symbolseq', need:10, theme:'rainbow', levels:[L1,L2,L3] });
+  });
 }

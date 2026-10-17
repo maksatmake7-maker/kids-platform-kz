@@ -27,7 +27,12 @@
       half:'Найди половину числа', deal:'Раздай поровну, по одному каждому.', oneplate:'Сколько в одной тарелке?', breakbar:'Разломи шоколадку пополам.', tensin:'Сколько десятков в числе', countten:'Считай десятками!',
       onesin:'Сколько единиц в числе', wheremore:'Где больше?', whereless:'Где меньше?', same:'Поровну.', makeeq:'Сделай поровну: добавь или убери.',
       frogjump:'На сколько прыгает лягушка?', next:'Какое число следующее?', findshape:'Найди:', whatis:'Что это?', findclosed:'Найди замкнутую линию.', findopen:'Найди незамкнутую линию.',
-      sh_tochka:'Точка', sh_pryamaya:'Прямая', sh_krivaya:'Кривая', sh_lomanaya:'Ломаная', sh_otrezok:'Отрезок', sh_luch:'Луч', sh_ugol:'Угол', sh_closed:'Замкнутая линия', sh_open:'Незамкнутая линия'
+      sh_tochka:'Точка', sh_pryamaya:'Прямая', sh_krivaya:'Кривая', sh_lomanaya:'Ломаная', sh_otrezok:'Отрезок', sh_luch:'Луч', sh_ugol:'Угол', sh_closed:'Замкнутая линия', sh_open:'Незамкнутая линия',
+      measq:'Длина, масса или объём?', instq:'Чем это измерить?', unitq:'В чём это измеряют?', cmq:'Сколько сантиметров?', kgq:'Сколько килограммов?', lq:'Сколько литров?', dmq:'Сколько сантиметров в одном дециметре?', result:'Получается', m_length:'Длина.', m_mass:'Масса.', m_volume:'Объём.',
+      was:'Было', addmore:'Добавили ещё', tookaway:'Забрали', howmanynow:'Сколько стало?', firstbox:'В первой коробке', secondbox:'А во второй на', morek:'больше.', lessk:'меньше.', howsecond:'Сколько во второй коробке?', whichop:'Какое действие подходит?',
+      nextbead:'Какая бусина следующая?', missbead:'Какая бусина спряталась?', buildbeads:'Продолжи узор: выбери две бусины.', repeats:'Смотри, как повторяется узор!',
+      tfq:'Верно или неверно?', findwrong:'Найди неверное равенство.', findright:'Найди верное равенство.',
+      flatq:'Плоская или пространственная?', findflat:'Найди плоскую фигуру.', findsolid:'Найди пространственную фигуру.', sortq:'Разложи по корзинам.', flatsay:'Плоская фигура — как рисунок на бумаге.', solidsay:'Пространственную фигуру можно взять в руки.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -39,7 +44,12 @@
       half:'санының жартысын тап', deal:'Тең бөл, әрқайсысына біреуден бер.', oneplate:'Бір тәрелкеде қанша?', breakbar:'Шоколадты екіге бөл.', tensin:'санында неше ондық бар?', countten:'Ондықтап санайық!',
       onesin:'санында неше бірлік бар?', wheremore:'Қайсысында көп?', whereless:'Қайсысында аз?', same:'Тең.', makeeq:'Тең ет: қос немесе ал.',
       frogjump:'Бақа қанша секіреді?', next:'Келесі сан қандай?', findshape:'тап', whatis:'Бұл не?', findclosed:'Тұйық сызықты тап.', findopen:'Ашық сызықты тап.',
-      sh_tochka:'Нүкте', sh_pryamaya:'Түзу', sh_krivaya:'Қисық', sh_lomanaya:'Сынық сызық', sh_otrezok:'Кесінді', sh_luch:'Сәуле', sh_ugol:'Бұрыш', sh_closed:'Тұйық сызық', sh_open:'Ашық сызық'
+      sh_tochka:'Нүкте', sh_pryamaya:'Түзу', sh_krivaya:'Қисық', sh_lomanaya:'Сынық сызық', sh_otrezok:'Кесінді', sh_luch:'Сәуле', sh_ugol:'Бұрыш', sh_closed:'Тұйық сызық', sh_open:'Ашық сызық',
+      measq:'Ұзындық, масса немесе көлем?', instq:'Мұны немен өлшейміз?', unitq:'Бұл қандай өлшеммен өлшенеді?', cmq:'Неше сантиметр?', kgq:'Неше килограмм?', lq:'Неше литр?', dmq:'Бір дециметрде неше сантиметр бар?', result:'Шығады', m_length:'Ұзындық.', m_mass:'Масса.', m_volume:'Көлем.',
+      was:'Бастапқыда', wasend:'болды.', addmore:'Тағы', addend:'қосты.', tookaway:'алып кетті.', howmanynow:'Қанша болды?', firstbox:'Бірінші қорапта', secondbox:'Екінші қорапта одан', morek:'артық.', lessk:'кем.', howsecond:'Екінші қорапта неше?', whichop:'Қандай амал керек?',
+      nextbead:'Келесі моншақ қандай?', missbead:'Қай моншақ жасырынды?', buildbeads:'Өрнекті жалғастыр: екі моншақ таңда.', repeats:'Қарашы, өрнек қалай қайталанады!',
+      tfq:'Дұрыс па, бұрыс па?', findwrong:'Бұрыс теңдікті тап.', findright:'Дұрыс теңдікті тап.',
+      flatq:'Жазық па, көлемді ме?', findflat:'Жазық фигураны тап.', findsolid:'Көлемді фигураны тап.', sortq:'Себеттерге бөл.', flatsay:'Жазық фигура — қағаздағы сурет сияқты.', solidsay:'Көлемді фигураны қолға алуға болады.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -51,7 +61,12 @@
       half:'Find half of', deal:'Share equally, one for each.', oneplate:'How many on one plate?', breakbar:'Break the chocolate in half.', tensin:'How many tens in', countten:'Count by tens!',
       onesin:'How many ones in', wheremore:'Which has more?', whereless:'Which has fewer?', same:'Equal.', makeeq:'Make them equal: add or remove.',
       frogjump:'How far does the frog jump?', next:'What number comes next?', findshape:'Find:', whatis:'What is this?', findclosed:'Find the closed line.', findopen:'Find the open line.',
-      sh_tochka:'Point', sh_pryamaya:'Straight line', sh_krivaya:'Curve', sh_lomanaya:'Broken line', sh_otrezok:'Segment', sh_luch:'Ray', sh_ugol:'Angle', sh_closed:'Closed line', sh_open:'Open line'
+      sh_tochka:'Point', sh_pryamaya:'Straight line', sh_krivaya:'Curve', sh_lomanaya:'Broken line', sh_otrezok:'Segment', sh_luch:'Ray', sh_ugol:'Angle', sh_closed:'Closed line', sh_open:'Open line',
+      measq:'Length, mass or volume?', instq:'What do we measure it with?', unitq:'What unit measures it?', cmq:'How many centimetres?', kgq:'How many kilograms?', lq:'How many litres?', dmq:'How many centimetres in one decimetre?', result:'It is', m_length:'Length.', m_mass:'Mass.', m_volume:'Volume.',
+      was:'There were', addmore:'more were added.', tookaway:'were taken away.', howmanynow:'How many are there now?', firstbox:'The first box has', secondbox:'The second box has', morek:'more.', lessk:'fewer.', howsecond:'How many are in the second box?', whichop:'Which operation fits?',
+      nextbead:'Which bead comes next?', missbead:'Which bead is hiding?', buildbeads:'Continue the pattern: choose two beads.', repeats:'Look how the pattern repeats!',
+      tfq:'True or false?', findwrong:'Find the false equation.', findright:'Find the true equation.',
+      flatq:'Flat or solid?', findflat:'Find the flat shape.', findsolid:'Find the solid shape.', sortq:'Sort into the baskets.', flatsay:'A flat shape is like a drawing on paper.', solidsay:'A solid shape can be held in your hands.'
     }
   };
   var PRAISE = {
@@ -88,6 +103,10 @@
       tensin:function(v){ return ['f:tensin', v.n]; },
       findshape:function(v){ return ['f:findshape', 'f:sh_'+v.k]; },
       onesin:function(v){ return ['f:onesin', v.n]; },
+      story: function(v){
+        var r = v.k === 'add' ? ['f:was', v.a, 'f:addmore', v.b] : v.k === 'sub' ? ['f:was', v.a, 'f:tookaway', v.b] : ['f:firstbox', v.a, 'f:secondbox', v.b, v.k === 'more' ? 'f:morek' : 'f:lessk'];
+        if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
+        return r; },
       q:     function(v){ return ['f:'+v.k]; }
     },
     kz: {
@@ -105,6 +124,10 @@
       tensin:function(v){ return [v.n, 'f:tensin']; },
       findshape:function(v){ return ['f:sh_'+v.k, 'f:findshape']; },
       onesin:function(v){ return [v.n, 'f:onesin']; },
+      story: function(v){
+        var r = v.k === 'add' ? ['f:was', v.a, 'f:wasend', 'f:addmore', v.b, 'f:addend'] : v.k === 'sub' ? ['f:was', v.a, 'f:wasend', v.b, 'f:tookaway'] : ['f:firstbox', v.a, 'f:secondbox', v.b, v.k === 'more' ? 'f:morek' : 'f:lessk'];
+        if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
+        return r; },
       q:     function(v){ return ['f:'+v.k]; }
     },
     en: {
@@ -122,6 +145,10 @@
       tensin:function(v){ return ['f:tensin', v.n]; },
       findshape:function(v){ return ['f:findshape', 'f:sh_'+v.k]; },
       onesin:function(v){ return ['f:onesin', v.n]; },
+      story: function(v){
+        var r = v.k === 'add' ? ['f:was', v.a, '.', v.b, 'f:addmore'] : v.k === 'sub' ? ['f:was', v.a, '.', v.b, 'f:tookaway'] : ['f:firstbox', v.a, '.', 'f:secondbox', v.b, v.k === 'more' ? 'f:morek' : 'f:lessk'];
+        if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
+        return r; },
       q:     function(v){ return ['f:'+v.k]; }
     }
   };
