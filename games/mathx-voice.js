@@ -73,7 +73,19 @@
       magyes:'Магнит притягивает железные предметы.', magno:'Магнит не притягивает это: оно не из железа.',
       n_globe:'Глобус', n_orange:'Апельсин', n_dice:'Кубик', n_ruler:'Линейка', n_triangle:'Угольник',
       roundq:'Круглый, как Земля?', findround:'Найди предмет, похожий на Землю.', findnotround:'Найди предмет, который не круглый.', pickround:'Выбери всё, что круглое, как Земля.', sortround:'Круглый или нет? Разложи.',
-      roundsay:'Он круглый, как Земля. Земля — шар.', notroundsay:'Он не круглый. А Земля круглая, как шар.'
+      roundsay:'Он круглый, как Земля. Земля — шар.', notroundsay:'Он не круглый. А Земля круглая, как шар.',
+      n_fire:'Огонь', n_candle:'Свеча', n_sunny:'Солнце', n_snowflake:'Снежинка', n_ice:'Лёд', n_night:'Ночь',
+      heatq:'Это тёплое или холодное?', findhot:'Найди тёплое.', findcold:'Найди холодное.', sortheat:'Тёплое или холодное? Разложи.', thermoq:'Термометр показывает тепло или холод?',
+      hotsay:'Это тёплое. Оно греет.', coldsay:'Это холодное. Рядом с ним холодно.', thermohot:'Столбик высоко — значит, тепло.', thermocold:'Столбик низко — значит, холодно.',
+      n_bulb:'Лампочка', n_tv:'Телевизор', n_plug:'Вилка', n_laptop:'Ноутбук', n_pencil:'Карандаш', n_tree:'Дерево',
+      elq:'Этому нужно электричество?', findel:'Найди то, что работает от электричества.', findnoel:'Найди то, чему электричество не нужно.', pickel:'Выбери всё, что работает от электричества.', sortel:'Нужно электричество или нет? Разложи.',
+      elsay:'Это работает от электричества.', noelsay:'Этому электричество не нужно.',
+      n_moon:'Луна', n_lightning:'Молния', n_flashlight:'Фонарик',
+      lightq:'Свет природный или сделанный?', findnat:'Найди природный источник света.', findart:'Найди искусственный источник света.', sortlight:'Природный или искусственный свет? Разложи.',
+      natlsay:'Это природный свет. Его даёт природа.', artlsay:'Это искусственный свет. Его сделал человек.',
+      n_thunder:'Гроза', n_bell:'Колокольчик', n_radio:'Радио', n_trumpet:'Труба',
+      soundq:'Звук природный или сделанный?', findnatsd:'Найди природный источник звука.', findartsd:'Найди искусственный источник звука.', sortsound:'Природный или искусственный звук? Разложи.',
+      natsay:'Это природный звук. Его издаёт природа.', artsay:'Это искусственный звук. Его создал человек.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -131,7 +143,19 @@
       magyes:'Магнит темір заттарды тартады.', magno:'Магнит мұны тартпайды: ол темірден емес.',
       n_globe:'Глобус', n_orange:'Апельсин', n_dice:'Текше', n_ruler:'Сызғыш', n_triangle:'Үшбұрыш сызғыш',
       roundq:'Жер сияқты дөңгелек пе?', findround:'Жерге ұқсайтын затты тап.', findnotround:'Дөңгелек емес затты тап.', pickround:'Жер сияқты дөңгелектің бәрін таңда.', sortround:'Дөңгелек пе, жоқ па? Бөліп қой.',
-      roundsay:'Ол Жер сияқты дөңгелек. Жер — шар тәрізді.', notroundsay:'Ол дөңгелек емес. Ал Жер шар сияқты дөңгелек.'
+      roundsay:'Ол Жер сияқты дөңгелек. Жер — шар тәрізді.', notroundsay:'Ол дөңгелек емес. Ал Жер шар сияқты дөңгелек.',
+      n_fire:'От', n_candle:'Шам', n_sunny:'Күн', n_snowflake:'Қар ұшқыны', n_ice:'Мұз', n_night:'Түн',
+      heatq:'Бұл жылы ма, суық па?', findhot:'Жылыны тап.', findcold:'Суықты тап.', sortheat:'Жылы ма, суық па? Бөліп қой.', thermoq:'Термометр жылуды ма, суықты ма көрсетеді?',
+      hotsay:'Бұл жылы. Ол жылытады.', coldsay:'Бұл суық. Оның жанында суық.', thermohot:'Бағана жоғары — жылы.', thermocold:'Бағана төмен — суық.',
+      n_bulb:'Шам', n_tv:'Теледидар', n_plug:'Штепсель', n_laptop:'Ноутбук', n_pencil:'Қарындаш', n_tree:'Ағаш',
+      elq:'Бұған электр керек пе?', findel:'Электрмен жұмыс істейтінді тап.', findnoel:'Электр керек емесін тап.', pickel:'Электрмен жұмыс істейтіннің бәрін таңда.', sortel:'Электр керек пе, жоқ па? Бөліп қой.',
+      elsay:'Бұл электрмен жұмыс істейді.', noelsay:'Бұған электр керек емес.',
+      n_moon:'Ай', n_lightning:'Найзағай', n_flashlight:'Қол шамы',
+      lightq:'Жарық табиғи ма, жасанды ма?', findnat:'Табиғи жарық көзін тап.', findart:'Жасанды жарық көзін тап.', sortlight:'Табиғи ма, жасанды ма? Бөліп қой.',
+      natlsay:'Бұл табиғи жарық. Оны табиғат береді.', artlsay:'Бұл жасанды жарық. Оны адам жасады.',
+      n_thunder:'Күн күркіреуі', n_bell:'Қоңырау', n_radio:'Радио', n_trumpet:'Керней',
+      soundq:'Дыбыс табиғи ма, жасанды ма?', findnatsd:'Табиғи дыбыс көзін тап.', findartsd:'Жасанды дыбыс көзін тап.', sortsound:'Табиғи ма, жасанды ма? Бөліп қой.',
+      natsay:'Бұл табиғи дыбыс. Оны табиғат шығарады.', artsay:'Бұл жасанды дыбыс. Оны адам жасады.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -189,7 +213,19 @@
       magyes:'A magnet attracts iron objects.', magno:'A magnet does not attract this: it is not made of iron.',
       n_globe:'Globe', n_orange:'Orange', n_dice:'Cube', n_ruler:'Ruler', n_triangle:'Set square',
       roundq:'Is it round, like the Earth?', findround:'Find something that looks like the Earth.', findnotround:'Find something that is not round.', pickround:'Pick everything that is round like the Earth.', sortround:'Round or not? Sort them.',
-      roundsay:'It is round, like the Earth. The Earth is a ball.', notroundsay:'It is not round. But the Earth is round like a ball.'
+      roundsay:'It is round, like the Earth. The Earth is a ball.', notroundsay:'It is not round. But the Earth is round like a ball.',
+      n_fire:'Fire', n_candle:'Candle', n_sunny:'Sun', n_snowflake:'Snowflake', n_ice:'Ice', n_night:'Night',
+      heatq:'Is this warm or cold?', findhot:'Find something warm.', findcold:'Find something cold.', sortheat:'Warm or cold? Sort them.', thermoq:'Does the thermometer show warm or cold?',
+      hotsay:'This is warm. It gives heat.', coldsay:'This is cold. It is chilly near it.', thermohot:'The line is high: it is warm.', thermocold:'The line is low: it is cold.',
+      n_bulb:'Light bulb', n_tv:'TV', n_plug:'Plug', n_laptop:'Laptop', n_pencil:'Pencil', n_tree:'Tree',
+      elq:'Does this need electricity?', findel:'Find what works with electricity.', findnoel:'Find what does not need electricity.', pickel:'Pick everything that works with electricity.', sortel:'Needs electricity or not? Sort them.',
+      elsay:'This works with electricity.', noelsay:'This does not need electricity.',
+      n_moon:'Moon', n_lightning:'Lightning', n_flashlight:'Flashlight',
+      lightq:'Natural or artificial light?', findnat:'Find a natural source of light.', findart:'Find an artificial source of light.', sortlight:'Natural or artificial light? Sort them.',
+      natlsay:'This is natural light. Nature makes it.', artlsay:'This is artificial light. People made it.',
+      n_thunder:'Thunderstorm', n_bell:'Bell', n_radio:'Radio', n_trumpet:'Trumpet',
+      soundq:'Natural or artificial sound?', findnatsd:'Find a natural source of sound.', findartsd:'Find an artificial source of sound.', sortsound:'Natural or artificial sound? Sort them.',
+      natsay:'This is a natural sound. Nature makes it.', artsay:'This is an artificial sound. People made it.'
     }
   };
   var PRAISE = {
