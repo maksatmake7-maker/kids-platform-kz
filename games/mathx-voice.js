@@ -48,7 +48,20 @@
       wildansay:'Дикое животное живёт на воле и само добывает еду.', domsay:'Домашнее животное живёт рядом с человеком, он о нём заботится.',
       needsay:'Растению нужны вода, свет и тепло.', notneedsay:'Растению это не нужно.',
       a_migration:'Улетает в тёплые края.', a_foodstore:'Запасает корм на зиму.', a_hibernate:'Спит всю зиму.',
-      lack_water:'Нужна вода.', lack_light:'Нужен свет.', lack_warm:'Нужно тепло.'
+      lack_water:'Нужна вода.', lack_light:'Нужен свет.', lack_warm:'Нужно тепло.',
+      n_eye:'Глаз', n_ear:'Ухо', n_nose:'Нос', n_mouth:'Рот', n_hand:'Рука', n_leg:'Нога',
+      fn_eye:'Видеть', fn_ear:'Слышать', fn_nose:'Нюхать', fn_mouth:'Есть и говорить', fn_hand:'Брать', fn_leg:'Ходить',
+      q_eye:'Чем мы видим?', q_ear:'Чем мы слышим?', q_nose:'Чем мы нюхаем?', q_mouth:'Чем мы едим?', q_hand:'Чем мы берём предметы?', q_leg:'Чем мы ходим?',
+      fact_eye:'Глазами мы видим.', fact_ear:'Ушами мы слышим.', fact_nose:'Носом мы нюхаем.', fact_mouth:'Ртом мы едим и говорим.', fact_hand:'Руками мы берём предметы.', fact_leg:'Ногами мы ходим.',
+      findbody:'Найди на теле:', whatbody:'Как называется эта часть тела?', whatfor:'Для чего нужна эта часть тела?', sensesort:'Чем мы это узнаём? Разложи.',
+      n_apple:'Яблоко', n_milk:'Молоко', n_sleep:'Сон', n_bed:'Кровать', n_balloon:'Шарик', n_hat:'Шляпа',
+      cat_food:'Питание', cat_rest:'Отдых', cat_not:'Не нужно',
+      needkid:'Нужно это ребёнку, чтобы расти?', pickkid:'Выбери всё, что нужно ребёнку, чтобы расти.', sortkid:'Что нужно ребёнку? Разложи: питание, отдых или не нужно.',
+      kidsay:'Ребёнку нужны питание и отдых, чтобы расти и быть здоровым.', notkidsay:'Это для игры. Расти помогают питание и отдых.', foodsay:'Еда помогает расти.', restsay:'Сон и отдых нужны, чтобы расти.',
+      n_plane:'Самолёт', n_butterfly:'Бабочка', n_fish:'Рыба', n_boat:'Парусник', n_bike:'Велосипед',
+      moveq:'Как это движется?', findfly:'Найди, что летает.', findswim:'Найди, что плавает.', findground:'Найди, что движется по земле.', sortmove:'Как это движется? Разложи по местам.',
+      flysay:'Это летает по воздуху.', swimsay:'Это плавает по воде.', groundsay:'Это движется по земле.',
+      wheremove:'Где это движется?'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -81,7 +94,20 @@
       wildansay:'Жабайы жануар еркін өмір сүреді, жемді өзі табады.', domsay:'Үй жануары адамның қасында тұрады, оған адам қамқор болады.',
       needsay:'Өсімдікке су, жарық және жылу керек.', notneedsay:'Бұл өсімдікке керек емес.',
       a_migration:'Жылы жаққа ұшады.', a_foodstore:'Қысқа жем жинайды.', a_hibernate:'Бүкіл қыс ұйықтайды.',
-      lack_water:'Су керек.', lack_light:'Жарық керек.', lack_warm:'Жылу керек.'
+      lack_water:'Су керек.', lack_light:'Жарық керек.', lack_warm:'Жылу керек.',
+      n_eye:'Көз', n_ear:'Құлақ', n_nose:'Мұрын', n_mouth:'Ауыз', n_hand:'Қол', n_leg:'Аяқ',
+      fn_eye:'Көру', fn_ear:'Есту', fn_nose:'Иіскеу', fn_mouth:'Жеу және сөйлеу', fn_hand:'Ұстау', fn_leg:'Жүру',
+      q_eye:'Немен көреміз?', q_ear:'Немен естиміз?', q_nose:'Немен иіскейміз?', q_mouth:'Немен жейміз?', q_hand:'Немен зат ұстаймыз?', q_leg:'Немен жүреміз?',
+      fact_eye:'Көзбен көреміз.', fact_ear:'Құлақпен естиміз.', fact_nose:'Мұрынмен иіскейміз.', fact_mouth:'Ауызбен жейміз және сөйлейміз.', fact_hand:'Қолмен зат ұстаймыз.', fact_leg:'Аяқпен жүреміз.',
+      findbody:'Денеден тап:', whatbody:'Дененің бұл бөлігі қалай аталады?', whatfor:'Дененің бұл бөлігі не үшін керек?', sensesort:'Мұны немен білеміз? Бөліп қой.',
+      n_apple:'Алма', n_milk:'Сүт', n_sleep:'Ұйқы', n_bed:'Төсек', n_balloon:'Шар', n_hat:'Қалпақ',
+      cat_food:'Тамақтану', cat_rest:'Демалыс', cat_not:'Керек емес',
+      needkid:'Балаға өсу үшін бұл керек пе?', pickkid:'Балаға өсу үшін не керек болса, соны таңда.', sortkid:'Балаға не керек? Бөліп қой: тамақтану, демалыс немесе керек емес.',
+      kidsay:'Бала өсіп, сау болуы үшін тамақтану мен демалыс керек.', notkidsay:'Бұл ойын үшін. Өсуге тамақтану мен демалыс көмектеседі.', foodsay:'Тамақ өсуге көмектеседі.', restsay:'Өсу үшін ұйқы мен демалыс керек.',
+      n_plane:'Ұшақ', n_butterfly:'Көбелек', n_fish:'Балық', n_boat:'Желкенді кеме', n_bike:'Велосипед',
+      moveq:'Бұл қалай қозғалады?', findfly:'Ұшатынын тап.', findswim:'Жүзетінін тап.', findground:'Жермен жүретінін тап.', sortmove:'Бұл қалай қозғалады? Орнына бөліп қой.',
+      flysay:'Бұл ауада ұшады.', swimsay:'Бұл суда жүзеді.', groundsay:'Бұл жермен жүреді.',
+      wheremove:'Бұл қайда қозғалады?'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -114,7 +140,20 @@
       wildansay:'A wild animal lives free and finds its own food.', domsay:'A domestic animal lives near people, and people take care of it.',
       needsay:'A plant needs water, light and warmth.', notneedsay:'The plant does not need this.',
       a_migration:'It flies to warm lands.', a_foodstore:'It stores food for winter.', a_hibernate:'It sleeps all winter.',
-      lack_water:'It needs water.', lack_light:'It needs light.', lack_warm:'It needs warmth.'
+      lack_water:'It needs water.', lack_light:'It needs light.', lack_warm:'It needs warmth.',
+      n_eye:'Eye', n_ear:'Ear', n_nose:'Nose', n_mouth:'Mouth', n_hand:'Hand', n_leg:'Leg',
+      fn_eye:'To see', fn_ear:'To hear', fn_nose:'To smell', fn_mouth:'To eat and talk', fn_hand:'To hold', fn_leg:'To walk',
+      q_eye:'What do we see with?', q_ear:'What do we hear with?', q_nose:'What do we smell with?', q_mouth:'What do we eat with?', q_hand:'What do we hold things with?', q_leg:'What do we walk with?',
+      fact_eye:'We see with our eyes.', fact_ear:'We hear with our ears.', fact_nose:'We smell with our nose.', fact_mouth:'We eat and talk with our mouth.', fact_hand:'We hold things with our hands.', fact_leg:'We walk with our legs.',
+      findbody:'Find on the body:', whatbody:'What is this body part called?', whatfor:'What is this body part for?', sensesort:'What do we sense this with? Sort them.',
+      n_apple:'Apple', n_milk:'Milk', n_sleep:'Sleep', n_bed:'Bed', n_balloon:'Balloon', n_hat:'Hat',
+      cat_food:'Food', cat_rest:'Rest', cat_not:'Not needed',
+      needkid:'Does a child need this to grow?', pickkid:'Pick everything a child needs to grow.', sortkid:'What does a child need? Sort: food, rest or not needed.',
+      kidsay:'A child needs food and rest to grow and stay healthy.', notkidsay:'This is for play. Food and rest help us grow.', foodsay:'Food helps us grow.', restsay:'We need sleep and rest to grow.',
+      n_plane:'Plane', n_butterfly:'Butterfly', n_fish:'Fish', n_boat:'Sailboat', n_bike:'Bicycle',
+      moveq:'How does it move?', findfly:'Find what flies.', findswim:'Find what swims.', findground:'Find what moves on the ground.', sortmove:'How does it move? Sort them.',
+      flysay:'It flies in the air.', swimsay:'It swims in the water.', groundsay:'It moves on the ground.',
+      wheremove:'Where does it move?'
     }
   };
   var PRAISE = {
@@ -156,6 +195,7 @@
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
+      findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
@@ -179,6 +219,7 @@
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
+      findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
@@ -202,6 +243,7 @@
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
+      findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     }
