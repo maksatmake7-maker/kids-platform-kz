@@ -32,7 +32,23 @@
       was:'Было', addmore:'Добавили ещё', tookaway:'Забрали', howmanynow:'Сколько стало?', firstbox:'В первой коробке', secondbox:'А во второй на', morek:'больше.', lessk:'меньше.', howsecond:'Сколько во второй коробке?', whichop:'Какое действие подходит?',
       nextbead:'Какая бусина следующая?', missbead:'Какая бусина спряталась?', buildbeads:'Продолжи узор: выбери две бусины.', repeats:'Смотри, как повторяется узор!',
       tfq:'Верно или неверно?', findwrong:'Найди неверное равенство.', findright:'Найди верное равенство.',
-      flatq:'Плоская или пространственная?', findflat:'Найди плоскую фигуру.', findsolid:'Найди пространственную фигуру.', sortq:'Разложи по корзинам.', flatsay:'Плоская фигура — как рисунок на бумаге.', solidsay:'Пространственную фигуру можно взять в руки.'
+      flatq:'Плоская или пространственная?', findflat:'Найди плоскую фигуру.', findsolid:'Найди пространственную фигуру.', sortq:'Разложи по корзинам.', flatsay:'Плоская фигура — как рисунок на бумаге.', solidsay:'Пространственную фигуру можно взять в руки.',
+      n_root:'Корень', n_stem:'Стебель', n_leaf:'Лист', n_flower:'Цветок', n_fruit:'Плод', n_seed:'Семя',
+      n_wheat:'Пшеница', n_carrot:'Морковь', n_tomato:'Помидор', n_potato:'Картофель', n_sunflower:'Подсолнух', n_spruce:'Ель', n_cactus:'Кактус', n_grass:'Трава', n_clover:'Клевер', n_daisy:'Ромашка',
+      n_lion:'Лев', n_wolf:'Волк', n_fox:'Лиса', n_bear:'Медведь', n_deer:'Олень', n_cow:'Корова', n_sheep:'Овца', n_hen:'Курица', n_dog:'Собака', n_cat:'Кошка',
+      n_swan:'Лебедь', n_duck:'Утка', n_bird:'Птица', n_squirrel:'Белка', n_hamster:'Хомяк', n_ant:'Муравей', n_hedgehog:'Ёж', n_bat:'Летучая мышь',
+      n_water:'Вода', n_sun:'Свет', n_warmth:'Тепло', n_candy:'Конфета', n_toy:'Игрушка', n_phone:'Телефон', n_console:'Игровая приставка', n_shoes:'Кроссовки', n_ball:'Мяч', n_car:'Машина',
+      findpart:'Найди часть растения:', namepart:'Как называется эта часть?', missingpart:'Какой части не хватает?',
+      wildcultq:'Дикорастущее или культурное?', wildanimalq:'Дикое или домашнее?', needq:'Нужно это растению?', adaptq:'Как это животное переживает зиму?',
+      findwild:'Найди дикорастущее растение.', findcult:'Найди культурное растение.', findwildan:'Найди дикое животное.', finddomestic:'Найди домашнее животное.',
+      sortplants:'Разложи растения: дикие и культурные.', sortanimals:'Разложи животных: дикие и домашние.', sortwinter:'Как кто зимует? Разложи по местам.',
+      wholives:'Кто здесь живёт?', givegrow:'Выбери всё, что нужно растению, чтобы расти.', whatlacks:'Растению плохо. Чего ему не хватает?',
+      whomigrate:'Кто улетает на юг?', whostore:'Кто запасает корм на зиму?', whosleep:'Кто спит всю зиму?',
+      wildsay:'Дикорастущее растение растёт само, без помощи человека.', cultsay:'Культурное растение сажает и выращивает человек.',
+      wildansay:'Дикое животное живёт на воле и само добывает еду.', domsay:'Домашнее животное живёт рядом с человеком, он о нём заботится.',
+      needsay:'Растению нужны вода, свет и тепло.', notneedsay:'Растению это не нужно.',
+      a_migration:'Улетает в тёплые края.', a_foodstore:'Запасает корм на зиму.', a_hibernate:'Спит всю зиму.',
+      lack_water:'Нужна вода.', lack_light:'Нужен свет.', lack_warm:'Нужно тепло.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -49,7 +65,23 @@
       was:'Бастапқыда', wasend:'болды.', addmore:'Тағы', addend:'қосты.', tookaway:'алып кетті.', howmanynow:'Қанша болды?', firstbox:'Бірінші қорапта', secondbox:'Екінші қорапта одан', morek:'артық.', lessk:'кем.', howsecond:'Екінші қорапта неше?', whichop:'Қандай амал керек?',
       nextbead:'Келесі моншақ қандай?', missbead:'Қай моншақ жасырынды?', buildbeads:'Өрнекті жалғастыр: екі моншақ таңда.', repeats:'Қарашы, өрнек қалай қайталанады!',
       tfq:'Дұрыс па, бұрыс па?', findwrong:'Бұрыс теңдікті тап.', findright:'Дұрыс теңдікті тап.',
-      flatq:'Жазық па, көлемді ме?', findflat:'Жазық фигураны тап.', findsolid:'Көлемді фигураны тап.', sortq:'Себеттерге бөл.', flatsay:'Жазық фигура — қағаздағы сурет сияқты.', solidsay:'Көлемді фигураны қолға алуға болады.'
+      flatq:'Жазық па, көлемді ме?', findflat:'Жазық фигураны тап.', findsolid:'Көлемді фигураны тап.', sortq:'Себеттерге бөл.', flatsay:'Жазық фигура — қағаздағы сурет сияқты.', solidsay:'Көлемді фигураны қолға алуға болады.',
+      n_root:'Тамыр', n_stem:'Сабақ', n_leaf:'Жапырақ', n_flower:'Гүл', n_fruit:'Жеміс', n_seed:'Тұқым',
+      n_wheat:'Бидай', n_carrot:'Сәбіз', n_tomato:'Қызанақ', n_potato:'Картоп', n_sunflower:'Күнбағыс', n_spruce:'Шырша', n_cactus:'Кактус', n_grass:'Шөп', n_clover:'Беде', n_daisy:'Түймедақ',
+      n_lion:'Арыстан', n_wolf:'Қасқыр', n_fox:'Түлкі', n_bear:'Аю', n_deer:'Бұғы', n_cow:'Сиыр', n_sheep:'Қой', n_hen:'Тауық', n_dog:'Ит', n_cat:'Мысық',
+      n_swan:'Аққу', n_duck:'Үйрек', n_bird:'Құс', n_squirrel:'Тиін', n_hamster:'Хомяк', n_ant:'Құмырсқа', n_hedgehog:'Кірпі', n_bat:'Жарқанат',
+      n_water:'Су', n_sun:'Жарық', n_warmth:'Жылу', n_candy:'Кәмпит', n_toy:'Ойыншық', n_phone:'Телефон', n_console:'Ойын приставкасы', n_shoes:'Кроссовка', n_ball:'Доп', n_car:'Көлік',
+      findpart:'Өсімдіктің бөлігін тап:', namepart:'Бұл бөлік қалай аталады?', missingpart:'Қай бөлігі жетіспейді?',
+      wildcultq:'Жабайы ма, мәдени ме?', wildanimalq:'Жабайы ма, үй жануары ма?', needq:'Бұл өсімдікке керек пе?', adaptq:'Бұл жануар қысты қалай өткізеді?',
+      findwild:'Жабайы өсімдікті тап.', findcult:'Мәдени өсімдікті тап.', findwildan:'Жабайы жануарды тап.', finddomestic:'Үй жануарын тап.',
+      sortplants:'Өсімдіктерді бөл: жабайы және мәдени.', sortanimals:'Жануарларды бөл: жабайы және үй жануарлары.', sortwinter:'Қысты қалай өткізеді? Орындарына қой.',
+      wholives:'Мұнда кім тұрады?', givegrow:'Өсімдіктің өсуіне керектінің бәрін таңда.', whatlacks:'Өсімдікке жаман. Оған не жетіспейді?',
+      whomigrate:'Кім оңтүстікке ұшады?', whostore:'Кім қысқа жем жинайды?', whosleep:'Кім бүкіл қыс ұйықтайды?',
+      wildsay:'Жабайы өсімдік өздігінен өседі, адамның көмегінсіз.', cultsay:'Мәдени өсімдікті адам егеді және өсіреді.',
+      wildansay:'Жабайы жануар еркін өмір сүреді, жемді өзі табады.', domsay:'Үй жануары адамның қасында тұрады, оған адам қамқор болады.',
+      needsay:'Өсімдікке су, жарық және жылу керек.', notneedsay:'Бұл өсімдікке керек емес.',
+      a_migration:'Жылы жаққа ұшады.', a_foodstore:'Қысқа жем жинайды.', a_hibernate:'Бүкіл қыс ұйықтайды.',
+      lack_water:'Су керек.', lack_light:'Жарық керек.', lack_warm:'Жылу керек.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -66,7 +98,23 @@
       was:'There were', addmore:'more were added.', tookaway:'were taken away.', howmanynow:'How many are there now?', firstbox:'The first box has', secondbox:'The second box has', morek:'more.', lessk:'fewer.', howsecond:'How many are in the second box?', whichop:'Which operation fits?',
       nextbead:'Which bead comes next?', missbead:'Which bead is hiding?', buildbeads:'Continue the pattern: choose two beads.', repeats:'Look how the pattern repeats!',
       tfq:'True or false?', findwrong:'Find the false equation.', findright:'Find the true equation.',
-      flatq:'Flat or solid?', findflat:'Find the flat shape.', findsolid:'Find the solid shape.', sortq:'Sort into the baskets.', flatsay:'A flat shape is like a drawing on paper.', solidsay:'A solid shape can be held in your hands.'
+      flatq:'Flat or solid?', findflat:'Find the flat shape.', findsolid:'Find the solid shape.', sortq:'Sort into the baskets.', flatsay:'A flat shape is like a drawing on paper.', solidsay:'A solid shape can be held in your hands.',
+      n_root:'Root', n_stem:'Stem', n_leaf:'Leaf', n_flower:'Flower', n_fruit:'Fruit', n_seed:'Seed',
+      n_wheat:'Wheat', n_carrot:'Carrot', n_tomato:'Tomato', n_potato:'Potato', n_sunflower:'Sunflower', n_spruce:'Spruce', n_cactus:'Cactus', n_grass:'Grass', n_clover:'Clover', n_daisy:'Daisy',
+      n_lion:'Lion', n_wolf:'Wolf', n_fox:'Fox', n_bear:'Bear', n_deer:'Deer', n_cow:'Cow', n_sheep:'Sheep', n_hen:'Hen', n_dog:'Dog', n_cat:'Cat',
+      n_swan:'Swan', n_duck:'Duck', n_bird:'Bird', n_squirrel:'Squirrel', n_hamster:'Hamster', n_ant:'Ant', n_hedgehog:'Hedgehog', n_bat:'Bat',
+      n_water:'Water', n_sun:'Light', n_warmth:'Warmth', n_candy:'Candy', n_toy:'Toy', n_phone:'Phone', n_console:'Game console', n_shoes:'Sneakers', n_ball:'Ball', n_car:'Car',
+      findpart:'Find the plant part:', namepart:'What is this part called?', missingpart:'Which part is missing?',
+      wildcultq:'Wild or cultivated?', wildanimalq:'Wild or domestic?', needq:'Does the plant need this?', adaptq:'How does this animal get through winter?',
+      findwild:'Find the wild plant.', findcult:'Find the cultivated plant.', findwildan:'Find the wild animal.', finddomestic:'Find the domestic animal.',
+      sortplants:'Sort the plants: wild and cultivated.', sortanimals:'Sort the animals: wild and domestic.', sortwinter:'How does each one spend winter? Sort them.',
+      wholives:'Who lives here?', givegrow:'Choose everything the plant needs to grow.', whatlacks:'The plant is not well. What is missing?',
+      whomigrate:'Who flies away south?', whostore:'Who stores food for winter?', whosleep:'Who sleeps all winter?',
+      wildsay:'A wild plant grows by itself, without help from people.', cultsay:'A cultivated plant is planted and grown by people.',
+      wildansay:'A wild animal lives free and finds its own food.', domsay:'A domestic animal lives near people, and people take care of it.',
+      needsay:'A plant needs water, light and warmth.', notneedsay:'The plant does not need this.',
+      a_migration:'It flies to warm lands.', a_foodstore:'It stores food for winter.', a_hibernate:'It sleeps all winter.',
+      lack_water:'It needs water.', lack_light:'It needs light.', lack_warm:'It needs warmth.'
     }
   };
   var PRAISE = {
@@ -107,6 +155,8 @@
         var r = v.k === 'add' ? ['f:was', v.a, 'f:addmore', v.b] : v.k === 'sub' ? ['f:was', v.a, 'f:tookaway', v.b] : ['f:firstbox', v.a, 'f:secondbox', v.b, v.k === 'more' ? 'f:morek' : 'f:lessk'];
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
+      findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
+      named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
     kz: {
@@ -128,6 +178,8 @@
         var r = v.k === 'add' ? ['f:was', v.a, 'f:wasend', 'f:addmore', v.b, 'f:addend'] : v.k === 'sub' ? ['f:was', v.a, 'f:wasend', v.b, 'f:tookaway'] : ['f:firstbox', v.a, 'f:secondbox', v.b, v.k === 'more' ? 'f:morek' : 'f:lessk'];
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
+      findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
+      named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
     en: {
@@ -149,6 +201,8 @@
         var r = v.k === 'add' ? ['f:was', v.a, '.', v.b, 'f:addmore'] : v.k === 'sub' ? ['f:was', v.a, '.', v.b, 'f:tookaway'] : ['f:firstbox', v.a, '.', 'f:secondbox', v.b, v.k === 'more' ? 'f:morek' : 'f:lessk'];
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
+      findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
+      named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     }
   };

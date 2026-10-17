@@ -94,7 +94,27 @@
   + '@keyframes mxFall{from{transform:translateY(0) rotate(0)}to{transform:translateY(640px) rotate(240deg)}}'
   + '.mxs-rainbow{background:linear-gradient(#FF9EC7 0%,#FFD98A 40%,#A5E9D8 75%,#8FD0FF 100%);}'
   + '.mxs-rainbow .mxs-ground{height:76px;background:radial-gradient(130% 100% at 20% 100%,#7E6BD6 58%,transparent 59%),radial-gradient(130% 100% at 90% 100%,#9A82E8 55%,transparent 56%);}'
-  + '.mxs-night .mxs-top,.mxs-sky .mxs-top,.mxs-play .mxs-top,.mxs-garden .mxs-top,.mxs-ocean .mxs-top,.mxs-sunset .mxs-top,.mxs-candy .mxs-top,.mxs-pond .mxs-top,.mxs-forest .mxs-top,.mxs-workshop .mxs-top,.mxs-snow .mxs-top,.mxs-space .mxs-top,.mxs-rainbow .mxs-top{padding-top:14px;}'
+  + '.mxs-meadow{background:linear-gradient(#8FD8F2 0%,#C9F0A8 52%,#FFF2A0 100%);}'
+  + '.mxs-meadow .mxs-ground{height:80px;background:radial-gradient(130% 100% at 20% 100%,#4FB85A 58%,transparent 59%),radial-gradient(130% 100% at 92% 100%,#6CCB6C 55%,transparent 56%);}'
+  + '.mxs-greenhouse{background:linear-gradient(#6FD3C2 0%,#BDEFE0 55%,#F2FFF0 100%);}'
+  + '.mxs-greenhouse .mxs-ground{height:78px;background:radial-gradient(130% 100% at 22% 100%,#8A5A34 58%,transparent 59%),radial-gradient(130% 100% at 90% 100%,#A06C40 55%,transparent 56%);}'
+  + '.mxs-farm{background:linear-gradient(#7FCBFF 0%,#CFEBFF 50%,#F5E2A8 100%);}'
+  + '.mxs-farm .mxs-ground{height:80px;background:radial-gradient(130% 100% at 18% 100%,#E0B15A 58%,transparent 59%),radial-gradient(130% 100% at 90% 100%,#C9963F 55%,transparent 56%);}'
+  + '.mxs-autumn{background:linear-gradient(#F59A4B 0%,#F8C979 55%,#FCEBC0 100%);}'
+  + '.mxs-autumn .mxs-ground{height:78px;background:radial-gradient(130% 100% at 20% 100%,#B5652A 58%,transparent 59%),radial-gradient(130% 100% at 90% 100%,#9A4E1E 55%,transparent 56%);}'
+  /* сортировка по корзинам */
+  + '.mxs-sort{display:flex;flex-direction:column;align-items:center;gap:14px;width:min(100%,330px);}'
+  + '.mxs-sits{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;min-height:70px;}'
+  + '.mxs-sit{width:64px;height:64px;border-radius:18px;border:3px solid transparent;background:#fff;box-shadow:0 4px 0 rgba(0,0,0,.18);font-size:2.2rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:mxIn .35s backwards;padding:0;}'
+  + '.mxs-sit svg{width:46px;height:46px;}'
+  + '.mxs-sit.sel{border-color:#FFB400;transform:translateY(-6px) scale(1.08);box-shadow:0 10px 0 rgba(0,0,0,.2);}'
+  + '.mxs-bks{display:flex;gap:10px;width:100%;}'
+  + '.mxs-bk{flex:1;min-height:108px;border-radius:20px;border:none;padding:6px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:3px;font:800 .95rem/1.1 "Baloo 2",sans-serif;color:#fff;box-shadow:inset 0 -6px 0 rgba(0,0,0,.16),0 5px 0 rgba(0,0,0,.2);text-shadow:0 2px 0 rgba(0,0,0,.18);}'
+  + '.mxs-bk .t{font-size:1.5rem;line-height:1;}.mxs-bks.n3 .mxs-bk{font-size:.78rem;}'
+  + '.mxs-bk .got{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;}'
+  + '.mxs-bk .got span{background:#fff;border-radius:10px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;animation:mxIn .3s;text-shadow:none;}'
+  + '.mxs-bk .got span svg{width:24px;height:24px;}'
+  + '.mxs-night .mxs-top,.mxs-sky .mxs-top,.mxs-play .mxs-top,.mxs-garden .mxs-top,.mxs-ocean .mxs-top,.mxs-sunset .mxs-top,.mxs-candy .mxs-top,.mxs-pond .mxs-top,.mxs-forest .mxs-top,.mxs-workshop .mxs-top,.mxs-snow .mxs-top,.mxs-space .mxs-top,.mxs-rainbow .mxs-top,.mxs-meadow .mxs-top,.mxs-greenhouse .mxs-top,.mxs-farm .mxs-top,.mxs-autumn .mxs-top{padding-top:14px;}'
   + '.mxs-trail{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.75);border-radius:999px;padding:6px 10px;box-shadow:0 3px 0 rgba(0,0,0,.12);}'
   + '.mxs-step{flex:1 1 0;min-width:0;overflow:hidden;height:18px;border-radius:9px;background:#D7E3F1;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .3s,transform .3s;}'
   + '.mxs-step.on{background:linear-gradient(#5BE3A4,#2FBF80);transform:scale(1.08);}'
@@ -283,6 +303,47 @@
   // Задание-«цена» для игр: собирается из частей
   function T(t){ return t; }
 
+
+  /* Сортировка по корзинам (2–3 корзины): нажми предмет, потом корзину. Неверная корзина — подсказка. */
+  function sortTask(o){
+    var items = o.items, buckets = o.buckets;
+    return {
+      sig:o.sig, expr:'', say:o.say, ans:'ok', gate:false, cap:o.cap,
+      field:function(el, X, task){
+        var left = items.length, sel = null, cards = [];
+        el.innerHTML = '<div class="mxs-sort"><div class="mxs-sits"></div><div class="mxs-bks n' + buckets.length + '">'
+          + buckets.map(function(b){ return '<button type="button" class="mxs-bk" data-k="' + b.k + '" style="background:linear-gradient(' + b.c1 + ',' + b.c2 + ')"><span class="t">' + b.icon + '</span><span>' + b.name + '</span><div class="got"></div></button>'; }).join('') + '</div></div>';
+        var row = el.querySelector('.mxs-sits');
+        items.forEach(function(it, i){
+          var b = document.createElement('button'); b.type = 'button'; b.className = 'mxs-sit'; b.innerHTML = it.h; b.style.animationDelay = (i*.06) + 's'; b._it = it;
+          b.addEventListener('click', function(){ if(task._done || b._placed) return; cards.forEach(function(c){ c.classList.remove('sel'); }); sel = b; b.classList.add('sel'); SFX.tap(i + 1); });
+          row.appendChild(b); cards.push(b);
+        });
+        function drop(k, b){
+          if(task._done || !b || b._placed) return;
+          if(b._it.k !== k){ task._done = true; SFX.no(); task.submit('no', b); return; }
+          b._placed = true; b.classList.remove('sel'); sel = null;
+          var bk = el.querySelector('.mxs-bk[data-k="' + k + '"] .got'), sp = document.createElement('span'); sp.innerHTML = b._it.h; bk.appendChild(sp); b.style.visibility = 'hidden';
+          SFX.drop(); left--;
+          if(left === 0){ task._done = true; X.sleep(450).then(function(ok){ if(ok) task.submit('ok', bk); }); }
+        }
+        [].slice.call(el.querySelectorAll('.mxs-bk')).forEach(function(bk){ bk.addEventListener('click', function(){ if(sel) drop(bk.getAttribute('data-k'), sel); }); });
+        task.auto = function(wrong){
+          var rem = cards.filter(function(c){ return !c._placed; });
+          if(wrong){ var c0 = rem[0], other = buckets.filter(function(b){ return b.k !== c0._it.k; })[0].k; drop(other, c0); return; }
+          rem.forEach(function(c){ drop(c._it.k, c); });
+        };
+      },
+      hintSay:o.hintSay || [], hintExpr:'',
+      hint:function(el){
+        el.innerHTML = '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">' + buckets.map(function(b){
+          return '<div class="mxs-hbk" style="display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border-radius:18px;padding:8px 10px;box-shadow:0 4px 0 rgba(0,0,0,.14);min-width:92px;"><b style="font:800 .95rem \'Baloo 2\',sans-serif;color:#25324A;">' + b.icon + ' ' + b.name + '</b><div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;">'
+            + items.filter(function(i){ return i.k === b.k; }).map(function(i){ return '<span style="font-size:1.8rem;display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;">' + i.h + '</span>'; }).join('') + '</div></div>';
+        }).join('') + '</div>';
+        [].slice.call(el.querySelectorAll('.mxs-hbk svg')).forEach(function(sv){ sv.style.width = '32px'; sv.style.height = '32px'; });
+      }
+    };
+  }
   /* ---------- движок ---------- */
   function run(cfg){
     var root = document.getElementById(cfg.root);
@@ -313,6 +374,10 @@
       if(th === 'snow'){ for(var f=0;f<9;f++) h += '<span class="mxs-flake" style="left:' + rnd(2,96) + '%;animation-duration:' + (9 + f*1.7) + 's;animation-delay:-' + (f*1.9) + 's">' + (f%3 ? '❄' : '❅') + '</span>'; h += '<span class="mxs-sun" style="animation:none">⛄</span>'; }
       if(th === 'space'){ for(var k=0;k<18;k++) h += '<span class="mxs-star" style="left:' + rnd(2,98) + '%;top:' + rnd(2,72) + '%;animation-delay:-' + (Math.random()*2.4).toFixed(2) + 's"></span>'; h += '<span class="mxs-sun">🪐</span>'; }
       if(th === 'rainbow'){ for(var rb=0;rb<3;rb++) h += '<span class="mxs-cloud" style="top:' + (60 + rb*80) + 'px;animation-duration:' + (34 + rb*15) + 's;animation-delay:-' + (rb*12) + 's;transform:scale(' + (.7 + rb*.15) + ')"></span>'; h += '<span class="mxs-sun" style="animation:none">🌈</span>'; }
+      if(th === 'meadow'){ for(var mb=0;mb<3;mb++) h += '<span class="mxs-cloud" style="top:' + (60 + mb*80) + 'px;animation-duration:' + (34 + mb*15) + 's;animation-delay:-' + (mb*12) + 's;transform:scale(' + (.7 + mb*.15) + ')"></span>'; h += '<span class="mxs-sun" style="animation:none">☀️</span>'; }
+      if(th === 'greenhouse'){ h += '<span class="mxs-sun" style="animation:none">🪴</span>'; }
+      if(th === 'farm'){ for(var fb=0;fb<2;fb++) h += '<span class="mxs-cloud" style="top:' + (60 + fb*90) + 'px;animation-duration:' + (36 + fb*14) + 's;animation-delay:-' + (fb*14) + 's;transform:scale(' + (.75 + fb*.15) + ')"></span>'; h += '<span class="mxs-sun" style="animation:none">🏡</span>'; }
+      if(th === 'autumn'){ for(var al=0;al<8;al++) h += '<span class="mxs-flake" style="left:' + rnd(2,96) + '%;animation-duration:' + (10 + al*1.6) + 's;animation-delay:-' + (al*2.1) + 's">🍂</span>'; h += '<span class="mxs-sun" style="animation:none">🍁</span>'; }
       if(th === 'night'){ for(var j=0;j<16;j++) h += '<span class="mxs-star" style="left:' + rnd(2,98) + '%;top:' + rnd(2,70) + '%;animation-delay:-' + (Math.random()*2.4).toFixed(2) + 's"></span>'; h += '<span class="mxs-sun">🌙</span>'; }
       
       
@@ -696,6 +761,6 @@
   window.MX = {
     run:run, rnd:rnd, pick:pick, shuffle:shuffle, o:o, grp:grp, frames:frames, framesAnim:framesAnim, numOpts:numOpts, SYM3:SYM3, NE:NE, cmpSym:cmpSym,
     Q:Q, QB:QB, OKV:OKV, exprHtml:exprHtml, buildBasket:buildBasket, countTap:countTap, popBalloons:popBalloons,
-    hops:hops, seesaw:seesaw, dropSum:dropSum, EMOJIS:EMOJIS, T:T, BALLOON_COLORS:BALLOON_COLORS
+    hops:hops, sortTask:sortTask, seesaw:seesaw, dropSum:dropSum, EMOJIS:EMOJIS, T:T, BALLOON_COLORS:BALLOON_COLORS
   };
 })();
