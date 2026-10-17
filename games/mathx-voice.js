@@ -61,7 +61,19 @@
       n_plane:'Самолёт', n_butterfly:'Бабочка', n_fish:'Рыба', n_boat:'Парусник', n_bike:'Велосипед',
       moveq:'Как это движется?', findfly:'Найди, что летает.', findswim:'Найди, что плавает.', findground:'Найди, что движется по земле.', sortmove:'Как это движется? Разложи по местам.',
       flysay:'Это летает по воздуху.', swimsay:'Это плавает по воде.', groundsay:'Это движется по земле.',
-      wheremove:'Где это движется?'
+      wheremove:'Где это движется?',
+      n_rocket:'Ракета', n_telescope:'Телескоп', n_satellite:'Спутник', n_clock:'Часы', n_calendar:'Календарь', n_hourglass:'Песочные часы',
+      cat_space:'Космос', cat_time:'Время', use_space:'Изучать космос', use_time:'Измерять время', usewhat:'Для чего это нужно?', findit:'Найди:',
+      findtime:'Найди, чем измеряют время.', findspace:'Найди, чем изучают космос.', sortst:'Для космоса или для времени? Разложи.',
+      q_rocket:'Что летит в космос?', q_telescope:'Чем смотрят на звёзды?', q_satellite:'Что летает вокруг Земли?', q_clock:'Что показывает, который час?', q_calendar:'Где смотреть дату?', q_hourglass:'Что отмеряет время песком?',
+      fact_rocket:'Ракета летит в космос.', fact_telescope:'Телескопом смотрят на звёзды и планеты.', fact_satellite:'Спутник летает вокруг Земли и помогает изучать космос.', fact_clock:'Часы показывают время.', fact_calendar:'Календарь показывает дни и месяцы.', fact_hourglass:'Песочные часы отмеряют время песком.',
+      spacesay:'Это нужно, чтобы изучать космос.', timesay:'Это нужно, чтобы измерять время.',
+      n_key:'Ключ', n_wrench:'Гаечный ключ', n_gear:'Шестерёнка', n_hammer:'Молоток', n_book:'Книга', n_banana:'Банан',
+      magnetq:'Притянет это магнит?', findmagnet:'Найди, что притянет магнит.', findnotmagnet:'Найди, что магнит не притянет.', pickmagnet:'Выбери всё, что притянет магнит.', sortmagnet:'Притянет магнит или нет? Разложи.',
+      magyes:'Магнит притягивает железные предметы.', magno:'Магнит не притягивает это: оно не из железа.',
+      n_globe:'Глобус', n_orange:'Апельсин', n_dice:'Кубик', n_ruler:'Линейка', n_triangle:'Угольник',
+      roundq:'Круглый, как Земля?', findround:'Найди предмет, похожий на Землю.', findnotround:'Найди предмет, который не круглый.', pickround:'Выбери всё, что круглое, как Земля.', sortround:'Круглый или нет? Разложи.',
+      roundsay:'Он круглый, как Земля. Земля — шар.', notroundsay:'Он не круглый. А Земля круглая, как шар.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -107,7 +119,19 @@
       n_plane:'Ұшақ', n_butterfly:'Көбелек', n_fish:'Балық', n_boat:'Желкенді кеме', n_bike:'Велосипед',
       moveq:'Бұл қалай қозғалады?', findfly:'Ұшатынын тап.', findswim:'Жүзетінін тап.', findground:'Жермен жүретінін тап.', sortmove:'Бұл қалай қозғалады? Орнына бөліп қой.',
       flysay:'Бұл ауада ұшады.', swimsay:'Бұл суда жүзеді.', groundsay:'Бұл жермен жүреді.',
-      wheremove:'Бұл қайда қозғалады?'
+      wheremove:'Бұл қайда қозғалады?',
+      n_rocket:'Зымыран', n_telescope:'Телескоп', n_satellite:'Серіктес', n_clock:'Сағат', n_calendar:'Күнтізбе', n_hourglass:'Құм сағат',
+      cat_space:'Ғарыш', cat_time:'Уақыт', use_space:'Ғарышты зерттеу', use_time:'Уақытты өлшеу', usewhat:'Бұл не үшін керек?', findit:'Тап:',
+      findtime:'Уақытты өлшейтінін тап.', findspace:'Ғарышты зерттейтінін тап.', sortst:'Ғарыш үшін бе, уақыт үшін бе? Бөліп қой.',
+      q_rocket:'Ғарышқа не ұшады?', q_telescope:'Жұлдыздарды немен қараймыз?', q_satellite:'Жерді айналып не ұшады?', q_clock:'Сағат неше екенін не көрсетеді?', q_calendar:'Күнді қайдан қарауға болады?', q_hourglass:'Уақытты құммен не өлшейді?',
+      fact_rocket:'Зымыран ғарышқа ұшады.', fact_telescope:'Телескоппен жұлдыздар мен планеталарды қарайды.', fact_satellite:'Серіктес Жерді айналып ұшып, ғарышты зерттеуге көмектеседі.', fact_clock:'Сағат уақытты көрсетеді.', fact_calendar:'Күнтізбе күндер мен айларды көрсетеді.', fact_hourglass:'Құм сағат уақытты құммен өлшейді.',
+      spacesay:'Бұл ғарышты зерттеу үшін керек.', timesay:'Бұл уақытты өлшеу үшін керек.',
+      n_key:'Кілт', n_wrench:'Сомын кілті', n_gear:'Тісті доңғалақ', n_hammer:'Балға', n_book:'Кітап', n_banana:'Банан',
+      magnetq:'Магнит мұны тартады ма?', findmagnet:'Магнит тартатынын тап.', findnotmagnet:'Магнит тартпайтынын тап.', pickmagnet:'Магнит тартатынның бәрін таңда.', sortmagnet:'Магнит тарта ма, жоқ па? Бөліп қой.',
+      magyes:'Магнит темір заттарды тартады.', magno:'Магнит мұны тартпайды: ол темірден емес.',
+      n_globe:'Глобус', n_orange:'Апельсин', n_dice:'Текше', n_ruler:'Сызғыш', n_triangle:'Үшбұрыш сызғыш',
+      roundq:'Жер сияқты дөңгелек пе?', findround:'Жерге ұқсайтын затты тап.', findnotround:'Дөңгелек емес затты тап.', pickround:'Жер сияқты дөңгелектің бәрін таңда.', sortround:'Дөңгелек пе, жоқ па? Бөліп қой.',
+      roundsay:'Ол Жер сияқты дөңгелек. Жер — шар тәрізді.', notroundsay:'Ол дөңгелек емес. Ал Жер шар сияқты дөңгелек.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -153,7 +177,19 @@
       n_plane:'Plane', n_butterfly:'Butterfly', n_fish:'Fish', n_boat:'Sailboat', n_bike:'Bicycle',
       moveq:'How does it move?', findfly:'Find what flies.', findswim:'Find what swims.', findground:'Find what moves on the ground.', sortmove:'How does it move? Sort them.',
       flysay:'It flies in the air.', swimsay:'It swims in the water.', groundsay:'It moves on the ground.',
-      wheremove:'Where does it move?'
+      wheremove:'Where does it move?',
+      n_rocket:'Rocket', n_telescope:'Telescope', n_satellite:'Satellite', n_clock:'Clock', n_calendar:'Calendar', n_hourglass:'Hourglass',
+      cat_space:'Space', cat_time:'Time', use_space:'To study space', use_time:'To measure time', usewhat:'What is this for?', findit:'Find:',
+      findtime:'Find what measures time.', findspace:'Find what we use to study space.', sortst:'For space or for time? Sort them.',
+      q_rocket:'What flies into space?', q_telescope:'What do we look at stars with?', q_satellite:'What flies around the Earth?', q_clock:'What shows what time it is?', q_calendar:'Where can we look up the date?', q_hourglass:'What measures time with sand?',
+      fact_rocket:'A rocket flies into space.', fact_telescope:'We look at stars and planets with a telescope.', fact_satellite:'A satellite flies around the Earth and helps us study space.', fact_clock:'A clock shows the time.', fact_calendar:'A calendar shows days and months.', fact_hourglass:'An hourglass measures time with sand.',
+      spacesay:'This is used to study space.', timesay:'This is used to measure time.',
+      n_key:'Key', n_wrench:'Wrench', n_gear:'Gear', n_hammer:'Hammer', n_book:'Book', n_banana:'Banana',
+      magnetq:'Will a magnet attract this?', findmagnet:'Find what a magnet will attract.', findnotmagnet:'Find what a magnet will not attract.', pickmagnet:'Pick everything a magnet will attract.', sortmagnet:'Does a magnet attract it or not? Sort them.',
+      magyes:'A magnet attracts iron objects.', magno:'A magnet does not attract this: it is not made of iron.',
+      n_globe:'Globe', n_orange:'Orange', n_dice:'Cube', n_ruler:'Ruler', n_triangle:'Set square',
+      roundq:'Is it round, like the Earth?', findround:'Find something that looks like the Earth.', findnotround:'Find something that is not round.', pickround:'Pick everything that is round like the Earth.', sortround:'Round or not? Sort them.',
+      roundsay:'It is round, like the Earth. The Earth is a ball.', notroundsay:'It is not round. But the Earth is round like a ball.'
     }
   };
   var PRAISE = {
@@ -196,6 +232,7 @@
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
       findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
+      findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
@@ -220,6 +257,7 @@
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
       findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
+      findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
@@ -244,6 +282,7 @@
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
       findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
+      findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     }
