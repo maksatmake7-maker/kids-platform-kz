@@ -24,7 +24,10 @@
       missing:'Какое число спряталось?', pickSign:'Выбери знак.', pop:'Лопни столько шаров:', blank:'сколько',
       look:'Смотри!', tapall:'Нажми на каждый предмет.', fly:'Улетают шарики!', which:'Что больше?', ready:'Нажми на галочку, когда будет готово.',
       tengeq:'Сколько тенге?', pay:'Заплати', tenge:'тенге', collect:'Собери из монет', clockq:'Который час?', setclock:'Покажи стрелкой на часах', matchclock:'Найди такие часы',
-      half:'Найди половину числа', deal:'Раздай поровну, по одному каждому.', oneplate:'Сколько в одной тарелке?', breakbar:'Разломи шоколадку пополам.', tensin:'Сколько десятков в числе', countten:'Считай десятками!'
+      half:'Найди половину числа', deal:'Раздай поровну, по одному каждому.', oneplate:'Сколько в одной тарелке?', breakbar:'Разломи шоколадку пополам.', tensin:'Сколько десятков в числе', countten:'Считай десятками!',
+      onesin:'Сколько единиц в числе', wheremore:'Где больше?', whereless:'Где меньше?', same:'Поровну.', makeeq:'Сделай поровну: добавь или убери.',
+      frogjump:'На сколько прыгает лягушка?', next:'Какое число следующее?', findshape:'Найди:', whatis:'Что это?', findclosed:'Найди замкнутую линию.', findopen:'Найди незамкнутую линию.',
+      sh_tochka:'Точка', sh_pryamaya:'Прямая', sh_krivaya:'Кривая', sh_lomanaya:'Ломаная', sh_otrezok:'Отрезок', sh_luch:'Луч', sh_ugol:'Угол', sh_closed:'Замкнутая линия', sh_open:'Незамкнутая линия'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -33,7 +36,10 @@
       missing:'Қай сан жасырынды?', pickSign:'Белгіні таңда.', pop:'Мына санша шарды жар:', blank:'қанша',
       look:'Қарашы!', tapall:'Әр затқа бас.', fly:'Шарлар ұшып барады!', which:'Қайсысы көп?', ready:'Дайын болғанда құсбелгіні бас.',
       tengeq:'Неше теңге?', pay:'төле', tenge:'теңге', collect:'Монеталардан жина', clockq:'Сағат неше?', setclock:'Сағатта көрсет', matchclock:'Мынадай сағатты тап',
-      half:'санының жартысын тап', deal:'Тең бөл, әрқайсысына біреуден бер.', oneplate:'Бір тәрелкеде қанша?', breakbar:'Шоколадты екіге бөл.', tensin:'санында неше ондық бар?', countten:'Ондықтап санайық!'
+      half:'санының жартысын тап', deal:'Тең бөл, әрқайсысына біреуден бер.', oneplate:'Бір тәрелкеде қанша?', breakbar:'Шоколадты екіге бөл.', tensin:'санында неше ондық бар?', countten:'Ондықтап санайық!',
+      onesin:'санында неше бірлік бар?', wheremore:'Қайсысында көп?', whereless:'Қайсысында аз?', same:'Тең.', makeeq:'Тең ет: қос немесе ал.',
+      frogjump:'Бақа қанша секіреді?', next:'Келесі сан қандай?', findshape:'тап', whatis:'Бұл не?', findclosed:'Тұйық сызықты тап.', findopen:'Ашық сызықты тап.',
+      sh_tochka:'Нүкте', sh_pryamaya:'Түзу', sh_krivaya:'Қисық', sh_lomanaya:'Сынық сызық', sh_otrezok:'Кесінді', sh_luch:'Сәуле', sh_ugol:'Бұрыш', sh_closed:'Тұйық сызық', sh_open:'Ашық сызық'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -42,7 +48,10 @@
       missing:'Which number is hiding?', pickSign:'Pick the sign.', pop:'Pop this many balloons:', blank:'how many',
       look:'Look!', tapall:'Tap every item.', fly:'The balloons fly away!', which:'Which is more?', ready:'Press the check mark when ready.',
       tengeq:'How many tenge?', pay:'Pay', tenge:'tenge', collect:'Make with coins', clockq:'What time is it?', setclock:'Show on the clock', matchclock:'Find this clock',
-      half:'Find half of', deal:'Share equally, one for each.', oneplate:'How many on one plate?', breakbar:'Break the chocolate in half.', tensin:'How many tens in', countten:'Count by tens!'
+      half:'Find half of', deal:'Share equally, one for each.', oneplate:'How many on one plate?', breakbar:'Break the chocolate in half.', tensin:'How many tens in', countten:'Count by tens!',
+      onesin:'How many ones in', wheremore:'Which has more?', whereless:'Which has fewer?', same:'Equal.', makeeq:'Make them equal: add or remove.',
+      frogjump:'How far does the frog jump?', next:'What number comes next?', findshape:'Find:', whatis:'What is this?', findclosed:'Find the closed line.', findopen:'Find the open line.',
+      sh_tochka:'Point', sh_pryamaya:'Straight line', sh_krivaya:'Curve', sh_lomanaya:'Broken line', sh_otrezok:'Segment', sh_luch:'Ray', sh_ugol:'Angle', sh_closed:'Closed line', sh_open:'Open line'
     }
   };
   var PRAISE = {
@@ -77,6 +86,8 @@
       matchclock:function(v){ return ['f:matchclock', v.n]; },
       half:  function(v){ return ['f:half', v.n]; },
       tensin:function(v){ return ['f:tensin', v.n]; },
+      findshape:function(v){ return ['f:findshape', 'f:sh_'+v.k]; },
+      onesin:function(v){ return ['f:onesin', v.n]; },
       q:     function(v){ return ['f:'+v.k]; }
     },
     kz: {
@@ -92,6 +103,8 @@
       matchclock:function(v){ return [v.n, 'f:matchclock']; },
       half:  function(v){ return [v.n, 'f:half']; },
       tensin:function(v){ return [v.n, 'f:tensin']; },
+      findshape:function(v){ return ['f:sh_'+v.k, 'f:findshape']; },
+      onesin:function(v){ return [v.n, 'f:onesin']; },
       q:     function(v){ return ['f:'+v.k]; }
     },
     en: {
@@ -107,6 +120,8 @@
       matchclock:function(v){ return ['f:matchclock', v.n]; },
       half:  function(v){ return ['f:half', v.n]; },
       tensin:function(v){ return ['f:tensin', v.n]; },
+      findshape:function(v){ return ['f:findshape', 'f:sh_'+v.k]; },
+      onesin:function(v){ return ['f:onesin', v.n]; },
       q:     function(v){ return ['f:'+v.k]; }
     }
   };
@@ -127,15 +142,20 @@
     Object.keys(MISC[L]).forEach(function(k){ out.push({id:'m_'+k, text:MISC[L][k], group:'события'}); });
     return out;
   }
+  // число → один клип (0–20, круглые десятки) или два: «тридцать» + «пять»
+  function pushNum(L, r, n){
+    if(numText(L,n)){ r.push({id:'n'+n, text:numText(L,n)}); return; }
+    if(n > 20 && n < 100){ var te = Math.floor(n/10)*10, on = n % 10; r.push({id:'n'+te, text:numText(L,te)}); if(on) r.push({id:'n'+on, text:numText(L,on)}); }
+  }
   // токены → клипы [{id,text}]
   function clips(tokens, L){
     L = L || lang(); var r = [];
     tokens.forEach(function(t){
-      if(typeof t === 'number'){ if(numText(L,t)) r.push({id:'n'+t, text:numText(L,t)}); return; }
+      if(typeof t === 'number'){ pushNum(L, r, t); return; }
       if(t === '.'){ return; }
       if(typeof t === 'string' && t.indexOf('f:') === 0){ var k = t.slice(2); if(F[L][k]) r.push({id:'f_'+k, text:F[L][k]}); return; }
       if(SYM[t]){ var key = SYM[t]; if(F[L][key]) r.push({id:'f_'+key, text:F[L][key]}); return; }
-      if(typeof t === 'string' && /^\d+$/.test(t)){ if(numText(L,+t)) r.push({id:'n'+t, text:numText(L,+t)}); return; }
+      if(typeof t === 'string' && /^\d+$/.test(t)){ pushNum(L, r, +t); return; }
       if(t && t.id) r.push(t);
     });
     return r;

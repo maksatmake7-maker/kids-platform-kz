@@ -77,7 +77,13 @@
   + '.mxs-ocean .mxs-ground{height:70px;background:radial-gradient(120% 100% at 25% 100%,#F2D78A 58%,transparent 59%),radial-gradient(120% 100% at 92% 100%,#E9C872 55%,transparent 56%);}'
   + '.mxs-sunset{background:linear-gradient(#5B4FB8 0%,#E0607E 48%,#FFB46B 100%);}'
   + '.mxs-sunset .mxs-ground{height:76px;background:radial-gradient(130% 100% at 20% 100%,#3A2C77 58%,transparent 59%),radial-gradient(130% 100% at 90% 100%,#4A3688 55%,transparent 56%);}'
-  + '.mxs-night .mxs-top,.mxs-sky .mxs-top,.mxs-play .mxs-top,.mxs-garden .mxs-top,.mxs-ocean .mxs-top,.mxs-sunset .mxs-top{padding-top:14px;}'
+  + '.mxs-candy{background:linear-gradient(#FF9ED8 0%,#FFC8E8 55%,#FFE9F5 100%);}'
+  + '.mxs-candy .mxs-ground{height:80px;background:radial-gradient(120% 100% at 22% 100%,#C78BFF 58%,transparent 59%),radial-gradient(120% 100% at 90% 100%,#A66BE0 55%,transparent 56%);}'
+  + '.mxs-pond{background:linear-gradient(#58C6B5 0%,#A8E6CF 60%,#DDF6D2 100%);}'
+  + '.mxs-pond .mxs-ground{height:74px;background:radial-gradient(120% 100% at 18% 100%,#2E9E7A 58%,transparent 59%),radial-gradient(120% 100% at 88% 100%,#3DB88C 55%,transparent 56%);}'
+  + '.mxs-forest{background:linear-gradient(#5FBF7F 0%,#A5DE9B 55%,#F2F7B2 100%);}'
+  + '.mxs-forest .mxs-ground{height:84px;background:radial-gradient(120% 100% at 15% 100%,#1F7A4D 58%,transparent 59%),radial-gradient(120% 100% at 85% 100%,#2A9060 55%,transparent 56%);}'
+  + '.mxs-night .mxs-top,.mxs-sky .mxs-top,.mxs-play .mxs-top,.mxs-garden .mxs-top,.mxs-ocean .mxs-top,.mxs-sunset .mxs-top,.mxs-candy .mxs-top,.mxs-pond .mxs-top,.mxs-forest .mxs-top{padding-top:14px;}'
   + '.mxs-trail{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.75);border-radius:999px;padding:6px 10px;box-shadow:0 3px 0 rgba(0,0,0,.12);}'
   + '.mxs-step{flex:1 1 0;min-width:0;overflow:hidden;height:18px;border-radius:9px;background:#D7E3F1;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .3s,transform .3s;}'
   + '.mxs-step.on{background:linear-gradient(#5BE3A4,#2FBF80);transform:scale(1.08);}'
@@ -287,6 +293,8 @@
       var th = cfg.theme || 'market', h = '';
       if(th === 'sky'){ for(var i=0;i<4;i++) h += '<span class="mxs-cloud" style="top:' + (50 + i*70) + 'px;animation-duration:' + (38 + i*13) + 's;animation-delay:-' + (i*11) + 's;transform:scale(' + (.7 + i*.15) + ')"></span>'; }
       if(th === 'sunset'){ for(var q=0;q<10;q++) h += '<span class="mxs-star" style="left:' + rnd(2,98) + '%;top:' + rnd(2,34) + '%;animation-delay:-' + (Math.random()*2.4).toFixed(2) + 's"></span>'; h += '<span class="mxs-sun">🌅</span>'; }
+      if(th === 'candy'){ h += '<span class="mxs-sun">🍭</span>'; }
+      if(th === 'forest'){ h += '<span class="mxs-sun">🌳</span>'; }
       if(th === 'garden'){ h += '<span class="mxs-sun">🌼</span>'; }
       if(th === 'ocean'){ for(var w=0;w<3;w++) h += '<span class="mxs-cloud" style="top:' + (60 + w*80) + 'px;animation-duration:' + (36 + w*14) + 's;animation-delay:-' + (w*13) + 's;transform:scale(' + (.7 + w*.15) + ')"></span>'; }
       if(th === 'night'){ for(var j=0;j<16;j++) h += '<span class="mxs-star" style="left:' + rnd(2,98) + '%;top:' + rnd(2,70) + '%;animation-delay:-' + (Math.random()*2.4).toFixed(2) + 's"></span>'; h += '<span class="mxs-sun">🌙</span>'; }
