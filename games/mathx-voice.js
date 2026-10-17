@@ -10,27 +10,39 @@
     kz: ['нөл','бір','екі','үш','төрт','бес','алты','жеті','сегіз','тоғыз','он','он бір','он екі','он үш','он төрт','он бес','он алты','он жеті','он сегіз','он тоғыз','жиырма'],
     en: ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty']
   };
+  var NUMX = {   // круглые десятки 30–100 (клипы n30…n100)
+    ru: {30:'тридцать',40:'сорок',50:'пятьдесят',60:'шестьдесят',70:'семьдесят',80:'восемьдесят',90:'девяносто',100:'сто'},
+    kz: {30:'отыз',40:'қырық',50:'елу',60:'алпыс',70:'жетпіс',80:'сексен',90:'тоқсан',100:'жүз'},
+    en: {30:'thirty',40:'forty',50:'fifty',60:'sixty',70:'seventy',80:'eighty',90:'ninety',100:'one hundred'}
+  };
+  function numText(L, n){ return n <= 20 ? NUM[L][n] : NUMX[L][n]; }
   var F = {
     ru: {
       howmuch:'Сколько будет', plus:'плюс', minus:'минус', eq:'равно', ne:'не равно', gt:'больше, чем', lt:'меньше, чем',
       howmany:'Сколько всего?', left:'Сколько осталось?', count:'Посчитай!', put:'Положи в корзину столько:',
       inbasket:'В корзине', needbe:'Нужно, чтобы стало', addmiss:'Добавь, сколько не хватает.',
       missing:'Какое число спряталось?', pickSign:'Выбери знак.', pop:'Лопни столько шаров:', blank:'сколько',
-      look:'Смотри!', tapall:'Нажми на каждый предмет.', fly:'Улетают шарики!', which:'Что больше?', ready:'Нажми на галочку, когда будет готово.'
+      look:'Смотри!', tapall:'Нажми на каждый предмет.', fly:'Улетают шарики!', which:'Что больше?', ready:'Нажми на галочку, когда будет готово.',
+      tengeq:'Сколько тенге?', pay:'Заплати', tenge:'тенге', collect:'Собери из монет', clockq:'Который час?', setclock:'Покажи стрелкой на часах', matchclock:'Найди такие часы',
+      half:'Найди половину числа', deal:'Раздай поровну, по одному каждому.', oneplate:'Сколько в одной тарелке?', breakbar:'Разломи шоколадку пополам.', tensin:'Сколько десятков в числе', countten:'Считай десятками!'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
       howmany:'Барлығы неше?', left:'Неше қалды?', count:'Санап көр!', put:'Себетке мынаны сал:',
       inbasket:'Себетте', needbe:'болуы керек', addmiss:'Жетпегенін қос.',
       missing:'Қай сан жасырынды?', pickSign:'Белгіні таңда.', pop:'Мына санша шарды жар:', blank:'қанша',
-      look:'Қарашы!', tapall:'Әр затқа бас.', fly:'Шарлар ұшып барады!', which:'Қайсысы көп?', ready:'Дайын болғанда құсбелгіні бас.'
+      look:'Қарашы!', tapall:'Әр затқа бас.', fly:'Шарлар ұшып барады!', which:'Қайсысы көп?', ready:'Дайын болғанда құсбелгіні бас.',
+      tengeq:'Неше теңге?', pay:'төле', tenge:'теңге', collect:'Монеталардан жина', clockq:'Сағат неше?', setclock:'Сағатта көрсет', matchclock:'Мынадай сағатты тап',
+      half:'санының жартысын тап', deal:'Тең бөл, әрқайсысына біреуден бер.', oneplate:'Бір тәрелкеде қанша?', breakbar:'Шоколадты екіге бөл.', tensin:'санында неше ондық бар?', countten:'Ондықтап санайық!'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
       howmany:'How many in all?', left:'How many are left?', count:'Count them!', put:'Put this many in the basket:',
       inbasket:'In the basket there are', needbe:'We need', addmiss:'Add what is missing.',
       missing:'Which number is hiding?', pickSign:'Pick the sign.', pop:'Pop this many balloons:', blank:'how many',
-      look:'Look!', tapall:'Tap every item.', fly:'The balloons fly away!', which:'Which is more?', ready:'Press the check mark when ready.'
+      look:'Look!', tapall:'Tap every item.', fly:'The balloons fly away!', which:'Which is more?', ready:'Press the check mark when ready.',
+      tengeq:'How many tenge?', pay:'Pay', tenge:'tenge', collect:'Make with coins', clockq:'What time is it?', setclock:'Show on the clock', matchclock:'Find this clock',
+      half:'Find half of', deal:'Share equally, one for each.', oneplate:'How many on one plate?', breakbar:'Break the chocolate in half.', tensin:'How many tens in', countten:'Count by tens!'
     }
   };
   var PRAISE = {
@@ -59,6 +71,12 @@
       putsum:function(v){ return ['f:put', v.a, '+', v.b]; },
       addmiss:function(v){ return ['f:inbasket', v.a, 'f:needbe', v.c, 'f:addmiss']; },
       pop:   function(v){ return ['f:pop', v.n]; },
+      payx:  function(v){ return ['f:pay', v.n, 'f:tenge']; },
+      collect:function(v){ return ['f:collect', v.n, 'f:tenge']; },
+      setclock:function(v){ return ['f:setclock', v.n]; },
+      matchclock:function(v){ return ['f:matchclock', v.n]; },
+      half:  function(v){ return ['f:half', v.n]; },
+      tensin:function(v){ return ['f:tensin', v.n]; },
       q:     function(v){ return ['f:'+v.k]; }
     },
     kz: {
@@ -68,6 +86,12 @@
       putsum:function(v){ return ['f:put', v.a, '+', v.b]; },
       addmiss:function(v){ return ['f:inbasket', v.a, '.', v.c, 'f:needbe', 'f:addmiss']; },
       pop:   function(v){ return ['f:pop', v.n]; },
+      payx:  function(v){ return [v.n, 'f:tenge', 'f:pay']; },
+      collect:function(v){ return [v.n, 'f:tenge', 'f:collect']; },
+      setclock:function(v){ return [v.n, 'f:setclock']; },
+      matchclock:function(v){ return [v.n, 'f:matchclock']; },
+      half:  function(v){ return [v.n, 'f:half']; },
+      tensin:function(v){ return [v.n, 'f:tensin']; },
       q:     function(v){ return ['f:'+v.k]; }
     },
     en: {
@@ -77,6 +101,12 @@
       putsum:function(v){ return ['f:put', v.a, '+', v.b]; },
       addmiss:function(v){ return ['f:inbasket', v.a, '.', 'f:needbe', v.c, 'f:addmiss']; },
       pop:   function(v){ return ['f:pop', v.n]; },
+      payx:  function(v){ return ['f:pay', v.n, 'f:tenge']; },
+      collect:function(v){ return ['f:collect', v.n, 'f:tenge']; },
+      setclock:function(v){ return ['f:setclock', v.n]; },
+      matchclock:function(v){ return ['f:matchclock', v.n]; },
+      half:  function(v){ return ['f:half', v.n]; },
+      tensin:function(v){ return ['f:tensin', v.n]; },
       q:     function(v){ return ['f:'+v.k]; }
     }
   };
@@ -90,6 +120,7 @@
   function allClips(L){
     var out = [];
     NUM[L].forEach(function(t,i){ out.push({id:'n'+i, text:t, group:'числа'}); });
+    Object.keys(NUMX[L]).forEach(function(k){ out.push({id:'n'+k, text:NUMX[L][k], group:'числа'}); });
     Object.keys(F[L]).forEach(function(k){ out.push({id:'f_'+k, text:F[L][k], group:'фразы'}); });
     PRAISE[L].forEach(function(t,i){ out.push({id:'praise'+i, text:t, group:'похвала'}); });
     OOPS[L].forEach(function(t,i){ out.push({id:'oops'+i, text:t, group:'ошибка'}); });
@@ -100,11 +131,11 @@
   function clips(tokens, L){
     L = L || lang(); var r = [];
     tokens.forEach(function(t){
-      if(typeof t === 'number'){ r.push({id:'n'+t, text:NUM[L][t]}); return; }
+      if(typeof t === 'number'){ if(numText(L,t)) r.push({id:'n'+t, text:numText(L,t)}); return; }
       if(t === '.'){ return; }
       if(typeof t === 'string' && t.indexOf('f:') === 0){ var k = t.slice(2); if(F[L][k]) r.push({id:'f_'+k, text:F[L][k]}); return; }
       if(SYM[t]){ var key = SYM[t]; if(F[L][key]) r.push({id:'f_'+key, text:F[L][key]}); return; }
-      if(typeof t === 'string' && /^\d+$/.test(t)){ r.push({id:'n'+t, text:NUM[L][+t]}); return; }
+      if(typeof t === 'string' && /^\d+$/.test(t)){ if(numText(L,+t)) r.push({id:'n'+t, text:numText(L,+t)}); return; }
       if(t && t.id) r.push(t);
     });
     return r;
