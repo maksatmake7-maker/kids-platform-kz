@@ -114,6 +114,7 @@
   + '.mxs-bk .got{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;}'
   + '.mxs-bk .got span{background:#fff;border-radius:10px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;animation:mxIn .3s;text-shadow:none;}'
   + '.mxs-bk .got span svg{width:24px;height:24px;}'
+  + '.mxs-sort.txt .mxs-sit{width:auto;height:auto;min-width:56px;padding:9px 12px;font:800 1rem/1.15 "Baloo 2",sans-serif;color:#25324A;border-radius:16px;}.mxs-sort.txt .mxs-bk .got span{width:auto;height:auto;padding:3px 7px;font:800 .72rem/1.1 "Baloo 2",sans-serif;color:#25324A;border-radius:8px;}.mxs-sort.txt .mxs-bks.n3 .mxs-bk .t{font-size:1.2rem;}'
   + '.mxs-night .mxs-top,.mxs-sky .mxs-top,.mxs-play .mxs-top,.mxs-garden .mxs-top,.mxs-ocean .mxs-top,.mxs-sunset .mxs-top,.mxs-candy .mxs-top,.mxs-pond .mxs-top,.mxs-forest .mxs-top,.mxs-workshop .mxs-top,.mxs-snow .mxs-top,.mxs-space .mxs-top,.mxs-rainbow .mxs-top,.mxs-meadow .mxs-top,.mxs-greenhouse .mxs-top,.mxs-farm .mxs-top,.mxs-autumn .mxs-top{padding-top:14px;}'
   + '.mxs-trail{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.75);border-radius:999px;padding:6px 10px;box-shadow:0 3px 0 rgba(0,0,0,.12);}'
   + '.mxs-step{flex:1 1 0;min-width:0;overflow:hidden;height:18px;border-radius:9px;background:#D7E3F1;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .3s,transform .3s;}'
@@ -311,7 +312,7 @@
       sig:o.sig, expr:'', say:o.say, ans:'ok', gate:false, cap:o.cap,
       field:function(el, X, task){
         var left = items.length, sel = null, cards = [];
-        el.innerHTML = '<div class="mxs-sort"><div class="mxs-sits"></div><div class="mxs-bks n' + buckets.length + '">'
+        el.innerHTML = '<div class="mxs-sort' + (o.wide ? ' txt' : '') + '"><div class="mxs-sits"></div><div class="mxs-bks n' + buckets.length + '">'
           + buckets.map(function(b){ return '<button type="button" class="mxs-bk" data-k="' + b.k + '" style="background:linear-gradient(' + b.c1 + ',' + b.c2 + ')"><span class="t">' + b.icon + '</span><span>' + b.name + '</span><div class="got"></div></button>'; }).join('') + '</div></div>';
         var row = el.querySelector('.mxs-sits');
         items.forEach(function(it, i){
@@ -338,7 +339,7 @@
       hint:function(el){
         el.innerHTML = '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">' + buckets.map(function(b){
           return '<div class="mxs-hbk" style="display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border-radius:18px;padding:8px 10px;box-shadow:0 4px 0 rgba(0,0,0,.14);min-width:92px;"><b style="font:800 .95rem \'Baloo 2\',sans-serif;color:#25324A;">' + b.icon + ' ' + b.name + '</b><div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;">'
-            + items.filter(function(i){ return i.k === b.k; }).map(function(i){ return '<span style="font-size:1.8rem;display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;">' + i.h + '</span>'; }).join('') + '</div></div>';
+            + items.filter(function(i){ return i.k === b.k; }).map(function(i){ return o.wide ? '<span style="font:800 .8rem/1.1 Baloo 2,sans-serif;background:#F1F5FB;border-radius:8px;padding:3px 7px;">' + i.h + '</span>' : '<span style="font-size:1.8rem;display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;">' + i.h + '</span>'; }).join('') + '</div></div>';
         }).join('') + '</div>';
         [].slice.call(el.querySelectorAll('.mxs-hbk svg')).forEach(function(sv){ sv.style.width = '32px'; sv.style.height = '32px'; });
       }

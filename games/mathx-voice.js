@@ -85,7 +85,76 @@
       natlsay:'Это природный свет. Его даёт природа.', artlsay:'Это искусственный свет. Его сделал человек.',
       n_thunder:'Гроза', n_bell:'Колокольчик', n_radio:'Радио', n_trumpet:'Труба',
       soundq:'Звук природный или сделанный?', findnatsd:'Найди природный источник звука.', findartsd:'Найди искусственный источник звука.', sortsound:'Природный или искусственный звук? Разложи.',
-      natsay:'Это природный звук. Его издаёт природа.', artsay:'Это искусственный звук. Его создал человек.'
+      natsay:'Это природный звук. Его издаёт природа.', artsay:'Это искусственный звук. Его создал человек.',
+      r_l_a:'А',
+      r_l_b:'Б',
+      r_l_v:'В',
+      r_l_g:'Г',
+      r_l_d:'Д',
+      r_l_e:'Е',
+      r_l_yo:'Ё',
+      r_l_zh:'Ж',
+      r_l_z:'З',
+      r_l_i:'И',
+      r_l_j:'Й',
+      r_l_k:'К',
+      r_l_l:'Л',
+      r_l_m:'М',
+      r_l_n:'Н',
+      r_l_o:'О',
+      r_l_p:'П',
+      r_l_r:'Р',
+      r_l_s:'С',
+      r_l_t:'Т',
+      r_l_u:'У',
+      r_l_f:'Ф',
+      r_l_h:'Х',
+      r_l_c:'Ц',
+      r_l_ch:'Ч',
+      r_l_sh:'Ш',
+      r_l_shch:'Щ',
+      r_l_y:'Ы',
+      r_l_ye:'Э',
+      r_l_yu:'Ю',
+      r_l_ya:'Я',
+      r_w_apelsin:'Апельсин',
+      r_w_banan:'Банан',
+      r_w_vinograd:'Виноград',
+      r_w_grib:'Гриб',
+      r_w_dom:'Дом',
+      r_w_zhuk:'Жук',
+      r_w_zayac:'Заяц',
+      r_w_kot:'Кот',
+      r_w_lev:'Лев',
+      r_w_myach:'Мяч',
+      r_w_nosorog:'Носорог',
+      r_w_ogurec:'Огурец',
+      r_w_pingvin:'Пингвин',
+      r_w_ryba:'Рыба',
+      r_w_slon:'Слон',
+      r_w_tigr:'Тигр',
+      r_w_utka:'Утка',
+      r_w_flag:'Флаг',
+      r_w_homyak:'Хомяк',
+      r_w_cvetok:'Цветок',
+      r_w_cherepaha:'Черепаха',
+      r_w_shar:'Шар',
+      r_w_yabloko:'Яблоко',
+      r_w_syr:'Сыр',
+      r_w_lisa:'Лиса',
+      r_w_ptica:'Птица',
+      r_w_kniga:'Книга',
+      r_w_mashina:'Машина',
+      r_w_sobaka:'Собака',
+      r_w_korova:'Корова',
+      r_w_krokodil:'Крокодил',
+      r_w_velosiped:'Велосипед',
+      r_w_pomidory:'Помидоры',
+      findpic:'Найди картинку на букву:', letterq:'С какой буквы начинается слово?', missfirst:'Какой буквы не хватает в начале слова?', sortpics:'Раздай картинки по буквам.',
+vowelq:'Гласная или согласная?', findvowel:'Найди гласную букву.', findcons:'Найди согласную букву.', sortvc:'Гласные и согласные. Разложи.',
+vsay:'Гласную можно пропеть голосом: аааа.', csay:'Согласную пропеть нельзя: воздух встречает преграду.',
+syllq:'Сколько слогов в слове?', findsyll1:'Найди слово из одного слога.', findsyll2:'Найди слово из двух слогов.', findsyll3:'Найди слово из трёх слогов.', findsyll4:'Найди слово из четырёх слогов.',
+clapq:'Хлопни по слогам и нажми на галочку.', sortsyll:'Раздели слова по числу слогов.', syllsay:'В слове столько слогов, сколько в нём гласных.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -155,7 +224,12 @@
       natlsay:'Бұл табиғи жарық. Оны табиғат береді.', artlsay:'Бұл жасанды жарық. Оны адам жасады.',
       n_thunder:'Күн күркіреуі', n_bell:'Қоңырау', n_radio:'Радио', n_trumpet:'Керней',
       soundq:'Дыбыс табиғи ма, жасанды ма?', findnatsd:'Табиғи дыбыс көзін тап.', findartsd:'Жасанды дыбыс көзін тап.', sortsound:'Табиғи ма, жасанды ма? Бөліп қой.',
-      natsay:'Бұл табиғи дыбыс. Оны табиғат шығарады.', artsay:'Бұл жасанды дыбыс. Оны адам жасады.'
+      natsay:'Бұл табиғи дыбыс. Оны табиғат шығарады.', artsay:'Бұл жасанды дыбыс. Оны адам жасады.',
+      findpic:'Мына әріптен басталатын суретті тап:', letterq:'Сөз қай әріптен басталады?', missfirst:'Сөздің басында қай әріп жетіспейді?', sortpics:'Суреттерді әріптерге бөліп қой.',
+vowelq:'Дауысты ма, дауыссыз ба?', findvowel:'Дауысты әріпті тап.', findcons:'Дауыссыз әріпті тап.', sortvc:'Дауысты және дауыссыз. Бөліп қой.',
+vsay:'Дауыстыны дауыспен созып айтуға болады: ааа.', csay:'Дауыссызды созып айтуға болмайды: ауа кедергіге тап болады.',
+syllq:'Сөзде неше буын бар?', findsyll1:'Бір буынды сөзді тап.', findsyll2:'Екі буынды сөзді тап.', findsyll3:'Үш буынды сөзді тап.', findsyll4:'Төрт буынды сөзді тап.',
+clapq:'Буындап шапалақта да, құсбелгіні бас.', sortsyll:'Сөздерді буын санына қарай бөл.', syllsay:'Сөзде неше дауысты болса, сонша буын болады.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -225,7 +299,12 @@
       natlsay:'This is natural light. Nature makes it.', artlsay:'This is artificial light. People made it.',
       n_thunder:'Thunderstorm', n_bell:'Bell', n_radio:'Radio', n_trumpet:'Trumpet',
       soundq:'Natural or artificial sound?', findnatsd:'Find a natural source of sound.', findartsd:'Find an artificial source of sound.', sortsound:'Natural or artificial sound? Sort them.',
-      natsay:'This is a natural sound. Nature makes it.', artsay:'This is an artificial sound. People made it.'
+      natsay:'This is a natural sound. Nature makes it.', artsay:'This is an artificial sound. People made it.',
+      findpic:'Find the picture that starts with:', letterq:'Which letter does the word start with?', missfirst:'Which first letter is missing?', sortpics:'Give each picture to its letter.',
+vowelq:'Vowel or consonant?', findvowel:'Find the vowel.', findcons:'Find the consonant.', sortvc:'Vowels and consonants. Sort them.',
+vsay:'You can sing a vowel: aaaa.', csay:'You cannot sing a consonant: the air meets a barrier.',
+syllq:'How many syllables are in the word?', findsyll1:'Find a one-syllable word.', findsyll2:'Find a two-syllable word.', findsyll3:'Find a three-syllable word.', findsyll4:'Find a four-syllable word.',
+clapq:'Clap the syllables, then tap the check.', sortsyll:'Sort the words by number of syllables.', syllsay:'A word has as many syllables as vowels.'
     }
   };
   var PRAISE = {
@@ -269,6 +348,7 @@
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
       findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
       findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
+      seq:function(v){ return v.list; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
@@ -294,6 +374,7 @@
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
       findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
       findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
+      seq:function(v){ return v.list; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     },
@@ -319,6 +400,7 @@
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
       findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
       findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
+      seq:function(v){ return v.list; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
       q:     function(v){ return ['f:'+v.k]; }
     }
@@ -334,7 +416,7 @@
     var out = [];
     NUM[L].forEach(function(t,i){ out.push({id:'n'+i, text:t, group:'числа'}); });
     Object.keys(NUMX[L]).forEach(function(k){ out.push({id:'n'+k, text:NUMX[L][k], group:'числа'}); });
-    Object.keys(F[L]).forEach(function(k){ out.push({id:'f_'+k, text:F[L][k], group:'фразы'}); });
+    Object.keys(F[L]).forEach(function(k){ out.push({id:'f_'+k, text:F[L][k], group:(k.indexOf('r_') === 0 ? 'русские слова' : 'фразы')}); });
     PRAISE[L].forEach(function(t,i){ out.push({id:'praise'+i, text:t, group:'похвала'}); });
     OOPS[L].forEach(function(t,i){ out.push({id:'oops'+i, text:t, group:'ошибка'}); });
     Object.keys(MISC[L]).forEach(function(k){ out.push({id:'m_'+k, text:MISC[L][k], group:'события'}); });
@@ -351,6 +433,7 @@
     tokens.forEach(function(t){
       if(typeof t === 'number'){ pushNum(L, r, t); return; }
       if(t === '.'){ return; }
+      if(typeof t === 'string' && t.indexOf('f:r_') === 0){ var rk = t.slice(2); if(F.ru[rk]) r.push({id:'f_'+rk, text:F.ru[rk], ru:true}); return; }
       if(typeof t === 'string' && t.indexOf('f:') === 0){ var k = t.slice(2); if(F[L][k]) r.push({id:'f_'+k, text:F[L][k]}); return; }
       if(SYM[t]){ var key = SYM[t]; if(F[L][key]) r.push({id:'f_'+key, text:F[L][key]}); return; }
       if(typeof t === 'string' && /^\d+$/.test(t)){ pushNum(L, r, +t); return; }
@@ -405,10 +488,10 @@
       var tts = function(from){
         if(fellBack) return; fellBack = true;
         if(tok !== token || !window.speechSynthesis) return done();
-        var text = cl.slice(from).map(function(c){ return c.text; }).join(', ');
+        var text = cl.slice(from).map(function(c){ return c.text; }).join(', '); var LL = cl[from] && cl[from].ru ? 'ru' : L;
         var u = new SpeechSynthesisUtterance(text);
-        u.lang = L === 'en' ? 'en-US' : (L === 'kz' ? 'kk-KZ' : 'ru-RU'); u.rate = .9; u.pitch = 1;
-        var v = bestVoice(L); if(v){ u.voice = v; u.lang = v.lang; }
+        u.lang = LL === 'en' ? 'en-US' : (LL === 'kz' ? 'kk-KZ' : 'ru-RU'); u.rate = .9; u.pitch = 1;
+        var v = bestVoice(LL); if(v){ u.voice = v; u.lang = v.lang; }
         if(!v || !MALE_RE.test(v.name)) u.pitch = .85;   // нет мужского голоса → чуть ниже тон (сильнее нельзя: звучит жутко)
         u.onend = done; u.onerror = done;
         speechSynthesis.speak(u);
@@ -416,7 +499,7 @@
       (function next(){
         if(tok !== token) return resolve();
         if(i >= cl.length) return done();
-        var a = new Audio(base + L + '/' + cl[i].id + '.mp3');
+        var a = new Audio(base + (cl[i].ru ? 'ru' : L) + '/' + cl[i].id + '.mp3');
         curAudio = a;
         var from = i;
         a.onended = function(){ i++; next(); };
