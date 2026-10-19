@@ -154,7 +154,22 @@
 vowelq:'Гласная или согласная?', findvowel:'Найди гласную букву.', findcons:'Найди согласную букву.', sortvc:'Гласные и согласные. Разложи.',
 vsay:'Гласную можно пропеть голосом: аааа.', csay:'Согласную пропеть нельзя: воздух встречает преграду.',
 syllq:'Сколько слогов в слове?', findsyll1:'Найди слово из одного слога.', findsyll2:'Найди слово из двух слогов.', findsyll3:'Найди слово из трёх слогов.', findsyll4:'Найди слово из четырёх слогов.',
-clapq:'Хлопни по слогам и нажми на галочку.', sortsyll:'Раздели слова по числу слогов.', syllsay:'В слове столько слогов, сколько в нём гласных.'
+clapq:'Хлопни по слогам и нажми на галочку.', sortsyll:'Раздели слова по числу слогов.', syllsay:'В слове столько слогов, сколько в нём гласных.',
+      r_w_sok:'Сок',
+      r_w_luk:'Лук',
+      r_w_chaj:'Чай',
+      r_w_kub:'Куб',
+      r_w_lyzhi:'Лыжи',
+      r_w_ushi:'Уши',
+      r_w_myshi:'Мыши',
+      r_w_ezhi:'Ежи',
+      r_w_chashka:'Чашка',
+      r_w_tucha:'Туча',
+      r_w_svecha:'Свеча',
+      buildq:'Собери слово.', gapq:'Какой буквы не хватает в слове?', whichword:'Какое слово подходит к картинке?', spellsay:'Смотри, как пишется это слово.',
+alphq:'Какая буква в алфавите раньше?', nextq:'Какая буква идёт после буквы', gapletq:'Какая буква спряталась?', orderq:'Расставь буквы по алфавиту.', dictq:'Какое слово будет в словаре раньше?', alphsay:'Буквы стоят в алфавите по порядку.',
+spellq:'Как правильно написать слово?', gapspell:'Вставь пропущенную букву.', findmistake:'Найди слово с ошибкой.', sortrule:'Какое правило? Разложи слова.',
+rule_zhshi:'Жи и ши пиши с буквой И.', rule_chsha:'Ча и ща пиши с буквой А.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -229,7 +244,11 @@ clapq:'Хлопни по слогам и нажми на галочку.', sorts
 vowelq:'Дауысты ма, дауыссыз ба?', findvowel:'Дауысты әріпті тап.', findcons:'Дауыссыз әріпті тап.', sortvc:'Дауысты және дауыссыз. Бөліп қой.',
 vsay:'Дауыстыны дауыспен созып айтуға болады: ааа.', csay:'Дауыссызды созып айтуға болмайды: ауа кедергіге тап болады.',
 syllq:'Сөзде неше буын бар?', findsyll1:'Бір буынды сөзді тап.', findsyll2:'Екі буынды сөзді тап.', findsyll3:'Үш буынды сөзді тап.', findsyll4:'Төрт буынды сөзді тап.',
-clapq:'Буындап шапалақта да, құсбелгіні бас.', sortsyll:'Сөздерді буын санына қарай бөл.', syllsay:'Сөзде неше дауысты болса, сонша буын болады.'
+clapq:'Буындап шапалақта да, құсбелгіні бас.', sortsyll:'Сөздерді буын санына қарай бөл.', syllsay:'Сөзде неше дауысты болса, сонша буын болады.',
+      buildq:'Сөзді құрастыр.', gapq:'Сөзде қай әріп жетіспейді?', whichword:'Бұл суретке қай сөз сәйкес келеді?', spellsay:'Қара, бұл сөз былай жазылады.',
+alphq:'Әліпбиде қай әріп бұрын тұрады?', nextq:'Мына әріптен кейін қай әріп тұрады:', gapletq:'Қай әріп жасырынды?', orderq:'Әріптерді әліпби бойынша қой.', dictq:'Сөздікте қай сөз бұрын тұрады?', alphsay:'Әріптер әліпбиде ретімен тұрады.',
+spellq:'Сөз қалай дұрыс жазылады?', gapspell:'Жетіспейтін әріпті қой.', findmistake:'Қатесі бар сөзді тап.', sortrule:'Қандай ереже? Сөздерді бөліп қой.',
+rule_zhshi:'Жи мен ши деп И әрпімен жаз.', rule_chsha:'Ча мен ща деп А әрпімен жаз.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -304,7 +323,11 @@ clapq:'Буындап шапалақта да, құсбелгіні бас.', so
 vowelq:'Vowel or consonant?', findvowel:'Find the vowel.', findcons:'Find the consonant.', sortvc:'Vowels and consonants. Sort them.',
 vsay:'You can sing a vowel: aaaa.', csay:'You cannot sing a consonant: the air meets a barrier.',
 syllq:'How many syllables are in the word?', findsyll1:'Find a one-syllable word.', findsyll2:'Find a two-syllable word.', findsyll3:'Find a three-syllable word.', findsyll4:'Find a four-syllable word.',
-clapq:'Clap the syllables, then tap the check.', sortsyll:'Sort the words by number of syllables.', syllsay:'A word has as many syllables as vowels.'
+clapq:'Clap the syllables, then tap the check.', sortsyll:'Sort the words by number of syllables.', syllsay:'A word has as many syllables as vowels.',
+      buildq:'Build the word.', gapq:'Which letter is missing in the word?', whichword:'Which word matches the picture?', spellsay:'Look how this word is written.',
+alphq:'Which letter comes first in the alphabet?', nextq:'Which letter comes after:', gapletq:'Which letter is hiding?', orderq:'Put the letters in alphabet order.', dictq:'Which word comes first in a dictionary?', alphsay:'Letters stand in alphabet order.',
+spellq:'How do you write the word correctly?', gapspell:'Put in the missing letter.', findmistake:'Find the word with a mistake.', sortrule:'Which rule? Sort the words.',
+rule_zhshi:'Write zhi and shi with the letter I.', rule_chsha:'Write cha and shcha with the letter A.'
     }
   };
   var PRAISE = {
