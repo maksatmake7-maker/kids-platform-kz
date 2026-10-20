@@ -313,7 +313,26 @@ flagyn:'Это флаг Казахстана?', flagfind:'Найди флаг К
 rsq:'Что означает этот знак?', rsfind:'Найди знак:', rsmean:'Какой это знак?', tlq:'Горит этот свет. Что делает пешеход?', rssort:'Можно или нельзя? Разложи.', rs_can:'Можно', rs_no:'Нельзя',
 seasq:'Чем можно заняться в это время года?', seasq2:'Какое это время года?', seasnext:'Какое время года идёт после:', seasgap:'Какое время года пропущено?', seasclue:'Какое это время года?',
 wd_after:'Какой день идёт после:', wd_before:'Какой день был перед:', wd_gap:'Какой день спрятался?', wd_weekend:'Какой день — выходной?', wd_order:'Расставь дни недели по порядку.',
-wd_today:'Сегодня', wd_tomorrow:'А какой день будет завтра?', wd_yesterday:'А какой день был вчера?', wd_aftertom:'А какой день будет послезавтра?', todq:'Когда это бывает?', todname:'Какое это время суток?'
+wd_today:'Сегодня', wd_tomorrow:'А какой день будет завтра?', wd_yesterday:'А какой день был вчера?', wd_aftertom:'А какой день будет послезавтра?', todq:'Когда это бывает?', todname:'Какое это время суток?',
+      r_tr_1:'ученик',
+      r_tr_2:'книга',
+      r_tr_3:'карандаш',
+      r_tr_4:'игрушка',
+      r_tr_5:'семь',
+      r_tr_6:'имя',
+      r_tr_7:'сидеть',
+      r_tr_8:'я',
+      r_tr_9:'ты',
+      r_tr_10:'он, она',
+      capq:'Как правильно пишется слово?', capyn:'С какой буквы пишется это слово?', capcat:'Что это за слово?', capsort:'Разложи слова: с большой буквы или с маленькой?',
+caprule:'Имена людей, названия городов и клички животных пишутся с большой буквы.', caprule2:'Обычные слова пишутся с маленькой буквы.',
+cat_person:'Имя человека', cat_city:'Название города', cat_pet:'Кличка животного', cat_word:'Обычное слово', cap_big:'С большой', cap_small:'С маленькой',
+kgicon:'Какой это жанр? Найди картинку.', kgname:'Как это называется по-казахски?',
+kletq:'В каком слове есть эта буква?', kletword:'Какая особая буква есть в этом слове?', kletgap:'Какой особой буквы не хватает?', kletsay:'Это особая казахская буква. В русском алфавите её нет.',
+qwq:'Какой вопрос подходит к картинке?', qwfind:'Какая картинка подходит к вопросу?', qwsort:'Разложи картинки по вопросам.',
+qm_kim:'Кім — это «кто?». Так спрашивают про людей.', qm_ne:'Не — это «что?». Так спрашивают про предметы.', qm_qandai:'Қандай — это «какой?». Так спрашивают про цвет, размер и другие признаки.', qm_neshe:'Неше — это «сколько?». Так спрашивают про количество.',
+stq_first:'Какая картинка идёт первой?', stq_last:'Какая картинка идёт последней?', stq_next:'Что будет дальше?', stq_gap:'Какой картинки не хватает?', stq_order:'Нажимай картинки по порядку, чтобы получилась история.', st_hint:'История идёт по порядку: сначала, потом, потом, в конце.',
+kvq:'Как это будет по-казахски?', kvfind:'Найди картинку к слову.', kvtr:'Что значит это слово?', kvlisten:'Послушай и найди картинку.'
     },
     kz: {
       howmuch:'неше болады?', plus:'плюс', minus:'минус', eq:'тең', ne:'тең емес', gt:'артық', lt:'кем',
@@ -405,7 +424,63 @@ flagyn:'Бұл Қазақстан туы ма?', flagfind:'Қазақстан т
 rsq:'Бұл белгі нені білдіреді?', rsfind:'Белгіні тап:', rsmean:'Бұл қандай белгі?', tlq:'Мына жарық жанып тұр. Жаяу жүргінші не істейді?', rssort:'Болады ма, болмай ма? Бөліп қой.', rs_can:'Болады', rs_no:'Болмайды',
 seasq:'Жылдың осы мезгілінде немен айналысуға болады?', seasq2:'Бұл жылдың қай мезгілі?', seasnext:'Мұнан кейін жылдың қай мезгілі келеді:', seasgap:'Жылдың қай мезгілі жетіспейді?', seasclue:'Бұл жылдың қай мезгілі?',
 wd_after:'Мұнан кейін қай күн келеді:', wd_before:'Мұнан бұрын қай күн болды:', wd_gap:'Қай күн жасырынды?', wd_weekend:'Қай күн — демалыс күні?', wd_order:'Апта күндерін ретімен қой.',
-wd_today:'Бүгін', wd_tomorrow:'Ал ертең қай күн болады?', wd_yesterday:'Ал кеше қай күн болды?', wd_aftertom:'Ал бүрсігүні қай күн болады?', todq:'Бұл қашан болады?', todname:'Бұл тәуліктің қай уақыты?'
+wd_today:'Бүгін', wd_tomorrow:'Ал ертең қай күн болады?', wd_yesterday:'Ал кеше қай күн болды?', wd_aftertom:'Ал бүрсігүні қай күн болады?', todq:'Бұл қашан болады?', todname:'Бұл тәуліктің қай уақыты?',
+      k_w_ajguel:'Айгүл',
+      k_w_erlan:'Ерлан',
+      k_w_almaty:'Алматы',
+      k_w_astana:'Астана',
+      k_w_aqbar:'Ақбар',
+      k_w_qala:'қала',
+      k_w_it:'ит',
+      k_w_kietap:'кітап',
+      k_w_uej:'үй',
+      k_w_qyz:'қыз',
+      k_w_aezhe:'әже',
+      k_w_koel:'көл',
+      k_w_kuen:'күн',
+      k_w_quus:'құс',
+      k_w_tang:'таң',
+      k_w_aghash:'ағаш',
+      k_w_oqushy:'оқушы',
+      k_w_qalam:'қалам',
+      k_w_ojynshyq:'ойыншық',
+      k_w_zhetie:'жеті',
+      k_w_esiem:'есім',
+      k_w_otyru:'отыру',
+      k_w_men:'мен',
+      k_w_sen:'сен',
+      k_w_ol:'ол',
+      k_w_kesh:'кеш',
+      k_w_tuen:'түн',
+      k_w_buult:'бұлт',
+      k_w_zhangbyr:'жаңбыр',
+      k_w_tamshy:'тамшы',
+      k_w_kempierqosaq:'кемпірқосақ',
+      k_w_oeleng:'Өлең',
+      k_w_ertegie:'Ертегі',
+      k_w_zhuumbaq:'Жұмбақ',
+      k_w_kiem:'Кім',
+      k_w_ne:'Не',
+      k_w_qandaj:'Қандай',
+      k_w_neshe:'Неше',
+      k_t_erte:'Ерте, ерте, ертеде',
+      k_l_ae:'ә',
+      k_l_oe:'ө',
+      k_l_ue:'ү',
+      k_l_uu:'ұ',
+      k_l_ie:'і',
+      k_l_ng:'ң',
+      k_l_q:'қ',
+      k_l_gh:'ғ',
+      capq:'Сөз қалай дұрыс жазылады?', capyn:'Бұл сөз қандай әріппен басталады?', capcat:'Бұл қандай сөз?', capsort:'Сөздерді бөліп қой: бас әріппен ме, кіші әріппен бе?',
+caprule:'Адам есімдері, қала атаулары және жануар лақап аттары бас әріппен жазылады.', caprule2:'Жай сөздер кіші әріппен жазылады.',
+cat_person:'Адам есімі', cat_city:'Қала атауы', cat_pet:'Жануардың аты', cat_word:'Жай сөз', cap_big:'Бас әріппен', cap_small:'Кіші әріппен',
+kgicon:'Бұл қандай жанр? Суретті тап.', kgname:'Қазақша қалай аталады?',
+kletq:'Қай сөзде осы әріп бар?', kletword:'Бұл сөзде қай ерекше әріп бар?', kletgap:'Қай ерекше әріп жетіспейді?', kletsay:'Бұл қазақтың ерекше әрпі. Орыс әліпбиінде жоқ.',
+qwq:'Суретке қай сұрақ сәйкес келеді?', qwfind:'Сұраққа қай сурет сәйкес келеді?', qwsort:'Суреттерді сұрақтар бойынша бөліп қой.',
+qm_kim:'Кім — «кто?» дегенді білдіреді. Адамдар туралы сұраймыз.', qm_ne:'Не — «что?» дегенді білдіреді. Заттар туралы сұраймыз.', qm_qandai:'Қандай — «какой?» дегенді білдіреді. Түсі, көлемі туралы сұраймыз.', qm_neshe:'Неше — «сколько?» дегенді білдіреді. Саны туралы сұраймыз.',
+stq_first:'Қай сурет бірінші тұр?', stq_last:'Қай сурет соңғы тұр?', stq_next:'Одан әрі не болады?', stq_gap:'Қай сурет жетіспейді?', stq_order:'Суреттерді ретімен бас, ертегі шығады.', st_hint:'Оқиға ретімен жүреді: алдымен, содан кейін, содан кейін, соңында.',
+kvq:'Бұл қазақша қалай болады?', kvfind:'Сөзге сәйкес суретті тап.', kvtr:'Бұл сөз нені білдіреді?', kvlisten:'Тыңда да суретті тап.'
     },
     en: {
       howmuch:'How much is', plus:'plus', minus:'minus', eq:'equals', ne:'is not equal to', gt:'is greater than', lt:'is less than',
@@ -497,7 +572,16 @@ flagyn:'Is this the flag of Kazakhstan?', flagfind:'Find the flag of Kazakhstan.
 rsq:'What does this sign mean?', rsfind:'Find the sign', rsmean:'Which sign is it?', tlq:'This light is on. What does a pedestrian do?', rssort:'Allowed or not allowed? Sort.', rs_can:'Allowed', rs_no:'Not allowed',
 seasq:'What can you do in this season?', seasq2:'Which season is it?', seasnext:'Which season comes after', seasgap:'Which season is missing?', seasclue:'Which season is it?',
 wd_after:'Which day comes after', wd_before:'Which day was before', wd_gap:'Which day is hiding?', wd_weekend:'Which day is a weekend day?', wd_order:'Put the days of the week in order.',
-wd_today:'Today is', wd_tomorrow:'What day will it be tomorrow?', wd_yesterday:'What day was it yesterday?', wd_aftertom:'What day will it be the day after tomorrow?', todq:'When does this happen?', todname:'Which part of the day is it?'
+wd_today:'Today is', wd_tomorrow:'What day will it be tomorrow?', wd_yesterday:'What day was it yesterday?', wd_aftertom:'What day will it be the day after tomorrow?', todq:'When does this happen?', todname:'Which part of the day is it?',
+      capq:'How is the word written correctly?', capyn:'Which letter does this word start with?', capcat:'What kind of word is it?', capsort:'Sort the words: capital or small letter?',
+caprule:'Names of people, cities and pets are written with a capital letter.', caprule2:'Ordinary words are written with a small letter.',
+cat_person:'Name of a person', cat_city:'Name of a city', cat_pet:'Name of a pet', cat_word:'Ordinary word', cap_big:'Capital', cap_small:'Small',
+kgicon:'What kind of text is this? Find the picture.', kgname:'What is it called in Kazakh?',
+kletq:'Which word has this letter?', kletword:'Which special letter is in this word?', kletgap:'Which special letter is missing?', kletsay:'This is a special Kazakh letter. It is not in the Russian alphabet.',
+qwq:'Which question fits the picture?', qwfind:'Which picture fits the question?', qwsort:'Sort the pictures by question.',
+qm_kim:'Kim means who. We ask it about people.', qm_ne:'Ne means what. We ask it about things.', qm_qandai:'Qandai means what kind. We ask it about colour, size and other features.', qm_neshe:'Neshe means how many. We ask it about quantity.',
+stq_first:'Which picture comes first?', stq_last:'Which picture comes last?', stq_next:'What comes next?', stq_gap:'Which picture is missing?', stq_order:'Tap the pictures in order to make the story.', st_hint:'The story goes in order: first, then, then, in the end.',
+kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvtr:'What does this word mean?', kvlisten:'Listen and find the picture.'
     }
   };
   var PRAISE = {
@@ -609,7 +693,7 @@ wd_today:'Today is', wd_tomorrow:'What day will it be tomorrow?', wd_yesterday:'
     var out = [];
     NUM[L].forEach(function(t,i){ out.push({id:'n'+i, text:t, group:'числа'}); });
     Object.keys(NUMX[L]).forEach(function(k){ out.push({id:'n'+k, text:NUMX[L][k], group:'числа'}); });
-    Object.keys(F[L]).forEach(function(k){ out.push({id:'f_'+k, text:F[L][k], group:(k.indexOf('r_') === 0 ? 'русские слова' : 'фразы')}); });
+    Object.keys(F[L]).forEach(function(k){ out.push({id:'f_'+k, text:F[L][k], group:(k.indexOf('r_') === 0 ? 'русские слова' : k.indexOf('k_') === 0 ? 'казахские слова' : 'фразы')}); });
     PRAISE[L].forEach(function(t,i){ out.push({id:'praise'+i, text:t, group:'похвала'}); });
     OOPS[L].forEach(function(t,i){ out.push({id:'oops'+i, text:t, group:'ошибка'}); });
     Object.keys(MISC[L]).forEach(function(k){ out.push({id:'m_'+k, text:MISC[L][k], group:'события'}); });
@@ -626,6 +710,7 @@ wd_today:'Today is', wd_tomorrow:'What day will it be tomorrow?', wd_yesterday:'
     tokens.forEach(function(t){
       if(typeof t === 'number'){ pushNum(L, r, t); return; }
       if(t === '.'){ return; }
+      if(typeof t === 'string' && t.indexOf('f:k_') === 0){ var kk = t.slice(2); if(F.kz[kk]) r.push({id:'f_'+kk, text:F.kz[kk], kz:true}); return; }
       if(typeof t === 'string' && t.indexOf('f:r_') === 0){ var rk = t.slice(2); if(F.ru[rk]) r.push({id:'f_'+rk, text:F.ru[rk], ru:true}); return; }
       if(typeof t === 'string' && t.indexOf('f:') === 0){ var k = t.slice(2); if(F[L][k]) r.push({id:'f_'+k, text:F[L][k]}); return; }
       if(SYM[t]){ var key = SYM[t]; if(F[L][key]) r.push({id:'f_'+key, text:F[L][key]}); return; }
@@ -681,7 +766,7 @@ wd_today:'Today is', wd_tomorrow:'What day will it be tomorrow?', wd_yesterday:'
       var tts = function(from){
         if(fellBack) return; fellBack = true;
         if(tok !== token || !window.speechSynthesis) return done();
-        var text = cl.slice(from).map(function(c){ return c.text; }).join(', '); var LL = cl[from] && cl[from].ru ? 'ru' : L;
+        var text = cl.slice(from).map(function(c){ return c.text; }).join(', '); var LL = cl[from] && cl[from].ru ? 'ru' : (cl[from] && cl[from].kz ? 'kz' : L);
         var u = new SpeechSynthesisUtterance(text);
         u.lang = LL === 'en' ? 'en-US' : (LL === 'kz' ? 'kk-KZ' : 'ru-RU'); u.rate = .9; u.pitch = 1;
         var v = bestVoice(LL); if(v){ u.voice = v; u.lang = v.lang; }
@@ -692,7 +777,7 @@ wd_today:'Today is', wd_tomorrow:'What day will it be tomorrow?', wd_yesterday:'
       (function next(){
         if(tok !== token) return resolve();
         if(i >= cl.length) return done();
-        var a = new Audio(base + (cl[i].ru ? 'ru' : L) + '/' + cl[i].id + '.mp3');
+        var a = new Audio(base + (cl[i].ru ? 'ru' : (cl[i].kz ? 'kz' : L)) + '/' + cl[i].id + '.mp3');
         curAudio = a;
         var from = i;
         a.onended = function(){ i++; next(); };
