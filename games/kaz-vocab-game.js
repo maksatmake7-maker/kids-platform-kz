@@ -82,6 +82,7 @@ function initKazVocabGame(containerId){
     function L2(){ return Math.random() < .5 ? picTask(pick(W), 4) : findTask(pick(W)); }
     function L3(){ var r = Math.random(); return r < .4 ? trTask(pick(W)) : r < .7 && V.enabled() ? listenTask(pick(W)) : findTask(pick(W)); }
 
+    V.forceVoice('kz');   /* казахский язык в русской школе: голос казахский, текст на экране русский */
     M.run({ root:containerId, key:'kazvocab', need:10, theme:'play', levels:[L1,L2,L3] });
   });
 }

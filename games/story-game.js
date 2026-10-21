@@ -109,6 +109,7 @@ function initStoryGame(containerId){
     function L2(){ var r = Math.random(); return r < .4 ? nextTask(si()) : r < .8 ? gapTask(si()) : endTask(si(), Math.random() < .5); }
     function L3(){ var r = Math.random(); return r < .5 ? orderTask(si()) : r < .75 ? gapTask(si()) : nextTask(si()); }
 
+    V.forceVoice('kz');   /* казахский язык в русской школе: голос казахский, текст на экране русский */
     M.run({ root:containerId, key:'story', need:10, theme:'sunset', levels:[L1,L2,L3] });
   });
 }

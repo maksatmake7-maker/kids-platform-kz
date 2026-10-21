@@ -752,10 +752,21 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
     if(window.speechSynthesis){ try { speechSynthesis.cancel(); } catch(e){} }
   }
   // say(clips, {onstart,onend}) → вернёт Promise
+  /* Казахский язык в русских школах: Барсик говорит ПО-КАЗАХСКИ, а на экране остаётся русский текст.
+     Включается строкой MXV.forceVoice('kz') в игре. При интерфейсе RU каждая фраза озвучивается казахским клипом с тем же номером;
+     русские слова (r_…) остаются русскими. При других языках интерфейса ничего не меняется. */
+  var forced = null, KZMAP = null;
+  function forceVoice(l){ forced = (l === 'kz') ? 'kz' : null; }
+  function kzify(c){
+    if(c.ru || c.kz) return c;
+    if(!KZMAP){ KZMAP = {}; allClips('kz').forEach(function(x){ KZMAP[x.id] = x.text; }); }
+    return KZMAP[c.id] ? {id:c.id, text:KZMAP[c.id], kz:true} : c;
+  }
   function say(cl, o){
     o = o || {};
     stop();
     var tok = token, L = lang();
+    if(forced && L === 'ru') cl = cl.map(kzify);
     return new Promise(function(resolve){
       if(!enabled || !cl.length){ resolve(); return; }
       if(o.onstart) o.onstart();
@@ -790,7 +801,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   function setEnabled(v){ enabled = !!v; try { localStorage.setItem('bilim_mx_snd', v ? '1' : '0'); } catch(e){} if(!v) stop(); }
 
   window.MXV = {
-    lang:lang, tpl:tpl, clips:clips, say:say, stop:stop, praise:praise, oops:oops, misc:misc, allClips:allClips,
+    lang:lang, forceVoice:forceVoice, tpl:tpl, clips:clips, say:say, stop:stop, praise:praise, oops:oops, misc:misc, allClips:allClips,
     enabled:function(){ return enabled; }, setEnabled:setEnabled, NUM:NUM, F:F
   };
 })();

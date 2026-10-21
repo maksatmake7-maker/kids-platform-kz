@@ -86,6 +86,7 @@ function initCapitalGame(containerId){
     function L2(){ return Math.random() < .6 ? bigTask(pick(W)) : spellTask(pick(W)); }
     function L3(){ var r = Math.random(); return r < .45 ? catTask(pick(W)) : r < .75 ? sortTask() : bigTask(pick(W)); }
 
+    V.forceVoice('kz');   /* казахский язык в русской школе: голос казахский, текст на экране русский */
     M.run({ root:containerId, key:'capital', need:10, theme:'forest', levels:[L1,L2,L3] });
   });
 }
