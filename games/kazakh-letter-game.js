@@ -64,7 +64,7 @@ function initKazLetterGame(containerId){
     /* ⭐: буква → картинка слова, где она есть */
     function findTask(l, n){
       var ans = pick(wordsWith(l)), others = shuffle(wordsWithout(l)).slice(0, n - 1), set = shuffle([ans].concat(others)), h = hintOf(ans);
-      return S('f' + l + n, { expr:'', say:V.tpl('seq', {list:['f:kletq', KLK(l)]}), cap:F().kletq, ans:ans[1], layout:'wide', opts:set.map(function(w){ return { v:w[1], h:'<span class="lt">' + w[1] + '</span>' }; }),
+      return S('f' + l + n, { expr:'', echo:[KK(ans[0])], say:V.tpl('seq', {list:['f:kletq', KLK(l)]}), cap:F().kletq, ans:ans[1], layout:'wide', opts:set.map(function(w){ return { v:w[1], h:'<span class="lt">' + w[1] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxkl-big">' + l + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     function letOpts(ans, w){
@@ -74,19 +74,19 @@ function initKazLetterGame(containerId){
     /* ⭐⭐: слово с картинкой → какая особая буква в нём */
     function wordTask(w){
       var ans = pick(specials(w)), h = hintOf(w);
-      return S('w' + w[0], { expr:'', say:V.tpl('seq', {list:['f:kletword', KK(w[0])]}), cap:F().kletword, ans:ans, layout:'wide', opts:letOpts(ans, w),
+      return S('w' + w[0], { expr:'', echo:[KK(w[0])], say:V.tpl('seq', {list:['f:kletword', KK(w[0])]}), cap:F().kletword, ans:ans, layout:'wide', opts:letOpts(ans, w),
         field:function(el){ el.innerHTML = '<div class="mxkl-card"><span class="e">' + w[1] + '</span>' + w[0] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐⭐: в слове не хватает особой буквы */
     function gapTask(w){
       var ans = pick(specials(w)), ix = w[0].indexOf(ans), h = hintOf(w);
-      return S('g' + w[0] + ix, { expr:'', say:V.tpl('seq', {list:['f:kletgap', KK(w[0])]}), cap:F().kletgap, ans:ans, layout:'wide', opts:letOpts(ans, w),
+      return S('g' + w[0] + ix, { expr:'', echo:[KK(w[0])], say:V.tpl('seq', {list:['f:kletgap', KK(w[0])]}), cap:F().kletgap, ans:ans, layout:'wide', opts:letOpts(ans, w),
         field:function(el){ el.innerHTML = '<div class="mxkl-card" style="padding:8px 20px"><span class="e">' + w[1] + '</span></div><div class="mxkl-gap">' + w[0].split('').map(function(c, i){ return i === ix ? '<b class="q">?</b>' : '<b>' + c + '</b>'; }).join('') + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐⭐: собери слово из букв (с двумя лишними) */
     function buildTask(w){
       var h = hintOf(w), word = w[0], n = word.length, sz = n <= 4 ? 58 : 52;
-      return S('b' + word, { expr:'', say:V.tpl('seq', {list:['f:buildq', KK(word)]}), cap:F().buildq, ans:'ok', gate:false,
+      return S('b' + word, { expr:'', echo:[KK(word)], say:V.tpl('seq', {list:['f:buildq', KK(word)]}), cap:F().buildq, ans:'ok', gate:false,
         field:function(el, X, task){
           var letters = word.split(''), ex = shuffle(ALPHA.filter(function(c){ return word.indexOf(c) < 0; })).slice(0, 2), tl = shuffle(letters.concat(ex));
           if(tl.join('') === word) tl.reverse();

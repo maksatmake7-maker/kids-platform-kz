@@ -61,14 +61,14 @@ function initKazQwordsGame(containerId){
     /* ⭐: картинка → вопросительное слово */
     function qTask(sc, n){
       var q = sc[2], h = hintOf(q, sc), set = shuffle([q].concat(shuffle(QK.filter(function(x){ return x !== q; })).slice(0, n - 1)));
-      return S('q' + SC.indexOf(sc) + n, { expr:'', say:V.tpl('q', {k:'qwq'}), ans:q, layout:'wide', opts:set.map(function(x){ return { v:x, h:'<span class="nm">' + QW[x] + '</span>' }; }),
+      return S('q' + SC.indexOf(sc) + n, { expr:'', echo:[KK(QW[q])], say:V.tpl('q', {k:'qwq'}), ans:q, layout:'wide', opts:set.map(function(x){ return { v:x, h:'<span class="nm">' + QW[x] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxqw-big"><span style="font-size:' + sizeOf(sc) + '">' + pic(sc) + '</span></div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐: вопросительное слово → подходящая картинка */
     function findTask(q){
       var byQ = function(k){ var a = SC.filter(function(x){ return x[2] === k; }); return a[rnd(0, a.length - 1)]; };
       var target = byQ(q), set = shuffle(QK.map(function(k){ return k === q ? target : byQ(k); })), h = hintOf(q, target);
-      return S('f' + q + set.map(function(x){ return SC.indexOf(x); }).join('-'), { expr:'', say:V.tpl('seq', {list:[KK(QW[q]), 'f:qwfind']}), cap:F().qwfind, ans:String(SC.indexOf(target)), layout:'wide',
+      return S('f' + q + set.map(function(x){ return SC.indexOf(x); }).join('-'), { expr:'', echo:[KK(QW[q])], say:V.tpl('seq', {list:[KK(QW[q]), 'f:qwfind']}), cap:F().qwfind, ans:String(SC.indexOf(target)), layout:'wide',
         opts:set.map(function(x){ return { v:String(SC.indexOf(x)), h:'<span class="pc" style="font-size:' + (x[1] >= 5 ? '1.3rem' : x[1] >= 3 ? '1.7rem' : '2.5rem') + '">' + pic(x) + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxqw-big"><span class="mxqw-q">' + QW[q] + '</span></div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }

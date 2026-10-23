@@ -517,13 +517,14 @@
       var finish = streak >= NEED;
       MXV.stop();
       var line = MXV.praise();
-      speak(line, true);
+      var echo = (cur && cur.echo && MXV.enabled()) ? MXV.clips(cur.echo) : [];   /* эхо: после верного ответа Барсик ещё раз произносит слово (для уроков языка) */
+      speak(echo.length ? echo.concat(line) : line, true);
       setTimeout(function(){
         if(!alive(tk)) return;
         if(finish) return win();
         if(up) return levelUp();
         render();
-      }, up || finish ? 1500 : 1250);
+      }, (up || finish ? 1500 : 1250) + (echo.length ? echo.length * 800 + 400 : 0));
     }
 
     function levelUp(){

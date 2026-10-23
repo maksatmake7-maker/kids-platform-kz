@@ -56,25 +56,25 @@ function initKazGenreGame(containerId){
     /* описание (по-русски) → казахское название жанра */
     function descTask(g){
       var h = hintOf(g);
-      return S('d' + g, { expr:'', say:V.tpl('seq', {list:['f:r_gd_' + g, 'f:genredq']}), cap:F().genredq, ans:g, layout:'wide', opts:names(g),
+      return S('d' + g, { expr:'', echo:[KK(G[g][0])], say:V.tpl('seq', {list:['f:r_gd_' + g, 'f:genredq']}), cap:F().genredq, ans:g, layout:'wide', opts:names(g),
         field:function(el){ el.innerHTML = '<div class="mxkg-card d"><span class="e">🔎</span>' + G[g][3] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* русское название → казахское */
     function nameTask(g){
       var h = hintOf(g);
-      return S('n' + g, { expr:'', say:V.tpl('seq', {list:['f:r_g_' + g, 'f:kgname']}), cap:F().kgname, ans:g, layout:'wide', opts:names(g),
+      return S('n' + g, { expr:'', echo:[KK(G[g][0])], say:V.tpl('seq', {list:['f:r_g_' + g, 'f:kgname']}), cap:F().kgname, ans:g, layout:'wide', opts:names(g),
         field:function(el){ el.innerHTML = '<div class="mxkg-card"><span class="e">' + G[g][2] + '</span>' + G[g][1] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* казахское название → картинка жанра */
     function iconTask(g){
       var h = hintOf(g);
-      return S('i' + g, { expr:'', say:V.tpl('seq', {list:[KK(G[g][0]), 'f:kgicon']}), cap:F().kgicon, ans:g, layout:'wide', opts:shuffle(KEYS).map(function(k){ return { v:k, h:'<span class="lt">' + G[k][2] + '</span>' }; }),
+      return S('i' + g, { expr:'', echo:[KK(G[g][0])], say:V.tpl('seq', {list:[KK(G[g][0]), 'f:kgicon']}), cap:F().kgicon, ans:g, layout:'wide', opts:shuffle(KEYS).map(function(k){ return { v:k, h:'<span class="lt">' + G[k][2] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxkg-card" style="font-size:2rem">' + G[g][0] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* традиционный зачин сказки */
     function openTask(){
       var h = hintOf('tale');
-      return S('o', { expr:'', say:V.tpl('seq', {list:['f:k_t_erte', 'f:genreq']}), cap:F().genreq, ans:'tale', layout:'wide', opts:names('tale'),
+      return S('o', { expr:'', echo:[KK(G.tale[0])], say:V.tpl('seq', {list:['f:k_t_erte', 'f:genreq']}), cap:F().genreq, ans:'tale', layout:'wide', opts:names('tale'),
         field:function(el){ el.innerHTML = '<div class="mxkg-card" style="font-size:1.6rem">Ерте, ерте, ертеде…</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
 

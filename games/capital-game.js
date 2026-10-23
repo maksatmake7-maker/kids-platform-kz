@@ -59,19 +59,19 @@ function initCapitalGame(containerId){
     /* ⭐: два написания — выбери верное */
     function spellTask(w){
       var h = hintOf(w), good = show(w), bad = isBig(w) ? w[0] : cap(w[0]);
-      return S('p' + w[0], { expr:'', say:V.tpl('seq', {list:[KK(w[0]), 'f:capq']}), cap:F().capq, ans:good, layout:'wide', opts:shuffle([good, bad]).map(function(x){ return { v:x, h:'<span class="nm" style="font-size:1.6rem!important">' + x + '</span>' }; }),
+      return S('p' + w[0], { expr:'', echo:[KK(w[0])], say:V.tpl('seq', {list:[KK(w[0]), 'f:capq']}), cap:F().capq, ans:good, layout:'wide', opts:shuffle([good, bad]).map(function(x){ return { v:x, h:'<span class="nm" style="font-size:1.6rem!important">' + x + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxcp-card"><span class="e">' + w[2] + '</span></div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐: с какой буквы пишется слово */
     function bigTask(w){
       var h = hintOf(w);
-      return S('b' + w[0], { expr:'', say:V.tpl('seq', {list:[KK(w[0]), 'f:capyn']}), cap:F().capyn, ans:isBig(w) ? 'big' : 'small', layout:'wide', opts:[{ v:'big', h:'<span class="nm">' + F().cap_big + '</span>' }, { v:'small', h:'<span class="nm">' + F().cap_small + '</span>' }],
+      return S('b' + w[0], { expr:'', echo:[KK(w[0])], say:V.tpl('seq', {list:[KK(w[0]), 'f:capyn']}), cap:F().capyn, ans:isBig(w) ? 'big' : 'small', layout:'wide', opts:[{ v:'big', h:'<span class="nm">' + F().cap_big + '</span>' }, { v:'small', h:'<span class="nm">' + F().cap_small + '</span>' }],
         field:function(el){ el.innerHTML = '<div class="mxcp-card"><span class="e">' + w[2] + '</span>' + w[0] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐⭐: что это за слово — имя, город, кличка, обычное слово */
     function catTask(w){
       var h = hintOf(w);
-      return S('c' + w[0], { expr:'', say:V.tpl('seq', {list:[KK(w[0]), 'f:capcat']}), cap:F().capcat, ans:w[1], layout:'wide', opts:shuffle(CATS).map(function(c){ return { v:c, h:'<span class="nm">' + F()['cat_' + c] + '</span>' }; }),
+      return S('c' + w[0], { expr:'', echo:[KK(w[0])], say:V.tpl('seq', {list:[KK(w[0]), 'f:capcat']}), cap:F().capcat, ans:w[1], layout:'wide', opts:shuffle(CATS).map(function(c){ return { v:c, h:'<span class="nm">' + F()['cat_' + c] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxcp-card"><span class="e">' + w[2] + '</span>' + show(w) + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐⭐: разложи шесть слов */

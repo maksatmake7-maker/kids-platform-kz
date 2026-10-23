@@ -56,25 +56,25 @@ function initKazVocabGame(containerId){
     /* ⭐: картинка → казахское слово */
     function picTask(w, n){
       var h = hintOf(w);
-      return S('p' + w[0] + n, { expr:'', say:V.tpl('q', {k:'kvq'}), ans:w[0], layout:'wide', opts:pickN(w, n, function(x){ return { v:x[0], h:'<span class="nm">' + x[0] + '</span>' }; }),
+      return S('p' + w[0] + n, { expr:'', echo:[KK(w[0]), 'f:r_tr_' + w[3]], say:V.tpl('q', {k:'kvq'}), ans:w[0], layout:'wide', opts:pickN(w, n, function(x){ return { v:x[0], h:'<span class="nm">' + x[0] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxkv-big"><span class="e">' + w[1] + '</span></div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐: слово → картинка */
     function findTask(w){
       var h = hintOf(w);
-      return S('f' + w[0], { expr:'', say:V.tpl('seq', {list:[KK(w[0]), 'f:kvfind']}), cap:F().kvfind, ans:w[0], layout:'wide', opts:pickN(w, 4, function(x){ return { v:x[0], h:'<span class="lt">' + x[1] + '</span>' }; }),
+      return S('f' + w[0], { expr:'', echo:[KK(w[0]), 'f:r_tr_' + w[3]], say:V.tpl('seq', {list:[KK(w[0]), 'f:kvfind']}), cap:F().kvfind, ans:w[0], layout:'wide', opts:pickN(w, 4, function(x){ return { v:x[0], h:'<span class="lt">' + x[1] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxkv-big">' + w[0] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐⭐: слово → перевод */
     function trTask(w){
       var h = hintOf(w);
-      return S('t' + w[0], { expr:'', say:V.tpl('seq', {list:[KK(w[0]), 'f:kvtr']}), cap:F().kvtr, ans:w[0], layout:'wide', opts:pickN(w, 4, function(x){ return { v:x[0], h:'<span class="nm">' + x[2] + '</span>' }; }),
+      return S('t' + w[0], { expr:'', echo:[KK(w[0]), 'f:r_tr_' + w[3]], say:V.tpl('seq', {list:[KK(w[0]), 'f:kvtr']}), cap:F().kvtr, ans:w[0], layout:'wide', opts:pickN(w, 4, function(x){ return { v:x[0], h:'<span class="nm">' + x[2] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<div class="mxkv-big">' + w[0] + '</div>'; }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
     /* ⭐⭐⭐: слушай и найди картинку (слово не написано) */
     function listenTask(w){
       var h = hintOf(w);
-      return S('l' + w[0], { expr:'', say:V.tpl('seq', {list:['f:kvlisten', KK(w[0])]}), cap:F().kvlisten, ans:w[0], layout:'wide', opts:pickN(w, 4, function(x){ return { v:x[0], h:'<span class="lt">' + x[1] + '</span>' }; }),
+      return S('l' + w[0], { expr:'', echo:[KK(w[0]), 'f:r_tr_' + w[3]], say:V.tpl('seq', {list:['f:kvlisten', KK(w[0])]}), cap:F().kvlisten, ans:w[0], layout:'wide', opts:pickN(w, 4, function(x){ return { v:x[0], h:'<span class="lt">' + x[1] + '</span>' }; }),
         field:function(el){ el.innerHTML = '<button type="button" class="mxkv-spk" aria-label="Слушать">🔊</button>'; var b = el.querySelector('.mxkv-spk'); b.addEventListener('click', function(){ V.say(V.clips([KK(w[0])])); }); }, hintSay:h.hintSay, hintExpr:'', hint:h.hint });
     }
 
