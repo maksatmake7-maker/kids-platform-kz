@@ -107,7 +107,6 @@ function initKazLetterGame(containerId){
     function L2(){ var r = Math.random(); return r < .4 ? findTask(pick(SP), 4) : r < .75 ? wordTask(pick(WD)) : gapTask(pick(WD)); }
     function L3(){ var r = Math.random(); return r < .4 ? buildTask(pick(WD)) : r < .7 ? gapTask(pick(WD)) : r < .85 ? findTask(pick(SP), 4) : wordTask(pick(WD)); }
 
-    V.forceVoice('kz');   /* казахский язык в русской школе: голос казахский, текст на экране русский */
     M.run({ root:containerId, key:'kazletter', need:10, theme:'rainbow', levels:[L1,L2,L3] });
   });
 }

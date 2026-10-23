@@ -82,7 +82,6 @@ function initKazGenreGame(containerId){
     function L2(){ var r = Math.random(); return r < .4 ? nameTask(pick(KEYS)) : r < .75 ? iconTask(pick(KEYS)) : descTask(pick(KEYS)); }
     function L3(){ var r = Math.random(); return r < .25 ? openTask() : r < .55 ? descTask(pick(KEYS)) : r < .8 ? nameTask(pick(KEYS)) : iconTask(pick(KEYS)); }
 
-    V.forceVoice('kz');   /* казахский язык в русской школе: голос казахский, текст на экране русский */
     M.run({ root:containerId, key:'kazgenre', need:10, theme:'candy', levels:[L1,L2,L3] });
   });
 }

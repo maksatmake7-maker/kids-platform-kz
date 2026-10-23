@@ -85,7 +85,6 @@ function initKazQwordsGame(containerId){
     function L2(){ return Math.random() < .5 ? qTask(pick(SC), 4) : findTask(pick(QK)); }
     function L3(){ var r = Math.random(); return r < .4 ? sortTask() : r < .75 ? findTask(pick(QK)) : qTask(pick(SC), 4); }
 
-    V.forceVoice('kz');   /* казахский язык в русской школе: голос казахский, текст на экране русский */
     M.run({ root:containerId, key:'kazqwords', need:10, theme:'ocean', levels:[L1,L2,L3] });
   });
 }
