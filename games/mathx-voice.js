@@ -511,9 +511,9 @@ wd_today:'Бүгін', wd_tomorrow:'Ал ертең қай күн болады?'
       k_l_ue:'ү',
       k_l_uu:'ұ',
       k_l_ie:'і',
-      k_l_ng:'ң',
-      k_l_q:'қ',
-      k_l_gh:'ғ',
+      k_l_ng:'ың',
+      k_l_q:'қы',
+      k_l_gh:'ғы',
       capq:'Сөз қалай дұрыс жазылады?', capyn:'Бұл сөз қандай әріппен басталады?', capcat:'Бұл қандай сөз?', capsort:'Сөздерді бөліп қой: бас әріппен ме, кіші әріппен бе?',
 caprule:'Адам есімдері, қала атаулары және жануар лақап аттары бас әріппен жазылады.', caprule2:'Жай сөздер кіші әріппен жазылады.',
 cat_person:'Адам есімі', cat_city:'Қала атауы', cat_pet:'Жануардың аты', cat_word:'Жай сөз', cap_big:'Бас әріппен', cap_small:'Кіші әріппен',
@@ -881,6 +881,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   /* Казахский язык в русских школах: Барсик говорит ПО-КАЗАХСКИ, а на экране остаётся русский текст.
      Включается строкой MXV.forceVoice('kz') в игре. При интерфейсе RU каждая фраза озвучивается казахским клипом с тем же номером;
      русские слова (r_…) остаются русскими. При других языках интерфейса ничего не меняется. */
+  var KZ_RATE = .85, KZ_RATE_WORD = .8, KZ_GAP = 250;   /* скорость казахских фраз и слов (1 = как записано) и пауза после казахского клипа, мс */
   var forced = null, KZMAP = null;
   function forceVoice(l){ forced = (l === 'kz') ? 'kz' : null; }
   function kzify(c){
@@ -898,7 +899,9 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
       if(o.onstart) o.onstart();
       var finished = false;
       var done = function(){ if(finished) return; finished = true; if(tok === token && o.onend) o.onend(); resolve(); };
-      setTimeout(function(){ if(!finished && tok === token){ try { if(curAudio) curAudio.pause(); if(window.speechSynthesis) speechSynthesis.cancel(); } catch(e){} done(); } }, 1600*cl.length + 2500);   // страховка: озвучка не должна подвешивать игру
+      var wd = null;   // страховка: озвучка не должна подвешивать игру; сторож переставляется на каждый клип по его настоящей длине
+      function arm(ms){ if(wd) clearTimeout(wd); wd = setTimeout(function(){ if(!finished && tok === token){ try { if(curAudio) curAudio.pause(); if(window.speechSynthesis) speechSynthesis.cancel(); } catch(e){} done(); } }, ms); }
+      arm(1600*cl.length + 2500);
       var i = 0, fellBack = false;
       var tts = function(from){
         if(fellBack) return; fellBack = true;
@@ -917,7 +920,12 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
         var a = new Audio(base + (cl[i].ru ? 'ru' : (cl[i].kz ? 'kz' : L)) + '/' + cl[i].id + '.mp3');
         curAudio = a;
         var from = i;
-        a.onended = function(){ i++; next(); };
+        var isKz = !!cl[i].kz || (!cl[i].ru && L === 'kz');
+        var rate = isKz ? (/^f_k_(w|l)_/.test(cl[i].id) ? KZ_RATE_WORD : KZ_RATE) : 1;   // казахская речь медленнее: детям на уроке языка так понятнее
+        if(rate !== 1){ try { a.defaultPlaybackRate = rate; a.playbackRate = rate; if('preservesPitch' in a) a.preservesPitch = true; } catch(e){} }
+        arm(9000);
+        a.onloadedmetadata = function(){ if(isFinite(a.duration)) arm(a.duration / rate * 1000 + 2500 + 1200 * (cl.length - from)); };
+        a.onended = function(){ i++; if(isKz && i < cl.length) setTimeout(next, KZ_GAP); else next(); };
         a.onerror = function(){ tts(from); };
         var p; try { p = a.play(); } catch(e){ tts(from); return; }
         if(p && p.catch) p.catch(function(){ tts(from); });
