@@ -59,15 +59,15 @@ function initPlantNeedsGame(containerId){
 
     function hintOf(it){
       return it[2]
-        ? { hintSay:['f:n_' + it[1], 'f:needsay'], hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🪴</span><span class="mxpn-arrow">←</span><span class="mxpn-pot">' + it[0] + '</span></div><div class="mxpn-info">' + V.F[V.lang()].needsay + '</div>'; } }
-        : { hintSay:['f:n_' + it[1], 'f:notneedsay'], hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🪴</span><span class="mxpn-arrow">✖</span><span class="mxpn-pot">' + it[0] + '</span></div><div class="mxpn-info">' + V.F[V.lang()].notneedsay + ' ' + V.F[V.lang()].needsay + '</div>'; } };
+        ? { hintSay:['f:n_' + it[1], 'f:needsay'], hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🌿</span><span class="mxpn-arrow">←</span><span class="mxpn-pot">' + it[0] + '</span></div><div class="mxpn-info">' + V.F[V.lang()].needsay + '</div>'; } }
+        : { hintSay:['f:n_' + it[1], 'f:notneedsay'], hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🌿</span><span class="mxpn-arrow">✖</span><span class="mxpn-pot">' + it[0] + '</span></div><div class="mxpn-info">' + V.F[V.lang()].notneedsay + ' ' + V.F[V.lang()].needsay + '</div>'; } };
     }
     /* ⭐: нужно ли это растению */
     function askTask(it){
       var h = hintOf(it), o = shuffle(['yes','no']).map(function(k){ return { v:k, h:'<span class="nm">' + yn(k) + '</span>' }; });
       return S('a' + it[0], {
         expr:'', say:V.tpl('named', {n:it[1], q:'needq'}), ans:it[2] ? 'yes' : 'no', layout:'wide', opts:o,
-        field:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🪴</span><span class="mxpn-arrow">←</span><div class="mxpn-item"><span>' + it[0] + '</span><b>' + NM(it[1]) + '</b></div></div>'; },
+        field:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🌿</span><span class="mxpn-arrow">←</span><div class="mxpn-item"><span>' + it[0] + '</span><b>' + NM(it[1]) + '</b></div></div>'; },
         hintSay:h.hintSay, hintExpr:'', hint:h.hint
       });
     }
@@ -77,7 +77,7 @@ function initPlantNeedsGame(containerId){
       return S('p' + set.map(function(x){ return x[0]; }).join(''), {
         expr:'', say:V.tpl('q', {k:'givegrow'}), ans:'ok', gate:false,
         field:function(el, X, task){
-          el.innerHTML = '<div class="mxpn-row" style="margin-bottom:10px"><span class="mxpn-pot">🪴</span></div><div class="mxpn-grid">' + set.map(function(x, i){ return '<button type="button" class="mxpn-c" data-k="' + x[1] + '" style="animation-delay:' + (i*.05) + 's"><span>' + x[0] + '</span><b>' + NM(x[1]) + '</b></button>'; }).join('') + '</div>';
+          el.innerHTML = '<div class="mxpn-row" style="margin-bottom:10px"><span class="mxpn-pot">🌿</span></div><div class="mxpn-grid">' + set.map(function(x, i){ return '<button type="button" class="mxpn-c" data-k="' + x[1] + '" style="animation-delay:' + (i*.05) + 's"><span>' + x[0] + '</span><b>' + NM(x[1]) + '</b></button>'; }).join('') + '</div>';
           var cards = [].slice.call(el.querySelectorAll('.mxpn-c')), chosen = {};
           cards.forEach(function(c){ c.addEventListener('click', function(){ if(task._done) return; var k = c.getAttribute('data-k'); chosen[k] = !chosen[k]; c.classList.toggle('on', chosen[k]); X.sfx.tap(chosen[k] ? 2 : 1); }); });
           var go = document.createElement('button'); go.type = 'button'; go.className = 'mxs-go'; go.style.marginTop = '16px'; go.textContent = '✔'; el.appendChild(go);
@@ -86,7 +86,7 @@ function initPlantNeedsGame(containerId){
           task.auto = function(wrong){ set.forEach(function(x, i){ var want = wrong ? false : x[2]; if(!!chosen[x[1]] !== want) cards[i].click(); }); check(); };
         },
         hintSay:['f:needsay'], hintExpr:'',
-        hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🪴</span><span class="mxpn-arrow">←</span></div><div style="display:flex;gap:10px;justify-content:center;">' + NEED.map(function(x){ return '<div class="mxpn-item" style="width:92px;height:92px;font-size:2.6rem;"><span>' + x[0] + '</span><b>' + NM(x[1]) + '</b></div>'; }).join('') + '</div><div class="mxpn-info">' + V.F[V.lang()].needsay + '</div>'; }
+        hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🌿</span><span class="mxpn-arrow">←</span></div><div style="display:flex;gap:10px;justify-content:center;">' + NEED.map(function(x){ return '<div class="mxpn-item" style="width:92px;height:92px;font-size:2.6rem;"><span>' + x[0] + '</span><b>' + NM(x[1]) + '</b></div>'; }).join('') + '</div><div class="mxpn-info">' + V.F[V.lang()].needsay + '</div>'; }
       });
     }
     /* ⭐⭐⭐: растению плохо — чего ему не хватает */
@@ -103,7 +103,7 @@ function initPlantNeedsGame(containerId){
         expr:'', say:V.tpl('q', {k:'whatlacks'}), ans:k, layout:'wide', opts:o,
         field:function(el){ el.innerHTML = '<div class="mxpn-scene" style="background:' + sc.bg + '"><span>' + sc.em[0] + '</span><span class="big">' + sc.em[1] + '</span><span>' + sc.em[2] + '</span></div>'; },
         hintSay:[sc.say], hintExpr:'',
-        hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🪴</span><span class="mxpn-arrow">←</span><span class="mxpn-pot">' + LACKEM[k] + '</span></div><div class="mxpn-info">' + V.F[V.lang()][sc.say.slice(2)] + '</div>'; }
+        hint:function(el){ el.innerHTML = '<div class="mxpn-row"><span class="mxpn-pot">🌿</span><span class="mxpn-arrow">←</span><span class="mxpn-pot">' + LACKEM[k] + '</span></div><div class="mxpn-info">' + V.F[V.lang()][sc.say.slice(2)] + '</div>'; }
       });
     }
 

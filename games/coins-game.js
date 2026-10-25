@@ -3,7 +3,7 @@
    «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js + заставка games/mathx-hero.js
    подгружаются сами — страницу менять не надо. Режим освоения: 10 заданий подряд без ошибки.
 */
-window.__mxHeroCfg = {theme:'market', icons:['🪙','🍬','🐷']};
+window.__mxHeroCfg = {theme:'market', icons:['💰','🍬','🐷']};
 (function(){
   var cs = document.currentScript;
   var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';

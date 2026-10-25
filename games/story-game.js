@@ -35,7 +35,7 @@ function initStoryGame(containerId){
     function KK(w){ return 'f:k_w_' + w.toLowerCase().replace(/[?\s]/g, '').split('').map(function(c){ return TK[c]; }).join(''); }
     function KLK(l){ return 'f:k_l_' + TK[l.toLowerCase()]; }
     /* 6 историй из прежней игры (картинки по порядку) и казахские подписи там, где слова надёжно известны */
-    var ST = [['🛌','⏰','🪥','🎒'],['🥚','🐣','🐥','🐔'],['🌰','🌱','🌿','🌳'],['🌅','☀️','🌇','🌙'],['☁️','🌧️','💧','🌈'],['🥚','🐛','🦋','🌸']];
+    var ST = [['🛌','⏰','🦷','🎒'],['🥚','🐣','🐥','🐔'],['🌰','🌱','🌿','🌳'],['🌅','☀️','🌇','🌙'],['☁️','🌧️','💧','🌈'],['🥚','🐛','🦋','🌸']];
     var CAP = { 3:['Таң','Күн','Кеш','Түн'], 4:['Бұлт','Жаңбыр','Тамшы','Кемпірқосақ'] };
     var ALL = []; ST.forEach(function(s){ s.forEach(function(e){ if(ALL.indexOf(e) < 0) ALL.push(e); }); });
 
