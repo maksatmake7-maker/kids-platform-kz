@@ -554,6 +554,20 @@ function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); 
       piano:function(c, o, t){ [262, 330, 392, 523].forEach(function(f, i){ tone(c, o, t + i * .3, f, 'triangle', .004, 1, .42); tone(c, o, t + i * .3, f * 2, 'sine', .003, .5, .14); }); },
       dombra:function(c, o, t){ [220, 220, 330, 220, 330].forEach(function(f, i){ pluck(c, o, t + i * .18, f, .7, .6); }); }
     };
+
+    /* настоящая домбра: запись кюя «Адай» (Курмангазы) вместо синтеза; пока файл грузится, играет прежний синтез */
+    (function(){
+      var synth = SOUND.dombra, buf = null, url = '../../../assets/audio/muz/dombra-aday-short.mp3';
+      try { var OC = window.OfflineAudioContext || window.webkitOfflineAudioContext; if (OC) { fetch(url).then(function(r){ if (!r.ok) throw 0; return r.arrayBuffer(); }).then(function(b){ return new Promise(function(res, rej){ new OC(1, 1, 44100).decodeAudioData(b, res, rej); }); }).then(function(d){ buf = d; }).catch(function(){}); } } catch(e){}
+      SOUND.dombra = function(c, o, t){ if (!buf) return synth(c, o, t); var s = c.createBufferSource(); s.buffer = buf; var g = c.createGain(); g.gain.value = .9; s.connect(g); g.connect(o); s.start(t); };
+      var kuy = null, LBL = '🎶 Послушать кюй «Адай»';
+      window.muKuy = function(btn){ try {
+        if (kuy && !kuy.paused){ kuy.pause(); kuy = null; if (btn) btn.textContent = LBL; return; }
+        stopSpeak(); kuy = new Audio('../../../assets/audio/muz/dombra-aday-long.mp3');
+        kuy.onended = function(){ if (btn) btn.textContent = LBL; };
+        kuy.play(); if (btn) btn.textContent = '⏹ Остановить';
+      } catch(e){} };
+    })();
     var CLS = { drum:'a', maracas:'b', tambourine:'b', triangle:'c', konyrau:'c', xylophone:'d', piano:'d', dombra:'e', violin:'f' };
 
 /* ================= помощники курса «Музыка» ================= */
@@ -663,7 +677,7 @@ function tapScene(stage, ctx, o){
     if (n >= o.need){ ctx.fb(o.done, 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + '. Нужно хотя бы ' + o.need + '.', 'info');
   });
 }
-const icard = k => picBox(k, 120) + '<div class="nm">' + NM[k] + '</div><div class="tx">' + DS[k] + '</div>' + spkBtn("muInst('" + k + "')");
+const icard = k => picBox(k, 120) + '<div class="nm">' + NM[k] + '</div><div class="tx">' + DS[k] + '</div>' + spkBtn("muInst('" + k + "')") + (k === 'dombra' ? '<button class="mu-spk" onclick="muKuy(this)">🎶 Послушать кюй «Адай»</button><div class="tx" style="font-size:.85em;opacity:.8">Кюй «Адай», композитор Курмангазы (1818–1889).</div>' : '');
 SCENES.instTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 7, done: 'Ты познакомился с музыкальными инструментами!',
   items: INST.map(x => ({ k: x[0], b: pic(x[0], 56), small: x[1], play: SOUND[x[0]] ? () => muInst(x[0]) : null, card: icard(x[0]) })) });
 SCENES.folkTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 2, done: 'Домбра и конырау — казахские народные инструменты.',
