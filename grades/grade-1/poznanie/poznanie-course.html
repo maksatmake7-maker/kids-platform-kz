@@ -250,8 +250,8 @@
   .pz-cb{border:0;border-radius:999px;padding:10px 20px;font:800 1.05rem 'Baloo 2',sans-serif;color:#fff;cursor:pointer;} .pz-cb.red{background:#E8453C;} .pz-cb.yellow{background:#E8A200;} .pz-cb.green{background:#2FA84F;}
   .pz-cb.seen{box-shadow:0 0 0 3px #fff,0 0 0 6px #3FAE5A;}
   .pz-flag{display:block;width:min(100%,330px);margin:8px auto;border-radius:10px;box-shadow:0 0 0 3px #fff,0 5px 0 rgba(0,0,0,.2);overflow:hidden;line-height:0;}
-  .pz-flag svg{display:block;width:100%;height:auto;}
-  .pz-fopt{display:inline-block;width:132px;border-radius:7px;overflow:hidden;line-height:0;box-shadow:0 0 0 2px #fff,0 3px 0 rgba(0,0,0,.2);} .pz-fopt svg{display:block;width:100%;height:auto;}
+  .pz-flag svg{display:block;width:100%;height:auto;} .pz-flag img{display:block;width:100%;height:auto;}
+  .pz-fopt{display:inline-block;width:132px;border-radius:7px;overflow:hidden;line-height:0;box-shadow:0 0 0 2px #fff,0 3px 0 rgba(0,0,0,.2);} .pz-fopt svg,.pz-fopt img{display:block;width:100%;height:auto;}
   .pz-keys{display:grid;grid-template-columns:repeat(3,64px);gap:8px;justify-content:center;margin:8px auto;}
   .pz-key{height:52px;border-radius:14px;border:3px solid #1D3557;background:#fff;font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;cursor:pointer;} .pz-key:hover{background:#EAF3FF;}
   .pz-screen{display:flex;gap:8px;justify-content:center;margin:6px auto;} .pz-screen i{width:50px;height:58px;border:3px solid #1D3557;border-radius:12px;background:#fff;font:800 2rem/52px 'Baloo 2',sans-serif;font-style:normal;color:#E8453C;text-align:center;}
@@ -524,9 +524,6 @@ function rays(cx, cy, r1, r2, n, w, col){
   return out;
 }
 var FL = {
-  kz:function(){ return '<rect width="60" height="40" fill="#00AFCA"/><g fill="#FEC50C" stroke="none"><circle cx="34" cy="14" r="4.6"/></g>' + rays(34, 14, 6.2, 9, 24, 1, '#FEC50C')
-    + '<g fill="#FEC50C"><path d="M34 24 C30 20 24 19 17 22 C21 22 25 23.5 28 26 C26 25.5 23 26 20 28 C25 28 30 28 34 28 Z"/><path transform="translate(68,0) scale(-1,1)" d="M34 24 C30 20 24 19 17 22 C21 22 25 23.5 28 26 C26 25.5 23 26 20 28 C25 28 30 28 34 28 Z"/><ellipse cx="34" cy="26.5" rx="2.6" ry="4.6"/><circle cx="34" cy="21.5" r="1.7"/><path d="M31.6 30 L34 35 L36.4 30 Z"/></g>'
-    + '<path d="M4.2 2.5 q2.6 2.6 0 5.2 q-2.6 2.6 0 5.2 q2.6 2.6 0 5.2 q-2.6 2.6 0 5.2 q2.6 2.6 0 5.2 q-2.6 2.6 0 5.2 q2.6 2.6 0 5.2" fill="none" stroke="#FEC50C" stroke-width="1.3"/>'; },
   ru:function(){ return '<rect width="60" height="40" fill="#fff"/><rect y="13.3" width="60" height="13.4" fill="#0039A6"/><rect y="26.7" width="60" height="13.3" fill="#D52B1E"/>'; },
   us:function(){ var o = '<rect width="60" height="40" fill="#fff"/>'; for(var i = 0; i < 13; i += 2) o += '<rect y="' + (i * 40 / 13).toFixed(2) + '" width="60" height="' + (40 / 13).toFixed(2) + '" fill="#B22234"/>'; o += '<rect width="26" height="21.5" fill="#3C3B6E"/><g fill="#fff">'; for(var r = 0; r < 5; r++) for(var c = 0; c < 6; c++) o += '<circle cx="' + (3 + c * 4) + '" cy="' + (3 + r * 4) + '" r="1"/>'; return o + '</g>'; },
   cn:function(){ return '<rect width="60" height="40" fill="#DE2910"/><g fill="#FFDE00">' + star(10, 10, 5.2, 2.1) + star(20, 4.5, 1.8, .75, -70) + star(24, 9.5, 1.8, .75, -40) + star(24, 15.5, 1.8, .75, -10) + star(20, 20, 1.8, .75, 20) + '</g>'; },
@@ -539,7 +536,9 @@ var FL = {
   'in':function(){ return '<rect width="60" height="13.4" fill="#FF9933"/><rect y="13.4" width="60" height="13.3" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#138808"/><circle cx="30" cy="20" r="4.6" fill="none" stroke="#000080" stroke-width=".7"/>' + rays(30, 20, 0, 4.4, 24, .35, '#000080'); }
 };
 
-const flagSvg = code => '<svg viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">' + FL[code]() + '</svg>';
+/* флаг Казахстана — настоящее изображение (assets/flag-kz.webp); флаги других стран нарисованы упрощённо */
+const KZ_IMG = '../../../assets/flag-kz.webp';
+const flagSvg = code => code === 'kz' ? '<img class="pz-kzimg" src="' + KZ_IMG + '" alt="Флаг Казахстана" draggable="false">' : '<svg viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">' + FL[code]() + '</svg>';
 const OTHER_FLAGS = ['ru', 'us', 'cn', 'fr', 'uz', 'kg', 'tr', 'gb', 'jp', 'in'];
 /* знаки: [значок, название, что означает] */
 const SG = { light: ['🚦', 'Светофор', 'Светофор показывает, когда можно идти, а когда нужно стоять.'], cross: ['🚸', 'Пешеходный переход', 'Здесь люди переходят дорогу. Будь внимателен.'], stop: ['🛑', 'Знак «Стоп»', 'Нужно остановиться и посмотреть по сторонам.'], warn: ['⚠️', 'Предупреждающий знак', 'Будь осторожен: впереди может быть опасность.'], works: ['🚧', 'Дорожные работы', 'Здесь ремонтируют дорогу. Обойди это место.'], noent: ['🚫', 'Движение запрещено', 'Здесь двигаться нельзя.'], bus: ['🚏', 'Остановка автобуса', 'Здесь останавливается автобус. Здесь ждут автобус.'], park: ['🅿️', 'Парковка', 'Здесь машины стоят на парковке.'] };
@@ -696,12 +695,12 @@ SCENES.dialNum = function(stage, st, ctx){
 /* --- Урок 4: части флага --- */
 SCENES.flagParts = function(stage, st, ctx){
   const seen = {};
-  const P = { sky: ['Фон', 'Фон флага голубой, как чистое небо. Голубой цвет — это мир и чистое небо над страной.', '<rect x="1" y="1" width="58" height="38" rx="2"/>'], sun: ['Солнце', 'Золотое солнце с лучами даёт тепло и жизнь.', '<circle cx="34" cy="14" r="10"/>'], eagle: ['Орёл', 'Под солнцем парит золотой степной орёл — он символ свободы и силы.', '<rect x="15" y="19" width="38" height="17" rx="3"/>'], ornament: ['Узор', 'У древка, то есть у края флага, — золотой национальный узор.', '<rect x="1.5" y="1.5" width="6.5" height="37" rx="2"/>'] };
-  stage.innerHTML = '<div class="pz-flag"><svg viewBox="0 0 60 40" preserveAspectRatio="none" id="f-svg">' + FL.kz() + '<g id="f-hl" fill="none" stroke="#E8453C" stroke-width="1.2" stroke-dasharray="2.4 1.6"></g></svg></div><div class="pz-btns" id="f-b"></div><div class="pz-card" id="f-c" style="min-height:90px"><div class="tx">Нажми на часть флага 👆</div></div>';
+  const P = { sky: ['Фон', 'Фон флага голубой, как чистое небо. Голубой цвет — это мир и чистое небо над страной.', '<rect x="14" y="14" width="2090" height="972" rx="6"/>'], sun: ['Солнце', 'Золотое солнце с лучами даёт тепло и жизнь.', '<circle cx="1155" cy="400" r="228"/>'], eagle: ['Орёл', 'Под солнцем парит золотой степной орёл — он символ свободы и силы.', '<rect x="835" y="425" width="640" height="370" rx="60"/>'], ornament: ['Узор', 'У древка, то есть у края флага, — золотой национальный узор.', '<rect x="135" y="55" width="160" height="890" rx="50"/>'] };
+  stage.innerHTML = '<div class="pz-flag" style="position:relative">' + flagSvg('kz') + '<svg viewBox="0 0 2118 1000" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><g id="f-hl" fill="none"></g></svg></div><div class="pz-btns" id="f-b"></div><div class="pz-card" id="f-c" style="min-height:90px"><div class="tx">Нажми на часть флага 👆</div></div>';
   $('#f-b', stage).innerHTML = Object.keys(P).map(k => '<button class="pz-pb" data-k="' + k + '" style="font:800 1.1rem \'Baloo 2\',sans-serif;padding:10px 16px">' + P[k][0] + '</button>').join('');
   $$('.pz-pb', stage).forEach(b => b.onclick = function(){
     const k = b.dataset.k; seen[k] = 1; $$('.pz-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
-    $('#f-hl', stage).innerHTML = P[k][2]; $('#f-c', stage).innerHTML = '<div class="nm">' + P[k][0] + '</div><div class="tx">' + P[k][1] + '</div>';
+    $('#f-hl', stage).innerHTML = '<g stroke="#fff" stroke-width="26">' + P[k][2] + '</g><g stroke="#E8453C" stroke-width="12" stroke-dasharray="46 30">' + P[k][2] + '</g>'; $('#f-c', stage).innerHTML = '<div class="nm">' + P[k][0] + '</div><div class="tx">' + P[k][1] + '</div>';
     if (Object.keys(seen).length >= 4){ ctx.fb('Теперь ты знаешь все части флага Казахстана.', 'ok'); ctx.done(); } else ctx.fb('Частей флага: ' + Object.keys(seen).length + ' из 4.', 'info');
   });
 };
