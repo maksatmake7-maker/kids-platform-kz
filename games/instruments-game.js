@@ -84,6 +84,13 @@ function initInstrumentsGame(containerId){
       piano:function(c, o, t){ [262, 330, 392, 523].forEach(function(f, i){ tone(c, o, t + i * .3, f, 'triangle', .004, 1, .42); tone(c, o, t + i * .3, f * 2, 'sine', .003, .5, .14); }); },
       dombra:function(c, o, t){ [220, 220, 330, 220, 330].forEach(function(f, i){ pluck(c, o, t + i * .18, f, .7, .6); }); }
     };
+
+    /* настоящая домбра: запись кюя «Адай» (Курмангазы) вместо синтеза; пока файл грузится, играет прежний синтез */
+    (function(){
+      var synth = SOUND.dombra, buf = null, url = '' + (window.__mxBase || '../../../games/') + '../assets/audio/muz/dombra-aday-short.mp3';
+      try { var OC = window.OfflineAudioContext || window.webkitOfflineAudioContext; if (OC) { fetch(url).then(function(r){ if (!r.ok) throw 0; return r.arrayBuffer(); }).then(function(b){ return new Promise(function(res, rej){ new OC(1, 1, 44100).decodeAudioData(b, res, rej); }); }).then(function(d){ buf = d; }).catch(function(){}); } } catch(e){}
+      SOUND.dombra = function(c, o, t){ if (!buf) return synth(c, o, t); var s = c.createBufferSource(); s.buffer = buf; var g = c.createGain(); g.gain.value = .9; s.connect(g); g.connect(o); s.start(t); };
+    })();
     var CLS = { drum:'a', maracas:'b', tambourine:'b', triangle:'c', konyrau:'c', xylophone:'d', piano:'d', dombra:'e', violin:'f' };
     var SOUNDED = Object.keys(SOUND);
     function play(k){ var c = actx(); if(!c || !SOUND[k] || !V.enabled()) return; var m = c.createGain(); m.gain.value = .6; m.connect(c.destination); try { SOUND[k](c, m, c.currentTime + .03); } catch(e){} }
