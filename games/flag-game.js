@@ -43,9 +43,6 @@ function initFlagGame(containerId){
       return out;
     }
     var FL = {
-      kz:function(){ return '<rect width="60" height="40" fill="#00AFCA"/><g fill="#FEC50C" stroke="none"><circle cx="34" cy="14" r="4.6"/></g>' + rays(34, 14, 6.2, 9, 24, 1, '#FEC50C')
-        + '<g fill="#FEC50C"><path d="M34 24 C30 20 24 19 17 22 C21 22 25 23.5 28 26 C26 25.5 23 26 20 28 C25 28 30 28 34 28 Z"/><path transform="translate(68,0) scale(-1,1)" d="M34 24 C30 20 24 19 17 22 C21 22 25 23.5 28 26 C26 25.5 23 26 20 28 C25 28 30 28 34 28 Z"/><ellipse cx="34" cy="26.5" rx="2.6" ry="4.6"/><circle cx="34" cy="21.5" r="1.7"/><path d="M31.6 30 L34 35 L36.4 30 Z"/></g>'
-        + '<path d="M4.2 2.5 q2.6 2.6 0 5.2 q-2.6 2.6 0 5.2 q2.6 2.6 0 5.2 q-2.6 2.6 0 5.2 q2.6 2.6 0 5.2 q-2.6 2.6 0 5.2 q2.6 2.6 0 5.2" fill="none" stroke="#FEC50C" stroke-width="1.3"/>'; },
       ru:function(){ return '<rect width="60" height="40" fill="#fff"/><rect y="13.3" width="60" height="13.4" fill="#0039A6"/><rect y="26.7" width="60" height="13.3" fill="#D52B1E"/>'; },
       us:function(){ var o = '<rect width="60" height="40" fill="#fff"/>'; for(var i = 0; i < 13; i += 2) o += '<rect y="' + (i * 40 / 13).toFixed(2) + '" width="60" height="' + (40 / 13).toFixed(2) + '" fill="#B22234"/>'; o += '<rect width="26" height="21.5" fill="#3C3B6E"/><g fill="#fff">'; for(var r = 0; r < 5; r++) for(var c = 0; c < 6; c++) o += '<circle cx="' + (3 + c * 4) + '" cy="' + (3 + r * 4) + '" r="1"/>'; return o + '</g>'; },
       cn:function(){ return '<rect width="60" height="40" fill="#DE2910"/><g fill="#FFDE00">' + star(10, 10, 5.2, 2.1) + star(20, 4.5, 1.8, .75, -70) + star(24, 9.5, 1.8, .75, -40) + star(24, 15.5, 1.8, .75, -10) + star(20, 20, 1.8, .75, 20) + '</g>'; },
@@ -57,7 +54,12 @@ function initFlagGame(containerId){
       jp:function(){ return '<rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="11.5" fill="#BC002D"/>'; },
       'in':function(){ return '<rect width="60" height="13.4" fill="#FF9933"/><rect y="13.4" width="60" height="13.3" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#138808"/><circle cx="30" cy="20" r="4.6" fill="none" stroke="#000080" stroke-width=".7"/>' + rays(30, 20, 0, 4.4, 24, .35, '#000080'); }
     };
-    function flag(code, w){ return '<span class="mxfl" style="width:' + w + 'px;height:' + Math.round(w * 2 / 3) + 'px"><svg viewBox="0 0 60 40" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true">' + FL[code]() + '</svg></span>'; }
+    /* флаг Казахстана — настоящее изображение (assets/flag-kz.webp), пропорции сохранены (≈1:2); флаги других стран нарисованы упрощённо */
+    var KZ_SRC = (window.__mxBase || '../../../games/') + '../assets/flag-kz.webp', KZ_RATIO = 2.118;
+    function flag(code, w){
+      if(code === 'kz') return '<span class="mxfl" style="width:' + w + 'px;height:' + Math.round(w / KZ_RATIO) + 'px"><img src="' + KZ_SRC + '" alt="Флаг Казахстана" draggable="false" style="display:block;width:100%;height:100%"></span>';
+      return '<span class="mxfl" style="width:' + w + 'px;height:' + Math.round(w * 2 / 3) + 'px"><svg viewBox="0 0 60 40" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true">' + FL[code]() + '</svg></span>';
+    }
     var OTHERS = ['ru','us','cn','fr','uz','kg','tr','gb','jp','in'], SIMILAR = ['kg','uz','tr','cn'];
 
     (function(){
