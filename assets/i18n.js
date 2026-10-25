@@ -12335,3 +12335,37 @@ function applyLang(lang){
 document.addEventListener('DOMContentLoaded', function(){
   applyLang('ru');
 });
+
+/* ===== Пометка «эта страница не на выбранном языке» (курсы только на русском; вопросы игр — ru/kz/en) ===== */
+(function(){
+  var COURSE = {
+    kz: 'Бұл курс әзірге тек орыс тілінде.',
+    en: 'This course is only in Russian for now.',
+    zh: '本课程目前仅提供俄语版。',
+    uz: 'Бу курс ҳозирча фақат рус тилида.',
+    tg: 'Ин курс ҳоло танҳо бо забони русӣ аст.',
+    ug: 'بۇ دەرس ھازىرچە پەقەت رۇسچە.'
+  };
+  var GAME = {
+    zh: '游戏中的题目目前仅提供俄语、哈萨克语和英语版本。',
+    uz: 'Топшириқлар ҳозирча рус, қозоқ ва инглиз тилларида.',
+    tg: 'Супоришҳо ҳоло бо забонҳои русӣ, қазоқӣ ва англисӣ мавҷуданд.',
+    ug: 'ۋەزىپىلەر ھازىرچە رۇسچە، قازاقچە ۋە ئىنگلىزچە بار.'
+  };
+  function note(lang){
+    try {
+      var old = document.getElementById('mx-langnote'); if(old) old.remove();
+      var txt = null;
+      if(/-course\.html$/.test(location.pathname)) txt = COURSE[lang];
+      else if(window.__mxHeroCfg) txt = GAME[lang];
+      var hd = document.querySelector('header');
+      if(!txt || !hd) return;
+      var d = document.createElement('div'); d.id = 'mx-langnote'; d.textContent = txt;
+      d.setAttribute('dir', lang === 'ug' ? 'rtl' : 'ltr');
+      d.style.cssText = 'margin:10px auto 0;max-width:760px;padding:8px 14px;border-radius:14px;background:#FFF3C4;border:2px solid #F2C94C;color:#6B4E00;font:700 14px/1.35 Nunito,Arial,sans-serif;text-align:center;position:relative;z-index:5;';
+      hd.insertAdjacentElement('afterend', d);
+    } catch(e){}
+  }
+  var orig = window.applyLang;
+  window.applyLang = function(lang){ orig(lang); note(translations[lang] ? lang : 'ru'); };
+})();
