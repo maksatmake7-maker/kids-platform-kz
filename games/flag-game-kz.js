@@ -16,8 +16,8 @@ function initFlagGame(containerId){
   if(!root) return;
 
   // [SVG флага, 'kazakhstan' | 'other']
-  /* флаг Казахстана — настоящее изображение (assets/flag-kz.webp), пропорции сохранены */
-  var FLAG_KZ = '<svg viewBox="0 0 2118 1000" role="img" aria-label="Флаг Казахстана"><image href="../../../assets/flag-kz.webp" xlink:href="../../../assets/flag-kz.webp" width="2118" height="1000"/></svg>';
+  /* флаг Казахстана — настоящее изображение (assets/photos/flag-kz.webp), пропорции сохранены */
+  var FLAG_KZ = '<svg viewBox="0 0 2118 1000" role="img" aria-label="Флаг Казахстана"><image href="../../../assets/photos/flag-kz.webp" xlink:href="../../../assets/photos/flag-kz.webp" width="2118" height="1000"/></svg>';
   var FLAG_RU = '<svg viewBox="0 0 160 110"><rect width="160" height="37" fill="#FFFFFF"/><rect y="37" width="160" height="36" fill="#0039A6"/><rect y="73" width="160" height="37" fill="#D52B1E"/></svg>';
   var FLAG_FR = '<svg viewBox="0 0 160 110"><rect width="53" height="110" fill="#0055A4"/><rect x="53" width="54" height="110" fill="#FFFFFF"/><rect x="107" width="53" height="110" fill="#EF4135"/></svg>';
   var FLAG_JP = '<svg viewBox="0 0 160 110"><rect width="160" height="110" fill="#FFFFFF"/><circle cx="80" cy="55" r="25" fill="#BC002D"/></svg>';

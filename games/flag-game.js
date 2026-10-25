@@ -54,8 +54,8 @@ function initFlagGame(containerId){
       jp:function(){ return '<rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="11.5" fill="#BC002D"/>'; },
       'in':function(){ return '<rect width="60" height="13.4" fill="#FF9933"/><rect y="13.4" width="60" height="13.3" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#138808"/><circle cx="30" cy="20" r="4.6" fill="none" stroke="#000080" stroke-width=".7"/>' + rays(30, 20, 0, 4.4, 24, .35, '#000080'); }
     };
-    /* флаг Казахстана — настоящее изображение (assets/flag-kz.webp), пропорции сохранены (≈1:2); флаги других стран нарисованы упрощённо */
-    var KZ_SRC = (window.__mxBase || '../../../games/') + '../assets/flag-kz.webp', KZ_RATIO = 2.118;
+    /* флаг Казахстана — настоящее изображение (assets/photos/flag-kz.webp), пропорции сохранены (≈1:2); флаги других стран нарисованы упрощённо */
+    var KZ_SRC = (window.__mxBase || '../../../games/') + '../assets/photos/flag-kz.webp', KZ_RATIO = 2.118;
     function flag(code, w){
       if(code === 'kz') return '<span class="mxfl" style="width:' + w + 'px;height:' + Math.round(w / KZ_RATIO) + 'px"><img src="' + KZ_SRC + '" alt="Флаг Казахстана" draggable="false" style="display:block;width:100%;height:100%"></span>';
       return '<span class="mxfl" style="width:' + w + 'px;height:' + Math.round(w * 2 / 3) + 'px"><svg viewBox="0 0 60 40" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true">' + FL[code]() + '</svg></span>';
