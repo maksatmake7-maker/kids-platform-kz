@@ -536,8 +536,8 @@ var FL = {
   'in':function(){ return '<rect width="60" height="13.4" fill="#FF9933"/><rect y="13.4" width="60" height="13.3" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#138808"/><circle cx="30" cy="20" r="4.6" fill="none" stroke="#000080" stroke-width=".7"/>' + rays(30, 20, 0, 4.4, 24, .35, '#000080'); }
 };
 
-/* флаг Казахстана — настоящее изображение (assets/flag-kz.webp); флаги других стран нарисованы упрощённо */
-const KZ_IMG = '../../../assets/flag-kz.webp';
+/* флаг Казахстана — настоящее изображение (assets/photos/flag-kz.webp); флаги других стран нарисованы упрощённо */
+const KZ_IMG = '../../../assets/photos/flag-kz.webp';
 const flagSvg = code => code === 'kz' ? '<img class="pz-kzimg" src="' + KZ_IMG + '" alt="Флаг Казахстана" draggable="false">' : '<svg viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">' + FL[code]() + '</svg>';
 const OTHER_FLAGS = ['ru', 'us', 'cn', 'fr', 'uz', 'kg', 'tr', 'gb', 'jp', 'in'];
 /* знаки: [значок, название, что означает] */
