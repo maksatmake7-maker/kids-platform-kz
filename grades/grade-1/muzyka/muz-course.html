@@ -575,6 +575,21 @@ function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 const uniq = a => a.filter((v, i) => a.indexOf(v) === i);
 /* скрипка: у игры такого звука нет, сделан здесь */
 SOUND.violin = function(c, o, t){ [440, 494, 523, 494].forEach(function(f, i){ var os = c.createOscillator(), g = c.createGain(), fl = c.createBiquadFilter(), lf = c.createOscillator(), lg = c.createGain(); os.type = 'sawtooth'; os.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = 2200; lf.frequency.value = 6; lg.gain.value = 5; lf.connect(lg); lg.connect(os.frequency); env(g, t + i * .45, .08, .4, .55); os.connect(fl); fl.connect(g); g.connect(o); os.start(t + i * .45); lf.start(t + i * .45); os.stop(t + i * .45 + .55); lf.stop(t + i * .45 + .55); }); };
+
+/* настоящая скрипка: запись вместо синтеза; пока файл грузится, играет простой синтез */
+(function(){
+  var synth = SOUND.violin || function(c, o, t){ [440, 494, 523, 494].forEach(function(f, i){ tone(c, o, t + i * .4, f, 'triangle', .04, .6, .3); }); };
+  var buf = null, url = '../../../assets/audio/muz/violin-short.mp3';
+  try { var OC = window.OfflineAudioContext || window.webkitOfflineAudioContext; if (OC) { fetch(url).then(function(r){ if (!r.ok) throw 0; return r.arrayBuffer(); }).then(function(b){ return new Promise(function(res, rej){ new OC(1, 1, 44100).decodeAudioData(b, res, rej); }); }).then(function(d){ buf = d; }).catch(function(){}); } } catch(e){}
+  SOUND.violin = function(c, o, t){ if (!buf) return synth(c, o, t); var s = c.createBufferSource(); s.buffer = buf; var g = c.createGain(); g.gain.value = 1.5; s.connect(g); g.connect(o); s.start(t); };
+  var vl = null, LBL = '🎻 Послушать мелодию';
+  window.muVln = function(btn){ try {
+    if (vl && !vl.paused){ vl.pause(); vl = null; if (btn) btn.textContent = LBL; return; }
+    stopSpeak(); vl = new Audio('../../../assets/audio/muz/violin-long.mp3');
+    vl.onended = function(){ if (btn) btn.textContent = LBL; };
+    vl.play(); if (btn) btn.textContent = '⏹ Остановить';
+  } catch(e){} };
+})();
 function master(){ var c = actx(); if (!c) return null; var m = c.createGain(); m.gain.value = .6; m.connect(c.destination); return { c: c, m: m, t: c.currentTime + .03 }; }
 function muInst(k){ stopSpeak(); var x = master(); if (!x || !SOUND[k]) return; try { SOUND[k](x.c, x.m, x.t); } catch(e){} }
 /* два звука подряд: высота, громкость, темп */
@@ -677,7 +692,7 @@ function tapScene(stage, ctx, o){
     if (n >= o.need){ ctx.fb(o.done, 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + '. Нужно хотя бы ' + o.need + '.', 'info');
   });
 }
-const icard = k => picBox(k, 120) + '<div class="nm">' + NM[k] + '</div><div class="tx">' + DS[k] + '</div>' + spkBtn("muInst('" + k + "')") + (k === 'dombra' ? '<button class="mu-spk" onclick="muKuy(this)">🎶 Послушать кюй «Адай»</button><div class="tx" style="font-size:.85em;opacity:.8">Кюй «Адай», композитор Курмангазы (1818–1889).</div>' : '');
+const icard = k => picBox(k, 120) + '<div class="nm">' + NM[k] + '</div><div class="tx">' + DS[k] + '</div>' + spkBtn("muInst('" + k + "')") + (k === 'dombra' ? '<button class="mu-spk" onclick="muKuy(this)">🎶 Послушать кюй «Адай»</button><div class="tx" style="font-size:.85em;opacity:.8">Кюй «Адай», композитор Курмангазы (1818–1889).</div>' : '') + (k === 'violin' ? '<button class="mu-spk" onclick="muVln(this)">🎻 Послушать мелодию</button>' : '');
 SCENES.instTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 7, done: 'Ты познакомился с музыкальными инструментами!',
   items: INST.map(x => ({ k: x[0], b: pic(x[0], 56), small: x[1], play: SOUND[x[0]] ? () => muInst(x[0]) : null, card: icard(x[0]) })) });
 SCENES.folkTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 2, done: 'Домбра и конырау — казахские народные инструменты.',
