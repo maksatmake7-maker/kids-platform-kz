@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для родителей — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .pr{max-width:940px;position:relative;z-index:3;margin:0 auto;padding:10px 16px 50px;}
+  .pr .card{background:#fff;border-radius:24px;padding:18px;box-shadow:0 6px 0 rgba(0,0,0,.08);margin-bottom:16px;}
+  .pr h1{font-family:'Baloo 2',sans-serif;color:#1D3557;font-size:1.8rem;margin-bottom:4px;} .pr h2{font-family:'Baloo 2',sans-serif;color:#1D3557;font-size:1.25rem;margin-bottom:10px;}
+  .pr .lead{color:#5C7690;font-weight:700;margin-bottom:6px;}
+  .pr-gate{max-width:420px;margin:30px auto;text-align:center;} .pr-gate input{font:800 1.6rem 'Baloo 2',sans-serif;width:120px;text-align:center;padding:8px;border:3px solid #D5DCE4;border-radius:14px;margin:10px 8px;} .pr-gate .err{color:#C0392B;font-weight:800;min-height:1.4em;}
+  .pr-sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
+  .pr-sum div{background:#F5F8FA;border-radius:16px;padding:12px;text-align:center;} .pr-sum b{display:block;font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;} .pr-sum span{font-size:.85rem;font-weight:700;color:#6B7C90;}
+  .pr-who{display:flex;align-items:center;gap:12px;} .pr-who .av{font-size:2.6rem;}
+  .pr-days{display:flex;gap:6px;align-items:flex-end;height:110px;} .pr-days div{flex:1;text-align:center;font-size:.7rem;font-weight:700;color:#6B7C90;display:flex;flex-direction:column;justify-content:flex-end;height:100%;} .pr-days i{display:block;background:#2F9BE6;border-radius:6px 6px 2px 2px;min-height:3px;margin-bottom:3px;} .pr-days i.z{background:#E3E9F0;} .pr-days b{color:#1D3557;font-size:.75rem;}
+  .pr-sub{border-top:2px solid #EEF2F6;padding:10px 0;} .pr-sub:first-of-type{border-top:0;}
+  .pr-sub summary{cursor:pointer;display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:center;font-weight:800;color:#1D3557;list-style:none;} .pr-sub summary::-webkit-details-marker{display:none;}
+  .pr-sub .meta{font-size:.82rem;color:#6B7C90;font-weight:700;}
+  .bar{height:10px;border-radius:6px;background:#E3E9F0;overflow:hidden;} .bar i{display:block;height:100%;background:#3FB088;}
+  .pr-c{margin:8px 0 4px 8px;padding:8px 10px;border-left:4px solid #D5DCE4;} .pr-c.done{border-color:#3FB088;} .pr-c .ct{font-weight:800;color:#1D3557;display:flex;gap:8px;flex-wrap:wrap;align-items:center;} .pr-c a{color:#2F8FD1;font-size:.85rem;font-weight:800;}
+  .pr-l{display:inline-block;margin:4px 6px 0 0;padding:3px 9px;border-radius:10px;background:#F5F8FA;font-size:.82rem;font-weight:700;color:#41566E;} .pr-l.s1{background:#FFE9E6;} .pr-l.s3{background:#E2F6EA;} .pr-l .st{color:#F5B400;}
+  .pr-rep li{margin:6px 0 6px 18px;font-weight:700;color:#35506B;} .pr-rep a{color:#2F8FD1;font-weight:800;}
+  .pr-btn{display:inline-block;margin-right:8px;padding:10px 18px;border-radius:14px;border:0;background:#FFC93C;color:#1D3557;font:800 1rem 'Baloo 2',sans-serif;cursor:pointer;box-shadow:0 4px 0 #E0A620;}
+  .pr-note{font-size:.85rem;color:#6B7C90;font-weight:700;}
+  @media print{ header,.cloud,.back-link,.no-print,footer{display:none!important;} body{background:#fff!important;} .pr .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;} .pr-sub details{display:block;} }
+</style>
+</head>
+<body>
+<div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div>
+<header>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+</header>
+
+<main class="pr">
+  <a href="rewards.html" class="back-link">← К наградам</a>
+
+  <div class="card pr-gate" id="gate">
+    <h1>🔒 Для родителей</h1>
+    <p class="lead">Здесь отчёт об учёбе. Чтобы войти, решите пример:</p>
+    <div style="font:800 2rem 'Baloo 2',sans-serif;color:#1D3557;" id="g-q"></div>
+    <input id="g-a" inputmode="numeric" autocomplete="off"><button class="pr-btn" id="g-ok">Войти</button>
+    <div class="err" id="g-err"></div>
+  </div>
+
+  <div id="report" style="display:none">
+    <div class="card">
+      <h1>Отчёт об учёбе</h1>
+      <div class="pr-who" id="who"></div>
+      <div class="pr-note" id="today"></div>
+    </div>
+    <div class="card"><div class="pr-sum" id="sum"></div></div>
+    <div class="card"><h2>Занятия за 14 дней</h2><div class="pr-days" id="days"></div><div class="pr-note" style="margin-top:6px">Столбик — сколько раз за день ребёнок проходил урок или игру.</div></div>
+    <div class="card"><h2>Что повторить</h2><div id="rep"></div></div>
+    <div class="card"><h2>Успехи по предметам</h2><div id="subs"></div></div>
+    <div class="card no-print">
+      <button class="pr-btn" onclick="window.print()">🖨️ Распечатать или сохранить в PDF</button>
+      <div class="pr-note" style="margin-top:10px">Отчёт собран из данных этого браузера на этом устройстве. Если ребёнок занимается на другом телефоне или компьютере, там будет свой отчёт. Звёзды и уровень, если вы вошли в профиль ребёнка, берутся и с сервера.</div>
+    </div>
+  </div>
+</main>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/progress.js"></script>
+<script src="assets/courses-registry.js"></script>
+<script src="assets/rewards.js"></script>
+<script>
+(function(){
+  var R = BilimRewards, esc = R.esc;
+  var a = 6 + Math.floor(Math.random() * 4), b = 6 + Math.floor(Math.random() * 4);
+  var ok = false; try { ok = sessionStorage.getItem('bilim_parent_ok') === '1'; } catch(e){}
+  document.getElementById('g-q').textContent = a + ' × ' + b + ' = ?';
+  function open(){ document.getElementById('gate').style.display = 'none'; document.getElementById('report').style.display = ''; render(); }
+  document.getElementById('g-ok').onclick = function(){
+    if(+document.getElementById('g-a').value === a * b){ try { sessionStorage.setItem('bilim_parent_ok', '1'); } catch(e){} open(); }
+    else { document.getElementById('g-err').textContent = 'Неверно, попробуйте ещё раз'; }
+  };
+  document.getElementById('g-a').addEventListener('keydown', function(e){ if(e.key === 'Enter') document.getElementById('g-ok').click(); });
+  if(ok) open();
+
+  function subName(id){ var r = (window.BILIM_SUBJECTS || []).filter(function(s){ return s.id === id; })[0]; return r ? r.name : id; }
+  function render(){
+    var states = R.allStates(), courses = states.filter(function(s){ return s.complete; }).length;
+    var lessons = states.reduce(function(x, s){ return x + s.done; }, 0), lessonsAll = states.reduce(function(x, s){ return x + s.total; }, 0);
+    var days = R.lastDays(14), week = days.slice(7).reduce(function(x, d){ return x + d.count; }, 0), g = R.gamesPlayed();
+    var d = new Date(); document.getElementById('today').textContent = 'Дата отчёта: ' + d.toLocaleDateString('ru-RU');
+
+    document.getElementById('who').innerHTML = '<span class="av">🐆</span><div><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.3rem;color:#1D3557">Ученик (этот браузер)</b><div class="pr-note" id="who2">Вход в профиль ребёнка не выполнен: показаны данные этого устройства.</div></div>';
+    document.getElementById('sum').innerHTML =
+      '<div><b>⭐ ' + R.totalStars() + '</b><span>звёзд всего</span></div>' +
+      '<div><b>🔥 ' + R.streak() + '</b><span>дней подряд</span></div>' +
+      '<div><b>' + courses + ' / ' + states.length + '</b><span>курсов пройдено</span></div>' +
+      '<div><b>' + lessons + ' / ' + lessonsAll + '</b><span>уроков пройдено</span></div>' +
+      '<div><b>' + week + '</b><span>занятий за 7 дней</span></div>' +
+      '<div><b>' + g.kinds + '</b><span>игр опробовано (' + g.times + ' раз)</span></div>';
+
+    var max = Math.max.apply(null, days.map(function(x){ return x.count; }).concat([1]));
+    document.getElementById('days').innerHTML = days.map(function(x){ return '<div><b>' + (x.count || '') + '</b><i class="' + (x.count ? '' : 'z') + '" style="height:' + Math.round(x.count * 70 / max) + 'px"></i>' + x.label + '<br>' + x.num + '</div>'; }).join('');
+
+    var weak = [], started = [];
+    states.forEach(function(s){ s.lessons.forEach(function(l){ if(l.stars === 1) weak.push({ c: s.course, l: l }); }); if(s.done && !s.complete) started.push(s); });
+    var rep = '';
+    if(weak.length){
+      rep += '<p class="lead">Уроки, где было много ошибок (1 звезда). Хорошо бы пройти их ещё раз:</p><ul class="pr-rep">' + weak.slice(0, 12).map(function(w){ return '<li>' + esc(subName(w.c.subject)) + ' · курс «' + esc(w.c.title) + '» · урок «' + esc(w.l.title) + '» <a href="' + w.c.url + '">Открыть</a></li>'; }).join('') + '</ul>';
+    }
+    if(started.length){
+      rep += '<p class="lead" style="margin-top:8px">Курсы, которые начаты, но не закончены:</p><ul class="pr-rep">' + started.map(function(s){ return '<li>«' + esc(s.course.title) + '»: пройдено ' + s.done + ' из ' + s.total + ' <a href="' + s.course.url + '">Продолжить</a></li>'; }).join('') + '</ul>';
+    }
+    if(!weak.length && !started.length) rep = lessons ? '<p class="lead">Всё отлично: уроки пройдены уверенно, незаконченных курсов нет.</p>' : '<p class="lead">Ребёнок ещё не проходил уроки курсов на этом устройстве.</p>';
+    document.getElementById('rep').innerHTML = rep;
+
+    var html = '';
+    (window.BILIM_SUBJECTS || []).forEach(function(s){
+      var mine = states.filter(function(x){ return x.course.subject === s.id; }); if(!mine.length) return;
+      var L = mine.reduce(function(x, c){ return x + c.done; }, 0), T = mine.reduce(function(x, c){ return x + c.total; }, 0), S = mine.reduce(function(x, c){ return x + c.stars; }, 0);
+      var avg = L ? (S / L).toFixed(1) : '—', cdone = mine.filter(function(x){ return x.complete; }).length;
+      html += '<details class="pr-sub"><summary><div>' + s.icon + ' ' + esc(s.name) + '<div class="meta">Курсов: ' + cdone + ' из ' + mine.length + ' · уроков: ' + L + ' из ' + T + ' · средняя оценка: ' + avg + ' из 3</div></div><div class="bar"><i style="width:' + Math.round(L * 100 / T) + '%"></i></div></summary>';
+      mine.forEach(function(x){
+        html += '<div class="pr-c' + (x.complete ? ' done' : '') + '"><div class="ct">' + (x.complete ? '✅' : x.done ? '🔸' : '▫️') + ' ' + esc(x.course.title) + ' <a href="' + x.course.url + '">открыть</a></div>';
+        x.lessons.forEach(function(l){ html += '<span class="pr-l s' + l.stars + '">' + esc(l.title) + ' <span class="st">' + (l.stars ? '★'.repeat(l.stars) + '☆'.repeat(3 - l.stars) : '—') + '</span></span>'; });
+        html += '</div>';
+      });
+      html += '</details>';
+    });
+    document.getElementById('subs').innerHTML = html;
+    /* если выбран профиль ребёнка — подтягиваем имя, уровень и звёзды с сервера */
+    try {
+      var tok = typeof getChildToken === 'function' ? getChildToken() : null;
+      if(tok && typeof apiRequestAuth === 'function'){
+        apiRequestAuth('/api/children/me/stats', {}, tok).then(function(st){
+          document.getElementById('who').innerHTML = '<span class="av">' + esc(st.avatarEmoji || '🐆') + '</span><div><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.3rem;color:#1D3557">' + esc(st.name) + '</b><div class="pr-note">Уровень ' + esc(st.level && st.level.level) + ' · звёзд на сервере: ' + esc(st.starsTotal) + ' · значков: ' + esc((st.achievements || []).length) + '</div></div>';
+        }).catch(function(){});
+      }
+    } catch(e){}
+  }
+})();
+</script>
+</body>
+</html>

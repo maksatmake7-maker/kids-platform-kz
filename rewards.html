@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мои награды — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .rw{max-width:920px;position:relative;z-index:3;margin:0 auto;padding:10px 16px 40px;}
+  .rw-hero{background:#fff;border-radius:28px;padding:20px 18px;box-shadow:0 8px 0 rgba(0,0,0,.08);text-align:center;margin-bottom:18px;}
+  .rw-hero h1{font-family:'Baloo 2',sans-serif;font-size:1.9rem;color:#1D3557;margin-bottom:4px;}
+  .rw-say{display:flex;gap:10px;align-items:center;justify-content:center;margin:8px auto 14px;max-width:560px;text-align:left;}
+  .rw-say .bs{font-size:3rem;line-height:1;} .rw-say .bb{background:#EEF6FF;border-radius:16px;padding:10px 14px;font-weight:700;color:#35506B;}
+  .rw-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .rw-chip{min-width:120px;background:#FFF7DD;border-radius:18px;padding:10px 14px;box-shadow:0 4px 0 rgba(0,0,0,.08);}
+  .rw-chip b{display:block;font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;} .rw-chip span{font-weight:700;color:#6B7C90;font-size:.9rem;}
+  .rw h2{font-family:'Baloo 2',sans-serif;color:#1D3557;font-size:1.35rem;margin:22px 4px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .rw h2 small{font:700 .9rem 'Nunito',sans-serif;color:#6B7C90;}
+  .rw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+  .stk{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:14px 10px 12px;border-radius:22px;background:#fff;border:4px solid var(--c,#FFC93C);box-shadow:0 6px 0 rgba(0,0,0,.1);text-decoration:none;color:#1D3557;transition:transform .15s;}
+  .stk:hover{transform:translateY(-3px) rotate(-1deg);}
+  .stk .ic{font-size:2.8rem;line-height:1;} .stk .tt{font:800 1rem/1.15 'Baloo 2',sans-serif;} .stk .sm{font-size:.8rem;font-weight:700;color:#6B7C90;line-height:1.2;}
+  .stk.on{background:linear-gradient(160deg,#fff,#FFF6D8);} .stk.on::after{content:'✔';position:absolute;top:-8px;right:-6px;width:28px;height:28px;border-radius:50%;background:#3FB088;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,.18);}
+  .stk.off{border-color:#D5DCE4;background:#F3F6F9;} .stk.off .ic{filter:grayscale(1);opacity:.45;} .stk.off .tt{color:#8795A6;}
+  .stk .bar{width:100%;height:8px;border-radius:6px;background:#E3E9F0;overflow:hidden;margin-top:2px;} .stk .bar i{display:block;height:100%;background:var(--c,#FFC93C);}
+  .stk .stars{color:#F5B400;letter-spacing:2px;font-size:.95rem;}
+  .rw-foot{text-align:center;margin-top:30px;} .rw-foot a{display:inline-block;padding:10px 20px;border-radius:16px;background:#fff;color:#1D3557;font-weight:800;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.1);}
+  .rw-note{text-align:center;color:#6B7C90;font-size:.85rem;margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<header>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <a href="myprofile.html" style="color:#8B95A3; font-size:0.9rem; margin-left:auto; margin-right:16px;">Мой профиль</a>
+</header>
+
+<main class="rw">
+  <a href="index.html" class="back-link">← На главную</a>
+  <div class="rw-hero">
+    <h1>🏅 Мои награды</h1>
+    <div class="rw-say"><span class="bs">🐆</span><div class="bb" id="rw-say">…</div></div>
+    <div class="rw-chips" id="rw-chips"></div>
+  </div>
+  <h2>✨ Особые наклейки <small id="rw-sp-n"></small></h2>
+  <div class="rw-grid" id="rw-special"></div>
+  <div id="rw-subjects"></div>
+  <div class="rw-foot"><a href="parent.html">🔒 Для родителей: отчёт об учёбе</a></div>
+  <div class="rw-note">Награды хранятся в этом браузере. Если открыть сайт на другом устройстве, альбом начнётся заново.</div>
+</main>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/progress.js"></script>
+<script src="assets/courses-registry.js"></script>
+<script src="assets/rewards.js"></script>
+<script>
+(function(){
+  var R = BilimRewards, esc = R.esc;
+  var COL = { math: '#FF6B5B', reading: '#E8A317', kazakh: '#2F9BE6', poznanie: '#3FB088', estestvo: '#6BBF3A', muzyka: '#7E6BD6', digital: '#2F8FD1' };
+  var states = R.allStates();
+  var courses = states.filter(function(s){ return s.complete; }).length;
+  var lessons = states.reduce(function(a, s){ return a + s.done; }, 0), lessonsAll = states.reduce(function(a, s){ return a + s.total; }, 0);
+  var sk = R.streak(), st = R.totalStars();
+
+  document.getElementById('rw-chips').innerHTML =
+    '<div class="rw-chip"><b>⭐ ' + st + '</b><span>звёзд</span></div>' +
+    '<div class="rw-chip"><b>🔥 ' + sk + '</b><span>' + (sk === 1 ? 'день подряд' : 'дней подряд') + '</span></div>' +
+    '<div class="rw-chip"><b>🏅 ' + courses + '/' + states.length + '</b><span>курсов пройдено</span></div>' +
+    '<div class="rw-chip"><b>📚 ' + lessons + '/' + lessonsAll + '</b><span>уроков пройдено</span></div>';
+
+  var say;
+  if(!lessons) say = 'Привет! Пройди первый урок любого курса, и в альбоме появится первая наклейка!';
+  else if(courses === states.length) say = 'Ты прошёл все курсы! Я горжусь тобой!';
+  else if(sk >= 3) say = 'Ого, ' + sk + ' дн. подряд! Заходи завтра, и огонёк не погаснет.';
+  else if(!courses) { var next0 = states.filter(function(s){ return s.done; })[0]; say = 'Ты уже начал курс «' + (next0 ? next0.course.title : '') + '». Доходи до конца, и получишь наклейку!'; }
+  else say = 'Курсов пройдено: ' + courses + '. Выбирай следующий и собирай наклейки!';
+  document.getElementById('rw-say').textContent = say;
+
+  var sp = R.special(states);
+  document.getElementById('rw-sp-n').textContent = sp.filter(function(x){ return x.got; }).length + ' из ' + sp.length;
+  document.getElementById('rw-special').innerHTML = sp.map(function(x){
+    return '<div class="stk ' + (x.got ? 'on' : 'off') + '" style="--c:#FFC93C"><span class="ic">' + x.icon + '</span><span class="tt">' + esc(x.title) + '</span><span class="sm">' + esc(x.text) + '</span>' +
+      (x.got ? '' : '<div class="bar"><i style="width:' + Math.round(x.cur * 100 / x.need) + '%"></i></div><span class="sm">' + x.cur + ' из ' + x.need + '</span>') + '</div>';
+  }).join('');
+
+  var html = '';
+  (window.BILIM_SUBJECTS || []).forEach(function(s){
+    var mine = states.filter(function(x){ return x.course.subject === s.id; }); if(!mine.length) return;
+    var got = mine.filter(function(x){ return x.complete; }).length, c = COL[s.id] || '#FFC93C';
+    html += '<h2>' + s.icon + ' ' + esc(s.name) + ' <small>' + got + ' из ' + mine.length + '</small></h2><div class="rw-grid">';
+    mine.forEach(function(x){
+      var pct = Math.round(x.done * 100 / x.total), icon = x.course.lessons[0].icon;
+      html += '<a class="stk ' + (x.complete ? 'on' : 'off') + '" style="--c:' + c + '" href="' + x.course.url + '"><span class="ic">' + icon + '</span><span class="tt">' + esc(x.course.title) + '</span>' +
+        (x.complete ? '<span class="stars">' + '★'.repeat(Math.round(x.stars * 3 / x.maxStars + 0.0001) || 1) + '</span><span class="sm">Курс пройден!</span>' : '<div class="bar"><i style="width:' + pct + '%"></i></div><span class="sm">' + (x.done ? 'Уроков: ' + x.done + ' из ' + x.total : 'Ещё не начат') + '</span>') + '</a>';
+    });
+    html += '</div>';
+  });
+  document.getElementById('rw-subjects').innerHTML = html;
+})();
+</script>
+</body>
+</html>
