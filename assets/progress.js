@@ -13,6 +13,18 @@
 var PROGRESS_KEY = 'bilim_araly_progress_v1';
 var PROGRESS_API_BASE = 'https://kids-platform-backend-production.up.railway.app';
 
+/* Журнал занятий по дням — для «серии дней» и отчёта родителю (см. assets/rewards.js). Хранится только в этом браузере. */
+var PROGRESS_ROOT = (function(){ try { var s = document.currentScript; return s && s.src ? s.src.replace(/assets\/progress\.js.*$/, '') : ''; } catch(e){ return ''; } })();
+function logActivity(){
+  try {
+    var k = 'bilim_activity_v1', a = JSON.parse(localStorage.getItem(k)) || {}, d = new Date();
+    var s = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    a[s] = (a[s] || 0) + 1;
+    var keys = Object.keys(a).sort(); while(keys.length > 120){ delete a[keys.shift()]; }
+    localStorage.setItem(k, JSON.stringify(a));
+  } catch(e){}
+}
+
 function loadProgress(){
   try {
     var raw = localStorage.getItem(PROGRESS_KEY);
@@ -47,6 +59,7 @@ function recordGameResult(gameKey, score, total){
   };
 
   saveProgress(data);
+  logActivity();
   updateProgressBadge();
   syncProgressToServer(gameKey, score, total); // не блокирует и не ломает работу без входа
 }
@@ -193,6 +206,9 @@ function injectProgressBadge(){
   badge.id = 'total-stars-badge';
   badge.className = 'total-stars-badge';
   badge.textContent = '⭐ ' + getTotalStars();
+  badge.title = 'Мои награды';
+  badge.style.cursor = 'pointer';
+  badge.addEventListener('click', function(){ window.location.href = PROGRESS_ROOT + 'rewards.html'; });
 
   var langToggle = header.querySelector('.lang-toggle');
   if(langToggle){
