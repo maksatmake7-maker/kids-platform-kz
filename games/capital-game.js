@@ -13,6 +13,7 @@ window.__mxHeroCfg = {theme:'forest',icons:['А','а','🏙️']};
     var waiting = [], done = false, chain = [];
     if(!window.Barsik) chain.push(base + '../assets/barsik.js');
     chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js'); chain.push(base + 'mathx-hero.js');
+    chain.slice().forEach(function(u){ try { var l = document.createElement('link'); l.rel = 'preload'; l.as = 'script'; l.href = u; document.head.appendChild(l); } catch(e){} });
     (function next(){
       if(!chain.length){ done = true; try { if(window.MXHero) (document.readyState === 'loading' ? document.addEventListener.bind(document, 'DOMContentLoaded') : function(f){ f(); })(MXHero.init); } catch(e){} waiting.forEach(function(f){ f(); }); waiting = []; return; }
       load(chain.shift(), next);
