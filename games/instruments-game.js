@@ -91,6 +91,14 @@ function initInstrumentsGame(containerId){
       try { var OC = window.OfflineAudioContext || window.webkitOfflineAudioContext; if (OC) { fetch(url).then(function(r){ if (!r.ok) throw 0; return r.arrayBuffer(); }).then(function(b){ return new Promise(function(res, rej){ new OC(1, 1, 44100).decodeAudioData(b, res, rej); }); }).then(function(d){ buf = d; }).catch(function(){}); } } catch(e){}
       SOUND.dombra = function(c, o, t){ if (!buf) return synth(c, o, t); var s = c.createBufferSource(); s.buffer = buf; var g = c.createGain(); g.gain.value = .9; s.connect(g); g.connect(o); s.start(t); };
     })();
+
+/* настоящая скрипка: запись вместо синтеза; пока файл грузится, играет простой синтез */
+(function(){
+  var synth = SOUND.violin || function(c, o, t){ [440, 494, 523, 494].forEach(function(f, i){ tone(c, o, t + i * .4, f, 'triangle', .04, .6, .3); }); };
+  var buf = null, url = '' + (window.__mxBase || '../../../games/') + '../assets/audio/muz/violin-short.mp3';
+  try { var OC = window.OfflineAudioContext || window.webkitOfflineAudioContext; if (OC) { fetch(url).then(function(r){ if (!r.ok) throw 0; return r.arrayBuffer(); }).then(function(b){ return new Promise(function(res, rej){ new OC(1, 1, 44100).decodeAudioData(b, res, rej); }); }).then(function(d){ buf = d; }).catch(function(){}); } } catch(e){}
+  SOUND.violin = function(c, o, t){ if (!buf) return synth(c, o, t); var s = c.createBufferSource(); s.buffer = buf; var g = c.createGain(); g.gain.value = 1.5; s.connect(g); g.connect(o); s.start(t); };
+})();
     var CLS = { drum:'a', maracas:'b', tambourine:'b', triangle:'c', konyrau:'c', xylophone:'d', piano:'d', dombra:'e', violin:'f' };
     var SOUNDED = Object.keys(SOUND);
     function play(k){ var c = actx(); if(!c || !SOUND[k] || !V.enabled()) return; var m = c.createGain(); m.gain.value = .6; m.connect(c.destination); try { SOUND[k](c, m, c.currentTime + .03); } catch(e){} }
