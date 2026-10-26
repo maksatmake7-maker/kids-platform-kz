@@ -1,5 +1,5 @@
 /* Реестр курсов 1 класса (русская ветка). Создаётся автоматически при добавлении курсов. */
-window.BILIM_SUBJECTS = [{"id": "math", "name": "Математика", "icon": "🔢"}, {"id": "reading", "name": "Грамота", "icon": "🔤"}, {"id": "kazakh", "name": "Казахский язык", "icon": "🇰🇿"}, {"id": "poznanie", "name": "Познание мира", "icon": "🌏"}, {"id": "estestvo", "name": "Естествознание", "icon": "🌿"}, {"id": "muzyka", "name": "Музыка", "icon": "🎵"}, {"id": "digital", "name": "Цифровая грамотность", "icon": "💻"}, {"id": "izo", "name": "Изобразительное искусство", "icon": "🎨"}, {"id": "trud", "name": "Трудовое обучение", "icon": "🧵"}];
+window.BILIM_SUBJECTS = [{"id": "math", "name": "Математика", "icon": "🔢"}, {"id": "reading", "name": "Грамота", "icon": "🔤"}, {"id": "kazakh", "name": "Казахский язык", "icon": "🇰🇿"}, {"id": "poznanie", "name": "Познание мира", "icon": "🌏"}, {"id": "estestvo", "name": "Естествознание", "icon": "🌿"}, {"id": "muzyka", "name": "Музыка", "icon": "🎵"}, {"id": "digital", "name": "Цифровая грамотность", "icon": "💻"}, {"id": "izo", "name": "Изобразительное искусство", "icon": "🎨"}, {"id": "trud", "name": "Трудовое обучение", "icon": "🧵"}, {"id": "fizra", "name": "Физическая культура", "icon": "🏃"}];
 window.BILIM_COURSES = [
  {
   "slug": "numcourse",
@@ -921,6 +921,50 @@ window.BILIM_COURSES = [
     "id": "t7",
     "icon": "🖼️",
     "title": "Моя выставка"
+   }
+  ]
+ },
+ {
+  "slug": "fizcourse",
+  "key": "bilim_fizcourse_v1",
+  "title": "Физическая культура",
+  "subject": "fizra",
+  "url": "grades/grade-1/fizra/fiz-course.html",
+  "lessons": [
+   {
+    "id": "f1",
+    "icon": "🏃",
+    "title": "Что такое физкультура"
+   },
+   {
+    "id": "f2",
+    "icon": "🦺",
+    "title": "Техника безопасности"
+   },
+   {
+    "id": "f3",
+    "icon": "❤️",
+    "title": "Разминка, сердце и дыхание"
+   },
+   {
+    "id": "f4",
+    "icon": "🏅",
+    "title": "Бег, прыжки, метание"
+   },
+   {
+    "id": "f5",
+    "icon": "🤸",
+    "title": "Осанка и гимнастика"
+   },
+   {
+    "id": "f6",
+    "icon": "🤝",
+    "title": "Игры и казахские народные игры"
+   },
+   {
+    "id": "f7",
+    "icon": "💚",
+    "title": "Здоровый образ жизни"
    }
   ]
  }
