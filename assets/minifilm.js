@@ -122,7 +122,7 @@
     function tts(){
       if (!window.speechSynthesis || !window.SpeechSynthesisUtterance){ timerOnly(); return; }
       try {
-        var u = new SpeechSynthesisUtterance(sc.say); u.lang = me.film.lang || 'ru-RU'; u.rate = .92; u.pitch = 1.15; u.onend = done; u.onerror = timerOnly;
+        var u = new SpeechSynthesisUtterance(sc.say); u.lang = sc.lang || me.film.lang || 'ru-RU'; u.rate = .92; u.pitch = 1.15; u.onend = done; u.onerror = timerOnly;
         speechSynthesis.cancel(); speechSynthesis.speak(u);
         clearTimeout(me.timer); me.timer = setTimeout(done, Math.max(est * 1000 * 2.2, 9000));
       } catch(e){ timerOnly(); }
