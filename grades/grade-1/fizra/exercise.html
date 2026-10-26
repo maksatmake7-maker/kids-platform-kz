@@ -44,9 +44,7 @@
 
   <div class="game-card" id="video-panel" style="display:none;">
     <h1 data-i18n="exercise_video_title"></h1>
-    <div class="video-embed">
-      <iframe src="https://www.youtube-nocookie.com/embed/a3pMqrjRciI?rel=0" title="Весёлая зарядка" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    <div class="mf" data-film="exercise"></div>
     <button class="cta video-done-btn" id="done-btn">
       <span data-i18n="btn_done"></span>
     </button>
@@ -58,6 +56,10 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/explain.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/minifilm-art.js"></script>
+<script src="../../../assets/minifilm.js"></script>
+<script src="../../../assets/films/exercise.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
     initSpeakButton('speak-btn', 'exercise_explain', '../../../assets/audio/');
