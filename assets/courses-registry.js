@@ -1,5 +1,5 @@
 /* Реестр курсов 1 класса (русская ветка). Создаётся автоматически при добавлении курсов. */
-window.BILIM_SUBJECTS = [{"id": "math", "name": "Математика", "icon": "🔢"}, {"id": "reading", "name": "Грамота", "icon": "🔤"}, {"id": "kazakh", "name": "Казахский язык", "icon": "🇰🇿"}, {"id": "poznanie", "name": "Познание мира", "icon": "🌏"}, {"id": "estestvo", "name": "Естествознание", "icon": "🌿"}, {"id": "muzyka", "name": "Музыка", "icon": "🎵"}, {"id": "digital", "name": "Цифровая грамотность", "icon": "💻"}];
+window.BILIM_SUBJECTS = [{"id": "math", "name": "Математика", "icon": "🔢"}, {"id": "reading", "name": "Грамота", "icon": "🔤"}, {"id": "kazakh", "name": "Казахский язык", "icon": "🇰🇿"}, {"id": "poznanie", "name": "Познание мира", "icon": "🌏"}, {"id": "estestvo", "name": "Естествознание", "icon": "🌿"}, {"id": "muzyka", "name": "Музыка", "icon": "🎵"}, {"id": "digital", "name": "Цифровая грамотность", "icon": "💻"}, {"id": "izo", "name": "Изобразительное искусство", "icon": "🎨"}];
 window.BILIM_COURSES = [
  {
   "slug": "numcourse",
@@ -833,6 +833,50 @@ window.BILIM_COURSES = [
     "id": "d4",
     "icon": "🧩",
     "title": "Порядок действий"
+   }
+  ]
+ },
+ {
+  "slug": "izocourse",
+  "key": "bilim_izocourse_v1",
+  "title": "Изобразительное искусство",
+  "subject": "izo",
+  "url": "grades/grade-1/izo/izo-course.html",
+  "lessons": [
+   {
+    "id": "i1",
+    "icon": "🎨",
+    "title": "Что такое искусство"
+   },
+   {
+    "id": "i2",
+    "icon": "✏️",
+    "title": "Линии"
+   },
+   {
+    "id": "i3",
+    "icon": "🖌️",
+    "title": "Краски и цвет"
+   },
+   {
+    "id": "i4",
+    "icon": "🧸",
+    "title": "Лепка"
+   },
+   {
+    "id": "i5",
+    "icon": "🌼",
+    "title": "Орнамент"
+   },
+   {
+    "id": "i6",
+    "icon": "🏠",
+    "title": "Дом и юрта"
+   },
+   {
+    "id": "i7",
+    "icon": "🖼️",
+    "title": "Моя выставка"
    }
   ]
  }
