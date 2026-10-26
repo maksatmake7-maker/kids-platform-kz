@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Изобразительное искусство — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-bl{display:flex;gap:6px;align-items:flex-end;justify-content:center;flex-wrap:wrap;margin:8px 0;}
+  .nc-rod{display:block;box-sizing:border-box;width:18px;height:88px;border:2.5px solid #1D3557;border-radius:5px;background:repeating-linear-gradient(to bottom,#FFD35C 0 7.8px,#E8A200 7.8px 8.8px);animation:acPopIn .3s ease;transition:opacity .4s,filter .4s;}
+  .nc-rod.nw{background:repeating-linear-gradient(to bottom,#7FD99F 0 7.8px,#3FAE5A 7.8px 8.8px);}
+  .nc-rod.off{opacity:.22;filter:grayscale(1);}
+  .nc-us{display:grid;grid-template-columns:repeat(3,18px);gap:3px;margin-left:10px;align-content:end;}
+  .nc-un{display:block;box-sizing:border-box;width:18px;height:18px;border:2.5px solid #1D3557;border-radius:4px;background:#FF9A8F;animation:acPopIn .3s ease;}
+  @media (max-width:520px){.nc-rod{width:14px;height:72px;background:repeating-linear-gradient(to bottom,#FFD35C 0 6.2px,#E8A200 6.2px 7.2px);} .nc-rod.nw{background:repeating-linear-gradient(to bottom,#7FD99F 0 6.2px,#3FAE5A 6.2px 7.2px);} .nc-bl{gap:4px;} .nc-us{grid-template-columns:repeat(3,14px);margin-left:6px;} .nc-un{width:14px;height:14px;}}
+  .nc-th-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;}
+  .nc-groups{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+  .nc-grp{display:inline-flex;padding:4px 8px;border:3px dashed #9DB9D8;border-radius:16px;margin:4px;}
+  .nc-grp .nc-th-row{margin:4px 0;max-width:210px;}
+  .nc-pool{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:50px;margin:8px 0;}
+  .nc-pk{border:0;background:none;padding:3px;cursor:pointer;border-radius:12px;line-height:0;transition:all .15s;}
+  .nc-pk:hover{background:#EEF6FF;} .nc-pk.sel{background:#FFE9A8;box-shadow:0 0 0 3px #F5B400;}
+  .nc-plates{display:flex;gap:12px;justify-content:center;margin-top:6px;}
+  .nc-plate{flex:1;max-width:190px;min-height:110px;border:3px solid #1D3557;border-radius:50% 50% 24px 24px / 30% 30% 24px 24px;background:#F5F8FA;padding:8px 6px;}
+  .nc-plate .lb{display:block;font:800 .85rem 'Baloo 2',sans-serif;color:#5C7690;text-align:center;margin-bottom:2px;}
+  .nc-plate .in{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;}
+  @media (max-width:520px){.nc-th-row svg,.nc-pool svg{width:30px;height:30px;} .nc-grp .nc-th-row{max-width:150px;} .nc-plate{min-height:96px;}}
+  /* ----- курс «Изобразительное искусство» ----- */
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-pb.nope{animation:ncShake .35s linear 1;background:#FFE4E1;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .iz-ill{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:52px;} .iz-ill svg{display:block;max-width:100%;height:auto;}
+  .iz-sw{display:inline-block;width:3.2rem;height:3.2rem;border-radius:50%;vertical-align:middle;box-shadow:inset 0 -.25rem 0 rgba(0,0,0,.18);margin:0 2px;}
+  .iz-tools{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:4px 0;}
+  .iz-cols{display:flex;gap:10px;justify-content:center;margin:6px 0;} .iz-col{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #B8C6D6;cursor:pointer;} .iz-col.cur{box-shadow:0 0 0 4px #F5B400;}
+  .iz-canvas{display:block;width:100%;max-width:480px;height:auto;margin:6px auto;border:3px solid #DCE6F0;border-radius:16px;background:#fff;touch-action:none;cursor:crosshair;}
+  .iz-ord{display:flex;gap:10px;justify-content:center;margin:10px 0;min-height:64px;flex-wrap:wrap;} .iz-ord span{width:62px;height:62px;border-radius:16px;border:3px dashed #B8C6D6;display:flex;align-items:center;justify-content:center;} .iz-ord span.f{border-style:solid;border-color:#3FAE5A;background:#DFF5E1;}
+</style>
+</head>
+<body class="w-page">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Изобразительное искусство</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Изобразительное искусство</h1>
+      <p class="ac-sub">7 уроков · материалы, линии, цвет, лепка, орнамент, дом и юрта, выставка</p>
+      <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 5</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= рисунки ================= */
+function appleG(r, color){
+  const g = color === 'green' ? 'g-green' : 'g-red';
+  return '<ellipse cx="0" cy="' + (r*.08) + '" rx="' + r + '" ry="' + (r*.92) + '" fill="url(#' + g + ')" filter="url(#f-soft)"/>' +
+    '<path d="M0 ' + (-r*.78) + ' q' + (r*.05) + ' ' + (-r*.45) + ' ' + (r*.3) + ' ' + (-r*.58) + '" stroke="#6B4423" stroke-width="' + Math.max(1.5, r*.12) + '" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="' + (r*.45) + '" cy="' + (-r*.95) + '" rx="' + (r*.36) + '" ry="' + (r*.16) + '" transform="rotate(-28 ' + (r*.45) + ' ' + (-r*.95) + ')" fill="#4CAF50"/>' +
+    '<ellipse cx="' + (-r*.4) + '" cy="' + (-r*.25) + '" rx="' + (r*.14) + '" ry="' + (r*.28) + '" transform="rotate(20 ' + (-r*.4) + ' ' + (-r*.25) + ')" fill="#fff" opacity=".4"/>';
+}
+function appleInline(color, size){ return '<svg class="ac-ap" width="' + size + '" height="' + size + '" viewBox="-21 -26 42 46" aria-hidden="true">' + appleG(17, color) + '</svg>'; }
+function apples(n, color, size){ let s = ''; for (let i = 0; i < n; i++) s += appleInline(color, size || 34); return s; }
+function basketSVG(cx, w, top, h){
+  const x1 = cx - w/2, x2 = cx + w/2, i = w*.07;
+  let s = '<g filter="url(#f-soft)"><path d="M' + x1 + ' ' + top + ' L' + x2 + ' ' + top + ' L' + (x2 - i) + ' ' + (top + h) + ' Q' + cx + ' ' + (top + h + 8) + ' ' + (x1 + i) + ' ' + (top + h) + ' Z" fill="url(#g-basket)"/></g>';
+  for (let k = 1; k <= 3; k++){ const y = top + k*h/4; s += '<line x1="' + (x1 + i*k/4) + '" y1="' + y + '" x2="' + (x2 - i*k/4) + '" y2="' + y + '" stroke="#7A4B17" stroke-opacity=".35" stroke-width="2"/>'; }
+  for (let x = x1 + w/6; x < x2 - 2; x += w/6){ s += '<line x1="' + x + '" y1="' + top + '" x2="' + (x - (x - cx)*.07) + '" y2="' + (top + h) + '" stroke="#7A4B17" stroke-opacity=".22" stroke-width="2"/>'; }
+  s += '<rect x="' + (x1 - 5) + '" y="' + (top - 5) + '" width="' + (w + 10) + '" height="12" rx="6" fill="#B8792F"/>';
+  return s;
+}
+function hareG(){
+  const st = 'fill="#fff" stroke="#B8C4D2" stroke-width="1.5"';
+  return '<g class="hf"><ellipse cx="0" cy="-8" rx="17" ry="13" ' + st + '/>' +
+    '<circle cx="-17" cy="-9" r="5.5" ' + st + '/>' +
+    '<ellipse cx="9" cy="-28" rx="4.5" ry="13" ' + st + ' transform="rotate(-8 9 -28)"/><ellipse cx="9.5" cy="-28" rx="2" ry="9" fill="#FFB6C1" transform="rotate(-8 9 -28)"/>' +
+    '<ellipse cx="18" cy="-27" rx="4.5" ry="12" ' + st + ' transform="rotate(12 18 -27)"/><ellipse cx="18" cy="-27" rx="2" ry="8" fill="#FFB6C1" transform="rotate(12 18 -27)"/>' +
+    '<circle cx="14" cy="-14" r="10" ' + st + '/><circle cx="18" cy="-16" r="1.8" fill="#1D3557"/><ellipse cx="23.5" cy="-12" rx="2" ry="1.4" fill="#FF8FA3"/>' +
+    '<ellipse cx="-4" cy="-1" rx="7" ry="4" ' + st + '/></g>';
+}
+
+/* числовой луч */
+function Line(maxN){
+  const W = 680, X0 = 34, DX = (W - 2*X0) / maxN, LY = 128, HY = 112;
+  const xAt = n => X0 + n * DX;
+  let s = '<svg class="ac-nl" viewBox="0 0 ' + W + ' 180" role="img" aria-label="Числовой луч">';
+  s += '<line x1="' + (X0 - 14) + '" y1="' + LY + '" x2="' + (W - X0 + 18) + '" y2="' + LY + '" stroke="#1D3557" stroke-width="4" stroke-linecap="round"/>';
+  s += '<path d="M' + (W - X0 + 10) + ' ' + (LY - 8) + ' L' + (W - X0 + 22) + ' ' + LY + ' L' + (W - X0 + 10) + ' ' + (LY + 8) + '" fill="none" stroke="#1D3557" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>';
+  s += '<g class="nl-arcs"></g>';
+  for (let n = 0; n <= maxN; n++){
+    s += '<line x1="' + xAt(n) + '" y1="' + (LY - 6) + '" x2="' + xAt(n) + '" y2="' + (LY + 6) + '" stroke="#1D3557" stroke-width="3"/>';
+    s += '<g class="ac-nlnum" data-n="' + n + '"><circle cx="' + xAt(n) + '" cy="' + (LY + 30) + '" r="16"/><text x="' + xAt(n) + '" y="' + (LY + 36) + '" text-anchor="middle">' + n + '</text></g>';
+  }
+  s += '<g class="nl-hare" transform="translate(' + xAt(0) + ',' + HY + ')">' + hareG() + '</g></svg>';
+  return { html: s, xAt: xAt, LY: LY, HY: HY, maxN: maxN };
+}
+function placeHare(root, L, n){ root.querySelector('.nl-hare').setAttribute('transform', 'translate(' + L.xAt(n) + ',' + L.HY + ')'); }
+function hopTo(root, L, from, to, dur){
+  dur = dur || 440;
+  const hare = root.querySelector('.nl-hare'), x0 = L.xAt(from), x1 = L.xAt(to);
+  return new Promise(function(res){
+    const t0 = performance.now();
+    (function f(t){
+      const k = Math.min(1, (t - t0) / dur);
+      hare.setAttribute('transform', 'translate(' + (x0 + (x1 - x0) * k) + ',' + (L.HY - Math.sin(Math.PI * k) * 36) + ')');
+      if (k < 1) requestAnimationFrame(f); else res();
+    })(t0);
+  });
+}
+function addArc(root, L, from, to, label){
+  const x0 = L.xAt(from), x1 = L.xAt(to), m = (x0 + x1) / 2;
+  root.querySelector('.nl-arcs').insertAdjacentHTML('beforeend',
+    '<path d="M' + x0 + ' ' + (L.LY - 4) + ' Q' + m + ' ' + (L.LY - 62) + ' ' + x1 + ' ' + (L.LY - 4) + '" fill="none" stroke="#FF6B5B" stroke-width="3" stroke-dasharray="5 5" stroke-linecap="round"/>' +
+    '<circle cx="' + m + '" cy="' + (L.LY - 33) + '" r="10" fill="#FF6B5B"/><text x="' + m + '" y="' + (L.LY - 29) + '" text-anchor="middle" font-size="12" fill="#fff">' + label + '</text>');
+}
+function lightNum(root, n, cls){ const g = root.querySelector('.ac-nlnum[data-n="' + n + '"]'); if (g) g.classList.add(cls || 'on'); }
+async function runHops(root, L, a, b, alive){
+  placeHare(root, L, a); lightNum(root, a);
+  let cur = a;
+  for (let k = 1; k <= b; k++){
+    await hopTo(root, L, cur, cur + 1);
+    if (!alive()) return false;
+    addArc(root, L, cur, cur + 1, k); cur++; lightNum(root, cur);
+    await sleep(120);
+  }
+  return true;
+}
+function staticLine(a, b){ // рисунок для вопроса: старт и прыжки
+  const L = Line(12), tmp = document.createElement('div');
+  tmp.innerHTML = L.html;
+  const root = tmp;
+  placeHare(root, L, a); lightNum(root, a);
+  for (let k = 1; k <= b; k++) addArc(root, L, a + k - 1, a + k, k);
+  return tmp.innerHTML;
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/izo/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/izo/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_izocourse_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ===== рисунки курса ИЗО (SVG) ===== */
+const INK = '#1D3557';
+const LN = {
+  straight: '<path d="M10 22 H110"/>',
+  wavy: '<path d="M8 22 q13 -20 26 0 t26 0 t26 0 t26 0"/>',
+  zigzag: '<path d="M10 34 L28 10 L46 34 L64 10 L82 34 L100 10"/>',
+  spiral: '<path d="M61.5 22.0 L61.6 22.2 L61.7 22.4 L61.7 22.6 L61.7 22.8 L61.7 23.0 L61.7 23.2 L61.6 23.5 L61.5 23.7 L61.4 23.9 L61.2 24.2 L61.1 24.4 L60.8 24.6 L60.6 24.7 L60.3 24.9 L60.0 25.0 L59.7 25.1 L59.3 25.1 L59.0 25.1 L58.6 25.1 L58.3 25.0 L57.9 24.9 L57.5 24.7 L57.2 24.5 L56.9 24.3 L56.5 24.0 L56.3 23.7 L56.0 23.3 L55.8 22.9 L55.6 22.5 L55.5 22.0 L55.4 21.5 L55.4 21.0 L55.5 20.5 L55.5 20.0 L55.7 19.5 L55.9 19.0 L56.1 18.5 L56.5 18.1 L56.8 17.6 L57.3 17.3 L57.7 16.9 L58.2 16.6 L58.8 16.3 L59.4 16.2 L60.0 16.0 L60.6 16.0 L61.3 16.0 L61.9 16.0 L62.6 16.2 L63.2 16.4 L63.9 16.7 L64.5 17.0 L65.0 17.5 L65.6 18.0 L66.0 18.5 L66.5 19.1 L66.8 19.8 L67.1 20.5 L67.3 21.2 L67.5 22.0 L67.5 22.8 L67.5 23.6 L67.4 24.4 L67.2 25.2 L66.9 26.0 L66.5 26.7 L66.1 27.5 L65.5 28.1 L64.9 28.8 L64.2 29.3 L63.5 29.8 L62.7 30.2 L61.8 30.6 L60.9 30.8 L60.0 31.0 L59.1 31.0 L58.1 31.0 L57.1 30.8 L56.2 30.6 L55.3 30.2 L54.4 29.7 L53.5 29.2 L52.7 28.5 L52.0 27.8 L51.4 27.0 L50.8 26.1 L50.3 25.1 L50.0 24.1 L49.7 23.1 L49.5 22.0 L49.5 20.9 L49.6 19.8 L49.8 18.7 L50.1 17.6 L50.5 16.5 L51.1 15.5 L51.7 14.5 L52.5 13.6 L53.3 12.8 L54.3 12.1 L55.3 11.5 L56.4 10.9 L57.6 10.5 L58.8 10.2 L60.0 10.1 L61.3 10.0 L62.5 10.1 L63.8 10.4 L65.0 10.7 L66.2 11.2 L67.4 11.9 L68.5 12.6 L69.5 13.5 L70.4 14.5 L71.2 15.5 L71.9 16.7 L72.5 17.9 L72.9 19.2 L73.3 20.6 L73.4 22.0 L73.5 23.4 L73.3 24.8 L73.1 26.2 L72.6 27.6 L72.1 29.0 L71.4 30.2 L70.5 31.5 L69.5 32.6 L68.4 33.6 L67.2 34.5 L65.9 35.3 L64.5 35.9 L63.1 36.4 L61.6 36.7 L60.0 36.9 L58.4 36.9 L56.9 36.8 L55.3 36.5 L53.8 36.0 L52.3 35.4 L50.9 34.6 L49.5 33.6 L48.3 32.5 L47.2 31.3 L46.2 30.0 L45.4 28.5 L44.7 27.0 L44.1 25.4 L43.8 23.7 L43.6 22.0 L43.6 20.3 L43.7 18.5 L44.1 16.8 L44.6 15.2 L45.3 13.5 L46.2 12.0 L47.3 10.5 L48.5 9.2 L49.8 8.0 L51.3 6.9 L52.9 6.0 L54.6 5.2 L56.3 4.7 L58.1 4.3 L60.0 4.1 L61.9 4.1 L63.8 4.3 L65.6 4.7 L67.4 5.3 L69.2 6.1 L70.9 7.0 L72.5 8.2 L73.9 9.5 L75.2 10.9 L76.4 12.5 L77.4 14.3 L78.2 16.1 L78.8 18.0 L79.2 20.0 L79.4 22.0"/>',
+  thick: '<path d="M10 22 H110"/>',
+  thin: '<path d="M10 22 H110"/>'
+};
+const lnSvg = (k, w) => { w = w || 140; return '<svg viewBox="0 0 120 44" width="' + w + '" height="' + Math.round(w * 44 / 120) + '" aria-hidden="true"><g fill="none" stroke="' + INK + '" stroke-linecap="round" stroke-linejoin="round" stroke-width="' + (k === 'thick' ? 9 : k === 'thin' ? 1.6 : 4) + '">' + LN[k] + '</g></svg>'; };
+const sv80 = (w, inner) => '<svg viewBox="0 0 120 80" width="' + w + '" height="' + Math.round(w * 80 / 120) + '" aria-hidden="true">' + inner + '</svg>';
+const GENRE_SVG = {
+  landscape: '<rect width="120" height="80" fill="#BFE6FF"/><circle cx="96" cy="18" r="10" fill="#FFD21F"/><ellipse cx="30" cy="80" rx="52" ry="30" fill="#5CBF6A"/><ellipse cx="92" cy="82" rx="46" ry="24" fill="#3FA655"/><rect x="22" y="44" width="5" height="16" fill="#8B5A2B"/><circle cx="25" cy="38" r="13" fill="#2F9B4A"/>',
+  portrait: '<rect width="120" height="80" fill="#FFE9C9"/><path d="M26 80 q34 -30 68 0 z" fill="#3B7DD8"/><circle cx="60" cy="40" r="20" fill="#FFD9B0" stroke="#8B5A2B" stroke-width="1.5"/><path d="M40 38 q2 -22 20 -22 q18 0 20 22 q-6 -12 -20 -12 q-14 0 -20 12z" fill="#5A3A1E"/><circle cx="53" cy="42" r="2.4" fill="#1D3557"/><circle cx="67" cy="42" r="2.4" fill="#1D3557"/><path d="M52 51 q8 8 16 0" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/><rect x="2" y="2" width="116" height="76" fill="none" stroke="#8B5A2B" stroke-width="4"/>',
+  still: '<rect width="120" height="80" fill="#FFF4D6"/><rect y="56" width="120" height="24" fill="#C98B4A"/><path d="M52 58 q-8 -18 2 -26 h12 q10 8 2 26 z" fill="#4D8FE0"/><circle cx="60" cy="24" r="6" fill="#E53935"/><circle cx="50" cy="28" r="5" fill="#FFD21F"/><circle cx="70" cy="28" r="5" fill="#E53935"/><circle cx="26" cy="52" r="9" fill="#E53935"/><path d="M26 43 q4 -6 8 -4" fill="none" stroke="#2F9B4A" stroke-width="2.5" stroke-linecap="round"/><circle cx="94" cy="52" r="8" fill="#FF8A1F"/>'
+};
+const BLD_SVG = {
+  house: '<rect x="30" y="38" width="60" height="36" fill="#F2C27B" stroke="#8B5A2B" stroke-width="2"/><polygon points="24,40 60,10 96,40" fill="#D9534F" stroke="#8B2E2B" stroke-width="2"/><rect x="54" y="52" width="12" height="22" fill="#8B5A2B"/><rect x="36" y="46" width="12" height="12" fill="#BFE6FF" stroke="#8B5A2B" stroke-width="1.5"/><rect x="72" y="46" width="12" height="12" fill="#BFE6FF" stroke="#8B5A2B" stroke-width="1.5"/>',
+  yurta: '<defs><clipPath id="izyk"><rect x="24" y="44" width="72" height="30"/></clipPath></defs><rect x="24" y="44" width="72" height="30" fill="#F5E6C8" stroke="#6B4E2B" stroke-width="2"/><g clip-path="url(#izyk)" stroke="#C2A878" stroke-width="1.4"><path d="M10 44 L50 74 M30 44 L70 74 M50 44 L90 74 M70 44 L110 74 M90 44 L130 74 M-10 44 L30 74"/><path d="M130 44 L90 74 M110 44 L70 74 M90 44 L50 74 M70 44 L30 74 M50 44 L10 74 M30 44 L-10 74"/></g><path d="M16 46 C16 8 104 8 104 46 Z" fill="#FFFFFF" stroke="#6B4E2B" stroke-width="2"/><ellipse cx="60" cy="15" rx="7" ry="3.6" fill="#F5E6C8" stroke="#6B4E2B" stroke-width="1.6"/><rect x="24" y="46" width="72" height="6" fill="#2F9BE6"/><rect x="53" y="56" width="14" height="18" fill="#8B5A2B"/>',
+  tower: '<rect x="48" y="24" width="24" height="50" fill="#C9CED6" stroke="#6B7686" stroke-width="2"/><polygon points="44,26 60,2 76,26" fill="#D9534F" stroke="#8B2E2B" stroke-width="2"/><rect x="55" y="34" width="10" height="12" fill="#BFE6FF" stroke="#6B7686" stroke-width="1.5"/><rect x="54" y="58" width="12" height="16" fill="#8B5A2B"/>',
+  bridge: '<rect x="0" y="58" width="120" height="22" fill="#7FC4F0"/><rect x="6" y="34" width="108" height="26" fill="#9AA5B3" stroke="#6B7686" stroke-width="2"/><path d="M12 60 a14 14 0 0 1 28 0 Z M46 60 a14 14 0 0 1 28 0 Z M80 60 a14 14 0 0 1 28 0 Z" fill="#7FC4F0" stroke="#6B7686" stroke-width="2"/><rect x="6" y="26" width="108" height="4" fill="#8B5A2B"/><g stroke="#8B5A2B" stroke-width="2"><path d="M16 26 v8 M36 26 v8 M56 26 v8 M76 26 v8 M96 26 v8"/></g>'
+};
+/* элементы узора: цвет задаётся при рисовании */
+const EL_NAME = { circle: 'круг', triangle: 'треугольник', square: 'квадрат', horn: 'бараньи рога', leaf: 'лист', flower: 'цветок' };
+const EL_COL = { circle: '#E53935', triangle: '#2F9B4A', square: '#2F9BE6', horn: '#FF8A1F', leaf: '#3FA655', flower: '#8E44C8' };
+const EL_SVG = {
+  circle: c => '<circle cx="20" cy="20" r="12" fill="' + c + '"/>',
+  triangle: c => '<polygon points="20,7 33,32 7,32" fill="' + c + '"/>',
+  square: c => '<rect x="8" y="8" width="24" height="24" rx="3" fill="' + c + '"/>',
+  horn: c => '<g fill="none" stroke="' + c + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M11.8 17.2 L11.5 17.2 L11.2 17.3 L11.0 17.2 L10.7 17.1 L10.4 17.0 L10.1 16.7 L9.9 16.4 L9.7 16.1 L9.6 15.7 L9.5 15.2 L9.6 14.8 L9.7 14.3 L9.9 13.8 L10.2 13.4 L10.6 13.0 L11.1 12.7 L11.7 12.5 L12.3 12.3 L12.9 12.3 L13.6 12.4 L14.2 12.6 L14.9 12.9 L15.5 13.3 L16.0 13.9 L16.4 14.5 L16.7 15.3 L16.9 16.1 L17.0 16.9 L16.9 17.8 L16.7 18.6 L16.3 19.5 L15.7 20.2 L15.0 20.9 L14.2 21.5 L13.3 21.9 L12.3 22.2 L11.3 22.3 L10.2 22.2 L9.1 21.9 L8.1 21.5 L7.1 20.9 L6.3 20.1 L5.6 19.1 L5.0 18.0 L4.6 16.8 L4.4 15.6 L4.5 14.3 L4.7 13.0 L5.2 11.8 L5.9 10.6 L6.8 9.6 L7.9 8.7 L9.1 8.0 L10.5 7.5 L11.9 7.2 L13.4 7.2 L14.9 7.4 L16.4 7.9 L17.7 8.6 L19.0 9.6"/><path d="M28.2 17.2 L28.5 17.2 L28.8 17.3 L29.0 17.2 L29.3 17.1 L29.6 17.0 L29.9 16.7 L30.1 16.4 L30.3 16.1 L30.4 15.7 L30.5 15.2 L30.4 14.8 L30.3 14.3 L30.1 13.8 L29.8 13.4 L29.4 13.0 L28.9 12.7 L28.3 12.5 L27.7 12.3 L27.1 12.3 L26.4 12.4 L25.8 12.6 L25.1 12.9 L24.5 13.3 L24.0 13.9 L23.6 14.5 L23.3 15.3 L23.1 16.1 L23.0 16.9 L23.1 17.8 L23.3 18.6 L23.7 19.5 L24.3 20.2 L25.0 20.9 L25.8 21.5 L26.7 21.9 L27.7 22.2 L28.7 22.3 L29.8 22.2 L30.9 21.9 L31.9 21.5 L32.9 20.9 L33.7 20.1 L34.4 19.1 L35.0 18.0 L35.4 16.8 L35.6 15.6 L35.5 14.3 L35.3 13.0 L34.8 11.8 L34.1 10.6 L33.2 9.6 L32.1 8.7 L30.9 8.0 L29.5 7.5 L28.1 7.2 L26.6 7.2 L25.1 7.4 L23.6 7.9 L22.3 8.6 L21.0 9.6"/><path d="M13 25 L20 35 L27 25"/></g>',
+  leaf: c => '<path d="M8 32 C8 14 18 6 33 7 C34 22 26 32 8 32 Z" fill="' + c + '"/><path d="M10 30 L28 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>',
+  flower: c => '<g fill="' + c + '"><circle cx="20" cy="9" r="6"/><circle cx="31" cy="20" r="6"/><circle cx="20" cy="31" r="6"/><circle cx="9" cy="20" r="6"/></g><circle cx="20" cy="20" r="5" fill="#FFD21F"/>'
+};
+const elSvg = (k, w) => '<svg viewBox="0 0 40 40" width="' + (w || 44) + '" height="' + (w || 44) + '" aria-hidden="true">' + EL_SVG[k](EL_COL[k]) + '</svg>';
+const stripSvg = (arr, w) => { const n = arr.length; w = w || 36; return '<svg viewBox="0 0 ' + (n * 40) + ' 40" width="' + (n * w) + '" height="' + w + '" aria-hidden="true">' + arr.map((k, i) => k === '?' ? '<g transform="translate(' + (i * 40) + ',0)"><rect x="4" y="4" width="32" height="32" rx="8" fill="#FFF1C9" stroke="#F5B400" stroke-width="2.5" stroke-dasharray="4 3"/><text x="20" y="28" text-anchor="middle" font-size="22" font-weight="800" fill="#F5B400" font-family="Baloo 2,sans-serif">?</text></g>' : '<g transform="translate(' + (i * 40) + ',0)">' + EL_SVG[k](EL_COL[k]) + '</g>').join('') + '</svg>'; };
+const SW = { red: '#E53935', yellow: '#FFD21F', blue: '#1E73E8', orange: '#FF8A1F', green: '#2FB04A', purple: '#8E44C8', lblue: '#5BC0F0' };
+const swatch = c => '<span class="iz-sw" style="background:' + c + '"></span>';
+const plastSvg = '<svg viewBox="0 0 60 40" width="64" height="43" aria-hidden="true"><rect x="3" y="8" width="26" height="26" rx="7" fill="#E53935"/><rect x="18" y="4" width="26" height="26" rx="7" fill="#FFD21F"/><rect x="32" y="12" width="25" height="24" rx="7" fill="#2F9BE6"/></svg>';
+const markerSvg = '<svg viewBox="0 0 60 40" width="64" height="43" aria-hidden="true"><g transform="rotate(-28 30 20)"><rect x="8" y="14" width="34" height="12" rx="3" fill="#2F9B4A"/><rect x="38" y="15" width="10" height="10" rx="2" fill="#1D3557"/><polygon points="48,16 56,20 48,24" fill="#2F9B4A"/></g></svg>';
+const snowSvg = '<svg viewBox="0 0 60 60" width="52" height="52" aria-hidden="true"><circle cx="30" cy="44" r="14" fill="#fff" stroke="#9AA5B3" stroke-width="2"/><circle cx="30" cy="24" r="10" fill="#fff" stroke="#9AA5B3" stroke-width="2"/><circle cx="26" cy="22" r="1.5" fill="#1D3557"/><circle cx="34" cy="22" r="1.5" fill="#1D3557"/><polygon points="30,25 40,27 30,29" fill="#FF8A1F"/></svg>';
+
+/* ================= помощники курса «Изобразительное искусство» ================= */
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+const emo = e => e.charAt(0) === '<' ? e : '<span style="font-size:2.3rem;line-height:1">' + e + '</span>';
+const sample = (arr, n) => shuffle(arr).slice(0, n);
+
+/* ================= данные ================= */
+/* материалы: [ключ, значок, название, описание, чем занимаются] */
+const MAT = [
+  ['pencil', '✏️', 'Карандаш', 'Карандашом рисуют тонкие линии. Лишнюю линию можно стереть ластиком.', 'line'],
+  ['marker', markerSvg, 'Фломастер', 'Фломастер рисует яркие и ровные линии.', 'line'],
+  ['crayon', '🖍️', 'Мелки', 'Мелками рисуют широкие яркие линии и закрашивают большие места.', 'line'],
+  ['paint', '🎨', 'Краски', 'Красками рисуют картины. Краски смешивают, и получаются новые цвета.', 'paint'],
+  ['brush', '🖌️', 'Кисть', 'Кисточкой берут краску и рисуют. После работы кисть нужно вымыть в воде.', 'paint'],
+  ['plast', plastSvg, 'Пластилин', 'Пластилин мягкий. Из него лепят фигурки. Пробовать пластилин на вкус нельзя.', 'sculpt'],
+  ['paper', '📄', 'Цветная бумага', 'Из цветной бумаги вырезают и приклеивают картинки и строят домики.', 'make'],
+  ['scissors', '✂️', 'Ножницы', 'Ножницами режут бумагу. Работай ножницами осторожно, лучше рядом со взрослым.', 'make']
+];
+const MD = {}; MAT.forEach(m => MD[m[0]] = m);
+const KIND = { line: 'Рисуют линии', paint: 'Рисуют красками', sculpt: 'Лепят', make: 'Вырезают и клеят' };
+const MATUSE = [['Чем рисуют тонкие тёмные линии?', 'pencil'], ['Чем берут краску?', 'brush'], ['Из чего лепят фигурки?', 'plast'], ['Чем режут бумагу?', 'scissors'], ['Что смешивают, чтобы получить новые цвета?', 'paint']];
+/* виды искусства */
+const ARTK = [
+  ['graph', 'Графика', '✏️', 'Графика — это рисунок линиями и штрихами. Его делают карандашом, фломастером или мелками.'],
+  ['paint', 'Живопись', '🎨', 'Живопись — это картина, нарисованная красками.'],
+  ['sculpt', 'Скульптура', snowSvg, 'Скульптура — это объёмная фигурка. Её можно обойти вокруг и рассмотреть со всех сторон. Скульптуры лепят, например, из пластилина или глины.'],
+  ['dpi', 'Декоративное искусство', elSvg('horn', 54), 'Декоративное искусство — это красивые узоры и украшения на коврах, посуде и одежде.'],
+  ['arch', 'Архитектура', '🏠', 'Архитектура — это искусство строить красивые и удобные здания.'],
+  ['design', 'Дизайн', '👗', 'Дизайн — это когда придумывают красивые и удобные вещи: одежду, посуду, игрушки.']
+];
+const AD = {}; ARTK.forEach(a => AD[a[0]] = a);
+const ARTEX = {
+  graph: ['Рисунок, сделанный карандашом', 'Рисунок, сделанный фломастером'],
+  paint: ['Картина, нарисованная красками', 'Пейзаж, нарисованный кисточкой'],
+  sculpt: ['Фигурка ёжика, слепленная из пластилина', 'Снеговик, слепленный из пластилина'],
+  dpi: ['Узор на войлочном ковре', 'Узор на посуде'],
+  arch: ['Красивый дом', 'Мост через реку'],
+  design: ['Придуманная красивая чашка', 'Придуманная удобная одежда']
+};
+/* линии */
+const LIN = [
+  ['straight', 'Прямая', 'Прямая линия идёт ровно, без изгибов. Так рисуют дорогу, лучи солнца, забор.'],
+  ['wavy', 'Волнистая', 'Волнистая линия плавно изгибается. Так рисуют волны, ручей, ленту.'],
+  ['zigzag', 'Ломаная', 'Ломаная линия поворачивает под острыми углами. Так рисуют молнию и горы с острыми вершинами.'],
+  ['spiral', 'Спираль', 'Спираль закручивается по кругу. Так рисуют улитку, завиток, пружинку.'],
+  ['thick', 'Толстая', 'Толстая линия получается фломастером или мелком. Она яркая и смелая.'],
+  ['thin', 'Тонкая', 'Тонкая линия получается острым карандашом. Она лёгкая и нежная.']
+];
+const LD = {}; LIN.forEach(l => LD[l[0]] = l);
+const LINTHING = [['волны на море', 'wavy'], ['лучи солнца', 'straight'], ['молнию', 'zigzag'], ['завиток улитки', 'spiral'], ['горы с острыми вершинами', 'zigzag'], ['дорогу', 'straight'], ['ручей', 'wavy'], ['пружинку', 'spiral']];
+/* цвета */
+const COLN = { red: 'Красный', yellow: 'Жёлтый', blue: 'Синий', orange: 'Оранжевый', green: 'Зелёный', purple: 'Фиолетовый', lblue: 'Голубой' };
+const MIXES = [['red', 'yellow', 'orange'], ['yellow', 'blue', 'green'], ['red', 'blue', 'purple']];
+const WARM = ['red', 'orange', 'yellow'], COLD = ['blue', 'lblue', 'purple'];
+const COLTHING = [['траву', 'green'], ['лимон', 'yellow'], ['морковку', 'orange'], ['помидор', 'red'], ['сливу', 'purple'], ['васильки', 'blue']];
+const GENRE = [['landscape', 'Пейзаж', 'На пейзаже нарисована природа: поле, горы, деревья, небо.'], ['portrait', 'Портрет', 'На портрете нарисован человек, его лицо.'], ['still', 'Натюрморт', 'На натюрморте нарисованы предметы: фрукты, посуда, цветы.']];
+const GD = {}; GENRE.forEach(g => GD[g[0]] = g);
+const FEEL = [['весёлый праздник', 1], ['жаркое лето', 1], ['яркий костёр', 1], ['холодная зима', 0], ['тихая спокойная ночь', 0], ['морозный лёд', 0]];
+/* лепка */
+const SCL = [
+  ['ball', 'Шарик', 'скатать между ладонями', 'Шарик: скатай кусочек пластилина между ладонями круговыми движениями.'],
+  ['roll', 'Колбаска', 'раскатать ладонями вперёд и назад', 'Колбаска: раскатай пластилин ладонями вперёд и назад.'],
+  ['cake', 'Лепёшка', 'сплющить шарик ладонью', 'Лепёшка: сплющи шарик ладонью или пальцем.']
+];
+const SCLFOR = [['голову снеговика', 'ball'], ['хвост змеи', 'roll'], ['блин', 'cake'], ['мячик', 'ball'], ['червяка', 'roll'], ['колесо', 'cake']];
+/* орнамент */
+const ELK = ['circle', 'triangle', 'square', 'horn', 'leaf', 'flower'];
+const NAT = [['🍃', 'Лист'], ['🌼', 'Цветок'], ['❄️', 'Снежинка'], ['🐚', 'Ракушка']];
+/* здания */
+const BLD = [['house', 'Дом'], ['yurta', 'Юрта'], ['tower', 'Башня'], ['bridge', 'Мост']];
+const BD = {}; BLD.forEach(b => BD[b[0]] = b);
+const bsvg = (k, w) => sv80(w || 110, BLD_SVG[k]);
+/* порядок действий */
+const ORD = [
+  [['✏️', 'Нарисовать развёртку'], ['✂️', 'Вырезать'], ['📄', 'Согнуть по линиям'], ['📎', 'Склеить']],
+  [['✏️', 'Придумать картинку'], ['✂️', 'Вырезать детали из цветной бумаги'], ['📄', 'Разложить детали на листе'], ['📎', 'Приклеить']],
+  [['⚪', 'Скатать три шарика'], ['🔗', 'Соединить шарики'], ['🥕', 'Вылепить нос-морковку'], ['😊', 'Сделать глаза']]
+];
+const oHint = s => s.map((x, i) => (i + 1) + '. ' + x[1]).join('; ');
+/* правила */
+const YN = {
+  plast: [['Пластилин можно попробовать на вкус', 0, 'Пластилин нельзя брать в рот, он несъедобный.'], ['После лепки нужно вымыть руки', 1, 'Руки после пластилина обязательно моют.'], ['Лепить лучше на подложке', 1, 'Подложка защищает стол от пятен.'], ['Пластилином можно пачкать мебель', 0, 'Мебель нужно беречь, лепи только на подложке.'], ['Из пластилина можно слепить фигурку', 1, 'Из пластилина лепят фигурки.']],
+  tool: [['Ножницы передают кольцами вперёд', 1, 'Так передавать безопасно.'], ['С ножницами можно бегать', 0, 'С ножницами нельзя бегать, можно пораниться.'], ['Когда работа закончена, ножницы кладут на место', 1, 'Инструменты после работы убирают.'], ['Клей можно пробовать на вкус', 0, 'Клей нельзя пробовать, он несъедобный.'], ['Кисточку после работы нужно вымыть', 1, 'Кисть моют в воде, чтобы она не засохла.']],
+  exh: [['На выставке работы смотрят глазами и не трогают руками', 1, 'Работы можно испортить, поэтому трогать их нельзя.'], ['Можно смеяться над чужим рисунком', 0, 'Над чужой работой смеяться нельзя, это обидно.'], ['Другу можно сказать доброе слово о его рисунке', 1, 'Доброе слово радует автора.'], ['Свою работу можно подписать названием', 1, 'У каждой работы есть название.'], ['Можно рассказать, чем ты рисовал и что хотел показать', 1, 'Рассказ помогает зрителям понять работу.']]
+};
+
+/* ================= генераторы вопросов ================= */
+const mkYN = (cat, ico) => () => {
+  const r = pick(YN[cat]);
+  return { html: '<div class="ac-qtxt">Это правильно или неправильно?</div><div class="es-card"><div class="em">' + ico + '</div><div class="tx" style="font-size:1.15rem">' + r[0] + '</div></div>', opts: ['Правильно', 'Неправильно'], ans: r[1] ? 'Правильно' : 'Неправильно', wide: true, hint: r[2] };
+};
+const GENS = {
+  matName(){
+    const m = pick(MAT), set = shuffle([m].concat(sample(MAT.filter(x => x !== m), 3)));
+    return { html: '<div class="ac-qtxt">Как называется этот материал?</div><div class="es-card"><div class="em" style="font-size:4rem">' + emo(m[1]) + '</div></div>', opts: set.map(x => x[2]), ans: m[2], hint: m[2] + '. ' + m[3] };
+  },
+  matFind(){
+    const m = pick(MAT), set = shuffle([m].concat(sample(MAT.filter(x => x !== m), 3)));
+    return { html: '<div class="ac-qtxt">Найди картинку</div><div class="es-card"><div class="nm">' + m[2] + '</div></div>', svgopts: true, opts: set.map(x => emo(x[1])), ans: emo(m[1]), hint: m[2] + '. ' + m[3] };
+  },
+  matUse(){
+    const q = pick(MATUSE), m = MD[q[1]], set = shuffle([m].concat(sample(MAT.filter(x => x !== m), 3)));
+    return { html: '<div class="ac-qtxt">' + q[0] + '</div>', opts: set.map(x => x[2]), ans: m[2], hint: m[2] + '. ' + m[3] };
+  },
+  matKind(){
+    const m = pick(MAT.filter(x => x[0] !== 'paper'));
+    return { html: '<div class="ac-qtxt">Что делают этим материалом?</div><div class="es-card"><div class="em" style="font-size:3.6rem">' + emo(m[1]) + '</div><div class="nm">' + m[2] + '</div></div>', opts: Object.keys(KIND).map(k => KIND[k]), ans: KIND[m[4]], wide: true, hint: m[2] + '. ' + m[3] };
+  },
+  artKind(){
+    const k = pick(ARTK), t = pick(ARTEX[k[0]]), set = shuffle([k].concat(sample(ARTK.filter(x => x !== k), 3)));
+    return { html: '<div class="ac-qtxt">Что это за вид искусства?</div><div class="es-card"><div class="tx" style="font-size:1.15rem">' + t + '</div></div>', opts: set.map(x => x[1]), ans: k[1], wide: true, hint: k[3] };
+  },
+  linName(){
+    const SH = LIN.slice(0, 4), l = pick(SH), set = shuffle(SH);
+    return { html: '<div class="ac-qtxt">Какая это линия?</div><div class="es-card">' + lnSvg(l[0], 180) + '</div>', opts: set.map(x => x[1]), ans: l[1], hint: l[1] + '. ' + l[2] };
+  },
+  linWidth(){
+    const th = Math.random() < .5, l = LD[th ? 'thick' : 'thin'];
+    return { html: '<div class="ac-qtxt">Какая это линия: толстая или тонкая?</div><div class="es-card">' + lnSvg(l[0], 180) + '</div>', opts: ['Толстая', 'Тонкая'], ans: l[1], wide: true, hint: l[2] };
+  },
+  linFind(){
+    const SH = LIN.slice(0, 4), l = pick(SH), set = shuffle(SH);
+    return { html: '<div class="ac-qtxt">Найди линию</div><div class="es-card"><div class="nm">' + l[1] + '</div></div>', svgopts: true, opts: set.map(x => lnSvg(x[0], 110)), ans: lnSvg(l[0], 110), hint: l[1] + '. ' + l[2] };
+  },
+  linThing(){
+    const q = pick(LINTHING), l = LD[q[1]], set = shuffle(['straight', 'wavy', 'zigzag', 'spiral'].map(k => LD[k]));
+    return { html: '<div class="ac-qtxt">Какой линией лучше нарисовать ' + q[0] + '?</div>', opts: set.map(x => x[1]), ans: l[1], hint: l[1] + '. ' + l[2] };
+  },
+  colMix(){
+    const m = pick(MIXES), set = shuffle(['orange', 'green', 'purple', 'lblue']);
+    return { html: '<div class="ac-qtxt">Смешали ' + COLN[m[0]].toLowerCase() + ' и ' + COLN[m[1]].toLowerCase() + '. Какой цвет получился?</div><div class="es-card"><div>' + swatch(SW[m[0]]) + ' + ' + swatch(SW[m[1]]) + ' = ?</div></div>', opts: set.map(k => COLN[k]), ans: COLN[m[2]], hint: COLN[m[0]] + ' и ' + COLN[m[1]].toLowerCase() + ' дают ' + COLN[m[2]].toLowerCase() + '.' };
+  },
+  colPrim(){
+    const p = pick(['red', 'yellow', 'blue']), set = shuffle([p, 'orange', 'green', 'purple']);
+    return { html: '<div class="ac-qtxt">Какой из этих цветов основной?</div>', opts: set.map(k => COLN[k]), ans: COLN[p], hint: 'Основные цвета: красный, жёлтый и синий. Остальные получаются, когда их смешивают.' };
+  },
+  colThing(){
+    const q = pick(COLTHING), set = shuffle(['red', 'yellow', 'green', 'orange', 'blue', 'purple'].filter(k => k !== q[1])).slice(0, 3).concat([q[1]]);
+    return { html: '<div class="ac-qtxt">Каким цветом нарисуем ' + q[0] + '?</div>', opts: shuffle(set).map(k => COLN[k]), ans: COLN[q[1]], hint: 'Правильный цвет: ' + COLN[q[1]].toLowerCase() + '.' };
+  },
+  colWarm(){
+    const warm = Math.random() < .5, k = pick(warm ? WARM : COLD);
+    return { html: '<div class="ac-qtxt">Этот цвет тёплый или холодный?</div><div class="es-card">' + swatch(SW[k]) + '<div class="nm">' + COLN[k] + '</div></div>', opts: ['Тёплый', 'Холодный'], ans: warm ? 'Тёплый' : 'Холодный', wide: true, hint: 'Тёплые цвета как солнце и огонь: красный, оранжевый, жёлтый. Холодные как лёд и вода: синий, голубой, фиолетовый.' };
+  },
+  feelCol(){
+    const f = pick(FEEL);
+    return { html: '<div class="ac-qtxt">Какими цветами лучше нарисовать ' + f[0] + '?</div>', opts: ['Тёплыми', 'Холодными'], ans: f[1] ? 'Тёплыми' : 'Холодными', wide: true, hint: 'Тёплые цвета рассказывают о радости и жаре, холодные о тишине и холоде.' };
+  },
+  genreName(){
+    const g = pick(GENRE);
+    return { html: '<div class="ac-qtxt">Как называется такая картина?</div><div class="es-card">' + sv80(190, GENRE_SVG[g[0]]) + '</div>', opts: shuffle(GENRE.map(x => x[1])), ans: g[1], hint: g[1] + '. ' + g[2] };
+  },
+  genreFind(){
+    const g = pick(GENRE);
+    return { html: '<div class="ac-qtxt">Найди картину</div><div class="es-card"><div class="nm">' + g[1] + '</div></div>', svgopts: true, opts: shuffle(GENRE.map(x => sv80(110, GENRE_SVG[x[0]]))), ans: sv80(110, GENRE_SVG[g[0]]), hint: g[1] + '. ' + g[2] };
+  },
+  sclTech(){
+    const s = pick(SCL), set = shuffle(SCL.slice());
+    return { html: '<div class="ac-qtxt">Как сделать из пластилина ' + s[1].toLowerCase() + '?</div>', opts: set.map(x => x[2]), ans: s[2], wide: true, hint: s[3] };
+  },
+  sclFor(){
+    const q = pick(SCLFOR), s = SCL.find(x => x[0] === q[1]);
+    return { html: '<div class="ac-qtxt">Какая форма нужна, чтобы слепить ' + q[0] + '?</div>', opts: shuffle(SCL.map(x => x[1])), ans: s[1], hint: s[3] };
+  },
+  sclWhat(){
+    const set = shuffle(['Фигурка из пластилина', 'Рисунок карандашом', 'Картина красками', 'Узор на ковре']);
+    return { html: '<div class="ac-qtxt">Что относится к скульптуре?</div>', opts: set, ans: 'Фигурка из пластилина', wide: true, hint: 'Скульптура — это объёмная фигурка. Её можно обойти вокруг.' };
+  },
+  ynPlast: mkYN('plast', '🎨'), ynTool: mkYN('tool', '✂️'), ynExh: mkYN('exh', '🖼️'),
+  ornNext(){
+    const p = rnd(2, 3), base = sample(ELK, p), seq = []; for (let i = 0; i < 6; i++) seq.push(base[i % p]);
+    const nxt = base[6 % p], shown = seq.concat(['?']), set = shuffle([nxt].concat(sample(ELK.filter(k => k !== nxt), 3)));
+    return { html: '<div class="ac-qtxt">Что будет дальше в узоре?</div><div class="es-card">' + stripSvg(shown, 34) + '</div>', svgopts: true, opts: set.map(k => elSvg(k, 54)), ans: elSvg(nxt, 54), hint: 'Узор повторяется по порядку: ' + base.map(k => EL_NAME[k]).join(', ') + '. Дальше идёт ' + EL_NAME[nxt] + '.' };
+  },
+  ornYN(){
+    const yes = Math.random() < .5; let arr;
+    if (yes){ const p = rnd(2, 3), b = sample(ELK, p); arr = []; for (let i = 0; i < 6; i++) arr.push(b[i % p]); }
+    else { const b = sample(ELK, 3); let ok = false; while (!ok){ arr = []; for (let i = 0; i < 6; i++) arr.push(pick(b)); ok = ![1, 2, 3].some(p => arr.every((x, i) => x === arr[i % p])); } }
+    return { html: '<div class="ac-qtxt">Это орнамент?</div><div class="es-card">' + stripSvg(arr, 36) + '</div>', opts: ['Да, это орнамент', 'Нет, это не орнамент'], ans: yes ? 'Да, это орнамент' : 'Нет, это не орнамент', wide: true, hint: 'В орнаменте элементы повторяются в одном порядке.' };
+  },
+  natForm(){
+    const n = pick(NAT), set = shuffle([n].concat(sample(NAT.filter(x => x !== n), 3)));
+    return { html: '<div class="ac-qtxt">Какую природную форму ты видишь?</div><div class="es-card"><div class="em">' + n[0] + '</div></div>', opts: set.map(x => x[1]), ans: n[1], hint: 'Это ' + n[1].toLowerCase() + '. Такие формы из природы подсказывают узоры.' };
+  },
+  ornKz(){
+    return { html: '<div class="ac-qtxt">Как называется казахский узор «бараньи рога»?</div><div class="es-card">' + elSvg('horn', 90) + '</div>', opts: shuffle(['Қошқар мүйіз', 'Түйе табан', 'Құс қанаты', 'Аққу мойын']), ans: 'Қошқар мүйіз', hint: 'Бараньи рога по-казахски «қошқар мүйіз». Это любимый узор казахских мастериц.' };
+  },
+  bldName(){
+    const b = pick(BLD), set = shuffle(BLD.slice());
+    return { html: '<div class="ac-qtxt">Что это за здание?</div><div class="es-card">' + bsvg(b[0], 190) + '</div>', opts: set.map(x => x[1]), ans: b[1], hint: b[1] + '.' };
+  },
+  bldFind(){
+    const b = pick(BLD);
+    return { html: '<div class="ac-qtxt">Найди картинку</div><div class="es-card"><div class="nm">' + b[1] + '</div></div>', svgopts: true, opts: shuffle(BLD.map(x => bsvg(x[0], 100))), ans: bsvg(b[0], 100), hint: b[1] + '.' };
+  },
+  bldFig(){
+    const q = pick([['Какая фигура похожа на крышу домика?', 'Треугольник', ['Треугольник', 'Круг', 'Квадрат', 'Овал']], ['Какая фигура похожа на стену домика?', 'Квадрат', ['Треугольник', 'Круг', 'Квадрат', 'Овал']]]);
+    return { html: '<div class="ac-qtxt">' + q[0] + '</div><div class="es-card">' + bsvg('house', 150) + '</div>', opts: shuffle(q[2]), ans: q[1], hint: 'Домик строят из простых фигур: стены как квадрат, крыша как треугольник.' };
+  },
+  yurtPart(){
+    const q = pick([['Как называется круглое окно наверху юрты?', 'Шанырак', 'Шанырак — круглое окно наверху юрты. Через него светит солнце.'], ['Как называются решётчатые стены юрты?', 'Кереге', 'Кереге — это решётчатые стены юрты.']]);
+    return { html: '<div class="ac-qtxt">' + q[0] + '</div><div class="es-card">' + bsvg('yurta', 170) + '</div>', opts: shuffle(['Шанырак', 'Кереге', 'Уық', 'Текемет']), ans: q[1], hint: q[2] };
+  },
+  ordFirst(){
+    const s = pick(ORD);
+    return { html: '<div class="ac-qtxt">Что нужно сделать <b>первым</b>?</div>', opts: shuffle(s.map(x => x[1])), ans: s[0][1], wide: true, hint: 'Правильный порядок: ' + oHint(s) + '.' };
+  },
+  ordNext(){
+    const s = pick(ORD), i = rnd(0, 2);
+    return { html: '<div class="ac-qtxt">Что делаем <b>сразу после</b> этого шага?</div><div class="es-card"><div class="em">' + s[i][0] + '</div><div class="nm">' + s[i][1] + '</div></div>', opts: shuffle(s.filter((x, j) => j !== i).map(x => x[1])), ans: s[i + 1][1], wide: true, hint: 'Правильный порядок: ' + oHint(s) + '.' };
+  }
+};
+
+/* ================= сцены ================= */
+const SCENES = {};
+function tapScene(stage, ctx, o){
+  const seen = {};
+  stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
+  $('#t-p', stage).innerHTML = o.items.map(it => '<button class="es-pb" data-k="' + it.k + '" aria-label="выбрать">' + it.b + (it.small ? '<small>' + it.small + '</small>' : '') + '</button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const k = b.dataset.k, it = o.items.find(x => x.k === k); seen[k] = 1;
+    $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#t-c', stage).innerHTML = it.card;
+    const n = Object.keys(seen).length;
+    if (n >= o.need){ ctx.fb(o.done, 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + '. Нужно хотя бы ' + o.need + '.', 'info');
+  });
+}
+const card = (ill, nm, tx) => '<div class="iz-ill">' + ill + '</div><div class="nm">' + nm + '</div><div class="tx">' + tx + '</div>';
+SCENES.artTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 6, done: 'Теперь ты знаешь виды искусства!',
+  items: ARTK.map(a => ({ k: a[0], b: emo(a[2]), small: a[1], card: card(emo(a[2]), a[1], a[3]) })) });
+SCENES.matTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 6, done: 'Ты познакомился с материалами для творчества!',
+  items: MAT.map(m => ({ k: m[0], b: emo(m[1]), small: m[2], card: card(emo(m[1]), m[2], m[3]) })) });
+SCENES.lineTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 6, done: 'Ты знаешь разные линии!',
+  items: LIN.map(l => ({ k: l[0], b: lnSvg(l[0], 62), small: l[1], card: card(lnSvg(l[0], 180), l[1], l[2]) })) });
+SCENES.colTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Ты знаешь тёплые и холодные цвета и жанры живописи!',
+  items: [
+    { k: 'warm', b: swatch(SW.orange), small: 'Тёплые', card: card('<span>' + swatch(SW.red) + swatch(SW.orange) + swatch(SW.yellow) + '</span>', 'Тёплые цвета', 'Красный, оранжевый и жёлтый. Они как солнце и огонь.') },
+    { k: 'cold', b: swatch(SW.blue), small: 'Холодные', card: card('<span>' + swatch(SW.blue) + swatch(SW.lblue) + swatch(SW.purple) + '</span>', 'Холодные цвета', 'Синий, голубой и фиолетовый. Они как вода и лёд.') }
+  ].concat(GENRE.map(g => ({ k: g[0], b: sv80(70, GENRE_SVG[g[0]]), small: g[1], card: card(sv80(190, GENRE_SVG[g[0]]), g[1], g[2]) }))) });
+SCENES.sclTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 6, done: 'Теперь ты умеешь лепить по шагам!',
+  items: SCL.map(s => ({ k: s[0], b: emo(plastSvg), small: s[1], card: card(emo(plastSvg), s[1], s[3].slice(s[1].length + 2)) })).concat([
+    { k: 'pull', b: emo(plastSvg), small: 'Вытягивание', card: card(emo(plastSvg), 'Вытягивание', 'Вытяни пальцами кусочек пластилина: получится хвост, нос или ухо.') },
+    { k: 'join', b: emo(plastSvg), small: 'Соединение', card: card(emo(plastSvg), 'Соединение', 'Прижми части друг к другу и загладь пальцем место стыка.') },
+    { k: 'rules', b: '✅', small: 'Правила', card: card('<div class="em">✅</div>', 'Правила лепки', 'Пластилин нельзя пробовать на вкус. Лепи на подложке и после работы вымой руки.') }]) });
+SCENES.ornTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь, что такое орнамент!',
+  items: [
+    { k: 'orn', b: stripSvg(['circle', 'triangle', 'circle', 'triangle'], 20), small: 'Орнамент', card: card(stripSvg(['circle', 'triangle', 'circle', 'triangle', 'circle'], 40), 'Орнамент', 'Орнамент — это узор, в котором элементы повторяются по порядку. Им украшают ковры, посуду и одежду.') },
+    { k: 'horn', b: elSvg('horn', 54), small: 'Қошқар мүйіз', card: card(elSvg('horn', 110), 'Қошқар мүйіз', 'Это «бараньи рога». Казахские мастерицы любят этот узор и украшают им ковры.') },
+    { k: 'felt', b: '🧵', small: 'Кошма', card: card('<div class="em">🧵</div>', 'Кошма', 'Казахские мастерицы делают из войлока ковры — кошмы. Самые известные называются сырмак и текемет. Их украшают узорами.') },
+    { k: 'nat', b: '🌼', small: 'Природные формы', card: card(emo('🍃') + emo('🌼') + emo('🐚'), 'Природные формы', 'Листья, цветы и ракушки подсказывают узоры. Художник смотрит на природу и придумывает узор.') },
+    { k: 'simp', b: elSvg('flower', 54), small: 'Обобщение', card: card(elSvg('flower', 110), 'Обобщение', 'Обобщить — значит упростить. Цветок можно нарисовать просто: круг и четыре лепестка. Остаётся только самое главное.') }
+  ] });
+SCENES.bldTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь, из чего строят здания и придумывают вещи!',
+  items: [
+    { k: 'house', b: bsvg('house', 70), small: 'Дом', card: card(bsvg('house', 190), 'Дом', 'Дом строят из простых фигур. Стены как квадрат, крыша как треугольник.') },
+    { k: 'yurta', b: bsvg('yurta', 70), small: 'Юрта', card: card(bsvg('yurta', 190), 'Юрта', 'Казахская юрта круглая. Сверху шанырак — круглое окно. Стены решётчатые, они называются кереге.') },
+    { k: 'tower', b: bsvg('tower', 70), small: 'Башня', card: card(bsvg('tower', 190), 'Башня', 'Башня высокая и узкая. Её видно издалека.') },
+    { k: 'bridge', b: bsvg('bridge', 70), small: 'Мост', card: card(bsvg('bridge', 190), 'Мост', 'Мост соединяет два берега. Он стоит на опорах, а под ним арки.') },
+    { k: 'design', b: '👗', small: 'Дизайн', card: card('<div class="em">👗</div>', 'Дизайн', 'Дизайнер придумывает красивые и удобные вещи: одежду, посуду, игрушки. А архитектор придумывает здания.') }
+  ] });
+SCENES.exhTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь, как показать свою работу!',
+  items: [
+    { k: 'name', b: '🖼️', small: 'Название', card: card('<div class="em">🖼️</div>', 'Название', 'У каждой работы есть название. Придумай название для своего рисунка.') },
+    { k: 'tell', b: '💬', small: 'Расскажи', card: card('<div class="em">💬</div>', 'Расскажи о работе', 'Расскажи, чем ты рисовал или лепил и что хотел показать.') },
+    { k: 'show', b: '🏛️', small: 'Выставка', card: card('<div class="em">🏛️</div>', 'Выставка', 'Выставка — это место, где работы показывают людям. Работы смотрят глазами и руками не трогают.') },
+    { k: 'feel', b: swatch(SW.orange), small: 'Чувства', card: card('<span>' + swatch(SW.orange) + swatch(SW.blue) + '</span>', 'Цвета и чувства', 'Тёплые яркие цвета рассказывают о радости. Холодные спокойные цвета рассказывают о тишине.') },
+    { k: 'kind', b: '🤝', small: 'Доброе слово', card: card('<div class="em">🤝</div>', 'Доброе слово', 'Посмотри на работу друга и скажи ему что-нибудь хорошее. Так делают настоящие художники.') }
+  ] });
+/* --- рисуем линии на листе --- */
+SCENES.drawLines = function(stage, st, ctx){
+  let tool = 'pencil', col = '#1D3557', strokes = 0, down = false, lx = 0, ly = 0;
+  stage.innerHTML = '<div class="iz-tools"><button class="es-nb seen" data-t="pencil">✏️ Карандаш</button><button class="es-nb" data-t="marker">🖍️ Фломастер</button><button class="es-nb" data-t="clear">🧽 Стереть всё</button></div>'
+    + '<div class="iz-cols">' + ['#1D3557', '#E53935', '#2FB04A', '#1E73E8', '#FF8A1F'].map(c => '<button class="iz-col' + (c === col ? ' cur' : '') + '" data-c="' + c + '" style="background:' + c + '" aria-label="цвет"></button>').join('') + '</div>'
+    + '<canvas class="iz-canvas" width="480" height="270"></canvas><div class="es-card"><div class="tx" id="dw-m">Нарисуй на листе три любые линии: прямую, волнистую и ломаную.</div></div>';
+  const cv = $('canvas', stage), g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 480, 270); g.lineCap = 'round'; g.lineJoin = 'round';
+  const pt = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 480 / r.width, (e.clientY - r.top) * 270 / r.height]; };
+  cv.addEventListener('pointerdown', e => { down = true; [lx, ly] = pt(e); try { cv.setPointerCapture(e.pointerId); } catch(x){} e.preventDefault(); });
+  cv.addEventListener('pointermove', e => { if (!down) return; const [x, y] = pt(e); g.strokeStyle = col; g.lineWidth = tool === 'pencil' ? 2.4 : 10; g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); lx = x; ly = y; e.preventDefault(); });
+  const end = () => { if (!down) return; down = false; strokes++; if (strokes >= 3){ ctx.fb('Здорово! Ты нарисовал разные линии.', 'ok'); ctx.done(); } else ctx.fb('Нарисовано линий: ' + strokes + '. Нужно хотя бы 3.', 'info'); };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  $$('.es-nb', stage).forEach(b => b.onclick = function(){
+    if (b.dataset.t === 'clear'){ g.fillStyle = '#fff'; g.fillRect(0, 0, 480, 270); return; }
+    tool = b.dataset.t; $$('.es-nb', stage).forEach(x => x.classList.toggle('seen', x.dataset.t === tool));
+  });
+  $$('.iz-col', stage).forEach(b => b.onclick = function(){ col = b.dataset.c; $$('.iz-col', stage).forEach(x => x.classList.toggle('cur', x === b)); });
+};
+/* --- смешиваем краски --- */
+SCENES.mixScene = function(stage, st, ctx){
+  const found = {}; let sel = [];
+  stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Нажми на две краски, чтобы смешать их.</div><div class="es-pick" id="mx-p"></div><div class="es-card" id="mx-r"><div class="tx">Выбери первую краску 👆</div></div>';
+  $('#mx-p', stage).innerHTML = ['red', 'yellow', 'blue'].map(k => '<button class="es-pb" data-k="' + k + '" aria-label="краска">' + swatch(SW[k]) + '<small>' + COLN[k] + '</small></button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    if (sel.length >= 2) sel = []; sel.push(b.dataset.k);
+    $$('.es-pb', stage).forEach(x => x.classList.toggle('cur', sel.indexOf(x.dataset.k) >= 0));
+    const r = $('#mx-r', stage);
+    if (sel.length === 1){ r.innerHTML = '<div>' + swatch(SW[sel[0]]) + ' + ?</div><div class="tx">Теперь выбери вторую краску.</div>'; return; }
+    if (sel[0] === sel[1]){ r.innerHTML = '<div>' + swatch(SW[sel[0]]) + ' + ' + swatch(SW[sel[1]]) + '</div><div class="tx">Две одинаковые краски цвет не меняют. Выбери другую.</div>'; sel = []; return; }
+    const m = MIXES.find(x => (x[0] === sel[0] && x[1] === sel[1]) || (x[0] === sel[1] && x[1] === sel[0]));
+    found[m[2]] = 1; r.innerHTML = '<div>' + swatch(SW[sel[0]]) + ' + ' + swatch(SW[sel[1]]) + ' = ' + swatch(SW[m[2]]) + '</div><div class="nm">' + COLN[m[2]] + '</div><div class="tx">' + COLN[sel[0]] + ' и ' + COLN[sel[1]].toLowerCase() + ' дают ' + COLN[m[2]].toLowerCase() + '.</div>';
+    const n = Object.keys(found).length;
+    if (n >= 3){ ctx.fb('Ты смешал все основные краски!', 'ok'); ctx.done(); } else ctx.fb('Новых цветов: ' + n + ' из 3.', 'info');
+  });
+};
+/* --- расставь шаги по порядку --- */
+SCENES.ordScene = function(stage, st, ctx){
+  const list = shuffle(ORD).slice(0, 3); let si = 0, pos = 0;
+  function round(){
+    const s = list[si]; pos = 0; const order = shuffle(s.map((x, i) => i));
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:6px">Задание ' + (si + 1) + ' из ' + list.length + '. Нажимай по порядку: что делаем сначала, что потом.</div><div class="iz-ord" id="o-slots">' + s.map(() => '<span></span>').join('') + '</div><div class="es-pick" id="o-p"></div><div class="es-card" id="o-c"><div class="tx">Что нужно сделать первым?</div></div>';
+    $('#o-p', stage).innerHTML = order.map(i => '<button class="es-pb" data-i="' + i + '" aria-label="шаг">' + emo(s[i][0]) + '<small>' + s[i][1] + '</small></button>').join('');
+    $$('#o-p .es-pb', stage).forEach(b => b.onclick = function(){
+      const i = +b.dataset.i;
+      if (i === pos){
+        const sl = $$('#o-slots span', stage)[pos]; sl.innerHTML = emo(s[i][0]); sl.classList.add('f'); b.disabled = true; b.style.opacity = .25; $('#o-c', stage).innerHTML = '<div class="nm">' + (pos + 1) + '. ' + s[i][1] + '</div>'; pos++;
+        if (pos >= s.length){
+          si++;
+          if (si >= list.length){ ctx.fb('Все порядки действий собраны верно!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Теперь следующее задание.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, 1100); }
+        }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#o-c', stage).innerHTML = '<div class="tx">Не то. Подумай, что делаем раньше.</div>'; }
+    });
+  }
+  round();
+};
+/* --- допиши орнамент --- */
+SCENES.ornBuild = function(stage, st, ctx){
+  let round = 0; const N = 3;
+  function start(){
+    const p = rnd(2, 3), base = sample(ELK, p), full = []; for (let i = 0; i < 8; i++) full.push(base[i % p]);
+    let pos = 4; const cur = full.map((k, i) => i < pos ? k : '?');
+    function draw(){
+      stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:6px">Узор ' + (round + 1) + ' из ' + N + '. Допиши орнамент: нажимай на нужные элементы по порядку.</div><div class="es-card">' + stripSvg(cur, 36) + '</div><div class="es-pick" id="ob-p"></div><div class="es-card" id="ob-c"><div class="tx">Что идёт дальше?</div></div>';
+      $('#ob-p', stage).innerHTML = shuffle(ELK).map(k => '<button class="es-pb" data-k="' + k + '" aria-label="элемент">' + elSvg(k, 46) + '</button>').join('');
+      $$('#ob-p .es-pb', stage).forEach(b => b.onclick = function(){
+        if (b.dataset.k === full[pos]){
+          cur[pos] = full[pos]; pos++;
+          if (pos >= full.length){
+            round++;
+            if (round >= N){ draw(); ctx.fb('Все узоры дописаны!', 'ok'); ctx.done(); } else { draw(); ctx.fb('Верно! Теперь следующий узор.', 'ok'); setTimeout(() => { if (ctx.alive()) start(); }, 1200); }
+          } else draw();
+        } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#ob-c', stage).innerHTML = '<div class="tx">Не то. Посмотри, что повторяется в узоре.</div>'; }
+      });
+    }
+    draw();
+  }
+  start();
+};
+
+/* ================= содержание курса ================= */
+const LESSONS = [
+  { id: 'i1', icon: '🎨', title: 'Что такое искусство', goal: 'Знать виды искусства и материалы для творчества',
+    steps: [
+      { id: 'i1s1', scene: 'artTap', gate: true, title: 'Виды искусства',
+        text: 'Привет! Это Барсик. Сегодня мы познакомимся с искусством. Искусство бывает разное. Есть графика, живопись, скульптура, декоративное искусство, архитектура и дизайн. Нажми на каждую карточку и узнай, что это такое.' },
+      { id: 'i1s2', scene: 'matTap', gate: true, title: 'Материалы для творчества',
+        text: 'Художник работает разными материалами. Карандаш, фломастер, мелки, краски, кисть, пластилин, цветная бумага и ножницы. Нажми на каждый материал и узнай, для чего он нужен.' },
+      { id: 'i1s3', scene: 'quiz', gate: true, count: 8, gens: ['matName', 'matFind', 'matUse', 'matKind', 'artKind'], title: 'Проверим себя',
+        text: 'Покажи, что ты запомнил материалы и виды искусства. Читай внимательно и выбирай ответ.' }
+    ] },
+  { id: 'i2', icon: '✏️', title: 'Линии', goal: 'Знать виды линий и рисовать ими',
+    steps: [
+      { id: 'i2s1', scene: 'lineTap', gate: true, title: 'Какие бывают линии',
+        text: 'Линия — главный помощник художника. Линии бывают прямые, волнистые, ломаные и закрученные спиралью. Ещё они бывают толстые и тонкие. Нажми на каждую и посмотри.' },
+      { id: 'i2s2', scene: 'drawLines', gate: true, title: 'Рисуем линии',
+        text: 'А теперь порисуем! Выбери карандаш или фломастер и нарисуй пальцем или мышкой на листе три любые линии. Попробуй прямую, волнистую и ломаную.' },
+      { id: 'i2s3', scene: 'quiz', gate: true, count: 8, gens: ['linName', 'linFind', 'linThing', 'linWidth'], title: 'Угадай линию',
+        text: 'Посмотри на линию и назови её. А ещё подумай, какой линией лучше нарисовать волны, молнию или лучи солнца.' }
+    ] },
+  { id: 'i3', icon: '🖌️', title: 'Краски и цвет', goal: 'Знать основные и составные цвета, тёплые и холодные цвета, жанры живописи',
+    steps: [
+      { id: 'i3s1', scene: 'mixScene', gate: true, title: 'Смешиваем краски',
+        text: 'Красный, жёлтый и синий — основные цвета. Если смешать две краски, получится новый цвет. Нажми на две краски и посмотри, что получится. Найди все три новых цвета.' },
+      { id: 'i3s2', scene: 'quiz', gate: true, count: 8, gens: ['colMix', 'colPrim', 'colThing'], title: 'Какой получился цвет?',
+        text: 'Вспомни, какие цвета основные, и какие получаются, когда их смешивают.' },
+      { id: 'i3s3', scene: 'colTap', gate: true, title: 'Тёплые и холодные цвета, жанры',
+        text: 'Цвета бывают тёплые и холодные. Красный, оранжевый и жёлтый — тёплые, как солнце и огонь. Синий, голубой и фиолетовый — холодные, как вода и лёд. А картины бывают разные. Пейзаж, портрет и натюрморт. Нажми на карточки и посмотри.' },
+      { id: 'i3s4', scene: 'quiz', gate: true, count: 8, gens: ['colWarm', 'genreName', 'genreFind', 'feelCol'], title: 'Проверим себя',
+        text: 'Скажи, какой цвет тёплый, а какой холодный. И узнай, какая это картина.' }
+    ] },
+  { id: 'i4', icon: '🧸', title: 'Лепка', goal: 'Знать приёмы лепки и правила работы с пластилином',
+    steps: [
+      { id: 'i4s1', scene: 'sclTap', gate: true, title: 'Как лепят из пластилина',
+        text: 'Из пластилина лепят фигурки. Это называется скульптура. Из пластилина можно скатать шарик, раскатать колбаску, сплющить лепёшку, вытянуть хвост и соединить части вместе. Нажми на каждую карточку.' },
+      { id: 'i4s2', scene: 'quiz', gate: true, count: 6, gens: ['sclTech', 'sclFor'], title: 'Какую форму слепить?',
+        text: 'Подумай, как сделать шарик, колбаску или лепёшку. И какая форма нужна для снеговика, змеи или колеса.' },
+      { id: 'i4s3', scene: 'quiz', gate: true, count: 8, gens: ['sclWhat', 'ynPlast', 'artKind'], title: 'Проверим себя',
+        text: 'Ответь на вопросы про скульптуру и правила работы с пластилином.' }
+    ] },
+  { id: 'i5', icon: '🌼', title: 'Орнамент', goal: 'Знать, что такое орнамент, и видеть природные формы в узорах',
+    steps: [
+      { id: 'i5s1', scene: 'ornTap', gate: true, title: 'Что такое орнамент',
+        text: 'Орнамент — это узор, в котором элементы повторяются по порядку. Казахские мастерицы украшают орнаментом войлочные ковры. Один из любимых узоров называется «бараньи рога», по-казахски «қошқар мүйіз». Нажми на карточки и узнай больше.' },
+      { id: 'i5s2', scene: 'ornBuild', gate: true, title: 'Допиши орнамент',
+        text: 'Помоги мастерице. Посмотри, как повторяются элементы, и допиши узор до конца. Нажимай на нужные элементы по порядку.' },
+      { id: 'i5s3', scene: 'quiz', gate: true, count: 8, gens: ['ornNext', 'ornYN', 'natForm', 'ornKz'], title: 'Проверим себя',
+        text: 'Найди, что дальше в узоре. Узнай, где орнамент. И вспомни природные формы.' }
+    ] },
+  { id: 'i6', icon: '🏠', title: 'Дом и юрта', goal: 'Знакомиться с архитектурой и дизайном, знать порядок работы',
+    steps: [
+      { id: 'i6s1', scene: 'bldTap', gate: true, title: 'Здания и вещи',
+        text: 'Архитектор придумывает здания. Это дома, башни, мосты и казахская юрта. У юрты наверху круглое окно, оно называется шанырак, а стены решётчатые, они называются кереге. А дизайнер придумывает красивые и удобные вещи. Нажми на карточки.' },
+      { id: 'i6s2', scene: 'ordScene', gate: true, title: 'Расставь шаги по порядку',
+        text: 'Любую работу делают по порядку. Например, чтобы сделать домик из бумаги, сначала рисуют развёртку, потом вырезают, сгибают и склеивают. Расставь шаги по порядку. Нажимай по очереди.' },
+      { id: 'i6s3', scene: 'quiz', gate: true, count: 8, gens: ['bldName', 'bldFind', 'bldFig', 'yurtPart', 'ordFirst', 'ordNext'], title: 'Проверим себя',
+        text: 'Назови здание, найди его на картинке и вспомни порядок работы.' }
+    ] },
+  { id: 'i7', icon: '🖼️', title: 'Моя выставка', goal: 'Уметь показать свою работу и рассказать о чувствах в рисунке',
+    steps: [
+      { id: 'i7s1', scene: 'exhTap', gate: true, title: 'Как показать свою работу',
+        text: 'Когда работа готова, её можно показать на выставке. У работы есть название. Автор рассказывает, что он хотел показать. Цвета и линии тоже говорят о чувствах. Нажми на карточки и узнай, как себя вести.' },
+      { id: 'i7s2', scene: 'quiz', gate: true, count: 8, gens: ['ynExh', 'ynTool', 'feelCol'], title: 'Правильно или нет?',
+        text: 'Прочитай правило и скажи, правильно ли так делать. Помни про выставку, ножницы и клей.' },
+      { id: 'i7s3', scene: 'quiz', gate: true, count: 10, gens: ['matName', 'matKind', 'artKind', 'linThing', 'colMix', 'colWarm', 'genreName', 'sclFor', 'ornNext', 'bldName', 'yurtPart', 'ynExh'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса. Материалы, линии, цвета, лепка, орнамент и здания.' },
+      { id: 'i7s4', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты знаешь виды искусства, линии, цвета, лепку, орнамент и здания. Рисуй, лепи и показывай свои работы. Я буду рядом!' }
+    ] }
+];
+
+/* --- общий исполнитель вопросов --- */
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html || ''; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (!q.svgopts && (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8))) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt' + (q.svgopts ? ' svg' : '');
+      if (q.svgopts) b.innerHTML = v; else b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться без конца — задания каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Все игры по ИЗО →</a></div></div>';
+};
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
