@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Трудовое обучение — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-bl{display:flex;gap:6px;align-items:flex-end;justify-content:center;flex-wrap:wrap;margin:8px 0;}
+  .nc-rod{display:block;box-sizing:border-box;width:18px;height:88px;border:2.5px solid #1D3557;border-radius:5px;background:repeating-linear-gradient(to bottom,#FFD35C 0 7.8px,#E8A200 7.8px 8.8px);animation:acPopIn .3s ease;transition:opacity .4s,filter .4s;}
+  .nc-rod.nw{background:repeating-linear-gradient(to bottom,#7FD99F 0 7.8px,#3FAE5A 7.8px 8.8px);}
+  .nc-rod.off{opacity:.22;filter:grayscale(1);}
+  .nc-us{display:grid;grid-template-columns:repeat(3,18px);gap:3px;margin-left:10px;align-content:end;}
+  .nc-un{display:block;box-sizing:border-box;width:18px;height:18px;border:2.5px solid #1D3557;border-radius:4px;background:#FF9A8F;animation:acPopIn .3s ease;}
+  @media (max-width:520px){.nc-rod{width:14px;height:72px;background:repeating-linear-gradient(to bottom,#FFD35C 0 6.2px,#E8A200 6.2px 7.2px);} .nc-rod.nw{background:repeating-linear-gradient(to bottom,#7FD99F 0 6.2px,#3FAE5A 6.2px 7.2px);} .nc-bl{gap:4px;} .nc-us{grid-template-columns:repeat(3,14px);margin-left:6px;} .nc-un{width:14px;height:14px;}}
+  .nc-th-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;}
+  .nc-groups{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+  .nc-grp{display:inline-flex;padding:4px 8px;border:3px dashed #9DB9D8;border-radius:16px;margin:4px;}
+  .nc-grp .nc-th-row{margin:4px 0;max-width:210px;}
+  .nc-pool{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:50px;margin:8px 0;}
+  .nc-pk{border:0;background:none;padding:3px;cursor:pointer;border-radius:12px;line-height:0;transition:all .15s;}
+  .nc-pk:hover{background:#EEF6FF;} .nc-pk.sel{background:#FFE9A8;box-shadow:0 0 0 3px #F5B400;}
+  .nc-plates{display:flex;gap:12px;justify-content:center;margin-top:6px;}
+  .nc-plate{flex:1;max-width:190px;min-height:110px;border:3px solid #1D3557;border-radius:50% 50% 24px 24px / 30% 30% 24px 24px;background:#F5F8FA;padding:8px 6px;}
+  .nc-plate .lb{display:block;font:800 .85rem 'Baloo 2',sans-serif;color:#5C7690;text-align:center;margin-bottom:2px;}
+  .nc-plate .in{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;}
+  @media (max-width:520px){.nc-th-row svg,.nc-pool svg{width:30px;height:30px;} .nc-grp .nc-th-row{max-width:150px;} .nc-plate{min-height:96px;}}
+  /* ----- курс «Изобразительное искусство» ----- */
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-pb.nope{animation:ncShake .35s linear 1;background:#FFE4E1;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .iz-ill{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:52px;} .iz-ill svg{display:block;max-width:100%;height:auto;}
+  .iz-sw{display:inline-block;width:3.2rem;height:3.2rem;border-radius:50%;vertical-align:middle;box-shadow:inset 0 -.25rem 0 rgba(0,0,0,.18);margin:0 2px;}
+  .iz-tools{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:4px 0;}
+  .iz-cols{display:flex;gap:10px;justify-content:center;margin:6px 0;} .iz-col{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #B8C6D6;cursor:pointer;} .iz-col.cur{box-shadow:0 0 0 4px #F5B400;}
+  .iz-canvas{display:block;width:100%;max-width:480px;height:auto;margin:6px auto;border:3px solid #DCE6F0;border-radius:16px;background:#fff;touch-action:none;cursor:crosshair;}
+  .iz-ord{display:flex;gap:10px;justify-content:center;margin:10px 0;min-height:64px;flex-wrap:wrap;} .iz-ord span{width:62px;height:62px;border-radius:16px;border:3px dashed #B8C6D6;display:flex;align-items:center;justify-content:center;} .iz-ord span.f{border-style:solid;border-color:#3FAE5A;background:#DFF5E1;}
+</style>
+</head>
+<body class="w-page">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Трудовое обучение</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Трудовое обучение</h1>
+      <p class="ac-sub">7 уроков · материалы, инструменты, безопасность, поделки, казахские узоры, выставка</p>
+      <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 5</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= рисунки ================= */
+function appleG(r, color){
+  const g = color === 'green' ? 'g-green' : 'g-red';
+  return '<ellipse cx="0" cy="' + (r*.08) + '" rx="' + r + '" ry="' + (r*.92) + '" fill="url(#' + g + ')" filter="url(#f-soft)"/>' +
+    '<path d="M0 ' + (-r*.78) + ' q' + (r*.05) + ' ' + (-r*.45) + ' ' + (r*.3) + ' ' + (-r*.58) + '" stroke="#6B4423" stroke-width="' + Math.max(1.5, r*.12) + '" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="' + (r*.45) + '" cy="' + (-r*.95) + '" rx="' + (r*.36) + '" ry="' + (r*.16) + '" transform="rotate(-28 ' + (r*.45) + ' ' + (-r*.95) + ')" fill="#4CAF50"/>' +
+    '<ellipse cx="' + (-r*.4) + '" cy="' + (-r*.25) + '" rx="' + (r*.14) + '" ry="' + (r*.28) + '" transform="rotate(20 ' + (-r*.4) + ' ' + (-r*.25) + ')" fill="#fff" opacity=".4"/>';
+}
+function appleInline(color, size){ return '<svg class="ac-ap" width="' + size + '" height="' + size + '" viewBox="-21 -26 42 46" aria-hidden="true">' + appleG(17, color) + '</svg>'; }
+function apples(n, color, size){ let s = ''; for (let i = 0; i < n; i++) s += appleInline(color, size || 34); return s; }
+function basketSVG(cx, w, top, h){
+  const x1 = cx - w/2, x2 = cx + w/2, i = w*.07;
+  let s = '<g filter="url(#f-soft)"><path d="M' + x1 + ' ' + top + ' L' + x2 + ' ' + top + ' L' + (x2 - i) + ' ' + (top + h) + ' Q' + cx + ' ' + (top + h + 8) + ' ' + (x1 + i) + ' ' + (top + h) + ' Z" fill="url(#g-basket)"/></g>';
+  for (let k = 1; k <= 3; k++){ const y = top + k*h/4; s += '<line x1="' + (x1 + i*k/4) + '" y1="' + y + '" x2="' + (x2 - i*k/4) + '" y2="' + y + '" stroke="#7A4B17" stroke-opacity=".35" stroke-width="2"/>'; }
+  for (let x = x1 + w/6; x < x2 - 2; x += w/6){ s += '<line x1="' + x + '" y1="' + top + '" x2="' + (x - (x - cx)*.07) + '" y2="' + (top + h) + '" stroke="#7A4B17" stroke-opacity=".22" stroke-width="2"/>'; }
+  s += '<rect x="' + (x1 - 5) + '" y="' + (top - 5) + '" width="' + (w + 10) + '" height="12" rx="6" fill="#B8792F"/>';
+  return s;
+}
+function hareG(){
+  const st = 'fill="#fff" stroke="#B8C4D2" stroke-width="1.5"';
+  return '<g class="hf"><ellipse cx="0" cy="-8" rx="17" ry="13" ' + st + '/>' +
+    '<circle cx="-17" cy="-9" r="5.5" ' + st + '/>' +
+    '<ellipse cx="9" cy="-28" rx="4.5" ry="13" ' + st + ' transform="rotate(-8 9 -28)"/><ellipse cx="9.5" cy="-28" rx="2" ry="9" fill="#FFB6C1" transform="rotate(-8 9 -28)"/>' +
+    '<ellipse cx="18" cy="-27" rx="4.5" ry="12" ' + st + ' transform="rotate(12 18 -27)"/><ellipse cx="18" cy="-27" rx="2" ry="8" fill="#FFB6C1" transform="rotate(12 18 -27)"/>' +
+    '<circle cx="14" cy="-14" r="10" ' + st + '/><circle cx="18" cy="-16" r="1.8" fill="#1D3557"/><ellipse cx="23.5" cy="-12" rx="2" ry="1.4" fill="#FF8FA3"/>' +
+    '<ellipse cx="-4" cy="-1" rx="7" ry="4" ' + st + '/></g>';
+}
+
+/* числовой луч */
+function Line(maxN){
+  const W = 680, X0 = 34, DX = (W - 2*X0) / maxN, LY = 128, HY = 112;
+  const xAt = n => X0 + n * DX;
+  let s = '<svg class="ac-nl" viewBox="0 0 ' + W + ' 180" role="img" aria-label="Числовой луч">';
+  s += '<line x1="' + (X0 - 14) + '" y1="' + LY + '" x2="' + (W - X0 + 18) + '" y2="' + LY + '" stroke="#1D3557" stroke-width="4" stroke-linecap="round"/>';
+  s += '<path d="M' + (W - X0 + 10) + ' ' + (LY - 8) + ' L' + (W - X0 + 22) + ' ' + LY + ' L' + (W - X0 + 10) + ' ' + (LY + 8) + '" fill="none" stroke="#1D3557" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>';
+  s += '<g class="nl-arcs"></g>';
+  for (let n = 0; n <= maxN; n++){
+    s += '<line x1="' + xAt(n) + '" y1="' + (LY - 6) + '" x2="' + xAt(n) + '" y2="' + (LY + 6) + '" stroke="#1D3557" stroke-width="3"/>';
+    s += '<g class="ac-nlnum" data-n="' + n + '"><circle cx="' + xAt(n) + '" cy="' + (LY + 30) + '" r="16"/><text x="' + xAt(n) + '" y="' + (LY + 36) + '" text-anchor="middle">' + n + '</text></g>';
+  }
+  s += '<g class="nl-hare" transform="translate(' + xAt(0) + ',' + HY + ')">' + hareG() + '</g></svg>';
+  return { html: s, xAt: xAt, LY: LY, HY: HY, maxN: maxN };
+}
+function placeHare(root, L, n){ root.querySelector('.nl-hare').setAttribute('transform', 'translate(' + L.xAt(n) + ',' + L.HY + ')'); }
+function hopTo(root, L, from, to, dur){
+  dur = dur || 440;
+  const hare = root.querySelector('.nl-hare'), x0 = L.xAt(from), x1 = L.xAt(to);
+  return new Promise(function(res){
+    const t0 = performance.now();
+    (function f(t){
+      const k = Math.min(1, (t - t0) / dur);
+      hare.setAttribute('transform', 'translate(' + (x0 + (x1 - x0) * k) + ',' + (L.HY - Math.sin(Math.PI * k) * 36) + ')');
+      if (k < 1) requestAnimationFrame(f); else res();
+    })(t0);
+  });
+}
+function addArc(root, L, from, to, label){
+  const x0 = L.xAt(from), x1 = L.xAt(to), m = (x0 + x1) / 2;
+  root.querySelector('.nl-arcs').insertAdjacentHTML('beforeend',
+    '<path d="M' + x0 + ' ' + (L.LY - 4) + ' Q' + m + ' ' + (L.LY - 62) + ' ' + x1 + ' ' + (L.LY - 4) + '" fill="none" stroke="#FF6B5B" stroke-width="3" stroke-dasharray="5 5" stroke-linecap="round"/>' +
+    '<circle cx="' + m + '" cy="' + (L.LY - 33) + '" r="10" fill="#FF6B5B"/><text x="' + m + '" y="' + (L.LY - 29) + '" text-anchor="middle" font-size="12" fill="#fff">' + label + '</text>');
+}
+function lightNum(root, n, cls){ const g = root.querySelector('.ac-nlnum[data-n="' + n + '"]'); if (g) g.classList.add(cls || 'on'); }
+async function runHops(root, L, a, b, alive){
+  placeHare(root, L, a); lightNum(root, a);
+  let cur = a;
+  for (let k = 1; k <= b; k++){
+    await hopTo(root, L, cur, cur + 1);
+    if (!alive()) return false;
+    addArc(root, L, cur, cur + 1, k); cur++; lightNum(root, cur);
+    await sleep(120);
+  }
+  return true;
+}
+function staticLine(a, b){ // рисунок для вопроса: старт и прыжки
+  const L = Line(12), tmp = document.createElement('div');
+  tmp.innerHTML = L.html;
+  const root = tmp;
+  placeHare(root, L, a); lightNum(root, a);
+  for (let k = 1; k <= b; k++) addArc(root, L, a + k - 1, a + k, k);
+  return tmp.innerHTML;
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/trud/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/trud/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_trudcourse_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ===== рисунки курса ИЗО (SVG) ===== */
+const INK = '#1D3557';
+const LN = {
+  straight: '<path d="M10 22 H110"/>',
+  wavy: '<path d="M8 22 q13 -20 26 0 t26 0 t26 0 t26 0"/>',
+  zigzag: '<path d="M10 34 L28 10 L46 34 L64 10 L82 34 L100 10"/>',
+  spiral: '<path d="M61.5 22.0 L61.6 22.2 L61.7 22.4 L61.7 22.6 L61.7 22.8 L61.7 23.0 L61.7 23.2 L61.6 23.5 L61.5 23.7 L61.4 23.9 L61.2 24.2 L61.1 24.4 L60.8 24.6 L60.6 24.7 L60.3 24.9 L60.0 25.0 L59.7 25.1 L59.3 25.1 L59.0 25.1 L58.6 25.1 L58.3 25.0 L57.9 24.9 L57.5 24.7 L57.2 24.5 L56.9 24.3 L56.5 24.0 L56.3 23.7 L56.0 23.3 L55.8 22.9 L55.6 22.5 L55.5 22.0 L55.4 21.5 L55.4 21.0 L55.5 20.5 L55.5 20.0 L55.7 19.5 L55.9 19.0 L56.1 18.5 L56.5 18.1 L56.8 17.6 L57.3 17.3 L57.7 16.9 L58.2 16.6 L58.8 16.3 L59.4 16.2 L60.0 16.0 L60.6 16.0 L61.3 16.0 L61.9 16.0 L62.6 16.2 L63.2 16.4 L63.9 16.7 L64.5 17.0 L65.0 17.5 L65.6 18.0 L66.0 18.5 L66.5 19.1 L66.8 19.8 L67.1 20.5 L67.3 21.2 L67.5 22.0 L67.5 22.8 L67.5 23.6 L67.4 24.4 L67.2 25.2 L66.9 26.0 L66.5 26.7 L66.1 27.5 L65.5 28.1 L64.9 28.8 L64.2 29.3 L63.5 29.8 L62.7 30.2 L61.8 30.6 L60.9 30.8 L60.0 31.0 L59.1 31.0 L58.1 31.0 L57.1 30.8 L56.2 30.6 L55.3 30.2 L54.4 29.7 L53.5 29.2 L52.7 28.5 L52.0 27.8 L51.4 27.0 L50.8 26.1 L50.3 25.1 L50.0 24.1 L49.7 23.1 L49.5 22.0 L49.5 20.9 L49.6 19.8 L49.8 18.7 L50.1 17.6 L50.5 16.5 L51.1 15.5 L51.7 14.5 L52.5 13.6 L53.3 12.8 L54.3 12.1 L55.3 11.5 L56.4 10.9 L57.6 10.5 L58.8 10.2 L60.0 10.1 L61.3 10.0 L62.5 10.1 L63.8 10.4 L65.0 10.7 L66.2 11.2 L67.4 11.9 L68.5 12.6 L69.5 13.5 L70.4 14.5 L71.2 15.5 L71.9 16.7 L72.5 17.9 L72.9 19.2 L73.3 20.6 L73.4 22.0 L73.5 23.4 L73.3 24.8 L73.1 26.2 L72.6 27.6 L72.1 29.0 L71.4 30.2 L70.5 31.5 L69.5 32.6 L68.4 33.6 L67.2 34.5 L65.9 35.3 L64.5 35.9 L63.1 36.4 L61.6 36.7 L60.0 36.9 L58.4 36.9 L56.9 36.8 L55.3 36.5 L53.8 36.0 L52.3 35.4 L50.9 34.6 L49.5 33.6 L48.3 32.5 L47.2 31.3 L46.2 30.0 L45.4 28.5 L44.7 27.0 L44.1 25.4 L43.8 23.7 L43.6 22.0 L43.6 20.3 L43.7 18.5 L44.1 16.8 L44.6 15.2 L45.3 13.5 L46.2 12.0 L47.3 10.5 L48.5 9.2 L49.8 8.0 L51.3 6.9 L52.9 6.0 L54.6 5.2 L56.3 4.7 L58.1 4.3 L60.0 4.1 L61.9 4.1 L63.8 4.3 L65.6 4.7 L67.4 5.3 L69.2 6.1 L70.9 7.0 L72.5 8.2 L73.9 9.5 L75.2 10.9 L76.4 12.5 L77.4 14.3 L78.2 16.1 L78.8 18.0 L79.2 20.0 L79.4 22.0"/>',
+  thick: '<path d="M10 22 H110"/>',
+  thin: '<path d="M10 22 H110"/>'
+};
+const lnSvg = (k, w) => { w = w || 140; return '<svg viewBox="0 0 120 44" width="' + w + '" height="' + Math.round(w * 44 / 120) + '" aria-hidden="true"><g fill="none" stroke="' + INK + '" stroke-linecap="round" stroke-linejoin="round" stroke-width="' + (k === 'thick' ? 9 : k === 'thin' ? 1.6 : 4) + '">' + LN[k] + '</g></svg>'; };
+const sv80 = (w, inner) => '<svg viewBox="0 0 120 80" width="' + w + '" height="' + Math.round(w * 80 / 120) + '" aria-hidden="true">' + inner + '</svg>';
+const GENRE_SVG = {
+  landscape: '<rect width="120" height="80" fill="#BFE6FF"/><circle cx="96" cy="18" r="10" fill="#FFD21F"/><ellipse cx="30" cy="80" rx="52" ry="30" fill="#5CBF6A"/><ellipse cx="92" cy="82" rx="46" ry="24" fill="#3FA655"/><rect x="22" y="44" width="5" height="16" fill="#8B5A2B"/><circle cx="25" cy="38" r="13" fill="#2F9B4A"/>',
+  portrait: '<rect width="120" height="80" fill="#FFE9C9"/><path d="M26 80 q34 -30 68 0 z" fill="#3B7DD8"/><circle cx="60" cy="40" r="20" fill="#FFD9B0" stroke="#8B5A2B" stroke-width="1.5"/><path d="M40 38 q2 -22 20 -22 q18 0 20 22 q-6 -12 -20 -12 q-14 0 -20 12z" fill="#5A3A1E"/><circle cx="53" cy="42" r="2.4" fill="#1D3557"/><circle cx="67" cy="42" r="2.4" fill="#1D3557"/><path d="M52 51 q8 8 16 0" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/><rect x="2" y="2" width="116" height="76" fill="none" stroke="#8B5A2B" stroke-width="4"/>',
+  still: '<rect width="120" height="80" fill="#FFF4D6"/><rect y="56" width="120" height="24" fill="#C98B4A"/><path d="M52 58 q-8 -18 2 -26 h12 q10 8 2 26 z" fill="#4D8FE0"/><circle cx="60" cy="24" r="6" fill="#E53935"/><circle cx="50" cy="28" r="5" fill="#FFD21F"/><circle cx="70" cy="28" r="5" fill="#E53935"/><circle cx="26" cy="52" r="9" fill="#E53935"/><path d="M26 43 q4 -6 8 -4" fill="none" stroke="#2F9B4A" stroke-width="2.5" stroke-linecap="round"/><circle cx="94" cy="52" r="8" fill="#FF8A1F"/>'
+};
+const BLD_SVG = {
+  house: '<rect x="30" y="38" width="60" height="36" fill="#F2C27B" stroke="#8B5A2B" stroke-width="2"/><polygon points="24,40 60,10 96,40" fill="#D9534F" stroke="#8B2E2B" stroke-width="2"/><rect x="54" y="52" width="12" height="22" fill="#8B5A2B"/><rect x="36" y="46" width="12" height="12" fill="#BFE6FF" stroke="#8B5A2B" stroke-width="1.5"/><rect x="72" y="46" width="12" height="12" fill="#BFE6FF" stroke="#8B5A2B" stroke-width="1.5"/>',
+  yurta: '<defs><clipPath id="izyk"><rect x="24" y="44" width="72" height="30"/></clipPath></defs><rect x="24" y="44" width="72" height="30" fill="#F5E6C8" stroke="#6B4E2B" stroke-width="2"/><g clip-path="url(#izyk)" stroke="#C2A878" stroke-width="1.4"><path d="M10 44 L50 74 M30 44 L70 74 M50 44 L90 74 M70 44 L110 74 M90 44 L130 74 M-10 44 L30 74"/><path d="M130 44 L90 74 M110 44 L70 74 M90 44 L50 74 M70 44 L30 74 M50 44 L10 74 M30 44 L-10 74"/></g><path d="M16 46 C16 8 104 8 104 46 Z" fill="#FFFFFF" stroke="#6B4E2B" stroke-width="2"/><ellipse cx="60" cy="15" rx="7" ry="3.6" fill="#F5E6C8" stroke="#6B4E2B" stroke-width="1.6"/><rect x="24" y="46" width="72" height="6" fill="#2F9BE6"/><rect x="53" y="56" width="14" height="18" fill="#8B5A2B"/>',
+  tower: '<rect x="48" y="24" width="24" height="50" fill="#C9CED6" stroke="#6B7686" stroke-width="2"/><polygon points="44,26 60,2 76,26" fill="#D9534F" stroke="#8B2E2B" stroke-width="2"/><rect x="55" y="34" width="10" height="12" fill="#BFE6FF" stroke="#6B7686" stroke-width="1.5"/><rect x="54" y="58" width="12" height="16" fill="#8B5A2B"/>',
+  bridge: '<rect x="0" y="58" width="120" height="22" fill="#7FC4F0"/><rect x="6" y="34" width="108" height="26" fill="#9AA5B3" stroke="#6B7686" stroke-width="2"/><path d="M12 60 a14 14 0 0 1 28 0 Z M46 60 a14 14 0 0 1 28 0 Z M80 60 a14 14 0 0 1 28 0 Z" fill="#7FC4F0" stroke="#6B7686" stroke-width="2"/><rect x="6" y="26" width="108" height="4" fill="#8B5A2B"/><g stroke="#8B5A2B" stroke-width="2"><path d="M16 26 v8 M36 26 v8 M56 26 v8 M76 26 v8 M96 26 v8"/></g>'
+};
+/* элементы узора: цвет задаётся при рисовании */
+const EL_NAME = { circle: 'круг', triangle: 'треугольник', square: 'квадрат', horn: 'бараньи рога', leaf: 'лист', flower: 'цветок' };
+const EL_COL = { circle: '#E53935', triangle: '#2F9B4A', square: '#2F9BE6', horn: '#FF8A1F', leaf: '#3FA655', flower: '#8E44C8' };
+const EL_SVG = {
+  circle: c => '<circle cx="20" cy="20" r="12" fill="' + c + '"/>',
+  triangle: c => '<polygon points="20,7 33,32 7,32" fill="' + c + '"/>',
+  square: c => '<rect x="8" y="8" width="24" height="24" rx="3" fill="' + c + '"/>',
+  horn: c => '<g fill="none" stroke="' + c + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M11.8 17.2 L11.5 17.2 L11.2 17.3 L11.0 17.2 L10.7 17.1 L10.4 17.0 L10.1 16.7 L9.9 16.4 L9.7 16.1 L9.6 15.7 L9.5 15.2 L9.6 14.8 L9.7 14.3 L9.9 13.8 L10.2 13.4 L10.6 13.0 L11.1 12.7 L11.7 12.5 L12.3 12.3 L12.9 12.3 L13.6 12.4 L14.2 12.6 L14.9 12.9 L15.5 13.3 L16.0 13.9 L16.4 14.5 L16.7 15.3 L16.9 16.1 L17.0 16.9 L16.9 17.8 L16.7 18.6 L16.3 19.5 L15.7 20.2 L15.0 20.9 L14.2 21.5 L13.3 21.9 L12.3 22.2 L11.3 22.3 L10.2 22.2 L9.1 21.9 L8.1 21.5 L7.1 20.9 L6.3 20.1 L5.6 19.1 L5.0 18.0 L4.6 16.8 L4.4 15.6 L4.5 14.3 L4.7 13.0 L5.2 11.8 L5.9 10.6 L6.8 9.6 L7.9 8.7 L9.1 8.0 L10.5 7.5 L11.9 7.2 L13.4 7.2 L14.9 7.4 L16.4 7.9 L17.7 8.6 L19.0 9.6"/><path d="M28.2 17.2 L28.5 17.2 L28.8 17.3 L29.0 17.2 L29.3 17.1 L29.6 17.0 L29.9 16.7 L30.1 16.4 L30.3 16.1 L30.4 15.7 L30.5 15.2 L30.4 14.8 L30.3 14.3 L30.1 13.8 L29.8 13.4 L29.4 13.0 L28.9 12.7 L28.3 12.5 L27.7 12.3 L27.1 12.3 L26.4 12.4 L25.8 12.6 L25.1 12.9 L24.5 13.3 L24.0 13.9 L23.6 14.5 L23.3 15.3 L23.1 16.1 L23.0 16.9 L23.1 17.8 L23.3 18.6 L23.7 19.5 L24.3 20.2 L25.0 20.9 L25.8 21.5 L26.7 21.9 L27.7 22.2 L28.7 22.3 L29.8 22.2 L30.9 21.9 L31.9 21.5 L32.9 20.9 L33.7 20.1 L34.4 19.1 L35.0 18.0 L35.4 16.8 L35.6 15.6 L35.5 14.3 L35.3 13.0 L34.8 11.8 L34.1 10.6 L33.2 9.6 L32.1 8.7 L30.9 8.0 L29.5 7.5 L28.1 7.2 L26.6 7.2 L25.1 7.4 L23.6 7.9 L22.3 8.6 L21.0 9.6"/><path d="M13 25 L20 35 L27 25"/></g>',
+  leaf: c => '<path d="M8 32 C8 14 18 6 33 7 C34 22 26 32 8 32 Z" fill="' + c + '"/><path d="M10 30 L28 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>',
+  flower: c => '<g fill="' + c + '"><circle cx="20" cy="9" r="6"/><circle cx="31" cy="20" r="6"/><circle cx="20" cy="31" r="6"/><circle cx="9" cy="20" r="6"/></g><circle cx="20" cy="20" r="5" fill="#FFD21F"/>'
+};
+const elSvg = (k, w) => '<svg viewBox="0 0 40 40" width="' + (w || 44) + '" height="' + (w || 44) + '" aria-hidden="true">' + EL_SVG[k](EL_COL[k]) + '</svg>';
+const stripSvg = (arr, w) => { const n = arr.length; w = w || 36; return '<svg viewBox="0 0 ' + (n * 40) + ' 40" width="' + (n * w) + '" height="' + w + '" aria-hidden="true">' + arr.map((k, i) => k === '?' ? '<g transform="translate(' + (i * 40) + ',0)"><rect x="4" y="4" width="32" height="32" rx="8" fill="#FFF1C9" stroke="#F5B400" stroke-width="2.5" stroke-dasharray="4 3"/><text x="20" y="28" text-anchor="middle" font-size="22" font-weight="800" fill="#F5B400" font-family="Baloo 2,sans-serif">?</text></g>' : '<g transform="translate(' + (i * 40) + ',0)">' + EL_SVG[k](EL_COL[k]) + '</g>').join('') + '</svg>'; };
+const SW = { red: '#E53935', yellow: '#FFD21F', blue: '#1E73E8', orange: '#FF8A1F', green: '#2FB04A', purple: '#8E44C8', lblue: '#5BC0F0' };
+const swatch = c => '<span class="iz-sw" style="background:' + c + '"></span>';
+const plastSvg = '<svg viewBox="0 0 60 40" width="64" height="43" aria-hidden="true"><rect x="3" y="8" width="26" height="26" rx="7" fill="#E53935"/><rect x="18" y="4" width="26" height="26" rx="7" fill="#FFD21F"/><rect x="32" y="12" width="25" height="24" rx="7" fill="#2F9BE6"/></svg>';
+const markerSvg = '<svg viewBox="0 0 60 40" width="64" height="43" aria-hidden="true"><g transform="rotate(-28 30 20)"><rect x="8" y="14" width="34" height="12" rx="3" fill="#2F9B4A"/><rect x="38" y="15" width="10" height="10" rx="2" fill="#1D3557"/><polygon points="48,16 56,20 48,24" fill="#2F9B4A"/></g></svg>';
+const snowSvg = '<svg viewBox="0 0 60 60" width="52" height="52" aria-hidden="true"><circle cx="30" cy="44" r="14" fill="#fff" stroke="#9AA5B3" stroke-width="2"/><circle cx="30" cy="24" r="10" fill="#fff" stroke="#9AA5B3" stroke-width="2"/><circle cx="26" cy="22" r="1.5" fill="#1D3557"/><circle cx="34" cy="22" r="1.5" fill="#1D3557"/><polygon points="30,25 40,27 30,29" fill="#FF8A1F"/></svg>';
+
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+const emo = e => e.charAt(0) === '<' ? e : '<span style="font-size:2.3rem;line-height:1">' + e + '</span>';
+const sample = (arr, n) => shuffle(arr).slice(0, n);
+
+
+const mkYN = (cat, ico) => () => {
+  const r = pick(YN[cat]);
+  return { html: '<div class="ac-qtxt">Это правильно или неправильно?</div><div class="es-card"><div class="em">' + ico + '</div><div class="tx" style="font-size:1.15rem">' + r[0] + '</div></div>', opts: ['Правильно', 'Неправильно'], ans: r[1] ? 'Правильно' : 'Неправильно', wide: true, hint: r[2] };
+};
+
+const SCENES = {};
+function tapScene(stage, ctx, o){
+  const seen = {};
+  stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
+  $('#t-p', stage).innerHTML = o.items.map(it => '<button class="es-pb" data-k="' + it.k + '" aria-label="выбрать">' + it.b + (it.small ? '<small>' + it.small + '</small>' : '') + '</button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const k = b.dataset.k, it = o.items.find(x => x.k === k); seen[k] = 1;
+    $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#t-c', stage).innerHTML = it.card;
+    const n = Object.keys(seen).length;
+    if (n >= o.need){ ctx.fb(o.done, 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + '. Нужно хотя бы ' + o.need + '.', 'info');
+  });
+}
+const card = (ill, nm, tx) => '<div class="iz-ill">' + ill + '</div><div class="nm">' + nm + '</div><div class="tx">' + tx + '</div>';
+
+/* --- расставь шаги по порядку --- */
+SCENES.ordScene = function(stage, st, ctx){
+  const list = shuffle(ORD).slice(0, 3); let si = 0, pos = 0;
+  function round(){
+    const s = list[si]; pos = 0; const order = shuffle(s.map((x, i) => i));
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:6px">Задание ' + (si + 1) + ' из ' + list.length + '. Нажимай по порядку: что делаем сначала, что потом.</div><div class="iz-ord" id="o-slots">' + s.map(() => '<span></span>').join('') + '</div><div class="es-pick" id="o-p"></div><div class="es-card" id="o-c"><div class="tx">Что нужно сделать первым?</div></div>';
+    $('#o-p', stage).innerHTML = order.map(i => '<button class="es-pb" data-i="' + i + '" aria-label="шаг">' + emo(s[i][0]) + '<small>' + s[i][1] + '</small></button>').join('');
+    $$('#o-p .es-pb', stage).forEach(b => b.onclick = function(){
+      const i = +b.dataset.i;
+      if (i === pos){
+        const sl = $$('#o-slots span', stage)[pos]; sl.innerHTML = emo(s[i][0]); sl.classList.add('f'); b.disabled = true; b.style.opacity = .25; $('#o-c', stage).innerHTML = '<div class="nm">' + (pos + 1) + '. ' + s[i][1] + '</div>'; pos++;
+        if (pos >= s.length){
+          si++;
+          if (si >= list.length){ ctx.fb('Все порядки действий собраны верно!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Теперь следующее задание.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, 1100); }
+        }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#o-c', stage).innerHTML = '<div class="tx">Не то. Подумай, что делаем раньше.</div>'; }
+    });
+  }
+  round();
+};
+/* --- допиши орнамент --- */
+SCENES.ornBuild = function(stage, st, ctx){
+  let round = 0; const N = 3;
+  function start(){
+    const p = rnd(2, 3), base = sample(ELK, p), full = []; for (let i = 0; i < 8; i++) full.push(base[i % p]);
+    let pos = 4; const cur = full.map((k, i) => i < pos ? k : '?');
+    function draw(){
+      stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:6px">Узор ' + (round + 1) + ' из ' + N + '. Допиши орнамент: нажимай на нужные элементы по порядку.</div><div class="es-card">' + stripSvg(cur, 36) + '</div><div class="es-pick" id="ob-p"></div><div class="es-card" id="ob-c"><div class="tx">Что идёт дальше?</div></div>';
+      $('#ob-p', stage).innerHTML = shuffle(ELK).map(k => '<button class="es-pb" data-k="' + k + '" aria-label="элемент">' + elSvg(k, 46) + '</button>').join('');
+      $$('#ob-p .es-pb', stage).forEach(b => b.onclick = function(){
+        if (b.dataset.k === full[pos]){
+          cur[pos] = full[pos]; pos++;
+          if (pos >= full.length){
+            round++;
+            if (round >= N){ draw(); ctx.fb('Все узоры дописаны!', 'ok'); ctx.done(); } else { draw(); ctx.fb('Верно! Теперь следующий узор.', 'ok'); setTimeout(() => { if (ctx.alive()) start(); }, 1200); }
+          } else draw();
+        } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#ob-c', stage).innerHTML = '<div class="tx">Не то. Посмотри, что повторяется в узоре.</div>'; }
+      });
+    }
+    draw();
+  }
+  start();
+};
+
+
+/* ===== рисунки курса «Трудовое обучение» (SVG) ===== */
+const sv60 = (w, inner) => '<svg viewBox="0 0 60 60" width="' + w + '" height="' + w + '" aria-hidden="true">' + inner + '</svg>';
+const MS = {
+  paper: '<path d="M12 6 H40 L50 16 V54 H12 Z" fill="#fff" stroke="#9BB0C6" stroke-width="2" stroke-linejoin="round"/><path d="M40 6 V16 H50" fill="#E3ECF5" stroke="#9BB0C6" stroke-width="2" stroke-linejoin="round"/><path d="M19 26 H43 M19 33 H43 M19 40 H34" stroke="#C5D3E2" stroke-width="2" stroke-linecap="round"/>',
+  cardboard: '<rect x="8" y="12" width="44" height="36" rx="3" fill="#C99A5B" stroke="#8B6232" stroke-width="2"/><path d="M8 20 H52 M8 28 H52 M8 36 H52 M8 44 H52" stroke="#A97B3F" stroke-width="1.6" opacity=".7"/>',
+  fabric: '<path d="M8 12 Q20 6 30 12 T52 12 V48 Q40 54 30 48 T8 48 Z" fill="#4D8FE0" stroke="#2C5FA3" stroke-width="2" stroke-linejoin="round"/><g fill="#FFD21F"><circle cx="18" cy="24" r="2.4"/><circle cx="32" cy="22" r="2.4"/><circle cx="44" cy="26" r="2.4"/><circle cx="24" cy="36" r="2.4"/><circle cx="38" cy="38" r="2.4"/></g>',
+  thread: '<circle cx="30" cy="32" r="20" fill="#E5524F" stroke="#9C2C2A" stroke-width="2"/><g fill="none" stroke="#B8332F" stroke-width="2" stroke-linecap="round"><path d="M14 26 Q30 40 46 24"/><path d="M12 34 Q30 48 48 32"/><path d="M18 18 Q32 30 44 18"/></g><path d="M44 46 Q54 52 50 56" fill="none" stroke="#E5524F" stroke-width="3" stroke-linecap="round"/>',
+  leaf: '<path d="M10 50 Q8 14 50 10 Q52 48 10 50 Z" fill="#4BB863" stroke="#2A7E3F" stroke-width="2" stroke-linejoin="round"/><path d="M10 50 Q26 34 42 18" fill="none" stroke="#2A7E3F" stroke-width="2" stroke-linecap="round"/>',
+  cone: '<path d="M30 6 Q44 8 46 28 Q46 46 30 56 Q14 46 14 28 Q16 8 30 6 Z" fill="#9A6A3A" stroke="#5E3D1E" stroke-width="2"/><g fill="none" stroke="#5E3D1E" stroke-width="1.8" stroke-linecap="round"><path d="M18 20 Q30 28 42 20"/><path d="M16 30 Q30 40 44 30"/><path d="M19 40 Q30 49 41 40"/></g>',
+  pebble: '<ellipse cx="22" cy="38" rx="16" ry="11" fill="#9AA5B3" stroke="#6B7686" stroke-width="2"/><ellipse cx="42" cy="42" rx="10" ry="8" fill="#C0C8D2" stroke="#6B7686" stroke-width="2"/><ellipse cx="36" cy="24" rx="9" ry="7" fill="#B0BAC6" stroke="#6B7686" stroke-width="2"/>',
+  twig: '<path d="M8 52 L50 10" stroke="#7A5230" stroke-width="5" stroke-linecap="round"/><path d="M26 34 L26 16 M38 22 L50 26 M20 40 L8 36" stroke="#7A5230" stroke-width="3.2" stroke-linecap="round"/><circle cx="26" cy="14" r="3" fill="#4BB863"/><circle cx="51" cy="26" r="3" fill="#4BB863"/>',
+  glue: '<rect x="20" y="22" width="20" height="32" rx="5" fill="#fff" stroke="#9BB0C6" stroke-width="2"/><rect x="20" y="34" width="20" height="10" fill="#4D8FE0"/><path d="M25 22 L27 8 H33 L35 22 Z" fill="#FF8A1F" stroke="#B85F10" stroke-width="2" stroke-linejoin="round"/>',
+  ruler: '<rect x="4" y="20" width="52" height="20" rx="3" fill="#FFD21F" stroke="#B8920C" stroke-width="2"/><g stroke="#7A5E05" stroke-width="2" stroke-linecap="round"><path d="M12 20 V30 M20 20 V27 M28 20 V30 M36 20 V27 M44 20 V30"/></g>',
+  scissors: '<g fill="none" stroke="#1D3557" stroke-width="3.2" stroke-linecap="round"><path d="M22 34 L48 10 M38 34 L12 10"/></g><circle cx="17" cy="44" r="8" fill="#fff" stroke="#E5524F" stroke-width="4"/><circle cx="43" cy="44" r="8" fill="#fff" stroke="#E5524F" stroke-width="4"/>',
+  pencil: '<g transform="rotate(-40 30 30)"><rect x="6" y="24" width="38" height="12" fill="#FFD21F" stroke="#B8920C" stroke-width="2"/><polygon points="44,24 56,30 44,36" fill="#F2C99A" stroke="#B8920C" stroke-width="2" stroke-linejoin="round"/><polygon points="52,28 56,30 52,32" fill="#1D3557"/><rect x="2" y="24" width="6" height="12" fill="#F28CA0" stroke="#B8920C" stroke-width="2"/></g>',
+  plast: '<rect x="6" y="14" width="28" height="22" rx="5" fill="#E5524F" stroke="#9C2C2A" stroke-width="2"/><rect x="22" y="26" width="28" height="22" rx="5" fill="#4D8FE0" stroke="#2C5FA3" stroke-width="2"/><rect x="14" y="36" width="22" height="16" rx="5" fill="#FFD21F" stroke="#B8920C" stroke-width="2"/>',
+  needle: '<path d="M10 50 L48 12" stroke="#9AA5B3" stroke-width="3" stroke-linecap="round"/><ellipse cx="50" cy="10" rx="2.6" ry="5" transform="rotate(45 50 10)" fill="none" stroke="#6B7686" stroke-width="2"/><path d="M48 12 Q36 28 22 20 Q14 30 22 44" fill="none" stroke="#E5524F" stroke-width="2" stroke-linecap="round"/>',
+  soap: '<rect x="8" y="26" width="36" height="22" rx="8" fill="#9ED9F6" stroke="#4F9CC2" stroke-width="2"/><circle cx="42" cy="18" r="7" fill="#fff" stroke="#4F9CC2" stroke-width="1.6"/><circle cx="52" cy="26" r="4" fill="#fff" stroke="#4F9CC2" stroke-width="1.6"/><circle cx="30" cy="14" r="4" fill="#fff" stroke="#4F9CC2" stroke-width="1.6"/>',
+  bin: '<path d="M14 18 H46 L43 54 H17 Z" fill="#9AA5B3" stroke="#6B7686" stroke-width="2" stroke-linejoin="round"/><rect x="10" y="12" width="40" height="6" rx="2" fill="#B0BAC6" stroke="#6B7686" stroke-width="2"/><path d="M24 24 V48 M30 24 V48 M36 24 V48" stroke="#6B7686" stroke-width="2" stroke-linecap="round"/>',
+  apron: '<path d="M22 8 H38 V20 L48 24 V54 H12 V24 L22 20 Z" fill="#5CBF6A" stroke="#2A7E3F" stroke-width="2" stroke-linejoin="round"/><rect x="22" y="32" width="16" height="10" rx="2" fill="#4BB863" stroke="#2A7E3F" stroke-width="1.6"/>',
+  paperHouse: '<rect x="14" y="26" width="32" height="26" fill="#F2C27B" stroke="#8B5A2B" stroke-width="2"/><polygon points="10,28 30,8 50,28" fill="#D9534F" stroke="#8B2E2B" stroke-width="2" stroke-linejoin="round"/><rect x="26" y="36" width="9" height="16" fill="#8B5A2B"/>',
+  applique: '<rect x="6" y="8" width="48" height="44" rx="4" fill="#FFF4D6" stroke="#C99A5B" stroke-width="2"/><circle cx="30" cy="24" r="10" fill="#FFD21F"/><polygon points="12,52 30,32 48,52" fill="#4BB863"/><rect x="26" y="40" width="8" height="12" fill="#D9534F"/>',
+  conecraft: '<ellipse cx="30" cy="48" rx="14" ry="5" fill="#C99A5B"/><path d="M30 10 Q40 12 42 30 Q42 44 30 50 Q18 44 18 30 Q20 12 30 10 Z" fill="#9A6A3A" stroke="#5E3D1E" stroke-width="2"/><circle cx="25" cy="24" r="3" fill="#fff"/><circle cx="35" cy="24" r="3" fill="#fff"/><circle cx="25" cy="24" r="1.4" fill="#1D3557"/><circle cx="35" cy="24" r="1.4" fill="#1D3557"/>',
+  threadcraft: '<circle cx="30" cy="30" r="18" fill="#FFF4D6" stroke="#C99A5B" stroke-width="2"/><g stroke="#E5524F" stroke-width="1.6" stroke-linecap="round"><path d="M16 22 L44 38 M14 32 L46 28 M20 14 L40 46 M30 12 L30 48"/></g>',
+  yurta: '<rect x="12" y="32" width="36" height="20" fill="#F5E6C8" stroke="#6B4E2B" stroke-width="2"/><path d="M6 34 Q30 -2 54 34 Z" fill="#FFF8E7" stroke="#6B4E2B" stroke-width="2" stroke-linejoin="round"/><circle cx="30" cy="16" r="4" fill="none" stroke="#6B4E2B" stroke-width="2"/><rect x="26" y="38" width="8" height="14" fill="#8B5A2B"/>',
+  chair: '<rect x="16" y="6" width="8" height="26" rx="2" fill="#C99A5B" stroke="#8B6232" stroke-width="2"/><rect x="14" y="30" width="34" height="8" rx="2" fill="#C99A5B" stroke="#8B6232" stroke-width="2"/><path d="M18 38 V54 M44 38 V54" stroke="#8B6232" stroke-width="4" stroke-linecap="round"/>',
+  felt: '<rect x="6" y="14" width="48" height="32" rx="3" fill="#E5524F" stroke="#9C2C2A" stroke-width="2"/><rect x="12" y="20" width="36" height="20" fill="none" stroke="#FFF4D6" stroke-width="2"/><path d="M18 30 q4 -8 8 0 t8 0 t8 0" fill="none" stroke="#FFD21F" stroke-width="2.4" stroke-linecap="round"/>',
+  cap: '<ellipse cx="30" cy="42" rx="22" ry="6" fill="#2C5FA3"/><path d="M10 42 Q10 14 30 12 Q50 14 50 42 Z" fill="#4D8FE0" stroke="#2C5FA3" stroke-width="2" stroke-linejoin="round"/><path d="M12 36 H48" stroke="#FFD21F" stroke-width="3"/><path d="M22 26 q4 -6 8 0 t8 0" fill="none" stroke="#FFD21F" stroke-width="2" stroke-linecap="round"/>'
+};
+const msvg = (k, w) => sv60(w || 56, MS[k]);
+
+/* ================= данные курса «Трудовое обучение» ================= */
+/* материалы: [ключ, название, группа, описание свойств] */
+const TM = [
+  ['paper', 'Цветная бумага', 'art', 'Цветная бумага тонкая и лёгкая. Её можно резать, сгибать и клеить.'],
+  ['cardboard', 'Цветной картон', 'art', 'Картон плотный и твёрдый. Из него делают основу для открытки и коробки.'],
+  ['plast', 'Пластилин', 'art', 'Пластилин мягкий. Он меняет форму, из него лепят фигурки.'],
+  ['leaf', 'Листья', 'nat', 'Листья тонкие и лёгкие. Их собирают в парке, высушивают и приклеивают.'],
+  ['cone', 'Шишка', 'nat', 'Шишка твёрдая и шершавая. Из неё делают поделки, например ёжика.'],
+  ['pebble', 'Камешек', 'nat', 'Камешек твёрдый и тяжёлый. Его можно раскрасить.'],
+  ['twig', 'Веточка', 'nat', 'Веточка твёрдая и длинная. Из неё делают рамки и фигурки.'],
+  ['fabric', 'Ткань', 'man', 'Ткань мягкая и гнётся. Её режут ножницами и шьют из неё одежду.'],
+  ['thread', 'Нитки', 'man', 'Нитки тонкие и мягкие. Ими шьют и вышивают.']
+];
+const TMD = {}; TM.forEach(m => TMD[m[0]] = m);
+const GRP = { art: 'Художественные материалы', nat: 'Природные материалы', man: 'Искусственные материалы' };
+const GRPHINT = {
+  art: 'Бумагу, картон и пластилин используют для творчества. Это художественные материалы.',
+  nat: 'Листья, шишки, камешки и веточки берут из природы. Это природные материалы.',
+  man: 'Ткань и нитки делают люди на фабрике. Это искусственные материалы.'
+};
+/* свойства: ключ свойства -> [текст, верные материалы, неверные материалы] */
+const PROP = {
+  soft: ['мягкий', ['plast', 'fabric', 'thread'], ['pebble', 'twig', 'cone', 'cardboard'], 'Мягкие материалы легко мять и сгибать: пластилин, ткань, нитки.'],
+  hard: ['твёрдый', ['pebble', 'twig', 'cone', 'cardboard'], ['plast', 'fabric', 'thread'], 'Твёрдые материалы не мнутся: камешек, веточка, шишка, картон.'],
+  smooth: ['гладкий', ['paper', 'leaf', 'pebble'], ['cone', 'twig', 'cardboard'], 'Гладкий материал ровный на ощупь: бумага, лист, камешек.'],
+  rough: ['шершавый', ['cone', 'twig', 'cardboard'], ['paper', 'leaf', 'pebble', 'plast'], 'Шершавый материал неровный на ощупь: шишка, веточка, картон.'],
+  heavy: ['тяжёлый', ['pebble'], ['paper', 'leaf', 'thread', 'fabric'], 'Камешек тяжёлый, а бумага, лист и нитки очень лёгкие.']
+};
+/* для чего нужен материал: [вопрос, верный, неверные, подсказка] */
+const USEFOR = [
+  ['Из чего можно слепить фигурку?', 'plast', ['pebble', 'leaf', 'twig'], 'Фигурки лепят из пластилина, он мягкий.'],
+  ['Из чего вырезают детали для простой аппликации?', 'paper', ['pebble', 'plast', 'twig'], 'Для аппликации вырезают детали из цветной бумаги.'],
+  ['Из чего делают твёрдую основу для открытки или коробки?', 'cardboard', ['leaf', 'thread', 'plast'], 'Картон плотный и твёрдый, поэтому основа получается крепкой.'],
+  ['Из чего шьют одежду для куклы?', 'fabric', ['pebble', 'cone', 'cardboard'], 'Одежду шьют из ткани.'],
+  ['Из чего можно сделать забавного ёжика?', 'cone', ['paper', 'thread', 'fabric'], 'У шишки колючая чешуя, как иголки у ёжика.'],
+  ['Что нужно для вышивки узора?', 'thread', ['pebble', 'twig', 'cardboard'], 'Узор вышивают нитками.'],
+  ['Что можно приклеить на осеннюю картину?', 'leaf', ['pebble', 'plast', 'cone'], 'Осенью собирают красивые листья и делают из них картину.']
+];
+/* инструменты: [ключ, название, описание] */
+const TOOL = [
+  ['scissors', 'Ножницы', 'Ножницами режут бумагу, картон и ткань. Острые концы нужно беречь.'],
+  ['glue', 'Клей', 'Клеем соединяют детали. Клей наносят тонким слоем, пробовать его нельзя.'],
+  ['ruler', 'Линейка', 'Линейкой измеряют и проводят прямые линии.'],
+  ['pencil', 'Карандаш', 'Карандашом чертят и рисуют контур, чтобы потом вырезать деталь.'],
+  ['needle', 'Иголка', 'Иголкой с ниткой шьют. Иголка очень острая, её нужно держать осторожно.']
+];
+const TD = {}; TOOL.forEach(t => TD[t[0]] = t);
+const TOOLUSE = [['Чем режут бумагу?', 'scissors'], ['Чем склеивают детали?', 'glue'], ['Чем измеряют длину детали и чертят прямую линию?', 'ruler'], ['Чем обводят контур детали на бумаге?', 'pencil'], ['Чем шьют?', 'needle']];
+/* приёмы работы: [ключ, название, значок, описание] */
+const TECH = [
+  ['cut', 'Вырезать', 'scissors', 'Вырезать: отдели деталь от листа ножницами по линии.'],
+  ['glue', 'Приклеить', 'glue', 'Приклеить: нанеси тонкий слой клея и прижми деталь к основе.'],
+  ['bend', 'Согнуть', 'paper', 'Согнуть: сложи бумагу по линии и проведи по сгибу пальцем.'],
+  ['mould', 'Слепить', 'plast', 'Слепить: придай пластилину нужную форму руками.'],
+  ['sew', 'Сшить', 'needle', 'Сшить: соедини части ткани иголкой с ниткой.'],
+  ['mark', 'Разметить', 'ruler', 'Разметить: проведи по линейке линии и отметь, где резать.']
+];
+const TQ = [
+  ['Как соединить части поделки из картона?', 'glue', ['sew']],
+  ['Как получить фигурку из пластилина?', 'mould', ['cut', 'sew']],
+  ['Как отделить деталь от листа цветной бумаги?', 'cut', ['sew', 'mould']],
+  ['Как получить складку на бумаге при работе над домиком из развёртки?', 'bend', ['mould', 'sew']],
+  ['Как соединить две части ткани?', 'sew', ['mould', 'bend']],
+  ['Как провести ровную линию, по которой будем резать?', 'mark', ['mould', 'sew']]
+];
+const TDq = {}; TECH.forEach(t => TDq[t[0]] = t);
+/* порядок работы */
+const ORD = [
+  [[msvg('apron', 50), 'Приготовить рабочее место'], [msvg('scissors', 50), 'Сделать поделку'], [msvg('bin', 50), 'Убрать мусор в корзину'], [msvg('soap', 50), 'Вымыть руки']],
+  [[msvg('pencil', 50), 'Придумать картинку'], [msvg('paper', 50), 'Выбрать материалы'], [msvg('scissors', 50), 'Вырезать детали'], [msvg('glue', 50), 'Приклеить детали']],
+  [[msvg('cone', 50), 'Выбрать шишку'], [msvg('plast', 50), 'Слепить из пластилина нос и глаза'], [msvg('conecraft', 50), 'Прикрепить их к шишке'], [msvg('applique', 50), 'Показать работу друзьям']],
+  [[msvg('cardboard', 50), 'Сложить картон пополам'], [msvg('pencil', 50), 'Нарисовать узор'], [msvg('glue', 50), 'Приклеить детали'], [msvg('paperHouse', 50), 'Подписать открытку']]
+];
+const oHint = s => s.map((x, i) => (i + 1) + '. ' + x[1]).join('; ');
+/* проекты: выбери нужное */
+const PROJ = [
+  ['Аппликация «Домик»', ['paper', 'scissors', 'glue'], ['pebble', 'twig', 'plast', 'cone']],
+  ['Ёжик из шишки', ['cone', 'plast'], ['scissors', 'paper', 'fabric', 'ruler']],
+  ['Платье для куклы', ['fabric', 'thread', 'needle', 'scissors'], ['pebble', 'cone', 'twig']],
+  ['Осенняя картина из листьев', ['leaf', 'paper', 'glue'], ['needle', 'ruler', 'plast']]
+];
+const NAMES = Object.assign({}, { glue: 'клей', scissors: 'ножницы', ruler: 'линейка', pencil: 'карандаш', needle: 'иголка', paper: 'цветная бумага', cardboard: 'картон', plast: 'пластилин', leaf: 'листья', cone: 'шишка', pebble: 'камешек', twig: 'веточка', fabric: 'ткань', thread: 'нитки' });
+const ELK = ['circle', 'triangle', 'square', 'horn', 'leaf', 'flower'];
+/* национальное */
+const NAT = [
+  ['yurta', 'Юрта', 'Юрта — это переносной дом казахов-кочевников. Наверху у неё круглое окно, шанырак.'],
+  ['felt', 'Кошма', 'Кошма — это ковёр из войлока. Его делают из овечьей шерсти и украшают узорами.'],
+  ['cap', 'Тюбетейка (тақия)', 'Тақия — это шапочка, которую носят казахи. Её украшают узорами.'],
+  ['horn', 'Узор «қошқар мүйіз»', 'Қошқар мүйіз — это узор «бараньи рога». Им украшают ковры, одежду и посуду.']
+];
+const NATSVG = (k, w) => k === 'horn' ? elSvg('horn', w) : msvg(k, w);
+const NATD = {}; NAT.forEach(n => NATD[n[0]] = n);
+/* правила */
+const YN = {
+  safe: [
+    ['Ножницы передают другу кольцами вперёд', 1, 'Так передавать ножницы безопасно.'],
+    ['Ножницами можно размахивать', 0, 'Размахивать ножницами нельзя, можно пораниться.'],
+    ['Во время резки ножницами нельзя ходить по классу', 1, 'С ножницами в руках нужно сидеть на месте.'],
+    ['Ножницы можно держать во рту', 0, 'Ножницы нельзя брать в рот.'],
+    ['Иголку после работы нужно воткнуть в игольницу', 1, 'Иголку нельзя терять и оставлять на столе.'],
+    ['Иголку можно оставить на стуле', 0, 'На стуле на иголку можно сесть. Иголку убирают в игольницу.'],
+    ['Клей нельзя пробовать на вкус', 1, 'Клей несъедобный.'],
+    ['Клей нужно наносить тонким слоем', 1, 'От тонкого слоя бумага не размокнет и не будет пятен.'],
+    ['Мелкие детали можно класть в рот', 0, 'Мелкие детали нельзя класть в рот, нос или ухо.'],
+    ['Острыми инструментами нужно работать, когда рядом учитель или взрослый', 1, 'Рядом должен быть взрослый, он поможет и подскажет.'],
+    ['Если уколол палец, нужно сразу сказать взрослому', 1, 'Взрослый поможет и обработает ранку.']
+  ],
+  hyg: [
+    ['Перед работой нужно разложить только то, что нужно', 1, 'На столе должно быть всё нужное и ничего лишнего.'],
+    ['На столе можно оставлять лишние вещи', 0, 'Лишние вещи мешают работать, их нужно убрать.'],
+    ['После работы нужно убрать мусор в корзину', 1, 'Обрезки и мусор выбрасывают в корзину.'],
+    ['Обрезки бумаги можно бросать на пол', 0, 'Мусор на пол бросать нельзя.'],
+    ['После работы нужно вымыть руки с мылом', 1, 'Руки после клея и пластилина моют с мылом.'],
+    ['Грязные кисточку и клей можно оставить на столе', 0, 'После работы всё нужно убрать на место.'],
+    ['Фартук надевают, чтобы не испачкать одежду', 1, 'Фартук защищает одежду.'],
+    ['Работать нужно сидя ровно', 1, 'Прямая спина полезна для здоровья и зрения.'],
+    ['Рабочее место после работы нужно убрать', 1, 'Порядок на рабочем месте — это правило.']
+  ],
+  exh: [
+    ['На выставке работы смотрят глазами и руками не трогают', 1, 'Работу можно испортить, поэтому её не трогают.'],
+    ['Можно смеяться над чужой работой', 0, 'Над чужой работой смеяться нельзя, это обидно.'],
+    ['О работе друга нужно сказать доброе слово', 1, 'Доброе слово радует автора.'],
+    ['Автор рассказывает, из чего и как он сделал работу', 1, 'Рассказ помогает зрителям понять работу.'],
+    ['У своей работы можно придумать название', 1, 'У каждой работы есть название.']
+  ]
+};
+const EVAL = [
+  ['Мне понравились цвета. Можно было ровнее вырезать края.', 'Фу, какая некрасивая работа!', 'Хорошо сказать, что понравилось, и подсказать, что можно улучшить.'],
+  ['Работа аккуратная. Хорошо, что ты выбрал яркие детали.', 'Я сделал лучше, а у тебя ерунда.', 'Оценивай работу доброжелательно.'],
+  ['Мне нравится, как ты придумал. Попробуй приклеить деталь крепче.', 'Не буду смотреть, мне неинтересно.', 'Нужно внимательно рассмотреть работу и сказать, что понравилось.'],
+  ['Получилось красиво. Мне понравился узор на краю.', 'Ты всё испортил.', 'Грубые слова обижают. Лучше добрые.']
+];
+/* ================= генераторы вопросов ================= */
+const GENS = {
+  matName(){
+    const m = pick(TM), set = shuffle([m].concat(sample(TM.filter(x => x !== m), 3)));
+    return { html: '<div class="ac-qtxt">Что это за материал?</div><div class="es-card"><div class="em">' + msvg(m[0], 90) + '</div></div>', opts: set.map(x => x[1]), ans: m[1], hint: m[1] + '. ' + m[3] };
+  },
+  matFind(){
+    const m = pick(TM), set = shuffle([m].concat(sample(TM.filter(x => x !== m), 3)));
+    return { html: '<div class="ac-qtxt">Найди материал</div><div class="es-card"><div class="nm">' + m[1] + '</div></div>', svgopts: true, opts: set.map(x => msvg(x[0], 66)), ans: msvg(m[0], 66), hint: m[1] + '. ' + m[3] };
+  },
+  matGroup(){
+    const m = pick(TM);
+    return { html: '<div class="ac-qtxt">К какой группе относится этот материал?</div><div class="es-card"><div class="em">' + msvg(m[0], 80) + '</div><div class="nm">' + m[1] + '</div></div>', opts: shuffle(Object.keys(GRP).map(k => GRP[k])), ans: GRP[m[2]], wide: true, hint: GRPHINT[m[2]] };
+  },
+  matProp(){
+    const k = pick(Object.keys(PROP)), p = PROP[k], c = pick(p[1]), set = shuffle([c].concat(sample(p[2], 3)));
+    return { html: '<div class="ac-qtxt">Какой материал ' + p[0] + '?</div>', opts: set.map(x => TMD[x][1]), ans: TMD[c][1], hint: p[3] };
+  },
+  matUse(){
+    const u = pick(USEFOR), set = shuffle([u[1]].concat(u[2]));
+    return { html: '<div class="ac-qtxt">' + u[0] + '</div>', opts: set.map(x => TMD[x][1]), ans: TMD[u[1]][1], hint: u[3] };
+  },
+  toolName(){
+    const t = pick(TOOL), set = shuffle(TOOL.slice());
+    return { html: '<div class="ac-qtxt">Как называется этот инструмент?</div><div class="es-card"><div class="em">' + msvg(t[0], 90) + '</div></div>', opts: set.map(x => x[1]), ans: t[1], hint: t[1] + '. ' + t[2] };
+  },
+  toolUse(){
+    const q = pick(TOOLUSE), t = TD[q[1]], set = shuffle(TOOL.slice());
+    return { html: '<div class="ac-qtxt">' + q[0] + '</div>', opts: set.map(x => x[1]), ans: t[1], hint: t[1] + '. ' + t[2] };
+  },
+  techFor(){
+    const q = pick(TQ), set = shuffle([q[1]].concat(q[2]).concat(['glue', 'cut', 'bend', 'mark', 'mould', 'sew'].filter(k => k !== q[1] && q[2].indexOf(k) < 0 && !(q[1] === 'glue' && k === 'sew')).slice(0, 1)));
+    return { html: '<div class="ac-qtxt">' + q[0] + '</div>', opts: set.map(k => TDq[k][1]), ans: TDq[q[1]][1], hint: TDq[q[1]][3] };
+  },
+  ynSafe: mkYN('safe', '✂️'), ynHyg: mkYN('hyg', '🧼'), ynExh: mkYN('exh', '🖼️'),
+  ordFirst(){
+    const s = pick(ORD);
+    return { html: '<div class="ac-qtxt">Что нужно сделать <b>первым</b>?</div>', opts: shuffle(s.map(x => x[1])), ans: s[0][1], wide: true, hint: 'Правильный порядок: ' + oHint(s) + '.' };
+  },
+  ordNext(){
+    const s = pick(ORD), i = rnd(0, 2);
+    return { html: '<div class="ac-qtxt">Что делаем <b>сразу после</b> этого шага?</div><div class="es-card"><div class="em">' + s[i][0] + '</div><div class="nm">' + s[i][1] + '</div></div>', opts: shuffle(s.filter((x, j) => j !== i).map(x => x[1])), ans: s[i + 1][1], wide: true, hint: 'Правильный порядок: ' + oHint(s) + '.' };
+  },
+  natName(){
+    const n = pick(NAT), set = shuffle(NAT.slice());
+    return { html: '<div class="ac-qtxt">Что это такое?</div><div class="es-card"><div class="em">' + NATSVG(n[0], 90) + '</div></div>', opts: set.map(x => x[1]), ans: n[1], hint: n[2] };
+  },
+  natElem(){
+    const n = pick(NAT), bad = sample(['Небоскрёб', 'Космический корабль', 'Робот-пылесос'], 3);
+    return { html: '<div class="ac-qtxt">Что относится к казахской национальной культуре?</div>', opts: shuffle([n[1]].concat(bad)), ans: n[1], wide: true, hint: n[2] };
+  },
+  natMat(){
+    return { html: '<div class="ac-qtxt">Из чего делают кошму?</div><div class="es-card"><div class="em">' + msvg('felt', 90) + '</div></div>', opts: shuffle(['Из овечьей шерсти', 'Из бумаги', 'Из камня', 'Из стекла']), ans: 'Из овечьей шерсти', wide: true, hint: 'Кошму валяют из овечьей шерсти, поэтому она тёплая и мягкая.' };
+  },
+  ornNext(){
+    const p = rnd(2, 3), base = sample(ELK, p), seq = []; for (let i = 0; i < 6; i++) seq.push(base[i % p]);
+    const nxt = base[6 % p], shown = seq.concat(['?']), set = shuffle([nxt].concat(sample(ELK.filter(k => k !== nxt), 3)));
+    return { html: '<div class="ac-qtxt">Что будет дальше в узоре?</div><div class="es-card">' + stripSvg(shown, 34) + '</div>', svgopts: true, opts: set.map(k => elSvg(k, 54)), ans: elSvg(nxt, 54), hint: 'Узор повторяется по порядку: ' + base.map(k => EL_NAME[k]).join(', ') + '. Дальше идёт ' + EL_NAME[nxt] + '.' };
+  },
+  evalGood(){
+    const e = pick(EVAL);
+    return { html: '<div class="ac-qtxt">Что лучше сказать о работе друга?</div>', opts: shuffle([e[0], e[1]]), ans: e[0], wide: true, hint: e[2] };
+  }
+};
+
+/* ================= сцены ================= */
+SCENES.matTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 7, done: 'Теперь ты знаешь материалы для поделок!',
+  items: TM.map(m => ({ k: m[0], b: msvg(m[0], 46), small: m[1], card: card(msvg(m[0], 90), m[1], m[3]) })) });
+SCENES.propTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь свойства материалов!',
+  items: [
+    { k: 'color', b: swatchRow(['#E53935', '#FFD21F', '#2FB04A'], 26), small: 'Цвет', card: card(swatchRow(['#E53935', '#FFD21F', '#2FB04A', '#1E73E8'], 40), 'Цвет', 'У материалов бывает разный цвет: красный, жёлтый, зелёный, синий. Бумага и картон бывают цветными.') },
+    { k: 'form', b: stripSvg(['circle', 'triangle', 'square'], 16), small: 'Форма', card: card(stripSvg(['circle', 'triangle', 'square'], 44), 'Форма', 'У деталей бывает разная форма: круглая, треугольная, квадратная. Камешек круглый, лист длинный.') },
+    { k: 'size', b: msvg('pebble', 46), small: 'Размер', card: card(msvg('pebble', 70) + msvg('twig', 90), 'Размер и объём', 'Материалы бывают большие и маленькие, тонкие и толстые. Бумага тонкая, а камешек объёмный.') },
+    { k: 'soft', b: msvg('plast', 46), small: 'Мягкий и твёрдый', card: card(msvg('plast', 70) + msvg('pebble', 70), 'Мягкий и твёрдый', 'Пластилин, ткань и нитки мягкие. Камешек, веточка и картон твёрдые.') },
+    { k: 'smooth', b: msvg('leaf', 46), small: 'Гладкий и шершавый', card: card(msvg('leaf', 70) + msvg('cone', 70), 'Гладкий и шершавый', 'Лист и бумага гладкие. Шишка и веточка шершавые. Это можно проверить пальцами.') }
+  ] });
+const swatchRow = (arr, d) => '<span>' + arr.map(c => '<span style="display:inline-block;width:' + d + 'px;height:' + d + 'px;border-radius:50%;background:' + c + ';margin:0 2px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)"></span>').join('') + '</span>';
+SCENES.toolTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь инструменты и как ими пользоваться!',
+  items: TOOL.map(t => ({ k: t[0], b: msvg(t[0], 46), small: t[1], card: card(msvg(t[0], 90), t[1], t[2]) })) });
+SCENES.hygTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь правила рабочего места!',
+  items: [
+    { k: 'ord', b: msvg('paper', 46), small: 'Порядок', card: card(msvg('paper', 80) + msvg('scissors', 80), 'Порядок на столе', 'Перед работой положи на стол всё нужное и убери всё лишнее.') },
+    { k: 'apr', b: msvg('apron', 46), small: 'Фартук', card: card(msvg('apron', 90), 'Фартук', 'Фартук защищает одежду от пятен клея, краски и пластилина.') },
+    { k: 'pos', b: msvg('chair', 46), small: 'Осанка', card: card(msvg('chair', 90), 'Сиди ровно', 'Сиди ровно, спина прямая, свет падает слева. Так глаза не устают.') },
+    { k: 'bin', b: msvg('bin', 46), small: 'Мусор', card: card(msvg('bin', 90), 'Мусор', 'Обрезки и мусор после работы выбрасывай в корзину. На столе и на полу должно быть чисто.') },
+    { k: 'soap', b: msvg('soap', 46), small: 'Мыло', card: card(msvg('soap', 90), 'Мытьё рук', 'После работы обязательно вымой руки с мылом. На руках остаются клей и пластилин.') }
+  ] });
+SCENES.techTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 6, done: 'Теперь ты знаешь приёмы работы!',
+  items: TECH.map(t => ({ k: t[0], b: msvg(t[2], 46), small: t[1], card: card(msvg(t[2], 90), t[1], t[3].slice(t[1].length + 2)) })) });
+SCENES.natTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 4, done: 'Теперь ты знаешь элементы казахской культуры!',
+  items: NAT.map(n => ({ k: n[0], b: NATSVG(n[0], 46), small: n[1], card: card(NATSVG(n[0], 100), n[1], n[2]) })).concat([
+    { k: 'use', b: msvg('applique', 46), small: 'В поделках', card: card(msvg('applique', 90), 'В поделках', 'Национальный узор можно приклеить на открытку, на аппликацию или на рамку. Так твоя работа станет красивой и особенной.') }]) });
+SCENES.exhTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 5, done: 'Теперь ты знаешь, как показать и оценить работу!',
+  items: [
+    { k: 'name', b: msvg('applique', 46), small: 'Название', card: card(msvg('applique', 90), 'Название', 'У каждой работы есть название. Придумай название для своей поделки.') },
+    { k: 'tell', b: '💬', small: 'Расскажи', card: card('<div class="em">💬</div>', 'Расскажи о работе', 'Расскажи, что ты сделал, из каких материалов и как.') },
+    { k: 'show', b: '🏛️', small: 'Выставка', card: card('<div class="em">🏛️</div>', 'Выставка', 'Выставка — это место, где работы показывают людям. Работы смотрят глазами и руками не трогают.') },
+    { k: 'eval', b: '⭐', small: 'Оценка', card: card('<div class="em">⭐</div>', 'Оцени работу', 'Скажи, что получилось хорошо, и что можно сделать ещё лучше.') },
+    { k: 'kind', b: '🤝', small: 'Доброе слово', card: card('<div class="em">🤝</div>', 'Доброе слово', 'О работе друга говори доброжелательно. Грубые слова обижают.') }
+  ] });
+/* --- рассортируй материалы по группам --- */
+SCENES.sortMat = function(stage, st, ctx){
+  const items = shuffle(TM.slice()).slice(0, 8); let i = 0, ok = 0;
+  function draw(){
+    const m = items[i];
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Материал ' + (i + 1) + ' из ' + items.length + '. К какой группе он относится?</div><div class="es-card"><div class="em">' + msvg(m[0], 90) + '</div><div class="nm">' + m[1] + '</div></div><div class="es-pick" id="s-p"></div><div class="es-card" id="s-c"><div class="tx">Выбери группу 👆</div></div>';
+    $('#s-p', stage).innerHTML = Object.keys(GRP).map(g => '<button class="es-pb" data-g="' + g + '" style="font-size:1rem;font-weight:800">' + GRP[g] + '</button>').join('');
+    $$('#s-p .es-pb', stage).forEach(b => b.onclick = function(){
+      if (b.dataset.g === m[2]){
+        ok++; i++; $('#s-c', stage).innerHTML = '<div class="nm">Верно!</div><div class="tx">' + GRPHINT[m[2]] + '</div>';
+        $$('#s-p .es-pb', stage).forEach(x => x.disabled = true);
+        if (i >= items.length){ ctx.fb('Все материалы разложены по группам!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) draw(); }, 1500);
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#s-c', stage).innerHTML = '<div class="tx">Не то. ' + GRPHINT[m[2]] + '</div>'; }
+    });
+  }
+  draw();
+};
+/* --- выбери материалы для поделки --- */
+SCENES.planScene = function(stage, st, ctx){
+  const list = shuffle(PROJ).slice(0, 3); let pi = 0;
+  function round(){
+    const p = list[pi], need = p[1].slice(), got = {}, set = shuffle(p[1].concat(p[2]));
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Работа ' + (pi + 1) + ' из ' + list.length + ': «' + p[0] + '». Выбери всё, что нужно для работы.</div><div class="es-pick" id="pl-p"></div><div class="es-card" id="pl-c"><div class="tx">Нажимай на нужные материалы и инструменты.</div></div>';
+    $('#pl-p', stage).innerHTML = set.map(k => '<button class="es-pb" data-k="' + k + '" aria-label="выбрать">' + msvg(k, 46) + '<small>' + NAMES[k] + '</small></button>').join('');
+    $$('#pl-p .es-pb', stage).forEach(b => b.onclick = function(){
+      const k = b.dataset.k;
+      if (need.indexOf(k) >= 0){
+        if (!got[k]){ got[k] = 1; b.classList.add('seen'); }
+        const n = Object.keys(got).length;
+        $('#pl-c', stage).innerHTML = '<div class="tx">Верно! Выбрано: ' + n + ' из ' + need.length + '.</div>';
+        if (n >= need.length){
+          pi++; $$('#pl-p .es-pb', stage).forEach(x => x.disabled = true);
+          $('#pl-c', stage).innerHTML = '<div class="nm">Готово!</div><div class="tx">Для «' + p[0] + '» нужны: ' + p[1].map(x => NAMES[x]).join(', ') + '.</div>';
+          if (pi >= list.length){ ctx.fb('Ты правильно подобрал всё для поделок!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Теперь следующая работа.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, 1700); }
+        }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#pl-c', stage).innerHTML = '<div class="tx">Это здесь не нужно. Подумай, из чего и чем будем делать.</div>'; }
+    });
+  }
+  round();
+};
+
+/* ================= содержание курса ================= */
+const LESSONS = [
+  { id: 't1', icon: '🧵', title: 'Материалы', goal: 'Знать названия материалов и делить их на группы',
+    steps: [
+      { id: 't1s1', scene: 'matTap', gate: true, title: 'Какие бывают материалы',
+        text: 'Привет! Это Барсик. Сегодня мы начинаем трудовое обучение. Из чего можно делать поделки? Из цветной бумаги и картона, из пластилина, из листьев, шишек, камешков и веточек, из ткани и ниток. Нажми на каждую карточку и узнай, какой это материал.' },
+      { id: 't1s2', scene: 'sortMat', gate: true, title: 'Группы материалов',
+        text: 'Материалы бывают разные. Природные материалы мы берём из природы. Художественные материалы нужны для творчества, это бумага, картон и пластилин. А ткань и нитки делают люди, это искусственные материалы. Разложи материалы по группам.' },
+      { id: 't1s3', scene: 'quiz', gate: true, count: 8, gens: ['matName', 'matFind', 'matGroup'], title: 'Проверим себя',
+        text: 'Посмотри на картинку и назови материал. Найди нужный материал и скажи, к какой группе он относится.' }
+    ] },
+  { id: 't2', icon: '👐', title: 'Свойства материалов', goal: 'Знать свойства материалов и где их применять',
+    steps: [
+      { id: 't2s1', scene: 'propTap', gate: true, title: 'Какие бывают свойства',
+        text: 'У каждого материала есть свои свойства. Это цвет, форма и размер. Ещё материал бывает мягкий или твёрдый, гладкий или шершавый. Нажми на карточки и узнай. А ещё можно потрогать материал пальцами.' },
+      { id: 't2s2', scene: 'quiz', gate: true, count: 8, gens: ['matProp'], title: 'Какой материал?',
+        text: 'Подумай, какой материал мягкий, а какой твёрдый, какой гладкий, шершавый или тяжёлый.' },
+      { id: 't2s3', scene: 'quiz', gate: true, count: 8, gens: ['matUse', 'matProp'], title: 'Для чего нужен материал',
+        text: 'Каждый материал подходит для своей работы. Например, из пластилина лепят, а из ткани шьют. Выбери подходящий материал.' }
+    ] },
+  { id: 't3', icon: '✂️', title: 'Инструменты и безопасность', goal: 'Знать инструменты и правила безопасной работы',
+    steps: [
+      { id: 't3s1', scene: 'toolTap', gate: true, title: 'Инструменты',
+        text: 'Для работы нужны инструменты. Это ножницы, клей, линейка, карандаш и иголка. Нажми на каждый и узнай, для чего он нужен. Ножницы и иголка острые, с ними нужно быть очень осторожным.' },
+      { id: 't3s2', scene: 'quiz', gate: true, count: 6, gens: ['toolName', 'toolUse'], title: 'Какой инструмент?',
+        text: 'Назови инструмент и скажи, чем ты будешь резать, измерять или склеивать.' },
+      { id: 't3s3', scene: 'quiz', gate: true, count: 8, gens: ['ynSafe'], title: 'Правила безопасности',
+        text: 'Прочитай правило и скажи, правильно ли так делать. Помни про ножницы, иголку и клей.' }
+    ] },
+  { id: 't4', icon: '🧼', title: 'Рабочее место и чистота', goal: 'Знать и соблюдать гигиенические правила',
+    steps: [
+      { id: 't4s1', scene: 'hygTap', gate: true, title: 'Правила рабочего места',
+        text: 'Чтобы работать удобно и красиво, на рабочем месте нужен порядок. Надень фартук, сядь ровно, убери лишнее. После работы выброси мусор и вымой руки с мылом. Нажми на карточки.' },
+      { id: 't4s2', scene: 'ordScene', gate: true, title: 'Расставь шаги по порядку',
+        text: 'Любую работу делают по порядку. Расставь шаги так, как их нужно выполнять. Нажимай по очереди: что делаем сначала, что потом.' },
+      { id: 't4s3', scene: 'quiz', gate: true, count: 8, gens: ['ynHyg', 'ynSafe'], title: 'Правильно или нет?',
+        text: 'Прочитай правило и скажи, правильно ли так делать. Подумай про чистоту и порядок.' }
+    ] },
+  { id: 't5', icon: '🧸', title: 'Делаем поделку', goal: 'Планировать работу, выбирать материалы и способ изготовления',
+    steps: [
+      { id: 't5s1', scene: 'techTap', gate: true, title: 'Как делают поделку',
+        text: 'Поделку делают разными способами. Можно вырезать, приклеить, согнуть, слепить, сшить и разметить по линейке. Нажми на карточки и посмотри, что делает каждый способ.' },
+      { id: 't5s2', scene: 'planScene', gate: true, title: 'Выбери материалы для работы',
+        text: 'Прежде чем начать, подумай, что тебе понадобится. Для каждой работы выбери нужные материалы и инструменты. Не бери лишнего.' },
+      { id: 't5s3', scene: 'ordScene', gate: true, title: 'План работы',
+        text: 'Работу делают по плану. Сначала придумывают и выбирают материалы, потом делают, в конце показывают. Расставь шаги по порядку.' },
+      { id: 't5s4', scene: 'quiz', gate: true, count: 8, gens: ['techFor', 'ordFirst', 'ordNext', 'matUse'], title: 'Проверим себя',
+        text: 'Скажи, каким способом сделать каждую деталь. И вспомни, что нужно сделать первым, а что потом.' }
+    ] },
+  { id: 't6', icon: '🧶', title: 'Казахские узоры и вещи', goal: 'Называть элементы национальной культуры в творческих работах',
+    steps: [
+      { id: 't6s1', scene: 'natTap', gate: true, title: 'Элементы национальной культуры',
+        text: 'У казахского народа красивая культура. Это юрта с круглым окном, шанырак, кошма из овечьей шерсти и шапочка, которую называют тақия. Любимый узор называется «қошқар мүйіз», то есть бараньи рога. Такие узоры можно приклеить на свою поделку. Нажми на карточки.' },
+      { id: 't6s2', scene: 'ornBuild', gate: true, title: 'Допиши узор',
+        text: 'Помоги мастерице. Посмотри, как повторяются элементы, и допиши узор до конца. Нажимай на нужные элементы по порядку.' },
+      { id: 't6s3', scene: 'quiz', gate: true, count: 8, gens: ['natName', 'natElem', 'natMat', 'ornNext'], title: 'Проверим себя',
+        text: 'Назови казахские предметы, вспомни, из чего делают кошму, и найди, что дальше в узоре.' }
+    ] },
+  { id: 't7', icon: '🖼️', title: 'Моя выставка', goal: 'Презентовать свою работу, обсуждать и оценивать',
+    steps: [
+      { id: 't7s1', scene: 'exhTap', gate: true, title: 'Как показать и оценить работу',
+        text: 'Когда поделка готова, её можно показать на выставке. Придумай название и расскажи, из чего и как ты сделал. Потом вместе с друзьями обсуди работы. Скажи, что получилось хорошо и что можно улучшить. Нажми на карточки.' },
+      { id: 't7s2', scene: 'quiz', gate: true, count: 8, gens: ['evalGood', 'ynExh', 'ynHyg'], title: 'Оцени правильно',
+        text: 'Выбери, что лучше сказать о работе друга. И вспомни правила выставки.' },
+      { id: 't7s3', scene: 'quiz', gate: true, count: 10, gens: ['matName', 'matGroup', 'matProp', 'toolUse', 'ynSafe', 'ynHyg', 'techFor', 'ordFirst', 'natName', 'evalGood'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса. Материалы, инструменты, безопасность, порядок работы, казахские узоры и выставка.' },
+      { id: 't7s4', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты знаешь материалы, инструменты, правила безопасности, как делать поделки и показывать их друзьям. Делай и показывай свои работы. Я буду рядом!' }
+    ] }
+];
+
+/* --- общий исполнитель вопросов --- */
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html || ''; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (!q.svgopts && (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8))) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt' + (q.svgopts ? ' svg' : '');
+      if (q.svgopts) b.innerHTML = v; else b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться без конца — задания каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Все игры по труду →</a></div></div>';
+};
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
