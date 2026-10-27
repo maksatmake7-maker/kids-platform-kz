@@ -97,11 +97,17 @@
     me.q('.mf-snd').onclick = function(){ me.sound = !me.sound; this.innerHTML = me.sound ? ICON.snd : ICON.mute; if (!me.sound) me.stopVoice(); };
     try { if (window.Barsik && Barsik.mount) Barsik.mount(me.q('.mf-mas')); } catch(e){}
     me.render(0, false);
+    try { new MutationObserver(function(){ me.q('.mf-cap').textContent = txt(me.film.scenes[me.i]); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-current'] }); } catch(e){}
   }
+  var SPEECH = { ru: 'ru-RU', kz: 'kk-KZ', en: 'en-US', zh: 'zh-CN', uz: 'uz-UZ', tg: 'tg-TJ', ug: 'ug-CN' };
+  function curLang(){ return document.documentElement.getAttribute('data-current') || 'ru'; }
+  function tr(){ try { return (typeof translations !== 'undefined') ? translations : null; } catch(e){ return null; } }
+  function hasKey(sc){ var l = curLang(), T = tr(); return !!(sc.key && T && T[l] && T[l][sc.key] !== undefined); }
+  function txt(sc){ if (hasKey(sc)) return tr()[curLang()][sc.key]; var T = tr(); if (sc.key && !sc.say && T && T.ru && T.ru[sc.key] !== undefined) return T.ru[sc.key]; return sc.say || ''; }
   Player.prototype.render = function(i, final){
     var sc = this.film.scenes[i]; this.i = i;
     var box = this.q('.mf-scene'); box.className = 'mf-scene' + (final ? ' mf-final' : '');
-    box.innerHTML = sc.svg; this.q('.mf-cap').textContent = sc.say || '';
+    box.innerHTML = sc.svg; this.q('.mf-cap').textContent = txt(sc);
     var ds = this.root.querySelectorAll('.mf-dot'); for (var k = 0; k < ds.length; k++) ds[k].className = 'mf-dot' + (k === i ? ' on' : (k < i ? ' done' : ''));
   };
   Player.prototype.stopVoice = function(){
@@ -117,12 +123,12 @@
     var sc = me.film.scenes[i], token = {}; me._tok = token;
     var finished = false;
     function done(){ if (finished || me._tok !== token || !me.on) return; finished = true; me.stopVoice(); me.timer = setTimeout(function(){ if (me._tok !== token || !me.on) return; if (i + 1 < me.film.scenes.length) me.go(i + 1, true); else me.finish(); }, 900); }
-    var est = sc.dur || Math.max(4, 2.5 + (sc.say || '').length * 0.055);
+    var est = sc.dur || Math.max(4, 2.5 + txt(sc).length * 0.055);
     function timerOnly(){ clearTimeout(me.timer); me.timer = setTimeout(done, est * 1000); }
     function tts(){
       if (!window.speechSynthesis || !window.SpeechSynthesisUtterance){ timerOnly(); return; }
       try {
-        var u = new SpeechSynthesisUtterance(sc.say); u.lang = sc.lang || me.film.lang || 'ru-RU'; u.rate = .92; u.pitch = 1.15; u.onend = done; u.onerror = timerOnly;
+        var u = new SpeechSynthesisUtterance(txt(sc)); u.lang = hasKey(sc) ? SPEECH[curLang()] : (sc.lang || me.film.lang || 'ru-RU'); u.rate = .92; u.pitch = 1.15; u.onend = done; u.onerror = timerOnly;
         speechSynthesis.cancel(); speechSynthesis.speak(u);
         clearTimeout(me.timer); me.timer = setTimeout(done, Math.max(est * 1000 * 2.2, 9000));
       } catch(e){ timerOnly(); }
@@ -130,7 +136,7 @@
     if (!me.sound){ timerOnly(); return; }
     var base = me.film.audio === undefined ? '../../../assets/audio/films/' : me.film.audio;
     if (base){
-      var a = new Audio(base + me.id + '-' + (i + 1) + '.mp3'); me.audio = a; var fell = false;
+      var a = new Audio(base + me.id + '-' + (i + 1) + (hasKey(sc) && curLang() !== 'ru' ? '-' + curLang() : '') + '.mp3'); me.audio = a; var fell = false;
       var fb = function(){ if (fell || me._tok !== token) return; fell = true; me.audio = null; tts(); };
       a.onerror = fb; a.onended = done;
       var p; try { p = a.play(); } catch(e){ fb(); return; }
