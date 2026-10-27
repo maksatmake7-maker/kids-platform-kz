@@ -12,6 +12,7 @@
       g('fruit', '<g transform="translate(122 46)"><path d="M-42 -4 Q-26 -14 -10 -8" fill="none" stroke="#2A9D4B" stroke-width="2"/><circle cx="0" cy="0" r="7" fill="#E5524F" stroke="#8B1E1E" stroke-width="1.3"/><path d="M0 -7 Q2 -11 6 -10" fill="none" stroke="#2A7E3F" stroke-width="1.6"/></g>', .2) + (extra || '') + '</g>';
   }
   var lab = function(t, d){ return h.fade('<rect x="4" y="4" width="68" height="11" rx="5" fill="#1D3557" opacity=".75"/>', d) + h.text(38, 11.8, t, { d: d, s: 6.5, c: '#fff' }); };
+  MFA.plant = plant;
   MF.register('plant', { lang: 'ru-RU', scenes: [
     { say: 'Посмотри на растение. У него пять частей: корень, стебель, листья, цветок и плод.',
       svg: h.svg(plant('all'), 'sky'), dur: 8 },
