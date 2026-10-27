@@ -33,44 +33,7 @@
     <h1 data-i18n="lecture_wildanimal_title" style="text-align:center; margin-bottom:6px;"></h1>
     <p class="game-sub" data-i18n="lecture_wildanimal_sub" style="text-align:center;"></p>
 
-    <div class="slide-deck" id="slide-deck">
-      <div class="slide active" data-slide="0">
-        <span class="slide-icon">🐆</span>
-        <h2 class="slide-title" data-i18n="wildanimal_s1_title"></h2>
-        <p class="slide-text" data-i18n="wildanimal_s1_text"></p>
-      </div>
-      <div class="slide" data-slide="1">
-        <span class="slide-icon">🐺</span>
-        <h2 class="slide-title" data-i18n="wildanimal_s2_title"></h2>
-        <p class="slide-text" data-i18n="wildanimal_s2_text"></p>
-      </div>
-      <div class="slide" data-slide="2">
-        <span class="slide-icon">🐄</span>
-        <h2 class="slide-title" data-i18n="wildanimal_s3_title"></h2>
-        <p class="slide-text" data-i18n="wildanimal_s3_text"></p>
-      </div>
-      <div class="slide" data-slide="3">
-        <span class="slide-icon">🐕</span>
-        <h2 class="slide-title" data-i18n="wildanimal_s4_title"></h2>
-        <p class="slide-text" data-i18n="wildanimal_s4_text"></p>
-      </div>
-      <div class="slide" data-slide="4">
-        <span class="slide-icon">🔍</span>
-        <h2 class="slide-title" data-i18n="wildanimal_s5_title"></h2>
-        <p class="slide-text" data-i18n="wildanimal_s5_text"></p>
-      </div>
-      <div class="slide" data-slide="5">
-        <span class="slide-icon">⭐</span>
-        <h2 class="slide-title" data-i18n="wildanimal_s6_title"></h2>
-        <p class="slide-text" data-i18n="wildanimal_s6_text"></p>
-      </div>
-    </div>
-
-    <div class="slide-nav">
-      <button class="slide-nav-btn" id="prev-btn" onclick="prevSlide()" aria-label="Previous">←</button>
-      <span class="slide-counter" id="slide-counter">1 / 6</span>
-      <button class="slide-nav-btn" id="next-btn" onclick="nextSlide()" aria-label="Next">→</button>
-    </div>
+    <div class="mf" data-film="wildanimal"></div>
 
     <div class="explain-actions" style="margin-top:22px;">
       <a href="wildanimal.html" class="speak-btn video-done-btn" style="text-decoration:none; display:inline-block;" data-i18n="badge_play"></a>
@@ -82,29 +45,10 @@
 
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
-<script>
-(function(){
-  var current = 0;
-  var total = document.querySelectorAll('#slide-deck .slide').length;
-
-  function render(){
-    document.querySelectorAll('#slide-deck .slide').forEach(function(s, i){
-      s.classList.toggle('active', i === current);
-    });
-    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
-    document.getElementById('prev-btn').disabled = (current === 0);
-    document.getElementById('next-btn').disabled = (current === total - 1);
-  }
-
-  window.nextSlide = function(){
-    if (current < total - 1){ current++; render(); }
-  };
-  window.prevSlide = function(){
-    if (current > 0){ current--; render(); }
-  };
-
-  render();
-})();
-</script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/minifilm-art.js"></script>
+<script src="../../../assets/minifilm-nature.js"></script>
+<script src="../../../assets/minifilm.js"></script>
+<script src="../../../assets/films/wildanimal.js"></script>
 </body>
 </html>
