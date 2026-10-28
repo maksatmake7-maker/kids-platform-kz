@@ -65,6 +65,9 @@
 .w-page .quarter-empty{color:var(--txt); text-shadow:0 1px 3px var(--txs); opacity:.9;}
 .w-page .locked-message{box-shadow:0 4px 0 rgba(29,53,87,.12);}
 
+/* единственная карточка не растягивается на всю ширину */
+.w-page .island-grid>.island:only-child{max-width:340px; margin-left:auto; margin-right:auto; grid-column:1/-1; justify-self:center; width:100%;}
+
 @media (max-width:640px){
   .s-isl.far{display:none;}
   .s-m.opt,.s-buoy.opt{display:none;}

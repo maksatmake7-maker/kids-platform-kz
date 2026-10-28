@@ -171,4 +171,25 @@
     ],
     sea: [ball, soccer]
   };
+
+  /* ---------- Игровая комната: Страна игрушек ---------- */
+  var balloon = sv('<path d="M20 3 C31 3 34 12 31 20 C28 27 23 29 20 29 C17 29 12 27 9 20 C6 12 9 3 20 3Z" fill="var(--c)"/><path d="M17 8 Q13 11 13 17" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".6"/><path d="M18 29 L20 32 L22 29Z" fill="var(--c)"/><path d="M20 32 Q16 35 20 38" stroke="#6B7390" stroke-width="1.6" fill="none"/>');
+  var kite = sv('<path d="M20 2 L33 16 L20 30 L7 16Z" fill="var(--c)"/><path d="M20 2 V30 M7 16 H33" stroke="#fff" stroke-width="1.8" opacity=".7"/><path d="M20 30 Q14 34 20 37 Q26 40 20 43" stroke="#6B7390" stroke-width="1.6" fill="none"/>');
+  var piece = sv('<path d="M6 12 H15 Q12 6 18 4 Q24 6 21 12 H30 V21 Q36 18 37 24 Q36 30 30 27 V36 H6Z" fill="var(--c)"/>');
+  T.playroom = {
+    accent: '#7C9CFF', cols: ['#7C9CFF', '#FF6B9A', '#FFC93C', '#3FB088', '#FF8A3D', '#C77DD9'],
+    fl: [balloon, balloon, kite, piece, piece, ball, { t: 'A' }, { t: '1' }, { t: 'Б' }, { t: '2' },
+      sv('<path d="M20 36 C6 26 4 14 12 9 C17 6 20 10 20 12 C20 10 23 6 28 9 C36 14 34 26 20 36Z" fill="var(--c)"/>'),
+      sv('<path d="M20 2 L25 15 L38 16 L28 25 L31 38 L20 31 L9 38 L12 25 L2 16 L15 15Z" fill="var(--c)"/>')],
+    isl: [
+      isl('<g font-family="Baloo 2,sans-serif" font-weight="800" text-anchor="middle" fill="#fff"><rect x="30" y="48" width="26" height="20" rx="3" fill="#FF6B9A"/><text x="43" y="64" font-size="15">А</text><rect x="58" y="48" width="26" height="20" rx="3" fill="#3FB088"/><text x="71" y="64" font-size="15">Б</text><rect x="42" y="28" width="26" height="20" rx="3" fill="#FFC93C"/><text x="55" y="44" font-size="15">В</text><rect x="46" y="9" width="20" height="19" rx="3" fill="#7C9CFF"/><text x="56" y="23" font-size="13">1</text></g>'),
+      isl('<circle cx="42" cy="22" r="8" fill="#C98A4B" stroke="#7A4A1E" stroke-width="2.4"/><circle cx="78" cy="22" r="8" fill="#C98A4B" stroke="#7A4A1E" stroke-width="2.4"/><ellipse cx="60" cy="52" rx="22" ry="17" fill="#C98A4B" stroke="#7A4A1E" stroke-width="3"/><ellipse cx="60" cy="56" rx="12" ry="10" fill="#F0CFA0"/><circle cx="60" cy="32" r="18" fill="#C98A4B" stroke="#7A4A1E" stroke-width="3"/><ellipse cx="60" cy="38" rx="8" ry="6" fill="#F0CFA0"/><circle cx="53" cy="29" r="2.6" fill="#2B2F44"/><circle cx="67" cy="29" r="2.6" fill="#2B2F44"/><ellipse cx="60" cy="36" rx="3" ry="2.2" fill="#2B2F44"/><path d="M52 44 Q60 50 68 44" fill="none" stroke="#E5524F" stroke-width="3" stroke-linecap="round"/>'),
+      isl('<path d="M22 28 L60 6 L98 28Z" fill="#FF6B9A" stroke="#B02A6C" stroke-width="3" stroke-linejoin="round"/><path d="M40 17 L44 28 M60 6 V28 M80 17 L76 28" stroke="#fff" stroke-width="2.6" opacity=".8"/><rect x="24" y="28" width="72" height="5" fill="#FFC93C"/><path d="M32 33 V62 M60 33 V62 M88 33 V62" stroke="#B8920C" stroke-width="3.4"/><ellipse cx="46" cy="46" rx="9" ry="6" fill="#fff" stroke="#9BB0C6" stroke-width="2"/><ellipse cx="76" cy="50" rx="9" ry="6" fill="#7C9CFF" stroke="#4A64C0" stroke-width="2"/><rect x="22" y="62" width="76" height="5" rx="2" fill="#E5524F"/>'),
+      isl('<rect x="26" y="40" width="40" height="22" rx="3" fill="#E5524F" stroke="#9E2020" stroke-width="3"/><rect x="66" y="30" width="22" height="32" rx="3" fill="#E5524F" stroke="#9E2020" stroke-width="3"/><rect x="70" y="34" width="14" height="12" rx="2" fill="#BFE9FF"/><rect x="62" y="18" width="30" height="8" rx="2" fill="#2B2F44"/><rect x="30" y="28" width="10" height="12" fill="#2B2F44"/><circle cx="38" cy="64" r="8" fill="#FFC93C" stroke="#B8920C" stroke-width="3"/><circle cx="58" cy="64" r="8" fill="#FFC93C" stroke="#B8920C" stroke-width="3"/><circle cx="82" cy="64" r="8" fill="#FFC93C" stroke="#B8920C" stroke-width="3"/><circle cx="36" cy="22" r="4" fill="#fff" opacity=".8"/><circle cx="31" cy="14" r="3" fill="#fff" opacity=".6"/>')
+    ],
+    sea: [
+      sv('<ellipse cx="20" cy="26" rx="14" ry="9" fill="#FFD21F"/><circle cx="29" cy="16" r="7" fill="#FFD21F"/><path d="M34 16 L40 18 L34 20Z" fill="#FF8A1F"/><circle cx="30" cy="14" r="1.6" fill="#2B2F44"/><path d="M12 26 Q18 22 24 26" stroke="#E5B800" stroke-width="2" fill="none"/>'),
+      sv('<path d="M18 4 L18 24 L32 24Z" fill="#fff"/><path d="M16 8 L16 24 L6 24Z" fill="var(--c)"/><path d="M4 26 H36 L32 34 H8Z" fill="var(--c)" stroke="rgba(0,0,0,.2)" stroke-width="1.4"/>')
+    ]
+  };
 })();
