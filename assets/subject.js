@@ -86,7 +86,47 @@
   var THEMES = {
     math: { accent:'#FFC93C', sky:mathSky, islands:mathIslands, sea:mathSea }
   };
-  var T = THEMES[key]; if (!T) return;
+  /* предметы из subject-themes.js: данные → те же слои, что у математики */
+  function fromData(D){
+    return {
+      accent: D.accent,
+      sky: function(sky){
+        var N = 22;
+        for (var i=0;i<N;i++){
+          var it = D.fl[i % D.fl.length], c = D.cols[Math.floor(rnd(i+3)*D.cols.length)];
+          var m = $e('s-m'+(i%2?' opt':''));
+          var px=rnd(i)*92+1, py=Math.max(rnd(i+40)*48+1, 20);
+          if (px>20 && px<80 && py<34) px = px<50 ? 1+px*.28 : 99-(100-px)*.28-4;
+          m.style.setProperty('--x',px.toFixed(1)+'%'); m.style.setProperty('--y',py.toFixed(1)+'%');
+          m.style.setProperty('--sz',(30+rnd(i+80)*34).toFixed(0)+'px');
+          m.style.setProperty('--r',((rnd(i+120)-.5)*28).toFixed(0)+'deg');
+          m.style.setProperty('--dur',(7+rnd(i+160)*5).toFixed(1)+'s'); m.style.setProperty('--dl',(-rnd(i+200)*9).toFixed(1)+'s');
+          m.style.setProperty('--z',(6+rnd(i+240)*22).toFixed(0)); m.style.setProperty('--c',c);
+          m.innerHTML = (typeof it === 'string') ? it : '<span class="blk">'+it.t+'</span>';
+          sky.appendChild(m);
+        }
+      },
+      islands: function(hz){
+        var pos=['0.5%','24%','66%','89%'];
+        D.isl.forEach(function(svg,i){
+          var d=$e('s-isl '+((i===0||i===3)?'far':'')); d.style.left=pos[i]; if(i%2) d.style.transform='translateY(2px) scale(.9)'; d.innerHTML=svg; hz.appendChild(d);
+        });
+      },
+      sea: function(sea){
+        for (var i=0;i<7;i++){
+          var it = D.sea[i % D.sea.length], c = D.cols[(i*2+1) % D.cols.length];
+          var b=$e('s-buoy'+((typeof it==='string')?' plain':''), (typeof it==='string') ? it : it.t);
+          b.style.setProperty('--x',(6+rnd(i+310)*86).toFixed(1)+'%'); b.style.setProperty('--y',(8+rnd(i+320)*42).toFixed(1)+'%');
+          b.style.setProperty('--sz',(30+rnd(i+330)*14).toFixed(0)+'px');
+          b.style.setProperty('--dur',(4.4+rnd(i+340)*2.4).toFixed(1)+'s'); b.style.setProperty('--dl',(-rnd(i+350)*5).toFixed(1)+'s');
+          b.style.setProperty('--c',c);
+          if (i>=4) b.className+=' opt';
+          sea.appendChild(b);
+        }
+      }
+    };
+  }
+  var T = THEMES[key] || (window.SubjectThemes && window.SubjectThemes[key] ? fromData(window.SubjectThemes[key]) : null); if (!T) return;
   document.body.style.setProperty('--sub', T.accent);
 
   /* слои */
