@@ -255,6 +255,12 @@
   .es-card .kzbig{font:800 3.4rem/1.1 'Baloo 2',sans-serif;color:#2F9BE6;} .es-card .kzw{font:800 2rem/1.1 'Baloo 2',sans-serif;color:#1D3557;}
   .kz-click{cursor:pointer;} .kz-spk{display:inline-block;margin-top:2px;padding:4px 14px;border-radius:14px;background:#FFE08A;font-size:1.2rem;box-shadow:0 3px 0 rgba(0,0,0,.15);}
   .kz-sw{display:inline-block;width:3.2rem;height:3.2rem;border-radius:22%;vertical-align:middle;box-shadow:inset 0 -.2rem 0 rgba(0,0,0,.18);}
+  .kc-q{font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;margin-top:8px;} .kc-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:4px 0;}
+  .kc-b{border:3px solid #DCE6F0;border-radius:14px;background:#fff;color:#1D3557;font:800 .95rem 'Baloo 2',sans-serif;padding:7px 11px;cursor:pointer;line-height:1.1;} .kc-b.on{border-color:#F5B400;background:#FFF1C9;} .kc-b.nope{animation:ncShake .35s linear 1;background:#FFE4E1;} .kc-b:hover{background:#EAF3FF;}
+  .kc-gl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px auto;max-width:440px;} .kc-gl span{background:#EAF3FF;border-radius:10px;padding:3px 9px;font-size:.85rem;color:#1D3557;}
+  .kc-line{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:44px;margin:6px 0;} .kc-line span{background:#DFF5E1;border:3px solid #3FAE5A;border-radius:12px;padding:5px 11px;font:800 1.1rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .kc-w{font-size:1rem;padding:7px 14px;} .kc-tile{font:800 1.5rem 'Baloo 2',sans-serif;min-width:52px;}
+  .kc-tr{display:block;margin:8px auto;width:100%;max-width:320px;touch-action:none;border:3px solid #DCE6F0;border-radius:18px;background:#fff;}
   .kz-ord{display:flex;gap:10px;justify-content:center;margin:10px 0;min-height:64px;flex-wrap:wrap;} .kz-ord span{width:62px;height:62px;border-radius:16px;border:3px dashed #B8C6D6;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:#F5F8FA;} .kz-ord span.f{border-style:solid;border-color:#3FAE5A;background:#DFF5E1;}
 </style>
 </head>
@@ -291,7 +297,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Казахский язык</h1>
-      <p class="ac-sub">6 уроков · особые буквы, первые слова, вопросы, большая буква, жанры, рассказ по картинкам · Барсик говорит по-казахски</p>
+      <p class="ac-sub">14 уроков · особые буквы, слова, вопросы, слушание, чтение и письмо, окончания, глаголы, предложения, большая буква, жанры · Барсик говорит по-казахски</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -525,7 +531,7 @@ function kzSay(list){
     const it = seq.shift(); if (!it){ bsTalk(false); return; }
     try {
       const a = new Audio(KZB + 'f_k_' + it.replace(':', '_') + '.mp3'); audioEl = a; bsTalk(true);
-      a.onended = nxt; a.onerror = nxt;
+      a.onended = nxt; a.onerror = () => { if (tok === kzTok) kzFb(it, nxt); };
       const p = a.play(); if (p && p.catch) p.catch(nxt);
     } catch(e){ nxt(); }
   };
@@ -753,6 +759,400 @@ const LESSONS = [
         text: 'Ты выучил особые казахские буквы, первые слова, вопросы, правило большой буквы, жанры и научился расставлять картинки по порядку. Дальше тренируйся в играх. Я буду рядом!' }
     ] }
 ];
+/* ===================== Новые уроки курса «Казахский язык» (приказ №399, прил. 11, 1 класс, неказахские школы) ===================== */
+const kzKey2 = t => t.toLowerCase().split('').map(c => TKZ[c] || '').join('');
+const KZTXT = {};
+const kw = w => { const k = kzW(w); KZTXT[k] = w; return k; };
+const ks = t => { const k = 's:' + kzKey2(t); KZTXT[k] = t; return k; };
+/* если записи нет — пробуем голос казахского языка в браузере */
+function kzFb(key, next){
+  const t = KZTXT[key];
+  try { if (t && window.speechSynthesis){ const v = speechSynthesis.getVoices().find(x => /^kk/i.test(x.lang)); if (v){ const u = new SpeechSynthesisUtterance(t); u.voice = v; u.lang = v.lang; u.rate = .85; u.onend = next; u.onerror = next; speechSynthesis.speak(u); return; } } } catch(e){}
+  next();
+}
+window.kzFb = kzFb;
+const kzSayTxt = t => kzSay([ks(t)]);
+window.kzSayTxt = kzSayTxt;
+const jq = a => JSON.stringify(a).replace(/"/g, '&quot;');
+/* ---- данные ---- */
+const NN = [['ана', '👩', 'мама'], ['әже', '👵', 'бабушка'], ['әке', '👨', 'папа'], ['әже', '👵', 'бабушка'], ['ата', '👴', 'дедушка'], ['бала', '🧒', 'ребёнок'], ['мысық', '🐱', 'кошка'], ['ит', '🐕', 'собака'], ['жылқы', '🐴', 'лошадь'], ['қой', '🐑', 'овца'], ['сиыр', '🐄', 'корова'], ['құс', '🐦', 'птица'], ['кітап', '📕', 'книга'], ['қалам', '✏️', 'карандаш'], ['дәптер', '📓', 'тетрадь'], ['сөмке', '🎒', 'сумка'], ['алма', '🍎', 'яблоко'], ['доп', '⚽', 'мяч'], ['гүл', '🌸', 'цветок'], ['үй', '🏠', 'дом'], ['мектеп', '🏫', 'школа'], ['ағаш', '🌳', 'дерево']];
+const COLR = [['қызыл', '#E53935', 'красный'], ['көк', '#1E88E5', 'синий'], ['сары', '#FDD835', 'жёлтый'], ['жасыл', '#43A047', 'зелёный'], ['ақ', '#FFFFFF', 'белый'], ['қара', '#212121', 'чёрный']];
+const SIZE = [['үлкен', 'большой'], ['кішкентай', 'маленький'], ['ұзын', 'длинный'], ['қысқа', 'короткий'], ['жақсы', 'хороший'], ['әдемі', 'красивый'], ['жылы', 'тёплый'], ['суық', 'холодный']];
+const NUMS = [['бір', 1], ['екі', 2], ['үш', 3], ['төрт', 4], ['бес', 5], ['алты', 6], ['жеті', 7], ['сегіз', 8], ['тоғыз', 9], ['он', 10]];
+const VB = [['оқу', 'читать', '📖', 'оқимын', 'оқыдым', 'оқы', 'читаю', 'читал(а)', 'Читай!'], ['жазу', 'писать', '✍️', 'жазамын', 'жаздым', 'жаз', 'пишу', 'писал(а)', 'Пиши!'], ['ойнау', 'играть', '🎲', 'ойнаймын', 'ойнадым', 'ойна', 'играю', 'играл(а)', 'Играй!'], ['жүгіру', 'бегать', '🏃', 'жүгіремін', 'жүгірдім', 'жүгір', 'бегаю', 'бегал(а)', 'Беги!'], ['тұру', 'стоять', '🧍', 'тұрамын', 'тұрдым', 'тұр', 'стою', 'стоял(а)', 'Стой!'], ['ұйықтау', 'спать', '😴', 'ұйықтаймын', 'ұйықтадым', 'ұйықта', 'сплю', 'спал(а)', 'Спи!'], ['ішу', 'пить', '🥤', 'ішемін', 'іштім', 'іш', 'пью', 'пил(а)', 'Пей!']];
+const CMD = [['Тұр!', '🧍', 'Встань!'], ['Отыр!', '💺', 'Сядь!'], ['Жүгір!', '🏃', 'Беги!'], ['Секір!', '🦘', 'Прыгай!'], ['Қол соқ!', '👏', 'Хлопни в ладоши!'], ['Күл!', '😄', 'Улыбнись!']];
+const LSW = [['Мысық сүт ішеді.', '🐱', 'Кошка пьёт молоко.'], ['Бала кітап оқиды.', '🧒', 'Ребёнок читает книгу.'], ['Қыз сурет салады.', '👧', 'Девочка рисует картину.'], ['Ана тамақ пісіреді.', '👩', 'Мама готовит еду.'], ['Ит үйде ұйықтайды.', '🐕', 'Собака спит дома.'], ['Құс ұшады.', '🐦', 'Птица летит.'], ['Жылқы жүгіреді.', '🐴', 'Лошадь бегает.'], ['Әже гүл суарады.', '👵', 'Бабушка поливает цветы.'], ['Ата ағаш егеді.', '👴', 'Дедушка сажает дерево.']];
+const TOP = [['🏫📕✏️🎒', 'Мектеп (школа)'], ['🐴🐑🐄🐕', 'Жануарлар (животные)'], ['🍎🍞🥛🍲', 'Тамақ (еда)'], ['👵👴👨👩', 'Отбасы (семья)'], ['☀️🌧️❄️💨', 'Ауа райы (погода)']];
+const TXT = [
+  { pic: '🧒✏️', title: 'Мен кім?', kz: ['Менің атым Ерлан.', 'Мен оқушымын.', 'Менің қаламым көк.'], gl: [['атым', 'моё имя'], ['оқушымын', 'я ученик'], ['қаламым', 'мой карандаш'], ['көк', 'синий']],
+    qs: [['Как зовут мальчика?', 'Ерлан', ['Айгүл', 'Ақбар', 'Асан']], ['Кто он?', 'Ученик', ['Учитель', 'Врач', 'Повар']], ['Какого цвета карандаш?', 'Синего', ['Красного', 'Зелёного', 'Жёлтого']]] },
+  { pic: '🐱🏠🥛', title: 'Мысық', kz: ['Бұл мысық.', 'Ол үйде.', 'Мысық сүт ішеді.'], gl: [['бұл', 'это'], ['мысық', 'кошка'], ['үйде', 'дома'], ['сүт', 'молоко'], ['ішеді', 'пьёт']],
+    qs: [['Кто это?', 'Кошка', ['Собака', 'Лошадь', 'Птица']], ['Где она?', 'Дома', ['В школе', 'В парке', 'В городе']], ['Что она пьёт?', 'Молоко', ['Воду', 'Сок', 'Чай']]] },
+  { pic: '👧🏫🎒', title: 'Мектеп', kz: ['Айгүл мектепке барады.', 'Оның сөмкесі қызыл.'], gl: [['мектепке', 'в школу'], ['барады', 'идёт'], ['оның', 'её'], ['сөмкесі', 'сумка'], ['қызыл', 'красный']],
+    qs: [['Куда идёт Айгүл?', 'В школу', ['В парк', 'Домой', 'В магазин']], ['Какого цвета её сумка?', 'Красного', ['Синего', 'Зелёного', 'Белого']]] }
+];
+const WRITE = ['ана', 'әже', 'ата', 'үй', 'қой', 'құс', 'гүл', 'доп', 'алма', 'қалам', 'кітап', 'мысық', 'ит', 'бала'];
+const KIND = { obj: 'Предмет (кто? что?)', act: 'Действие (что делать?)', sign: 'Признак (какой?)', num: 'Количество (сколько?)' };
+const KINDW = { obj: NN.map(x => [x[0], x[1], x[2]]), act: VB.map(x => [x[0], x[2], x[1]]), sign: COLR.map(x => [x[0], '', x[2]]).concat(SIZE.map(x => [x[0], '', x[1]])), num: NUMS.map(x => [x[0], '', String(x[1])]) };
+/* ---- склонение (считаем правило, а потом сверяем с эталонным списком) ---- */
+const VOWB = 'аыоұ', VOWF = 'әеіөүи';
+const lastV = w => { for (let i = w.length - 1; i >= 0; i--){ const c = w[i]; if (VOWB.indexOf(c) >= 0) return 'b'; if (VOWF.indexOf(c) >= 0) return 'f'; } return 'b'; };
+const lastC = w => w[w.length - 1];
+const plType = w => { const c = lastC(w); if ('аәеиіоөұүыэуйр'.indexOf(c) >= 0) return 'л'; if ('лмнңжз'.indexOf(c) >= 0) return 'д'; return 'т'; };
+const plural = w => w + plType(w) + (lastV(w) === 'b' ? 'ар' : 'ер');
+const PLW = ['кітап', 'қалам', 'дәптер', 'мысық', 'ит', 'жылқы', 'қой', 'сиыр', 'бала', 'алма', 'гүл', 'үй', 'доп', 'құс', 'ағаш', 'мектеп', 'сөмке'];
+const PLN = Object.fromEntries(NN.map(x => [x[0], x])); PLN['сөмке'] = ['сөмке', '🎒', 'сумка'];
+const POS = [['қалам', '✏️', 'карандаш', ['қаламым', 'қаламың', 'қаламы']], ['үй', '🏠', 'дом', ['үйім', 'үйің', 'үйі']], ['ит', '🐕', 'собака', ['итім', 'итің', 'иті']], ['дәптер', '📓', 'тетрадь', ['дәптерім', 'дәптерің', 'дәптері']], ['сөмке', '🎒', 'сумка', ['сөмкем', 'сөмкең', 'сөмкесі']], ['әже', '👵', 'бабушка', ['әжем', 'әжең', 'әжесі']], ['ана', '👩', 'мама', ['анам', 'анаң', 'анасы']], ['әке', '👨', 'папа', ['әкем', 'әкең', 'әкесі']], ['алма', '🍎', 'яблоко', ['алмам', 'алмаң', 'алмасы']]];
+const POSP = [['Менің', 'мой, моя'], ['Сенің', 'твой, твоя'], ['Оның', 'его, её']];
+const PERS = [['оқушы', '🧒', 'ученик', ['оқушымын', 'оқушысың', 'оқушымыз']], ['бала', '👶', 'ребёнок', ['баламын', 'баласың', 'баламыз']], ['қыз', '👧', 'девочка', ['қызбын', 'қызсың', 'қызбыз']]];
+const PERP = [['Мен', 'я'], ['Сен', 'ты'], ['Біз', 'мы']];
+const CS = [['үй', '🏠', 'дом', ['үйде', 'үйге', 'үйден'], ['в доме', 'в дом (домой)', 'из дома']], ['мектеп', '🏫', 'школа', ['мектепте', 'мектепке', 'мектептен'], ['в школе', 'в школу', 'из школы']], ['қала', '🏙️', 'город', ['қалада', 'қалаға', 'қаладан'], ['в городе', 'в город', 'из города']], ['саябақ', '🌳', 'парк', ['саябақта', 'саябаққа', 'саябақтан'], ['в парке', 'в парк', 'из парка']], ['сынып', '🏫', 'класс', ['сыныпта', 'сыныпқа', 'сыныптан'], ['в классе', 'в класс', 'из класса']]];
+const CSQ = ['Где?', 'Куда?', 'Откуда?'];
+const SENT = [['Мен кітап оқимын.', '📕', 'Я читаю книгу.'], ['Қыз сурет салады.', '🖼️', 'Девочка рисует картину.'], ['Мысық сүт ішеді.', '🥛', 'Кошка пьёт молоко.'], ['Бала мектепке барады.', '🏫', 'Ребёнок идёт в школу.'], ['Ит үйде ұйықтайды.', '😴', 'Собака спит дома.'], ['Ана тамақ пісіреді.', '🍲', 'Мама готовит еду.'], ['Біз саябақта ойнаймыз.', '⚽', 'Мы играем в парке.']];
+const RET = [
+  { pics: ['🌰', '🌱', '🌳'], kz: ['Тұқым.', 'Өскін шықты.', 'Ағаш өсті.'], ru: ['Семечко.', 'Появился росток.', 'Выросло дерево.'] },
+  { pics: ['🥚', '🐣', '🐔'], kz: ['Жұмыртқа.', 'Балапан шықты.', 'Тауық өсті.'], ru: ['Яйцо.', 'Вылупился цыплёнок.', 'Выросла курица.'] },
+  { pics: ['🌅', '☀️', '🌇', '🌙'], kz: ['Таң.', 'Күн.', 'Кеш.', 'Түн.'], ru: ['Утро.', 'День.', 'Вечер.', 'Ночь.'] }
+];
+const OPN = [['Мне понравилось', 'Маған ұнады'], ['Мне не понравилось', 'Маған ұнамады'], ['Я согласен (согласна)', 'Мен келісемін'], ['Я не согласен (согласна)', 'Мен келіспеймін']];
+const DEM = [['бұл', 'это (вообще)'], ['мынау', 'вот это (рядом)'], ['анау', 'вон то (далеко)'], ['ол', 'то / он / она']];
+window.__kzNew = { NN, COLR, SIZE, NUMS, VB, CMD, LSW, TOP, TXT, POS, PERS, CS, SENT, RET, OPN, DEM, PLW, plural };
+/* ---- генераторы вопросов ---- */
+const svgE2 = e => '<span style="font-size:2.1rem;line-height:1">' + e + '</span>';
+const swatch = c => '<span class="kz-sw" style="background:' + c + ';border:2px solid #9AA9B8"></span>';
+const lsBoxS = (kz) => '<div class="es-card kz-click" onclick="kzSayTxt(this.dataset.t)" data-t="' + kz + '"><div class="kz-spk">🔊 Послушать</div><details onclick="event.stopPropagation()"><summary style="cursor:pointer;font-size:.9rem;color:#41566E">Показать текст</summary><div class="kzw" style="font-size:1.3rem">' + kz + '</div></details></div>';
+const GN = {
+  lsWho(){
+    const it = pick(LSW), oth = shuffle(LSW.filter(x => x[1] !== it[1])).slice(0, 3), set = shuffle([it].concat(oth));
+    return { html: '<div class="ac-qtxt">Послушай. О ком или о чём говорится?</div>' + lsBoxS(it[0]), svgopts: true, opts: set.map(x => svgE2(x[1])), ans: svgE2(it[1]), hint: it[0] + ' — ' + it[2] };
+  },
+  lsPic(){
+    const k = Math.floor(Math.random() * 3);
+    if (k === 0){
+      const F = [['Қызыл алма.', '🍎', 'Красное яблоко.'], ['Жасыл алма.', '🍏', 'Зелёное яблоко.'], ['Сары банан.', '🍌', 'Жёлтый банан.']], it = pick(F);
+      return { html: '<div class="ac-qtxt">Послушай и найди картинку.</div>' + lsBoxS(it[0]), svgopts: true, opts: shuffle(F).map(x => svgE2(x[1])), ans: svgE2(it[1]), hint: it[0] + ' — ' + it[2] };
+    }
+    if (k === 1){
+      const N = [['екі', 2, 'два'], ['үш', 3, 'три'], ['төрт', 4, 'четыре'], ['бес', 5, 'пять']], it = pick(N), tx = it[0].charAt(0).toUpperCase() + it[0].slice(1) + ' мысық.';
+      return { html: '<div class="ac-qtxt">Послушай и найди картинку.</div>' + lsBoxS(tx), svgopts: true, opts: N.map(x => '<span style="font-size:1.15rem;line-height:1.1">' + new Array(x[1] + 1).join('🐱') + '</span>'), ans: '<span style="font-size:1.15rem;line-height:1.1">' + new Array(it[1] + 1).join('🐱') + '</span>', hint: tx + ' — ' + it[2] + ' кошки.' };
+    }
+    const A = [['Бұл мысық.', '🐱', 'Это кошка.'], ['Бұл ит.', '🐕', 'Это собака.'], ['Бұл жылқы.', '🐴', 'Это лошадь.'], ['Бұл қой.', '🐑', 'Это овца.'], ['Бұл сиыр.', '🐄', 'Это корова.']], it = pick(A);
+    const set = shuffle([it].concat(shuffle(A.filter(x => x !== it)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Послушай и найди картинку.</div>' + lsBoxS(it[0]), svgopts: true, opts: set.map(x => svgE2(x[1])), ans: svgE2(it[1]), hint: it[0] + ' — ' + it[2] };
+  },
+  topic(){
+    const it = pick(TOP), set = shuffle([it].concat(shuffle(TOP.filter(x => x !== it)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">О чём может быть текст к этой картинке?</div><div class="es-card"><div class="em" style="font-size:2.6rem;letter-spacing:.1em">' + it[0] + '</div></div>', opts: set.map(x => x[1]), ans: it[1], wide: true, hint: 'На картинке ' + it[1].split(' (')[1].replace(')', '') + ': это слово «' + it[1].split(' (')[0] + '».' };
+  },
+  rdPic(){
+    const w = pick(NN), set = shuffle([w].concat(shuffle(NN.filter(x => x !== w)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Прочитай слово и найди картинку</div>' + kzCard('', w[0], [kw(w[0])]), svgopts: true, opts: set.map(x => svgE2(x[1])), ans: svgE2(w[1]), hint: '«' + w[0] + '» — ' + w[2] + '.' };
+  },
+  rdRu(){
+    const w = pick(NN), set = shuffle([w].concat(shuffle(NN.filter(x => x !== w)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Что значит это слово?</div>' + kzCard('', w[0], [kw(w[0])]), opts: set.map(x => x[2]), ans: w[2], hint: '«' + w[0] + '» — ' + w[2] + '.' };
+  },
+  rdCol(){
+    const c = pick(COLR), set = shuffle([c].concat(shuffle(COLR.filter(x => x !== c)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Какой это цвет?</div>' + kzCard('', c[0], [kw(c[0])]), svgopts: true, opts: set.map(x => swatch(x[1])), ans: swatch(c[1]), hint: '«' + c[0] + '» — ' + c[2] + '.' };
+  },
+  rdNum(){
+    const n = pick(NUMS), set = shuffle([n].concat(shuffle(NUMS.filter(x => x !== n)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Какое это число?</div>' + kzCard('', n[0], [kw(n[0])]), opts: set.map(x => String(x[1])), ans: String(n[1]), hint: '«' + n[0] + '» — ' + n[1] + '.' };
+  },
+  kind(){
+    const k = pick(Object.keys(KINDW)), w = pick(KINDW[k]), set = Object.keys(KIND);
+    return { html: '<div class="ac-qtxt">Что обозначает это слово?</div>' + kzCard(w[1], w[0], [kw(w[0])]) + '<div class="tx" style="text-align:center">' + w[2] + '</div>', opts: set.map(x => KIND[x]), ans: KIND[k], wide: true, hint: '«' + w[0] + '» — ' + w[2] + '. Это ' + KIND[k].toLowerCase() + '.' };
+  },
+  plQ(){
+    const w = pick(PLW), n = PLN[w], pl = plural(w), t = plType(w), h = lastV(w);
+    const ending = c => c + (h === 'b' ? 'ар' : 'ер'), other = c => c + (h === 'b' ? 'ер' : 'ар');
+    const wrong = shuffle(['л', 'д', 'т'].filter(c => c !== t)).map(c => w + ending(c)).concat([w + other(t)]);
+    const set = shuffle([pl].concat(shuffle(wrong).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Как сказать «много»? Поставь слово во множественное число.</div>' + kzCard(n[1], w, [kw(w)]), opts: set, ans: pl, hint: 'После «' + lastC(w) + '» окончание «' + (t === 'л' ? 'лар/лер' : t === 'д' ? 'дар/дер' : 'тар/тер') + '». Верно: ' + pl + '.' };
+  },
+  plPic(){
+    const w = pick(PLW), n = PLN[w], pl = plural(w);
+    return { html: '<div class="ac-qtxt">Сколько на картинке? Выбери слово.</div><div class="es-card"><div class="em" style="font-size:2.4rem">' + n[1] + n[1] + n[1] + '</div></div>', opts: [w, pl], ans: pl, hint: 'Много — значит нужно окончание: ' + pl + '.' };
+  },
+  posQ(){
+    const it = pick(POS), p = Math.floor(Math.random() * 3), set = it[3].slice();
+    return { html: '<div class="ac-qtxt">Выбери верное слово</div><div class="es-card"><div class="em">' + it[1] + '</div><div class="kzw">' + POSP[p][0] + ' ___</div><div class="tx">' + POSP[p][1] + ' ' + it[2] + '</div></div>', opts: shuffle(set), ans: set[p], hint: POSP[p][0] + ' ' + set[p] + ' — ' + POSP[p][1] + ' ' + it[2] + '.' };
+  },
+  perQ(){
+    const it = pick(PERS), p = Math.floor(Math.random() * 3);
+    return { html: '<div class="ac-qtxt">Выбери верное слово</div><div class="es-card"><div class="em">' + it[1] + '</div><div class="kzw">' + PERP[p][0] + ' ___</div><div class="tx">' + PERP[p][1] + ' — ' + it[2] + '</div></div>', opts: shuffle(it[3]), ans: it[3][p], hint: PERP[p][0] + ' ' + it[3][p] + ' — ' + PERP[p][1] + ' ' + it[2] + '.' };
+  },
+  caseQ(){
+    const it = pick(CS), c = Math.floor(Math.random() * 3);
+    return { html: '<div class="ac-qtxt">Как сказать по-казахски?</div><div class="es-card"><div class="em">' + it[1] + '</div><div class="nm">«' + it[4][c] + '»</div><div class="tx">' + CSQ[c] + '</div></div>', opts: shuffle(it[3]), ans: it[3][c], hint: CSQ[c] + ' — ' + it[3][c] + ' («' + it[4][c] + '»).' };
+  },
+  vbPres(){
+    const v = pick(VB), set = shuffle([v[3], v[4], v[5]]);
+    return { html: '<div class="ac-qtxt">Как сказать: «Я ' + v[6] + '»?</div><div class="es-card"><div class="em">' + v[2] + '</div><div class="tx">' + v[0] + ' — ' + v[1] + '</div></div>', opts: set, ans: v[3], hint: 'Сейчас или обычно: Мен ' + v[3] + ' — я ' + v[6] + '.' };
+  },
+  vbPast(){
+    const v = pick(VB), set = shuffle([v[3], v[4], v[5]]);
+    return { html: '<div class="ac-qtxt">Как сказать: «Я ' + v[7] + '»?</div><div class="es-card"><div class="em">' + v[2] + '</div><div class="tx">' + v[0] + ' — ' + v[1] + '</div></div>', opts: set, ans: v[4], hint: 'Прошедшее время: Мен ' + v[4] + ' — я ' + v[7] + '.' };
+  },
+  vbImp(){
+    const v = pick(VB), set = shuffle([v[3], v[4], v[5]]);
+    return { html: '<div class="ac-qtxt">Как сказать: «' + v[8] + '»?</div><div class="es-card"><div class="em">' + v[2] + '</div><div class="tx">' + v[0] + ' — ' + v[1] + '</div></div>', opts: set, ans: v[5], hint: 'Приказ — слово без окончания: ' + v[5] + '! (' + v[8] + ')' };
+  },
+  vbInf(){
+    const v = pick(VB), set = shuffle([v[0], v[3], v[4], v[5]]);
+    return { html: '<div class="ac-qtxt">Какая форма отвечает на вопрос «что делать?» (' + v[1] + ')?</div><div class="es-card"><div class="em">' + v[2] + '</div></div>', opts: set, ans: v[0], hint: 'Начальная форма глагола оканчивается на -у: ' + v[0] + ' (' + v[1] + ').' };
+  },
+  demQ(){
+    const k = Math.floor(Math.random() * 2);
+    if (k === 0){ const d = pick(DEM), set = shuffle(DEM.map(x => x[1])); return { html: '<div class="ac-qtxt">Что значит это слово?</div>' + kzCard('', d[0], [kw(d[0])]), opts: set, ans: d[1], wide: true, hint: '«' + d[0] + '» — ' + d[1] + '.' }; }
+    const nearQ = Math.random() < .5, it = pick(NN.filter(x => ['кітап', 'қалам', 'алма', 'доп', 'гүл'].indexOf(x[0]) >= 0));
+    return { html: '<div class="ac-qtxt">Предмет ' + (nearQ ? 'рядом с тобой' : 'далеко от тебя') + '. Как сказать?</div><div class="es-card"><div class="em" style="font-size:2.4rem">' + (nearQ ? '🙋' + it[1] : '🙋 · · · · ' + it[1]) + '</div></div>', opts: ['Мынау ' + it[0] + '.', 'Анау ' + it[0] + '.'], ans: nearQ ? 'Мынау ' + it[0] + '.' : 'Анау ' + it[0] + '.', hint: nearQ ? 'Рядом: «мынау» — вот это.' : 'Далеко: «анау» — вон то.' };
+  },
+  opQ(){
+    const it = pick(OPN), set = shuffle(OPN);
+    return { html: '<div class="ac-qtxt">Как сказать по-казахски?</div><div class="es-card"><div class="nm">«' + it[0] + '»</div></div>', opts: set.map(x => x[1]), ans: it[1], wide: true, hint: it[0] + ' — ' + it[1] + '.' };
+  },
+  wordOrd(){
+    const s = pick(SENT), words = s[0].replace('.', '').split(' ');
+    const v1 = words.slice(); const t = v1[0]; v1[0] = v1[1]; v1[1] = t;
+    const v2 = [words[words.length - 1]].concat(words.slice(0, -1));
+    const set = shuffle([s[0], v1.join(' ') + '.', v2.join(' ') + '.'].filter((v, k, arr) => arr.indexOf(v) === k));
+    return { html: '<div class="ac-qtxt">Как правильно сложить предложение?</div><div class="es-card"><div class="em">' + s[1] + '</div><div class="tx">' + s[2] + '</div></div>', opts: set, ans: s[0], wide: true, hint: 'В казахском предложении глагол стоит в конце: ' + s[0] };
+  }
+};
+Object.assign(GENS, GN);
+
+/* ---- сцены ---- */
+const kzInfo = (items, need, done, top) => (stage, st, ctx) => tapScene(stage, ctx, { need: need, done: done, top: top || '', items: items });
+const kcard = (em, kz, ru, say, extra) => tcard('', em, kz, ru, say, extra);
+SCENES.cmdGame = function(stage, st, ctx){
+  const rounds = shuffle(CMD); let ri = 0, lock = false;
+  function round(){
+    const c = rounds[ri], set = shuffle([c].concat(shuffle(CMD.filter(x => x !== c)).slice(0, 3))); window.__cmd = c; lock = false;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Команда ' + (ri + 1) + ' из ' + rounds.length + '. Послушай, выбери картинку и сделай такое движение сам!</div><div class="es-card kz-click" id="c-c"><div class="kz-spk">🔊 Послушать</div><div class="kzw">' + c[0] + '</div></div><div class="es-pick" id="c-p"></div><div class="es-card" id="c-f"><div class="tx">Какая картинка подходит?</div></div>';
+    $('#c-c', stage).onclick = () => kzSayTxt(c[0]);
+    $('#c-p', stage).innerHTML = set.map(x => '<button class="es-pb" data-k="' + x[0] + '" aria-label="выбрать">' + x[1] + '</button>').join('');
+    $$('#c-p .es-pb', stage).forEach(b => b.onclick = function(){
+      if (lock) return;
+      if (b.dataset.k === c[0]){
+        lock = true; b.classList.add('seen'); $('#c-f', stage).innerHTML = '<div class="nm">' + c[0] + ' — ' + c[2] + '</div><div class="tx">Молодец! Сделай это движение сам.</div>'; ri++;
+        if (ri >= rounds.length){ ctx.fb('Ты понял все команды Барсика!', 'ok'); ctx.done(); } else { ctx.fb('Верно!', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, st.fast ? 20 : 1400); }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#c-f', stage).innerHTML = '<div class="tx">Не то. Послушай команду ещё раз.</div>'; }
+    });
+    setTimeout(() => { if (ctx.alive()) kzSayTxt(c[0]); }, 250);
+  }
+  round();
+};
+SCENES.readText = function(stage, st, ctx){
+  let ti = 0, qi = 0, T;
+  function show(){
+    T = TXT[ti]; qi = 0;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Текст ' + (ti + 1) + ' из ' + TXT.length + '. Прочитай (можно нажать на строку, чтобы послушать), потом ответь на вопросы.</div><div class="es-card"><div class="em" style="font-size:2.6rem">' + T.pic + '</div><div class="nm">' + T.title + '</div>' +
+      T.kz.map(l => '<div class="kzw kz-click" style="font-size:1.4rem" data-t="' + l + '" onclick="kzSayTxt(this.dataset.t)">' + l + ' 🔊</div>').join('') + '</div><div class="kc-gl">' + T.gl.map(g => '<span><b>' + g[0] + '</b> — ' + g[1] + '</span>').join('') + '</div><div id="r-q"></div>';
+    ask();
+  }
+  function ask(){
+    const Q = T.qs[qi];
+    $('#r-q', stage).innerHTML = '<div class="ac-qtxt">' + Q[0] + '</div><div class="kc-tb">' + shuffle([Q[1]].concat(Q[2])).map(o => '<button class="kc-b" data-v="' + o + '">' + o + '</button>').join('') + '</div>';
+    $$('#r-q .kc-b', stage).forEach(b => b.onclick = function(){
+      if (b.dataset.v === Q[1]){
+        qi++;
+        if (qi >= T.qs.length){ ti++; if (ti >= TXT.length){ $('#r-q', stage).innerHTML = ''; ctx.fb('Ты прочитал все тексты и нашёл ответы!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Следующий текст.', 'ok'); setTimeout(() => { if (ctx.alive()) show(); }, st.fast ? 20 : 1100); } }
+        else { ctx.fb('Верно!', 'ok'); ask(); }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); ctx.fb('Перечитай текст внимательно.', 'bad'); }
+    });
+  }
+  show();
+};
+SCENES.spellWord = function(stage, st, ctx){
+  const list = shuffle(WRITE).slice(0, st.n || 5); let wi = 0, pos = 0;
+  const emoOf = w => (NN.find(x => x[0] === w) || ['', '❓', ''])[1], ruOf = w => (NN.find(x => x[0] === w) || ['', '', ''])[2];
+  function round(){
+    const w = list[wi]; pos = 0; window.__sp = w;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Слово ' + (wi + 1) + ' из ' + list.length + '. Собери слово из букв по порядку.</div><div class="es-card kz-click" id="w-c"><div class="em">' + emoOf(w) + '</div><div class="nm">' + ruOf(w) + '</div><div class="kz-spk">🔊 Послушать</div></div><div class="kz-ord" id="w-s">' + w.split('').map(() => '<span></span>').join('') + '</div><div class="es-pick" id="w-p"></div>';
+    $('#w-c', stage).onclick = () => kzSay([kw(w)]);
+    $('#w-p', stage).innerHTML = shuffle(w.split('')).map((c, i) => '<button class="es-pb kc-tile" data-i="' + i + '" data-c="' + c + '" aria-label="буква">' + c.toUpperCase() + '</button>').join('');
+    $$('#w-p .es-pb', stage).forEach(b => b.onclick = function(){
+      if (b.disabled) return;
+      if (b.dataset.c === w[pos]){
+        const sl = $$('#w-s span', stage)[pos]; sl.textContent = w[pos].toUpperCase(); sl.classList.add('f'); b.disabled = true; b.style.opacity = .25; pos++;
+        if (pos >= w.length){ wi++; if (wi >= list.length){ ctx.fb('Все слова записаны!', 'ok'); ctx.done(); } else { ctx.fb('Верно: «' + w + '»! Дальше.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, st.fast ? 20 : 1000); } }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); ctx.fb('Не та буква. Смотри на картинку и слушай слово.', 'bad'); }
+    });
+  }
+  round();
+};
+/* --- пишем буквы: обводим по контуру --- */
+SCENES.traceLetter = function(stage, st, ctx){
+  const items = st.items; let ri = 0, down = false, lx = 0, ly = 0, ok = false; const W = 320, H = 240, R = 13;
+  stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E" id="t-h"></div><canvas id="t-cv" class="kc-tr" width="' + W + '" height="' + H + '"></canvas><div class="es-pick"><button class="es-nb" id="t-clr">🧽 Стереть</button></div>';
+  const cv = $('#t-cv', stage), g = cv.getContext('2d');
+  const mk = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; return c; };
+  const pc = mk(), pg = pc.getContext('2d'), gc = mk(), gg = gc.getContext('2d'), dc = mk(), dg = dc.getContext('2d');
+  const font = t => (t.length > 1 ? 'bold 120px' : 'bold 190px') + ' Arial, "DejaVu Sans", sans-serif';
+  function setup(){
+    const t = items[ri]; ok = false; $('#t-h', stage).textContent = 'Буква или слово ' + (ri + 1) + ' из ' + items.length + '. Обведи пальцем по серому контуру.';
+    pg.clearRect(0, 0, W, H); gg.clearRect(0, 0, W, H); dg.clearRect(0, 0, W, H);
+    [gg, dg].forEach(x => { x.font = font(t); x.textAlign = 'center'; x.textBaseline = 'middle'; });
+    gg.fillStyle = '#000'; gg.fillText(t, W / 2, H / 2 + 8); dg.lineWidth = 46; dg.lineJoin = 'round'; dg.fillStyle = '#000'; dg.strokeStyle = '#000'; dg.strokeText(t, W / 2, H / 2 + 8); dg.fillText(t, W / 2, H / 2 + 8);
+    const d = gg.getImageData(0, 0, W, H).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i] > 100) n++; window.__tr = { guide: n, item: t, mask: d };
+    draw();
+  }
+  function draw(){
+    g.clearRect(0, 0, W, H); g.fillStyle = '#fff'; g.fillRect(0, 0, W, H);
+    g.globalAlpha = .22; g.drawImage(gc, 0, 0); g.globalAlpha = 1; g.drawImage(pc, 0, 0);
+    g.strokeStyle = '#B8C6D6'; g.setLineDash([6, 6]); g.beginPath(); g.moveTo(0, H - 24); g.lineTo(W, H - 24); g.stroke(); g.setLineDash([]);
+  }
+  function check(){
+    if (ok) return;
+    const p = pg.getImageData(0, 0, W, H).data, gm = gg.getImageData(0, 0, W, H).data, dm = dg.getImageData(0, 0, W, H).data; let gt = 0, gh = 0, pt = 0, po = 0;
+    for (let i = 3; i < p.length; i += 4){ const gu = gm[i] > 100, pa = p[i] > 100; if (gu){ gt++; if (pa) gh++; } if (pa){ pt++; if (dm[i] <= 100) po++; } }
+    const cov = gt ? gh / gt : 0, over = pt ? po / pt : 1; window.__trs = { cov: cov, over: over };
+    if (cov >= .72 && over <= .22){
+      ok = true; ri++; if (ri >= items.length){ ctx.fb('Ты красиво написал все буквы!', 'ok'); ctx.done(); } else { ctx.fb('Хорошо! Следующая.', 'ok'); setTimeout(() => { if (ctx.alive()) setup(); }, st.fast ? 20 : 900); }
+    }
+  }
+  const pt = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
+  cv.addEventListener('pointerdown', e => { down = true; [lx, ly] = pt(e); pg.strokeStyle = '#2F9BE6'; pg.lineWidth = R * 2; pg.lineCap = 'round'; pg.beginPath(); pg.moveTo(lx, ly); pg.lineTo(lx + .01, ly); pg.stroke(); draw(); try { cv.setPointerCapture(e.pointerId); } catch(x){} e.preventDefault(); });
+  cv.addEventListener('pointermove', e => { if (!down) return; const [x, y] = pt(e); pg.beginPath(); pg.moveTo(lx, ly); pg.lineTo(x, y); pg.stroke(); lx = x; ly = y; draw(); e.preventDefault(); });
+  const end = () => { if (!down) return; down = false; check(); };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  $('#t-clr', stage).onclick = () => { pg.clearRect(0, 0, W, H); draw(); };
+  setup();
+};
+/* --- карточка из выбранных вариантов --- */
+SCENES.kcChip = function(stage, st, ctx){
+  const V = {};
+  stage.innerHTML = (st.q ? '<div class="ac-qtxt">' + st.q + '</div>' : '') + st.rows.map((r, i) => '<div class="kc-q">' + r.label + '</div><div class="kc-tb" id="cc-' + i + '">' + r.opts.map(o => '<button class="kc-b" data-v="' + o + '">' + o + '</button>').join('') + '</div>').join('') + '<div class="es-card" id="cc-c"><div class="tx">Выбери во всех строках.</div></div>';
+  st.rows.forEach((r, i) => $$('#cc-' + i + ' .kc-b', stage).forEach(b => b.onclick = function(){
+    V[i] = b.dataset.v; $$('#cc-' + i + ' .kc-b', stage).forEach(x => x.classList.remove('on')); b.classList.add('on');
+    const n = Object.keys(V).length;
+    if (n >= st.rows.length){ $('#cc-c', stage).innerHTML = st.tpl(st.rows.map((_, j) => V[j])); ctx.fb(st.ok || 'Готово!', 'ok'); ctx.done(); }
+    else ctx.fb('Выбрано: ' + n + ' из ' + st.rows.length + '.', 'info');
+  }));
+};
+/* --- порядок слов в предложении --- */
+SCENES.sentBuild = function(stage, st, ctx){
+  const list = shuffle(SENT).slice(0, st.n || 5); let si = 0, pos = 0;
+  function round(){
+    const s = list[si], words = s[0].replace('.', '').split(' '); pos = 0; window.__sb = s;
+    let order = shuffle(words.map((w, i) => i)); if (words.length > 1) while (order.every((v, i) => v === i)) order = shuffle(order);
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Предложение ' + (si + 1) + ' из ' + list.length + '. Нажимай слова по порядку. Подсказка: глагол всегда в конце!</div><div class="es-card"><div class="em">' + s[1] + '</div><div class="tx">' + s[2] + '</div></div><div class="kc-line" id="s-l"></div><div class="es-pick" id="s-p"></div>';
+    $('#s-p', stage).innerHTML = order.map(i => '<button class="es-nb kc-w" data-i="' + i + '">' + words[i] + '</button>').join('');
+    $$('#s-p .es-nb', stage).forEach(b => b.onclick = function(){
+      if (b.disabled) return;
+      if (+b.dataset.i === pos){
+        const sp = document.createElement('span'); sp.textContent = words[pos]; $('#s-l', stage).appendChild(sp); b.disabled = true; b.style.opacity = .25; pos++;
+        if (pos >= words.length){ kzSayTxt(s[0]); si++; if (si >= list.length){ ctx.fb('Все предложения собраны!', 'ok'); ctx.done(); } else { ctx.fb('Верно: «' + s[0] + '»', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, st.fast ? 20 : 1300); } }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); ctx.fb('Не то слово. Кто это делает? Что он делает? Глагол — в конце.', 'bad'); }
+    });
+  }
+  round();
+};
+/* --- пересказ по картинкам --- */
+SCENES.retell = function(stage, st, ctx){
+  const list = shuffle(RET).slice(0, st.n || 2); let ri = 0, pos = 0;
+  function round(){
+    const r = list[ri]; pos = 0; window.__rt = r;
+    let order = shuffle(r.kz.map((_, i) => i)); while (order.every((v, i) => v === i)) order = shuffle(order);
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">История ' + (ri + 1) + ' из ' + list.length + '. Расскажи по картинкам: нажимай предложения по порядку.</div><div class="es-card"><div class="em" style="font-size:2.1rem;letter-spacing:.04em">' + r.pics.join(' → ') + '</div></div><div class="kc-line" id="r-l"></div><div class="es-pick" id="r-p"></div><div class="es-card" id="r-f"><div class="tx">Что было первым?</div></div>';
+    $('#r-p', stage).innerHTML = order.map(i => '<button class="es-nb kc-w" data-i="' + i + '">' + r.kz[i] + '</button>').join('');
+    $$('#r-p .es-nb', stage).forEach(b => b.onclick = function(){
+      if (b.disabled) return;
+      if (+b.dataset.i === pos){
+        const sp = document.createElement('span'); sp.textContent = r.kz[pos]; $('#r-l', stage).appendChild(sp); b.disabled = true; b.style.opacity = .25; $('#r-f', stage).innerHTML = '<div class="nm">' + r.kz[pos] + '</div><div class="tx">' + r.ru[pos] + '</div>'; kzSayTxt(r.kz[pos]); pos++;
+        if (pos >= r.kz.length){ ri++; if (ri >= list.length){ ctx.fb('Ты пересказал истории по картинкам!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Следующая история.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, st.fast ? 20 : 1500); } }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#r-f', stage).innerHTML = '<div class="tx">Не то. Посмотри на картинки: что было раньше?</div>'; }
+    });
+  }
+  round();
+};
+/* ---- уроки ---- */
+const wordItems = arr => arr.map(x => ({ k: x[0], b: x[1] || '<span class="kz-let" style="font-size:1.3rem">' + x[0] + '</span>', small: x[1] ? x[0] : x[2], say: [kw(x[0])], card: tcard('', x[1], x[0], x[2], [kw(x[0])]) }));
+SCENES.nnTap = kzInfo(wordItems(NN), 8, 'Ты узнал много новых казахских слов!');
+SCENES.colTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 8, done: 'Ты знаешь цвета и числа по-казахски!', items: COLR.map(c => ({ k: c[0], b: '<span class="kz-sw" style="width:2.2rem;height:2.2rem;background:' + c[1] + ';border:2px solid #9AA9B8"></span>', small: c[0], say: [kw(c[0])], card: tcard('', '<span class="kz-sw" style="background:' + c[1] + ';border:2px solid #9AA9B8"></span>', c[0], c[2], [kw(c[0])]) })).concat(NUMS.map(n => ({ k: n[0], b: '<span class="kz-let" style="font-size:1.6rem">' + n[1] + '</span>', small: n[0], say: [kw(n[0])], card: tcard(String(n[1]), '', n[0], String(n[1]), [kw(n[0])]) }))) });
+SCENES.kindTap = kzInfo([
+  { k: 'obj', b: '🐱', small: 'предмет', say: [kw('мысық')], card: tcard('', '🐱', 'мысық', 'кошка', [kw('мысық')], 'Предмет отвечает на вопросы КІМ? НЕ? (кто? что?).') },
+  { k: 'act', b: '🏃', small: 'действие', say: [kw('жүгіру')], card: tcard('', '🏃', 'жүгіру', 'бегать', [kw('жүгіру')], 'Действие отвечает на вопрос «что делать?».') },
+  { k: 'sign', b: '🔴', small: 'признак', say: [kw('қызыл')], card: tcard('', '🔴', 'қызыл', 'красный', [kw('қызыл')], 'Признак отвечает на вопрос ҚАНДАЙ? (какой?).') },
+  { k: 'num', b: '3️⃣', small: 'количество', say: [kw('үш')], card: tcard('', '3️⃣', 'үш', 'три', [kw('үш')], 'Количество отвечает на вопрос НЕШЕ? (сколько?).') }], 4, 'Предмет, действие, признак, количество — четыре вида слов!');
+SCENES.plTap = kzInfo(['кітап', 'қалам', 'мысық', 'ит', 'үй', 'алма'].map(w => { const n = PLN[w], p = plural(w); return { k: w, b: n[1], small: w, say: [kw(w), kw(p)], card: tcard('', n[1] + n[1] + n[1], w + ' → ' + p, n[2] + ' → много', [kw(w), kw(p)], 'Окончание «' + p.slice(w.length) + '»: после «' + lastC(w) + '» именно оно.') }; }), 5, 'Много — значит окончание -лар/-лер, -дар/-дер или -тар/-тер!');
+SCENES.posTap = kzInfo(POS.slice(0, 6).map(x => ({ k: x[0], b: x[1], small: x[0], say: [kw(x[3][0])], card: '<div class="kz-click" onclick="kzSay(' + jq([kw(x[3][0]), kw(x[3][1]), kw(x[3][2])]) + ')" style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="em">' + x[1] + '</div><div class="nm">' + x[2] + '</div><div class="kzw" style="font-size:1.35rem">Менің ' + x[3][0] + '</div><div class="kzw" style="font-size:1.35rem">Сенің ' + x[3][1] + '</div><div class="kzw" style="font-size:1.35rem">Оның ' + x[3][2] + '</div><div class="tx">мой · твой · его/её</div><div class="kz-spk">🔊</div></div>' })), 4, 'Менің — мой, сенің — твой, оның — его или её. У слова меняется конец!');
+SCENES.persTap = kzInfo(PERS.map(x => ({ k: x[0], b: x[1], small: x[0], say: [kw(x[3][0])], card: '<div class="kz-click" onclick="kzSay(' + jq([kw(x[3][0]), kw(x[3][1]), kw(x[3][2])]) + ')" style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="em">' + x[1] + '</div><div class="nm">' + x[2] + '</div><div class="kzw" style="font-size:1.35rem">Мен ' + x[3][0] + '</div><div class="kzw" style="font-size:1.35rem">Сен ' + x[3][1] + '</div><div class="kzw" style="font-size:1.35rem">Біз ' + x[3][2] + '</div><div class="tx">я · ты · мы</div><div class="kz-spk">🔊</div></div>' })), 3, 'Мен, сен, біз — у слова меняется конец!');
+SCENES.caseTap = kzInfo(CS.map(x => ({ k: x[0], b: x[1], small: x[0], say: [kw(x[3][0]), kw(x[3][1]), kw(x[3][2])], card: '<div class="kz-click" onclick="kzSay(' + jq([kw(x[3][0]), kw(x[3][1]), kw(x[3][2])]) + ')" style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="em">' + x[1] + '</div><div class="nm">' + x[2] + '</div>' + x[3].map((f, i) => '<div class="kzw" style="font-size:1.35rem">' + f + ' <small style="font-size:.8rem;color:#41566E">' + CSQ[i] + ' — ' + x[4][i] + '</small></div>').join('') + '<div class="kz-spk">🔊</div></div>' })), 4, 'Где? Куда? Откуда? — у слова меняется конец!');
+SCENES.vbTap = kzInfo(VB.map(v => ({ k: v[0], b: v[2], small: v[0], say: [kw(v[0]), kw(v[3]), kw(v[4]), kw(v[5])], card: '<div class="kz-click" onclick="kzSay(' + jq([kw(v[0]), kw(v[3]), kw(v[4]), kw(v[5])]) + ')" style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="em">' + v[2] + '</div><div class="nm">' + v[0] + ' — ' + v[1] + '</div><div class="kzw" style="font-size:1.3rem">Мен ' + v[3] + ' <small style="font-size:.8rem;color:#41566E">я ' + v[6] + '</small></div><div class="kzw" style="font-size:1.3rem">Мен ' + v[4] + ' <small style="font-size:.8rem;color:#41566E">я ' + v[7] + '</small></div><div class="kzw" style="font-size:1.3rem">' + v[5].charAt(0).toUpperCase() + v[5].slice(1) + '! <small style="font-size:.8rem;color:#41566E">' + v[8] + '</small></div><div class="kz-spk">🔊</div></div>' })), 5, 'Начальная форма, сейчас, раньше и приказ — слово меняется!');
+SCENES.demTap = kzInfo(DEM.map(d => ({ k: d[0], b: '<span class="kz-let" style="font-size:1.3rem">' + d[0] + '</span>', small: d[1].split(' (')[0], say: [kw(d[0])], card: tcard('', d[0] === 'мынау' ? '🙋👉📕' : d[0] === 'анау' ? '🙋 · · · 📕' : d[0] === 'бұл' ? '📕' : '👤', d[0], d[1], [kw(d[0])], d[0] === 'мынау' ? 'Мынау кітап. — Вот это книга (она рядом).' : d[0] === 'анау' ? 'Анау кітап. — Вон та книга (она далеко).' : d[0] === 'бұл' ? 'Бұл кітап. — Это книга.' : 'Ол кітап оқиды. — Он (она) читает книгу.') })), 4, 'Бұл, мынау, анау, ол — указательные слова!');
+const NEWL = [
+  { id: 'k7', icon: '👂', title: 'Слушаем и понимаем', goal: 'Слушать речь, понимать, о ком и о чём она, выбирать картинку',
+    steps: [
+      { id: 'k7s1', scene: 'cmdGame', gate: true, title: 'Команды Барсика', text: 'Послушай казахскую команду, выбери картинку и сделай движение сам. Если звука нет, прочитай слово на карточке.' },
+      { id: 'k7s2', scene: 'quiz', gate: true, count: 6, gens: ['lsWho'], title: 'О ком говорится?', text: 'Послушай короткий текст. О ком или о чём он? Если звука нет, нажми «Показать текст».' },
+      { id: 'k7s3', scene: 'quiz', gate: true, count: 6, gens: ['lsPic'], title: 'Найди картинку', text: 'Послушай и найди картинку, которая подходит к тому, что ты услышал.' },
+      { id: 'k7s4', scene: 'quiz', gate: true, count: 5, gens: ['topic'], title: 'О чём будет текст?', text: 'Посмотри на картинку и подумай, о чём может быть текст. Выбери тему.' }
+    ] },
+  { id: 'k8', icon: '📖', title: 'Читаем слова и тексты', goal: 'Читать слова целиком, понимать значение слов в тексте, находить информацию',
+    steps: [
+      { id: 'k8s1', scene: 'nnTap', gate: true, title: 'Новые слова', text: 'Вот много казахских слов: люди, животные, вещи. Нажимай на картинки и слушай.' },
+      { id: 'k8s2', scene: 'quiz', gate: true, count: 8, gens: ['rdPic', 'rdRu'], title: 'Читаем слова', text: 'Прочитай слово целиком и найди картинку или перевод.' },
+      { id: 'k8s3', scene: 'colTap', gate: true, title: 'Цвета и числа', text: 'Цвета: қызыл, көк, сары, жасыл, ақ, қара. Числа от одного до десяти. Нажимай на карточки.' },
+      { id: 'k8s4', scene: 'quiz', gate: true, count: 6, gens: ['rdCol', 'rdNum'], title: 'Цвета и числа', text: 'Прочитай слово и выбери цвет или число.' },
+      { id: 'k8s5', scene: 'readText', gate: true, title: 'Читаем маленькие тексты', text: 'Прочитай короткий текст с картинкой. Под текстом есть подсказки со словами. Потом ответь на вопросы.' }
+    ] },
+  { id: 'k9', icon: '✍️', title: 'Пишем', goal: 'Писать буквы и слова, создавать постер со словами-признаками',
+    steps: [
+      { id: 'k9s1', scene: 'spellWord', gate: true, n: 5, title: 'Пишем слова из букв', text: 'Посмотри на картинку, послушай слово и собери его из букв по порядку.' },
+      { id: 'k9s2', scene: 'traceLetter', gate: true, items: ['Ә', 'ә', 'Қ', 'қ', 'Ү', 'ү', 'ата'], title: 'Пишем буквы', text: 'Обведи пальцем или мышкой серую большую и маленькую букву. Старайся не выходить за контур.' },
+      { id: 'k9s3', scene: 'kcChip', gate: true, title: 'Мой постер', q: 'Составь постер: предмет и слова-признаки.',
+        rows: [{ label: 'Что нарисуем?', opts: ['алма 🍎', 'гүл 🌸', 'доп ⚽', 'мысық 🐱', 'үй 🏠'] }, { label: 'Какой размер?', opts: SIZE.slice(0, 2).map(x => x[0] + ' (' + x[1] + ')') }, { label: 'Какого цвета?', opts: COLR.map(x => x[0] + ' (' + x[2] + ')') }],
+        tpl: v => { const o = v[0].split(' '), z = v[1].split(' ')[0], c = v[2].split(' ')[0], col = COLR.find(x => x[0] === c)[1], t = z + ' ' + c + ' ' + o[0]; return '<div style="padding:10px;border-radius:18px;background:' + col + ';border:3px solid #1D3557"><div style="background:#fff;border-radius:14px;padding:6px"><div class="em">' + o[1] + '</div><div class="kzw kz-click" data-t="' + t + '" onclick="kzSayTxt(this.dataset.t)">' + t + ' 🔊</div></div></div><div class="tx">' + v[1].split('(')[1].replace(')', '') + ' · ' + v[2].split('(')[1].replace(')', '') + ' · ' + o[0] + '</div>'; }, ok: 'Постер готов! Слова-признаки стоят перед предметом.',
+        text: 'Составь постер. Выбери предмет, размер и цвет. По-казахски признак ставят перед предметом: «үлкен қызыл алма».' }
+    ] },
+  { id: 'k10', icon: '🧩', title: 'Слова и «много»', goal: 'Различать слова-предметы, действия, признаки, количество и ставить слово во множественное число',
+    steps: [
+      { id: 'k10s1', scene: 'kindTap', gate: true, title: 'Четыре вида слов', text: 'Слова бывают разные: предмет, действие, признак и количество. Нажми на каждую карточку.' },
+      { id: 'k10s2', scene: 'quiz', gate: true, count: 8, gens: ['kind'], title: 'Какое это слово?', text: 'Прочитай слово и скажи, что оно обозначает: предмет, действие, признак или количество.' },
+      { id: 'k10s3', scene: 'plTap', gate: true, title: 'Много!', text: 'Когда предметов много, у слова меняется конец. Это окончания лар, лер, дар, дер, тар, тер. Нажимай на карточки.' },
+      { id: 'k10s4', scene: 'quiz', gate: true, count: 8, gens: ['plQ', 'plPic'], title: 'Поставь слово во множественное число', text: 'Выбери правильное слово во множественном числе. Смотри на последнюю букву слова.' }
+    ] },
+  { id: 'k11', icon: '🔗', title: 'Мой, твой; где? куда?', goal: 'Использовать личные, притяжательные и падежные окончания',
+    steps: [
+      { id: 'k11s1', scene: 'posTap', gate: true, title: 'Мой, твой, его', text: 'Менің значит «мой». Сенің значит «твой». Оның значит «его» или «её». А у слова меняется конец.' },
+      { id: 'k11s2', scene: 'quiz', gate: true, count: 6, gens: ['posQ'], title: 'Чей это предмет?', text: 'Выбери верное слово: мой, твой или его.' },
+      { id: 'k11s3', scene: 'persTap', gate: true, title: 'Я, ты, мы', text: 'Мен значит «я». Сен значит «ты». Біз значит «мы». У слова тоже меняется конец.' },
+      { id: 'k11s4', scene: 'quiz', gate: true, count: 6, gens: ['perQ'], title: 'Я, ты или мы?', text: 'Выбери верное слово к «мен», «сен» или «біз».' },
+      { id: 'k11s5', scene: 'caseTap', gate: true, title: 'Где? Куда? Откуда?', text: 'Где? Мы в школе. Куда? Мы идём в школу. Откуда? Мы идём из школы. У слова каждый раз новый конец.' },
+      { id: 'k11s6', scene: 'quiz', gate: true, count: 8, gens: ['caseQ'], title: 'Где, куда, откуда?', text: 'Выбери правильное слово: где, куда или откуда.' }
+    ] },
+  { id: 'k12', icon: '🏃', title: 'Что делаем?', goal: 'Использовать глаголы в разных формах и указательные слова',
+    steps: [
+      { id: 'k12s1', scene: 'vbTap', gate: true, title: 'Глаголы', text: 'Глагол отвечает на вопрос «что делать?». Он меняется: сейчас, раньше и приказ. Нажимай на карточки.' },
+      { id: 'k12s2', scene: 'quiz', gate: true, count: 8, gens: ['vbPres', 'vbPast'], title: 'Сейчас или раньше?', text: 'Выбери правильную форму: я делаю сейчас или я делал раньше.' },
+      { id: 'k12s3', scene: 'quiz', gate: true, count: 8, gens: ['vbImp', 'vbInf'], title: 'Приказ и начальная форма', text: 'Приказ — слово без окончания. Начальная форма отвечает на вопрос «что делать?».' },
+      { id: 'k12s4', scene: 'demTap', gate: true, title: 'Бұл, мынау, анау', text: 'Это можно сказать по-разному. Бұл — это. Мынау — вот это, оно рядом. Анау — вон то, оно далеко.' },
+      { id: 'k12s5', scene: 'quiz', gate: true, count: 6, gens: ['demQ'], title: 'Это и то', text: 'Выбери, как сказать: предмет рядом или далеко.' }
+    ] },
+  { id: 'k13', icon: '💬', title: 'Предложения и мнение', goal: 'Составлять предложения, пересказывать по картинкам, высказывать своё мнение',
+    steps: [
+      { id: 'k13s1', scene: 'sentBuild', gate: true, n: 5, title: 'Складываем предложения', text: 'В казахском предложении сначала стоит тот, кто делает, потом то, что он делает, а глагол всегда в конце.' },
+      { id: 'k13s2', scene: 'retell', gate: true, n: 2, title: 'Рассказ по картинкам', text: 'Расскажи историю по картинкам. Нажимай предложения по порядку.' },
+      { id: 'k13s3', scene: 'kcChip', gate: true, title: 'Мне понравилось', q: 'Скажи своё мнение.',
+        rows: [{ label: 'Что мы читали или слушали?', opts: ['Өлең (стихотворение)', 'Ертегі (сказка)', 'Жұмбақ (загадка)'] }, { label: 'Твоё мнение', opts: ['Маған ұнады', 'Маған ұнамады'] }, { label: 'Ты согласен?', opts: ['Мен келісемін', 'Мен келіспеймін'] }],
+        tpl: v => '<div class="em">💬</div><div class="kzw" style="font-size:1.35rem">' + v[0].split(' ')[0] + '. ' + v[1] + '. ' + v[2] + '.</div><div class="tx">' + (v[1] === 'Маған ұнады' ? 'Мне понравилось' : 'Мне не понравилось') + '. ' + (v[2] === 'Мен келісемін' ? 'Я согласен (согласна).' : 'Я не согласен (согласна).') + '</div>', ok: 'Ты высказал своё мнение!',
+        text: 'Скажи своё мнение. Маған ұнады — мне понравилось. Маған ұнамады — мне не понравилось. Мен келісемін — я согласен.' },
+      { id: 'k13s4', scene: 'quiz', gate: true, count: 8, gens: ['opQ', 'wordOrd'], title: 'Мнение и порядок слов', text: 'Выбери, как сказать своё мнение, и как правильно сложить предложение.' }
+    ] },
+  { id: 'k14', icon: '🌟', title: 'Повторяем всё', goal: 'Закрепить слушание, чтение, письмо и речь',
+    steps: [
+      { id: 'k14s1', scene: 'quiz', gate: true, count: 12, gens: ['lsWho', 'lsPic', 'rdPic', 'rdRu', 'rdCol', 'rdNum', 'kind', 'plQ', 'posQ', 'perQ', 'caseQ', 'vbPres', 'vbPast', 'vbImp', 'demQ', 'opQ', 'wordOrd', 'topic'], title: 'Смешанные задания', text: 'Последняя проверка курса: слушаем, читаем, пишем и говорим по-казахски.' },
+      { id: 'k14s2', scene: 'finale', title: 'Курс пройден!', text: 'Ты научился слушать и понимать казахскую речь, читать слова и короткие тексты, писать буквы, говорить много, мой и твой, где и куда. Ты умеешь складывать предложения. Дальше тренируйся в играх. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const k6 = LESSONS.find(l => l.id === 'k6'); k6.steps = k6.steps.filter(s => s.scene !== 'finale');
+  NEWL.forEach(l => LESSONS.push(l));
+})();
+
 window.__kzData = { LET, WRD, QW, QK, CAPW, GEN, GK, kzL, kzW };
 
 /* --- общий исполнитель вопросов --- */
