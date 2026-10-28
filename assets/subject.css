@@ -2,7 +2,7 @@
    Надстройка над world.css: на общее небо и море добавляет «мир предмета».
    Подключение (после world.css):  <link rel="stylesheet" href="../../../assets/subject.css">
    Страница:  <body class="w-page" data-subject="math">  и скрипт assets/subject.js после world.js.
-   Сейчас готов предмет: math (Страна чисел). Остальные добавляются в subject.js в словарь THEMES. */
+   Миры: math (в subject.js) и остальные предметы (данные в subject-themes.js). */
 
 .s-deco{position:absolute; inset:0; pointer-events:none;}
 .s-sky{position:absolute; left:0; right:0; top:0; height:56%; overflow:hidden;}
@@ -42,6 +42,9 @@
 .s-buoy{position:absolute; width:var(--sz,34px); height:var(--sz,34px); border-radius:50%; left:var(--x); top:var(--y);
   display:flex; align-items:center; justify-content:center; background:var(--c); color:#fff; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:calc(var(--sz,34px) * .6);
   box-shadow:0 0 0 3px rgba(255,255,255,.85), 0 5px 0 rgba(0,40,90,.18); animation:sbuoy var(--dur,5s) ease-in-out infinite; animation-delay:var(--dl,0s); opacity:.9;}
+/* плавающие в море предметы без круглой подложки */
+.s-buoy.plain{background:none; box-shadow:none; border-radius:0; opacity:.85;}
+.s-buoy.plain svg{width:100%; height:100%; overflow:visible;}
 @keyframes sbuoy{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(6px) rotate(4deg);}}
 :root[data-tod=night] .s-buoy{opacity:.55;}
 .s-nl{position:absolute; left:3%; right:3%; bottom:16px; height:0; border-top:3px dashed rgba(255,255,255,.38); display:flex; justify-content:space-between;}
