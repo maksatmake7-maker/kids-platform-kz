@@ -248,6 +248,10 @@
   .iz-tools{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:4px 0;}
   .iz-cols{display:flex;gap:10px;justify-content:center;margin:6px 0;} .iz-col{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #B8C6D6;cursor:pointer;} .iz-col.cur{box-shadow:0 0 0 4px #F5B400;}
   .iz-canvas{display:block;width:100%;max-width:480px;height:auto;margin:6px auto;border:3px solid #DCE6F0;border-radius:16px;background:#fff;touch-action:none;cursor:crosshair;}
+  .iz-task{max-width:460px;margin:0 auto 8px;} .iz-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .iz-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .iz-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .iz-q{font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;margin-top:8px;} .iz-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:4px 0;}
+  .iz-b{border:3px solid #DCE6F0;border-radius:14px;background:#fff;color:#1D3557;font:800 .92rem 'Baloo 2',sans-serif;padding:7px 11px;cursor:pointer;line-height:1.1;} .iz-b.on{border-color:#F5B400;background:#FFF1C9;} .iz-b.nope{animation:ncShake .35s linear 1;background:#FFE4E1;} .iz-b:hover{background:#EAF3FF;}
+  .iz-mem{font-size:2.4rem;line-height:1.35;text-align:center;}
   .iz-ord{display:flex;gap:10px;justify-content:center;margin:10px 0;min-height:64px;flex-wrap:wrap;} .iz-ord span{width:62px;height:62px;border-radius:16px;border:3px dashed #B8C6D6;display:flex;align-items:center;justify-content:center;} .iz-ord span.f{border-style:solid;border-color:#3FAE5A;background:#DFF5E1;}
 </style>
 </head>
@@ -284,7 +288,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Изобразительное искусство</h1>
-      <p class="ac-sub">7 уроков · материалы, линии, цвет, лепка, орнамент, дом и юрта, выставка</p>
+      <p class="ac-sub">14 уроков · материалы, линии, цвет, графика и живопись, лепка, орнамент, дом и юрта, дизайн, выставка</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -961,6 +965,330 @@ const LESSONS = [
         text: 'Теперь ты знаешь виды искусства, линии, цвета, лепку, орнамент и здания. Рисуй, лепи и показывай свои работы. Я буду рядом!' }
     ] }
 ];
+
+/* ===================== Новые уроки курса «ИЗО» (приказ №399, прил. 30, 1 класс) ===================== */
+function qaGen(arr){
+  let deck = [];
+  return function(){
+    if (!deck.length) deck = shuffle(arr);
+    const it = deck.pop();
+    const opts = shuffle([it.a].concat(shuffle(it.w).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">' + it.q + '</div>' + (it.e ? '<div class="es-card"><div class="em" style="font-size:3.2rem;letter-spacing:.1em">' + it.e + '</div></div>' : ''), opts: opts, ans: it.a, wide: !!it.wide, hint: it.h };
+  };
+}
+const IQ = {};
+IQ.feel = [
+  { q: 'Какое настроение у этой картины?', e: '☀️🌾🐎', a: 'Радость', w: ['Грусть', 'Тревога', 'Страх'], h: 'Яркое солнце и тёплые цвета дарят радость.' },
+  { q: 'Какое настроение у этой картины?', e: '🌙🌧️🏚️', a: 'Грусть', w: ['Радость', 'Веселье', 'Восторг'], h: 'Тёмные, холодные цвета и дождь передают грусть.' },
+  { q: 'Какое настроение у этой картины?', e: '⛈️🌊⛵', a: 'Тревога', w: ['Радость', 'Спокойствие', 'Веселье'], h: 'Гроза и тёмные тучи вызывают тревогу.' },
+  { q: 'Какое настроение у этой картины?', e: '🌙🔥🏕️', a: 'Спокойствие', w: ['Тревога', 'Злость', 'Страх'], h: 'Мягкий свет костра и тихая ночь дарят покой.' },
+  { q: 'Если на картине много тёплых и ярких цветов, настроение ...', a: 'радостное', w: ['тревожное', 'мрачное'], h: 'Тёплые и яркие цвета передают радость.' },
+  { q: 'Если на картине много тёмных и холодных цветов, настроение ...', a: 'грустное или тревожное', w: ['весёлое', 'праздничное'], wide: true, h: 'Тёмные, холодные цвета часто передают грусть или тревогу.' }
+];
+IQ.art = [
+  { q: 'Что такое тұскиіз?', a: 'Расшитый ковёр на стену', w: ['Музыкальный инструмент', 'Посуда', 'Народная игра'], wide: true, h: 'Тұскиіз — украшенный узорами ковёр, который вешают на стену юрты.' },
+  { q: 'Чем украшают казахские войлочные ковры?', a: 'Орнаментом', w: ['Только красками из магазина', 'Ничем не украшают'], wide: true, h: 'Казахские мастерицы украшают ковры орнаментом.' },
+  { q: 'Что такое домбра?', a: 'Казахский музыкальный инструмент', w: ['Вид посуды', 'Вид одежды'], wide: true, h: 'Домбра — казахский народный инструмент: это тоже часть культуры.' },
+  { q: 'Что можно назвать произведением искусства?', a: 'Картину, скульптуру, здание, узор', w: ['Только учебник', 'Только телефон'], wide: true, h: 'Произведения искусства создают художники и мастера: картины, скульптуры, узоры, здания.' },
+  { q: 'Что делает художник?', a: 'Создаёт произведения искусства', w: ['Только считает', 'Только читает'], wide: true, h: 'Художник создаёт картины, скульптуры и другие работы.' },
+  { q: 'Что нужно сделать, когда смотришь на красивую картину?', a: 'Рассмотреть и рассказать о своих чувствах', w: ['Отвернуться', 'Нарисовать на ней'], wide: true, h: 'Мы смотрим внимательно и говорим, что чувствуем.' }
+];
+IQ.graf = [
+  { q: 'Что такое штриховка?', a: 'Много коротких параллельных линий', w: ['Одна толстая линия', 'Закрашивание пальцем'], wide: true, h: 'Штриховка — частые короткие линии рядом.' },
+  { q: 'Чем получится тонкая линия?', a: 'Карандашом', w: ['Широкой кистью', 'Валиком'], h: 'Карандаш оставляет тонкую линию.' },
+  { q: 'Как нарисовать пушистый мех зверька?', a: 'Короткими штрихами', w: ['Одной длинной линией', 'Только заливкой'], wide: true, h: 'Короткие штрихи похожи на шерсть.' },
+  { q: 'Что поможет сделать на рисунке тень?', a: 'Штриховка', w: ['Ластик', 'Точка'], h: 'Чем гуще штрихи, тем темнее тень.' },
+  { q: 'Рисунок из множества точек сделан ...', a: 'точками', w: ['линией', 'заливкой'], h: 'Точками можно рисовать небо, землю, шерсть.' },
+  { q: 'Можно ли пробовать разные приёмы в рисунке?', a: 'Да, экспериментировать полезно', w: ['Нет, нельзя', 'Только по приказу'], wide: true, h: 'Художник пробует разные приёмы и находит свои.' }
+];
+IQ.paint = [
+  { q: 'Какой кистью лучше залить большой фон?', a: 'Широкой', w: ['Тонкой', 'Самой маленькой'], h: 'Широкая кисть закрашивает большой лист быстрее.' },
+  { q: 'Чем нарисовать тонкую веточку?', a: 'Тонкой кистью', w: ['Широкой кистью', 'Валиком'], h: 'Тонкая кисть оставляет тонкую линию.' },
+  { q: 'Мазки-тычки подходят, чтобы нарисовать ...', a: 'листья и цветы', w: ['Длинную линию', 'Ровный фон'], wide: true, h: 'Тычком получаются листочки, цветочки и пушистые облака.' },
+  { q: 'Как получить зелёный цвет?', a: 'Смешать жёлтый и синий', w: ['Смешать красный и синий', 'Смешать красный и жёлтый'], wide: true, h: 'Жёлтый и синий дают зелёный.' },
+  { q: 'Рисование «по наблюдению» — это когда мы рисуем ...', a: 'то, что видим перед собой', w: ['только то, чего нет', 'с закрытыми глазами'], wide: true, h: 'При наблюдении смотрим на предмет и рисуем.' },
+  { q: 'Рисование «по памяти» — это когда мы рисуем ...', a: 'то, что вспомнили', w: ['то, что лежит перед нами', 'только копию'], wide: true, h: 'По памяти рисуют то, что видели раньше и запомнили.' }
+];
+IQ.sculp = [
+  { q: 'Как называется скульптура, которую можно обойти кругом?', a: 'Круглая скульптура', w: ['Рельеф', 'Плакат'], wide: true, h: 'Круглую скульптуру видно со всех сторон.' },
+  { q: 'Как называется скульптура, выступающая из плоскости?', a: 'Рельеф', w: ['Круглая скульптура', 'Плакат'], wide: true, h: 'Рельеф выступает из плоской основы.' },
+  { q: 'Маленькие фигурки-игрушки — это ...', a: 'малая скульптура', w: ['памятник', 'здание'], h: 'Маленькие фигурки называют малой скульптурой (малой пластикой).' },
+  { q: 'Как соединить две детали из пластилина?', a: 'Прижать и примазать пальцем', w: ['Поставить рядом', 'Заморозить'], wide: true, h: 'Детали прижимают и примазывают, чтобы держались.' },
+  { q: 'Как слепить снеговика?', e: '⛄', a: 'Три шарика, большой внизу', w: ['Три колбаски', 'Одну лепёшку'], wide: true, h: 'Скатай три шарика: самый большой внизу.' },
+  { q: 'Что можно выразить в лепке?', a: 'Свои чувства и идеи', w: ['Только числа', 'Ничего'], wide: true, h: 'Фигурка может быть весёлой, спокойной или сердитой.' }
+];
+IQ.gen = [
+  { q: 'Что такое обобщение в узоре?', a: 'Упростить предмет, оставив главное', w: ['Нарисовать все мелочи', 'Скопировать фото'], wide: true, h: 'Обобщить — значит нарисовать просто, главными формами.' },
+  { q: 'Из каких форм можно составить ёлку?', e: '🎄', a: 'Из треугольников', w: ['Из звёзд', 'Из волн'], h: 'Ёлку упрощённо рисуют треугольниками.' },
+  { q: 'Как упрощённо нарисовать дерево?', a: 'Круг и прямоугольник', w: ['Сотни листиков', 'Только линия'], wide: true, h: 'Крона — круг, ствол — прямоугольник.' },
+  { q: 'Как упрощённо нарисовать солнце?', e: '☀️', a: 'Круг и лучи', w: ['Квадрат', 'Волна'], h: 'Солнце — круг с лучами.' },
+  { q: 'Зачем в узоре упрощают формы?', a: 'Чтобы их легко было повторять', w: ['Чтобы узор был сложнее', 'Чтобы он не получился'], wide: true, h: 'Простые формы удобно повторять в ряд.' },
+  { q: 'Как упрощённо нарисовать цветок?', e: '🌼', a: 'Круг и лепестки-капли', w: ['Много листьев и точек', 'Квадрат'], wide: true, h: 'Цветок — круглая середина и лепестки.' }
+];
+IQ.des = [
+  { q: 'Что придумывает дизайнер?', a: 'Форму вещей: мебели, игрушек, упаковки', w: ['Только здания', 'Только картины'], wide: true, h: 'Дизайнер придумывает, как должна выглядеть вещь.' },
+  { q: 'Что придумывает архитектор?', a: 'Здания', w: ['Игрушки', 'Одежду'], h: 'Архитектор придумывает здания.' },
+  { q: 'Конструирование — это ...', a: 'собирать вещь из готовых деталей', w: ['только рисовать', 'только лепить'], wide: true, h: 'Конструировать — собирать из деталей.' },
+  { q: 'Моделирование — это ...', a: 'делать макет, уменьшенную модель', w: ['писать книгу', 'петь песню'], wide: true, h: 'Макет — это уменьшенная модель здания или вещи.' },
+  { q: 'Из каких форм состоит простой дом?', e: '🏠', a: 'Квадрат и треугольник-крыша', w: ['Круг и волна', 'Звезда и ромб'], wide: true, h: 'Стена — квадрат или прямоугольник, крыша — треугольник.' },
+  { q: 'Арка — это ...', a: 'полукруглый проём', w: ['квадратная башня', 'плоская крыша'], h: 'Арка — это проём в виде полукруга.' },
+  { q: 'Что нужно придумать дизайнеру прежде всего?', a: 'Для кого и для чего вещь', w: ['Сколько стоит бумага', 'Какая погода'], wide: true, h: 'Вещь должна быть удобной и нужной людям.' }
+];
+IQ.pres = [
+  { q: 'Что можно сделать с готовой работой?', a: 'Показать на выставке', w: ['Выбросить', 'Спрятать навсегда'], wide: true, h: 'Готовые работы показывают на выставке.' },
+  { q: 'Зачем подписывать работу?', a: 'Чтобы знали автора и название', w: ['Чтобы испортить рисунок', 'Это не нужно'], wide: true, h: 'На работе пишут название и имя автора.' },
+  { q: 'Как показать рисунок в школе?', a: 'Повесить на выставке в классе', w: ['Положить под парту', 'Порвать'], wide: true, h: 'Выставка в классе — хороший способ показать работу.' },
+  { q: 'Показ работы на экране компьютера — это ...', a: 'электронная презентация', w: ['ластик', 'мольберт'], wide: true, h: 'Фото работы можно показать на экране.' },
+  { q: 'Что рассказывает автор о своей работе?', a: 'Название и что хотел показать', w: ['Только свою фамилию', 'Ничего'], wide: true, h: 'Автор рассказывает, о чём работа и какие чувства он передал.' },
+  { q: 'Как сохранить много рисунков?', a: 'В альбоме или папке', w: ['На полу', 'В кармане без места'], wide: true, h: 'Рисунки хранят в альбоме или папке.' }
+];
+Object.assign(GENS, { iqFeel: qaGen(IQ.feel), iqArt: qaGen(IQ.art), iqGraf: qaGen(IQ.graf), iqPaint: qaGen(IQ.paint), iqSculp: qaGen(IQ.sculp), iqGen: qaGen(IQ.gen), iqDes: qaGen(IQ.des), iqPres: qaGen(IQ.pres) });
+/* ---- сцены ---- */
+SCENES.infoTap = function(stage, st, ctx){
+  const seen = {}, need = st.need || st.cards.length;
+  stage.innerHTML = '<div class="es-pick" id="i-p"></div><div class="es-card" id="i-c"><div class="tx">Нажми на картинку 👆</div></div>';
+  $('#i-p', stage).innerHTML = st.cards.map((c, i) => '<button class="es-pb" data-i="' + i + '" aria-label="' + c.b + '">' + c.e + '<small>' + c.b + '</small></button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const c = st.cards[+b.dataset.i]; seen[b.dataset.i] = 1; $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#i-c', stage).innerHTML = '<div class="em">' + c.e + '</div><div class="nm">' + (c.nm || c.b) + '</div><div class="tx">' + c.tx + '</div>';
+    const n = Object.keys(seen).length;
+    if (n >= need){ ctx.fb('Здорово! Всё посмотрели.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + ' из ' + need + '.', 'info');
+  });
+};
+SCENES.chipCard = function(stage, st, ctx){
+  const V = {};
+  stage.innerHTML = (st.q ? '<div class="ac-qtxt">' + st.q + '</div>' : '') + st.rows.map((r, i) => '<div class="iz-q">' + r.label + '</div><div class="iz-tb" id="cc-' + i + '">' + r.opts.map(o => '<button class="iz-b" data-v="' + o + '">' + o + '</button>').join('') + '</div>').join('') + '<div class="es-card" id="cc-c"><div class="tx">Выбери во всех строках.</div></div>';
+  st.rows.forEach((r, i) => $$('#cc-' + i + ' .iz-b', stage).forEach(b => b.onclick = function(){
+    V[i] = b.dataset.v; $$('#cc-' + i + ' .iz-b', stage).forEach(x => x.classList.remove('on')); b.classList.add('on');
+    const n = Object.keys(V).length;
+    if (n >= st.rows.length){ $('#cc-c', stage).innerHTML = st.tpl(st.rows.map((_, j) => V[j])); ctx.fb(st.ok || 'Готово!', 'ok'); ctx.done(); }
+    else ctx.fb('Выбрано: ' + n + ' из ' + st.rows.length + '.', 'info');
+  }));
+};
+/* --- холст: графика и живопись --- */
+SCENES.artCanvas = function(stage, st, ctx){
+  const G = st.mode === 'graphic';
+  const TOOLS = G ? [['pencil', '✏️ Карандаш'], ['marker', '🖍️ Фломастер'], ['hatch', '▨ Штриховка'], ['dots', '⚫ Точки']] : [['brush', '🖌️ Тонкая кисть'], ['wash', '🌊 Широкая кисть'], ['dab', '🔵 Мазки-тычки']];
+  const COLS = G ? ['#1D3557', '#E53935', '#2FB04A', '#1E73E8', '#8A5A2B', '#FF8A1F'] : ['#E53935', '#FF8A1F', '#F5C400', '#2FB04A', '#58B7F0', '#1E73E8', '#8E4DC4', '#8A5A2B'];
+  const S = { tool: TOOLS[0][0], col: COLS[0], log: [], dabs: 0 }; let ti = 0, down = false, lx = 0, ly = 0, acc = 0, cur = null;
+  window.__ar = S;
+  stage.innerHTML = '<div class="iz-task" id="a-t"></div><div class="iz-tools" id="a-b">' + TOOLS.map(t => '<button class="es-nb' + (t[0] === S.tool ? ' seen' : '') + '" data-t="' + t[0] + '">' + t[1] + '</button>').join('') + '<button class="es-nb" data-t="clear">🧽 Стереть всё</button></div>' +
+    '<div class="iz-cols" id="a-c">' + COLS.map(c => '<button class="iz-col' + (c === S.col ? ' cur' : '') + '" data-c="' + c + '" style="background:' + c + '" aria-label="цвет"></button>').join('') + '</div><canvas class="iz-canvas" id="a-cv" width="480" height="270"></canvas>';
+  const cv = $('#a-cv', stage), g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 480, 270); g.lineCap = 'round'; g.lineJoin = 'round';
+  const pt = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 480 / r.width, (e.clientY - r.top) * 270 / r.height]; };
+  function tasks(){
+    const T = st.tasks; while (ti < T.length && T[ti].ok(S)) ti++;
+    $('#a-t', stage).innerHTML = ti < T.length ? '<div class="iz-ti"><b>Задание ' + (ti + 1) + ' из ' + T.length + '.</b> ' + T[ti].t + (T[ti].h ? '<small>' + T[ti].h + '</small>' : '') + '</div>' : '<div class="iz-ti ok">✅ Все задания выполнены!</div>';
+    if (ti >= T.length && !S.fin){ S.fin = true; ctx.fb('Здорово получилось!', 'ok'); ctx.done(); }
+  }
+  function seg(x, y){
+    const t = S.tool; g.strokeStyle = S.col; g.fillStyle = S.col;
+    if (t === 'pencil'){ g.globalAlpha = 1; g.lineWidth = 2.4; g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); }
+    else if (t === 'marker'){ g.globalAlpha = 1; g.lineWidth = 10; g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); }
+    else if (t === 'brush'){ g.globalAlpha = .95; g.lineWidth = 7; g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); }
+    else if (t === 'wash'){ g.globalAlpha = .22; g.lineWidth = 38; g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke(); }
+    else {
+      acc += Math.hypot(x - lx, y - ly);
+      const step = t === 'hatch' ? 9 : t === 'dots' ? 7 : 12;
+      while (acc >= step){ acc -= step; g.globalAlpha = 1;
+        if (t === 'hatch'){ g.lineWidth = 1.8; g.beginPath(); g.moveTo(x - 7, y + 7); g.lineTo(x + 7, y - 7); g.stroke(); }
+        else if (t === 'dots'){ g.beginPath(); g.arc(x, y, 2.4, 0, 7); g.fill(); }
+        else { g.globalAlpha = .9; g.beginPath(); g.arc(x + (Math.random() - .5) * 6, y + (Math.random() - .5) * 6, 6 + Math.random() * 4, 0, 7); g.fill(); S.dabs++; }
+      }
+    }
+    g.globalAlpha = 1; lx = x; ly = y;
+  }
+  cv.addEventListener('pointerdown', e => { down = true; [lx, ly] = pt(e); acc = 0; cur = { t: S.tool, c: S.col }; try { cv.setPointerCapture(e.pointerId); } catch(x){} if (S.tool === 'dab'){ acc = 12; seg(lx, ly); } e.preventDefault(); });
+  cv.addEventListener('pointermove', e => { if (!down) return; const [x, y] = pt(e); seg(x, y); e.preventDefault(); });
+  const end = () => { if (!down) return; down = false; if (cur) S.log.push(cur); cur = null; tasks(); };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  $$('#a-b .es-nb', stage).forEach(b => b.onclick = function(){
+    if (b.dataset.t === 'clear'){ g.globalAlpha = 1; g.fillStyle = '#fff'; g.fillRect(0, 0, 480, 270); return; }
+    S.tool = b.dataset.t; $$('#a-b .es-nb', stage).forEach(x => x.classList.toggle('seen', x.dataset.t === S.tool));
+  });
+  $$('#a-c .iz-col', stage).forEach(b => b.onclick = function(){ S.col = b.dataset.c; $$('#a-c .iz-col', stage).forEach(x => x.classList.toggle('cur', x === b)); });
+  tasks();
+};
+/* --- смотрим, прячем, вспоминаем (рисунок по памяти) --- */
+SCENES.memLook = function(stage, st, ctx){
+  let ri = 0, qi = 0;
+  function round(){
+    const R = st.rounds[ri]; qi = 0;
+    stage.innerHTML = '<div class="ac-qtxt">Картинка ' + (ri + 1) + ' из ' + st.rounds.length + '. Рассмотри её внимательно, а потом спрячь и ответь по памяти.</div><div class="es-card" id="m-c"><div class="iz-mem">' + R.pic + '</div></div><div class="iz-tb"><button class="iz-b on" id="m-go">🙈 Запомнил! Спрятать</button></div><div id="m-q"></div>';
+    $('#m-go', stage).onclick = function(){ $('#m-c', stage).innerHTML = '<div class="em">🤔</div><div class="tx">Вспоминай: что было на картинке?</div>'; this.style.display = 'none'; ask(); };
+  }
+  function ask(){
+    const Q = st.rounds[ri].qs[qi];
+    $('#m-q', stage).innerHTML = '<div class="ac-qtxt">' + Q.q + '</div><div class="iz-tb">' + shuffle(Q.o).map(o => '<button class="iz-b" data-v="' + o + '">' + o + '</button>').join('') + '</div>';
+    $$('#m-q .iz-b', stage).forEach(b => b.onclick = function(){
+      if (b.dataset.v === Q.a){
+        qi++; if (qi >= st.rounds[ri].qs.length){ ri++; if (ri >= st.rounds.length){ $('#m-q', stage).innerHTML = ''; ctx.fb('Ты хорошо запоминаешь! Так рисуют по памяти.', 'ok'); ctx.done(); } else { ctx.fb('Верно!', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, st.fast ? 20 : 900); } }
+        else { ctx.fb('Верно!', 'ok'); ask(); }
+      } else { ctx.miss(); b.classList.add('nope'); $('#m-c', stage).innerHTML = '<div class="iz-mem">' + st.rounds[ri].pic + '</div><div class="tx">Посмотри ещё раз и запомни!</div>'; setTimeout(() => { if (ctx.alive()) $('#m-c', stage).innerHTML = '<div class="em">🤔</div><div class="tx">Вспоминай: что было на картинке?</div>'; }, st.fast ? 20 : 1500); }
+    });
+  }
+  round();
+};
+/* --- лепим и строим из деталей --- */
+const PARTS = {
+  ball: ['Шарик', '⚪', (c) => '<circle r="24" fill="' + c + '"/>', 24], sball: ['Малый шарик', '🔹', (c) => '<circle r="14" fill="' + c + '"/>', 14],
+  sausage: ['Колбаска', '➖', (c) => '<rect x="-32" y="-10" width="64" height="20" rx="10" fill="' + c + '"/>', 32], pancake: ['Лепёшка', '🥞', (c) => '<ellipse rx="28" ry="9" fill="' + c + '"/>', 28], cone: ['Конус', '🔺', (c) => '<polygon points="0,-22 16,16 -16,16" fill="' + c + '"/>', 22],
+  wall: ['Стена', '🟫', (c) => '<rect x="-36" y="-26" width="72" height="52" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>', 36], roof: ['Крыша', '🔺', (c) => '<polygon points="0,-22 44,16 -44,16" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>', 44],
+  door: ['Дверь', '🚪', (c) => '<rect x="-10" y="-18" width="20" height="36" rx="2" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>', 18], window: ['Окно', '🪟', (c) => '<rect x="-10" y="-10" width="20" height="20" fill="' + c + '" stroke="#1D3557" stroke-width="2"/><line x1="0" x2="0" y1="-10" y2="10" stroke="#1D3557" stroke-width="1.5"/><line x1="-10" x2="10" y1="0" y2="0" stroke="#1D3557" stroke-width="1.5"/>', 10],
+  tower: ['Башня', '🗼', (c) => '<rect x="-18" y="-38" width="36" height="76" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>', 38], arch: ['Арка', '🌈', (c) => '<path d="M-24,18 L-24,0 A24,24 0 0 1 24,0 L24,18 Z" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>', 24],
+  sq: ['Квадрат', '🟦', (c) => '<rect x="-20" y="-20" width="40" height="40" fill="' + c + '"/>', 20], rc: ['Прямоугольник', '▬', (c) => '<rect x="-34" y="-12" width="68" height="24" fill="' + c + '"/>', 34], ci: ['Круг', '🔵', (c) => '<circle r="20" fill="' + c + '"/>', 20],
+  tr: ['Треугольник', '🔺', (c) => '<polygon points="0,-22 24,18 -24,18" fill="' + c + '"/>', 22], sc: ['Полукруг', '🌗', (c) => '<path d="M-24,12 A24,24 0 0 1 24,12 Z" fill="' + c + '"/>', 24], st: ['Звезда', '⭐', (c) => '<polygon points="0,-24 7,-8 24,-8 10,3 15,20 0,10 -15,20 -10,3 -24,-8 -7,-8" fill="' + c + '"/>', 24]
+};
+const PCOLS = [['красный', '#E8453C'], ['жёлтый', '#F5B400'], ['зелёный', '#3FAE5A'], ['синий', '#2F7BE6'], ['оранжевый', '#FF8A1F'], ['белый', '#FFFFFF'], ['коричневый', '#8A5A2B']];
+SCENES.shapeBuild = function(stage, st, ctx){
+  const S = { parts: [], key: st.keys[0], col: PCOLS[0][0] }; let ti = 0;
+  window.__sb = S;
+  const hex = n => PCOLS.find(x => x[0] === n)[1];
+  stage.innerHTML = '<div class="iz-task" id="b-t"></div><div class="iz-tools" id="b-k">' + st.keys.map(k => '<button class="es-nb' + (k === S.key ? ' seen' : '') + '" data-k="' + k + '">' + PARTS[k][1] + ' ' + PARTS[k][0] + '</button>').join('') + '</div>' +
+    '<div class="iz-cols" id="b-c">' + PCOLS.map(c => '<button class="iz-col' + (c[0] === S.col ? ' cur' : '') + '" data-c="' + c[0] + '" style="background:' + c[1] + '" aria-label="' + c[0] + '"></button>').join('') + '</div>' +
+    '<svg id="b-s" class="iz-canvas" viewBox="0 0 360 240" style="background:' + (st.bg || '#FFFDF4') + '"></svg><div class="iz-tools"><button class="es-nb" id="b-u">↩️ Убрать последнее</button><button class="es-nb" id="b-x">🧽 Очистить</button></div>';
+  const svg = $('#b-s', stage);
+  function draw(){ svg.innerHTML = (st.ground ? '<rect x="0" y="200" width="360" height="40" fill="#CDE8B5"/>' : '') + S.parts.map(p => '<g transform="translate(' + p.x + ',' + p.y + ')">' + PARTS[p.k][2](hex(p.c)) + '</g>').join(''); }
+  function tasks(){
+    const T = st.tasks; while (ti < T.length && T[ti].ok(S)) ti++;
+    $('#b-t', stage).innerHTML = ti < T.length ? '<div class="iz-ti"><b>Задание ' + (ti + 1) + ' из ' + T.length + '.</b> ' + T[ti].t + (T[ti].h ? '<small>' + T[ti].h + '</small>' : '') + '</div>' : '<div class="iz-ti ok">✅ Все задания выполнены!</div>';
+    if (ti >= T.length && !S.fin){ S.fin = true; ctx.fb('Отличная работа!', 'ok'); ctx.done(); }
+  }
+  svg.addEventListener('pointerdown', e => { const r = svg.getBoundingClientRect(); S.parts.push({ k: S.key, c: S.col, x: Math.round((e.clientX - r.left) * 360 / r.width), y: Math.round((e.clientY - r.top) * 240 / r.height) }); draw(); tasks(); });
+  $$('#b-k .es-nb', stage).forEach(b => b.onclick = () => { S.key = b.dataset.k; $$('#b-k .es-nb', stage).forEach(x => x.classList.toggle('seen', x === b)); });
+  $$('#b-c .iz-col', stage).forEach(b => b.onclick = () => { S.col = b.dataset.c; $$('#b-c .iz-col', stage).forEach(x => x.classList.toggle('cur', x === b)); });
+  $('#b-u', stage).onclick = () => { S.parts.pop(); draw(); }; $('#b-x', stage).onclick = () => { S.parts = []; draw(); };
+  draw(); tasks();
+};
+/* ---- узор для обобщения ---- */
+const MOT = {
+  drop: c => '<path d="M0,-16 C14,2 12,16 0,16 C-12,16 -14,2 0,-16 Z" fill="' + c + '"/>', circle: c => '<circle r="13" fill="' + c + '"/>', diamond: c => '<polygon points="0,-16 14,0 0,16 -14,0" fill="' + c + '"/>', wave: c => '<path d="M-16,0 C-8,-14 -2,-14 0,0 C2,14 8,14 16,0" fill="none" stroke="' + c + '" stroke-width="6" stroke-linecap="round"/>'
+};
+const MCOL = { 'красный': '#E8453C', 'синий': '#2F7BE6', 'жёлтый': '#F5B400', 'зелёный': '#3FAE5A' };
+const MNM = { 'Капля': 'drop', 'Круг': 'circle', 'Ромб': 'diamond', 'Волна': 'wave' };
+function patStripSVG(v){ /* v: [A, B, цвет A, цвет B, порядок] */
+  const seq = v[4] === 'А Б А Б' ? ['A', 'B', 'A', 'B', 'A', 'B', 'A', 'B'] : ['A', 'A', 'B', 'A', 'A', 'B', 'A', 'A'];
+  return '<svg viewBox="0 0 360 50" width="100%" style="max-width:360px">' + seq.map((s, i) => '<g transform="translate(' + (22 + i * 44) + ',25)">' + MOT[MNM[s === 'A' ? v[0] : v[1]]](MCOL[s === 'A' ? v[2] : v[3]]) + '</g>').join('') + '</svg>';
+}
+/* ---- уроки ---- */
+const NEW_LESSONS = [
+  { id: 'i8', icon: '💞', title: 'Искусство и чувства', goal: 'Эмоционально откликаться на произведения искусства казахской и мировой культуры',
+    steps: [
+      { id: 'i8s1', scene: 'infoTap', gate: true, title: 'Искусство нашей страны', cards: [
+        { e: '🧶', b: 'Ковры', nm: 'Войлочные ковры', tx: 'Казахские мастерицы делают из войлока красивые ковры с узорами: кошму и сырмак. Тұскиіз — расшитый ковёр на стену юрты.' },
+        { e: '⛺', b: 'Юрта', nm: 'Юрта', tx: 'Юрта — это дом кочевников. Она круглая, лёгкая и красиво украшена узорами.' },
+        { e: '🎻', b: 'Музыка', nm: 'Домбра и кюй', tx: 'Домбра — казахский музыкальный инструмент. Кюй — музыка, в которой композитор рассказывает о природе и чувствах.' },
+        { e: '🌍', b: 'Мир', nm: 'Искусство мира', tx: 'У каждого народа свои картины, скульптуры, здания и узоры. Все они рассказывают о людях и их чувствах.' }],
+        text: 'Искусство рассказывает о чувствах. В Казахстане его создают веками: войлочные ковры, юрты, музыка домбры. И у других народов мира тоже много красивых произведений. Нажимай на картинки и знакомься.' },
+      { id: 'i8s2', scene: 'quiz', gate: true, count: 6, gens: ['iqArt'], title: 'Что мы знаем об искусстве', text: 'Ответь на вопросы про искусство нашей страны и про то, что такое произведение искусства.' },
+      { id: 'i8s3', scene: 'quiz', gate: true, count: 6, gens: ['iqFeel'], title: 'Какое настроение?', text: 'Посмотри на картинку и скажи, какое настроение она передаёт. Помогут цвета: тёплые и яркие радуют, тёмные и холодные грустят или тревожат.' }
+    ] },
+  { id: 'i9', icon: '✏️', title: 'Графика: приёмы', goal: 'Использовать приёмы графики, экспериментировать и показывать графическую работу',
+    steps: [
+      { id: 'i9s1', scene: 'quiz', gate: true, count: 6, gens: ['iqGraf'], title: 'Приёмы графики', text: 'В графике много приёмов: линия, штриховка и точки. Вспомни, для чего они нужны.' },
+      { id: 'i9s2', scene: 'artCanvas', gate: true, mode: 'graphic', title: 'Рисуем разными приёмами', tasks: [
+        { t: 'Нарисуй линию карандашом', h: 'Выбери «Карандаш» и проведи пальцем или мышкой по листу.', ok: S => S.log.some(l => l.t === 'pencil') },
+        { t: 'Нарисуй фигуру фломастером и заштрихуй её', h: 'Сначала «Фломастер», потом «Штриховка».', ok: S => S.log.some(l => l.t === 'marker') && S.log.some(l => l.t === 'hatch') },
+        { t: 'Сделай точками небо или землю', h: 'Выбери «Точки» и веди по листу.', ok: S => S.log.some(l => l.t === 'dots') },
+        { t: 'Нарисуй дерево, дом или животное тремя разными приёмами', h: 'Попробуй разные инструменты и цвета: художники всегда экспериментируют.', ok: S => new Set(S.log.map(l => l.t)).size >= 3 && S.log.length >= 7 }],
+        text: 'Теперь порисуем разными приёмами. Выполняй задания по порядку. Пробуй карандаш, фломастер, штриховку и точки. Ты можешь стереть всё и начать заново.' },
+      { id: 'i9s3', scene: 'chipCard', gate: true, title: 'Моя работа', q: 'Расскажи о своём рисунке.',
+        rows: [{ label: 'Что я нарисовал', opts: ['Дерево', 'Дом', 'Животное', 'Узор'] }, { label: 'Какое у рисунка настроение', opts: ['Весёлое', 'Спокойное', 'Грустное', 'Тревожное'] }, { label: 'Где покажу работу', opts: ['На выставке в классе', 'В альбоме', 'На экране компьютера', 'Подарю маме'] }],
+        tpl: v => '<div class="em">🖼️</div><div class="nm">Мой рисунок</div><div class="tx">Я нарисовал: <b>' + v[0].toLowerCase() + '</b>. Настроение: ' + v[1].toLowerCase() + '. Покажу: ' + v[2].toLowerCase() + '.</div>', ok: 'Ты рассказал о своей работе!',
+        text: 'Расскажи о своём рисунке: что ты нарисовал, какое у него настроение и где ты покажешь работу.' }
+    ] },
+  { id: 'i10', icon: '🎨', title: 'Живопись: мазки и память', goal: 'Использовать приёмы живописи, рисовать по наблюдению и по памяти, показывать живописную работу',
+    steps: [
+      { id: 'i10s1', scene: 'quiz', gate: true, count: 6, gens: ['iqPaint'], title: 'Приёмы живописи', text: 'В живописи кисть оставляет разные следы: тонкая линия, широкий мазок и тычок. Вспомни, как рисовать по наблюдению и по памяти.' },
+      { id: 'i10s2', scene: 'artCanvas', gate: true, mode: 'paint', title: 'Рисуем красками', tasks: [
+        { t: 'Залей фон широкой кистью светлым цветом', h: 'Выбери «Широкая кисть» и закрась лист светлым цветом.', ok: S => S.log.some(l => l.t === 'wash') },
+        { t: 'Смешай краски: проведи широкой кистью другого цвета поверх первого', h: 'Жёлтая краска поверх голубой даёт зелёный.', ok: S => new Set(S.log.filter(l => l.t === 'wash').map(l => l.c)).size >= 2 },
+        { t: 'Нарисуй тонкой кистью ствол или стебель', h: 'Выбери «Тонкая кисть» и проведи линию.', ok: S => S.log.some(l => l.t === 'brush') },
+        { t: 'Поставь мазки-тычки: листья или цветы', h: 'Выбери «Мазки-тычки» и веди по листу: получится много мазков.', ok: S => S.dabs >= 8 }],
+        text: 'Теперь порисуем красками. Залей фон, смешай два цвета, нарисуй стебель и поставь мазки-тычки. Так получается картина: цветочная поляна или дерево с листьями.' },
+      { id: 'i10s3', scene: 'memLook', gate: true, title: 'Рисуем по памяти', rounds: [
+        { pic: '☀️<br>🏠 🌳🌳<br>🌼🌼🌼', qs: [{ q: 'Что было в небе?', o: ['☀️', '🌙', '☁️'], a: '☀️' }, { q: 'Сколько деревьев было на картинке?', o: ['1', '2', '3'], a: '2' }, { q: 'Сколько цветочков было на картинке?', o: ['2', '3', '4'], a: '3' }] },
+        { pic: '🌙⭐<br>⛺ 🐎<br>🌲🌲🌲', qs: [{ q: 'Что было на небе ночью?', o: ['🌙', '☀️', '☁️'], a: '🌙' }, { q: 'Какое животное было на картинке?', o: ['🐎', '🐘', '🐟'], a: '🐎' }, { q: 'Сколько ёлок было на картинке?', o: ['2', '3', '4'], a: '3' }] }],
+        text: 'Художники рисуют не только то, что видят, но и то, что помнят. Рассмотри картинку, запомни, потом спрячь её и ответь на вопросы по памяти. Если ошибёшься, посмотри ещё раз.' },
+      { id: 'i10s4', scene: 'infoTap', gate: true, title: 'Как показать картину', cards: [
+        { e: '🖼️', b: 'Рамка', nm: 'Рамка и название', tx: 'Картину вставляют в рамку или оформляют на плотной бумаге и пишут название и имя автора.' },
+        { e: '🏫', b: 'Выставка', nm: 'Выставка в классе', tx: 'Работы вывешивают на стенде, чтобы все могли посмотреть.' },
+        { e: '🗣️', b: 'Рассказ', nm: 'Рассказ автора', tx: 'Автор рассказывает: что нарисовал, какие цвета выбрал и какие чувства передал.' },
+        { e: '💻', b: 'Экран', nm: 'Электронная презентация', tx: 'Работу можно сфотографировать и показать на экране компьютера.' }],
+        text: 'Готовую картину нужно показать. Есть разные способы: рамка, выставка, рассказ автора и показ на экране. Нажимай на картинки.' }
+    ] },
+  { id: 'i11', icon: '🧸', title: 'Лепка: наши фигурки', goal: 'Знать виды скульптуры, лепить знакомые образы и выражать через лепку чувства и идеи',
+    steps: [
+      { id: 'i11s1', scene: 'infoTap', gate: true, title: 'Виды скульптуры', cards: [
+        { e: '🗿', b: 'Круглая', nm: 'Круглая скульптура', tx: 'Её можно обойти кругом и посмотреть со всех сторон.' },
+        { e: '🪙', b: 'Рельеф', nm: 'Рельеф', tx: 'Фигура выступает из плоской основы, как рисунок на монете.' },
+        { e: '🧸', b: 'Малая', nm: 'Малая скульптура', tx: 'Маленькие фигурки: игрушки и сувениры. Их лепят из пластилина и глины.' },
+        { e: '🏛️', b: 'Памятник', nm: 'Памятник', tx: 'Большая скульптура на площади или в парке в память о людях и событиях.' }],
+        text: 'Скульптура бывает разная. Круглая, которую можно обойти кругом, рельеф на плоскости, малая фигурка и большой памятник. Нажимай на картинки.' },
+      { id: 'i11s2', scene: 'shapeBuild', gate: true, title: 'Лепим фигурку', keys: ['ball', 'sball', 'sausage', 'pancake', 'cone'], bg: '#F3F7FB', tasks: [
+        { t: 'Слепи снеговика: три шарика, самый большой внизу', h: 'Выбери «Шарик» или «Малый шарик» и нажми на лист три раза.', ok: S => S.parts.filter(p => p.k === 'ball' || p.k === 'sball').length >= 3 },
+        { t: 'Добавь колбаску: это будет рука или хвост', h: 'Выбери «Колбаска» и нажми рядом с фигуркой.', ok: S => S.parts.some(p => p.k === 'sausage') },
+        { t: 'Добавь лепёшку и конус: шапка и нос', h: 'Выбери «Лепёшка» и «Конус».', ok: S => S.parts.some(p => p.k === 'pancake') && S.parts.some(p => p.k === 'cone') },
+        { t: 'Раскрась фигурку: используй хотя бы три цвета', h: 'Выбирай цвет, потом нажимай на лист.', ok: S => new Set(S.parts.map(p => p.c)).size >= 3 }],
+        text: 'Теперь слепим фигурку из пластилина, только на экране. Выбери деталь и цвет и нажми на лист. Слепи снеговика, а потом добавь части.' },
+      { id: 'i11s3', scene: 'chipCard', gate: true, title: 'Моя фигурка', q: 'Придумай и расскажи о своей фигурке.',
+        rows: [{ label: 'Кто это', opts: ['Птичка', 'Зверёк', 'Человечек', 'Снеговик'] }, { label: 'Какое у неё настроение', opts: ['Весёлое', 'Спокойное', 'Сердитое', 'Грустное'] }, { label: 'Для кого она', opts: ['Для мамы', 'Для друга', 'Для школьной выставки'] }],
+        tpl: v => '<div class="em">🧸</div><div class="nm">Моя фигурка</div><div class="tx">Это <b>' + v[0].toLowerCase() + '</b>. Настроение: ' + v[1].toLowerCase() + '. Слепил(а) ' + v[2].toLowerCase() + '.</div>', ok: 'Ты придумал фигурку и выразил её настроение!',
+        text: 'В лепке тоже можно выражать чувства. Выбери, кого ты слепил, какое у неё настроение и для кого эта фигурка.' },
+      { id: 'i11s4', scene: 'quiz', gate: true, count: 6, gens: ['iqSculp'], title: 'Вопросы про лепку', text: 'Ответь на вопросы про виды скульптуры и приёмы лепки.' }
+    ] },
+  { id: 'i12', icon: '🌼', title: 'Обобщение и свой узор', goal: 'Знать понятие «обобщение» и создавать узор по своему замыслу',
+    steps: [
+      { id: 'i12s1', scene: 'infoTap', gate: true, title: 'Что такое обобщение', cards: [
+        { e: '🧩', b: 'Главное', nm: 'Обобщение', tx: 'Обобщить — значит нарисовать предмет просто, главными формами, и убрать лишние мелочи.' },
+        { e: '🎄', b: 'Ёлка', nm: 'Ёлка из треугольников', tx: 'Настоящую ёлку с тысячей иголок упрощают до трёх треугольников.' },
+        { e: '🌳', b: 'Дерево', nm: 'Дерево', tx: 'Крона — круг, ствол — прямоугольник.' },
+        { e: '🌼', b: 'Цветок', nm: 'Цветок', tx: 'Круглая середина и лепестки-капли.' }],
+        text: 'В узорах предметы упрощают. Это называется обобщением. Ёлку рисуют треугольниками, дерево кругом и прямоугольником. Так форму легко повторять. Нажимай на картинки.' },
+      { id: 'i12s2', scene: 'quiz', gate: true, count: 6, gens: ['iqGen'], title: 'Упрощаем формы', text: 'Подумай, из каких простых форм можно составить предмет.' },
+      { id: 'i12s3', scene: 'chipCard', gate: true, title: 'Составь свой узор', q: 'Выбери два элемента, цвета и порядок, и получится узор.',
+        rows: [{ label: 'Первый элемент', opts: ['Капля', 'Круг', 'Ромб', 'Волна'] }, { label: 'Второй элемент', opts: ['Капля', 'Круг', 'Ромб', 'Волна'] }, { label: 'Цвет первого', opts: ['красный', 'синий', 'жёлтый', 'зелёный'] }, { label: 'Цвет второго', opts: ['красный', 'синий', 'жёлтый', 'зелёный'] }, { label: 'Как повторяем', opts: ['А Б А Б', 'А А Б А А Б'] }],
+        tpl: v => patStripSVG(v) + '<div class="tx">Узор из простых форм: повторяются элементы в порядке «' + v[4] + '».</div>', ok: 'Узор готов! Ты придумал его сам.',
+        text: 'Теперь придумай свой узор. Выбери два простых элемента, их цвета и порядок повторения. Узор можно потом нарисовать на одежде, ковре или посуде.' }
+    ] },
+  { id: 'i13', icon: '🏰', title: 'Дизайн и архитектура', goal: 'Знакомиться с дизайном и архитектурой, конструировать и моделировать из деталей',
+    steps: [
+      { id: 'i13s1', scene: 'infoTap', gate: true, title: 'Дизайнер и архитектор', cards: [
+        { e: '🪑', b: 'Дизайн', nm: 'Дизайн', tx: 'Дизайнер придумывает, как будет выглядеть вещь: стул, игрушка, упаковка, одежда. Вещь должна быть красивой и удобной.' },
+        { e: '🏠', b: 'Архитектура', nm: 'Архитектура', tx: 'Архитектор придумывает здания: дома, башни, мосты. Здание состоит из простых форм: квадрат, треугольник, арка.' },
+        { e: '🧱', b: 'Конструирование', nm: 'Конструирование', tx: 'Это значит собирать вещь из готовых деталей, как из кубиков.' },
+        { e: '📐', b: 'Макет', nm: 'Моделирование', tx: 'Модель, или макет, — это уменьшенный образец здания или вещи.' }],
+        text: 'Дизайнер придумывает вещи, а архитектор здания. Они собирают их из простых деталей и делают макеты. Нажимай на картинки.' },
+      { id: 'i13s2', scene: 'shapeBuild', gate: true, title: 'Строим макет дома', keys: ['wall', 'roof', 'door', 'window', 'tower', 'arch'], ground: true, bg: '#EAF6FF', tasks: [
+        { t: 'Построй стену дома и крышу', h: 'Нажми «Стена», потом на лист. Затем «Крыша» и нажми над стеной.', ok: S => S.parts.some(p => p.k === 'wall') && S.parts.some(p => p.k === 'roof') },
+        { t: 'Добавь дверь и два окна', h: 'Выбери «Дверь» и «Окно» и нажми на стену.', ok: S => S.parts.some(p => p.k === 'door') && S.parts.filter(p => p.k === 'window').length >= 2 },
+        { t: 'Добавь башню или арку: пусть дом станет замком', h: 'Выбери «Башню» или «Арку».', ok: S => S.parts.some(p => p.k === 'tower' || p.k === 'arch') }],
+        text: 'Построй макет дома из деталей. Сначала стена и крыша, потом дверь и окна. А для красоты добавь башню или арку.' },
+      { id: 'i13s3', scene: 'shapeBuild', gate: true, title: 'Придумай вещь', keys: ['sq', 'rc', 'ci', 'tr', 'sc', 'st'], bg: '#FFFDF4', tasks: [
+        { t: 'Собери вещь из пяти и более простых фигур', h: 'Это может быть игрушка, робот или упаковка. Выбирай фигуры и нажимай на лист.', ok: S => S.parts.length >= 5 },
+        { t: 'Используй три разных цвета', h: 'Меняй цвет перед тем, как поставить фигуру.', ok: S => new Set(S.parts.map(p => p.c)).size >= 3 }],
+        text: 'Теперь ты дизайнер. Придумай игрушку, робота или упаковку из простых фигур. Используй не меньше пяти фигур и три цвета.' },
+      { id: 'i13s4', scene: 'chipCard', gate: true, title: 'Мой дизайн', q: 'Расскажи о своей вещи.',
+        rows: [{ label: 'Что я придумал', opts: ['Игрушку', 'Упаковку', 'Стул', 'Посуду'] }, { label: 'Для кого', opts: ['Для малыша', 'Для мамы', 'Для друга', 'Для класса'] }, { label: 'Какой характер', opts: ['Весёлый', 'Нежный', 'Строгий'] }],
+        tpl: v => '<div class="em">💡</div><div class="nm">Мой дизайн</div><div class="tx">Я придумал: <b>' + v[0].toLowerCase() + '</b> ' + v[1].toLowerCase() + '. Характер: ' + v[2].toLowerCase() + '.</div>', ok: 'Ты представил свою идею!',
+        text: 'Расскажи об идее. Что ты придумал, для кого и какой у вещи характер.' },
+      { id: 'i13s5', scene: 'quiz', gate: true, count: 7, gens: ['iqDes'], title: 'Дизайн и архитектура', text: 'Ответь на вопросы про дизайн, архитектуру, конструирование и моделирование.' }
+    ] },
+  { id: 'i14', icon: '🌟', title: 'Моя галерея', goal: 'Различные виды презентаций своих работ',
+    steps: [
+      { id: 'i14s1', scene: 'quiz', gate: true, count: 6, gens: ['iqPres'], title: 'Как показать работу', text: 'Готовую работу можно показать по-разному. Вспомни способы и правила.' },
+      { id: 'i14s2', scene: 'chipCard', gate: true, title: 'Моя галерея', q: 'Выбери работу и способ показа.',
+        rows: [{ label: 'Какую работу показываю', opts: ['Рисунок', 'Картину красками', 'Фигурку', 'Узор', 'Макет'] }, { label: 'Как покажу', opts: ['Выставка в классе', 'Альбом', 'Рассказ автора', 'Показ на экране'] }, { label: 'Что расскажу', opts: ['Название', 'Какие чувства передал', 'Как делал'] }],
+        tpl: v => '<div class="em">🌟</div><div class="nm">Моя галерея</div><div class="tx">Показываю: <b>' + v[0].toLowerCase() + '</b>. Способ: ' + v[1].toLowerCase() + '. Расскажу: ' + v[2].toLowerCase() + '.</div>', ok: 'Ты готов показать свою работу!',
+        text: 'Ты уже сделал много работ. Выбери одну и подумай, как её показать и что рассказать.' },
+      { id: 'i14s3', scene: 'quiz', gate: true, count: 12, gens: ['matName', 'linThing', 'colMix', 'genreName', 'sclFor', 'ornNext', 'bldName', 'ynExh', 'iqFeel', 'iqGraf', 'iqPaint', 'iqSculp', 'iqGen', 'iqDes', 'iqPres', 'iqArt'], title: 'Смешанные задания', text: 'Последняя проверка курса: материалы, приёмы, цвета, лепка, узор, дизайн и показ работ.' },
+      { id: 'i14s4', scene: 'finale', title: 'Курс пройден!', text: 'Теперь ты знаешь виды искусства, приёмы графики и живописи, умеешь лепить, придумывать узоры и макеты и показывать свои работы. Рисуй, лепи и показывай свои работы. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const i7 = LESSONS.find(l => l.id === 'i7'); i7.steps = i7.steps.filter(s => s.scene !== 'finale');
+  NEW_LESSONS.forEach(l => LESSONS.push(l));
+})();
 
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){
