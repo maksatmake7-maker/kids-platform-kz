@@ -257,6 +257,14 @@
   .kz-sw{display:inline-block;width:3.2rem;height:3.2rem;border-radius:22%;vertical-align:middle;box-shadow:inset 0 -.2rem 0 rgba(0,0,0,.18);}
   .kz-ord{display:flex;gap:10px;justify-content:center;margin:10px 0;min-height:64px;flex-wrap:wrap;} .kz-ord span{width:62px;height:62px;border-radius:16px;border:3px dashed #B8C6D6;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:#F5F8FA;} .kz-ord span.f{border-style:solid;border-color:#3FAE5A;background:#DFF5E1;}
   .mu-spk{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin:6px auto 2px;padding:10px 22px;border-radius:22px;border:0;background:linear-gradient(#FFD84D,#F0A81E);box-shadow:0 5px 0 rgba(0,0,0,.22);font:800 1.3rem 'Baloo 2',sans-serif;color:#25324A;cursor:pointer;} .mu-spk:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.22);}
+  .mx-seq{list-style:none;counter-reset:sq;margin:6px auto 10px;padding:0;max-width:460px;display:flex;flex-direction:column;gap:6px;} .mx-seq li{counter-increment:sq;background:#E9F7EC;border:2px solid #3FAE5A;border-radius:14px;padding:6px 12px;font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;} .mx-seq li::before{content:counter(sq) '. ';color:#2F8A47;} .mx-sqe{font-size:1.4rem;}
+  .mx-staff{max-width:360px;margin:6px auto;background:#fff;border-radius:14px;border:3px solid #DCE6F0;padding:4px;}
+  .mx-dots{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin:10px 0;} .mx-dots i{width:20px;height:20px;border-radius:50%;background:#E4EAF1;border:2px solid #C5D0DC;} .mx-dots i.str{border-color:#F5B400;background:#FFF1C9;} .mx-dots i.on{background:#7E6BD6;border-color:#5B49B8;transform:scale(1.25);}
+  .mx-grid{display:grid;grid-template-columns:48px repeat(8,1fr);gap:4px;max-width:420px;margin:8px auto;align-items:center;} .mx-rl{font:800 .9rem 'Baloo 2',sans-serif;color:#1D3557;text-align:right;padding-right:4px;}
+  .mx-cell{height:34px;border-radius:10px;border:2px solid #DCE6F0;background:#F5F8FA;cursor:pointer;padding:0;} .mx-cell.on{background:#7E6BD6;border-color:#5B49B8;}
+  .mx-q{font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;margin-top:8px;}
+  .dg-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:6px 0;}
+  .dg-b{border:3px solid #DCE6F0;border-radius:14px;background:#fff;color:#1D3557;font:800 .9rem 'Baloo 2',sans-serif;padding:6px 10px;cursor:pointer;line-height:1.1;} .dg-b.on{border-color:#F5B400;background:#FFF1C9;} .dg-b:hover{background:#EAF3FF;}
   .mu-pic{display:flex;align-items:center;justify-content:center;min-height:80px;}
   .mu-keys{display:flex;justify-content:center;gap:4px;margin:10px auto;max-width:420px;} .mu-key{flex:1;height:120px;border-radius:0 0 12px 12px;border:3px solid #1D3557;background:#fff;font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;} .mu-key:active,.mu-key.on{background:#FFE08A;}
   .mu-lh{display:flex;gap:10px;justify-content:center;margin:6px 0;flex-wrap:wrap;}
@@ -297,7 +305,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Музыка</h1>
-      <p class="ac-sub">5 уроков · инструменты, звуки, домбра и конырау, высота, громкость, темп, ритм · со звуками</p>
+      <p class="ac-sub">13 уроков · инструменты, пение и дирижёр, куплет и припев, жанры, ноты, игра в ансамбле, свои мелодии · со звуками</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -760,6 +768,389 @@ const LESSONS = [
     ] }
 ];
 
+/* ===================== Новые уроки курса «Музыка» (приказ №399, прил. 33, 1 класс) ===================== */
+/* ---- мелодии: ноты и длительности (в долях) ---- */
+const NF = { C3: 130.8, G3: 196, C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392, A4: 440, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99, A5: 880 };
+const mk = s => s.trim().split(/\s+/).map(t => { const p = t.split(':'); return [p[0], p[1] ? +p[1] : 1]; });
+function muTune(seq, o){
+  o = o || {}; stopSpeak(); const x = master(); if (!x) return 0;
+  const bpm = o.bpm || 100, w = o.wave || 'triangle', vol = o.vol || .5, sec = 60 / bpm; let t = x.t + (o.delay || 0), b = 0;
+  try {
+    seq.forEach(function(n){
+      const d = n[1] * sec;
+      if (n[0] !== 'R'){ tone(x.c, x.m, t, NF[n[0]], w, .01, d * .92, vol); if (w === 'triangle') tone(x.c, x.m, t, NF[n[0]] * 2, 'sine', .005, d * .4, vol * .2); }
+      for (let k = 0; k < n[1]; k++){
+        const bt = t + k * sec;
+        if (o.thump) tone(x.c, x.m, bt, 90, 'sine', .003, .14, .5);
+        if (o.meter === 3){ if ((b + k) % 3 === 0) tone(x.c, x.m, bt, 130.8, 'triangle', .01, .5, .5); else { tone(x.c, x.m, bt, 329.6, 'sine', .01, .25, .16); tone(x.c, x.m, bt, 392, 'sine', .01, .25, .16); } }
+      }
+      b += n[1]; t += d;
+    });
+  } catch(e){}
+  return b * sec;
+}
+const TUNES = {
+  bday: [mk('G4:.75 G4:.25 A4 G4 C5 B4:2 G4:.75 G4:.25 A4 G4 D5 C5:2 G4:.75 G4:.25 G5 E5 C5 B4 A4:2 F5:.75 F5:.25 E5 C5 D5 C5:2'), { bpm: 110 }],
+  jingle: [mk('E4 E4 E4:2 E4 E4 E4:2 E4 G4 C4:1.5 D4:.5 E4:3 R F4 F4 F4:1.5 F4:.5 F4 E4 E4 E4:.5 E4:.5 E4 D4 D4 E4 D4:2 G4:2'), { bpm: 130 }],
+  twinkle: [mk('C4 C4 G4 G4 A4 A4 G4:2 F4 F4 E4 E4 D4 D4 C4:2'), { bpm: 100 }],
+  ode: [mk('E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4:1.5 D4:.5 D4:2'), { bpm: 120 }],
+  jacques: [mk('C4 D4 E4 C4 C4 D4 E4 C4 E4 F4 G4:2 E4 F4 G4:2 G4:.5 A4:.5 G4:.5 F4:.5 E4 C4 G4:.5 A4:.5 G4:.5 F4:.5 E4 C4 C4 G3 C4:2 C4 G3 C4:2'), { bpm: 110 }],
+  march: [mk('C4 E4 G4 E4 C4 E4 G4:2 G4 E4 C4 E4 G4 E4 C4:2'), { bpm: 112, wave: 'square', vol: .22, thump: true }],
+  waltz: [mk('E5:1.5 D5:.5 C5 D5:1.5 C5:.5 B4 C5:2 R E5:1.5 D5:.5 C5 D5:1.5 C5:.5 B4 C5:3'), { bpm: 130, meter: 3, vol: .4 }],
+  lullaby: [mk('E4:1.5 D4:.5 C4 D4:1.5 E4:.5 D4:2 E4:1.5 D4:.5 C4 D4 E4 C4:2'), { bpm: 66, wave: 'sine', vol: .45 }],
+  verse: [mk('E4 E4 G4 G4 E4 E4 D4:2 D4 D4 F4 F4 D4 D4 C4:2'), { bpm: 100 }],
+  chorus: [mk('C5 C5 A4 G4 E4 G4 C5:2 C5 C5 A4 G4 E4 G4 C5:2'), { bpm: 120, vol: .55 }],
+  happy: [mk('C5:.5 E5:.5 G5:.5 E5:.5 C5:.5 E5:.5 G5 G5:.5 A5:.5 G5:.5 E5:.5 C5 C5'), { bpm: 170, wave: 'square', vol: .2 }],
+  sad: [mk('A4:1.5 C5:.5 B4 A4 G4:1.5 F4:.5 E4:2'), { bpm: 56, wave: 'sine', vol: .5 }],
+  scary: [mk('C3:.5 C3:.5 C3:.5 C3:.5 G3:.5 G3:.5 G3:.5 G3:.5 C3 R'), { bpm: 150, wave: 'sawtooth', vol: .5 }],
+  calm: [mk('E4:2 G4:2 E4:2 D4:2 C4:4'), { bpm: 52, wave: 'sine', vol: .4 }]
+};
+function muPlay(k){ const t = TUNES[k]; if (t) muTune(t[0], t[1]); }
+window.muPlay = muPlay; window.muTune = muTune; window.__tunes = TUNES;
+function muHit(k){
+  stopSpeak(); const x = master(); if (!x) return; const c = x.c, o = x.m, t = x.t;
+  try {
+    if (k === 'drum'){ const os = c.createOscillator(), g = c.createGain(); os.type = 'sine'; os.frequency.setValueAtTime(170, t); os.frequency.exponentialRampToValueAtTime(55, t + .18); env(g, t, .003, .3, .9); os.connect(g); g.connect(o); os.start(t); os.stop(t + .4); }
+    else if (k === 'tambourine'){ tone(c, o, t, 220, 'sine', .003, .1, .3); burst(c, o, t, .2, 6500, .6, .8, 'highpass'); }
+    else if (k === 'triangle'){ [[2200, .3, 1], [5600, .2, .7]].forEach(p => tone(c, o, t, p[0], 'sine', .002, p[2], p[1])); }
+    else { burst(c, o, t, .12, 4200, .5, .9, 'highpass'); }
+  } catch(e){}
+}
+window.muHit = muHit;
+/* ---- данные ---- */
+const wrap2 = (a, arr) => arr.filter(x => x !== a);
+function qaGen(arr){
+  let deck = [];
+  return function(){
+    if (!deck.length) deck = shuffle(arr);
+    const it = deck.pop();
+    const opts = shuffle([it.a].concat(shuffle(it.w).slice(0, 3)));
+    const card = (it.e || it.snd) ? '<div class="es-card">' + (it.e ? '<div class="em">' + it.e + '</div>' : '') + (it.snd ? spkBtn("muPlay('" + it.snd + "')") : '') + '</div>' : '';
+    return { html: '<div class="ac-qtxt">' + it.q + '</div>' + card, opts: opts, ans: it.a, wide: !!it.wide, hint: it.h + (it.snd ? ' ' + spkBtn("muPlay('" + it.snd + "')") : '') };
+  };
+}
+const M = {};
+M.sing = [
+  ['Петь, стоя или сидя прямо', 1, 'Прямая спина помогает дышать и петь красиво.'], ['Перед песней спокойно вдохнуть', 1, 'Вдох перед началом нужен всем певцам.'],
+  ['Петь красиво, открывая рот', 1, 'Когда рот открыт, звук получается чистым.'], ['Начинать и заканчивать песню вместе со всеми', 1, 'В хоре все поют вместе, по жесту дирижёра.'],
+  ['Петь негромким, чистым голосом', 1, 'Красиво петь можно и без крика.'], ['Беречь горло: не пить ледяную воду перед пением', 1, 'Горло нужно беречь, это наш инструмент.'],
+  ['Кричать как можно громче', 0, 'Крик вредит горлу и портит песню.'], ['Петь сгорбившись или лёжа', 0, 'Сгорбившись дышать трудно, голос получается слабым.'],
+  ['Петь на морозе с открытым ртом', 0, 'Холодный воздух вредит горлу.'], ['Петь, когда болит горло', 0, 'Если горло болит, пению нужно дать отдых.'],
+  ['Петь громче всех, заглушая друзей', 0, 'В хоре мы слушаем друг друга.'], ['Закрывать рот и бормотать', 0, 'Слова нужно петь чётко.']
+];
+GENS.singYN = function(){
+  const r = pick(M.sing);
+  return { html: '<div class="ac-qtxt">Это правило пения верное?</div><div class="es-card"><div class="em">🎤</div><div class="tx" style="font-size:1.15rem">' + r[0] + '</div></div>', opts: ['Верно', 'Неверно'], ans: r[1] ? 'Верно' : 'Неверно', hint: r[2] };
+};
+M.gest = [
+  { q: 'Дирижёр поднял руки и вдохнул. Что это значит?', e: '🙌', a: 'Приготовиться и вдохнуть', w: ['Закончить песню', 'Петь громче', 'Петь тише'], wide: true, h: 'Поднятые руки: внимание и вдох перед началом.' },
+  { q: 'Дирижёр сделал чёткий взмах рукой. Что делаем?', e: '👆', a: 'Начинаем петь вместе', w: ['Замолкаем', 'Поём тише', 'Уходим'], wide: true, h: 'Чёткий взмах — вступление: все начинают вместе.' },
+  { q: 'Дирижёр сжал руки в кулак. Что делаем?', e: '✊', a: 'Заканчиваем пение', w: ['Начинаем петь', 'Поём громче', 'Поём быстрее'], wide: true, h: 'Кулак означает конец: заканчиваем петь.' },
+  { q: 'Руки дирижёра стали шире, взмахи большие. Как петь?', e: '🙆', a: 'Громче', w: ['Тише', 'Молча', 'Тоньше'], h: 'Большие широкие жесты — громче.' },
+  { q: 'Дирижёр свёл ладони, движения маленькие. Как петь?', e: '🤏', a: 'Тише', w: ['Громче', 'Быстрее', 'Выше'], h: 'Маленькие жесты — тише.' },
+  { q: 'Дирижёр машет медленно и плавно. Как петь?', e: '🐢', a: 'Медленно', w: ['Быстро', 'Очень громко', 'Громко и быстро'], wide: true, h: 'Медленные взмахи показывают медленный темп.' },
+  { q: 'Дирижёр машет быстро. Как петь?', e: '🐇', a: 'Быстро', w: ['Медленно', 'Тихо', 'Не петь'], h: 'Быстрые взмахи — быстрый темп.' },
+  { q: 'Кто управляет хором и оркестром?', e: '🧑‍🏫', a: 'Дирижёр', w: ['Композитор', 'Слушатель', 'Зритель'], h: 'Хором или оркестром управляет дирижёр.' }
+];
+M.struct = [
+  { q: 'Как называется часть песни, которая повторяется с одинаковыми словами?', a: 'Припев', w: ['Куплет', 'Пауза', 'Нота'], wide: true, h: 'Припев повторяется после каждого куплета.' },
+  { q: 'Как называется часть песни, в которой слова каждый раз новые?', a: 'Куплет', w: ['Припев', 'Пауза', 'Ритм'], wide: true, h: 'В каждом куплете слова новые.' },
+  { q: 'Песня: куплет, припев, куплет, припев. Сколько раз пели припев?', a: '2', w: ['1', '3', '4'], h: 'Припев пели после первого куплета и после второго: два раза.' },
+  { q: 'Какая часть песни повторяется и легко запоминается?', a: 'Припев', w: ['Куплет'], h: 'Припев повторяется, поэтому его легко запомнить.' },
+  { q: 'Из каких частей состоит песня?', a: 'Из куплетов и припева', w: ['Из одних нот', 'Из одних пауз'], wide: true, h: 'Песню составляют куплеты и припев.' },
+  { q: 'Песня начинается обычно с ...', a: 'куплета', w: ['паузы', 'аплодисментов'], h: 'Чаще всего песня начинается с куплета, а потом звучит припев.' }
+];
+M.genre = [
+  { q: 'Послушай музыку. Какой это жанр?', snd: 'march', a: 'Марш', w: ['Танец', 'Песня'], h: 'Чёткий, ровный шаг: это марш. Под него шагают.' },
+  { q: 'Послушай музыку. Какой это жанр?', snd: 'waltz', a: 'Танец', w: ['Марш', 'Песня'], h: 'Лёгкая кружащаяся музыка: это танец (вальс). Под неё танцуют.' },
+  { q: 'Послушай музыку. Какой это жанр?', snd: 'lullaby', a: 'Песня', w: ['Марш', 'Танец'], h: 'Плавная напевная мелодия: это песня (колыбельная). Её можно петь.' },
+  { q: 'Под какую музыку шагают строем?', e: '🥁', a: 'Марш', w: ['Танец', 'Колыбельная'], h: 'Под марш шагают в ногу.' },
+  { q: 'Под какую музыку танцуют?', e: '💃', a: 'Танец', w: ['Марш', 'Песня без мелодии'], wide: true, h: 'Танцуют под танцевальную музыку.' },
+  { q: 'Какой жанр можно петь со словами?', e: '🎤', a: 'Песня', w: ['Марш', 'Танец'], h: 'Песню поют со словами.' }
+];
+const TN = { bday: 'С днём рождения', jingle: 'Бубенчики', twinkle: 'Звёздочка', ode: 'Ода к радости', jacques: 'Братец Яков' };
+GENS.tuneName = function(){
+  const k = pick(Object.keys(TN)), set = shuffle([k].concat(shuffle(Object.keys(TN).filter(x => x !== k)).slice(0, 3)));
+  return { html: '<div class="ac-qtxt">Послушай мелодию. Как она называется?</div><div class="es-card">' + spkBtn("muPlay('" + k + "')") + '</div>', opts: set.map(x => TN[x]), ans: TN[k], wide: true, hint: 'Эта мелодия называется «' + TN[k] + '». ' + spkBtn("muPlay('" + k + "')") };
+};
+const MOOD = { happy: ['Весёлая', '☀️ Солнечный день'], sad: ['Грустная', '🌧️ Дождик'], scary: ['Тревожная', '⛈️ Гроза'], calm: ['Спокойная', '🌙 Тихая ночь'] };
+GENS.mood = function(){
+  const k = pick(Object.keys(MOOD));
+  return { html: '<div class="ac-qtxt">Послушай музыку. Какой у неё характер?</div><div class="es-card">' + spkBtn("muPlay('" + k + "')") + '</div>', opts: shuffle(Object.keys(MOOD).map(x => MOOD[x][0])), ans: MOOD[k][0], hint: 'Эта музыка ' + MOOD[k][0].toLowerCase() + '. ' + spkBtn("muPlay('" + k + "')") };
+};
+GENS.moodPic = function(){
+  const k = pick(Object.keys(MOOD));
+  return { html: '<div class="ac-qtxt">Какая картинка подходит к этой музыке?</div><div class="es-card">' + spkBtn("muPlay('" + k + "')") + '</div>', opts: shuffle(Object.keys(MOOD).map(x => MOOD[x][1])), ans: MOOD[k][1], wide: true, hint: 'К такой музыке подходит: ' + MOOD[k][1] + '. ' + spkBtn("muPlay('" + k + "')") };
+};
+M.expr = [
+  { q: 'Быстро или медленно звучит музыка — это ...', a: 'темп', w: ['ритм', 'ноты', 'жанр'], h: 'Темп — это скорость музыки.' },
+  { q: 'Громко или тихо звучит музыка — это ...', a: 'динамика', w: ['темп', 'мелодия', 'жанр'], h: 'Громко и тихо — это динамика.' },
+  { q: 'Высокие и низкие звуки — это ...', a: 'регистр', w: ['темп', 'динамика', 'жанр'], h: 'Регистр — высота звука: высокий или низкий.' },
+  { q: 'Чередование длинных и коротких звуков — это ...', a: 'ритм', w: ['темп', 'динамика', 'регистр'], h: 'Ритм — порядок длинных и коротких звуков.' },
+  { q: 'Какая музыка звучит быстро и легко?', e: '🐇', a: 'Весёлая', w: ['Грустная', 'Колыбельная'], h: 'Весёлая музыка обычно быстрая и лёгкая.' },
+  { q: 'Какая музыка звучит медленно и тихо?', e: '🌙', a: 'Колыбельная', w: ['Марш', 'Весёлая плясовая'], wide: true, h: 'Колыбельная звучит медленно и тихо.' }
+];
+M.terms = [
+  { q: 'Главная «линия» музыки, которую можно напеть, называется ...', a: 'мелодия', w: ['ритм', 'темп', 'ноты'], h: 'Мелодия — то, что мы напеваем.' },
+  { q: 'Кто сочиняет музыку?', a: 'Композитор', w: ['Исполнитель', 'Дирижёр', 'Слушатель'], h: 'Композитор — тот, кто сочиняет музыку.' },
+  { q: 'Кто играет или поёт музыку?', a: 'Исполнитель', w: ['Композитор', 'Художник', 'Слушатель'], h: 'Исполнитель играет или поёт.' },
+  { q: 'Много певцов, которые поют вместе, — это ...', a: 'хор', w: ['оркестр', 'нота', 'ритм'], h: 'Хор — это певцы, которые поют вместе.' },
+  { q: 'Много музыкантов с инструментами, которые играют вместе, — это ...', a: 'оркестр', w: ['хор', 'нота', 'куплет'], h: 'Оркестр — музыканты с инструментами.' },
+  { q: 'Значки, которыми записывают музыку, называются ...', a: 'ноты', w: ['буквы', 'цифры', 'паузы'], h: 'Музыку записывают нотами.' },
+  { q: 'Скорость музыки называют ...', a: 'темпом', w: ['ритмом', 'жанром', 'нотой'], h: 'Темп — быстро или медленно.' },
+  { q: 'Громкость музыки называют ...', a: 'динамикой', w: ['мелодией', 'жанром', 'хором'], h: 'Динамика — громко или тихо.' }
+];
+M.staff = [
+  { q: 'Сколько линеек в нотном стане?', a: '5', w: ['3', '4', '6'], h: 'Нотный стан — пять линеек.' },
+  { q: 'Как называется знак в начале нотного стана?', a: 'Скрипичный ключ', w: ['Нотный стан', 'Пауза'], wide: true, h: 'В начале стана стоит скрипичный ключ.' },
+  { q: 'Сколько всего основных нот?', a: 'Семь', w: ['Пять', 'Десять', 'Три'], h: 'Семь нот: до, ре, ми, фа, соль, ля, си.' },
+  { q: 'Назови ноты по порядку: до, ре, ми, ... Какая следующая?', a: 'Фа', w: ['Ля', 'Си', 'Ре'], h: 'Порядок: до, ре, ми, фа, соль, ля, си.' },
+  { q: 'Какая нота идёт после соль?', a: 'Ля', w: ['Фа', 'До', 'Ре'], h: 'После соль идёт ля.' },
+  { q: 'Какая нота идёт перед ми?', a: 'Ре', w: ['Фа', 'Соль', 'До'], h: 'Перед ми стоит ре.' },
+  { q: 'Какая нота последняя в ряду?', a: 'Си', w: ['До', 'Ля', 'Фа'], h: 'Ряд заканчивается нотой си.' }
+];
+Object.assign(GENS, { gest: qaGen(M.gest), struct: qaGen(M.struct), genre: qaGen(M.genre), expr: qaGen(M.expr), terms: qaGen(M.terms), staffQ: qaGen(M.staff) });
+/* ---- ноты на стане ---- */
+const SN = [['До', 'C4', -2], ['Ре', 'D4', -1], ['Ми', 'E4', 0], ['Фа', 'F4', 1], ['Соль', 'G4', 2], ['Ля', 'A4', 3], ['Си', 'B4', 4]];
+function staffSVG(notes, w){
+  /* notes: [[step, filled, x]], ступень 0 = нижняя линейка (ми) */
+  const Y = n => 94 - n * 6; let h = '<svg viewBox="0 0 ' + w + ' 130" width="100%" style="max-width:' + w + 'px" role="img" aria-label="Нотный стан">';
+  for (let i = 0; i < 5; i++) h += '<line x1="6" x2="' + (w - 6) + '" y1="' + Y(i * 2) + '" y2="' + Y(i * 2) + '" stroke="#1D3557" stroke-width="1.6"/>';
+  h += '<path transform="translate(0,-5)" d="M30,112 C34,122 22,126 18,118 C16,112 24,110 25,116 M30,112 L30,30 C30,16 38,12 40,20 C42,30 30,42 28,56 C26,70 32,92 33,96 C34,100 24,100 22,92 C21,84 30,78 38,82 C46,86 44,98 36,98" fill="none" stroke="#1D3557" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+  notes.forEach(function(n){
+    const y = Y(n[0]), x = n[2];
+    if (n[0] <= -2) h += '<line x1="' + (x - 13) + '" x2="' + (x + 13) + '" y1="' + y + '" y2="' + y + '" stroke="#1D3557" stroke-width="1.6"/>';
+    h += '<ellipse cx="' + x + '" cy="' + y + '" rx="8" ry="6" transform="rotate(-18 ' + x + ' ' + y + ')" fill="' + (n[1] ? '#1D3557' : '#fff') + '" stroke="#1D3557" stroke-width="2"/>';
+    if (n[3] !== 'whole') h += '<line x1="' + (n[0] >= 4 ? x - 7.5 : x + 7.5) + '" x2="' + (n[0] >= 4 ? x - 7.5 : x + 7.5) + '" y1="' + y + '" y2="' + (n[0] >= 4 ? y + 30 : y - 30) + '" stroke="#1D3557" stroke-width="2"/>';
+  });
+  return h + '</svg>';
+}
+GENS.noteName = function(){
+  const n = pick(SN), set = shuffle([n].concat(shuffle(SN.filter(x => x !== n)).slice(0, 3)));
+  return { html: '<div class="ac-qtxt">Как называется эта нота?</div><div class="es-card">' + staffSVG([[n[2], 1, 190]], 300) + '<button class="mu-spk" onclick="muNote(' + NF[n[1]] + ')">🔊 Послушать</button></div>', opts: set.map(x => x[0]), ans: n[0],
+    hint: 'Это нота ' + n[0] + '. Чем выше нота на стане, тем выше звук. <button class="mu-spk" onclick="muNote(' + NF[n[1]] + ')">🔊 Послушать</button>' };
+};
+GENS.noteDur = function(){
+  const long = Math.random() < .5, a = Math.random() < .5; /* a: первая нота половинная */
+  const first = a ? 0 : 1, second = a ? 1 : 0; /* filled flags: половинная — пустая (0), четвертная — закрашенная (1) */
+  const svg = staffSVG([[2, first, 120, ''], [2, second, 240, '']], 360);
+  const ansFirst = long ? first === 0 : first === 1;
+  return { html: '<div class="ac-qtxt">Какая нота звучит <b>' + (long ? 'дольше' : 'короче') + '</b>?</div><div class="es-card">' + svg + '<div class="mu-12"><b>1</b><b>2</b></div></div>', opts: ['Первая', 'Вторая'], ans: ansFirst ? 'Первая' : 'Вторая',
+    hint: 'Белая нота — половинная, она звучит дольше (2 доли). Чёрная нота — четвертная, она короче (1 доля).' };
+};
+SCENES.staffTap = function(stage, st, ctx){
+  const seen = {};
+  stage.innerHTML = '<div class="es-card" id="sf-c"><div class="tx">Нажимай на ноты и слушай, как они звучат.</div></div><div class="mx-staff" id="sf-s"></div><div class="es-pick" id="sf-b"></div>';
+  const xs = [70, 110, 150, 190, 230, 270, 310];
+  $('#sf-s', stage).innerHTML = staffSVG(SN.map((n, i) => [n[2], 1, xs[i]]), 340);
+  $('#sf-b', stage).innerHTML = SN.map((n, i) => '<button class="es-pb" data-i="' + i + '" aria-label="' + n[0] + '" style="font-size:1.1rem;padding:8px 10px">' + n[0] + '</button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const n = SN[+b.dataset.i]; seen[n[0]] = 1; muNote(NF[n[1]]); $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#sf-c', stage).innerHTML = '<div class="nm">' + n[0] + '</div><div class="tx">' + (n[2] < 0 ? 'Эта нота стоит под нотным станом.' : n[2] === 0 ? 'Эта нота стоит на первой линейке снизу.' : n[2] % 2 ? 'Эта нота стоит между линейками.' : 'Эта нота стоит на линейке.') + '</div>';
+    const c = Object.keys(seen).length; if (c >= 7){ ctx.fb('Ты познакомился со всеми семью нотами!', 'ok'); ctx.done(); } else ctx.fb('Прослушано нот: ' + c + ' из 7.', 'info');
+  });
+};
+/* ---- сцены ---- */
+SCENES.infoTap = function(stage, st, ctx){
+  const seen = {}, need = st.need || st.cards.length;
+  stage.innerHTML = '<div class="es-pick" id="i-p"></div><div class="es-card" id="i-c"><div class="tx">Нажми на картинку 👆</div></div>';
+  $('#i-p', stage).innerHTML = st.cards.map((c, i) => '<button class="es-pb" data-i="' + i + '" aria-label="' + c.b + '">' + c.e + '<small>' + c.b + '</small></button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const c = st.cards[+b.dataset.i]; seen[b.dataset.i] = 1; $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#i-c', stage).innerHTML = '<div class="em">' + c.e + '</div><div class="nm">' + (c.nm || c.b) + '</div><div class="tx">' + c.tx + '</div>' + (c.snd ? spkBtn("muPlay('" + c.snd + "')") : '');
+    if (c.snd) muPlay(c.snd);
+    const n = Object.keys(seen).length;
+    if (n >= need){ ctx.fb('Здорово! Всё послушали и посмотрели.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + ' из ' + need + '.', 'info');
+  });
+};
+SCENES.seqBuild = function(stage, st, ctx){
+  let pos = 0;
+  stage.innerHTML = '<div class="ac-qtxt">' + st.q + '</div><ol class="mx-seq" id="sq-d"></ol><div class="es-pick" id="sq-p"></div>';
+  const done = $('#sq-d', stage), pool = $('#sq-p', stage);
+  shuffle(st.items.map((x, i) => i)).forEach(function(i){
+    const it = st.items[i], b = document.createElement('button'); b.className = 'es-pb'; b.innerHTML = (it.e || '') + '<small style="font-size:.95rem">' + it.t + '</small>';
+    b.onclick = function(){
+      if (i === pos){
+        b.disabled = true; b.style.visibility = 'hidden'; pos++;
+        const li = document.createElement('li'); li.innerHTML = (it.e ? '<span class="mx-sqe">' + it.e + '</span> ' : '') + it.t; done.appendChild(li);
+        if (it.snd) muPlay(it.snd);
+        if (pos >= st.items.length){ ctx.fb(st.ok || 'Всё верно!', 'ok'); ctx.done(); } else ctx.fb('Верно! Что дальше?', 'ok');
+      } else { ctx.miss(); ctx.fb('Пока не сюда. ' + (st.hint || 'Подумай, что идёт раньше.'), 'bad'); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); }
+    };
+    pool.appendChild(b);
+  });
+};
+/* --- играем в ансамбле: сопровождаем мелодию --- */
+SCENES.padPlay = function(stage, st, ctx){
+  let ri = 0, run = null;
+  const PADS = ['drum', 'tambourine', 'triangle', 'maracas'], PN = { drum: 'Барабан', tambourine: 'Бубен', triangle: 'Треугольник', maracas: 'Маракасы' };
+  function round(){
+    const R = st.rounds[ri]; let inst = 'drum'; const nb = 16, sec = 60 / R.bpm;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Раунд ' + (ri + 1) + ' из ' + st.rounds.length + '. ' + R.task + '</div><div class="mx-dots" id="p-d">' + Array.from({ length: nb }, (_, i) => '<i class="' + (R.strong && i % 4 === 0 ? 'str' : '') + '"></i>').join('') + '</div>' +
+      '<div class="es-pick" id="p-p">' + PADS.map(k => '<button class="es-pb mx-pad' + (k === inst ? ' cur' : '') + '" data-k="' + k + '">' + pic(k, 56) + '<small>' + PN[k] + '</small></button>').join('') + '</div>' +
+      '<div class="dg-tb" style="display:flex;justify-content:center"><button class="mu-spk" id="p-go">▶️ Начать</button></div>';
+    const dots = $$('#p-d i', stage);
+    $$('.mx-pad', stage).forEach(b => b.onclick = function(){
+      inst = b.dataset.k; $$('.mx-pad', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur'); muHit(inst);
+      if (run){ run.taps.push(performance.now()); }
+    });
+    $('#p-go', stage).onclick = function(){
+      if (run) return;
+      const t0 = performance.now() + 900, beats = Array.from({ length: nb }, (_, i) => t0 + i * sec * 1000);
+      run = { taps: [], beats: beats }; window.__acc = { beats: beats, strong: R.strong ? beats.filter((_, i) => i % 4 === 0) : beats };
+      muTune(TUNES[R.tune][0], Object.assign({}, TUNES[R.tune][1], { bpm: R.bpm, delay: .9 }));
+      beats.forEach((bt, i) => setTimeout(() => { if (ctx.alive()) { dots.forEach(d => d.classList.remove('on')); dots[i].classList.add('on'); } }, Math.max(0, bt - performance.now())));
+      setTimeout(function(){
+        if (!ctx.alive()) return;
+        const need = R.strong ? beats.filter((_, i) => i % 4 === 0) : beats; let hit = 0; const used = {};
+        need.forEach(bt => { const k = run.taps.findIndex((t, j) => !used[j] && Math.abs(t - bt) <= 280); if (k >= 0){ used[k] = 1; hit++; } });
+        const extra = run.taps.length - hit, goal = R.strong ? 3 : 12, okx = hit >= goal && (!R.strong || extra <= 4);
+        run = null; dots.forEach(d => d.classList.remove('on'));
+        if (okx){ ri++; if (ri >= st.rounds.length){ ctx.fb('Ты отлично сопровождал мелодию!', 'ok'); ctx.done(); } else { ctx.fb('В такт! Попали: ' + hit + '. Следующий раунд.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, 1200); } }
+        else { ctx.miss(); ctx.fb('Попал в такт: ' + hit + ' из ' + need.length + (R.strong ? ', лишних ударов: ' + extra : '') + '. Нужно ' + goal + '. Попробуй ещё раз!', 'bad'); }
+      }, (nb * sec * 1000) + 1300);
+    };
+  }
+  round();
+};
+/* --- сочиняем мелодию --- */
+const CROWS = [['Соль', 'G4'], ['Фа', 'F4'], ['Ми', 'E4'], ['Ре', 'D4'], ['До', 'C4']];
+let COMP = null;
+SCENES.composer = function(stage, st, ctx){
+  const sel = Array(8).fill(-1); let played = false, bpm = 100;
+  stage.innerHTML = '<div class="ac-qtxt">Нажимай на клетки: в каждом столбце выбери одну ноту.</div><div class="mx-grid" id="c-g"></div><div class="dg-tb" style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap"><button class="mu-spk" id="c-pl">▶️ Сыграть</button><button class="dg-b" id="c-sl">🐢 Медленно</button><button class="dg-b" id="c-fa">🐇 Быстро</button><button class="dg-b" id="c-cl">🗑️ Очистить</button></div>';
+  function draw(){
+    let h = ''; CROWS.forEach((r, ri) => { h += '<span class="mx-rl">' + r[0] + '</span>'; for (let c = 0; c < 8; c++) h += '<button class="mx-cell' + (sel[c] === ri ? ' on' : '') + '" data-c="' + c + '" data-r="' + ri + '" aria-label="' + r[0] + ' ' + (c + 1) + '"></button>'; });
+    $('#c-g', stage).innerHTML = h;
+    $$('.mx-cell', stage).forEach(b => b.onclick = function(){ const c = +b.dataset.c, r = +b.dataset.r; sel[c] = sel[c] === r ? -1 : r; if (sel[c] >= 0) muNote(NF[CROWS[r][1]]); draw(); chk(); });
+  }
+  const filled = () => sel.filter(x => x >= 0).length;
+  function chk(){ COMP = sel.map(x => x < 0 ? 'R' : CROWS[x][1]); if (filled() >= 6 && played){ ctx.fb('Мелодия готова! Ты композитор.', 'ok'); ctx.done(); } else ctx.fb('Нот в мелодии: ' + filled() + ' из 8. Нужно не меньше 6 и нажать «Сыграть».', 'info'); }
+  $('#c-pl', stage).onclick = function(){ if (!filled()){ ctx.fb('Сначала выбери хотя бы несколько нот.', 'bad'); return; } muTune(sel.map(x => [x < 0 ? 'R' : CROWS[x][1], 1]), { bpm: bpm }); played = true; chk(); };
+  $('#c-sl', stage).onclick = () => { bpm = 70; }; $('#c-fa', stage).onclick = () => { bpm = 140; };
+  $('#c-cl', stage).onclick = () => { sel.fill(-1); played = false; draw(); chk(); };
+  window.__cp = { sel: sel }; draw(); chk();
+};
+/* --- представляем свою работу --- */
+SCENES.present = function(stage, st, ctx){
+  const comp = (COMP && COMP.some(x => x !== 'R')) ? COMP : ['C4', 'E4', 'G4', 'E4', 'C4', 'E4', 'G4', 'G4'];
+  const S2 = { name: '', mood: '', dyn: '', played: false };
+  const NAMES = ['Весёлый ветерок', 'Тихая звёздочка', 'Барсик идёт гулять', 'Утренний дождик'], MOODS = ['весёлая', 'спокойная', 'грустная', 'тревожная'], DYN = ['громко', 'тихо'];
+  const row = (id, label, arr) => '<div class="mx-q">' + label + '</div><div class="dg-tb" id="' + id + '">' + arr.map(x => '<button class="dg-b" data-v="' + x + '">' + x + '</button>').join('') + '</div>';
+  stage.innerHTML = row('pr-n', 'Название мелодии:', NAMES) + row('pr-m', 'Какая она по характеру?', MOODS) + row('pr-d', 'Как её нужно играть?', DYN) + '<div class="dg-tb" style="display:flex;justify-content:center"><button class="mu-spk" id="pr-go">🎤 Сыграть для всех</button></div><div class="es-card" id="pr-c"><div class="tx">Выбери название, характер и громкость, а потом сыграй для всех.</div></div>';
+  [['pr-n', 'name'], ['pr-m', 'mood'], ['pr-d', 'dyn']].forEach(p => $$('#' + p[0] + ' .dg-b', stage).forEach(b => b.onclick = function(){ S2[p[1]] = b.dataset.v; $$('#' + p[0] + ' .dg-b', stage).forEach(x => x.classList.remove('on')); b.classList.add('on'); show(); }));
+  function show(){
+    if (S2.name && S2.mood && S2.dyn) $('#pr-c', stage).innerHTML = '<div class="em">🎼</div><div class="nm">«' + S2.name + '»</div><div class="tx">Моя мелодия ' + S2.mood + '. Её нужно играть ' + S2.dyn + '.</div>';
+    if (S2.name && S2.mood && S2.dyn && S2.played){ ctx.fb('Ты представил свою мелодию!', 'ok'); ctx.done(); }
+  }
+  $('#pr-go', stage).onclick = function(){
+    if (!(S2.name && S2.mood && S2.dyn)){ ctx.fb('Сначала выбери название, характер и громкость.', 'bad'); return; }
+    muTune(comp.map(n => [n, 1]), { bpm: S2.mood === 'весёлая' ? 140 : S2.mood === 'тревожная' ? 120 : 76, vol: S2.dyn === 'громко' ? .6 : .18, wave: S2.mood === 'тревожная' ? 'sawtooth' : 'triangle' });
+    S2.played = true; show();
+  };
+};
+/* ---- уроки ---- */
+const NEW_LESSONS = [
+  { id: 'u6', icon: '🎤', title: 'Как правильно петь', goal: 'Исполнять песни по правилам пения и понимать жесты дирижёра',
+    steps: [
+      { id: 'u6s1', scene: 'quiz', gate: true, count: 8, gens: ['singYN'], title: 'Правила пения', text: 'Чтобы красиво петь, нужно знать правила. Сиди или стой прямо, вдохни спокойно, открывай рот и пой чистым голосом. Не кричи и береги горло. Реши, верное ли правило.' },
+      { id: 'u6s2', scene: 'infoTap', gate: true, title: 'Жесты дирижёра', cards: [
+        { e: '🙌', b: 'Приготовиться', nm: 'Приготовиться', tx: 'Дирижёр поднимает руки. Это значит: внимание и вдох перед началом.' },
+        { e: '👆', b: 'Начинаем', nm: 'Начинаем', tx: 'Чёткий взмах: все начинают петь вместе.' },
+        { e: '🙆', b: 'Громче', nm: 'Громче', tx: 'Руки шире, движения большие: петь громче.' },
+        { e: '🤏', b: 'Тише', nm: 'Тише', tx: 'Ладони ближе, движения маленькие: петь тише.' },
+        { e: '🐢', b: 'Медленно', nm: 'Медленно и быстро', tx: 'Медленные взмахи: петь медленно. Быстрые взмахи: петь быстро.' },
+        { e: '✊', b: 'Конец', nm: 'Заканчиваем', tx: 'Руки сжимаются в кулак: закончить пение.' }],
+        text: 'Хором управляет дирижёр. Он показывает жестами, когда начинать, когда петь громче или тише и когда закончить. Нажимай на картинки и запоминай жесты.' },
+      { id: 'u6s3', scene: 'quiz', gate: true, count: 8, gens: ['gest'], title: 'Что показал дирижёр?', text: 'Посмотри, какой жест показал дирижёр, и скажи, что делать хору.' }
+    ] },
+  { id: 'u7', icon: '🎶', title: 'Куплет и припев', goal: 'Различать строение песни: куплет и припев',
+    steps: [
+      { id: 'u7s1', scene: 'infoTap', gate: true, title: 'Из чего состоит песня', cards: [
+        { e: '📖', b: 'Куплет', nm: 'Куплет', tx: 'В куплете рассказывается история. В каждом куплете слова новые. Например: «Утром солнышко встаёт, Барсик весело поёт».', snd: 'verse' },
+        { e: '🔁', b: 'Припев', nm: 'Припев', tx: 'Припев повторяется после каждого куплета. Слова те же, и его легко запомнить. Например: «Ля-ля-ля, ля-ля-ля, здравствуй, новый день, земля!»', snd: 'chorus' }],
+        text: 'Песня состоит из частей. Куплет — это часть, где слова каждый раз новые. Припев — часть, которая повторяется после каждого куплета. Нажми на картинки и послушай, как они звучат.' },
+      { id: 'u7s2', scene: 'seqBuild', gate: true, title: 'Собери песню', q: 'Расставь части песни по порядку: куплет, припев, куплет, припев.', hint: 'Песня начинается с куплета, а после него звучит припев.', ok: 'Песня собрана!',
+        items: [{ e: '📖', t: 'Куплет 1', snd: 'verse' }, { e: '🔁', t: 'Припев', snd: 'chorus' }, { e: '📖', t: 'Куплет 2', snd: 'verse' }, { e: '🔁', t: 'Припев (снова)', snd: 'chorus' }],
+        text: 'Собери песню из частей. Сначала куплет, потом припев, потом снова куплет и снова припев.' },
+      { id: 'u7s3', scene: 'quiz', gate: true, count: 6, gens: ['struct'], title: 'Куплет или припев?', text: 'Ответь на вопросы о строении песни.' }
+    ] },
+  { id: 'u8', icon: '🥁', title: 'Песня, танец, марш', goal: 'Знать музыкальные жанры',
+    steps: [
+      { id: 'u8s1', scene: 'infoTap', gate: true, title: 'Три жанра', cards: [
+        { e: '🎤', b: 'Песня', nm: 'Песня', tx: 'Песню можно петь. Её мелодия плавная, напевная. Например, колыбельная.', snd: 'lullaby' },
+        { e: '💃', b: 'Танец', nm: 'Танец', tx: 'Под танец можно кружиться и двигаться. Например, вальс.', snd: 'waltz' },
+        { e: '🥁', b: 'Марш', nm: 'Марш', tx: 'Под марш шагают в ногу. Музыка ровная и чёткая.', snd: 'march' }],
+        text: 'Музыка бывает разных жанров. Песня, танец и марш. Нажимай на картинки и слушай.' },
+      { id: 'u8s2', scene: 'quiz', gate: true, count: 6, gens: ['genre'], title: 'Какой это жанр?', text: 'Послушай музыку и определи жанр: песня, танец или марш.' }
+    ] },
+  { id: 'u9', icon: '🎭', title: 'Музыка и настроение', goal: 'Определять на слух средства выразительности и передавать характер музыки',
+    steps: [
+      { id: 'u9s1', scene: 'infoTap', gate: true, title: 'Какая бывает музыка', cards: [
+        { e: '☀️', b: 'Весёлая', nm: 'Весёлая музыка', tx: 'Она быстрая, звонкая и лёгкая.', snd: 'happy' },
+        { e: '🌧️', b: 'Грустная', nm: 'Грустная музыка', tx: 'Она медленная и тихая, как дождик.', snd: 'sad' },
+        { e: '⛈️', b: 'Тревожная', nm: 'Тревожная музыка', tx: 'Она низкая и громкая, как гроза.', snd: 'scary' },
+        { e: '🌙', b: 'Спокойная', nm: 'Спокойная музыка', tx: 'Она медленная и нежная, как колыбельная.', snd: 'calm' }],
+        text: 'Музыка умеет рассказывать о настроении. Она бывает весёлой, грустной, тревожной и спокойной. Помогают темп, громкость и высота звука. Нажимай на картинки и слушай.' },
+      { id: 'u9s2', scene: 'quiz', gate: true, count: 6, gens: ['mood'], title: 'Какой характер?', text: 'Послушай музыку и скажи, какой у неё характер.' },
+      { id: 'u9s3', scene: 'quiz', gate: true, count: 6, gens: ['moodPic'], title: 'Нарисуй музыку картинкой', text: 'Послушай музыку и выбери картинку, которая лучше всего передаёт её настроение.' },
+      { id: 'u9s4', scene: 'quiz', gate: true, count: 6, gens: ['expr'], title: 'Темп, динамика, регистр', text: 'Вспомни слова: темп — быстро или медленно, динамика — громко или тихо, регистр — высоко или низко, ритм — длинные и короткие звуки.' },
+      { id: 'u9s5', scene: 'infoTap', gate: true, title: 'Знакомые мелодии', cards: [
+        { e: '🎂', b: 'С днём рождения', tx: 'Эту песню поют на празднике.', snd: 'bday' },
+        { e: '🔔', b: 'Бубенчики', tx: 'Весёлая новогодняя песня про бубенчики.', snd: 'jingle' },
+        { e: '⭐', b: 'Звёздочка', tx: 'Простая колыбельная мелодия про звёздочку.', snd: 'twinkle' },
+        { e: '😊', b: 'Ода к радости', tx: 'Мелодия композитора Бетховена.', snd: 'ode' },
+        { e: '👬', b: 'Братец Яков', tx: 'Старая детская песенка-канон.', snd: 'jacques' }],
+        text: 'Послушай пять знакомых мелодий. Потом ты будешь узнавать их на слух.' },
+      { id: 'u9s6', scene: 'quiz', gate: true, count: 6, gens: ['tuneName'], title: 'Узнай мелодию', text: 'Послушай мелодию и узнай, как она называется.' }
+    ] },
+  { id: 'u10', icon: '📚', title: 'Музыкальные слова', goal: 'Знать основные музыкальные понятия',
+    steps: [
+      { id: 'u10s1', scene: 'infoTap', gate: true, title: 'Слова о музыке', cards: [
+        { e: '🎵', b: 'Мелодия', tx: 'Главная «линия» музыки, которую можно напеть.' },
+        { e: '🥁', b: 'Ритм', tx: 'Порядок длинных и коротких звуков.' },
+        { e: '⏱️', b: 'Темп', tx: 'Скорость музыки: быстро или медленно.' },
+        { e: '🔊', b: 'Динамика', tx: 'Громкость музыки: громко или тихо.' },
+        { e: '🎼', b: 'Ноты', tx: 'Значки, которыми записывают музыку.' },
+        { e: '✍️', b: 'Композитор', tx: 'Тот, кто сочиняет музыку.' },
+        { e: '🎻', b: 'Исполнитель', tx: 'Тот, кто играет или поёт.' },
+        { e: '👥', b: 'Хор', tx: 'Много певцов, которые поют вместе.' },
+        { e: '🎺', b: 'Оркестр', tx: 'Много музыкантов с инструментами, которые играют вместе.' }],
+        text: 'Узнай важные слова о музыке: мелодия, ритм, темп, динамика, ноты, композитор, исполнитель, хор и оркестр. Нажимай на картинки.' },
+      { id: 'u10s2', scene: 'quiz', gate: true, count: 8, gens: ['terms'], title: 'Что это значит?', text: 'Вспомни музыкальные слова и ответь на вопросы.' }
+    ] },
+  { id: 'u11', icon: '🎼', title: 'Знакомство с нотами', goal: 'Знать основы нотной грамоты',
+    steps: [
+      { id: 'u11s1', scene: 'infoTap', gate: true, title: 'Нотный стан', cards: [
+        { e: '📏', b: 'Нотный стан', nm: 'Нотный стан', tx: 'Это пять линеек. На них и между ними записывают ноты.' },
+        { e: '🎼', b: 'Ключ', nm: 'Скрипичный ключ', tx: 'Скрипичный ключ стоит в начале нотного стана.' },
+        { e: '🔢', b: 'Семь нот', nm: 'Семь нот', tx: 'До, ре, ми, фа, соль, ля, си. Чем выше нота на стане, тем выше звук.' },
+        { e: '⚪', b: 'Длительность', nm: 'Длительности нот', tx: 'Чёрная нота — четвертная, звучит одну долю. Белая нота — половинная, звучит две доли: вдвое дольше.' }],
+        text: 'Музыку записывают нотами на нотном стане. Нотный стан — это пять линеек. В начале стоит скрипичный ключ. Всего семь нот. А ещё ноты бывают длинные и короткие.' },
+      { id: 'u11s2', scene: 'staffTap', gate: true, title: 'Слушаем ноты', text: 'Нажимай на кнопки и слушай, как звучит каждая нота. Чем выше нота стоит на стане, тем выше звук.' },
+      { id: 'u11s3', scene: 'quiz', gate: true, count: 6, gens: ['noteName'], title: 'Как называется нота?', text: 'Посмотри, где стоит нота на нотном стане, и назови её.' },
+      { id: 'u11s4', scene: 'quiz', gate: true, count: 6, gens: ['noteDur', 'staffQ'], title: 'Длинная и короткая', text: 'Белая нота звучит дольше, чем чёрная. Ответь на вопросы.' }
+    ] },
+  { id: 'u12', icon: '🪘', title: 'Играем вместе', goal: 'Сопровождать исполнение музыки игрой на музыкальных инструментах',
+    steps: [
+      { id: 'u12s1', scene: 'padPlay', gate: true, title: 'Сопровождаем мелодию', rounds: [
+        { bpm: 80, tune: 'jacques', task: 'Играй на каждую долю, когда загорается кружок.', strong: false },
+        { bpm: 80, tune: 'twinkle', task: 'Теперь играй только на первую долю (отмечена жёлтым), раз в четыре кружка.', strong: true }],
+        text: 'Сейчас ты будешь оркестром. Звучит мелодия, а ты играешь на шумовом инструменте вместе с ней, в такт. Выбери инструмент и нажми «Начать». Когда загорается кружок, нажимай на инструмент.' }
+    ] },
+  { id: 'u13', icon: '🌟', title: 'Я композитор', goal: 'Сочинять простые музыкальные работы и представлять свою работу',
+    steps: [
+      { id: 'u13s1', scene: 'composer', gate: true, title: 'Сочини мелодию', text: 'Теперь ты композитор! Выбери в каждом столбце по одной ноте. Чем выше клетка, тем выше звук. Потом нажми «Сыграть».' },
+      { id: 'u13s2', scene: 'present', gate: true, title: 'Представь свою мелодию', text: 'Композитор представляет свою мелодию слушателям. Придумай название, скажи, какая она по характеру и как её играть. Потом сыграй для всех.' },
+      { id: 'u13s3', scene: 'quiz', gate: true, count: 12, gens: ['instName', 'instListen', 'noiseYN', 'cmpPitch', 'rhythmQ', 'singYN', 'gest', 'struct', 'genre', 'mood', 'tuneName', 'terms', 'noteName', 'noteDur'], title: 'Смешанные задания', text: 'Последняя проверка курса: инструменты, песня, жанры, настроение и ноты.' },
+      { id: 'u13s4', scene: 'finale', title: 'Курс пройден!', text: 'Теперь ты знаешь музыкальные инструменты, умеешь петь по правилам, понимаешь жесты дирижёра, знаешь жанры, ноты и можешь сочинить свою мелодию. Дальше тренируйся в играх. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const u5 = LESSONS.find(l => l.id === 'u5'); u5.steps = u5.steps.filter(s => s.scene !== 'finale');
+  NEW_LESSONS.forEach(l => LESSONS.push(l));
+})();
+
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){
   let i = 0, locked = false;
@@ -840,10 +1231,27 @@ function renderStep(){
   SCENES[st.scene](stage, st, ctx);
   if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
 }
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
 function finishLesson(){
   const L = LESSONS[S.li];
   const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
-  P[L.id] = Math.max(P[L.id] || 0, stars); saveP(P);
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
   stopSpeak();
   $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
   let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
