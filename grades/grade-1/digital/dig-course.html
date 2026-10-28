@@ -250,6 +250,17 @@
   .es-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;}
   .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;} .es-nb:disabled{opacity:.6;cursor:default;}
   .es-mag{font-size:4.6rem;line-height:1;text-align:center;margin:4px 0 0;}
+  .dg-seq{list-style:none;counter-reset:sq;margin:6px auto 10px;padding:0;max-width:460px;display:flex;flex-direction:column;gap:6px;} .dg-seq li{counter-increment:sq;background:#E9F7EC;border:2px solid #3FAE5A;border-radius:14px;padding:6px 12px;font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;} .dg-seq li::before{content:counter(sq) '. ';color:#2F8A47;} .dg-sqe{font-size:1.4rem;}
+  .dg-task{max-width:460px;margin:0 auto 8px;display:flex;flex-direction:column;gap:3px;} .dg-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#7A8CA3;padding:4px 10px;border-radius:12px;background:#F5F8FA;} .dg-ti.ok{color:#2F8A47;background:#E9F7EC;} .dg-ti.cur{color:#1D3557;background:#FFF1C9;border:2px solid #F5B400;} .dg-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;}
+  .dg-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:6px 0;}
+  .dg-b{border:3px solid #DCE6F0;border-radius:14px;background:#fff;color:#1D3557;font:800 .9rem 'Baloo 2',sans-serif;padding:6px 10px;cursor:pointer;line-height:1.1;} .dg-b small{display:block;font-size:.68rem;} .dg-b.on{border-color:#F5B400;background:#FFF1C9;} .dg-b:hover{background:#EAF3FF;}
+  .dg-t i{display:inline-block;width:16px;height:16px;border-radius:50%;border:2px solid #1D3557;vertical-align:-3px;margin-right:5px;}
+  .dg-sw{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;margin-top:2px;} .dg-c{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;padding:0;}
+  .dg-sp{width:8px;} .dg-hint{font:700 .88rem 'Baloo 2',sans-serif;color:#5C7690;}
+  .dg-cv{display:block;width:100%;max-width:460px;margin:6px auto;touch-action:none;border-radius:12px;cursor:crosshair;background:#fff;}
+  .dg-grid{position:relative;margin:8px auto;background:#F5F8FA;border:3px solid #1D3557;border-radius:12px;max-width:100%;} .dg-cell{position:absolute;box-sizing:border-box;border:1px solid #DCE6F0;display:flex;align-items:center;justify-content:center;font-size:1.9rem;} .dg-bot{position:absolute;display:flex;align-items:center;justify-content:center;font-size:2rem;transition:left .25s,top .25s;}
+  .dg-prog{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;min-height:38px;margin:6px 0;} .dg-pc{background:#E4F2FF;border:2px solid #5EC3E8;border-radius:10px;padding:2px 7px;font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .dg-cmd{font-size:1.4rem;} .dg-go{background:#3FAE5A;border-color:#2F8A47;color:#fff;}
   .es-pb.pull{transform:translateY(-34px) scale(1.12);background:#DFF5E1;border-color:#3FAE5A;} .es-pb.nope{animation:ncShake .35s linear 1;background:#FFE4E1;}
   .kz-let{font:800 2.6rem/1 'Baloo 2',sans-serif;color:#1D3557;display:block;}
   .es-card .kzbig{font:800 3.4rem/1.1 'Baloo 2',sans-serif;color:#2F9BE6;} .es-card .kzw{font:800 2rem/1.1 'Baloo 2',sans-serif;color:#1D3557;}
@@ -291,7 +302,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Цифровая грамотность</h1>
-      <p class="ac-sub">4 урока · устройства компьютера, для чего они нужны, правила работы, порядок действий</p>
+      <p class="ac-sub">12 уроков · устройства, виды информации, Интернет и безопасность, графический редактор, алгоритмы и робот</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -656,6 +667,440 @@ const LESSONS = [
         text: 'Теперь ты знаешь устройства компьютера, правила безопасной работы и умеешь расставлять шаги по порядку. Дальше тренируйся в играх. Я буду рядом!' }
     ] }
 ];
+
+/* ===================== Новые уроки курса «Цифровая грамотность» (приказ №399, прил. 27, 1 класс) ===================== */
+function qaGen(arr){
+  let deck = [];
+  return function(){
+    if (!deck.length) deck = shuffle(arr);
+    const it = deck.pop();
+    const opts = shuffle([it.a].concat(shuffle(it.w).slice(0, 3)));
+    const card = it.e ? '<div class="es-card"><div class="em">' + it.e + '</div>' + (it.n ? '<div class="nm">' + it.n + '</div>' : '') + '</div>' : '';
+    return { html: '<div class="ac-qtxt">' + it.q + '</div>' + card, opts: opts, ans: it.a, wide: !!it.wide, hint: it.h };
+  };
+}
+const SEN = ['Зрительная', 'Слуховая', 'Обонятельная', 'Вкусовая', 'Тактильная'];
+const FRM = ['Текстовая', 'Числовая', 'Графическая', 'Звуковая', 'Видео'];
+const wr = (a, arr) => arr.filter(x => x !== a);
+const D = {};
+D.sense = [
+  ['Ты увидел красный сигнал светофора.', '🚦', 'Зрительная', 'Светофор мы видим глазами.'],
+  ['Ты услышал звонок на урок.', '🔔', 'Слуховая', 'Звонок мы слышим ушами.'],
+  ['Ты почувствовал запах свежего хлеба.', '🍞', 'Обонятельная', 'Запахи мы чувствуем носом.'],
+  ['Ты попробовал лимон. Он кислый.', '🍋', 'Вкусовая', 'Вкус мы узнаём языком.'],
+  ['Ты потрогал горячий чайник.', '☕', 'Тактильная', 'Горячее и холодное мы чувствуем кожей, руками.'],
+  ['Ты смотришь на красивую картинку.', '🖼️', 'Зрительная', 'Картинку мы видим глазами.'],
+  ['Ты слушаешь песню.', '🎵', 'Слуховая', 'Песню мы слышим ушами.'],
+  ['Ты погладил мягкого кота.', '🐱', 'Тактильная', 'Мягкость мы чувствуем рукой.']
+].map(x => ({ q: x[0] + '<br>Какая это информация?', e: x[1], a: x[2], w: wr(x[2], SEN), h: x[3] }));
+D.organ = [
+  { q: 'Чем мы воспринимаем зрительную информацию?', a: 'Глазами', w: ['Ушами', 'Носом', 'Языком'], h: 'Видим мы глазами.' },
+  { q: 'Чем мы воспринимаем слуховую информацию?', a: 'Ушами', w: ['Глазами', 'Носом', 'Языком'], h: 'Слышим мы ушами.' },
+  { q: 'Чем мы воспринимаем запахи?', a: 'Носом', w: ['Глазами', 'Ушами', 'Языком'], h: 'Запахи чувствуем носом. Это обонятельная информация.' },
+  { q: 'Чем мы узнаём вкус?', a: 'Языком', w: ['Глазами', 'Ушами', 'Носом'], h: 'Вкус узнаём языком. Это вкусовая информация.' },
+  { q: 'Чем мы узнаём, тёплый предмет или холодный?', a: 'Кожей, руками', w: ['Ушами', 'Глазами', 'Носом'], wide: true, h: 'Это тактильная информация: её воспринимает кожа.' }
+];
+D.form = [
+  ['Сообщение из слов: «Привет, Асан!»', '💬', 'Текстовая', 'Слова и буквы — это текст.'],
+  ['Цена в магазине: 1500 тенге.', '🏷️', 'Числовая', 'Цифры и числа — это числовая информация.'],
+  ['Фотография кота.', '📷', 'Графическая', 'Рисунки, фото и схемы — это графическая информация.'],
+  ['Любимая песня.', '🎶', 'Звуковая', 'Музыка и голос — это звуковая информация.'],
+  ['Мультфильм.', '🎬', 'Видео', 'Видео — это движущиеся картинки со звуком.'],
+  ['Нарисованная карта города.', '🗺️', 'Графическая', 'Карта — это рисунок, значит, информация графическая.'],
+  ['Номер телефона 8 701 123 45 67.', '📞', 'Числовая', 'Номер состоит из цифр.'],
+  ['Рассказ в книге без картинок.', '📖', 'Текстовая', 'Рассказ записан словами и буквами.'],
+  ['Запись голоса учителя.', '🎙️', 'Звуковая', 'Голос — это звук.'],
+  ['Ролик с играющими щенками.', '🐶', 'Видео', 'Ролик — движущиеся картинки: видео.']
+].map(x => ({ q: x[0] + '<br>Какая это информация по форме?', e: x[1], a: x[2], w: wr(x[2], FRM), h: x[3], wide: false }));
+D.chan = [
+  { q: 'Учитель рассказывает урок. Кто здесь источник информации?', a: 'Учитель', w: ['Ученик', 'Парта', 'Звонок'], h: 'Источник передаёт информацию: учитель.' },
+  { q: 'Учитель рассказывает урок. Кто здесь приёмник информации?', a: 'Ученик', w: ['Учитель', 'Мел', 'Портфель'], h: 'Приёмник получает информацию: ученик.' },
+  { q: 'Мама звонит тебе по телефону. Что здесь канал связи?', a: 'Телефон', w: ['Мама', 'Ты', 'Подушка'], h: 'Канал связи — путь, по которому идёт информация: телефонная связь.' },
+  { q: 'Папа прислал тебе сообщение. Кто приёмник?', a: 'Ты', w: ['Папа', 'Лампа', 'Стол'], h: 'Ты получаешь сообщение: ты приёмник.' },
+  { q: 'Через что идёт голос учителя до учеников?', a: 'Через воздух', w: ['Через провод', 'Через бумагу', 'Через воду'], h: 'Звук идёт по воздуху. Воздух здесь — канал связи.' },
+  { q: 'Что можно назвать каналом связи?', a: 'Письмо', w: ['Яблоко', 'Стул', 'Карандаш'], h: 'Письмо несёт информацию от одного человека к другому.' },
+  { q: 'Что может быть источником информации?', a: 'Книга', w: ['Подушка', 'Ложка', 'Камень'], h: 'Книга передаёт нам знания: это источник.' },
+  { q: 'Кто получает информацию?', a: 'Приёмник', w: ['Источник', 'Канал'], h: 'Получает информацию приёмник.' },
+  { q: 'Кто передаёт информацию?', a: 'Источник', w: ['Приёмник', 'Канал'], h: 'Передаёт информацию источник.' }
+];
+D.net = [
+  { q: 'Что такое Интернет?', a: 'Сеть, которая соединяет компьютеры', w: ['Вид игрушки', 'Одна большая книга', 'Название мультфильма'], wide: true, h: 'Интернет — большая сеть, соединяющая компьютеры и телефоны по всему миру.' },
+  { q: 'Ты хочешь узнать, как живут пингвины. Что можно сделать?', e: '🐧', a: 'Поискать в Интернете с взрослым', w: ['Не узнавать', 'Ждать, пока само узнается'], wide: true, h: 'Информацию можно найти в Интернете. Лучше искать вместе со взрослым.' },
+  { q: 'Бабушка живёт в другом городе. Как с ней увидеться?', e: '👵', a: 'Видеозвонок через Интернет', w: ['Это невозможно', 'Ждать десять лет'], wide: true, h: 'По Интернету можно говорить и видеть друг друга.' },
+  { q: 'Для чего можно использовать Интернет?', a: 'Учиться, искать, общаться', w: ['Только спать', 'Только готовить еду'], wide: true, h: 'Интернет помогает учиться, искать информацию и общаться.' },
+  { q: 'Что нужно, чтобы выйти в Интернет?', a: 'Устройство и подключение к сети', w: ['Только мяч', 'Только тетрадь'], wide: true, h: 'Нужен компьютер или телефон и подключение к сети.' },
+  { q: 'Где можно смотреть обучающие видео?', e: '🎓', a: 'В Интернете', w: ['В холодильнике', 'В портфеле'], h: 'Обучающие видео есть в Интернете.' },
+  { q: 'Как с помощью Интернета можно отдохнуть?', a: 'Послушать музыку, посмотреть мультфильм', w: ['Помыть посуду', 'Подмести пол'], wide: true, h: 'В Интернете есть музыка, мультфильмы и игры.' }
+];
+D.trust = [
+  ['«Ты выиграл телефон! Скорее нажми на ссылку!»', '🎁', 'Обман', 'Так обманывают: приз за нажатие ссылки обычно ложь.'],
+  ['«Пришли мне свой пароль, и я верну тебе игру».', '🔑', 'Обман', 'Пароль никому нельзя отправлять. Так воруют аккаунты.'],
+  ['На сайте школы написано расписание уроков.', '🏫', 'Можно доверять', 'Официальный сайт школы надёжен. Если сомневаешься, спроси учителя.'],
+  ['Незнакомец пишет: «Пришли свои фото».', '👤', 'Обман', 'Незнакомцам фото не отправляют, это опасно.'],
+  ['«Нажми и скачай игру бесплатно — получишь подарок!»', '🎮', 'Обман', 'Нельзя нажимать на странные ссылки без разрешения взрослых.'],
+  ['Сайт музея: часы работы музея.', '🏛️', 'Можно доверять', 'Сайт музея — надёжный источник.']
+].map(x => ({ q: x[0] + '<br>Можно ли этому верить?', e: x[1], a: x[2], w: wr(x[2], ['Обман', 'Можно доверять']), h: x[3] }));
+D.useful = [
+  ['Видео, как правильно чистить зубы.', '🪥', 'Полезная', 'Это учит заботиться о здоровье.'],
+  ['Мультфильм про дружбу для детей.', '🎬', 'Полезная', 'Добрый мультфильм учит хорошему.'],
+  ['Ролик, где дети дерутся.', '🥊', 'Вредная', 'Такое смотреть не нужно: оно может напугать и научить плохому.'],
+  ['Игра, где много крови и страшных монстров.', '👹', 'Вредная', 'Такая игра не для детей.'],
+  ['Урок о том, как растут цветы.', '🌷', 'Полезная', 'Такой урок учит интересным вещам.'],
+  ['Страница, где пишут: «Не мойте руки, это вредно».', '🧼', 'Вредная', 'Это неправда: руки мыть нужно!']
+].map(x => ({ q: x[0] + '<br>Какая это информация?', e: x[1], a: x[2], w: wr(x[2], ['Полезная', 'Вредная']), h: x[3] }));
+D.priv = [
+  ['Свой домашний адрес', 'Нельзя', 'Адрес нельзя сообщать незнакомым людям.'],
+  ['Свой пароль', 'Нельзя', 'Пароль знают только ты и родители.'],
+  ['Свой номер телефона', 'Нельзя', 'Номер телефона — личная информация.'],
+  ['Свою фамилию и номер школы', 'Нельзя', 'По ним можно найти тебя.'],
+  ['Любимый мультфильм', 'Можно', 'Это не личная информация.'],
+  ['Любимый цвет', 'Можно', 'Это не опасно.'],
+  ['Фото, где видно твой дом и номер', 'Нельзя', 'По фото можно узнать, где ты живёшь.'],
+  ['Любимое блюдо', 'Можно', 'Это можно рассказать.']
+].map(x => ({ q: 'Можно ли рассказать незнакомцу в Интернете?<br><b>' + x[0] + '</b>', e: '🔒', a: x[1], w: wr(x[1], ['Можно', 'Нельзя']), h: x[2] }));
+D.safe = [
+  { q: 'Незнакомец в сети просит твой адрес. Что делать?', a: 'Не отвечать и рассказать взрослым', w: ['Отправить адрес', 'Отправить фото', 'Дать адрес друга'], wide: true, h: 'Личную информацию незнакомым не сообщают. Нужно рассказать взрослым.' },
+  { q: 'Тебе пришла странная ссылка. Что делать?', a: 'Не нажимать, показать взрослым', w: ['Сразу нажать', 'Переслать друзьям'], wide: true, h: 'Странные ссылки могут быть опасны.' },
+  { q: 'Какой пароль лучше?', a: 'Сложный, и никому его не говорить', w: ['12345', 'Моё имя', 'Мой день рождения'], wide: true, h: 'Пароль должен быть сложным, и его знают только ты и родители.' },
+  { q: 'Кому можно сказать свой пароль?', a: 'Только родителям', w: ['Другу из игры', 'Незнакомцу', 'Всему классу'], wide: true, h: 'Пароль знают только ты и родители.' },
+  { q: 'В сети тебя обижают или пугают. Что делать?', a: 'Рассказать взрослым', w: ['Молчать', 'Ответить грубо'], wide: true, h: 'Взрослые помогут. Всегда рассказывай им о таком.' },
+  { q: 'Любая ли информация в Интернете правдива?', a: 'Нет, не вся', w: ['Да, вся'], h: 'В Интернете бывает неправда. Важную информацию проверяют вместе со взрослыми.' }
+];
+D.gedT = [
+  { q: 'Линия, которая обводит фигуру, называется ...', a: 'контур', w: ['заливка', 'фон', 'палитра'], h: 'Контур — линия вокруг фигуры.' },
+  { q: 'Цвет внутри фигуры называется ...', a: 'заливка', w: ['контур', 'фон', 'палитра'], h: 'Заливка — цвет внутри фигуры.' },
+  { q: 'Цвет за всеми фигурами называется ...', a: 'фон', w: ['контур', 'заливка', 'палитра'], h: 'Фон — цвет холста позади фигур.' },
+  { q: 'Набор цветов, из которого мы выбираем, называется ...', a: 'палитра', w: ['контур', 'ластик', 'мышка'], h: 'Палитра — набор цветов.' },
+  { q: 'Какие стандартные фигуры есть в редакторе?', a: 'Круг, квадрат, треугольник', w: ['Кот, собака, слон', 'Яблоко, груша, слива', 'Стол, стул, шкаф'], wide: true, h: 'Стандартные фигуры: круг, квадрат, треугольник и другие.' },
+  { q: 'Из каких фигур можно нарисовать домик?', e: '🏠', a: 'Квадрат и треугольник сверху', w: ['Круг и круг', 'Только звезда'], wide: true, h: 'Стена — квадрат, а крыша — треугольник.' }
+];
+D.gedE = [
+  { q: 'Что нужно сделать перед копированием фигуры?', a: 'Выделить её', w: ['Закрасить фон', 'Выключить компьютер', 'Повернуть её'], wide: true, h: 'Копировать можно только выделенный фрагмент.' },
+  { q: 'Как выделить фрагмент рисунка?', a: 'Обвести рамкой', w: ['Нажать «Повернуть»', 'Выбрать цвет фона'], wide: true, h: 'Выделение делают рамкой: прямоугольной или овальной.' },
+  { q: 'Какие инструменты делают копию фигуры?', a: 'Копировать и Вставить', w: ['Повернуть и Отразить', 'Вырезать и Отразить'], wide: true, h: 'Копировать запоминает фигуру, Вставить размещает её ещё раз.' },
+  { q: 'Какие инструменты переносят фигуру в другое место?', a: 'Вырезать и Вставить', w: ['Копировать и Отразить', 'Повернуть и Копировать'], wide: true, h: 'Вырезать убирает фигуру, Вставить кладёт её в новое место.' },
+  { q: 'Какой инструмент сделает зеркальное отражение?', a: 'Отразить', w: ['Вырезать', 'Вставить', 'Копировать'], h: 'Отразить переворачивает фигуру как в зеркале.' },
+  { q: 'Каким инструментом можно повернуть фигуру?', a: 'Повернуть', w: ['Вырезать', 'Вставить', 'Копировать'], h: 'Повернуть меняет наклон фигуры.' },
+  { q: 'Чем закрашивают фигуру одним щелчком?', e: '🪣', a: 'Заливкой цветом (ведёрко)', w: ['Копированием', 'Вырезанием'], wide: true, h: 'Ведёрко заливает фигуру или фон выбранным цветом.' }
+];
+D.algD = [
+  { q: 'Как называется понятный порядок действий, который ведёт к цели?', a: 'Алгоритм', w: ['Картинка', 'Мышка', 'Принтер'], h: 'Алгоритм — порядок действий, например, как почистить зубы.' },
+  { q: 'Один шаг в алгоритме называют ...', a: 'действие', w: ['игра', 'адрес', 'экран'], h: 'Действие — один шаг: открыть кран, взять щётку.' },
+  { q: 'Команда — это ...', a: 'приказ исполнителю сделать действие', w: ['название игры', 'цвет на экране', 'вид сети'], wide: true, h: 'Команда говорит исполнителю, что сделать: «Шаг вперёд!».' },
+  { q: 'Кто выполняет команды?', a: 'Исполнитель', w: ['Алгоритм', 'Клавиатура', 'Заливка'], h: 'Команды выполняет исполнитель: человек, робот или компьютер.' },
+  { q: 'Кто может быть исполнителем?', e: '🤖', a: 'Робот', w: ['Облако', 'Камень', 'Радуга'], h: 'Исполнитель умеет выполнять команды: робот, человек, компьютер.' },
+  { q: 'Что такое система команд исполнителя?', a: 'Все команды, которые он понимает', w: ['Название исполнителя', 'Его цвет', 'Его возраст'], wide: true, h: 'Исполнитель понимает только команды из своей системы.' },
+  { q: 'Робот понимает команды «вверх, вниз, влево, вправо». Можно ли приказать ему «Прыгни»?', e: '🤖', a: 'Нет, такой команды нет', w: ['Да, всегда', 'Только днём'], wide: true, h: 'Исполнитель выполняет только команды из своей системы.' }
+];
+D.algL = [
+  { q: 'Что из этого алгоритм?', a: 'Открыть кран, намылить руки, смыть мыло, вытереть', w: ['Красный шарик', 'Большой дом', 'Кот спит'], wide: true, h: 'Алгоритм — это порядок действий.' },
+  { q: 'Где в жизни используют алгоритм?', e: '🍲', a: 'Рецепт блюда', w: ['Облако на небе', 'Цвет травы', 'Тень от дерева'], wide: true, h: 'Рецепт — алгоритм приготовления блюда.' },
+  { q: 'Алгоритм перехода дороги. Что сделать первым?', e: '🚦', a: 'Остановиться у края дороги', w: ['Побежать', 'Закрыть глаза', 'Крикнуть'], wide: true, h: 'Сначала остановись, посмотри на светофор и по сторонам.' },
+  { q: 'Алгоритм чистки зубов: паста на щётке. Что дальше?', e: '🪥', a: 'Чистим зубы', w: ['Ложимся спать', 'Моем пол'], wide: true, h: 'После пасты на щётку нужно чистить зубы.' },
+  { q: 'Инструкция к конструктору или игре — это ...', a: 'алгоритм', w: ['картинка в рамке', 'мебель'], h: 'В инструкции шаги идут по порядку: это алгоритм.' },
+  { q: 'Что не является алгоритмом?', a: 'Красный воздушный шарик', w: ['Рецепт блина', 'Инструкция к игре', 'Правило перехода дороги'], wide: true, h: 'Шарик — предмет, а алгоритм — порядок действий.' }
+];
+Object.assign(GENS, { sense: qaGen(D.sense), organ: qaGen(D.organ), form: qaGen(D.form), chan: qaGen(D.chan), net: qaGen(D.net), trust: qaGen(D.trust), useful: qaGen(D.useful),
+  priv: qaGen(D.priv), safe: qaGen(D.safe), gedT: qaGen(D.gedT), gedE: qaGen(D.gedE), algD: qaGen(D.algD), algL: qaGen(D.algL) });
+
+/* ---- новые сцены ---- */
+SCENES.infoTap = function(stage, st, ctx){
+  const seen = {}, need = st.need || st.cards.length;
+  stage.innerHTML = '<div class="es-pick" id="i-p"></div><div class="es-card" id="i-c"><div class="tx">Нажми на картинку 👆</div></div>';
+  $('#i-p', stage).innerHTML = st.cards.map((c, i) => '<button class="es-pb" data-i="' + i + '" aria-label="' + c.b + '">' + c.e + '<small>' + c.b + '</small></button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const c = st.cards[+b.dataset.i]; seen[b.dataset.i] = 1; $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#i-c', stage).innerHTML = '<div class="em">' + c.e + '</div><div class="nm">' + (c.nm || c.b) + '</div><div class="tx">' + c.tx + '</div>';
+    const n = Object.keys(seen).length;
+    if (n >= need){ ctx.fb('Здорово! Всё посмотрели.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + ' из ' + need + '.', 'info');
+  });
+};
+SCENES.seqBuild = function(stage, st, ctx){
+  let pos = 0;
+  stage.innerHTML = '<div class="ac-qtxt">' + st.q + '</div><ol class="dg-seq" id="sq-d"></ol><div class="es-pick" id="sq-p"></div>';
+  const done = $('#sq-d', stage), pool = $('#sq-p', stage);
+  shuffle(st.items.map((x, i) => i)).forEach(function(i){
+    const it = st.items[i], b = document.createElement('button'); b.className = 'es-pb'; b.innerHTML = (it.e || '') + '<small style="font-size:.95rem">' + it.t + '</small>';
+    b.onclick = function(){
+      if (i === pos){
+        b.disabled = true; b.style.visibility = 'hidden'; pos++;
+        const li = document.createElement('li'); li.innerHTML = (it.e ? '<span class="dg-sqe">' + it.e + '</span> ' : '') + it.t; done.appendChild(li);
+        if (pos >= st.items.length){ ctx.fb(st.ok || 'Всё верно!', 'ok'); ctx.done(); } else ctx.fb('Верно! Что дальше?', 'ok');
+      } else {
+        ctx.miss(); ctx.fb('Пока не сюда. ' + (st.hint || 'Подумай, что идёт раньше.'), 'bad');
+        b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope');
+      }
+    };
+    pool.appendChild(b);
+  });
+};
+/* --- мини-графический редактор --- */
+const PAL = [['красный', '#E8453C'], ['жёлтый', '#F5B400'], ['зелёный', '#3FAE5A'], ['синий', '#2F7BE6'], ['голубой', '#BFE3FF'], ['розовый', '#FF9EC4'], ['чёрный', '#25324A'], ['белый', '#FFFFFF']];
+const palC = k => { if (k === 'нет') return 'none'; const p = PAL.find(x => x[0] === k); return p ? p[1] : '#fff'; };
+const SHP = [['circle', '⚪', 'Круг'], ['square', '⬜', 'Квадрат'], ['triangle', '🔺', 'Треугольник'], ['star', '⭐', 'Звезда'], ['arrow', '➡️', 'Стрелка']];
+function geoSVG(t, p){
+  if (t === 'circle') return '<circle r="' + p + '"/>';
+  if (t === 'square') return '<rect x="' + (-p) + '" y="' + (-p) + '" width="' + (2 * p) + '" height="' + (2 * p) + '" rx="4"/>';
+  if (t === 'triangle') return '<polygon points="0,' + (-p) + ' ' + p + ',' + (p * .8) + ' ' + (-p) + ',' + (p * .8) + '"/>';
+  if (t === 'star'){ let pts = []; for (let i = 0; i < 10; i++){ const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? p * .45 : p; pts.push((Math.cos(a) * r).toFixed(1) + ',' + (Math.sin(a) * r).toFixed(1)); } return '<polygon points="' + pts.join(' ') + '"/>'; }
+  return '<path d="M' + (-p) + ',' + (-p / 2) + ' L0,' + (-p / 2) + ' L0,' + (-p) + ' L' + p + ',0 L0,' + p + ' L0,' + (p / 2) + ' L' + (-p) + ',' + (p / 2) + ' Z"/>';
+}
+SCENES.gEdit = function(stage, st, ctx){
+  const S = { shapes: (st.pre || []).map((s, i) => Object.assign({ id: i + 1, s: 30, rot: 0, flip: false, sw: 3, dash: false }, s)), bg: 'белый', sel: [], clip: [], tool: st.ui === 'edit' ? 'select' : 'draw', shape: 'circle', target: 'stroke', stroke: 'чёрный', fill: 'нет', sw: 3, dash: false, form: 'rect', log: [], hist: [], uid: 100 };
+  let ti = 0, drag = null;
+  window.__ge = S;
+  stage.innerHTML = '<div class="dg-task" id="g-task"></div><div class="dg-tb" id="g-tool"></div><div class="dg-tb" id="g-prop"></div><div class="dg-tb" id="g-pal"></div>' +
+    '<svg id="g-cv" class="dg-cv" viewBox="0 0 360 240" role="img" aria-label="Холст"></svg><div class="dg-tb" id="g-act"></div>';
+  const svg = $('#g-cv', stage);
+  const snap = () => { S.hist.push(JSON.stringify({ shapes: S.shapes, bg: S.bg })); if (S.hist.length > 30) S.hist.shift(); };
+  const hit = (x, y) => { for (let i = S.shapes.length - 1; i >= 0; i--){ const s = S.shapes[i]; if (Math.abs(x - s.x) <= s.s * 1.05 && Math.abs(y - s.y) <= s.s * 1.05) return s; } return null; };
+  function drawCanvas(){
+    let h = '<rect width="360" height="240" rx="10" fill="' + palC(S.bg) + '" stroke="#DCE6F0" stroke-width="3"/>';
+    S.shapes.forEach(s => {
+      h += '<g data-id="' + s.id + '" transform="translate(' + s.x + ',' + s.y + ') rotate(' + s.rot + ') scale(' + (s.flip ? -1 : 1) + ',1)" fill="' + palC(s.fill) + '" stroke="' + palC(s.stroke) + '" stroke-width="' + s.sw + '"' + (s.dash ? ' stroke-dasharray="8 6"' : '') + ' stroke-linejoin="round">' + geoSVG(s.type, s.s) + '</g>';
+    });
+    S.shapes.filter(s => S.sel.indexOf(s.id) >= 0).forEach(s => { h += '<rect x="' + (s.x - s.s - 8) + '" y="' + (s.y - s.s - 8) + '" width="' + (2 * s.s + 16) + '" height="' + (2 * s.s + 16) + '" fill="none" stroke="#2F7BE6" stroke-width="2.5" stroke-dasharray="6 4"/>'; });
+    if (drag && drag.moved){
+      const x = Math.min(drag.x0, drag.x1), y = Math.min(drag.y0, drag.y1), w = Math.abs(drag.x1 - drag.x0), hh = Math.abs(drag.y1 - drag.y0);
+      h += S.form === 'oval' ? '<ellipse cx="' + (x + w / 2) + '" cy="' + (y + hh / 2) + '" rx="' + (w / 2) + '" ry="' + (hh / 2) + '" fill="rgba(47,123,230,.12)" stroke="#2F7BE6" stroke-width="2" stroke-dasharray="6 4"/>'
+        : '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + hh + '" fill="rgba(47,123,230,.12)" stroke="#2F7BE6" stroke-width="2" stroke-dasharray="6 4"/>';
+    }
+    svg.innerHTML = h;
+  }
+  const btn = (a, label, on, extra) => '<button class="dg-b' + (on ? ' on' : '') + '" data-a="' + a + '"' + (extra || '') + '>' + label + '</button>';
+  function drawUI(){
+    const draw = st.ui !== 'edit';
+    $('#g-tool', stage).innerHTML = (draw ? btn('t:draw', '✏️ Рисовать', S.tool === 'draw') : '') + btn('t:select', '🔲 Выделить', S.tool === 'select') + btn('t:bucket', '🪣 Заливка', S.tool === 'bucket') + btn('undo', '↩️ Назад', false);
+    $('#g-prop', stage).innerHTML = S.tool === 'draw'
+      ? SHP.map(x => btn('s:' + x[0], x[1] + '<small>' + x[2] + '</small>', S.shape === x[0])).join('') + '<span class="dg-sp"></span>' + btn('w:3', 'Контур: тонкий', S.sw === 3 && !S.dash) + btn('w:9', 'толстый', S.sw === 9 && !S.dash) + btn('w:d', 'пунктир', S.dash)
+      : S.tool === 'select' ? btn('f:rect', '▭ Рамка прямоугольная', S.form === 'rect') + btn('f:oval', '◯ Рамка овальная', S.form === 'oval') : '<span class="dg-hint">Выбери цвет заливки и нажми на фигуру или на фон</span>';
+    const tg = [['stroke', 'Линия', S.stroke], ['fill', 'Заливка', S.fill], ['bg', 'Фон', S.bg]];
+    $('#g-pal', stage).innerHTML = tg.map(t => '<button class="dg-b dg-t' + (S.target === t[0] ? ' on' : '') + '" data-a="g:' + t[0] + '"><i style="background:' + palC(t[2]) + (t[2] === 'нет' ? ';background:repeating-linear-gradient(45deg,#fff,#fff 3px,#f3a 3px,#f3a 5px)' : '') + '"></i>' + t[1] + '</button>').join('') +
+      '<div class="dg-sw">' + (S.target === 'fill' ? '<button class="dg-c" data-a="c:нет" title="без заливки" aria-label="без заливки" style="background:repeating-linear-gradient(45deg,#fff,#fff 3px,#f3a 3px,#f3a 5px)"></button>' : '') +
+      PAL.map(p => '<button class="dg-c" data-a="c:' + p[0] + '" title="' + p[0] + '" aria-label="' + p[0] + '" style="background:' + p[1] + '"></button>').join('') + '</div>';
+    $('#g-act', stage).innerHTML = st.ui === 'edit' ? btn('copy', '📄 Копировать') + btn('cut', '✂️ Вырезать') + btn('paste', '📋 Вставить') + btn('rot', '🔄 Повернуть') + btn('flip', '↔️ Отразить') : '';
+  }
+  function tasks(){
+    const T = st.tasks; let h = '';
+    if (ti < T.length){ h = '<div class="dg-ti cur"><b>Задание ' + (ti + 1) + ' из ' + T.length + '.</b> ' + T[ti].t + (T[ti].h ? '<small>' + T[ti].h + '</small>' : '') + '</div>'; }
+    else h = '<div class="dg-ti ok">✅ Все ' + T.length + ' заданий выполнены!</div>';
+    $('#g-task', stage).innerHTML = h;
+  }
+  function check(){
+    const T = st.tasks;
+    while (ti < T.length && T[ti].ok(S)){ ti++; }
+    tasks();
+    if (ti >= T.length && !S.fin){ S.fin = true; ctx.fb('Все задания выполнены!', 'ok'); ctx.done(); }
+  }
+  function upd(){ drawCanvas(); drawUI(); check(); }
+  const msg = (t, k) => ctx.fb(t, k || 'info');
+  const needSel = () => { if (!S.sel.length){ msg('Сначала выдели фигуру инструментом «Выделить».', 'bad'); return false; } return true; };
+  const pt = e => { const r = svg.getBoundingClientRect(); return [(e.clientX - r.left) * 360 / r.width, (e.clientY - r.top) * 240 / r.height]; };
+  svg.onpointerdown = function(e){
+    const [x, y] = pt(e); try { svg.setPointerCapture(e.pointerId); } catch(_){}
+    if (S.tool === 'draw'){
+      snap(); S.shapes.push({ id: ++S.uid, type: S.shape, x: Math.round(x), y: Math.round(y), s: 30, rot: 0, flip: false, stroke: S.stroke, fill: S.fill, sw: S.sw, dash: S.dash });
+      S.log.push('draw'); upd();
+    } else if (S.tool === 'bucket'){
+      const s = hit(x, y), col = S.fill === 'нет' ? 'жёлтый' : S.fill; snap();
+      if (s){ s.fill = col; S.log.push('bucket'); } else { S.bg = col; S.log.push('bucketbg'); }
+      upd();
+    } else { drag = { x0: x, y0: y, x1: x, y1: y, moved: false }; }
+  };
+  svg.onpointermove = function(e){ if (!drag) return; const [x, y] = pt(e); drag.x1 = x; drag.y1 = y; if (Math.abs(x - drag.x0) + Math.abs(y - drag.y0) > 10){ drag.moved = true; drawCanvas(); } };
+  svg.onpointerup = function(e){
+    if (!drag) return; const d = drag; drag = null;
+    if (!d.moved){ const s = hit(d.x0, d.y0); S.sel = s ? [s.id] : []; S.log.push('select'); }
+    else {
+      const x = Math.min(d.x0, d.x1), y = Math.min(d.y0, d.y1), w = Math.abs(d.x1 - d.x0), h = Math.abs(d.y1 - d.y0);
+      S.sel = S.shapes.filter(s => S.form === 'oval' ? Math.pow((s.x - x - w / 2) / (w / 2), 2) + Math.pow((s.y - y - h / 2) / (h / 2), 2) <= 1 : (s.x >= x && s.x <= x + w && s.y >= y && s.y <= y + h)).map(s => s.id);
+      S.log.push('select');
+    }
+    if (S.sel.length) msg('Выделено фигур: ' + S.sel.length + '. Теперь можно копировать, вырезать, поворачивать.', 'ok'); else msg('Ничего не выделено. Обведи фигуру рамкой.', 'info');
+    upd();
+  };
+  stage.onclick = function(e){
+    const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, k = a.split(':')[1];
+    if (a.indexOf('t:') === 0){ S.tool = k; if (k !== 'select' && st.ui !== 'edit') S.sel = []; }
+    else if (a.indexOf('s:') === 0){ S.shape = k; }
+    else if (a.indexOf('w:') === 0){ if (k === 'd'){ S.dash = true; S.sw = 3; } else { S.dash = false; S.sw = +k; } }
+    else if (a.indexOf('f:') === 0){ S.form = k; }
+    else if (a.indexOf('g:') === 0){ S.target = k; }
+    else if (a.indexOf('c:') === 0){ S[S.target] = k; }
+    else if (a === 'undo'){ const h = S.hist.pop(); if (h){ const o = JSON.parse(h); S.shapes = o.shapes; S.bg = o.bg; S.sel = []; } }
+    else if (a === 'copy'){ if (needSel()){ S.clip = S.shapes.filter(s => S.sel.indexOf(s.id) >= 0).map(s => Object.assign({}, s)); S.log.push('copy'); msg('Скопировано. Теперь нажми «Вставить».', 'ok'); } }
+    else if (a === 'cut'){ if (needSel()){ snap(); S.clip = S.shapes.filter(s => S.sel.indexOf(s.id) >= 0).map(s => Object.assign({}, s)); S.shapes = S.shapes.filter(s => S.sel.indexOf(s.id) < 0); S.sel = []; S.log.push('cut'); msg('Вырезано. Теперь нажми «Вставить».', 'ok'); } }
+    else if (a === 'paste'){ if (!S.clip.length) msg('Сначала скопируй или вырежи фигуру.', 'bad'); else { snap(); const ids = []; S.clip.forEach(c => { const n = Object.assign({}, c, { id: ++S.uid, x: Math.min(330, c.x + 50), y: Math.min(210, c.y + 40) }); S.shapes.push(n); ids.push(n.id); }); S.sel = ids; S.log.push('paste'); msg('Вставлено!', 'ok'); } }
+    else if (a === 'rot'){ if (needSel()){ snap(); S.shapes.forEach(s => { if (S.sel.indexOf(s.id) >= 0) s.rot = (s.rot + 90) % 360; }); S.log.push('rot'); } }
+    else if (a === 'flip'){ if (needSel()){ snap(); S.shapes.forEach(s => { if (S.sel.indexOf(s.id) >= 0) s.flip = !s.flip; }); S.log.push('flip'); } }
+    upd();
+  };
+  upd();
+};
+/* --- робот-исполнитель --- */
+SCENES.robot = function(stage, st, ctx){
+  let li = 0, prog = [], busy = false;
+  const DIR = { U: [0, -1, '⬆️', 'вверх'], D: [0, 1, '⬇️', 'вниз'], L: [-1, 0, '⬅️', 'влево'], R: [1, 0, '➡️', 'вправо'] };
+  function level(){
+    const L = st.levels[li], C = 52; prog = []; busy = false; window.__rb = { L: L, prog: prog };
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:4px">Уровень ' + (li + 1) + ' из ' + st.levels.length + '. Составь алгоритм: не больше ' + L.max + ' команд.</div>' +
+      '<div class="dg-grid" id="r-g" style="width:' + (L.cols * C) + 'px;height:' + (L.rows * C) + 'px"></div>' +
+      '<div class="dg-prog" id="r-p"></div><div class="dg-tb" id="r-c">' + Object.keys(DIR).map(k => '<button class="dg-b dg-cmd" data-c="' + k + '">' + DIR[k][2] + '<small>' + DIR[k][3] + '</small></button>').join('') + '</div>' +
+      '<div class="dg-tb"><button class="dg-b dg-go" id="r-go">▶️ Пуск</button><button class="dg-b" id="r-del">⌫ Убрать</button><button class="dg-b" id="r-clr">🗑️ Сбросить</button></div>';
+    const g = $('#r-g', stage); let pos = L.start.slice();
+    const walls = L.walls.map(w => w.join(','));
+    function draw(){
+      let h = '';
+      for (let r = 0; r < L.rows; r++) for (let c = 0; c < L.cols; c++) h += '<div class="dg-cell" style="left:' + (c * C) + 'px;top:' + (r * C) + 'px;width:' + C + 'px;height:' + C + 'px">' + (walls.indexOf(c + ',' + r) >= 0 ? '🧱' : (c === L.goal[0] && r === L.goal[1] ? '⭐' : '')) + '</div>';
+      h += '<div class="dg-bot" style="left:' + (pos[0] * C) + 'px;top:' + (pos[1] * C) + 'px;width:' + C + 'px;height:' + C + 'px">🤖</div>';
+      g.innerHTML = h;
+    }
+    function plist(){ $('#r-p', stage).innerHTML = prog.length ? prog.map((k, i) => '<span class="dg-pc">' + (i + 1) + DIR[k][2] + '</span>').join('') : '<span class="dg-hint">Нажимай команды: они встанут в алгоритм</span>'; }
+    draw(); plist();
+    $$('#r-c .dg-b', stage).forEach(b => b.onclick = () => { if (busy) return; if (prog.length >= L.max){ ctx.fb('Это максимум команд. Убери лишнее.', 'bad'); return; } prog.push(b.dataset.c); plist(); });
+    $('#r-del', stage).onclick = () => { if (!busy){ prog.pop(); plist(); } };
+    $('#r-clr', stage).onclick = () => { if (!busy){ prog.length = 0; pos = L.start.slice(); draw(); plist(); ctx.fb('', 'info'); } };
+    $('#r-go', stage).onclick = async function(){
+      if (busy) return; if (!prog.length){ ctx.fb('Сначала добавь команды.', 'bad'); return; }
+      busy = true; pos = L.start.slice(); draw(); let ok = true;
+      for (const k of prog){
+        await sleep(st.fast ? 20 : 380); if (!ctx.alive()) return;
+        const nx = [pos[0] + DIR[k][0], pos[1] + DIR[k][1]];
+        if (nx[0] < 0 || nx[1] < 0 || nx[0] >= L.cols || nx[1] >= L.rows || walls.indexOf(nx.join(',')) >= 0){ ok = false; ctx.fb('Робот упёрся в стену! Найди ошибку в алгоритме.', 'bad'); ctx.miss(); break; }
+        pos = nx; draw();
+      }
+      if (ok){
+        if (pos[0] === L.goal[0] && pos[1] === L.goal[1]){
+          li++; if (li >= st.levels.length){ ctx.fb('Робот справился со всеми заданиями!', 'ok'); ctx.done(); return; }
+          ctx.fb('Робот дошёл до звезды! Следующий уровень.', 'ok'); setTimeout(() => { if (ctx.alive()) level(); }, st.fast ? 50 : 1100); return;
+        }
+        ctx.fb('Робот не дошёл до звезды. Проверь порядок команд.', 'bad'); ctx.miss();
+      }
+      await sleep(st.fast ? 20 : 700); if (!ctx.alive()) return; busy = false; pos = L.start.slice(); draw();
+    };
+  }
+  level();
+};
+/* ---- уроки ---- */
+const NEW_LESSONS = [
+  { id: 'd5', icon: '👀', title: 'Как мы получаем информацию', goal: 'Определять виды информации по способу восприятия',
+    steps: [
+      { id: 'd5s1', scene: 'infoTap', gate: true, title: 'Пять способов узнавать мир', cards: [
+        { e: '👀', b: 'Глаза', nm: 'Зрительная информация', tx: 'Мы получаем её глазами: картинки, буквы, сигнал светофора.' },
+        { e: '👂', b: 'Уши', nm: 'Слуховая информация', tx: 'Мы получаем её ушами: музыка, речь, звонок.' },
+        { e: '👃', b: 'Нос', nm: 'Обонятельная информация', tx: 'Мы получаем её носом: запах цветов, хлеба, дыма.' },
+        { e: '👅', b: 'Язык', nm: 'Вкусовая информация', tx: 'Мы получаем её языком: сладкое, кислое, солёное, горькое.' },
+        { e: '✋', b: 'Кожа', nm: 'Тактильная информация', tx: 'Мы получаем её кожей и руками: тёплое, холодное, гладкое, колючее.' }],
+        text: 'Привет! Это Барсик. Мир вокруг мы узнаём пятью способами. Глазами, ушами, носом, языком и кожей. Нажимай на картинки и узнавай, как называется каждая информация.' },
+      { id: 'd5s2', scene: 'quiz', gate: true, count: 5, gens: ['organ'], title: 'Чем мы воспринимаем?', text: 'Выбери, каким органом мы воспринимаем информацию.' },
+      { id: 'd5s3', scene: 'quiz', gate: true, count: 8, gens: ['sense'], title: 'Какая это информация?', text: 'Прочитай историю и скажи, какая это информация: зрительная, слуховая, обонятельная, вкусовая или тактильная.' }
+    ] },
+  { id: 'd6', icon: '📝', title: 'Формы информации', goal: 'Различать информацию по форме: текст, числа, рисунки, звук, видео',
+    steps: [
+      { id: 'd6s1', scene: 'infoTap', gate: true, title: 'Как выглядит информация', cards: [
+        { e: '📝', b: 'Текст', nm: 'Текстовая информация', tx: 'Слова и буквы: сообщение, книга, подпись к картинке.' },
+        { e: '🔢', b: 'Числа', nm: 'Числовая информация', tx: 'Цифры и числа: цена, номер телефона, возраст.' },
+        { e: '🖼️', b: 'Рисунок', nm: 'Графическая информация', tx: 'Рисунки, фотографии, схемы и карты.' },
+        { e: '🎵', b: 'Звук', nm: 'Звуковая информация', tx: 'Музыка, песня, голос, шум.' },
+        { e: '🎬', b: 'Видео', nm: 'Видеоинформация', tx: 'Движущиеся картинки со звуком: мультфильм, ролик.' }],
+        text: 'Информацию можно записать по-разному. Это называется формой представления. Бывает текст, числа, рисунки, звук и видео. Нажимай на картинки.' },
+      { id: 'd6s2', scene: 'quiz', gate: true, count: 8, gens: ['form'], title: 'Какая это форма?', text: 'Определи, в какой форме представлена информация.' },
+      { id: 'd6s3', scene: 'quiz', gate: true, count: 8, gens: ['form', 'sense', 'organ'], title: 'Проверим себя', text: 'Повторим всё: способы восприятия и формы информации.' }
+    ] },
+  { id: 'd7', icon: '📡', title: 'Передача информации', goal: 'Приводить примеры источников, каналов связи и приёмников информации',
+    steps: [
+      { id: 'd7s1', scene: 'infoTap', gate: true, title: 'Источник, канал, приёмник', cards: [
+        { e: '🗣️', b: 'Источник', nm: 'Источник информации', tx: 'Тот, кто передаёт информацию: учитель, мама, книга, телевизор.' },
+        { e: '📡', b: 'Канал связи', nm: 'Канал связи', tx: 'Путь, по которому идёт информация: воздух (голос), телефон, письмо, Интернет.' },
+        { e: '👂', b: 'Приёмник', nm: 'Приёмник информации', tx: 'Тот, кто получает информацию: ты, твои уши и глаза, телефон, компьютер.' }],
+        text: 'Когда мы передаём информацию, участвуют трое. Источник — кто передаёт. Канал связи — путь, по которому информация идёт. Приёмник — тот, кто получает. Нажимай на картинки.' },
+      { id: 'd7s2', scene: 'seqBuild', gate: true, title: 'Передача по телефону', q: 'Расставь по порядку: откуда идёт информация и куда.', hint: 'Сначала тот, кто говорит.', ok: 'Верно: источник, канал, приёмник!',
+        items: [{ e: '👩', t: 'Мама говорит (источник)' }, { e: '📱', t: 'Телефон передаёт голос (канал связи)' }, { e: '🧒', t: 'Ты слушаешь (приёмник)' }],
+        text: 'Мама звонит тебе по телефону. Расставь по порядку: источник, канал связи и приёмник.' },
+      { id: 'd7s3', scene: 'quiz', gate: true, count: 8, gens: ['chan'], title: 'Кто есть кто?', text: 'Найди в каждой истории источник, канал связи и приёмник информации.' }
+    ] },
+  { id: 'd8', icon: '🌐', title: 'Что такое Интернет', goal: 'Приводить примеры использования сети Интернет в жизни человека',
+    steps: [
+      { id: 'd8s1', scene: 'infoTap', gate: true, title: 'Для чего нужен Интернет', cards: [
+        { e: '🌐', b: 'Сеть', nm: 'Что такое Интернет', tx: 'Интернет — большая сеть. Она соединяет компьютеры и телефоны по всему миру.' },
+        { e: '🔎', b: 'Поиск', nm: 'Искать информацию', tx: 'Можно найти ответ на вопрос: как растут цветы, где живут пингвины.' },
+        { e: '📚', b: 'Учёба', nm: 'Учиться', tx: 'Можно смотреть уроки, читать и выполнять задания.' },
+        { e: '💬', b: 'Общение', nm: 'Общаться', tx: 'Можно писать и звонить родным, показывать им фото и видео.' },
+        { e: '🎬', b: 'Отдых', nm: 'Отдыхать', tx: 'Можно слушать музыку, смотреть мультфильмы и играть.' }],
+        text: 'Интернет — это большая сеть, которая соединяет компьютеры и телефоны по всему миру. Нажимай на картинки и узнай, как люди используют Интернет.' },
+      { id: 'd8s2', scene: 'quiz', gate: true, count: 7, gens: ['net'], title: 'Как помогает Интернет?', text: 'Подумай, как можно использовать Интернет в жизни.' }
+    ] },
+  { id: 'd9', icon: '🛡️', title: 'Безопасность в сети', goal: 'Понимать, что не вся информация в сети достоверна и полезна, беречь личные данные',
+    steps: [
+      { id: 'd9s1', scene: 'quiz', gate: true, count: 6, gens: ['trust'], title: 'Можно ли этому верить?', text: 'В Интернете не вся информация правдива. Бывают обманщики. Прочитай и реши, можно ли верить.' },
+      { id: 'd9s2', scene: 'quiz', gate: true, count: 6, gens: ['useful'], title: 'Полезная или вредная?', text: 'Информация бывает полезной, а бывает вредной. Подумай, какая она.' },
+      { id: 'd9s3', scene: 'quiz', gate: true, count: 8, gens: ['priv'], title: 'Личная информация', text: 'Личную информацию нельзя сообщать незнакомым людям: адрес, телефон, пароль, школу. Реши, что можно, а что нельзя.' },
+      { id: 'd9s4', scene: 'quiz', gate: true, count: 6, gens: ['safe', 'priv', 'trust'], title: 'Как вести себя в сети', text: 'Проверим, как ты умеешь защищать себя в Интернете. Если что-то странное, всегда расскажи взрослым.' }
+    ] },
+  { id: 'd10', icon: '🎨', title: 'Рисуем фигурами', goal: 'Создавать изображение из стандартных фигур, выбирать цвет, контур, заливку и фон',
+    steps: [
+      { id: 'd10s1', scene: 'infoTap', gate: true, title: 'Графический редактор', cards: [
+        { e: '⭐', b: 'Фигуры', nm: 'Стандартные фигуры', tx: 'Круг, квадрат, треугольник, звезда, стрелка. Из них можно составить рисунок.' },
+        { e: '🎨', b: 'Палитра', nm: 'Палитра', tx: 'Палитра — набор цветов. Из неё выбирают цвет линии, заливки или фона.' },
+        { e: '🖍️', b: 'Контур', nm: 'Контур', tx: 'Контур — линия вокруг фигуры. Он может быть тонким, толстым или пунктиром.' },
+        { e: '🪣', b: 'Заливка', nm: 'Заливка', tx: 'Заливка — цвет внутри фигуры.' },
+        { e: '🖼️', b: 'Фон', nm: 'Фон', tx: 'Фон — цвет холста позади фигур.' }],
+        text: 'В графическом редакторе можно рисовать на компьютере. У редактора есть фигуры, палитра цветов, контур, заливка и фон. Нажимай на картинки.' },
+      { id: 'd10s2', scene: 'quiz', gate: true, count: 6, gens: ['gedT'], title: 'Как называется?', text: 'Вспомни названия: контур, заливка, фон и палитра.' },
+      { id: 'd10s3', scene: 'gEdit', gate: true, ui: 'draw', title: 'Рисуем в редакторе', tasks: [
+        { t: 'Нарисуй на холсте круг и квадрат', h: 'Выбери фигуру (Круг), нажми на холст. Потом выбери Квадрат и снова нажми на холст.', ok: S => S.shapes.some(s => s.type === 'circle') && S.shapes.some(s => s.type === 'square') },
+        { t: 'Выбери красный цвет линии и нарисуй треугольник', h: 'Внизу выбери «Линия», потом красный цвет. Затем фигура Треугольник и нажми на холст.', ok: S => S.shapes.some(s => s.type === 'triangle' && s.stroke === 'красный') },
+        { t: 'Выбери голубой цвет фона', h: 'Нажми кнопку «Фон», затем голубой цвет.', ok: S => S.bg === 'голубой' },
+        { t: 'Нарисуй фигуру с толстым контуром', h: 'Выбери «Контур: толстый» и нажми на холст.', ok: S => S.shapes.some(s => s.sw >= 9) },
+        { t: 'Нарисуй фигуру с жёлтой заливкой', h: 'Нажми «Заливка», выбери жёлтый цвет, потом нарисуй любую фигуру.', ok: S => S.shapes.some(s => s.fill === 'жёлтый') }],
+        text: 'Теперь попробуй сам! Выполняй задания по порядку. Нажимай на кнопки с фигурами и цветами, потом на холст.' }
+    ] },
+  { id: 'd11', icon: '✂️', title: 'Правим рисунок', goal: 'Выделять фрагмент, копировать, вырезать, вставлять, поворачивать и отражать, закрашивать',
+    steps: [
+      { id: 'd11s1', scene: 'infoTap', gate: true, title: 'Инструменты правки', cards: [
+        { e: '🔲', b: 'Выделить', nm: 'Выделение', tx: 'Чтобы работать с фрагментом, его нужно выделить рамкой: прямоугольной или овальной.' },
+        { e: '📄', b: 'Копировать', nm: 'Копировать и вставить', tx: 'Копировать запоминает фрагмент, Вставить кладёт его ещё раз. Так получается копия.' },
+        { e: '✂️', b: 'Вырезать', nm: 'Вырезать и вставить', tx: 'Вырезать убирает фрагмент, Вставить кладёт его в другое место.' },
+        { e: '🔄', b: 'Повернуть', nm: 'Повернуть', tx: 'Поворот наклоняет фигуру: на четверть оборота за раз.' },
+        { e: '↔️', b: 'Отразить', nm: 'Отразить', tx: 'Отражение переворачивает фигуру как в зеркале.' },
+        { e: '🪣', b: 'Заливка', nm: 'Заливка цветом', tx: 'Выбери цвет, нажми на фигуру — она закрасится. Нажми на фон — закрасится фон.' }],
+        text: 'Рисунок можно править. Выделить фрагмент, скопировать, вырезать, вставить, повернуть, отразить и закрасить. Нажимай на картинки.' },
+      { id: 'd11s2', scene: 'gEdit', gate: true, ui: 'edit',
+        pre: [{ type: 'circle', x: 70, y: 70, stroke: 'зелёный', fill: 'голубой' }, { type: 'square', x: 180, y: 70, stroke: 'чёрный', fill: 'белый' }, { type: 'arrow', x: 120, y: 170, stroke: 'красный', fill: 'розовый' }],
+        title: 'Правим картинку', tasks: [
+          { t: 'Выдели круг рамкой', h: 'Выбери «Выделить» и обведи круг рамкой: нажми и тяни.', ok: S => S.sel.some(id => (S.shapes.find(s => s.id === id) || {}).type === 'circle') },
+          { t: 'Скопируй круг и вставь копию', h: 'Нажми «Копировать», затем «Вставить».', ok: S => S.shapes.filter(s => s.type === 'circle').length >= 2 },
+          { t: 'Вырежь квадрат и вставь его в другое место', h: 'Выдели квадрат, нажми «Вырезать», потом «Вставить».', ok: S => S.log.indexOf('cut') >= 0 && S.log.lastIndexOf('paste') > S.log.indexOf('cut') && S.shapes.filter(s => s.type === 'square').length === 1 },
+          { t: 'Поверни стрелку', h: 'Выдели стрелку и нажми «Повернуть».', ok: S => S.shapes.some(s => s.type === 'arrow' && s.rot !== 0) },
+          { t: 'Отрази стрелку', h: 'Стрелка выделена? Нажми «Отразить».', ok: S => S.shapes.some(s => s.type === 'arrow' && s.flip) },
+          { t: 'Закрась квадрат красным инструментом «Заливка»', h: 'Выбери «Заливка», цель «Заливка» в палитре и красный цвет. Нажми на квадрат.', ok: S => S.shapes.some(s => s.type === 'square' && s.fill === 'красный') && S.log.indexOf('bucket') >= 0 }],
+        text: 'На холсте уже есть три фигуры. Выполняй задания по порядку: выдели, скопируй, вырежи, поверни, отрази и закрась.' },
+      { id: 'd11s3', scene: 'quiz', gate: true, count: 6, gens: ['gedE', 'gedT'], title: 'Что делает инструмент?', text: 'Вспомни, что делает каждый инструмент.' }
+    ] },
+  { id: 'd12', icon: '🤖', title: 'Алгоритмы и роботы', goal: 'Объяснять понятия алгоритм, действие, команда; определять исполнителя и систему команд; приводить примеры алгоритмов',
+    steps: [
+      { id: 'd12s1', scene: 'infoTap', gate: true, title: 'Слова-помощники', cards: [
+        { e: '📋', b: 'Алгоритм', nm: 'Алгоритм', tx: 'Понятный порядок действий, который ведёт к цели. Например: как помыть руки.' },
+        { e: '👣', b: 'Действие', nm: 'Действие', tx: 'Один шаг: открыть кран, взять мыло.' },
+        { e: '📣', b: 'Команда', nm: 'Команда', tx: 'Приказ исполнителю сделать одно действие: «Шаг вперёд!».' },
+        { e: '🤖', b: 'Исполнитель', nm: 'Исполнитель', tx: 'Тот, кто выполняет команды: человек, робот или компьютер.' },
+        { e: '🔤', b: 'Система команд', nm: 'Система команд', tx: 'Все команды, которые понимает исполнитель. Наш робот знает четыре: вверх, вниз, влево, вправо.' }],
+        text: 'Сегодня узнаем важные слова. Алгоритм — порядок действий. Действие — один шаг. Команда — приказ. Исполнитель — тот, кто выполняет команды. А система команд — это все команды, которые он понимает.' },
+      { id: 'd12s2', scene: 'quiz', gate: true, count: 7, gens: ['algD'], title: 'Что это за слово?', text: 'Вспомни слова: алгоритм, действие, команда, исполнитель, система команд.' },
+      { id: 'd12s3', scene: 'robot', gate: true, title: 'Управляем роботом', levels: [
+        { cols: 4, rows: 3, start: [0, 0], goal: [3, 0], walls: [], max: 4, sol: 'RRR' },
+        { cols: 4, rows: 3, start: [0, 2], goal: [3, 0], walls: [[1, 2], [1, 1]], max: 6, sol: 'UURRR' },
+        { cols: 5, rows: 4, start: [0, 0], goal: [4, 3], walls: [[1, 0], [1, 1], [3, 2], [3, 3]], max: 10, sol: 'DDRRURRDD' }],
+        text: 'Ты исполнитель команд для робота. Составь алгоритм из команд так, чтобы робот дошёл до звезды и не упёрся в стену. Нажимай команды, потом «Пуск».' },
+      { id: 'd12s4', scene: 'quiz', gate: true, count: 6, gens: ['algL'], title: 'Алгоритмы в жизни', text: 'Алгоритмы есть везде: в рецептах, инструкциях, правилах. Найди примеры.' },
+      { id: 'd12s5', scene: 'quiz', gate: true, count: 12, gens: ['devName', 'devDo', 'ruleYN', 'algFirst', 'sense', 'form', 'chan', 'net', 'trust', 'priv', 'gedE', 'algD'], title: 'Смешанные задания', text: 'Последняя проверка курса: устройства, информация, Интернет, редактор и алгоритмы.' },
+      { id: 'd12s6', scene: 'finale', title: 'Курс пройден!', text: 'Теперь ты знаешь устройства компьютера, виды информации, правила безопасности в Интернете, умеешь рисовать в графическом редакторе и составлять алгоритмы для робота. Дальше тренируйся в играх. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const d4 = LESSONS.find(l => l.id === 'd4'); d4.steps = d4.steps.filter(s => s.scene !== 'finale');
+  NEW_LESSONS.forEach(l => LESSONS.push(l));
+})();
 
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){
