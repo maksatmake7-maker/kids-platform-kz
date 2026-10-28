@@ -749,7 +749,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
         if(!v.noq) r.push(v.k === 'add' ? 'f:howmanynow' : v.k === 'sub' ? 'f:left' : 'f:howsecond');
         return r; },
       findpart:function(v){ return ['f:findpart', 'f:n_'+v.k]; },
-      findbody:function(v){ return ['f:findbody', 'f:n_'+v.k]; },
+      findbody:function(v){ return ['f:findshape', 'f:n_'+v.k]; },
       findname:function(v){ return ['f:findit', 'f:n_'+v.k]; },
       seq:function(v){ return v.list; },
       named: function(v){ return ['f:n_'+v.n].concat(v.q ? ['f:'+v.q] : []); },
