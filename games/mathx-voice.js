@@ -855,7 +855,8 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   var base = (window.__mxBase || '../../../games/') + '../assets/audio/barsik/';
   var token = 0, curAudio = null, enabled = true;
   /* адрес клипа; клипы 2 класса (id начинается с g2_ / f_g2_) лежат в подпапке g2, чтобы не раздувать общую папку */
-  function clipUrl(c, L){ return base + (c.ru ? 'ru' : (c.kz ? 'kz' : L)) + (/^(f_)?g2_/.test(c.id) ? '/g2/' : '/') + c.id + '.mp3'; }
+  function clipUrl(c, L, flat){ return base + (c.ru ? 'ru' : (c.kz ? 'kz' : L)) + (!flat && /^(f_)?g2_/.test(c.id) ? '/g2/' : '/') + c.id + '.mp3'; }
+  function isG2(c){ return /^(f_)?g2_/.test(c.id); }
   try { enabled = localStorage.getItem('bilim_mx_snd') !== '0'; } catch(e){}
 
   var MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск|daniel|david|james|google uk english male/i;
@@ -919,7 +920,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
       (function next(){
         if(tok !== token) return resolve();
         if(i >= cl.length) return done();
-        var a = new Audio(clipUrl(cl[i], L));
+        var a = new Audio(cl[i].url || clipUrl(cl[i], L));
         curAudio = a;
         var from = i;
         var isKz = !!cl[i].kz || (!cl[i].ru && L === 'kz');
@@ -928,7 +929,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
         arm(9000);
         a.onloadedmetadata = function(){ if(isFinite(a.duration)) arm(a.duration / rate * 1000 + 2500 + 1200 * (cl.length - from)); };
         a.onended = function(){ i++; if(isKz && i < cl.length) setTimeout(next, KZ_GAP); else next(); };
-        a.onerror = function(){ tts(from); };
+        a.onerror = function(){ var c = cl[from]; if(c && isG2(c) && !c.flat){ c.flat = true; c.url = clipUrl(c, L, true); try { a.src = c.url; a.load(); var q = a.play(); if(q && q.catch) q.catch(function(){ tts(from); }); return; } catch(e){} } tts(from); };
         var p; try { p = a.play(); } catch(e){ tts(from); return; }
         if(p && p.catch) p.catch(function(){ tts(from); });
       })();
@@ -939,8 +940,16 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   var PROBE = {}, sayGen = 0;
   function probe(c){
     var u = clipUrl(c, lang());
-    if(!PROBE[u]) PROBE[u] = window.fetch ? fetch(u, { method:'HEAD' }).then(function(r){ return !!r.ok; }, function(){ return false; }) : Promise.resolve(false);
-    return PROBE[u];
+    if(!PROBE[u]){
+      var head = function(x){ return window.fetch ? fetch(x, { method:'HEAD' }).then(function(r){ return !!r.ok; }, function(){ return false; }) : Promise.resolve(false); };
+      PROBE[u] = head(u).then(function(ok){
+        if(ok) return u;
+        if(!isG2(c)) return null;
+        var f = clipUrl(c, lang(), true);   // запасной адрес: файл мог быть загружен в общую папку ru
+        return head(f).then(function(ok2){ return ok2 ? f : null; });
+      });
+    }
+    return PROBE[u].then(function(url){ if(url) c.url = url; return !!url; });
   }
   function say(cl, o){
     cl = cl || [];
