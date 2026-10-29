@@ -253,7 +253,7 @@
   .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
   .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
   .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
-  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:62px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:14px;height:14px;border-radius:50%;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
   .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
   .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
   .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
@@ -261,6 +261,8 @@
   .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
   .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
   .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
 </style>
 </head>
 <body class="w-page" data-subject="math">
@@ -296,11 +298,11 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Математика 2 класс</h1>
-      <p class="ac-sub">10 уроков: числа до 100 и 1000, десятки и единицы, счёт группами, римские цифры, устный счёт и столбик</p>
+      <p class="ac-sub">20 уроков: числа до 1000, разряды, счёт, римские цифры, устный счёт и столбик, умножение и деление, выражения и уравнения</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
-        <div class="ac-progress-txt" id="ac-ptxt">0 из 10</div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 20</div>
       </div>
       <div class="ac-map" id="ac-map"></div>
     </div>
@@ -661,6 +663,23 @@ SCENES.colWalk = function(stage, st, ctx){
   $('#w-n', stage).onclick = function(){ step++; draw(); };
 };
 
+/* строим «групп по k» и видим сумму и произведение */
+SCENES.mulBuild = function(stage, st, ctx){
+  let g = 2, k = 3; const seen = {};
+  stage.innerHTML = '<div class="m2-ctl"><span>групп</span><button class="ac-btn ac-alt" data-a="g-">−</button><b id="u-g"></b><button class="ac-btn ac-alt" data-a="g+">+</button></div><div class="m2-ctl"><span>в каждой по</span><button class="ac-btn ac-alt" data-a="k-">−</button><b id="u-k"></b><button class="ac-btn ac-alt" data-a="k+">+</button></div><div id="u-v"></div><div class="ac-qtxt m2-big" id="u-t"></div><div class="ac-qtxt m2-ex" id="u-x"></div>';
+  function draw(){
+    $('#u-g', stage).textContent = g; $('#u-k', stage).textContent = k; $('#u-v', stage).innerHTML = grpHTML(g, k);
+    $('#u-t', stage).innerHTML = Array(g).fill(k).join(' + ') + ' = ' + k * g;
+    $('#u-x', stage).innerHTML = 'Это умножение: <b>' + k + ' · ' + g + ' = ' + k * g + '</b><br>' + k + ' и ' + g + ' — множители, ' + k * g + ' — произведение.';
+    seen[k + 'x' + g] = 1; const n = Object.keys(seen).length;
+    if (n >= 4){ ctx.fb('Видишь? Умножение — это сложение одинаковых слагаемых.', 'ok'); ctx.done(); } else ctx.fb('Попробуй ещё разные группы: ' + n + ' из 4.', 'info');
+  }
+  $$('[data-a]', stage).forEach(b => b.onclick = function(){
+    const a = b.dataset.a; if (a === 'g+' && g < 6) g++; else if (a === 'g-' && g > 1) g--; else if (a === 'k+' && k < 6) k++; else if (a === 'k-' && k > 1) k--; draw();
+  });
+  draw();
+};
+
 /* ---------- генераторы вопросов ---------- */
 const SWAP = n => (n % 10) * 10 + Math.floor(n / 10);
 const ROM = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
@@ -856,6 +875,155 @@ GENS.patternBreak = function(){
   return { html: big(shown.join(', ') + '<br><small>Какое число нарушает закономерность?</small>'), opts: shuffle([bad].concat(others)), ans: bad, hint: 'Числа должны расти на ' + d + ': ' + seq.slice(0, p).join(', ') + ', … Ищи число, которое не подходит.' };
 };
 
+/* ---------- часть 2: умножение, деление, выражения, уравнения ---------- */
+const COLS10 = ['#E0574A', '#3B82F6', '#3FAE5A', '#F5B400', '#9B5DE5', '#00A6A6', '#FF8FAB', '#8B6B3E', '#6C7A89', '#FF7A00'];
+function grpHTML(g, k){
+  let h = '<div class="m2-split" aria-label="' + g + ' групп по ' + k + '">';
+  for (let i = 0; i < g; i++) h += '<div class="m2-part" style="border-color:' + COLS10[i % 10] + '">' + ('<i style="background:' + COLS10[i % 10] + '"></i>').repeat(k) + '</div>';
+  return h + '</div>';
+}
+function mulTableHTML(n){
+  let h = '<table class="m2-mt"><tr><th>Умножение</th><th>Деление</th></tr>';
+  for (let i = 1; i <= 10; i++) h += '<tr><td>' + n + ' · ' + i + ' = ' + n * i + '</td><td>' + n * i + ' : ' + n + ' = ' + i + '</td></tr>';
+  return h + '</table>';
+}
+const evx = s => Function('"use strict";return (' + s.replace(/·/g, '*').replace(/−/g, '-').replace(/:/g, '/') + ')')();
+const rep = (k, g) => Array(g).fill(k).join(' + ');
+
+GENS.mulAdd = function(){
+  const k = rnd(2, 5); let g; do { g = rnd(2, 5); } while (g === k);
+  const t = rnd(0, 3);
+  if (t === 0) return { html: big('Замени сложение умножением:<br>' + rep(k, g)), opts: shuffle([k + ' · ' + g, k + ' + ' + g, g + ' · ' + g, k + ' · ' + k]), ans: k + ' · ' + g, hint: 'Слагаемое ' + k + ' повторяется ' + g + ' раза. Пишем: ' + k + ' · ' + g + ' (по ' + k + ' взяли ' + g + ' раза).' };
+  if (t === 1) return { html: big('Запиши суммой одинаковых слагаемых:<br>' + k + ' · ' + g), opts: shuffle([rep(k, g), k + ' + ' + g, rep(g, g), rep(k, g + 1)]), ans: rep(k, g), hint: k + ' · ' + g + ' значит: число ' + k + ' берём ' + g + ' раза. ' + rep(k, g) + '.' };
+  if (t === 2) return { html: big('Найди значение: ' + k + ' · ' + g), opts: opts4(k * g, [k + g, k * g + k, k * g - k, k * g + 1]), ans: k * g, hint: 'Заменим умножение сложением: ' + rep(k, g) + ' = ' + k * g + '.' };
+  return { html: '<div class="ac-qtxt">Сколько всего кружков?</div>' + grpHTML(g, k), opts: opts4(k * g, [k + g, k * g + k, k * g - k, k * g + 1]), ans: k * g, hint: 'В каждой группе по ' + k + ', групп ' + g + '. ' + rep(k, g) + ' = ' + k * g + ', или ' + k + ' · ' + g + ' = ' + k * g + '.' };
+};
+function compK(k){
+  const a = rnd(2, 5), b = rnd(2, 9), p = a * b, mul = a + ' · ' + b + ' = ' + p, dv = p + ' : ' + a + ' = ' + b;
+  if (k === 0) return { html: big('В записи <b>' + mul + '</b> число ' + p + ' называется…'), opts: ['произведение', 'множитель', 'слагаемое', 'сумма'], ans: 'произведение', hint: 'Числа, которые умножаем, — множители. Результат умножения — произведение.' };
+  if (k === 1) return { html: big('В записи <b>' + mul + '</b> числа ' + a + ' и ' + b + ' называются…'), opts: ['множители', 'слагаемые', 'делимое и делитель', 'уменьшаемое и вычитаемое'], ans: 'множители', wide: true, hint: 'Числа, которые умножаем, называются множителями.' };
+  if (k === 2) return { html: big('В записи <b>' + dv + '</b> число ' + p + ' называется…'), opts: ['делимое', 'делитель', 'частное', 'произведение'], ans: 'делимое', hint: 'Число, которое делим, — делимое. Число, на которое делим, — делитель. Результат — частное.' };
+  if (k === 3) return { html: big('В записи <b>' + dv + '</b> число ' + a + ' называется…'), opts: ['делитель', 'делимое', 'частное', 'множитель'], ans: 'делитель', hint: 'Число, на которое делим, называется делителем.' };
+  if (k === 4) return { html: big('В записи <b>' + dv + '</b> число ' + b + ' называется…'), opts: ['частное', 'делимое', 'делитель', 'произведение'], ans: 'частное', hint: 'Результат деления называется частным.' };
+  if (k === 5) return { html: big('Как прочитать выражение <b>' + a + ' · ' + b + '</b>?'), opts: ['произведение чисел ' + a + ' и ' + b, 'сумма чисел ' + a + ' и ' + b, 'разность чисел ' + a + ' и ' + b, 'частное чисел ' + a + ' и ' + b], ans: 'произведение чисел ' + a + ' и ' + b, wide: true, hint: 'Умножение читается словом «произведение».' };
+  return { html: big('Как прочитать выражение <b>' + p + ' : ' + a + '</b>?'), opts: ['частное чисел ' + p + ' и ' + a, 'произведение чисел ' + p + ' и ' + a, 'сумма чисел ' + p + ' и ' + a, 'разность чисел ' + p + ' и ' + a], ans: 'частное чисел ' + p + ' и ' + a, wide: true, hint: 'Деление читается словом «частное».' };
+}
+GENS.compName = () => compK(rnd(0, 6));
+GENS.compMulN = () => compK(pick([0, 1, 5]));
+GENS.compDivN = () => compK(pick([2, 3, 4, 6]));
+GENS.divQ = function(){
+  const d = rnd(2, 5), q = rnd(2, 9), N = d * q, t = rnd(0, 3), o = opts4(q, [q + 1, q - 1, N - d, d, q + 2].filter(x => x > 0));
+  if (t === 0) return { html: big(N + ' яблок разложили поровну на ' + d + ' тарелок. Сколько яблок на каждой тарелке?'), opts: o, ans: q, hint: 'Делим на равные части: ' + N + ' : ' + d + ' = ' + q + ', потому что ' + d + ' · ' + q + ' = ' + N + '.' };
+  if (t === 1) return { html: big(N + ' яблок разложили по ' + d + ' яблока на тарелки. Сколько понадобилось тарелок?'), opts: o, ans: q, hint: 'Узнаём, сколько раз по ' + d + ' содержится в ' + N + ': ' + N + ' : ' + d + ' = ' + q + '.' };
+  if (t === 2) return { html: big('Реши: ' + N + ' : ' + d), opts: o, ans: q, hint: 'Спроси себя: ' + d + ' умножить на сколько получится ' + N + '? ' + d + ' · ' + q + ' = ' + N + '.' };
+  return { html: big('В ' + d + ' одинаковых пакетах всего ' + N + ' конфет. Сколько конфет в одном пакете?'), opts: o, ans: q, hint: 'Делим поровну: ' + N + ' : ' + d + ' = ' + q + '.' };
+};
+GENS.inverse = function(){
+  const a = rnd(2, 5), b = rnd(2, 9), p = a * b, t = rnd(0, 4);
+  if (t === 0) return { html: big(a + ' · ' + b + ' = ' + p + '.<br>Чему равно ' + p + ' : ' + a + '?'), opts: opts4(b, [a, b + 1, b - 1, p]), ans: b, hint: 'Деление — действие, обратное умножению. Если ' + a + ' · ' + b + ' = ' + p + ', то ' + p + ' : ' + a + ' = ' + b + '.' };
+  if (t === 1) return { html: big(a + ' · ' + b + ' = ' + p + '.<br>Чему равно ' + p + ' : ' + b + '?'), opts: opts4(a, [b, a + 1, a + 2, p]), ans: a, hint: 'Произведение делим на один множитель — получаем другой: ' + p + ' : ' + b + ' = ' + a + '.' };
+  if (t === 2) return { html: big(a + ' · ☐ = ' + p), opts: opts4(b, [a, b + 1, b - 1, p - a]), ans: b, hint: 'Неизвестный множитель = произведение : известный множитель. ' + p + ' : ' + a + ' = ' + b + '.' };
+  if (t === 3) return { html: big('☐ : ' + a + ' = ' + b), opts: opts4(p, [p + a, p - a, a + b, p + 1]), ans: p, hint: 'Неизвестное делимое = частное · делитель. ' + b + ' · ' + a + ' = ' + p + '.' };
+  return { html: big(p + ' : ☐ = ' + a), opts: opts4(b, [a, p - a, b + 1, b - 1]), ans: b, hint: 'Неизвестный делитель = делимое : частное. ' + p + ' : ' + a + ' = ' + b + '.' };
+};
+function tabGen(list){
+  return function(){
+    const a = pick(list), b = rnd(1, 10), p = a * b, t = rnd(0, 3);
+    const seq = Array.from({ length: b }, (_, i) => a * (i + 1)).join(', ');
+    const o = (c) => opts4(c, [c + a, c - a, c + 1, c - 1, a + b]);
+    if (t === 0) return { html: big(a + ' · ' + b), opts: o(p), ans: p, hint: 'Считаем по ' + a + ': ' + seq + '. Получилось ' + p + '.' };
+    if (t === 1) return { html: big(p + ' : ' + a), opts: opts4(b, [b + 1, b - 1, b + 2, a]), ans: b, hint: 'Вспомни таблицу умножения: ' + a + ' · ' + b + ' = ' + p + ', значит ' + p + ' : ' + a + ' = ' + b + '.' };
+    if (t === 2) return { html: big(a + ' · ☐ = ' + p), opts: opts4(b, [b + 1, b - 1, b + 2, a]), ans: b, hint: 'Считаем по ' + a + ' до ' + p + ': ' + seq + '. Взяли ' + b + ' раз(а).' };
+    const g = Math.min(b, 5);
+    return { html: '<div class="ac-qtxt">Сколько всего кружков?</div>' + grpHTML(g, a), opts: o(a * g), ans: a * g, hint: 'Групп ' + g + ', в каждой по ' + a + ': ' + rep(a, g) + ' = ' + a * g + ', то есть ' + a + ' · ' + g + ' = ' + a * g + '.' };
+  };
+}
+GENS.tab23 = tabGen([2, 3]); GENS.tab45 = tabGen([4, 5]); GENS.tabAll = tabGen([2, 3, 4, 5]);
+GENS.mulOne = function(){
+  const n = rnd(2, 59), t = rnd(0, 3);
+  const H = 'При умножении на 1 получается то же число: a · 1 = a. При делении на 1 — тоже: a : 1 = a.';
+  if (t === 0) return { html: big(n + ' · 1'), opts: opts4(n, [n + 1, n - 1, 1, n * 10]), ans: n, hint: H };
+  if (t === 1) return { html: big('1 · ' + n), opts: opts4(n, [n + 1, n - 1, 1, n * 10]), ans: n, hint: H + ' Множители можно переставить: 1 · ' + n + ' = ' + n + ' · 1.' };
+  if (t === 2) return { html: big(n + ' : 1'), opts: opts4(n, [n + 1, n - 1, 1, 0]), ans: n, hint: H };
+  return { html: big('☐ · 1 = ' + n), opts: opts4(n, [n + 1, n - 1, 1, n * 10]), ans: n, hint: H };
+};
+const PROPS = [['a + b = b + a', 'переместительное свойство сложения'], ['(a + b) + c = a + (b + c)', 'сочетательное свойство сложения'], ['a · b = b · a', 'переместительное свойство умножения'], ['a · 1 = a', 'умножение числа на 1'], ['a : 1 = a', 'деление числа на 1']];
+GENS.propLetter = function(){
+  const t = rnd(0, 3), i = rnd(0, 4);
+  if (t === 0) return { html: big('Какое равенство выражает<br>' + PROPS[i][1] + '?'), opts: shuffle([PROPS[i][0]].concat(shuffle(PROPS.filter((x, j) => j !== i)).slice(0, 3).map(x => x[0]))), ans: PROPS[i][0], wide: true, hint: 'Переставили слагаемые — a + b = b + a. Переставили множители — a · b = b · a. Скобки в сумме — сочетательное свойство.' };
+  if (t === 1) return { html: big('Как называется свойство:<br><b>' + PROPS[i][0] + '</b>?'), opts: shuffle([PROPS[i][1]].concat(shuffle(PROPS.filter((x, j) => j !== i)).slice(0, 3).map(x => x[1]))), ans: PROPS[i][1], wide: true, hint: 'Буквы a, b, c — любые числа. Смотри, что меняется: порядок чисел или скобки.' };
+  const k = rnd(2, 9); let m; do { m = rnd(2, 9); } while (m === k);
+  if (t === 2) return { html: big(k + ' · ' + m + ' = ☐ · ' + k), opts: opts4(m, [k, m + 1, k * m, m - 1].filter(x => x > 0)), ans: m, hint: 'От перестановки множителей произведение не меняется: ' + k + ' · ' + m + ' = ' + m + ' · ' + k + '.' };
+  return { html: big(k + ' + ' + m + ' = ' + m + ' + ☐'), opts: opts4(k, [m, k + 1, k * m, k - 1].filter(x => x > 0)), ans: k, hint: 'От перестановки слагаемых сумма не меняется: ' + k + ' + ' + m + ' = ' + m + ' + ' + k + '.' };
+};
+GENS.letterExpr = function(){
+  const L = pick(['a', 'b', 'x', 'y', 'c']), n = rnd(2, 9), t = rnd(0, 5);
+  if (t === 0) return { html: big('Запиши выражение:<br>сумма числа ' + L + ' и ' + n), opts: shuffle([L + ' + ' + n, L + ' − ' + n, L + ' · ' + n, n + ' − ' + L]), ans: L + ' + ' + n, hint: 'Сумма — это сложение: ' + L + ' + ' + n + '.' };
+  if (t === 1) return { html: big('Запиши выражение:<br>разность ' + L + ' и ' + n), opts: shuffle([L + ' − ' + n, L + ' + ' + n, n + ' − ' + L, L + ' : ' + n]), ans: L + ' − ' + n, hint: 'Разность — вычитание. Первым пишем то, из чего вычитаем: ' + L + ' − ' + n + '.' };
+  if (t === 2) return { html: big('Запиши выражение:<br>произведение ' + L + ' и ' + n), opts: shuffle([L + ' · ' + n, L + ' + ' + n, L + ' : ' + n, n + ' − ' + L]), ans: L + ' · ' + n, hint: 'Произведение — умножение: ' + L + ' · ' + n + '.' };
+  if (t === 3) { const p = n * rnd(2, 5); return { html: big('Запиши выражение:<br>частное ' + p + ' и ' + L), opts: shuffle([p + ' : ' + L, L + ' : ' + p, p + ' · ' + L, p + ' − ' + L]), ans: p + ' : ' + L, hint: 'Частное — деление. Первым пишем делимое: ' + p + ' : ' + L + '.' }; }
+  const a = rnd(2, 6), k = rnd(2, 5), m = rnd(1, 9), f = rnd(0, 3);
+  if (f === 0) return { html: big('Найди значение выражения<br><b>a · ' + k + ' + ' + m + '</b> при a = ' + a), opts: opts4(a * k + m, [a + k + m, a * (k + m), a * k, a * k + m + 1]), ans: a * k + m, hint: 'Подставь число: ' + a + ' · ' + k + ' + ' + m + '. Сначала умножение: ' + a * k + '. Потом сложение: ' + (a * k + m) + '.' };
+  if (f === 1) { const mm = a * k + rnd(1, 9); return { html: big('Найди значение выражения<br><b>' + mm + ' − a · ' + k + '</b> при a = ' + a), opts: opts4(mm - a * k, [(mm - a) * k, mm - a - k, mm - a * k + 1, mm + a * k]), ans: mm - a * k, hint: 'Подставь: ' + mm + ' − ' + a + ' · ' + k + '. Сначала умножение: ' + a * k + '. Потом вычитание: ' + (mm - a * k) + '.' }; }
+  if (f === 2) { const A = k * rnd(2, 8); return { html: big('Найди значение выражения<br><b>a : ' + k + ' + ' + m + '</b> при a = ' + A), opts: opts4(A / k + m, [A / k, A + m, A / k + m + 1, A / (k + m) | 0]), ans: A / k + m, hint: 'Подставь: ' + A + ' : ' + k + ' + ' + m + '. Сначала деление: ' + A / k + '. Потом сложение: ' + (A / k + m) + '.' }; }
+  return { html: big('Найди значение выражения<br><b>(a + ' + m + ') · ' + k + '</b> при a = ' + a), opts: opts4((a + m) * k, [a + m * k, (a + m) + k, (a + m) * k + k, (a + m) * k - 1]), ans: (a + m) * k, hint: 'Подставь: (' + a + ' + ' + m + ') · ' + k + '. Сначала скобки: ' + (a + m) + '. Потом умножение: ' + (a + m) * k + '.' };
+};
+GENS.orderOps = function(){
+  const f = rnd(0, 8); let e, h;
+  if (f === 0){ const a = rnd(20, 60), b = rnd(5, 15), c = rnd(2, 15); e = a + ' − ' + b + ' + ' + c; h = 'Сложение и вычитание выполняем по порядку слева направо: ' + a + ' − ' + b + ' = ' + (a - b) + ', потом ' + (a - b) + ' + ' + c + ' = ' + (a - b + c) + '.'; }
+  else if (f === 1){ const a = rnd(5, 30), b = rnd(2, 5), c = rnd(2, 9); e = a + ' + ' + b + ' · ' + c; h = 'Умножение выполняем раньше сложения: ' + b + ' · ' + c + ' = ' + b * c + ', потом ' + a + ' + ' + b * c + ' = ' + (a + b * c) + '.'; }
+  else if (f === 2){ const a = rnd(2, 5), b = rnd(2, 9), c = rnd(1, 20); e = a + ' · ' + b + ' + ' + c; h = 'Сначала умножение: ' + a + ' · ' + b + ' = ' + a * b + ', потом ' + a * b + ' + ' + c + ' = ' + (a * b + c) + '.'; }
+  else if (f === 3){ const b = rnd(2, 5), c = rnd(2, 9), a = b * c + rnd(1, 15); e = a + ' − ' + b + ' · ' + c; h = 'Умножение раньше вычитания: ' + b + ' · ' + c + ' = ' + b * c + ', потом ' + a + ' − ' + b * c + ' = ' + (a - b * c) + '.'; }
+  else if (f === 4){ const c = rnd(2, 5), a = rnd(2, 12), b = rnd(2, 20 - a > 2 ? 20 - a : 3); e = '(' + a + ' + ' + b + ') · ' + c; h = 'Сначала действие в скобках: ' + a + ' + ' + b + ' = ' + (a + b) + ', потом ' + (a + b) + ' · ' + c + ' = ' + (a + b) * c + '.'; }
+  else if (f === 5){ const c = rnd(2, 5), q = rnd(3, 9), s = c * q, a = rnd(1, s - 1), b = s - a; e = '(' + a + ' + ' + b + ') : ' + c; h = 'Сначала скобки: ' + a + ' + ' + b + ' = ' + s + ', потом ' + s + ' : ' + c + ' = ' + q + '.'; }
+  else if (f === 6){ const b = rnd(2, 5), q = rnd(2, 9), a = b * q, c = rnd(1, 20); e = a + ' : ' + b + ' + ' + c; h = 'Деление раньше сложения: ' + a + ' : ' + b + ' = ' + q + ', потом ' + q + ' + ' + c + ' = ' + (q + c) + '.'; }
+  else if (f === 7){ const a = rnd(2, 5), b = rnd(2, 6), c = rnd(2, 5), d = rnd(2, 6); e = a + ' · ' + b + ' + ' + c + ' · ' + d; h = 'Сначала оба умножения: ' + a + ' · ' + b + ' = ' + a * b + ' и ' + c + ' · ' + d + ' = ' + c * d + '. Потом сложение: ' + (a * b + c * d) + '.'; }
+  else { const a = rnd(30, 60), b = rnd(5, 15), c = rnd(2, 5), d = rnd(2, 6); e = a + ' − ' + b + ' + ' + c + ' · ' + d; h = 'Умножение первым: ' + c + ' · ' + d + ' = ' + c * d + '. Дальше слева направо: ' + a + ' − ' + b + ' = ' + (a - b) + ', потом ' + (a - b) + ' + ' + c * d + ' = ' + (a - b + c * d) + '.'; }
+  const v = evx(e);
+  return { html: big('Найди значение выражения<br><b>' + e + '</b>'), opts: opts4(v, [v + 1, v - 1, v + 10, v - 10, v + 2].filter(x => x >= 0)), ans: v, hint: h };
+};
+GENS.firstAct = function(){
+  const f = rnd(0, 5), a = rnd(10, 40), b = rnd(2, 9), c = rnd(2, 9); let e, ans;
+  if (f === 0){ const d = rnd(2, 5), q = rnd(2, 9); e = (d * q + a) + ' − ' + d * q + ' : ' + d; ans = 'деление'; }
+  else if (f === 1){ e = a + ' + ' + b + ' · ' + c; ans = 'умножение'; }
+  else if (f === 2){ e = '(' + a + ' − ' + b + ') · ' + c; ans = 'действие в скобках'; }
+  else if (f === 3){ e = a + ' · ' + 2 + ' − ' + b; ans = 'умножение'; }
+  else if (f === 4){ e = a + ' − ' + b + ' + ' + c; ans = 'вычитание'; }
+  else { e = a + ' + ' + b + ' − ' + c; ans = 'сложение'; }
+  const all = ['умножение', 'сложение', 'вычитание', 'деление', 'действие в скобках'];
+  return { html: big('Какое действие выполняется первым?<br><b>' + e + '</b>'), opts: shuffle([ans].concat(shuffle(all.filter(x => x !== ans)).slice(0, 3))), ans: ans, wide: true, hint: 'Сначала действия в скобках. Потом умножение и деление. Потом сложение и вычитание. Если действия одинаковые, идём слева направо.' };
+};
+GENS.cmpExpr = function(){
+  const f = rnd(0, 4); let l, r;
+  if (f === 0){ const p = pick([12, 16, 18, 20, 24, 30, 36]), fs = []; for (let i = 2; i <= 9; i++) if (p % i === 0 && p / i >= 2 && p / i <= 10) fs.push(i); const x = pick(fs), y = pick(fs); l = x + ' · ' + p / x; r = y + ' · ' + p / y; if (x === y) return GENS.cmpExpr(); }
+  else if (f === 1){ l = rnd(5, 30) + ' + ' + rnd(5, 30); r = rnd(2, 6) + ' · ' + rnd(3, 9); }
+  else if (f === 2){ const a = rnd(2, 9), b = rnd(2, 6), c = rnd(2, 5); l = '(' + a + ' + ' + b + ') · ' + c; r = a + ' + ' + b + ' · ' + c; }
+  else if (f === 3){ const a = rnd(20, 40), b = rnd(2, 9), c = rnd(2, 9); l = a + ' − ' + b + ' + ' + c; r = a + ' − (' + b + ' + ' + c + ')'; }
+  else { l = rnd(2, 5) + ' · ' + rnd(2, 9) + ' + ' + rnd(1, 9); r = rnd(10, 40) + ''; }
+  const x = evx(l), y = evx(r), ans = x < y ? '<' : x > y ? '>' : '=';
+  return { html: big(l + ' ☐ ' + r), opts: ['<', '>', '='], ans: ans, hint: 'Найди значение каждого выражения, соблюдая порядок действий: ' + l + ' = ' + x + ', ' + r + ' = ' + y + '. Теперь сравни ' + x + ' и ' + y + '.' };
+};
+GENS.ineq = function(){
+  const t = rnd(0, 3), n = rnd(6, 40);
+  if (t === 0){ const a = n - rnd(1, 5); return { html: big('Какое число подходит?<br><b>x &lt; ' + n + '</b>'), opts: shuffle([a, n, n + 1, n + 3]), ans: a, hint: 'x меньше ' + n + ', значит подходят числа 1, 2, … , ' + (n - 1) + '. Само число ' + n + ' не подходит.' }; }
+  if (t === 1){ const a = n + rnd(1, 5); return { html: big('Какое число подходит?<br><b>x &gt; ' + n + '</b>'), opts: shuffle([a, n, n - 1, n - 3]), ans: a, hint: 'x больше ' + n + ', значит подходят числа ' + (n + 1) + ', ' + (n + 2) + ', … Само число ' + n + ' не подходит.' }; }
+  if (t === 2) return { html: big('Какое число подходит?<br><b>' + n + ' &lt; ☐ &lt; ' + (n + 3) + '</b>'), opts: shuffle([n + 1, n, n + 3, n - 1]), ans: n + 1, hint: 'Нужно число между ' + n + ' и ' + (n + 3) + ': это ' + (n + 1) + ' или ' + (n + 2) + '. Числа ' + n + ' и ' + (n + 3) + ' — границы, они не подходят.' };
+  const a = rnd(2, 5), b = rnd(2, 9), c = a * b + pick([-2, -1, 1, 2]), ok = a * b > c;
+  return { html: big('Верно ли неравенство?<br><b>' + a + ' · ' + b + ' &gt; ' + c + '</b>'), opts: ['верно', 'неверно'], ans: ok ? 'верно' : 'неверно', hint: a + ' · ' + b + ' = ' + a * b + '. Сравни ' + a * b + ' и ' + c + ': ' + a * b + (ok ? ' больше ' : ' не больше ') + c + '.' };
+};
+GENS.eqGen = function(){
+  const t = rnd(0, 6); let e, x, h;
+  if (t === 0){ const a = rnd(2, 5); x = rnd(2, 9); e = 'x · ' + a + ' = ' + a * x; h = 'Неизвестный множитель = произведение : известный множитель: ' + a * x + ' : ' + a + ' = ' + x + '.'; }
+  else if (t === 1){ const a = rnd(2, 5); x = rnd(2, 9); e = a + ' · x = ' + a * x; h = 'Неизвестный множитель = произведение : известный множитель: ' + a * x + ' : ' + a + ' = ' + x + '.'; }
+  else if (t === 2){ const a = rnd(2, 5), q = rnd(2, 9); x = a * q; e = 'x : ' + a + ' = ' + q; h = 'Неизвестное делимое = частное · делитель: ' + q + ' · ' + a + ' = ' + x + '.'; }
+  else if (t === 3){ const q = rnd(2, 5); x = rnd(2, 9); e = x * q + ' : x = ' + q; h = 'Неизвестный делитель = делимое : частное: ' + x * q + ' : ' + q + ' = ' + x + '.'; }
+  else if (t === 4){ const p = rnd(20, 40), q = rnd(2, 9), r = p - q + rnd(2, 20); x = r - (p - q); e = 'x + (' + p + ' − ' + q + ') = ' + r; h = 'Сначала скобки: ' + p + ' − ' + q + ' = ' + (p - q) + '. Неизвестное слагаемое = сумма − известное: ' + r + ' − ' + (p - q) + ' = ' + x + '.'; }
+  else if (t === 5){ const p = rnd(25, 50), q = rnd(2, 9), r = rnd(5, p - q - 3); x = p - q - r; e = '(' + p + ' − ' + q + ') − x = ' + r; h = 'Скобки: ' + p + ' − ' + q + ' = ' + (p - q) + '. Неизвестное вычитаемое = уменьшаемое − разность: ' + (p - q) + ' − ' + r + ' = ' + x + '.'; }
+  else { const u = rnd(3, 9), v = rnd(10, 60), w = rnd(10, 30); x = v + w - u; e = 'a + ' + u + ' = ' + v + ' + ' + w; h = 'Справа сложи: ' + v + ' + ' + w + ' = ' + (v + w) + '. Слагаемое = сумма − известное: ' + (v + w) + ' − ' + u + ' = ' + x + '.'; if (e.indexOf('a') >= 0) e = e; }
+  const isA = e.charAt(0) === 'a';
+  return { html: big('Реши уравнение<br><b>' + e + '</b>'), opts: opts4(x, [x + 1, x - 1, x + 2, x * 2, x + 10].filter(y => y > 0)), ans: x, hint: h };
+};
+
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){
   let i = 0, locked = false;
@@ -964,10 +1132,93 @@ const LESSONS = [
     steps: [
       Q('m10s1', 'quiz', 'Что дальше', 'В ряду чисел часто спрятано правило. Найди его: посмотри, на сколько каждое число отличается от предыдущего.', { count: 8, gens: ['patternNext'] }),
       Q('m10s2', 'quiz', 'Найди ошибку в ряду', 'В этих рядах одно число стоит не на своём месте. Найди то, которое нарушает правило.', { count: 6, gens: ['patternBreak'] }),
-      Q('m10s3', 'quiz', 'Повторяем всё', 'Последнее задание урока и первой части курса. Здесь вперемешку числа, устный счёт и столбик.', { count: 8, gens: ['nextPrev', 'cmp', 'mentalTens', 'crossSingle', 'colMix', 'hundredsQ'] }),
-      { id: 'm10s4', scene: 'finale', gate: false, title: 'Ты молодец!', text: 'Ты прошёл все уроки курса. Теперь заходи в тренажёры и тренируйся, пока всё не станет получаться легко и быстро.' }
+      Q('m10s3', 'quiz', 'Повторяем всё', 'Последнее задание урока и первой части курса. Здесь вперемешку числа, устный счёт и столбик.', { count: 8, gens: ['nextPrev', 'cmp', 'mentalTens', 'crossSingle', 'colMix', 'hundredsQ'] })
     ] }
 ];
+
+/* ---------- часть 2: уроки 11–20 ---------- */
+const tabItems = (ns) => ns.map(n => ({ k: 'на ' + n, v: mulTableHTML(n), t: 'Таблица умножения и деления на ' + n + '. Считай по ' + n + ': ' + Array.from({ length: 5 }, (_, i) => n * (i + 1)).join(', ') + '… Деление — действие, обратное умножению.' }));
+LESSONS.push(
+  { id: 'm11', icon: '✖️', title: 'Умножение', goal: 'Понимать умножение как сложение одинаковых слагаемых',
+    steps: [
+      Q('m11s1', 'mulBuild', 'Группы по несколько', 'Когда складывают одинаковые числа, запись можно сделать короче. 3 + 3 + 3 + 3 — это число 3, взятое 4 раза. Короче так: 3 · 4. Меняй число групп и предметов в группе и смотри на запись.'),
+      Q('m11s2', 'quiz', 'Сумма и произведение', 'Замени сумму одинаковых слагаемых умножением и наоборот. Первое число — какое слагаемое повторяется, второе — сколько раз.', { count: 8, gens: ['mulAdd'] }),
+      Q('m11s3', 'quiz', 'Как называются числа', 'Числа при умножении называются множителями, а результат — произведением. Это нужно знать, чтобы читать записи.', { count: 6, gens: ['compMulN'] })
+    ] },
+  { id: 'm12', icon: '➗', title: 'Деление', goal: 'Понимать деление на равные части и по содержанию',
+    steps: [
+      Q('m12s1', 'infoTap', 'Два вида деления', 'Делить можно двумя способами. Первый: раздать поровну, на равные части. Второй: узнать, сколько раз одно число содержится в другом, то есть раздавать по несколько. Выбирай примеры.', { need: 4, prompt: 'Выбери пример 👆', items: [
+        { k: '12 : 3', v: grpHTML(3, 4), t: '12 кружков разделили поровну на 3 части. В каждой части по 4 кружка. 12 : 3 = 4.' },
+        { k: '12 : 4', v: grpHTML(3, 4), t: '12 кружков раздали по 4. Получилось 3 группы. 12 : 4 = 3.' },
+        { k: '10 : 2', v: grpHTML(2, 5), t: '10 кружков разделили поровну на 2 части. В каждой по 5. 10 : 2 = 5.' },
+        { k: '15 : 5', v: grpHTML(3, 5), t: '15 кружков раздали по 5. Получилось 3 группы. 15 : 5 = 3.' } ] }),
+      Q('m12s2', 'quiz', 'Задачи на деление', 'Читай внимательно: «поровну на несколько частей» или «по несколько в каждой». В обоих случаях решаем делением.', { count: 8, gens: ['divQ'] }),
+      Q('m12s3', 'quiz', 'Как называются числа', 'При делении есть делимое, делитель и частное. Делимое делим, делитель — число, на которое делим, частное — результат.', { count: 5, gens: ['compDivN'] })
+    ] },
+  { id: 'm13', icon: '🔄', title: 'Умножение и деление', goal: 'Понимать, что умножение и деление — взаимно обратные действия',
+    steps: [
+      Q('m13s1', 'infoTap', 'Четыре равенства из одного', 'Из одного умножения получаются ещё три равенства. Например, из 3 · 4 = 12. Нажимай и смотри.', { need: 4, items: [
+        { k: '3 · 4 = 12', v: grpHTML(3, 4), t: '3 группы по 4 — всего 12.' }, { k: '4 · 3 = 12', v: grpHTML(4, 3), t: 'Если переставить множители, произведение то же: 4 группы по 3 — тоже 12.' },
+        { k: '12 : 3 = 4', t: 'Разделим 12 на 3 группы — в каждой по 4. Делением мы вернулись к множителю 4.' }, { k: '12 : 4 = 3', t: 'Разделим 12 по 4 — получится 3 группы. Делим произведение на один множитель — получаем другой.' } ] }),
+      Q('m13s2', 'quiz', 'Найди неизвестное', 'Умножение и деление — обратные действия. Если не знаешь множитель, делимое или делитель, помогает обратное действие.', { count: 8, gens: ['inverse'] })
+    ] },
+  { id: 'm14', icon: '2️⃣', title: 'Таблица на 2 и 3', goal: 'Знать таблицу умножения и деления на 2 и 3',
+    steps: [
+      Q('m14s1', 'infoTap', 'Таблицы на 2 и 3', 'Вот таблицы умножения и деления на 2 и на 3. Слева умножение, справа деление: они связаны. Посмотри таблицы и выучи по частям.', { need: 2, items: tabItems([2, 3]) }),
+      Q('m14s2', 'quiz', 'Умножаем и делим на 2 и 3', 'Если забыл ответ, считай по 2 или по 3. Скоро всё будешь помнить сразу.', { count: 10, gens: ['tab23'] })
+    ] },
+  { id: 'm15', icon: '4️⃣', title: 'Таблица на 4 и 5', goal: 'Знать таблицу умножения и деления на 4 и 5, умножение и деление на 1',
+    steps: [
+      Q('m15s1', 'infoTap', 'Таблицы на 4 и 5', 'Теперь таблицы на 4 и на 5. Считай по 4: 4, 8, 12, 16. Считай по 5: 5, 10, 15, 20. Это ты уже умеешь.', { need: 2, items: tabItems([4, 5]) }),
+      Q('m15s2', 'quiz', 'Умножаем и делим на 4 и 5', 'Если забыл ответ, считай по 4 или по 5.', { count: 10, gens: ['tab45'] }),
+      Q('m15s3', 'quiz', 'Все таблицы вместе', 'Теперь вперемешку: таблицы на 2, 3, 4 и 5.', { count: 8, gens: ['tabAll'] }),
+      Q('m15s4', 'quiz', 'Умножение и деление на 1', 'Особое правило: при умножении числа на 1 получается то же число. При делении на 1 — тоже. Запомни: a · 1 = a и a : 1 = a.', { count: 6, gens: ['mulOne'] })
+    ] },
+  { id: 'm16', icon: '🔀', title: 'Свойства действий', goal: 'Применять переместительное и сочетательное свойства, записывать их буквами',
+    steps: [
+      Q('m16s1', 'infoTap', 'Свойства буквами', 'Свойства действий можно записать буквами. Буквы a, b, c обозначают любые числа. Посмотри, как выглядят свойства.', { need: 5, items: [
+        { k: 'a + b = b + a', t: '<b>Переместительное свойство сложения.</b> Если переставить слагаемые, сумма не изменится. 3 + 5 = 5 + 3.' },
+        { k: '(a + b) + c', t: '<b>Сочетательное свойство сложения.</b> (a + b) + c = a + (b + c). Слагаемые можно группировать как удобно: (7 + 3) + 5 = 7 + (3 + 5).' },
+        { k: 'a · b = b · a', t: '<b>Переместительное свойство умножения.</b> Если переставить множители, произведение не изменится. 4 · 3 = 3 · 4.' },
+        { k: 'a · 1 = a', t: 'Если число умножить на 1, получится то же число. 9 · 1 = 9.' },
+        { k: 'a : 1 = a', t: 'Если число разделить на 1, получится то же число. 9 : 1 = 9.' } ] }),
+      Q('m16s2', 'quiz', 'Узнаём свойства', 'Определи свойство по записи. Или подставь пропущенное число.', { count: 8, gens: ['propLetter'] })
+    ] },
+  { id: 'm17', icon: '🔤', title: 'Выражения с буквами', goal: 'Читать, записывать выражения и находить их значения',
+    steps: [
+      Q('m17s1', 'infoTap', 'Буква вместо числа', 'В выражении вместо числа может стоять буква. Если известно, чему равна буква, подставляем число и считаем. Нажимай на выражения.', { need: 4, items: [
+        { k: 'a + 5', t: 'Это сумма числа a и 5. Если a = 3, то a + 5 = 3 + 5 = 8.' }, { k: 'x − 4', t: 'Это разность x и 4. Если x = 10, то x − 4 = 10 − 4 = 6.' },
+        { k: 'b · 3', t: 'Это произведение b и 3. Если b = 6, то b · 3 = 6 · 3 = 18.' }, { k: '20 : y', t: 'Это частное чисел 20 и y. Если y = 4, то 20 : y = 20 : 4 = 5.' },
+        { k: 'a · 2 + 3', t: 'В выражении два действия. Если a = 4, то 4 · 2 + 3: сначала умножение (8), потом сложение (11).' } ] }),
+      Q('m17s2', 'quiz', 'Записываем и считаем', 'Запиши выражение по словам или найди его значение при заданном значении буквы.', { count: 10, gens: ['letterExpr'] })
+    ] },
+  { id: 'm18', icon: '🧮', title: 'Порядок действий', goal: 'Находить значения выражений со скобками и без скобок',
+    steps: [
+      Q('m18s1', 'infoTap', 'Правила порядка действий', 'Чтобы правильно посчитать, соблюдай порядок действий. Смотри на примеры.', { need: 4, items: [
+        { k: 'слева направо', t: 'Если в выражении только сложение и вычитание (или только умножение и деление), идём слева направо. 20 − 5 + 3 = 15 + 3 = 18.' },
+        { k: 'сначала ·, :', t: 'Умножение и деление раньше сложения и вычитания. 5 + 3 · 4: сначала 3 · 4 = 12, потом 5 + 12 = 17.' },
+        { k: 'скобки', t: 'Скобки главнее всего. (5 + 3) · 4: сначала в скобках 5 + 3 = 8, потом 8 · 4 = 32.' },
+        { k: 'три действия', t: '20 − 3 · 2 + 4: умножение 3 · 2 = 6; потом слева направо: 20 − 6 = 14, 14 + 4 = 18.' } ] }),
+      Q('m18s2', 'quiz', 'Что первое', 'Скажи, какое действие надо выполнить первым.', { count: 6, gens: ['firstAct'] }),
+      Q('m18s3', 'quiz', 'Считаем выражения', 'Вычисли значение выражения. Не торопись: сначала реши, что выполнять первым.', { count: 10, gens: ['orderOps'] })
+    ] },
+  { id: 'm19', icon: '⚖️', title: 'Сравниваем выражения', goal: 'Сравнивать выражения, подбирать числа для неравенств',
+    steps: [
+      Q('m19s1', 'quiz', 'Больше, меньше, равно', 'Чтобы сравнить два выражения, найди значение каждого и сравни числа. Следи за порядком действий и скобками.', { count: 8, gens: ['cmpExpr'] }),
+      Q('m19s2', 'quiz', 'Подбираем числа', 'В неравенстве вместо x или ☐ можно подставлять числа, которые делают его верным. Знак «<» значит «меньше», «>» значит «больше».', { count: 8, gens: ['ineq'] })
+    ] },
+  { id: 'm20', icon: '🧩', title: 'Уравнения', goal: 'Решать простые уравнения на умножение, деление и сложной структуры',
+    steps: [
+      Q('m20s1', 'infoTap', 'Как решать уравнения', 'Уравнение — это равенство с неизвестным числом. Нужно найти число, при котором равенство верное. Каждое правило помогает найти своё неизвестное.', { need: 4, items: [
+        { k: 'x · 3 = 12', t: 'Неизвестный множитель = произведение : известный множитель. x = 12 : 3 = 4.' }, { k: 'x : 4 = 3', t: 'Неизвестное делимое = частное · делитель. x = 3 · 4 = 12.' },
+        { k: '20 : x = 5', t: 'Неизвестный делитель = делимое : частное. x = 20 : 5 = 4.' }, { k: 'x + (25 − 6) = 38', t: 'Сначала скобки: 25 − 6 = 19. Теперь x + 19 = 38, x = 38 − 19 = 19.' },
+        { k: '(24 − 3) − x = 8', t: 'Скобки: 24 − 3 = 21. Теперь 21 − x = 8, x = 21 − 8 = 13.' }, { k: 'a + 6 = 7 + 80', t: 'Справа посчитаем: 7 + 80 = 87. Теперь a + 6 = 87, a = 87 − 6 = 81.' } ] }),
+      Q('m20s2', 'quiz', 'Решаем уравнения', 'Выбери нужное правило и найди неизвестное. Проверка: подставь число в уравнение.', { count: 10, gens: ['eqGen'] }),
+      Q('m20s3', 'quiz', 'Повторяем всё', 'Последнее задание части 2: таблицы умножения, порядок действий, буквенные выражения и уравнения вперемешку.', { count: 10, gens: ['tabAll', 'inverse', 'orderOps', 'letterExpr', 'eqGen', 'cmpExpr'] })
+    ] }
+);
+
+LESSONS[LESSONS.length - 1].steps.push({ id: 'mfin', scene: 'finale', gate: false, title: 'Ты молодец!', text: 'Ты прошёл все уроки курса. Теперь заходи в тренажёры и тренируйся, пока всё не станет получаться легко и быстро.' });
 
 /* ================= движок ================= */
 const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
