@@ -265,6 +265,9 @@
   .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
   .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
   .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
 </style>
 </head>
 <body class="w-page" data-subject="math">
@@ -300,11 +303,11 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Математика 2 класс</h1>
-      <p class="ac-sub">30 уроков: числа и счёт, умножение и деление, выражения и уравнения, величины и время, деньги, геометрия</p>
+      <p class="ac-sub">40 уроков: числа и счёт, умножение и деление, выражения и уравнения, величины и время, деньги, геометрия, задачи, множества, логика, данные</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
-        <div class="ac-progress-txt" id="ac-ptxt">0 из 30</div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 40</div>
       </div>
       <div class="ac-map" id="ac-map"></div>
     </div>
@@ -1305,6 +1308,195 @@ GENS.objNote = function(){
 const OBJQ = [['У луча есть…', 'начало, но нет конца', ['конец, но нет начала', 'и начало, и конец', 'ни начала, ни конца']], ['У отрезка есть…', 'и начало, и конец', ['только начало', 'только конец', 'ни начала, ни конца']], ['У прямой…', 'нет ни начала, ни конца', ['есть начало и конец', 'есть только начало', 'есть только конец']], ['Через две точки можно провести…', 'одну прямую', ['две прямые', 'ни одной прямой', 'сто прямых только в одну сторону']]];
 GENS.objFact = function(){ const q = pick(OBJQ); return { html: big(q[0]), opts: shuffle([q[1]].concat(q[2])), ans: q[1], wide: true, hint: 'Отрезок можно измерить, луч и прямую — нет, ведь они продолжаются бесконечно.' }; };
 
+/* ---------- часть 4: задачи, множества, логика, данные ---------- */
+const NOUN = [['яблоко', 'яблока', 'яблок'], ['карандаш', 'карандаша', 'карандашей'], ['конфета', 'конфеты', 'конфет'], ['тетрадь', 'тетради', 'тетрадей'], ['мяч', 'мяча', 'мячей'], ['книга', 'книги', 'книг'], ['ручка', 'ручки', 'ручек'], ['марка', 'марки', 'марок'], ['шарик', 'шарика', 'шариков']];
+const NAMEG = [['Айдос', 'Айдоса'], ['Алия', 'Алии'], ['Данияр', 'Данияра'], ['Аружан', 'Аружан'], ['Мадина', 'Мадины'], ['Ерлан', 'Ерлана']];
+const cn = (n, f) => n + ' ' + dec(n, f[0], f[1], f[2]);
+const raz = k => k + ' ' + (k < 5 ? 'раза' : 'раз');
+const TET = ['тетрадь', 'тетради', 'тетрадей'], CAN = ['конфета', 'конфеты', 'конфет'], APP = ['яблоко', 'яблока', 'яблок'];
+const pn = () => { const a = pick(NAMEG); let b; do { b = pick(NAMEG); } while (b === a); return [a, b]; };
+
+/* ===== простые задачи ===== */
+function simpleTask(){ for (;;){ const T = simpleTask0(); if (T.w.every(w => evx(w) !== evx(T.expr))) return T; } }
+function simpleTask0(){
+  const f = pick(NOUN), t = rnd(0, 4), nm = pick(NAMEG);
+  if (t === 0){ const a = rnd(8, 40), b = rnd(3, 30); return { text: 'У ' + nm[1] + ' было ' + cn(a, f) + '. Потом добавили ещё ' + cn(b, f) + '. Сколько стало?', act: 'сложение', expr: a + ' + ' + b, ans: a + b, hint: 'Стало больше — складываем: ' + a + ' + ' + b + ' = ' + (a + b) + '.', w: [a + ' − ' + b, a + ' · ' + b, a + ' : ' + b] }; }
+  if (t === 1){ const a = rnd(20, 60), b = rnd(3, 19); return { text: 'В корзине было ' + cn(a, f) + '. ' + cn(b, f) + ' взяли. Сколько осталось?', act: 'вычитание', expr: a + ' − ' + b, ans: a - b, hint: 'Взяли — значит стало меньше: ' + a + ' − ' + b + ' = ' + (a - b) + '.', w: [a + ' + ' + b, a + ' · ' + b, a + ' : ' + b] }; }
+  if (t === 2){ const k = rnd(2, 5), n = rnd(2, 9); return { text: 'В ' + k + ' коробках лежит по ' + cn(n, f) + '. Сколько всего?', act: 'умножение', expr: n + ' · ' + k, ans: n * k, hint: 'Одинаковые слагаемые: ' + rep(n, k) + ' = ' + n * k + '. Короче: ' + n + ' · ' + k + ' = ' + n * k + '.', w: [n + ' + ' + k, n + ' − ' + k, n * k + ' : ' + k] }; }
+  if (t === 3){ const k = rnd(2, 5), q = rnd(2, 9); return { text: cn(k * q, f) + ' разложили поровну в ' + k + ' ' + dec(k, 'пакет', 'пакета', 'пакетов') + '. Сколько в каждом пакете?', act: 'деление', expr: k * q + ' : ' + k, ans: q, hint: 'Делим на равные части: ' + k * q + ' : ' + k + ' = ' + q + '.', w: [k * q + ' − ' + k, k * q + ' · ' + k, k * q + ' + ' + k] }; }
+  const n = rnd(2, 5), q = rnd(2, 9); return { text: cn(n * q, f) + ' раздали по ' + cn(n, f) + '. Сколько получилось групп?', act: 'деление', expr: n * q + ' : ' + n, ans: q, hint: 'Узнаём, сколько раз по ' + n + ' содержится в ' + n * q + ': ' + n * q + ' : ' + n + ' = ' + q + '.', w: [n * q + ' − ' + n, n * q + ' · ' + n, n * q + ' + ' + n] };
+}
+GENS.wordSimple = function(){ const T = simpleTask(); return { html: big(T.text), opts: opts4(T.ans, [T.ans + 1, T.ans - 1, T.ans + 10, T.ans - 10, T.ans * 2].filter(x => x > 0)), ans: T.ans, hint: T.hint }; };
+GENS.probModel = function(){
+  const T = simpleTask(), k = rnd(0, 2);
+  if (k === 0) return { html: '<div class="ac-qtxt">' + T.text + '</div><div class="ac-qtxt">Какое выражение решает задачу?</div>', opts: shuffle([T.expr].concat(T.w)), ans: T.expr, wide: false, hint: T.hint };
+  if (k === 1){ const A = ['сложение', 'вычитание', 'умножение', 'деление']; return { html: '<div class="ac-qtxt">' + T.text + '</div><div class="ac-qtxt">Каким действием решается задача?</div>', opts: shuffle(A), ans: T.act, hint: T.hint }; }
+  const a = rnd(10, 40), b = rnd(2, 9), rec = (x, y) => 'Было — ' + x + ', взяли — ' + y + ', осталось — ?';
+  const ans = rec(a, b), wr = ['Было — ' + b + ', взяли — ' + a + ', осталось — ?', 'Было — ' + a + ', добавили — ' + b + ', стало — ?', 'Было — ?, взяли — ' + b + ', осталось — ' + a];
+  return { html: big('В вазе было ' + cn(a, CAN) + '. ' + cn(b, CAN) + ' взяли. Сколько конфет осталось?<br><small>Какая краткая запись подходит?</small>'), opts: shuffle([ans].concat(wr)), ans: ans, wide: true, hint: 'В краткой записи пишем только то, что известно, и вопрос. Было ' + a + ', взяли ' + b + ', нужно узнать, сколько осталось.' };
+};
+GENS.inverseQ = function(){
+  const f = pick(NOUN), a = rnd(8, 30), b = rnd(3, 15), c = a + b;
+  const ans = 'Стало ' + cn(c, f) + ', ' + cn(b, f) + ' добавили. Сколько было сначала?';
+  const wr = ['Было ' + cn(c, f) + ', добавили ' + cn(b, f) + '. Сколько стало?', 'Было ' + cn(a, f) + ', убрали ' + cn(b, f) + '. Сколько осталось?', 'Сколько ' + f[2] + ' в двух кучках: ' + a + ' и ' + b + '?'];
+  return { html: big('Задача: «Было ' + cn(a, f) + ', добавили ' + cn(b, f) + '. Сколько стало?» Ответ: ' + c + '.<br><small>Какая задача обратная?</small>'), opts: shuffle([ans].concat(wr)), ans: ans, wide: true, hint: 'В обратной задаче известный результат (' + c + ') становится данным, а то, что мы искали, — вопросом. Решение: ' + c + ' − ' + b + ' = ' + a + '.' };
+};
+/* ===== цена, количество, стоимость ===== */
+GENS.priceQty = function(){
+  const p = pick([20, 30, 40, 50, 60, 100, 150]), n = rnd(2, 5), c = p * n, k = rnd(0, 2), q = '?';
+  const tbl = (a, b, d) => '<table class="m2-mt"><tr><th>Цена</th><th>Количество</th><th>Стоимость</th></tr><tr><td>' + a + '</td><td>' + b + '</td><td>' + d + '</td></tr></table>';
+  if (k === 0) return { html: '<div class="ac-qtxt">Купили ' + cn(n, TET) + ' по ' + p + ' тг. Сколько стоит покупка?</div>' + tbl(p + ' тг', n + ' шт.', q), opts: opts4(c, [c + p, c - p, p + n, c + 10]), ans: c, hint: 'Стоимость = цена · количество: ' + p + ' · ' + n + ' = ' + c + ' тг.' };
+  if (k === 1) return { html: '<div class="ac-qtxt">За ' + cn(n, TET) + ' по одной цене заплатили ' + c + ' тг. Сколько стоит одна?</div>' + tbl(q, n + ' шт.', c + ' тг'), opts: opts4(p, [p + 10, p - 10, n, c - n].filter(x => x > 0)), ans: p, hint: 'Цена = стоимость : количество: ' + c + ' : ' + n + ' = ' + p + ' тг.' };
+  return { html: '<div class="ac-qtxt">Одна тетрадь стоит ' + p + ' тг. Сколько тетрадей купили на ' + c + ' тг?</div>' + tbl(p + ' тг', q, c + ' тг'), opts: opts4(n, [n + 1, n - 1, n + 2, p].filter(x => x > 0)), ans: n, hint: 'Количество = стоимость : цена: ' + c + ' : ' + p + ' = ' + n + '.' };
+};
+/* ===== в несколько раз, на несколько ===== */
+function timesF(t){
+  const f = pick(NOUN), [n1, n2] = pn(), a = rnd(2, 9), k = rnd(2, 5), d = rnd(2, 9);
+  if (t === 0) return { html: big('У ' + n1[1] + ' ' + cn(a, f) + ', а у ' + n2[1] + ' в ' + raz(k) + ' больше. Сколько у ' + n2[1] + '?'), opts: opts4(a * k, [a + k, a * k + a, a * k - a, a * k + 1]), ans: a * k, hint: '«В ' + raz(k) + ' больше» — умножаем: ' + a + ' · ' + k + ' = ' + a * k + '.' };
+  if (t === 1) return { html: big('У ' + n1[1] + ' ' + cn(a * k, f) + ', а у ' + n2[1] + ' в ' + raz(k) + ' меньше. Сколько у ' + n2[1] + '?'), opts: opts4(a, [a * k, a + k, a + 1, a - 1].filter(x => x > 0)), ans: a, hint: '«В ' + raz(k) + ' меньше» — делим: ' + a * k + ' : ' + k + ' = ' + a + '.' };
+  if (t === 2) return { html: big('У ' + n1[1] + ' ' + cn(a + 10, f) + ', а у ' + n2[1] + ' на ' + d + ' больше. Сколько у ' + n2[1] + '?'), opts: opts4(a + 10 + d, [a + 10 - d, a + 10, a + 10 + d + 1, d * (a + 10)]), ans: a + 10 + d, hint: '«На ' + d + ' больше» — прибавляем: ' + (a + 10) + ' + ' + d + ' = ' + (a + 10 + d) + '.' };
+  if (t === 3) return { html: big('У ' + n1[1] + ' ' + cn(a + 10 + d, f) + ', а у ' + n2[1] + ' на ' + d + ' меньше. Сколько у ' + n2[1] + '?'), opts: opts4(a + 10, [a + 10 + 2 * d, a + 10 + d, a + 11, a + 9]), ans: a + 10, hint: '«На ' + d + ' меньше» — вычитаем: ' + (a + 10 + d) + ' − ' + d + ' = ' + (a + 10) + '.' };
+  if (t === 4) return { html: big('У ' + n1[1] + ' ' + cn(a, f) + ', а у ' + n2[1] + ' ' + cn(a * k, f) + '. Во сколько раз у ' + n2[1] + ' больше?'), opts: opts4(k, [k + 1, k - 1, a, k + 2].filter(x => x > 0)), ans: k, hint: 'Кратное сравнение — делим большее на меньшее: ' + a * k + ' : ' + a + ' = ' + k + '.' };
+  if (t === 5) return { html: big('У ' + n1[1] + ' ' + cn(a, f) + ', а у ' + n2[1] + ' ' + cn(a + d, f) + '. На сколько у ' + n2[1] + ' больше?'), opts: opts4(d, [d + 1, d - 1, a + d, a + d + a].filter(x => x > 0)), ans: d, hint: 'Разностное сравнение — вычитаем: ' + (a + d) + ' − ' + a + ' = ' + d + '.' };
+  if (t === 6) return { html: big('У ' + n1[1] + ' ' + cn(a + 10, f) + '. Это на ' + d + ' меньше, чем у ' + n2[1] + '. Сколько у ' + n2[1] + '?'), opts: opts4(a + 10 + d, [a + 10 - d, a + 10, a + 10 + d + 1, d * (a + 10)]), ans: a + 10 + d, hint: 'Вопрос косвенный. У ' + n1[1] + ' меньше на ' + d + ', значит у ' + n2[1] + ' больше. Прибавляем: ' + (a + 10) + ' + ' + d + ' = ' + (a + 10 + d) + '.' };
+  return { html: big('У ' + n1[1] + ' ' + cn(a, f) + '. Это в ' + raz(k) + ' меньше, чем у ' + n2[1] + '. Сколько у ' + n2[1] + '?'), opts: opts4(a * k, [a + k, a * k + a, a * k - a, a * k + 1]), ans: a * k, hint: 'Вопрос косвенный. У ' + n1[1] + ' в ' + raz(k) + ' меньше, значит у ' + n2[1] + ' в ' + raz(k) + ' больше: ' + a + ' · ' + k + ' = ' + a * k + '.' };
+};
+GENS.timesQ = () => timesF(rnd(0, 5));
+GENS.timesInd = () => timesF(rnd(6, 7));
+/* ===== задачи в два действия ===== */
+function twoStepTask(){ for (;;){ const T = twoStepTask0(); if (T.w.every(w => evx(w) !== evx(T.expr))) return T; } }
+function twoStepTask0(){
+  const f = pick(NOUN), [n1, n2] = pn(), t = rnd(0, 6);
+  if (t === 0){ const a = rnd(5, 20), d = rnd(2, 9); return { text: 'В пакете ' + cn(a, f) + ', а в корзине на ' + d + ' больше. Сколько всего в пакете и в корзине?', expr: a + ' + (' + a + ' + ' + d + ')', ans: 2 * a + d, hint: 'Сначала узнаём, сколько в корзине: ' + a + ' + ' + d + ' = ' + (a + d) + '. Потом считаем всё вместе: ' + a + ' + ' + (a + d) + ' = ' + (2 * a + d) + '.', w: [a + ' + ' + d, a + ' · ' + d + ' + ' + a, '(' + a + ' + ' + d + ') · 2 + ' + d] }; }
+  if (t === 1){ const k = rnd(2, 5), p = pick([20, 30, 40, 50]), r = pick([10, 20, 50]); return { text: 'Купили ' + cn(k, TET) + ' по ' + p + ' тг и ручку за ' + r + ' тг. Сколько заплатили всего?', expr: p + ' · ' + k + ' + ' + r, ans: p * k + r, hint: 'Тетради стоят ' + p + ' · ' + k + ' = ' + p * k + ' тг. Ещё ручка: ' + p * k + ' + ' + r + ' = ' + (p * k + r) + ' тг.', w: [p + ' · (' + k + ' + ' + r + ')', p + ' + ' + k + ' + ' + r, p * k + ' − ' + r] }; }
+  if (t === 2){ const k = rnd(3, 6), n = rnd(3, 8), y = rnd(2, k * n - 3); return { text: 'В классе ' + k + ' ' + dec(k, 'ряд', 'ряда', 'рядов') + ' по ' + cn(n, ['парта', 'парты', 'парт']) + '. ' + cn(y, ['парту', 'парты', 'парт']) + ' убрали. Сколько парт осталось?', expr: n + ' · ' + k + ' − ' + y, ans: n * k - y, hint: 'Сначала всего парт: ' + n + ' · ' + k + ' = ' + n * k + '. Потом вычитаем: ' + n * k + ' − ' + y + ' = ' + (n * k - y) + '.', w: [n + ' · (' + k + ' − ' + y + ')', n + ' · ' + k + ' + ' + y, n + ' + ' + k + ' − ' + y] }; }
+  if (t === 3){ const k = rnd(2, 5), q = rnd(3, 9), x = rnd(1, q - 1); return { text: cn(k * q, f) + ' разделили поровну между ' + k + ' детьми. Каждый ребёнок отдал другу ' + cn(x, f) + '. Сколько осталось у каждого?', expr: k * q + ' : ' + k + ' − ' + x, ans: q - x, hint: 'Сначала узнаём, сколько получил каждый: ' + k * q + ' : ' + k + ' = ' + q + '. Потом вычитаем: ' + q + ' − ' + x + ' = ' + (q - x) + '.', w: [k * q + ' : (' + k + ' − ' + x + ')', k * q + ' − ' + k + ' − ' + x, k * q + ' : ' + k + ' + ' + x] }; }
+  if (t === 4){ const a = rnd(2, 9), k = rnd(2, 5); return { text: 'У ' + n1[1] + ' ' + cn(a, f) + ', а у ' + n2[1] + ' в ' + raz(k) + ' больше. Сколько у них вместе?', expr: a + ' + ' + a + ' · ' + k, ans: a + a * k, hint: 'Сначала у ' + n2[1] + ': ' + a + ' · ' + k + ' = ' + a * k + '. Потом вместе: ' + a + ' + ' + a * k + ' = ' + (a + a * k) + '.', w: [(a + a) + ' · ' + k, a + ' · ' + k, a + ' + ' + k] }; }
+  if (t === 5){ const a = rnd(2, 9), k = rnd(2, 5); return { text: 'У ' + n1[1] + ' ' + cn(a, f) + ', а у ' + n2[1] + ' в ' + raz(k) + ' больше. На сколько у ' + n2[1] + ' больше?', expr: a + ' · ' + k + ' − ' + a, ans: a * k - a, hint: 'Сначала у ' + n2[1] + ': ' + a + ' · ' + k + ' = ' + a * k + '. Потом разность: ' + a * k + ' − ' + a + ' = ' + (a * k - a) + '.', w: [a + ' · (' + k + ' − ' + a + ')', a + ' · ' + k + ' + ' + a, a + ' · ' + k] }; }
+  const n = rnd(2, 5), m = rnd(2, 9), e = rnd(2, 9); return { text: 'В ' + n + ' коробках по ' + cn(m, f) + ' и ещё ' + cn(e, f) + ' лежат на столе. Сколько всего?', expr: m + ' · ' + n + ' + ' + e, ans: m * n + e, hint: 'Сначала в коробках: ' + m + ' · ' + n + ' = ' + m * n + '. Потом со стола: ' + m * n + ' + ' + e + ' = ' + (m * n + e) + '.', w: [m + ' · (' + n + ' + ' + e + ')', m + ' + ' + n + ' + ' + e, m * n + ' · ' + e] };
+}
+GENS.twoStep = function(){ const T = twoStepTask(); return { html: big(T.text), opts: opts4(T.ans, [T.ans + 1, T.ans - 1, T.ans + 10, T.ans - 10, T.ans + 2].filter(x => x > 0)), ans: T.ans, hint: T.hint }; };
+GENS.twoStepExpr = function(){ const T = twoStepTask(); return { html: '<div class="ac-qtxt">' + T.text + '</div><div class="ac-qtxt">Какое выражение решает задачу?</div>', opts: shuffle([T.expr].concat(T.w)), ans: T.expr, wide: true, hint: T.hint };};
+GENS.unkTask = function(){
+  const t = rnd(0, 4), k = rnd(2, 5), q = rnd(2, 9), n = rnd(2, 5);
+  if (t === 0) return { html: big('Задумали число. Его умножили на ' + k + ' и получили ' + k * q + '. Какое число задумали?'), opts: opts4(q, [k * q, q + 1, q - 1, k + q].filter(x => x > 0)), ans: q, hint: 'Неизвестный множитель = произведение : известный множитель: ' + k * q + ' : ' + k + ' = ' + q + '.' };
+  if (t === 1) return { html: big('Задумали число. Его разделили на ' + k + ' и получили ' + q + '. Какое число задумали?'), opts: opts4(k * q, [q, k + q, k * q + k, k * q - k]), ans: k * q, hint: 'Неизвестное делимое = частное · делитель: ' + q + ' · ' + k + ' = ' + k * q + '.' };
+  if (t === 2) return { html: big('Задумали число. На него разделили ' + k * q + ' и получили ' + k + '. Какое число задумали?'), opts: opts4(q, [k * q, k, q + 1, q - 1].filter(x => x > 0)), ans: q, hint: 'Неизвестный делитель = делимое : частное: ' + k * q + ' : ' + k + ' = ' + q + '.' };
+  if (t === 3) return { html: big('В нескольких одинаковых пакетах по ' + cn(n, APP) + ', всего ' + cn(n * q, APP) + '. Сколько пакетов?'), opts: opts4(q, [n * q, q + 1, q - 1, n + q].filter(x => x > 0)), ans: q, hint: 'Сколько раз по ' + n + ' в ' + n * q + '? ' + n * q + ' : ' + n + ' = ' + q + '.' };
+  return { html: big('Во всех пакетах поровну конфет, всего ' + cn(q * n, CAN) + '. Сколько конфет в одном пакете, если пакетов ' + n + '?'), opts: opts4(q, [q * n, q + 1, q - 1, n].filter(x => x > 0)), ans: q, hint: 'Делим поровну: ' + q * n + ' : ' + n + ' = ' + q + '.' };
+};
+GENS.perimProb = function(){
+  const t = rnd(0, 3), a = rnd(2, 9), k = rnd(2, 4), d = rnd(1, 6);
+  if (t === 0) return { html: big('Одна сторона прямоугольника ' + a + ' см, а другая на ' + d + ' см длиннее. Найди периметр.'), opts: opts4((2 * a + d) * 2, [a + a + d, (a + d) * 2 + a, (2 * a + d) * 2 + 2, a * (a + d)]), ans: (2 * a + d) * 2, hint: 'Другая сторона: ' + a + ' + ' + d + ' = ' + (a + d) + '. P = (' + a + ' + ' + (a + d) + ') · 2 = ' + (2 * a + d) * 2 + ' см.' };
+  if (t === 1) return { html: big('Ширина прямоугольника ' + a + ' см, а длина в ' + raz(k) + ' больше. Найди периметр.'), opts: opts4((a + a * k) * 2, [(a + a * k), a * k * 2, (a + a * k) * 2 + 2, a * k * a]), ans: (a + a * k) * 2, hint: 'Длина: ' + a + ' · ' + k + ' = ' + a * k + ' см. P = (' + a + ' + ' + a * k + ') · 2 = ' + (a + a * k) * 2 + ' см.' };
+  if (t === 2) return { html: big('Периметр прямоугольника ' + (a + a + d) * 2 + ' см, длина ' + (a + d) + ' см. Найди ширину.'), opts: opts4(a, [a + d, (a + a + d) * 2 - (a + d), a + 1, a - 1].filter(x => x > 0)), ans: a, hint: 'Полупериметр: ' + (a + a + d) * 2 + ' : 2 = ' + (2 * a + d) + '. Ширина: ' + (2 * a + d) + ' − ' + (a + d) + ' = ' + a + ' см.' };
+  return { html: big('Периметр квадрата ' + a * 4 + ' см. Найди его сторону.'), opts: opts4(a, [a * 2, a + 1, a - 1, a * 4].filter(x => x > 0)), ans: a, hint: 'У квадрата 4 равные стороны: ' + a * 4 + ' : 4 = ' + a + ' см.' };
+};
+/* ===== множества и диаграммы ===== */
+function vennSVG(onlyA, both, onlyB, na, nb){
+  na = na || 'A'; nb = nb || 'B';
+  let s = '<circle cx="165" cy="115" r="85" fill="#CDEBC8" fill-opacity=".7" stroke="#3FAE5A" stroke-width="3"/><circle cx="275" cy="115" r="85" fill="#FFE3A8" fill-opacity=".7" stroke="#C98F00" stroke-width="3"/>';
+  s += '<text x="105" y="22" font-size="22" ' + FNT + '>' + na + '</text><text x="335" y="22" font-size="22" ' + FNT + '>' + nb + '</text>';
+  const place = (arr, cx) => { const n = arr.length, cols = n > 4 ? 2 : 1; arr.forEach((v, i) => { const col = cols === 2 ? i % 2 : 0, row = cols === 2 ? Math.floor(i / 2) : i, rows = cols === 2 ? Math.ceil(n / 2) : n; s += '<text x="' + (cx + (cols === 2 ? (col ? 16 : -16) : 0)) + '" y="' + (120 + (row - (rows - 1) / 2) * 30) + '" text-anchor="middle" font-size="20" ' + FNT + '>' + v + '</text>'; }); };
+  place(onlyA, 122); place(both, 220); place(onlyB, 318);
+  return svgW(440, 220, s);
+}
+function vennSets(){ // уникальные числа
+  const pool = shuffle(Array.from({ length: 19 }, (_, i) => i + 2)), a = rnd(1, 3), b = rnd(1, 3), c = rnd(1, 3);
+  return { onlyA: pool.slice(0, a).sort((x, y) => x - y), both: pool.slice(a, a + b).sort((x, y) => x - y), onlyB: pool.slice(a + b, a + b + c).sort((x, y) => x - y) };
+}
+GENS.vennCount = function(){
+  const V = vennSets(), used = V.onlyA.concat(V.both, V.onlyB); let fill; do { fill = rnd(2, 20); } while (used.indexOf(fill) >= 0);
+  const t = rnd(0, 4), A = V.onlyA.concat(V.both), B = V.onlyB.concat(V.both), fig = vennSVG(V.onlyA, V.both, V.onlyB);
+  const note = '<small>Круг A — зелёный, круг B — жёлтый. В общей части числа и из A, и из B.</small>';
+  if (t === 0) return { html: '<div class="ac-qtxt">Сколько элементов в множестве A?</div>' + fig, opts: opts4(A.length, [A.length + 1, A.length - 1, B.length, V.both.length].filter(x => x > 0)), ans: A.length, hint: 'В A входят числа из зелёного круга: ' + A.join(', ') + '. Их ' + A.length + '.' };
+  if (t === 1) return { html: '<div class="ac-qtxt">Сколько элементов в пересечении A и B (в общей части)?</div>' + fig, opts: opts4(V.both.length, [V.both.length + 1, V.both.length + 2, A.length, B.length].filter(x => x > 0)), ans: V.both.length, hint: 'Пересечение — это общая часть двух кругов: ' + V.both.join(', ') + '. Их ' + V.both.length + '.' };
+  if (t === 2){ const u = V.onlyA.length + V.both.length + V.onlyB.length; return { html: '<div class="ac-qtxt">Сколько элементов в объединении A и B (во всех кругах вместе)?</div>' + fig, opts: opts4(u, [u + 1, u - 1, A.length + B.length, V.both.length].filter(x => x > 0)), ans: u, hint: 'Объединение — всё, что есть хотя бы в одном круге. Общие числа считаем один раз: ' + V.onlyA.concat(V.both, V.onlyB).join(', ') + '. Всего ' + u + '.' }; }
+  if (t === 3){ const x = pick(V.both); return { html: '<div class="ac-qtxt">Какое число принадлежит и A, и B?</div>' + fig, opts: shuffle([x, V.onlyA[0], V.onlyB[0], fill]), ans: x, hint: 'Ищем число в общей части двух кругов: это ' + x + '.' }; }
+  const x = pick(V.onlyA); return { html: '<div class="ac-qtxt">Какое число есть в A, но нет в B?</div>' + fig, opts: shuffle([x, V.both[0], V.onlyB[0], fill]), ans: x, hint: 'Нужно число из зелёного круга, которое не попадает в общую часть: ' + x + '.' };
+};
+GENS.setIn = function(){
+  const L = pick(['A', 'B', 'C', 'M', 'K']), n = rnd(3, 5), st = rnd(1, 6), S = Array.from({ length: n }, (_, i) => st + 2 * i), t = rnd(0, 2);
+  if (t < 2){ const x = t === 0 ? pick(S) : pick(S) + 1, ok = S.indexOf(x) >= 0; return { html: big(L + ' = {' + S.join(', ') + '}<br>' + x + ' ☐ ' + L), opts: ['∈', '∉'], ans: ok ? '∈' : '∉', hint: 'Знак ∈ значит «принадлежит», ∉ — «не принадлежит». ' + (ok ? 'Число ' + x + ' есть среди элементов ' + L + '.' : 'Числа ' + x + ' среди элементов ' + L + ' нет.') }; }
+  const x = pick(S), ans = x + ' ∈ ' + L; return { html: big('Как записать: «число ' + x + ' принадлежит множеству ' + L + '»?'), opts: shuffle([ans, x + ' ∉ ' + L, L + ' ∈ ' + x, L.toLowerCase() + ' ∈ ' + x]), ans: ans, wide: true, hint: 'Множество обозначают большой буквой, элементы — числами или маленькими буквами. Знак ∈ читается «принадлежит»: элемент ∈ множество.' };
+};
+GENS.setNote = function(){
+  const L = pick(['A', 'B', 'C', 'M']), a = rnd(1, 5), S = [a, a + 1, a + 2], ans = L + ' = {' + S.join(', ') + '}';
+  return { html: big('Как записать множество ' + L + ', в котором числа ' + S.join(', ') + '?'), opts: shuffle([ans, L.toLowerCase() + ' = {' + S.join(', ') + '}', L + ' = (' + S.join(', ') + ')', L + ' = ' + S.join(', ')]), ans: ans, wide: true, hint: 'Множество называют заглавной буквой, а элементы записывают в фигурных скобках через запятую.' };
+};
+GENS.unionEq = function(){
+  const g = rnd(2, 4), k = rnd(2, 5), t = rnd(0, 2);
+  if (t === 0) return { html: '<div class="ac-qtxt">Эти ' + g + ' одинаковых множества объединили в одно. Сколько элементов стало?</div>' + grpHTML(g, k), opts: opts4(g * k, [g + k, g * k + k, g * k - k, g * k + 1]), ans: g * k, hint: 'Объединяем одинаковые множества: ' + rep(k, g) + ' = ' + g * k + '.' };
+  if (t === 1) return { html: '<div class="ac-qtxt">Множество из ' + g * k + ' элементов разделили на ' + g + ' равные части. Сколько элементов в каждой части?</div>' + grpHTML(g, k), opts: opts4(k, [g, k + 1, k - 1, g * k].filter(x => x > 0)), ans: k, hint: 'Делим поровну: ' + g * k + ' : ' + g + ' = ' + k + '.' };
+  return { html: '<div class="ac-qtxt">В каждом множестве по ' + k + ' элементов. Сколько множеств, если всего ' + g * k + ' элементов?</div>' + grpHTML(g, k), opts: opts4(g, [k, g + 1, g - 1, g * k].filter(x => x > 0)), ans: g, hint: 'Сколько раз по ' + k + ' содержится в ' + g * k + '? ' + g * k + ' : ' + k + ' = ' + g + '.' };
+};
+/* ===== классификация чисел ===== */
+GENS.digitsClass = function(){
+  const t = rnd(0, 2), arr = shuffle(Array.from(new Set(Array.from({ length: 7 }, () => pick([rnd(1, 9), rnd(10, 99), rnd(10, 99)]))))).slice(0, 6);
+  if (t === 0){ const c = arr.filter(x => x >= 10).length; return { html: big('Сколько двузначных чисел среди этих: ' + arr.join(', ') + '?'), opts: opts4(c, [c + 1, c - 1, arr.length - c, c + 2].filter(x => x >= 0)), ans: c, hint: 'Двузначные числа записываются двумя цифрами, от 10 до 99. Однозначные — одной цифрой.' }; }
+  if (t === 1){ const c = arr.filter(x => x % 2 === 0).length; return { html: big('Сколько чётных чисел среди этих: ' + arr.join(', ') + '?'), opts: opts4(c, [c + 1, c - 1, arr.length - c, c + 2].filter(x => x >= 0)), ans: c, hint: 'Чётные числа оканчиваются на 0, 2, 4, 6, 8. Проверь последнюю цифру каждого числа.' }; }
+  const lo = rnd(10, 60), hi = lo + rnd(4, 8), c = hi - lo - 1; return { html: big('Сколько чисел стоит между ' + lo + ' и ' + hi + ' в ряду чисел?'), opts: opts4(c, [c + 1, c - 1, c + 2, hi - lo].filter(x => x > 0)), ans: c, hint: 'Между ' + lo + ' и ' + hi + ' стоят числа ' + Array.from({ length: c }, (_, i) => lo + 1 + i).join(', ') + '. Их ' + c + '. Сами ' + lo + ' и ' + hi + ' не считаем.' };
+};
+const SETB = [['двузначных чётных чисел, меньших 20', [10, 12, 14, 16, 18]], ['двузначных нечётных чисел, меньших 20', [11, 13, 15, 17, 19]], ['однозначных чётных чисел', [2, 4, 6, 8]], ['двузначных чисел, которые оканчиваются нулём и меньше 60', [10, 20, 30, 40, 50]], ['однозначных нечётных чисел', [1, 3, 5, 7, 9]]];
+GENS.setBuild = function(){
+  const i = rnd(0, SETB.length - 1), f = x => '{' + x.join(', ') + '}';
+  return { html: big('Выбери множество ' + SETB[i][0]), opts: shuffle(SETB.map(x => f(x[1]))), ans: f(SETB[i][1]), wide: false, hint: 'Проверь два условия: сколько цифр в числе и чётное оно или нет (чётные оканчиваются на 0, 2, 4, 6, 8).' };
+};
+/* ===== логика ===== */
+GENS.truth = function(){
+  const mk = () => { const t = rnd(0, 3), a = rnd(11, 80), b = rnd(2, 9);
+    if (t === 0) return [a + ' — ' + (Math.random() < .5 ? 'чётное' : 'нечётное') + ' число', null];
+    if (t === 1){ const c = rnd(2, 9), d = rnd(2, 9); return [c + ' · ' + d + ' > ' + (c * d + pick([-3, 3, 2, -2])), null]; }
+    if (t === 2){ const x = rnd(15, 60), y = rnd(15, 60); return [x + ' + ' + y + ' = ' + (x + y + pick([0, 0, 10, -1])), null]; }
+    return [a + ' — ' + pick(['однозначное', 'двузначное']) + ' число', null]; };
+  const [s] = mk(); let v;
+  const m1 = s.match(/^(\d+) — (чётное|нечётное) число$/), m2 = s.match(/^(\d+) · (\d+) > (-?\d+)$/), m3 = s.match(/^(\d+) \+ (\d+) = (\d+)$/), m4 = s.match(/^(\d+) — (однозначное|двузначное) число$/);
+  if (m1) v = (+m1[1] % 2 === 0) === (m1[2] === 'чётное'); else if (m2) v = +m2[1] * +m2[2] > +m2[3]; else if (m3) v = +m3[1] + +m3[2] === +m3[3]; else v = (+m4[1] >= 10) === (m4[2] === 'двузначное');
+  return { html: big('Верно ли утверждение?<br><b>' + s + '</b>'), opts: ['верно', 'неверно'], ans: v ? 'верно' : 'неверно', hint: 'Проверь утверждение: сосчитай, сравни или посмотри на последнюю цифру. Если всё так и есть, оно верное, иначе ложное.' };
+};
+GENS.pickTrue = function(){
+  const a = rnd(2, 9), b = rnd(2, 9), c = rnd(11, 50), good = a * b + ' = ' + b + ' · ' + a, wr = [a + ' + ' + b + ' = ' + (a + b + 1), c + ' − ' + a + ' = ' + (c - a + 2), a * b + ' : ' + a + ' = ' + (b + 1)];
+  return { html: big('Какое равенство верное?'), opts: shuffle([good].concat(wr)), ans: good, wide: true, hint: 'Проверь каждое равенство: вычисли обе части и сравни.' };
+};
+const POUR = [
+  { q: 'Есть сосуды на 3 л и на 5 л. Как отмерить ровно 2 л?', a: 'Налить воду в 5-литровый, перелить из него в 3-литровый. В 5-литровом останется 2 л.', w: ['Налить 3 л, добавить ещё 5 л и вылить 6 л.', 'Налить 5 л и вылить 3 л, потом ещё раз вылить 3 л.', 'Налить 3 л, затем перелить в пустой 5-литровый — получится 2 л.'] },
+  { q: 'Есть сосуды на 2 л и на 3 л. Как отмерить ровно 1 л?', a: 'Налить воду в 3-литровый, перелить из него в 2-литровый. В 3-литровом останется 1 л.', w: ['Налить 2 л, добавить 3 л и вылить 4 л.', 'Налить воду в 2-литровый и в 3-литровый и слить всё вместе.', 'Налить в 2-литровый и перелить в 3-литровый — останется 1 л.'] },
+  { q: 'Есть сосуды на 4 л и на 7 л. Как отмерить ровно 3 л?', a: 'Налить воду в 7-литровый, перелить из него в 4-литровый. В 7-литровом останется 3 л.', w: ['Налить 4 л и добавить ещё 7 л.', 'Налить 4 л, перелить в 7-литровый — останется 3 л.', 'Налить 7 л и вылить 7 л.'] }
+];
+GENS.pourQ = function(){ const p = pick(POUR); return { html: big(p.q), opts: shuffle([p.a].concat(p.w)), ans: p.a, wide: true, hint: 'Наливай и переливай по шагам. Остаток в большом сосуде после наполнения маленького как раз и есть нужное число литров.' }; };
+GENS.weighQ = function(){
+  const t = rnd(0, 2);
+  if (t === 0){ const m = rnd(2, 6), k = rnd(2, 4); return { html: big('Одна дыня уравновешивает ' + k + ' груши на весах. Одна груша весит ' + m + ' кг. Сколько весит дыня?'), opts: opts4(m * k, [m + k, m * k + m, m * k - m, m]), ans: m * k, hint: 'Масса дыни равна массе ' + k + ' груш: ' + rep(m, k) + ' = ' + m * k + ' кг.' }; }
+  if (t === 1) return { html: big('Среди трёх одинаковых по виду монет одна легче остальных. За сколько взвешиваний на чашечных весах её можно найти?'), opts: shuffle([1, 2, 3, 0]), ans: 1, hint: 'Положи на весы две монеты. Если одна легче — это она. Если равны — легче третья, которую оставили.' };
+  const a = rnd(5, 9) * 100, b = rnd(1, 4) * 100; return { html: big('На левой чаше весов гиря ' + a + ' г. На правой — гиря ' + b + ' г и яблоко. Весы в равновесии. Сколько граммов весит яблоко?'), opts: opts4(Math.abs(a - b) || 100, [a + b, a, b, Math.abs(a - b) + 100]), ans: Math.abs(a - b) || 100, hint: 'Весы в равновесии: ' + a + ' = ' + b + ' + яблоко. Яблоко: ' + a + ' − ' + b + ' = ' + (a - b) + ' г.' };
+};
+GENS.comboQ = function(){
+  const t = rnd(0, 3);
+  if (t === 0) return { html: big('Флаг состоит из трёх полос: красной, жёлтой и зелёной. Каждый цвет используют один раз. Сколько разных флагов можно составить?'), opts: shuffle([3, 6, 9, 4]), ans: 6, hint: 'Выбери цвет первой полосы — 3 способа. Для второй остаётся 2 цвета, для третьей — 1. Всего: 3 · 2 · 1 = 6 флагов.' };
+  if (t === 1) return { html: big('Из цифр 1, 2 и 3 составляют трёхзначные числа. Цифры не повторяются. Сколько чисел получится?'), opts: shuffle([3, 6, 9, 4]), ans: 6, hint: '123, 132, 213, 231, 312, 321 — всего 6 чисел.' };
+  if (t === 2){ const a = rnd(2, 3), b = rnd(2, 4); return { html: big('У Алии ' + a + ' футболки и ' + b + ' юбки. Сколько разных комплектов из футболки и юбки она может составить?'), opts: opts4(a * b, [a + b, a * b + 1, a * b - 1, a * b + a]), ans: a * b, hint: 'К каждой футболке подойдёт любая из ' + b + ' юбок: ' + rep(b, a) + ' = ' + a * b + '.' }; }
+  return { html: big('Из цифр 1 и 2 составляют двузначные числа. Цифры можно повторять. Сколько чисел получится?'), opts: shuffle([2, 3, 4, 6]), ans: 4, hint: '11, 12, 21, 22 — всего 4 числа.' };
+};
+/* ===== данные: диаграммы и таблицы ===== */
+function barSVG(labels, vals, mx){
+  const x0 = 46, W = 370, bw = Math.min(56, W / labels.length - 18), step = W / labels.length; let s = '';
+  for (let v = 0; v <= mx; v++){ const y = 170 - v * 150 / mx; s += '<line x1="' + x0 + '" y1="' + y + '" x2="428" y2="' + y + '" stroke="' + (v === 0 ? '#1D3557' : '#D6DEE8') + '" stroke-width="' + (v === 0 ? 3 : 1) + '"/><text x="' + (x0 - 8) + '" y="' + (y + 4) + '" text-anchor="end" font-size="12" ' + FNT + '>' + v + '</text>'; }
+  labels.forEach((L, i) => { const x = x0 + 14 + i * step, h = vals[i] * 150 / mx; s += '<rect x="' + x + '" y="' + (170 - h) + '" width="' + bw + '" height="' + h + '" rx="4" fill="' + COLS10[i % 10] + '"/><text x="' + (x + bw / 2) + '" y="188" text-anchor="middle" font-size="13" ' + FNT + '>' + L + '</text>'; });
+  return svgW(440, 198, s);
+}
+const CATS = [['яблоко', 'банан', 'груша', 'арбуз'], ['кошка', 'собака', 'хомяк', 'рыбка'], ['красный', 'синий', 'зелёный', 'жёлтый']];
+function dataSet(){ const cats = pick(CATS), vals = []; while (vals.length < 4){ const v = rnd(1, 9); if (vals.indexOf(v) < 0) vals.push(v); } return { cats: cats, vals: vals }; }
+function dataTbl(c, v){ return '<table class="m2-mt"><tr><th>Ответ</th><th>Сколько детей</th></tr>' + c.map((x, i) => '<tr><td>' + x + '</td><td>' + v[i] + '</td></tr>').join('') + '</table>'; }
+function dataQ(D, fig){
+  const t = rnd(0, 3), mi = D.vals.indexOf(Math.max.apply(null, D.vals)), i = rnd(0, 3); let j; do { j = rnd(0, 3); } while (j === i);
+  if (t === 0) return { html: '<div class="ac-qtxt">Сколько детей выбрали «' + D.cats[i] + '»?</div>' + fig, opts: opts4(D.vals[i], [D.vals[i] + 1, D.vals[i] - 1, D.vals[j], D.vals[i] + 2].filter(x => x > 0)), ans: D.vals[i], hint: 'Найди «' + D.cats[i] + '» и прочитай число: ' + D.vals[i] + '.' };
+  if (t === 1) return { html: '<div class="ac-qtxt">Что выбрали чаще всего?</div>' + fig, opts: shuffle(D.cats), ans: D.cats[mi], hint: 'Самое большое число — ' + D.vals[mi] + ' — у «' + D.cats[mi] + '».' };
+  if (t === 2){ const d = Math.abs(D.vals[i] - D.vals[j]); return { html: '<div class="ac-qtxt">На сколько «' + D.cats[i] + '» и «' + D.cats[j] + '» отличаются по числу детей?</div>' + fig, opts: opts4(d, [d + 1, d + 2, D.vals[i] + D.vals[j], d - 1].filter(x => x > 0)), ans: d, hint: 'Вычти меньшее число из большего: ' + Math.max(D.vals[i], D.vals[j]) + ' − ' + Math.min(D.vals[i], D.vals[j]) + ' = ' + d + '.' }; }
+  const tot = D.vals.reduce((a, b) => a + b, 0); return { html: '<div class="ac-qtxt">Сколько всего детей ответили?</div>' + fig, opts: opts4(tot, [tot + 1, tot - 1, tot + 2, tot - 2]), ans: tot, hint: 'Сложи все числа: ' + D.vals.join(' + ') + ' = ' + tot + '.' };
+}
+GENS.chartRead = function(){ const D = dataSet(); return dataQ(D, barSVG(D.cats, D.vals, 10)); };
+GENS.tableRead = function(){ const D = dataSet(); return dataQ(D, dataTbl(D.cats, D.vals)); };
+
 
 /* угол: двигаем ползунок */
 SCENES.angleSlider = function(stage, st, ctx){
@@ -1439,6 +1631,55 @@ SCENES.clockSet = function(stage, st, ctx){
     else { ctx.miss(); ctx.fb('Сейчас на часах ' + tm(h, m) + '. Нужно ' + tm(T.h, T.m) + '. Короткая стрелка — часы, длинная — минуты.', 'bad'); }
   };
   newT();
+};
+
+/* ---------- сцены части 4 ---------- */
+/* составляем комбинации: выбрать предмет из каждого ряда */
+SCENES.comboBuild = function(stage, st, ctx){
+  let ti = 0, selA = -1, found = {}, T;
+  stage.innerHTML = '<div class="ac-qcount" id="cb-c"></div><div class="ac-qtxt m2-big" id="cb-q"></div><div class="m2-cbrow" id="cb-a"></div><div class="m2-cbrow" id="cb-b"></div><div class="m2-cbfound" id="cb-f"></div><div class="ac-qcount" id="cb-n"></div>';
+  function paint(){
+    const A = $('#cb-a', stage), B = $('#cb-b', stage);
+    A.innerHTML = T.A.map((x, i) => '<button class="ac-btn m2-cbtn' + (i === selA ? ' on' : '') + '" data-i="' + i + '">' + x + '</button>').join('');
+    B.innerHTML = T.B.map((x, j) => '<button class="ac-btn ac-alt m2-cbtn" data-j="' + j + '">' + x + '</button>').join('');
+    $$('[data-i]', A).forEach(b => b.onclick = function(){ selA = +b.dataset.i; ctx.fb('Теперь выбери ' + T.bLabel + '.', 'info'); paint(); });
+    $$('[data-j]', B).forEach(b => b.onclick = function(){
+      if (selA < 0){ ctx.fb('Сначала выбери ' + T.aLabel + ' в верхнем ряду.', 'info'); return; }
+      const key = selA + '-' + b.dataset.j;
+      if (found[key]){ ctx.miss(); ctx.fb('Такой комплект уже есть. Ищи новый.', 'bad'); selA = -1; paint(); return; }
+      found[key] = 1; const n = Object.keys(found).length; selA = -1; paint(); list();
+      if (n >= T.A.length * T.B.length){
+        ti++; ctx.fb(pick(PRAISE) + ' Всего ' + n + ' комплектов: ' + T.A.length + ' · ' + T.B.length + ' = ' + n + '.', 'ok');
+        if (ti >= st.tasks.length){ $('#cb-q', stage).textContent = 'Все комбинации найдены! 🌟'; $('#cb-a', stage).style.display = 'none'; $('#cb-b', stage).style.display = 'none'; ctx.done(); }
+        else setTimeout(() => { if (ctx.alive()) next(); }, 1600);
+      } else ctx.fb('Есть! Найдено ' + n + ' из ' + T.A.length * T.B.length + '.', 'info');
+    });
+  }
+  function list(){ $('#cb-f', stage).innerHTML = Object.keys(found).map(k => { const p = k.split('-'); return '<span class="m2-cbchip">' + T.A[+p[0]] + ' + ' + T.B[+p[1]] + '</span>'; }).join(''); $('#cb-n', stage).textContent = 'Найдено: ' + Object.keys(found).length + ' из ' + T.A.length * T.B.length; }
+  function next(){ T = st.tasks[ti]; found = {}; selA = -1; $('#cb-c', stage).textContent = 'Задание ' + (ti + 1) + ' из ' + st.tasks.length; $('#cb-q', stage).textContent = T.q; $('#cb-a', stage).style.display = ''; $('#cb-b', stage).style.display = ''; ctx.fb('', 'info'); paint(); list(); }
+  next();
+};
+/* опрос: раскладываем ответы по строкам, строим диаграмму */
+SCENES.dataCollect = function(stage, st, ctx){
+  const cats = st.cats, seq = st.seq, vals = cats.map(() => 0); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="dc-c"></div><div class="ac-qtxt m2-big" id="dc-q"></div><div id="dc-cur" class="m2-dccur"></div><div class="m2-cbrow" id="dc-b"></div><div id="dc-v"></div>';
+  const chart = () => { $('#dc-v', stage).innerHTML = barSVG(cats, vals, st.mx || 8); };
+  function show(){
+    if (i >= seq.length){
+      $('#dc-q', stage).textContent = 'Опрос закончен! Вот таблица и диаграмма.'; $('#dc-c', stage).textContent = ''; $('#dc-cur', stage).innerHTML = dataTbl(cats, vals); $('#dc-b', stage).style.display = 'none';
+      const mx = cats.reduce((a, c, k) => vals[k] > vals[a] ? k : a, 0); ctx.fb('Чаще всего выбрали «' + cats[mx] + '»: ' + vals[mx] + '.', 'ok'); ctx.done(); return;
+    }
+    $('#dc-c', stage).textContent = 'Ответ ' + (i + 1) + ' из ' + seq.length;
+    $('#dc-q', stage).textContent = 'Один ребёнок ответил: «' + cats[seq[i]] + '». Нажми на нужную кнопку, и столбик вырастет.';
+    $('#dc-cur', stage).setAttribute('data-cur', seq[i]); $('#dc-cur', stage).textContent = cats[seq[i]];
+  }
+  $('#dc-b', stage).innerHTML = cats.map((c, k) => '<button class="ac-btn ac-alt m2-cbtn" data-k="' + k + '">' + c + '</button>').join('');
+  $$('[data-k]', stage).forEach(b => b.onclick = function(){
+    if (i >= seq.length) return;
+    if (+b.dataset.k === seq[i]){ vals[seq[i]]++; i++; chart(); ctx.fb(pick(PRAISE), 'ok'); show(); }
+    else { ctx.miss(); ctx.fb('Ребёнок ответил «' + cats[seq[i]] + '». Нажми на эту кнопку.', 'bad'); }
+  });
+  chart(); show();
 };
 
 /* --- общий исполнитель вопросов --- */
@@ -1725,6 +1966,121 @@ LESSONS.push(
       Q('m30s3', 'quiz', 'Название по буквам', 'Название линии состоит из вида линии и букв точек, например «отрезок CD».', { count: 6, gens: ['objNote', 'objFact'] }),
       Q('m30s4', 'quiz', 'Точки на линии', 'Смотри, как точки расположены на линии: левее, правее, между.', { count: 6, gens: ['pointsOrder'] }),
       Q('m30s5', 'quiz', 'Повторяем часть 3', 'Вперемешку: шкалы, время, деньги, углы, периметр.', { count: 10, gens: ['scaleAny', 'clockRead', 'moneySum', 'perimRect', 'angleType', 'timeConv', 'lenConv', 'polyName'] })
+    ] }
+);
+
+/* ---------- часть 4: уроки 31–40 ---------- */
+LESSONS.push(
+  { id: 'm31', icon: '🧩', title: 'Задача: условие, вопрос, краткая запись', goal: 'Разбирать задачу, делать краткую запись, выбирать действие',
+    steps: [
+      Q('m31s1', 'infoTap', 'Из чего состоит задача', 'У каждой задачи есть условие и вопрос. Потом идёт решение и ответ. Нажимай на карточки.', { need: 4, items: [
+        { k: 'условие', t: 'Условие говорит, что нам известно. Например: у Алии было 5 яблок, ей дали ещё 3.' },
+        { k: 'вопрос', t: 'Вопрос говорит, что нужно узнать. Например: сколько яблок стало?' },
+        { k: 'краткая запись', v: big('Было — 5 яблок<br>Дали — 3 яблока<br>Стало — ?'), t: 'Краткая запись — это условие и вопрос короткими словами. Неизвестное мы обозначаем знаком вопроса.' },
+        { k: 'решение, ответ', t: 'Решение: 5 + 3 = 8. Ответ: стало 8 яблок. Ответ всегда пишем словами.' } ] }),
+      Q('m31s2', 'quiz', 'Выбираем запись и действие', 'Прочитай задачу. Найди, что известно и что нужно узнать. Потом выбери нужное.', { count: 8, gens: ['probModel'] }),
+      Q('m31s3', 'quiz', 'Решаем задачи', 'Реши задачу в уме или на бумаге. Помни, какое действие выбрать: стало больше — сложение, меньше — вычитание.', { count: 6, gens: ['wordSimple'] })
+    ] },
+  { id: 'm32', icon: '🔁', title: 'Простые задачи и обратные задачи', goal: 'Решать простые задачи на все действия и составлять обратные',
+    steps: [
+      Q('m32s1', 'infoTap', 'Какое действие выбрать', 'Слова в задаче подсказывают действие. Нажимай на карточки.', { need: 4, items: [
+        { k: 'сложение', t: 'Если нужно узнать, сколько всего, или стало больше, то складываем.' },
+        { k: 'вычитание', t: 'Если убрали, взяли или нужно узнать, сколько осталось, то вычитаем.' },
+        { k: 'умножение', t: 'Если несколько одинаковых групп и нужно узнать, сколько всего, то умножаем.' },
+        { k: 'деление', t: 'Если делим поровну или узнаём, сколько получилось групп, то делим.' } ] }),
+      Q('m32s2', 'quiz', 'Выбираем действие', 'Скажи про себя: что происходит в задаче? Что-то добавили, убрали, собрали одинаковые группы или разделили?', { count: 8, gens: ['probModel', 'wordSimple'] }),
+      Q('m32s3', 'infoTap', 'Что такое обратная задача', 'В обратной задаче то, что мы искали, становится известным. А одно из известных чисел становится неизвестным. Нажимай на карточки.', { need: 2, items: [
+        { k: 'задача', t: 'Было 12 яблок, добавили 5. Сколько стало? Решаем: 12 + 5 = 17.' },
+        { k: 'обратная', t: 'Стало 17 яблок, 5 яблок добавили. Сколько было сначала? Решаем: 17 − 5 = 12. Действие поменялось на обратное.' } ] }),
+      Q('m32s4', 'quiz', 'Составляем обратные задачи', 'Обратная задача использует тот же сюжет. Результат прежней задачи становится данным.', { count: 6, gens: ['inverseQ'] })
+    ] },
+  { id: 'm33', icon: '🏷️', title: 'Цена, количество, стоимость', goal: 'Использовать связь цены, количества и стоимости; периметр в задачах',
+    steps: [
+      Q('m33s1', 'infoTap', 'Цена, количество, стоимость', 'Когда покупаем, у нас есть три величины. Цена — сколько стоит одна вещь. Количество — сколько вещей. Стоимость — сколько стоит вся покупка. Нажимай на карточки.', { need: 3, items: [
+        { k: 'стоимость', v: '<table class="m2-mt"><tr><th>Цена</th><th>Кол-во</th><th>Стоимость</th></tr><tr><td>50 тг</td><td>3</td><td>?</td></tr></table>', t: 'Чтобы найти стоимость, цену умножаем на количество: 50 · 3 = 150 тенге.' },
+        { k: 'цена', v: '<table class="m2-mt"><tr><th>Цена</th><th>Кол-во</th><th>Стоимость</th></tr><tr><td>?</td><td>3</td><td>150 тг</td></tr></table>', t: 'Чтобы найти цену, стоимость делим на количество: 150 : 3 = 50 тенге.' },
+        { k: 'количество', v: '<table class="m2-mt"><tr><th>Цена</th><th>Кол-во</th><th>Стоимость</th></tr><tr><td>50 тг</td><td>?</td><td>150 тг</td></tr></table>', t: 'Чтобы найти количество, стоимость делим на цену: 150 : 50 = 3.' } ] }),
+      Q('m33s2', 'quiz', 'Покупки', 'Посмотри в таблицу: что известно и чего не хватает. Выбери нужное действие.', { count: 8, gens: ['priceQty'] }),
+      Q('m33s3', 'quiz', 'Задачи на периметр', 'Помни: периметр прямоугольника — это сумма длин всех сторон. P = (длина + ширина) · 2. У квадрата все стороны равны.', { count: 6, gens: ['perimProb'] })
+    ] },
+  { id: 'm34', icon: '✖️', title: 'Больше и меньше: на несколько и в несколько раз', goal: 'Решать задачи на увеличение и уменьшение числа и на сравнение',
+    steps: [
+      Q('m34s1', 'infoTap', '«На» и «в»: чем отличаются', 'Слова «на» и «в» меняют действие. Нажимай на карточки.', { need: 4, items: [
+        { k: 'на больше', t: 'Если «на 3 больше», то прибавляем 3. Было 5, стало 5 + 3 = 8.' },
+        { k: 'на меньше', t: 'Если «на 3 меньше», то вычитаем 3. Было 8, стало 8 − 3 = 5.' },
+        { k: 'в раз больше', t: 'Если «в 3 раза больше», то умножаем на 3. Было 5, стало 5 · 3 = 15.' },
+        { k: 'в раз меньше', t: 'Если «в 3 раза меньше», то делим на 3. Было 15, стало 15 : 3 = 5.' },
+        { k: 'на сколько?', t: 'Вопрос «на сколько больше?» — это разность. Вычитаем меньшее из большего: 15 − 5 = 10.' },
+        { k: 'во сколько раз?', t: 'Вопрос «во сколько раз больше?» — это кратное сравнение. Делим большее на меньшее: 15 : 5 = 3.' } ] }),
+      Q('m34s2', 'quiz', 'Больше, меньше, сравниваем', 'Найди в вопросе слово «на» или «в». Если «на», то складываем или вычитаем. Если «в», то умножаем или делим.', { count: 10, gens: ['timesQ'] }),
+      Q('m34s3', 'quiz', 'Ещё немного практики', 'Следи за словами «больше» и «меньше»: они подсказывают, какое действие выбрать.', { count: 6, gens: ['timesQ'] })
+    ] },
+  { id: 'm35', icon: '2️⃣', title: 'Задачи в два действия', goal: 'Решать задачи в два действия, записывать решение выражением',
+    steps: [
+      Q('m35s1', 'infoTap', 'Задача в два действия', 'В некоторых задачах нельзя ответить сразу. Сначала находим то, чего не хватает. Нажимай на карточки.', { need: 3, items: [
+        { k: 'задача', t: 'В пакете 5 яблок, а в корзине на 3 яблока больше. Сколько яблок всего в пакете и в корзине?' },
+        { k: 'действие 1', t: 'Сначала узнаём, сколько яблок в корзине: 5 + 3 = 8.' },
+        { k: 'действие 2', t: 'Потом считаем всё вместе: 5 + 8 = 13. Ответ: 13 яблок. Выражением это можно записать так: 5 + (5 + 3) = 13.' } ] }),
+      Q('m35s2', 'quiz', 'Решаем в два действия', 'Сначала найди промежуточный результат. Потом выполни второе действие. Подсказка поможет, если ошибёшься.', { count: 8, gens: ['twoStep'] }),
+      Q('m35s3', 'quiz', 'Записываем выражением', 'Решение задачи можно записать одним выражением. Подумай, что считаем первым, и выбери подходящее выражение.', { count: 6, gens: ['twoStepExpr'] })
+    ] },
+  { id: 'm36', icon: '🔍', title: 'Неизвестное число, прямые и косвенные вопросы', goal: 'Находить неизвестные компоненты, решать задачи с косвенными вопросами',
+    steps: [
+      Q('m36s1', 'infoTap', 'Находим неизвестное', 'В задачах на умножение и деление иногда неизвестен один из множителей, делимое или делитель. Нажимай на карточки.', { need: 3, items: [
+        { k: 'множитель', t: 'Неизвестный множитель равен произведению, делённому на известный множитель. Например: x · 3 = 12, значит x = 12 : 3 = 4.' },
+        { k: 'делимое', t: 'Неизвестное делимое равно частному, умноженному на делитель. Например: x : 3 = 4, значит x = 4 · 3 = 12.' },
+        { k: 'делитель', t: 'Неизвестный делитель равен делимому, делённому на частное. Например: 12 : x = 4, значит x = 12 : 4 = 3.' } ] }),
+      Q('m36s2', 'quiz', 'Задуманные числа', 'Подумай, какое действие обратное. Потом проверь ответ подстановкой.', { count: 8, gens: ['unkTask'] }),
+      Q('m36s3', 'infoTap', 'Прямой и косвенный вопрос', 'Вопрос бывает прямым и косвенным. Нажимай на карточки.', { need: 2, items: [
+        { k: 'прямой', t: 'У Айдоса 5 яблок, а у Алии на 3 больше. Сколько у Алии? В условии прямо сказано: на 3 больше, значит прибавляем.' },
+        { k: 'косвенный', t: 'У Айдоса 5 яблок. Это на 3 меньше, чем у Алии. Сколько у Алии? Здесь сказано «меньше», но у Алии больше. Поэтому не вычитаем, а прибавляем.' } ] }),
+      Q('m36s4', 'quiz', 'Косвенные вопросы', 'Внимательно подумай, у кого больше, у кого меньше. Только потом выбирай действие.', { count: 6, gens: ['timesInd'] }),
+      Q('m36s5', 'quiz', 'Стороны и периметр', 'Найди сторону прямоугольника или квадрата, если известен периметр.', { count: 6, gens: ['perimProb'] })
+    ] },
+  { id: 'm37', icon: '⭕', title: 'Множества и диаграммы', goal: 'Обозначать множества, использовать знаки принадлежности, читать диаграммы Венна',
+    steps: [
+      Q('m37s1', 'infoTap', 'Множество и его элементы', 'Множество — это группа предметов или чисел. Каждый предмет в нём называется элементом. Нажимай на карточки.', { need: 4, items: [
+        { k: 'A = {2, 4, 6}', t: 'Множество называют большой латинской буквой, например A. Элементы записывают в фигурных скобках через запятую.' },
+        { k: '4 ∈ A', t: 'Знак, похожий на букву Е, читается «принадлежит». Он значит: число 4 есть в множестве A.' },
+        { k: '5 ∉ A', t: 'Этот же знак с чёрточкой читается «не принадлежит». Числа 5 в множестве A нет.' },
+        { k: 'диаграмма', v: vennSVG([2, 4], [6], [8, 10], 'A', 'B'), t: 'Множества рисуют кругами. В зелёном круге числа множества A, в жёлтом — множества B. Числа в общей части входят в оба множества.' },
+        { k: 'пересечение', t: 'Общая часть двух кругов называется пересечением. В нём числа, которые есть и в A, и в B.' },
+        { k: 'объединение', t: 'Все числа, которые есть хотя бы в одном круге, образуют объединение.' } ] }),
+      Q('m37s2', 'quiz', 'Принадлежит или не принадлежит', 'Ищи число среди элементов множества. Если нашёл — принадлежит, если нет — не принадлежит.', { count: 8, gens: ['setIn', 'setNote'] }),
+      Q('m37s3', 'quiz', 'Читаем диаграмму', 'Посмотри, в каком круге стоит число. Общая часть — это пересечение.', { count: 8, gens: ['vennCount'] }),
+      Q('m37s4', 'quiz', 'Объединяем и делим множества', 'Одинаковые множества можно объединить, и тогда нужно умножать. А если разделить множество на равные части, то нужно делить.', { count: 6, gens: ['unionEq'] })
+    ] },
+  { id: 'm38', icon: '🗂️', title: 'Классифицируем числа', goal: 'Составлять и классифицировать числовые множества',
+    steps: [
+      Q('m38s1', 'infoTap', 'По каким признакам делим числа', 'Числа можно разбить на группы по разным признакам. Нажимай на карточки.', { need: 3, items: [
+        { k: 'по цифрам', t: 'По количеству цифр: однозначные числа записаны одной цифрой, например 7. Двузначные — двумя, например 47.' },
+        { k: 'чётность', t: 'Чётные числа делятся на 2 без остатка. Они оканчиваются на 0, 2, 4, 6 или 8. Остальные числа нечётные.' },
+        { k: 'место в ряду', t: 'Числа стоят в ряду по порядку. Между числами 12 и 16 стоят три числа: 13, 14 и 15.' } ] }),
+      Q('m38s2', 'quiz', 'Считаем числа по признаку', 'Внимательно проверь каждое число по признаку. Можно считать по одному.', { count: 8, gens: ['digitsClass'] }),
+      Q('m38s3', 'quiz', 'Составляем множества', 'Выбери множество, в котором есть все нужные числа и нет лишних.', { count: 6, gens: ['setBuild'] })
+    ] },
+  { id: 'm39', icon: '🧠', title: 'Логика, головоломки, комбинации', goal: 'Определять истинность утверждений, решать логические задачи, составлять комбинации',
+    steps: [
+      Q('m39s1', 'infoTap', 'Истина и ложь', 'Утверждение может быть верным или неверным. Верное называют истинным, а неверное — ложным. Нажимай на карточки.', { need: 2, items: [
+        { k: 'истинное', t: 'Утверждение «12 — чётное число» истинное: 12 оканчивается на 2.' },
+        { k: 'ложное', t: 'Утверждение «15 — чётное число» ложное: 15 оканчивается на 5, значит оно нечётное.' } ] }),
+      Q('m39s2', 'quiz', 'Верно или неверно', 'Проверь утверждение сам: вычисли, сравни или посмотри на последнюю цифру.', { count: 8, gens: ['truth', 'pickTrue'] }),
+      Q('m39s3', 'quiz', 'Переливаем и взвешиваем', 'Представь, что делаешь это по шагам. Или нарисуй весы или сосуды на бумаге.', { count: 6, gens: ['pourQ', 'weighQ'] }),
+      Q('m39s4', 'comboBuild', 'Составляем комплекты', 'Теперь составим все возможные комплекты. Сначала нажми на предмет в верхнем ряду, потом на предмет в нижнем ряду. Найди все комплекты.', { tasks: [
+        { q: 'Составь все комплекты: футболка и шорты', aLabel: 'футболку', bLabel: 'шорты', A: ['красная футболка', 'синяя футболка'], B: ['белые шорты', 'чёрные шорты', 'жёлтые шорты'] },
+        { q: 'Составь все наборы: мороженое и топпинг', aLabel: 'мороженое', bLabel: 'топпинг', A: ['пломбир', 'шоколадное', 'клубничное'], B: ['орехи', 'сироп'] } ] }),
+      Q('m39s5', 'quiz', 'Сколько всего комбинаций', 'Помни: к каждому предмету из первой группы подходит любой предмет из второй. Умножай количество.', { count: 6, gens: ['comboQ'] })
+    ] },
+  { id: 'm40', icon: '📊', title: 'Данные: опрос, таблица, диаграмма', goal: 'Собирать данные, строить таблицы и столбчатые диаграммы, читать их',
+    steps: [
+      Q('m40s1', 'infoTap', 'Как собирают данные', 'Чтобы узнать мнение ребят, проводят опрос. Ответы записывают в таблицу, а потом рисуют диаграмму. Нажимай на карточки.', { need: 3, items: [
+        { k: 'опрос', t: 'Мы задаём всем один и тот же вопрос. Например: какой фрукт вы любите?' },
+        { k: 'таблица', v: dataTbl(['яблоко', 'банан', 'груша', 'арбуз'], [4, 3, 2, 1]), t: 'В таблице ответы собраны вместе. Рядом с каждым ответом записано число детей.' },
+        { k: 'диаграмма', v: barSVG(['яблоко', 'банан', 'груша', 'арбуз'], [4, 3, 2, 1], 8), t: 'На столбчатой диаграмме чем выше столбик, тем больше детей выбрали этот ответ.' } ] }),
+      Q('m40s2', 'dataCollect', 'Проводим опрос', 'Сейчас мы проведём опрос. Ответ каждого ребёнка нужно отметить на диаграмме. Нажимай на нужную кнопку.', { cats: ['яблоко', 'банан', 'груша', 'арбуз'], seq: [0, 1, 0, 2, 1, 0, 3, 1, 0, 2], mx: 8 }),
+      Q('m40s3', 'quiz', 'Читаем диаграмму', 'Найди нужный столбик, посмотри на шкалу слева и прочитай число.', { count: 6, gens: ['chartRead'] }),
+      Q('m40s4', 'quiz', 'Читаем таблицу', 'В таблице ищи нужную строку. Чтобы сравнить, вычитай; чтобы узнать всё вместе, складывай.', { count: 6, gens: ['tableRead'] }),
+      Q('m40s5', 'quiz', 'Повторяем часть 4', 'Вперемешку: задачи, множества, логика и данные.', { count: 10, gens: ['wordSimple', 'twoStep', 'timesQ', 'priceQty', 'vennCount', 'truth', 'chartRead', 'digitsClass', 'comboQ'] })
     ] }
 );
 
