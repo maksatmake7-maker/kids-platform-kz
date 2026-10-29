@@ -236,6 +236,10 @@
   @media (max-width:520px){.nc-th-row svg,.nc-pool svg{width:30px;height:30px;} .nc-grp .nc-th-row{max-width:150px;} .nc-plate{min-height:96px;}}
   /* ----- курс «Живая природа» ----- */
   .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .ob-q{font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;margin-top:8px;} .ob-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:4px 0;} .ob-tb.ob-col{flex-direction:column;align-items:center;}
+  .ob-b{border:3px solid #DCE6F0;border-radius:14px;background:#fff;color:#1D3557;font:800 .95rem 'Baloo 2',sans-serif;padding:8px 12px;cursor:pointer;line-height:1.15;max-width:420px;} .ob-b.on{border-color:#F5B400;background:#FFF1C9;} .ob-b.nope{animation:ncShake .35s linear 1;background:#FFE4E1;} .ob-b:hover{background:#EAF3FF;}
+  .ob-tab{border-collapse:collapse;margin:8px auto;width:100%;max-width:440px;font-size:.92rem;color:#1D3557;} .ob-tab th,.ob-tab td{border:2px solid #DCE6F0;padding:5px 7px;text-align:center;vertical-align:top;} .ob-tab th{background:#EAF3FF;}
+  .ob-pair{display:flex;gap:10px;justify-content:center;margin:6px 0;flex-wrap:wrap;} .ob-cup{background:#F5F8FA;border:3px solid #DCE6F0;border-radius:18px;padding:8px 12px;text-align:center;min-width:120px;font-weight:800;} .ob-res{background:#FFF8E0;border-color:#F5B400;}
   .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
   .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
   .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
@@ -284,7 +288,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Живая природа</h1>
-      <p class="ac-sub">6 уроков · тело человека, что нужно для роста, части растения, что нужно растениям, животные, животные зимой · с играми и проверкой</p>
+      <p class="ac-sub">8 уроков · тело человека, что нужно для роста, части растения, что нужно растениям, животные, животные зимой, зачем изучать природу, опыты и сравнения · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -706,6 +710,165 @@ const LESSONS = [
         text: 'Теперь ты знаешь, для чего нужны части тела, что нужно человеку и растениям, из каких частей состоит растение и как живут животные. Дальше тренируйся в играх. Я буду рядом!' }
     ] }
 ];
+
+/* ===================== Новые уроки курса «Естествознание» (приказ №399, прил. 28, 1 класс) ===================== */
+function qaGen(arr){
+  let deck = [];
+  return function(){
+    if (!deck.length) deck = shuffle(arr);
+    const it = deck.pop();
+    const opts = shuffle([it.a].concat(shuffle(it.w).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">' + it.q + '</div>' + (it.e ? '<div class="es-card"><div class="em" style="font-size:3rem;letter-spacing:.1em">' + it.e + '</div></div>' : ''), opts: opts, ans: it.a, wide: it.wide !== false, hint: it.h };
+  };
+}
+const GENERIC_WHY = ['Только для развлечения', 'Это не нужно знать', 'Чтобы всё забыть'];
+const WHY = [
+  { q: 'Зачем знать, что растениям нужны вода и свет?', a: 'Чтобы правильно ухаживать за растениями', h: 'Зная, что нужно растению, мы можем его вырастить и не погубить.' },
+  { q: 'Зачем смотреть прогноз погоды?', a: 'Чтобы выбрать одежду и спланировать день', h: 'Знание о погоде помогает одеться и подготовиться.' },
+  { q: 'Зачем знать правила обращения с электричеством?', a: 'Чтобы пользоваться приборами безопасно', h: 'Электричество опасно, поэтому правила нужно знать.' },
+  { q: 'Зачем изучать животных?', a: 'Чтобы понимать, как им помочь и как жить рядом с ними', h: 'Мы узнаём, чем питаются животные и как их беречь.' },
+  { q: 'Зачем наблюдать за природой?', a: 'Чтобы замечать изменения и узнавать новое', h: 'Наблюдая, мы узнаём, как всё в природе устроено.' },
+  { q: 'Зачем учёные проводят опыты?', a: 'Чтобы проверить и понять, как всё устроено', h: 'Опыт помогает проверить догадку.' }
+].map(x => Object.assign(x, { w: GENERIC_WHY }));
+const OBSQ = [
+  { q: 'Что такое наблюдение?', a: 'Внимательно смотреть и записывать, что видишь', w: ['Быстро посмотреть и забыть', 'Придумать, как должно быть', 'Только слушать'], h: 'Наблюдение — это внимательно смотреть, замечать и записывать.' },
+  { q: 'Чем можно наблюдать за природой?', a: 'Глазами, лупой, термометром', w: ['Только ластиком', 'Только ножницами', 'Ничем'], h: 'Глаза, лупа и термометр помогают наблюдать.' },
+  { q: 'Что измеряет термометр?', e: '🌡️', a: 'Температуру', w: ['Время', 'Длину', 'Вес'], h: 'Термометр показывает, тепло или холодно.' },
+  { q: 'Как сохранить результаты наблюдения?', a: 'Записать в дневник наблюдений', w: ['Выбросить записи', 'Не записывать, а запомнить на всю жизнь'], h: 'Результаты лучше записывать: так их можно сравнить.' },
+  { q: 'Какое явление можно наблюдать каждый день?', a: 'Погоду', w: ['Только ураган', 'Только радугу'], h: 'Погода меняется каждый день.' },
+  { q: 'Для чего нужен дневник погоды?', a: 'Чтобы сравнивать, какими были дни', w: ['Чтобы рисовать на нём', 'Чтобы класть под парту'], h: 'Записи показывают, как менялась погода.' }
+];
+const EXPQ = [
+  { q: 'Что такое опыт (эксперимент)?', a: 'Проверка: что произойдёт, если сделать вот так', w: ['Просто игра без цели', 'Рассказ из книги', 'Сон'], h: 'Опыт помогает проверить догадку и увидеть результат.' },
+  { q: 'Что нужно делать во время опыта?', a: 'Смотреть и замечать, что изменилось', w: ['Отвернуться', 'Бросать предметы'], h: 'Мы наблюдаем и замечаем изменения.' },
+  { q: 'Лёд на солнце ...', e: '🧊☀️', a: 'тает', w: ['растёт', 'становится больше'], h: 'Тепло растапливает лёд.' },
+  { q: 'Росток в тёмном шкафу ...', e: '🌱🌑', a: 'становится бледным и слабым', w: ['вырастает самым красивым', 'становится зелёным и сильным'], h: 'Без света растению плохо.' },
+  { q: 'Камень в воде ...', e: '🪨💧', a: 'тонет', w: ['плавает', 'улетает'], h: 'Камень тяжёлый, он опускается на дно.' },
+  { q: 'Деревянная дощечка в воде ...', e: '🪵💧', a: 'плавает', w: ['тонет', 'растворяется'], h: 'Дерево лёгкое, оно держится на воде.' }
+];
+const CMPQ = [
+  { q: 'Что есть у растений, но нет у животных?', a: 'Корни', w: ['Лапы', 'Глаза', 'Хвост'], h: 'Растение держится в земле корнями.' },
+  { q: 'Кто может ходить, бегать или летать?', a: 'Животные', w: ['Растения', 'Все камни'], h: 'Животные движутся с места на место.' },
+  { q: 'Что нужно и растениям, и животным?', a: 'Вода', w: ['Корм из миски', 'Крылья'], h: 'Без воды не могут жить ни растения, ни животные.' },
+  { q: 'Растёт ли животное?', a: 'Да, как и растение', w: ['Нет, не растёт'], h: 'Животные и растения растут.' },
+  { q: 'Чем питается заяц?', e: '🐰', a: 'Растениями', w: ['Камнями', 'Песком'], h: 'Заяц ест траву и овощи.' },
+  { q: 'Что общее у кошки и ромашки?', e: '🐱🌼', a: 'Они живые: дышат, растут, питаются', w: ['Обе умеют ходить', 'Обе имеют корни'], h: 'Животные и растения — живая природа.' }
+];
+Object.assign(GENS, { whyQ: qaGen(WHY), obsQ: qaGen(OBSQ), expQ: qaGen(EXPQ), cmpQ: qaGen(CMPQ) });
+/* --- дневник погоды --- */
+const WTHR = [['☀️', 'Солнечно'], ['☁️', 'Облачно'], ['🌧️', 'Дождь'], ['❄️', 'Снег']];
+const TEMP = [['🥵', 'Тепло', 15, 99], ['🙂', 'Прохладно', 5, 14], ['🥶', 'Холодно', -50, 4]];
+SCENES.obsWeather = function(stage, st, ctx){
+  const days = ['Понедельник', 'Вторник', 'Среда', 'Четверг']; const data = []; let di = 0, w = null, t = null;
+  const rows = [];
+  for (let i = 0; i < days.length; i++){
+    const wi = i < 2 ? i : Math.floor(Math.random() * 4); const kind = WTHR[(i === 0 ? 0 : i === 1 ? 2 : wi)]; const tt = kind[0] === '☀️' ? 18 + Math.floor(Math.random() * 6) : kind[0] === '❄️' ? -6 + Math.floor(Math.random() * 5) : 8 + Math.floor(Math.random() * 6);
+    data.push({ day: days[i], w: kind, t: tt });
+  }
+  window.__obs = data;
+  const tcls = d => TEMP.find(x => d.t >= x[2] && d.t <= x[3]);
+  function day(){
+    const d = data[di]; w = null; t = null;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">День ' + (di + 1) + ' из ' + data.length + '. Посмотри в окно и на термометр. Запиши в дневник, что увидел.</div>' +
+      '<div class="es-card"><div class="nm">' + d.day + '</div><div class="em" style="font-size:3.6rem">' + d.w[0] + '</div><div class="nm">🌡️ ' + d.t + '°</div></div>' +
+      '<div class="ob-q">Какая погода?</div><div class="ob-tb" id="o-w">' + WTHR.map(x => '<button class="ob-b" data-v="' + x[1] + '">' + x[0] + ' ' + x[1] + '</button>').join('') + '</div>' +
+      '<div class="ob-q">Сколько градусов — это тепло или холодно?</div><div class="ob-tb" id="o-t">' + TEMP.map(x => '<button class="ob-b" data-v="' + x[1] + '">' + x[0] + ' ' + x[1] + '</button>').join('') + '</div><div class="es-card" id="o-f"><div class="tx">Выбери в обеих строках.</div></div>';
+    const chk = () => {
+      if (w === null || t === null) return;
+      if (w === d.w[1] && t === tcls(d)[1]){ rows.push([d.day, d.w[0] + ' ' + d.w[1], d.t + '° — ' + tcls(d)[1].toLowerCase()]); di++; if (di >= data.length) summary(); else { ctx.fb('Записано! Следующий день.', 'ok'); setTimeout(() => { if (ctx.alive()) day(); }, st.fast ? 20 : 900); } }
+      else { ctx.miss(); $('#o-f', stage).innerHTML = '<div class="tx">Не совпадает. Посмотри на картинку и на градусы ещё раз.</div>'; w = null; t = null; $$('.ob-b', stage).forEach(b => b.classList.remove('on')); }
+    };
+    $$('#o-w .ob-b', stage).forEach(b => b.onclick = function(){ w = b.dataset.v; $$('#o-w .ob-b', stage).forEach(x => x.classList.toggle('on', x === b)); chk(); });
+    $$('#o-t .ob-b', stage).forEach(b => b.onclick = function(){ t = b.dataset.v; $$('#o-t .ob-b', stage).forEach(x => x.classList.toggle('on', x === b)); chk(); });
+  }
+  function summary(){
+    const rainy = data.filter(d => d.w[1] === 'Дождь').length, warm = data.reduce((a, d) => d.t > a.t ? d : a, data[0]);
+    const qs = [['Сколько дней был дождь?', String(rainy), ['0', '1', '2', '3', '4'].filter(x => x !== String(rainy)).slice(0, 3)], ['В какой день было теплее всего?', warm.day, days.filter(x => x !== warm.day).slice(0, 3)]];
+    let qi = 0; window.__obsQ = qs;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Дневник готов. Посмотри на таблицу и ответь.</div><table class="ob-tab"><tr><th>День</th><th>Погода</th><th>Температура</th></tr>' + rows.map(r => '<tr><td>' + r.join('</td><td>') + '</td></tr>').join('') + '</table><div id="o-q"></div>';
+    function ask(){
+      const q = qs[qi];
+      $('#o-q', stage).innerHTML = '<div class="ac-qtxt">' + q[0] + '</div><div class="ob-tb">' + shuffle([q[1]].concat(q[2])).map(o => '<button class="ob-b" data-v="' + o + '">' + o + '</button>').join('') + '</div>';
+      $$('#o-q .ob-b', stage).forEach(b => b.onclick = function(){
+        if (b.dataset.v === q[1]){ qi++; if (qi >= qs.length){ $('#o-q', stage).innerHTML = ''; ctx.fb('Ты провёл наблюдение и сделал выводы из записей!', 'ok'); ctx.done(); } else { ctx.fb('Верно!', 'ok'); ask(); } }
+        else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); ctx.fb('Посмотри на таблицу ещё раз.', 'bad'); }
+      });
+    }
+    ask();
+  }
+  day();
+};
+/* --- опыты: запускаем и объясняем --- */
+const EXPS = [
+  { t: 'Свет и росток', setup: 'Два одинаковых ростка. Один поставили на подоконник, другой убрали в тёмный шкаф. Подождём три дня.', before: ['🌱☀️', '🌱🌑'], after: ['🌿☀️', '🥀🌑'], lab: ['На свету', 'В темноте'], res: 'Через три дня: на свету росток зелёный и сильный, в темноте — бледный и слабый.', a: 'Растению нужен свет', w: ['Растению не нужна вода', 'Растение боится окна'], h: 'Без света росток слабеет: растениям нужен свет.' },
+  { t: 'Лёд и тепло', setup: 'Два кубика льда. Один положили на тёплое блюдце на солнце, другой оставили в морозилке.', before: ['🧊☀️', '🧊❄️'], after: ['💧☀️', '🧊❄️'], lab: ['На солнце', 'В морозилке'], res: 'Через несколько минут: на солнце лёд превратился в воду, в морозилке остался льдом.', a: 'Тепло растапливает лёд', w: ['Лёд сам решил растаять', 'Лёд любит морозилку'], h: 'От тепла лёд тает и становится водой.' },
+  { t: 'Тонет или плавает', setup: 'Опустим в воду камешек и деревянную дощечку.', before: ['🪨💧', '🪵💧'], after: ['🪨⬇️', '🪵〰️'], lab: ['Камешек', 'Дощечка'], res: 'Камешек опустился на дно, а дощечка осталась на поверхности.', a: 'Одни предметы тонут, другие плавают', w: ['Все предметы тонут', 'Все предметы плавают'], h: 'Предметы ведут себя в воде по-разному.' }
+];
+SCENES.expDemo = function(stage, st, ctx){
+  let ei = 0;
+  function exp(){
+    const E = EXPS[ei]; window.__exp = E;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Опыт ' + (ei + 1) + ' из ' + EXPS.length + ': ' + E.t + '</div><div class="es-card"><div class="tx">' + E.setup + '</div></div><div class="ob-pair" id="x-p">' + E.before.map((b, i) => '<div class="ob-cup"><div class="em" style="font-size:2.6rem">' + b + '</div><div class="tx">' + E.lab[i] + '</div></div>').join('') + '</div><div class="ob-tb"><button class="ob-b on" id="x-go">▶ Запустить опыт</button></div><div id="x-q"></div>';
+    $('#x-go', stage).onclick = function(){
+      this.style.display = 'none';
+      $('#x-p', stage).innerHTML = E.after.map((b, i) => '<div class="ob-cup ob-res"><div class="em" style="font-size:2.6rem">' + b + '</div><div class="tx">' + E.lab[i] + '</div></div>').join('');
+      $('#x-q', stage).innerHTML = '<div class="es-card"><div class="tx">' + E.res + '</div></div><div class="ac-qtxt">Объясни: почему так получилось?</div><div class="ob-tb ob-col">' + shuffle([E.a].concat(E.w)).map(o => '<button class="ob-b" data-v="' + o + '">' + o + '</button>').join('') + '</div>';
+      $$('#x-q .ob-b', stage).forEach(b => b.onclick = function(){
+        if (b.dataset.v === E.a){ ei++; if (ei >= EXPS.length){ ctx.fb('Ты объяснил все опыты!', 'ok'); ctx.done(); } else { ctx.fb('Верно! ' + E.h, 'ok'); setTimeout(() => { if (ctx.alive()) exp(); }, st.fast ? 20 : 1700); } }
+        else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); ctx.fb('Подумай: что изменилось и из-за чего?', 'bad'); }
+      });
+    };
+  }
+  exp();
+};
+/* --- сравниваем животных и растения --- */
+const TRAITS = [['Дышит', 'both'], ['Растёт', 'both'], ['Нуждается в воде', 'both'], ['Нуждается в тепле', 'both'], ['Ходит, бегает, летает или плавает', 'animal'], ['Растёт на одном месте', 'plant'], ['Есть корни', 'plant'], ['Ест траву, зёрна или мясо', 'animal']];
+const TLAB = { animal: 'Только у животных', plant: 'Только у растений', both: 'У обоих' };
+SCENES.cmpSort = function(stage, st, ctx){
+  const list = shuffle(TRAITS); let i = 0; const done = [];
+  function show(){
+    const t = list[i]; window.__trait = t;
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Признак ' + (i + 1) + ' из ' + list.length + '. Кому он подходит?</div><div class="es-card"><div class="em">🐱 🌼</div><div class="nm">' + t[0] + '</div></div><div class="ob-tb ob-col"><button class="ob-b" data-v="animal">🐾 Только у животных</button><button class="ob-b" data-v="plant">🌿 Только у растений</button><button class="ob-b" data-v="both">🐾🌿 У обоих</button></div>';
+    $$('.ob-b', stage).forEach(b => b.onclick = function(){
+      if (b.dataset.v === t[1]){ done.push(t); i++; if (i >= list.length) fin(); else { ctx.fb('Верно!', 'ok'); setTimeout(() => { if (ctx.alive()) show(); }, st.fast ? 20 : 700); } }
+      else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); ctx.fb('Подумай: у кошки это есть? А у ромашки?', 'bad'); }
+    });
+  }
+  function fin(){
+    const col = k => done.filter(x => x[1] === k).map(x => x[0]).join('<br>');
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Вот что получилось: сходства и различия.</div><table class="ob-tab"><tr><th>🐾 Только у животных</th><th>🐾🌿 У обоих (сходство)</th><th>🌿 Только у растений</th></tr><tr><td>' + col('animal') + '</td><td>' + col('both') + '</td><td>' + col('plant') + '</td></tr></table>';
+    ctx.fb('Ты сравнил животных и растения!', 'ok'); ctx.done();
+  }
+  show();
+};
+SCENES.whyTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 4, done: 'Природу изучают, чтобы заботиться о ней и жить безопасно!', items: [
+  { k: 'plant', b: '🌱', small: 'Растения', card: '<div class="em">🌱💧</div><div class="nm">Чтобы ухаживать за растениями</div><div class="tx">Узнав, что нужно растению, мы сможем вырастить цветок или овощ.</div>' },
+  { k: 'animal', b: '🐾', small: 'Животные', card: '<div class="em">🐶🐦</div><div class="nm">Чтобы беречь животных</div><div class="tx">Мы узнаём, чем они питаются и как им помочь.</div>' },
+  { k: 'weather', b: '🌦️', small: 'Погода', card: '<div class="em">🌦️🧥</div><div class="nm">Чтобы знать погоду</div><div class="tx">Если мы знаем, какая будет погода, то правильно оденемся.</div>' },
+  { k: 'safe', b: '🛡️', small: 'Безопасность', card: '<div class="em">⚡🔥</div><div class="nm">Чтобы быть в безопасности</div><div class="tx">Огонь, электричество и гроза опасны. Правила помогают их не бояться, а быть осторожными.</div>' },
+  { k: 'new', b: '💡', small: 'Новое', card: '<div class="em">🔬💡</div><div class="nm">Чтобы узнавать новое</div><div class="tx">Люди наблюдают, делают опыты и придумывают полезные вещи.</div>' }] });
+const NEWL = [
+  { id: 'e7', icon: '🔭', title: 'Зачем изучать природу', goal: 'Объяснять, зачем изучать мир вокруг, и проводить наблюдения',
+    steps: [
+      { id: 'e7s1', scene: 'whyTap', gate: true, title: 'Зачем изучать природу?', text: 'Зачем людям изучать растения, животных и погоду? Нажимай на картинки и узнаешь.' },
+      { id: 'e7s2', scene: 'quiz', gate: true, count: 6, gens: ['whyQ'], title: 'Зачем это нужно?', text: 'Выбери, зачем нужно знать то, о чём спрашивает вопрос.' },
+      { id: 'e7s3', scene: 'obsWeather', gate: true, title: 'Дневник погоды', text: 'Ты будешь настоящим исследователем. Четыре дня подряд смотри в окно и на термометр и записывай в дневник погоду и температуру.' },
+      { id: 'e7s4', scene: 'quiz', gate: true, count: 6, gens: ['obsQ'], title: 'Как наблюдать', text: 'Вспомни, как правильно проводить наблюдения.' }
+    ] },
+  { id: 'e8', icon: '🧪', title: 'Опыты и сравнения', goal: 'Объяснять опыт и сравнивать животных и растения',
+    steps: [
+      { id: 'e8s1', scene: 'expDemo', gate: true, title: 'Смотрим опыты', text: 'Сейчас ты увидишь три опыта. Сначала посмотри, что мы приготовили. Потом нажми «Запустить опыт», увидь результат и объясни, почему так получилось.' },
+      { id: 'e8s2', scene: 'quiz', gate: true, count: 6, gens: ['expQ'], title: 'Что получится?', text: 'Подумай, что получится в опыте, и выбери ответ.' },
+      { id: 'e8s3', scene: 'cmpSort', gate: true, title: 'Животные и растения', text: 'Давай сравним животных и растения. Выбери, у кого есть этот признак: только у животных, только у растений или у обоих.' },
+      { id: 'e8s4', scene: 'quiz', gate: true, count: 6, gens: ['cmpQ'], title: 'Сходства и различия', text: 'Ответь на вопросы о том, чем похожи и чем отличаются животные и растения.' },
+      { id: 'e8s5', scene: 'quiz', gate: true, count: 10, gens: ['whyQ', 'obsQ', 'expQ', 'cmpQ', 'plantName', 'plantNeedYN', 'animalWD', 'winterHow', 'bodyDo'], title: 'Смешанные задания', text: 'Последняя проверка: зачем изучать природу, наблюдения, опыты и сравнения.' },
+      { id: 'e8s6', scene: 'finale', title: 'Курс пройден!', text: 'Теперь ты знаешь, зачем изучать природу, как проводить наблюдения, как объяснять опыты и сравнивать животных и растения. Дальше тренируйся в играх. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const e6 = LESSONS.find(l => l.id === 'e6'); e6.steps = e6.steps.filter(s => s.scene !== 'finale');
+  NEWL.forEach(l => LESSONS.push(l));
+})();
 
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){
