@@ -854,6 +854,8 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   /* ----- воспроизведение ----- */
   var base = (window.__mxBase || '../../../games/') + '../assets/audio/barsik/';
   var token = 0, curAudio = null, enabled = true;
+  /* адрес клипа; клипы 2 класса (id начинается с g2_ / f_g2_) лежат в подпапке g2, чтобы не раздувать общую папку */
+  function clipUrl(c, L){ return base + (c.ru ? 'ru' : (c.kz ? 'kz' : L)) + (/^(f_)?g2_/.test(c.id) ? '/g2/' : '/') + c.id + '.mp3'; }
   try { enabled = localStorage.getItem('bilim_mx_snd') !== '0'; } catch(e){}
 
   var MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск|daniel|david|james|google uk english male/i;
@@ -889,7 +891,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
     if(!KZMAP){ KZMAP = {}; allClips('kz').forEach(function(x){ KZMAP[x.id] = x.text; }); }
     return KZMAP[c.id] ? {id:c.id, text:KZMAP[c.id], kz:true} : c;
   }
-  function say(cl, o){
+  function say0(cl, o){
     o = o || {};
     stop();
     var tok = token, L = lang();
@@ -917,7 +919,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
       (function next(){
         if(tok !== token) return resolve();
         if(i >= cl.length) return done();
-        var a = new Audio(base + (cl[i].ru ? 'ru' : (cl[i].kz ? 'kz' : L)) + '/' + cl[i].id + '.mp3');
+        var a = new Audio(clipUrl(cl[i], L));
         curAudio = a;
         var from = i;
         var isKz = !!cl[i].kz || (!cl[i].ru && L === 'kz');
@@ -931,6 +933,23 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
         if(p && p.catch) p.catch(function(){ tts(from); });
       })();
     });
+  }
+  /* Предложение с числами (клип с полем pieces) собирается из записанных кусочков и числовых клипов —
+     но только если ВСЕ кусочки уже лежат на сайте; иначе читает браузер целым предложением (как раньше). */
+  var PROBE = {}, sayGen = 0;
+  function probe(c){
+    var u = clipUrl(c, lang());
+    if(!PROBE[u]) PROBE[u] = window.fetch ? fetch(u, { method:'HEAD' }).then(function(r){ return !!r.ok; }, function(){ return false; }) : Promise.resolve(false);
+    return PROBE[u];
+  }
+  function say(cl, o){
+    cl = cl || [];
+    if(!cl.some(function(c){ return c && c.pieces; })){ sayGen++; return say0(cl, o); }
+    var my = ++sayGen; stop();
+    return Promise.all(cl.map(function(c){
+      if(!c.pieces) return Promise.resolve([c]);
+      return Promise.all(c.pieces.map(probe)).then(function(ok){ return ok.every(Boolean) ? c.pieces : [c]; });
+    })).then(function(arr){ if(my !== sayGen) return; return say0([].concat.apply([], arr), o); });
   }
   function setEnabled(v){ enabled = !!v; try { localStorage.setItem('bilim_mx_snd', v ? '1' : '0'); } catch(e){} if(!v) stop(); }
 
