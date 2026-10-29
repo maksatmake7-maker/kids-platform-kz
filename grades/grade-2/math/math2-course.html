@@ -263,6 +263,8 @@
   .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
   .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
   .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
 </style>
 </head>
 <body class="w-page" data-subject="math">
@@ -298,11 +300,11 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Математика 2 класс</h1>
-      <p class="ac-sub">20 уроков: числа до 1000, разряды, счёт, римские цифры, устный счёт и столбик, умножение и деление, выражения и уравнения</p>
+      <p class="ac-sub">30 уроков: числа и счёт, умножение и деление, выражения и уравнения, величины и время, деньги, геометрия</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
-        <div class="ac-progress-txt" id="ac-ptxt">0 из 20</div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 30</div>
       </div>
       <div class="ac-map" id="ac-map"></div>
     </div>
@@ -1024,6 +1026,421 @@ GENS.eqGen = function(){
   return { html: big('Реши уравнение<br><b>' + e + '</b>'), opts: opts4(x, [x + 1, x - 1, x + 2, x * 2, x + 10].filter(y => y > 0)), ans: x, hint: h };
 };
 
+/* ---------- часть 3: величины, время, деньги, геометрия ---------- */
+const svgW = (w, h, inner, cls) => '<svg viewBox="0 0 ' + w + ' ' + h + '" class="' + (cls || 'm2-fig') + '" role="img" aria-label="рисунок">' + inner + '</svg>';
+const FNT = 'font-family="Baloo 2,sans-serif" font-weight="800" fill="#1D3557"';
+const two = n => (n < 10 ? '0' : '') + n;
+const tm = (h, m) => h + ':' + two(m);
+
+/* линейка: предмет от from до to, линейка 0..max */
+function rulerSVG(max, from, to){
+  const x0 = 20, px = 400 / max, X = v => x0 + v * px; let s = '';
+  s += '<rect x="' + X(from) + '" y="14" width="' + (to - from) * px + '" height="24" rx="5" fill="#F5B400" stroke="#C98F00" stroke-width="2"/>';
+  s += '<rect x="' + x0 + '" y="46" width="' + max * px + '" height="44" fill="#FFF1C9" stroke="#1D3557" stroke-width="2"/>';
+  for (let i = 0; i <= max; i++){ s += '<line x1="' + X(i) + '" y1="46" x2="' + X(i) + '" y2="' + (i % 5 === 0 ? 66 : 60) + '" stroke="#1D3557" stroke-width="2"/><text x="' + X(i) + '" y="82" text-anchor="middle" font-size="12" ' + FNT + '>' + i + '</text>'; }
+  s += '<line x1="' + X(from) + '" y1="38" x2="' + X(from) + '" y2="46" stroke="#E0574A" stroke-width="2" stroke-dasharray="3 2"/><line x1="' + X(to) + '" y1="38" x2="' + X(to) + '" y2="46" stroke="#E0574A" stroke-width="2" stroke-dasharray="3 2"/>';
+  return svgW(440, 100, s);
+}
+/* термометр 0..40, значение чётное */
+function thermoSVG(v){
+  const y = t => 190 - 4 * t; let s = '<rect x="90" y="20" width="20" height="172" rx="10" fill="#fff" stroke="#1D3557" stroke-width="3"/><circle cx="100" cy="204" r="15" fill="#E0574A" stroke="#1D3557" stroke-width="3"/><rect x="95" y="' + y(v) + '" width="10" height="' + (200 - y(v)) + '" fill="#E0574A"/>';
+  for (let t = 0; t <= 40; t += 2){ const L = t % 10 === 0; s += '<line x1="112" y1="' + y(t) + '" x2="' + (L ? 126 : 120) + '" y2="' + y(t) + '" stroke="#1D3557" stroke-width="2"/>' + (L ? '<text x="132" y="' + (y(t) + 4) + '" font-size="13" ' + FNT + '>' + t + '</text>' : ''); }
+  return svgW(200, 225, s + '<text x="40" y="110" font-size="14" ' + FNT + '>°C</text>', 'm2-fig sm');
+}
+/* стрелочные весы 0..10 кг */
+function dialSVG(v){
+  const P = (a, r) => [110 + r * Math.sin(a * Math.PI / 180), 115 - r * Math.cos(a * Math.PI / 180)]; let s = '<circle cx="110" cy="115" r="95" fill="#fff" stroke="#1D3557" stroke-width="4"/>';
+  for (let k = 0; k <= 10; k++){ const a = -120 + 24 * k, p1 = P(a, 95), p2 = P(a, 80), t = P(a, 66); s += '<line x1="' + p1[0] + '" y1="' + p1[1] + '" x2="' + p2[0] + '" y2="' + p2[1] + '" stroke="#1D3557" stroke-width="2"/><text x="' + t[0] + '" y="' + (t[1] + 5) + '" text-anchor="middle" font-size="14" ' + FNT + '>' + k + '</text>'; }
+  const e = P(-120 + 24 * v, 58); s += '<line x1="110" y1="115" x2="' + e[0] + '" y2="' + e[1] + '" stroke="#E0574A" stroke-width="4" stroke-linecap="round"/><circle cx="110" cy="115" r="6" fill="#1D3557"/><text x="110" y="168" text-anchor="middle" font-size="14" ' + FNT + '>кг</text>';
+  return svgW(220, 220, s, 'm2-fig sm');
+}
+/* мерный стакан 0..10 л */
+function jugSVG(v){
+  const y = t => 220 - 20 * t; let s = '<rect x="60" y="' + y(v) + '" width="80" height="' + (220 - y(v)) + '" fill="#8ECDF7"/><path d="M60 14V220H140V14" fill="none" stroke="#1D3557" stroke-width="4"/>';
+  for (let t = 1; t <= 10; t++){ const L = t % 2 === 0; s += '<line x1="' + (L ? 140 : 140) + '" y1="' + y(t) + '" x2="' + (L ? 124 : 130) + '" y2="' + y(t) + '" stroke="#1D3557" stroke-width="2"/>' + (L ? '<text x="150" y="' + (y(t) + 4) + '" font-size="13" ' + FNT + '>' + t + '</text>' : ''); }
+  return svgW(200, 235, s + '<text x="20" y="130" font-size="14" ' + FNT + '>л</text>', 'm2-fig sm');
+}
+/* циферблат */
+function clockSVG(h, m, hideMin){
+  let s = '<circle cx="110" cy="110" r="102" fill="#fff" stroke="#1D3557" stroke-width="5"/>';
+  for (let i = 0; i < 60; i++){ const a = i * 6 * Math.PI / 180, r1 = i % 5 === 0 ? 86 : 92; s += '<line x1="' + (110 + 98 * Math.sin(a)) + '" y1="' + (110 - 98 * Math.cos(a)) + '" x2="' + (110 + r1 * Math.sin(a)) + '" y2="' + (110 - r1 * Math.cos(a)) + '" stroke="#1D3557" stroke-width="' + (i % 5 === 0 ? 3 : 1.2) + '"/>'; }
+  for (let k = 1; k <= 12; k++){ const a = k * 30 * Math.PI / 180; s += '<text x="' + (110 + 72 * Math.sin(a)) + '" y="' + (110 - 72 * Math.cos(a) + 7) + '" text-anchor="middle" font-size="20" ' + FNT + '>' + k + '</text>'; }
+  const ha = ((h % 12) + m / 60) * 30 * Math.PI / 180, ma = m * 6 * Math.PI / 180;
+  s += '<line x1="110" y1="110" x2="' + (110 + 50 * Math.sin(ha)) + '" y2="' + (110 - 50 * Math.cos(ha)) + '" stroke="#1D3557" stroke-width="8" stroke-linecap="round"/>';
+  s += '<line x1="110" y1="110" x2="' + (110 + 80 * Math.sin(ma)) + '" y2="' + (110 - 80 * Math.cos(ma)) + '" stroke="#E0574A" stroke-width="5" stroke-linecap="round"/><circle cx="110" cy="110" r="7" fill="#1D3557"/>';
+  return svgW(220, 220, s, 'm2-fig sm');
+}
+/* монеты и купюры */
+function moneySVG(v){
+  if (v <= 100){ const c = v === 50 ? '#C9CFD8' : '#E8C25A'; return '<svg viewBox="0 0 64 64" class="m2-coin"><circle cx="32" cy="32" r="29" fill="' + c + '" stroke="#6B7280" stroke-width="3"/><circle cx="32" cy="32" r="22" fill="none" stroke="#6B7280" stroke-width="1.5"/><text x="32" y="40" text-anchor="middle" font-size="22" ' + FNT + '>' + v + '</text></svg>'; }
+  const c = v === 200 ? '#CDEBC8' : '#F6D7B0';
+  return '<svg viewBox="0 0 120 64" class="m2-note"><rect x="3" y="5" width="114" height="54" rx="7" fill="' + c + '" stroke="#6B7280" stroke-width="3"/><rect x="10" y="12" width="100" height="40" rx="4" fill="none" stroke="#6B7280" stroke-width="1.5"/><text x="60" y="42" text-anchor="middle" font-size="24" ' + FNT + '>' + v + ' тг</text></svg>';
+}
+const moneyHTML = list => '<div class="m2-money">' + list.map(moneySVG).join('') + '</div>';
+/* угол */
+function angleSVG(deg, rot, mark){
+  const V = [70, 120], L = 140, a = deg * Math.PI / 180; let s = '<g transform="rotate(' + (rot || 0) + ' 70 120)"><line x1="70" y1="120" x2="' + (70 + L) + '" y2="120" stroke="#1D3557" stroke-width="5" stroke-linecap="round"/><line x1="70" y1="120" x2="' + (70 + L * Math.cos(a)) + '" y2="' + (120 - L * Math.sin(a)) + '" stroke="#1D3557" stroke-width="5" stroke-linecap="round"/>';
+  if (deg === 90 && mark !== false) s += '<path d="M70 96h24v24" fill="none" stroke="#E0574A" stroke-width="3"/>';
+  else s += '<path d="M' + (70 + 30) + ' 120A30 30 0 0 0 ' + (70 + 30 * Math.cos(a)) + ' ' + (120 - 30 * Math.sin(a)) + '" fill="none" stroke="#E0574A" stroke-width="3"/>';
+  return svgW(220, 190, s + '<circle cx="70" cy="120" r="5" fill="#E0574A"/></g>', 'm2-fig sm');
+}
+/* правильный многоугольник */
+function polySVG(n, rot){
+  const pts = []; for (let i = 0; i < n; i++){ const a = (rot + i * 360 / n) * Math.PI / 180; pts.push((110 + 80 * Math.cos(a)).toFixed(1) + ',' + (100 + 80 * Math.sin(a)).toFixed(1)); }
+  return svgW(220, 200, '<polygon points="' + pts.join(' ') + '" fill="#DCEBFF" stroke="#1D3557" stroke-width="4" stroke-linejoin="round"/>', 'm2-fig sm');
+}
+/* фигуры с размерами */
+function rectDimSVG(a, b, u){
+  const s = Math.min(240 / a, 120 / b), w = a * s, h = b * s, x = (440 - w) / 2, y = 30;
+  return svgW(440, h + 70, '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#DCEBFF" stroke="#1D3557" stroke-width="4"/><text x="' + (x + w / 2) + '" y="' + (y - 8) + '" text-anchor="middle" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text><text x="' + (x + w + 10) + '" y="' + (y + h / 2 + 6) + '" font-size="18" ' + FNT + '>' + b + ' ' + u + '</text>');
+}
+function squareDimSVG(a, u){
+  return svgW(440, 170, '<rect x="170" y="30" width="100" height="100" fill="#DCEBFF" stroke="#1D3557" stroke-width="4"/><text x="220" y="22" text-anchor="middle" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text><text x="280" y="86" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text><text x="220" y="152" text-anchor="middle" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text><text x="110" y="86" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text>');
+}
+function triDimSVG(a, b, c, u){
+  return svgW(440, 190, '<polygon points="80,160 360,160 200,30" fill="#DCEBFF" stroke="#1D3557" stroke-width="4" stroke-linejoin="round"/><text x="220" y="182" text-anchor="middle" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text><text x="296" y="92" font-size="18" ' + FNT + '>' + b + ' ' + u + '</text><text x="86" y="92" text-anchor="end" font-size="18" ' + FNT + '>' + c + ' ' + u + '</text>');
+}
+function quadDimSVG(a, b, c, d, u){
+  return svgW(440, 190, '<polygon points="90,150 360,160 330,50 140,30" fill="#DCEBFF" stroke="#1D3557" stroke-width="4" stroke-linejoin="round"/><text x="230" y="184" text-anchor="middle" font-size="18" ' + FNT + '>' + a + ' ' + u + '</text><text x="350" y="112" font-size="18" ' + FNT + '>' + b + ' ' + u + '</text><text x="240" y="26" text-anchor="middle" font-size="18" ' + FNT + '>' + c + ' ' + u + '</text><text x="108" y="94" text-anchor="end" font-size="18" ' + FNT + '>' + d + ' ' + u + '</text>');
+}
+function gridRectSVG(w, h){
+  const c = 26, W = w * c, H = h * c, x0 = (440 - W) / 2; let s = '<rect x="' + x0 + '" y="8" width="' + W + '" height="' + H + '" fill="#DCEBFF"/>';
+  for (let i = 0; i <= w; i++) s += '<line x1="' + (x0 + i * c) + '" y1="8" x2="' + (x0 + i * c) + '" y2="' + (8 + H) + '" stroke="#9DB7D8" stroke-width="1"/>';
+  for (let j = 0; j <= h; j++) s += '<line x1="' + x0 + '" y1="' + (8 + j * c) + '" x2="' + (x0 + W) + '" y2="' + (8 + j * c) + '" stroke="#9DB7D8" stroke-width="1"/>';
+  return svgW(440, H + 16, s + '<rect x="' + x0 + '" y="8" width="' + W + '" height="' + H + '" fill="none" stroke="#1D3557" stroke-width="4"/>');
+}
+/* точки на линии */
+function pointsSVG(letters, xs){
+  let s = '<line x1="10" y1="50" x2="430" y2="50" stroke="#1D3557" stroke-width="4"/>';
+  letters.forEach((L, i) => { s += '<circle cx="' + xs[i] + '" cy="50" r="7" fill="#E0574A"/><text x="' + xs[i] + '" y="30" text-anchor="middle" font-size="20" ' + FNT + '>' + L + '</text>'; });
+  return svgW(440, 80, s);
+}
+function linesSVG(kind, A, B){
+  let s = '';
+  if (kind === 'отрезок') s = '<line x1="90" y1="55" x2="350" y2="55" stroke="#1D3557" stroke-width="5"/>';
+  else if (kind === 'луч') s = '<line x1="90" y1="55" x2="420" y2="55" stroke="#1D3557" stroke-width="5"/><path d="M432 55l-16-9v18z" fill="#1D3557"/>';
+  else s = '<line x1="20" y1="55" x2="410" y2="55" stroke="#1D3557" stroke-width="5"/><path d="M432 55l-16-9v18z" fill="#1D3557"/><path d="M8 55l16-9v18z" fill="#1D3557"/>';
+  const xa = kind === 'прямая' ? 120 : 90, xb = kind === 'луч' ? 250 : kind === 'прямая' ? 320 : 350;
+  s += '<circle cx="' + xa + '" cy="55" r="7" fill="#E0574A"/><circle cx="' + xb + '" cy="55" r="7" fill="#E0574A"/><text x="' + xa + '" y="34" text-anchor="middle" font-size="20" ' + FNT + '>' + A + '</text><text x="' + xb + '" y="34" text-anchor="middle" font-size="20" ' + FNT + '>' + B + '</text>';
+  return svgW(440, 90, s);
+}
+
+const LTR = ['A', 'B', 'C', 'D', 'E', 'K', 'M', 'N', 'P', 'T'];
+const cmpSign = (x, y) => x < y ? '<' : x > y ? '>' : '=';
+
+/* ===== длина ===== */
+GENS.lenRuler = function(){
+  const max = pick([10, 12, 15]), from = rnd(0, 3) === 0 ? 0 : rnd(1, 4), len = rnd(3, max - from - 1), to = from + len;
+  return { html: '<div class="ac-qtxt">Какова длина предмета в сантиметрах?</div>' + rulerSVG(max, from, to), opts: opts4(len, [len + 1, len - 1, to, from + len + 1, len + 2].filter(x => x > 0)), ans: len, hint: from === 0 ? 'Предмет начинается у нуля. Смотри, у какого числа он заканчивается: ' + to + ' см.' : 'Предмет начинается не у нуля. Вычти: ' + to + ' − ' + from + ' = ' + len + ' см. Или сосчитай деления.' };
+};
+GENS.lenConv = function(){
+  const t = rnd(0, 6), H = '1 дм = 10 см. 1 м = 10 дм = 100 см.';
+  if (t === 0){ const n = rnd(2, 9); return { html: big(n + ' дм = ☐ см'), opts: opts4(n * 10, [n, n * 100, n * 10 + 10, n * 10 - 10]), ans: n * 10, hint: H + ' Значит ' + n + ' дм = ' + n * 10 + ' см.' }; }
+  if (t === 1){ const n = rnd(2, 9); return { html: big(n * 10 + ' см = ☐ дм'), opts: opts4(n, [n * 10, n + 1, n - 1, n * 100].filter(x => x > 0)), ans: n, hint: H + ' ' + n * 10 + ' : 10 = ' + n + ' дм.' }; }
+  if (t === 2){ const n = rnd(2, 9); return { html: big(n + ' м = ☐ дм'), opts: opts4(n * 10, [n, n * 100, n * 10 + 10, n * 10 - 10]), ans: n * 10, hint: H }; }
+  if (t === 3){ const n = rnd(2, 9); return { html: big(n + ' м = ☐ см'), opts: opts4(n * 100, [n * 10, n, n * 100 + 10, n * 1000]), ans: n * 100, hint: H }; }
+  if (t === 4){ const n = rnd(2, 9); return { html: big(n * 100 + ' см = ☐ м'), opts: opts4(n, [n * 10, n + 1, n - 1, n * 100].filter(x => x > 0)), ans: n, hint: H + ' ' + n * 100 + ' : 100 = ' + n + ' м.' }; }
+  if (t === 5){ const a = rnd(1, 5), b = rnd(1, 9); return { html: big(a + ' м ' + b + ' дм = ☐ дм'), opts: opts4(a * 10 + b, [a + b, a * 100 + b, a * 10 + b + 10, a * 10 + b - 1]), ans: a * 10 + b, hint: a + ' м = ' + a * 10 + ' дм. ' + a * 10 + ' дм + ' + b + ' дм = ' + (a * 10 + b) + ' дм.' }; }
+  const a = rnd(1, 4), b = rnd(1, 9) * 10; return { html: big(a + ' м ' + b + ' см = ☐ см'), opts: opts4(a * 100 + b, [a * 10 + b, a + b, a * 100 + b + 10, a * 100 + b - 10]), ans: a * 100 + b, hint: a + ' м = ' + a * 100 + ' см. ' + a * 100 + ' см + ' + b + ' см = ' + (a * 100 + b) + ' см.' };
+};
+GENS.lenCmp = function(){
+  const f = rnd(0, 2); let l, r, x, y, h;
+  if (f === 0){ const a = rnd(2, 9), b = rnd(15, 95); l = a + ' дм'; r = b + ' см'; x = a * 10; y = b; h = a + ' дм = ' + a * 10 + ' см. Сравни ' + a * 10 + ' см и ' + b + ' см.'; }
+  else if (f === 1){ const a = rnd(1, 5), b = rnd(50, 450); l = a + ' м'; r = b + ' см'; x = a * 100; y = b; h = a + ' м = ' + a * 100 + ' см. Сравни ' + a * 100 + ' см и ' + b + ' см.'; }
+  else { const a = rnd(2, 9), b = rnd(2, 9); l = a + ' м'; r = b * 10 + ' дм'; x = a * 10; y = b * 10; h = a + ' м = ' + a * 10 + ' дм. Сравни ' + a * 10 + ' дм и ' + b * 10 + ' дм.'; }
+  return { html: big(l + ' ☐ ' + r), opts: ['<', '>', '='], ans: cmpSign(x, y), hint: 'Переведи в одинаковые единицы. ' + h };
+};
+GENS.lenOps = function(){
+  const f = rnd(0, 3);
+  if (f === 0){ const a = rnd(10, 60), b = rnd(1, 4); return { html: big(a + ' см + ' + b + ' дм = ☐ см'), opts: opts4(a + b * 10, [a + b, a + b * 100, a + b * 10 + 10, a * b]), ans: a + b * 10, hint: b + ' дм = ' + b * 10 + ' см. ' + a + ' + ' + b * 10 + ' = ' + (a + b * 10) + ' см.' }; }
+  if (f === 1){ const b = rnd(2, 9) * 10; return { html: big('1 м − ' + b + ' см = ☐ см'), opts: opts4(100 - b, [b, 100 + b, 100 - b + 10, 100 - b - 10]), ans: 100 - b, hint: '1 м = 100 см. 100 − ' + b + ' = ' + (100 - b) + ' см.' }; }
+  if (f === 2){ const a = rnd(2, 5), n = rnd(2, 4); return { html: big('Длина одной ленты ' + a + ' дм. Сколько сантиметров в ' + n + ' таких лентах?'), opts: opts4(a * n * 10, [a * n, a * 10 + n, a * n * 10 + 10, a * n * 100]), ans: a * n * 10, hint: a + ' дм · ' + n + ' = ' + a * n + ' дм = ' + a * n * 10 + ' см.' }; }
+  const a = rnd(3, 9), b = rnd(1, a - 1); return { html: big(a + ' дм − ' + b + ' дм = ☐ дм'), opts: opts4(a - b, [a + b, a - b + 1, a - b - 1, (a - b) * 10].filter(x => x > 0)), ans: a - b, hint: 'Единицы одинаковые, вычитаем числа: ' + a + ' − ' + b + ' = ' + (a - b) + ' дм.' };
+};
+/* ===== масса, ёмкость, шкалы ===== */
+GENS.thermoRead = function(){ const v = rnd(1, 19) * 2; return { html: '<div class="ac-qtxt">Какую температуру показывает термометр?</div>' + thermoSVG(v), opts: opts4(v, [v + 2, v - 2, v + 4, v + 1].filter(x => x >= 0)), ans: v, hint: 'Смотри, где заканчивается красный столбик. Между подписанными числами 10 делений по 2 градуса. Считай от ближайшего числа.' }; };
+GENS.dialRead = function(){ const v = rnd(1, 9); return { html: '<div class="ac-qtxt">Сколько килограммов показывают весы?</div>' + dialSVG(v), opts: opts4(v, [v + 1, v - 1, v + 2, v - 2].filter(x => x >= 0)), ans: v, hint: 'Стрелка показывает на отметку ' + v + '. Каждое деление — 1 кг.' }; };
+GENS.jugRead = function(){ const v = rnd(1, 10); return { html: '<div class="ac-qtxt">Сколько литров воды в мерном стакане?</div>' + jugSVG(v), opts: opts4(v, [v + 1, v - 1, v + 2, v - 2].filter(x => x > 0)), ans: v, hint: 'Смотри, на какой черте закончилась вода. Подписаны только чётные числа, а между ними есть деление для нечётных.' }; };
+GENS.scaleAny = () => pick([GENS.thermoRead, GENS.dialRead, GENS.jugRead, GENS.lenRuler])();
+GENS.massConv = function(){
+  const t = rnd(0, 3), H = '1 ц = 100 кг.';
+  if (t === 0){ const n = rnd(2, 9); return { html: big(n + ' ц = ☐ кг'), opts: opts4(n * 100, [n * 10, n, n * 1000, n * 100 + 100]), ans: n * 100, hint: H + ' ' + n + ' · 100 = ' + n * 100 + ' кг.' }; }
+  if (t === 1){ const n = rnd(2, 9); return { html: big(n * 100 + ' кг = ☐ ц'), opts: opts4(n, [n * 10, n + 1, n - 1, n * 100].filter(x => x > 0)), ans: n, hint: H + ' ' + n * 100 + ' : 100 = ' + n + ' ц.' }; }
+  if (t === 2){ const a = rnd(1, 5), b = rnd(1, 9) * 10; return { html: big(a + ' ц ' + b + ' кг = ☐ кг'), opts: opts4(a * 100 + b, [a * 10 + b, a + b, a * 100 + b + 10, a * 100 - b]), ans: a * 100 + b, hint: a + ' ц = ' + a * 100 + ' кг. ' + a * 100 + ' + ' + b + ' = ' + (a * 100 + b) + ' кг.' }; }
+  const a = rnd(2, 9), b = rnd(10, 90); return { html: big(a + ' ц ☐ ' + b * 10 + ' кг'), opts: ['<', '>', '='], ans: cmpSign(a * 100, b * 10), hint: a + ' ц = ' + a * 100 + ' кг. Сравни ' + a * 100 + ' и ' + b * 10 + '.' };
+};
+GENS.massQ = function(){
+  const f = rnd(0, 3);
+  if (f === 0){ const a = rnd(5, 40), b = rnd(5, 40); return { html: big('В одном мешке ' + a + ' кг муки, в другом ' + b + ' кг. Сколько всего килограммов?'), opts: opts4(a + b, [a + b + 10, a + b - 10, Math.abs(a - b), a * b % 100 + 1]), ans: a + b, hint: 'Складываем массу: ' + a + ' + ' + b + ' = ' + (a + b) + ' кг.' }; }
+  if (f === 1){ const a = rnd(2, 5), b = rnd(10, 90); return { html: big('На склад привезли ' + a + ' ц картофеля и ' + b + ' кг моркови. Сколько всего килограммов?'), opts: opts4(a * 100 + b, [a * 10 + b, a + b, a * 100 + b + 10, a * 100 - b]), ans: a * 100 + b, hint: a + ' ц = ' + a * 100 + ' кг. ' + a * 100 + ' + ' + b + ' = ' + (a * 100 + b) + ' кг.' }; }
+  if (f === 2){ const k = rnd(2, 5), n = rnd(2, 9); return { html: big('В ' + k + ' одинаковых пакетах по ' + n + ' кг сахара. Сколько килограммов сахара всего?'), opts: opts4(k * n, [k + n, k * n + n, k * n - n, k * n + 1]), ans: k * n, hint: rep(n, k) + ' = ' + k * n + ' кг, или ' + n + ' · ' + k + ' = ' + k * n + '.' }; }
+  const d = rnd(2, 6), b = rnd(2, 5); return { html: big('Дыня весит ' + d + ' кг. Арбуз тяжелее дыни на ' + b + ' кг. Сколько весит арбуз?'), opts: opts4(d + b, [Math.abs(d - b) || 1, d + b + 1, d + b - 1, d * b]), ans: d + b, hint: 'Арбуз тяжелее, значит прибавляем: ' + d + ' + ' + b + ' = ' + (d + b) + ' кг.' };
+};
+GENS.volQ = function(){
+  const f = rnd(0, 3);
+  if (f === 0){ const a = rnd(3, 15), b = rnd(3, 15); return { html: big(a + ' л + ' + b + ' л = ☐ л'), opts: opts4(a + b, [a + b + 1, a + b - 1, a + b + 10, Math.abs(a - b)]), ans: a + b, hint: 'Единицы одинаковые — литры. ' + a + ' + ' + b + ' = ' + (a + b) + ' л.' }; }
+  if (f === 1){ const a = rnd(12, 30), b = rnd(3, 11); return { html: big('В бочке было ' + a + ' л воды. Отлили ' + b + ' л. Сколько литров осталось?'), opts: opts4(a - b, [a + b, a - b + 1, a - b - 1, a - b + 10]), ans: a - b, hint: 'Отлили — значит вычитаем: ' + a + ' − ' + b + ' = ' + (a - b) + ' л.' }; }
+  if (f === 2){ const v = rnd(2, 5), n = rnd(2, 5); return { html: big('Сколько литров в ' + n + ' банках по ' + v + ' л?'), opts: opts4(v * n, [v + n, v * n + v, v * n - v, v * n + 1]), ans: v * n, hint: rep(v, n) + ' = ' + v * n + ' л.' }; }
+  const v = rnd(2, 5), n = rnd(2, 9); return { html: big(v * n + ' л сока разлили в банки по ' + v + ' л. Сколько банок понадобилось?'), opts: opts4(n, [n + 1, n - 1, v, v * n].filter(x => x > 0)), ans: n, hint: 'Узнаём, сколько раз по ' + v + ' л содержится в ' + v * n + ' л: ' + v * n + ' : ' + v + ' = ' + n + '.' };
+};
+/* ===== время ===== */
+GENS.timeConv = function(){
+  const t = rnd(0, 6);
+  if (t === 0){ const n = rnd(2, 5); return { html: big(n + ' ч = ☐ мин'), opts: opts4(n * 60, [n * 10, n * 100, n * 60 + 10, n * 60 - 10]), ans: n * 60, hint: '1 ч = 60 мин. ' + n + ' · 60 = ' + n * 60 + ' мин.' }; }
+  if (t === 1){ const n = rnd(2, 5); return { html: big(n * 60 + ' мин = ☐ ч'), opts: opts4(n, [n * 6, n + 1, n - 1, n * 10].filter(x => x > 0)), ans: n, hint: '1 ч = 60 мин. ' + n * 60 + ' : 60 = ' + n + ' ч.' }; }
+  if (t === 2){ const n = rnd(2, 4); return { html: big(n + ' сут = ☐ ч'), opts: opts4(n * 24, [n * 12, n * 20, n * 24 + 12, n * 60]), ans: n * 24, hint: '1 сут = 24 ч. ' + n + ' · 24 = ' + n * 24 + ' ч.' }; }
+  if (t === 3){ const n = rnd(2, 3); return { html: big(n * 24 + ' ч = ☐ сут'), opts: opts4(n, [n + 1, n * 2, n * 24, n - 1].filter(x => x > 0)), ans: n, hint: '1 сут = 24 ч. ' + n * 24 + ' : 24 = ' + n + ' сут.' }; }
+  if (t === 4){ const n = rnd(2, 4); return { html: big(n + ' г. = ☐ мес'), opts: opts4(n * 12, [n * 10, n * 7, n * 12 + 1, n * 30]), ans: n * 12, hint: '1 год = 12 месяцев. ' + n + ' · 12 = ' + n * 12 + ' мес.' }; }
+  if (t === 5) return { html: big('Сколько часов в сутках?'), opts: [12, 24, 60, 30], ans: 24, hint: 'В одних сутках 24 часа: день и ночь вместе.' };
+  return { html: big('Сколько месяцев в одном году?'), opts: [10, 12, 7, 30], ans: 12, hint: 'В году 12 месяцев: от января до декабря.' };
+};
+GENS.timeOps = function(){
+  const f = rnd(0, 3);
+  if (f === 0){ const a = rnd(20, 55), b = rnd(10, 45); return { html: big(a + ' мин + ' + b + ' мин = ☐ мин'), opts: opts4(a + b, [a + b + 10, a + b - 10, Math.abs(a - b), a + b + 1]), ans: a + b, hint: 'Складываем минуты: ' + a + ' + ' + b + ' = ' + (a + b) + ' мин.' }; }
+  if (f === 1){ const n = rnd(2, 4); return { html: big('Один урок длится 45 мин. Сколько минут длятся ' + n + ' урока?'), opts: opts4(45 * n, [45 + n, 45 * n + 5, 45 * n - 5, 40 * n]), ans: 45 * n, hint: '45 · ' + n + ' = ' + 45 * n + ' мин.' }; }
+  if (f === 2){ const h = rnd(9, 16), m = pick([0, 10, 20, 30, 40]), d = pick([30, 40, 50]); const total = h * 60 + m + d, H = Math.floor(total / 60), M = total % 60, ans = tm(H, M);
+    return { html: big('Фильм начался в ' + tm(h, m) + ' и шёл ' + d + ' мин. Во сколько он закончился?'), opts: shuffle([ans, tm(H, (M + 10) % 60), tm(H + 1, M), tm(h, (m + d) % 60)].filter((x, i, a) => a.indexOf(x) === i).concat(['00:00']).slice(0, 4)), ans: ans, hint: 'Прибавь ' + d + ' мин к ' + tm(h, m) + '. Когда минут становится 60, получается новый час.' }; }
+  const a = rnd(1, 3), b = rnd(10, 50); return { html: big(a + ' ч ' + b + ' мин = ☐ мин'), opts: opts4(a * 60 + b, [a * 10 + b, a + b, a * 60 + b + 10, a * 100 + b]), ans: a * 60 + b, hint: a + ' ч = ' + a * 60 + ' мин. ' + a * 60 + ' + ' + b + ' = ' + (a * 60 + b) + ' мин.' };
+};
+GENS.clockRead = function(){
+  const kind = rnd(0, 4), h = rnd(1, 12); let m;
+  if (kind === 0) m = 0; else if (kind === 1) m = 30; else if (kind === 2) m = pick([15, 45]); else if (kind === 3) m = rnd(1, 11) * 5; else m = rnd(1, 59);
+  const ans = tm(h, m), cand = [tm(h, (m + 5) % 60), tm(h % 12 + 1, m), tm(m === 0 ? h : (m % 5 === 0 ? m / 5 : h), m === 0 ? 30 : h), tm(h, m === 0 ? 5 : (m + 1) % 60), tm(h === 1 ? 12 : h - 1, m)].filter(x => x !== ans);
+  return { html: '<div class="ac-qtxt">Сколько времени показывают часы?</div>' + clockSVG(h, m), opts: shuffle([ans].concat(shuffle(Array.from(new Set(cand))).slice(0, 3))), ans: ans, hint: 'Короткая стрелка — часы, длинная — минуты. Короткая показывает около ' + h + '. Длинная на ' + (m % 5 === 0 ? m / 5 : '…') + ' — это ' + m + ' мин.' + (m % 5 !== 0 ? ' Считай минутные деления.' : '') };
+};
+/* ===== деньги ===== */
+GENS.moneySum = function(){
+  const n = rnd(2, 5), list = []; for (let i = 0; i < n; i++) list.push(pick([50, 100, 200, 500])); const s = list.reduce((a, b) => a + b, 0);
+  return { html: '<div class="ac-qtxt">Сколько тенге всего?</div>' + moneyHTML(list), opts: opts4(s, [s + 50, s - 50, s + 100, s - 100, s + 10]), ans: s, hint: 'Сложи: ' + list.join(' + ') + ' = ' + s + ' тг. Считай крупные деньги, потом мелкие.' };
+};
+GENS.moneyBuy = function(){
+  const f = rnd(0, 2);
+  if (f === 0){ const pay = pick([200, 500, 100]), price = pay - rnd(1, Math.floor(pay / 50) - 1) * 50; return { html: big('Игрушка стоит ' + price + ' тг. Заплатили ' + pay + ' тг. Сколько сдачи?'), opts: opts4(pay - price, [pay - price + 50, pay + price, pay - price - 50, price].filter(x => x > 0)), ans: pay - price, hint: 'Сдача = заплатили − цена: ' + pay + ' − ' + price + ' = ' + (pay - price) + ' тг.' }; }
+  if (f === 1){ const c = pick([50, 100, 200]), n = rnd(2, 6); return { html: big('Сколько нужно монет и купюр по ' + c + ' тг, чтобы получить ' + c * n + ' тг?'), opts: opts4(n, [n + 1, n - 1, n + 2, c].filter(x => x > 0)), ans: n, hint: 'Делим: ' + c * n + ' : ' + c + ' = ' + n + '.' }; }
+  const c = pick([50, 100]), n = rnd(2, 5), c2 = pick([100, 200]); return { html: big('Ручка стоит ' + c + ' тг, а тетрадь ' + c2 + ' тг. Сколько стоят ' + n + ' ручки?'), opts: opts4(c * n, [c + n, c * n + c, c * n - c, c2 * n]), ans: c * n, hint: rep(c, n) + ' = ' + c * n + ' тг, то есть ' + c + ' · ' + n + ' = ' + c * n + '.' };
+};
+GENS.moneyWays = function(){
+  const sets = [[200, 100, 50], [500, 200], [100, 100, 50], [200, 200, 100], [500, 100, 50], [200, 50, 50], [500, 500]], pi = rnd(0, sets.length - 1), S = sets[pi], s = S.reduce((a, b) => a + b, 0), str = x => x.join(' + ');
+  const wrong = shuffle(sets.filter((x, i) => i !== pi && x.reduce((a, b) => a + b, 0) !== s)).slice(0, 3).map(str);
+  return { html: big('Как заплатить ' + s + ' тг?'), opts: shuffle([str(S)].concat(wrong)), ans: str(S), wide: true, hint: 'Сложи числа в каждом наборе. Нужен тот, где получается ' + s + '.' };
+};
+/* ===== углы и фигуры ===== */
+GENS.angleType = function(){
+  const k = pick(['острый', 'прямой', 'тупой']), deg = k === 'прямой' ? 90 : k === 'острый' ? rnd(25, 75) : rnd(105, 155);
+  return { html: '<div class="ac-qtxt">Какой это угол?</div>' + angleSVG(deg, rnd(-30, 30)), opts: ['острый', 'прямой', 'тупой'], ans: k, hint: 'Прямой угол — как угол листа бумаги или угольника. Острый — меньше прямого, тупой — больше прямого.' };
+};
+const SHAPEQ = [
+  ['У прямоугольника все углы…', 'прямые', ['острые', 'тупые', 'разные']], ['У квадрата все стороны…', 'равны', ['разные', 'в два раза длиннее', 'не равны']],
+  ['У прямоугольника равны…', 'противоположные стороны', ['все стороны', 'только две соседние стороны', 'ни одной пары сторон']], ['Сколько прямых углов у квадрата?', '4', ['2', '3', '0']],
+  ['Прямоугольный треугольник — это треугольник, у которого есть…', 'прямой угол', ['тупой угол', 'четыре стороны', 'три равных угла']], ['Какая фигура — прямоугольник с равными сторонами?', 'квадрат', ['круг', 'треугольник', 'ромб с острыми углами']],
+  ['Сколько сторон у прямоугольника?', '4', ['3', '5', '2']], ['Сколько прямых углов у прямоугольного треугольника?', '1', ['2', '3', '0']]
+];
+GENS.shapeProp = function(){ const q = pick(SHAPEQ); return { html: big(q[0]), opts: shuffle([q[1]].concat(q[2])), ans: q[1], wide: true, hint: 'Представь фигуру. У прямоугольника и квадрата по 4 стороны и 4 прямых угла. У квадрата все стороны равны. Прямоугольный треугольник имеет один прямой угол.' }; };
+const PN = { 3: 'треугольник', 4: 'четырёхугольник', 5: 'пятиугольник', 6: 'шестиугольник', 7: 'семиугольник', 8: 'восьмиугольник' };
+GENS.polyName = function(){
+  const n = rnd(3, 8); return { html: '<div class="ac-qtxt">Как называется многоугольник?</div>' + polySVG(n, -90 + rnd(0, 40)), opts: shuffle([PN[n]].concat(shuffle([3, 4, 5, 6, 7, 8].filter(x => x !== n)).slice(0, 3).map(x => PN[x]))), ans: PN[n], hint: 'Посчитай углы или стороны. Столько их — такое и название: ' + n + ' → ' + PN[n] + '.' };
+};
+GENS.polySides = function(){
+  const n = rnd(3, 8);
+  if (Math.random() < .5) return { html: big('Сколько сторон у многоугольника «' + PN[n] + '»?'), opts: opts4(n, [n + 1, n - 1, n + 2, n - 2].filter(x => x > 2)), ans: n, hint: 'В названии подсказка: «' + PN[n].replace('угольник', '') + '» — ' + n + ' углов, значит и ' + n + ' сторон.' };
+  const cls = pick([['Какая фигура — четырёхугольник?', 'прямоугольник', ['треугольник', 'пятиугольник', 'шестиугольник']], ['Какая фигура — треугольник?', 'прямоугольный треугольник', ['квадрат', 'пятиугольник', 'прямоугольник']], ['Какая фигура — многоугольник с пятью сторонами?', 'пятиугольник', ['квадрат', 'треугольник', 'шестиугольник']]]);
+  return { html: big(cls[0]), opts: shuffle([cls[1]].concat(cls[2])), ans: cls[1], wide: true, hint: 'Многоугольники различают по числу сторон: 3 — треугольник, 4 — четырёхугольник, 5 — пятиугольник, 6 — шестиугольник.' };
+};
+const CUTQ = [
+  ['Квадрат разрезали по диагонали (из угла в угол). Что получилось?', 'два треугольника', ['два квадрата', 'два прямоугольника', 'четыре треугольника']],
+  ['Прямоугольник разрезали пополам вдоль длинной стороны. Что получилось?', 'два прямоугольника', ['два квадрата', 'два треугольника', 'один квадрат']],
+  ['Из двух одинаковых квадратов приложили друг к другу целыми сторонами. Что получилось?', 'прямоугольник', ['квадрат', 'треугольник', 'круг']],
+  ['Из четырёх одинаковых квадратов можно составить…', 'большой квадрат', ['круг', 'треугольник', 'пятиугольник']],
+  ['Из двух одинаковых прямоугольных треугольников можно составить…', 'прямоугольник', ['круг', 'шестиугольник', 'пятиугольник']],
+  ['Прямоугольник 4 на 2 клетки разрезали на два одинаковых квадрата. Какая сторона у каждого квадрата?', '2 клетки', ['4 клетки', '1 клетка', '3 клетки']]
+];
+GENS.cutQ = function(){ const q = pick(CUTQ); return { html: big(q[0]), opts: shuffle([q[1]].concat(q[2])), ans: q[1], wide: true, hint: 'Представь или нарисуй фигуру на бумаге и сделай разрез. Посмотри, какие фигуры получились.' }; };
+/* ===== периметр ===== */
+GENS.perimRect = function(){ const a = rnd(2, 12), b = rnd(2, 9), P = (a + b) * 2; return { html: '<div class="ac-qtxt">Найди периметр прямоугольника</div>' + rectDimSVG(a, b, 'см'), opts: opts4(P, [a + b, a * b, P + 2, P - 2, a + b + a]), ans: P, hint: 'Периметр — сумма длин всех сторон. P = (a + b) · 2 = (' + a + ' + ' + b + ') · 2 = ' + P + ' см.' }; };
+GENS.perimSq = function(){ const a = rnd(2, 11), P = a * 4; return { html: '<div class="ac-qtxt">Найди периметр квадрата</div>' + squareDimSVG(a, 'дм'), opts: opts4(P, [a * 2, a * a, P + 4, P - 4, a + 4]), ans: P, hint: 'У квадрата все стороны равны. P = a · 4 = ' + a + ' · 4 = ' + P + ' дм.' }; };
+GENS.perimTri = function(){ const a = rnd(3, 9), b = rnd(3, 9), c = rnd(3, 9), P = a + b + c; return { html: '<div class="ac-qtxt">Найди периметр треугольника</div>' + triDimSVG(a, b, c, 'см'), opts: opts4(P, [P + 1, P - 1, a + b, P + 3, a * b]), ans: P, hint: 'P = a + b + c = ' + a + ' + ' + b + ' + ' + c + ' = ' + P + ' см.' }; };
+GENS.perimPoly = function(){ const a = rnd(3, 9), b = rnd(3, 9), c = rnd(3, 9), d = rnd(3, 9), P = a + b + c + d; return { html: '<div class="ac-qtxt">Найди периметр четырёхугольника</div>' + quadDimSVG(a, b, c, d, 'см'), opts: opts4(P, [P + 1, P - 1, P + 3, a + b + c]), ans: P, hint: 'Складываем все четыре стороны: ' + a + ' + ' + b + ' + ' + c + ' + ' + d + ' = ' + P + ' см.' }; };
+GENS.perimGrid = function(){ const w = rnd(2, 8), h = rnd(2, 6), P = (w + h) * 2; return { html: '<div class="ac-qtxt">Сторона клетки — 1 см. Найди периметр фигуры</div>' + gridRectSVG(w, h), opts: opts4(P, [w * h, w + h, P + 2, P - 2]), ans: P, hint: 'Длина ' + w + ' см, ширина ' + h + ' см. P = (' + w + ' + ' + h + ') · 2 = ' + P + ' см.' }; };
+GENS.perimSide = function(){
+  const f = rnd(0, 2);
+  if (f === 0){ const a = rnd(2, 9), b = rnd(2, 9); return { html: big('Периметр прямоугольника ' + (a + b) * 2 + ' см. Одна сторона ' + a + ' см. Найди другую сторону.'), opts: opts4(b, [a, (a + b) * 2 - a, b + 1, b - 1].filter(x => x > 0)), ans: b, hint: 'Сумма двух соседних сторон — половина периметра: ' + (a + b) * 2 + ' : 2 = ' + (a + b) + '. Тогда другая сторона: ' + (a + b) + ' − ' + a + ' = ' + b + ' см.' }; }
+  if (f === 1){ const a = rnd(2, 12); return { html: big('Периметр квадрата ' + a * 4 + ' см. Чему равна его сторона?'), opts: opts4(a, [a * 2, a + 1, a - 1, a * 4].filter(x => x > 0)), ans: a, hint: 'У квадрата 4 равные стороны: ' + a * 4 + ' : 4 = ' + a + ' см.' }; }
+  const a = rnd(3, 9), b = rnd(3, 9), c = rnd(3, 9); return { html: big('Периметр треугольника ' + (a + b + c) + ' см. Две стороны: ' + a + ' см и ' + b + ' см. Найди третью сторону.'), opts: opts4(c, [a + b, c + 1, c - 1, a + b + c].filter(x => x > 0)), ans: c, hint: 'Сложи известные стороны: ' + a + ' + ' + b + ' = ' + (a + b) + '. Вычти из периметра: ' + (a + b + c) + ' − ' + (a + b) + ' = ' + c + ' см.' };
+};
+GENS.perimFormula = function(){
+  const L = [['периметра прямоугольника', 'P = (a + b) · 2'], ['периметра квадрата', 'P = a · 4'], ['периметра треугольника', 'P = a + b + c']];
+  const i = rnd(0, 2); return { html: big('Какая формула для ' + L[i][0] + '?'), opts: shuffle(L.map(x => x[1]).concat(['P = a · b'])), ans: L[i][1], wide: true, hint: 'У квадрата все 4 стороны равны. У прямоугольника две пары равных сторон. У треугольника три стороны, их складываем.' };
+};
+/* ===== повороты ===== */
+const NUMW = { 12: 'на 12', 3: 'на 3', 6: 'на 6', 9: 'на 9' };
+GENS.turnClock = function(){
+  const st = pick([12, 3, 6, 9]), idx = [12, 3, 6, 9].indexOf(st), kinds = [['четверть поворота по часовой стрелке', 1], ['половина поворота', 2], ['три четверти поворота по часовой стрелке', 3], ['четверть поворота против часовой стрелки', -1], ['полный поворот', 4]], k = pick(kinds), end = [12, 3, 6, 9][((idx + k[1]) % 4 + 4) % 4];
+  return { html: big('Стрелка часов показывала ' + NUMW[st] + '. Она сделала ' + k[0] + '. На какое число она показывает теперь?'), opts: shuffle([12, 3, 6, 9]), ans: end, hint: 'Четверть поворота — это 3 часа на циферблате: от 12 до 3, от 3 до 6. По часовой стрелке числа растут: 12 → 3 → 6 → 9 → 12. Против часовой — в обратную сторону.' };
+};
+GENS.turnName = function(){
+  const nm = ['четверть поворота', 'половина поворота', 'три четверти поворота', 'полный поворот'], a = rnd(0, 3), d = rnd(1, 4), A = [12, 3, 6, 9][a], B = [12, 3, 6, 9][(a + d) % 4];
+  return { html: big('Стрелка двигалась по часовой стрелке от ' + A + ' до ' + B + (d === 4 ? ' и вернулась на то же место' : '') + '. Какой это поворот?'), opts: shuffle(nm), ans: nm[d - 1], wide: true, hint: 'Весь круг — полный поворот. Между числами 12, 3, 6 и 9 — по четверти круга. Посчитай, сколько таких четвертей прошла стрелка.' };
+};
+GENS.turnFacing = function(){
+  const n = rnd(2, 4), seq = []; let net = 0; for (let i = 0; i < n; i++){ const r = Math.random() < .5; seq.push(r ? 'направо' : 'налево'); net += r ? 1 : -1; } net = ((net % 4) + 4) % 4;
+  const names = ['вперёд, как в начале', 'направо', 'назад', 'налево'];
+  return { html: big('Барсик стоит лицом вперёд и поворачивается на четверть оборота: ' + seq.join(', ') + '. Куда он смотрит теперь?'), opts: shuffle(names), ans: names[net], wide: true, hint: 'Каждый поворот — четверть оборота. «Направо» и «налево» отменяют друг друга. Два одинаковых поворота — половина оборота: Барсик смотрит назад.' };
+};
+/* ===== точки и линии ===== */
+GENS.pointsOrder = function(){
+  const n = rnd(4, 5), L = shuffle(LTR).slice(0, n), xs = shuffle([50, 130, 210, 290, 380]).slice(0, n).sort((a, b) => a - b);
+  const left = L[0], right = L[n - 1], t = rnd(0, 2), others = L.slice();
+  if (t === 0) return { html: '<div class="ac-qtxt">Какая точка стоит левее всех?</div>' + pointsSVG(L, xs), opts: shuffle([left].concat(L.slice(1, 4))), ans: left, hint: 'Левее — значит ближе к левому краю линии. Начни смотреть слева.' };
+  if (t === 1) return { html: '<div class="ac-qtxt">Какая точка стоит правее всех?</div>' + pointsSVG(L, xs), opts: shuffle([right].concat(L.slice(0, 3))), ans: right, hint: 'Правее — значит ближе к правому краю линии.' };
+  const i = rnd(1, n - 2); return { html: '<div class="ac-qtxt">Какая точка лежит между точками ' + L[i - 1] + ' и ' + L[i + 1] + '?</div>' + pointsSVG(L, xs), opts: shuffle([L[i]].concat(L.filter((x, j) => j !== i).slice(0, 3))), ans: L[i], hint: 'Найди на линии точки ' + L[i - 1] + ' и ' + L[i + 1] + '. Между ними стоит точка ' + L[i] + '.' };
+};
+GENS.objType = function(){
+  const k = pick(['отрезок', 'луч', 'прямая']), A = pick(LTR); let B; do { B = pick(LTR); } while (B === A);
+  return { html: '<div class="ac-qtxt">Что изображено на рисунке?</div>' + linesSVG(k, A, B), opts: shuffle(['отрезок', 'луч', 'прямая', 'точка']), ans: k, hint: 'Отрезок ограничен с двух сторон. У луча есть начало, но нет конца (стрелка). У прямой нет ни начала, ни конца (две стрелки).' };
+};
+GENS.objNote = function(){
+  const k = pick(['отрезок', 'луч', 'прямая']), A = pick(LTR); let B; do { B = pick(LTR); } while (B === A);
+  return { html: '<div class="ac-qtxt">Как называется линия?</div>' + linesSVG(k, A, B), opts: shuffle([k + ' ' + A + B, k + ' ' + B + A, ['отрезок', 'луч', 'прямая'].filter(x => x !== k)[0] + ' ' + A + B, 'точка ' + A + B].filter((x, i, a) => a.indexOf(x) === i)), ans: k + ' ' + A + B, wide: true, hint: 'Название — вид линии и две буквы точек. Читаем слева направо. Для луча сначала пишут букву начала.' };
+};
+const OBJQ = [['У луча есть…', 'начало, но нет конца', ['конец, но нет начала', 'и начало, и конец', 'ни начала, ни конца']], ['У отрезка есть…', 'и начало, и конец', ['только начало', 'только конец', 'ни начала, ни конца']], ['У прямой…', 'нет ни начала, ни конца', ['есть начало и конец', 'есть только начало', 'есть только конец']], ['Через две точки можно провести…', 'одну прямую', ['две прямые', 'ни одной прямой', 'сто прямых только в одну сторону']]];
+GENS.objFact = function(){ const q = pick(OBJQ); return { html: big(q[0]), opts: shuffle([q[1]].concat(q[2])), ans: q[1], wide: true, hint: 'Отрезок можно измерить, луч и прямую — нет, ведь они продолжаются бесконечно.' }; };
+
+
+/* угол: двигаем ползунок */
+SCENES.angleSlider = function(stage, st, ctx){
+  const seen = {};
+  stage.innerHTML = '<div id="a-v"></div><input type="range" id="a-r" min="15" max="165" step="5" value="45" style="width:80%;max-width:360px;display:block;margin:8px auto"><div class="ac-qtxt m2-big" id="a-t"></div><div class="ac-qtxt m2-ex" id="a-x"></div>';
+  const r = $('#a-r', stage);
+  function draw(){
+    const d = +r.value, k = d === 90 ? 'прямой' : d < 90 ? 'острый' : 'тупой'; seen[k] = 1;
+    $('#a-v', stage).innerHTML = angleSVG(d, 0);
+    $('#a-t', stage).textContent = 'Это ' + k + ' угол';
+    $('#a-x', stage).textContent = k === 'прямой' ? 'Прямой угол — как угол листа бумаги, угольника или квадрата.' : k === 'острый' ? 'Острый угол меньше прямого. Он острый, как кончик карандаша.' : 'Тупой угол больше прямого. Стороны «раскрылись» шире.';
+    const n = Object.keys(seen).length;
+    if (n >= 3){ ctx.fb('Все три вида углов найдены!', 'ok'); ctx.done(); } else ctx.fb('Найди ещё виды углов: ' + n + ' из 3. Двигай ползунок.', 'info');
+  }
+  r.oninput = draw; draw();
+};
+
+/* точечная бумага: инструкции */
+SCENES.dotDraw = function(stage, st, ctx){
+  const COLS = 8, ROWS = 6, S = 44, X = i => 28 + i * S, Y = j => 28 + j * S; let ti = 0, clicks = [], T = null, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="d-c"></div><div class="ac-qtxt" id="d-q" style="min-height:3.4em"></div><svg viewBox="0 0 ' + (X(COLS - 1) + 28) + ' ' + (Y(ROWS - 1) + 28) + '" class="m2-fig" id="d-s"></svg><div class="m2-btns"><button class="ac-btn ac-alt" id="d-r">Начать заново</button></div>';
+  const svg = $('#d-s', stage);
+  const DIR = { 'вправо': [1, 0], 'влево': [-1, 0], 'вверх': [0, -1], 'вниз': [0, 1] };
+  function mk(kind){
+    if (kind === 'follow'){
+      const mv = [], n = rnd(2, 3); let x = rnd(1, COLS - 2), y = rnd(1, ROWS - 2); const sx = x, sy = y, ks = Object.keys(DIR);
+      for (let i = 0; i < n; i++){ let tries = 0; while (tries++ < 50){ const k = pick(ks), L = rnd(1, 3), nx = x + DIR[k][0] * L, ny = y + DIR[k][1] * L; if (nx >= 0 && nx < COLS && ny >= 0 && ny < ROWS && (i === 0 || mv[i - 1][0] !== k)){ mv.push([k, L]); x = nx; y = ny; break; } } }
+      return { kind: kind, sx: sx, sy: sy, ex: x, ey: y, mv: mv, q: 'Начни с красной точки. Двигайся по линиям: ' + mv.map(m => m[1] + ' ' + (m[1] === 1 ? 'клетку' : m[1] < 5 ? 'клетки' : 'клеток') + ' ' + m[0]).join(', потом ') + '. Нажми на точку, где остановишься.' };
+    }
+    if (kind === 'segment'){ const L = rnd(3, 6); return { kind: kind, L: L, q: 'Начерти отрезок длиной ' + L + ' клеток: нажми на две точки на одной линии.' }; }
+    return { kind: 'right', q: 'Начерти прямой угол. Нажми три точки: конец одной стороны, вершину угла, конец другой стороны.' };
+  }
+  function draw(){
+    let h = ''; for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) h += '<circle cx="' + X(i) + '" cy="' + Y(j) + '" r="5" fill="#8B95A3"/>';
+    if (T.kind === 'follow') h += '<circle cx="' + X(T.sx) + '" cy="' + Y(T.sy) + '" r="9" fill="#E0574A"/>';
+    if (clicks.length) h += '<polyline points="' + clicks.map(c => X(c[0]) + ',' + Y(c[1])).join(' ') + '" fill="none" stroke="#2F6FD0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>';
+    clicks.forEach(c => { h += '<circle cx="' + X(c[0]) + '" cy="' + Y(c[1]) + '" r="8" fill="#2F6FD0"/>'; });
+    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) h += '<circle class="hit" data-i="' + i + '" data-j="' + j + '" cx="' + X(i) + '" cy="' + Y(j) + '" r="20" fill="transparent" style="cursor:pointer"/>';
+    svg.innerHTML = h;
+    $$('.hit', svg).forEach(c => c.onclick = () => click(+c.dataset.i, +c.dataset.j));
+  }
+  function next(){ if (ti >= st.tasks.length){ $('#d-q', stage).textContent = 'Все чертежи готовы! 🌟'; $('#d-c', stage).textContent = ''; ctx.done(); return; } T = mk(st.tasks[ti]); clicks = []; locked = false; $('#d-c', stage).textContent = 'Задание ' + (ti + 1) + ' из ' + st.tasks.length; $('#d-q', stage).textContent = T.q; ctx.fb('', 'info'); draw(); }
+  function fail(msg){ ctx.miss(); ctx.fb(msg, 'bad'); clicks = []; draw(); }
+  function win(){ locked = true; ctx.fb(pick(PRAISE), 'ok'); ti++; setTimeout(() => { if (ctx.alive()) next(); }, 1000); }
+  function click(i, j){
+    if (locked) return;
+    if (T.kind === 'follow'){
+      clicks = [[T.sx, T.sy]]; let x = T.sx, y = T.sy; T.mv.forEach(m => { x += DIR[m[0]][0] * m[1]; y += DIR[m[0]][1] * m[1]; clicks.push([x, y]); });
+      if (i === T.ex && j === T.ey){ draw(); win(); } else { clicks = []; fail('Не та точка. Пройди путь по шагам от красной точки, считая клетки.'); }
+      return;
+    }
+    clicks.push([i, j]); draw();
+    if (T.kind === 'segment' && clicks.length === 2){ const a = clicks[0], b = clicks[1], dx = Math.abs(a[0] - b[0]), dy = Math.abs(a[1] - b[1]);
+      if ((dx === T.L && dy === 0) || (dy === T.L && dx === 0)) win(); else fail('Длина получилась ' + (dy === 0 ? dx : dx === 0 ? dy : 'другая') + (dy === 0 || dx === 0 ? ' клетки' : ', отрезок не по линии') + '. Нужно ровно ' + T.L + ' клеток по одной линии.'); }
+    if (T.kind === 'right' && clicks.length === 3){ const a = clicks[0], o = clicks[1], b = clicks[2], v1 = [a[0] - o[0], a[1] - o[1]], v2 = [b[0] - o[0], b[1] - o[1]];
+      if ((v1[0] || v1[1]) && (v2[0] || v2[1]) && v1[0] * v2[0] + v1[1] * v2[1] === 0) win(); else fail('Это не прямой угол. Стороны должны идти по клеточным линиям: одна вдоль, другая поперёк.'); }
+  }
+  $('#d-r', stage).onclick = () => { clicks = []; locked = false; draw(); };
+  next();
+};
+
+/* периметр: строим прямоугольник */
+SCENES.perimBuild = function(stage, st, ctx){
+  let a = 3, b = 2, ti = 0; const tasks = st.tasks;
+  stage.innerHTML = '<div class="ac-qcount" id="q-c"></div><div class="ac-qtxt m2-big" id="q-q"></div><div id="q-v"></div><div class="m2-ctl"><span>длина</span><button class="ac-btn ac-alt" data-a="a-">−</button><b id="q-a"></b><button class="ac-btn ac-alt" data-a="a+">+</button></div><div class="m2-ctl"><span>ширина</span><button class="ac-btn ac-alt" data-a="b-">−</button><b id="q-b"></b><button class="ac-btn ac-alt" data-a="b+">+</button></div><div class="ac-qtxt m2-ex" id="q-p"></div><div class="m2-btns"><button class="ac-btn ac-go" id="q-ok">Проверить</button></div>';
+  function draw(){ $('#q-v', stage).innerHTML = gridRectSVG(a, b); $('#q-a', stage).textContent = a; $('#q-b', stage).textContent = b; $('#q-p', stage).innerHTML = 'P = (' + a + ' + ' + b + ') · 2 = <b>' + (a + b) * 2 + '</b> клеток'; }
+  function task(){ const T = tasks[ti]; $('#q-c', stage).textContent = 'Задание ' + (ti + 1) + ' из ' + tasks.length; $('#q-q', stage).textContent = T.sq ? 'Построй квадрат с периметром ' + T.P + ' клеток' : 'Построй прямоугольник с периметром ' + T.P + ' клеток'; draw(); }
+  $$('[data-a]', stage).forEach(x => x.onclick = function(){ const k = x.dataset.a; if (k === 'a+' && a < 9) a++; else if (k === 'a-' && a > 1) a--; else if (k === 'b+' && b < 7) b++; else if (k === 'b-' && b > 1) b--; draw(); });
+  $('#q-ok', stage).onclick = function(){
+    const T = tasks[ti], P = (a + b) * 2;
+    if (P === T.P && (!T.sq || a === b)){ ti++; ctx.fb(pick(PRAISE), 'ok'); if (ti >= tasks.length){ $('#q-q', stage).textContent = 'Все фигуры построены! 🌟'; $$('.m2-ctl,.m2-btns', stage).forEach(e => e.style.display = 'none'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) task(); }, 900); }
+    else { ctx.miss(); ctx.fb(P !== T.P ? 'Периметр получился ' + P + '. Нужно ' + T.P + ': сумма длины и ширины должна быть ' + T.P / 2 + '.' : 'У квадрата длина и ширина одинаковые.', 'bad'); }
+  };
+  task();
+};
+
+/* повороты стрелки */
+SCENES.turnVis = function(stage, st, ctx){
+  let ang = 0; const used = {}; const num = a => [12, 3, 6, 9][(((a / 90) % 4) + 4) % 4];
+  let s = '<circle cx="110" cy="110" r="100" fill="#fff" stroke="#1D3557" stroke-width="5"/>';
+  [12, 3, 6, 9].forEach((k, i) => { const a = i * 90 * Math.PI / 180; s += '<text x="' + (110 + 78 * Math.sin(a)) + '" y="' + (110 - 78 * Math.cos(a) + 8) + '" text-anchor="middle" font-size="24" ' + FNT + '>' + k + '</text>'; });
+  s += '<g id="t-g" style="transform-origin:110px 110px;transition:transform .7s"><line x1="110" y1="110" x2="110" y2="36" stroke="#E0574A" stroke-width="7" stroke-linecap="round"/><path d="M110 22l-12 20h24z" fill="#E0574A"/></g><circle cx="110" cy="110" r="7" fill="#1D3557"/>';
+  stage.innerHTML = '<div class="m2-fig sm" id="t-v">' + svgW(220, 220, s, 'm2-fig sm') + '</div><div class="ac-qtxt m2-big" id="t-t">Стрелка показывает на 12</div><div class="m2-btns"><button class="ac-btn ac-alt" data-d="90">↻ четверть по часовой</button><button class="ac-btn ac-alt" data-d="-90">↺ четверть против часовой</button><button class="ac-btn ac-alt" data-d="180">½ поворота</button><button class="ac-btn ac-alt" data-d="360">полный поворот</button></div>';
+  const g = $('#t-g', stage);
+  $$('[data-d]', stage).forEach(b => b.onclick = function(){
+    const d = +b.dataset.d; ang += d; g.style.transform = 'rotate(' + ang + 'deg)'; used[d] = 1;
+    $('#t-t', stage).textContent = 'Стрелка показывает на ' + num(ang);
+    const n = Object.keys(used).length;
+    if (n >= 4){ ctx.fb('Ты попробовал все повороты!', 'ok'); ctx.done(); } else ctx.fb('Попробуй все четыре поворота: ' + n + ' из 4.', 'info');
+  });
+};
+
+/* разрезаем прямоугольник */
+SCENES.cutShape = function(stage, st, ctx){
+  const C = 40, TASKS = [{ w: 4, h: 2, q: 'Раздели прямоугольник на два квадрата', ok: (v, p) => v && p === 2 }, { w: 6, h: 2, q: 'Раздели прямоугольник на два одинаковых прямоугольника', ok: (v, p) => (v && p === 3) || (!v && p === 1) }, { w: 5, h: 2, q: 'Раздели прямоугольник на квадрат и прямоугольник', ok: (v, p) => v && (p === 2 || p === 3) }]; let ti = 0, cut = null;
+  stage.innerHTML = '<div class="ac-qcount" id="c-c"></div><div class="ac-qtxt m2-big" id="c-q"></div><svg class="m2-fig" id="c-s"></svg><div class="ac-qtxt m2-ex" id="c-x"></div>';
+  const svg = $('#c-s', stage);
+  const nm = (a, b) => a === b ? 'квадрат ' + a + ' на ' + a : 'прямоугольник ' + a + ' на ' + b;
+  function draw(){
+    const T = TASKS[ti], W = T.w * C, H = T.h * C, x0 = (440 - W) / 2, y0 = 14; svg.setAttribute('viewBox', '0 0 440 ' + (H + 28)); let h = '';
+    for (let i = 0; i < T.w; i++) for (let j = 0; j < T.h; j++){ let col = '#DCEBFF'; if (cut){ const second = cut.v ? i >= cut.p : j >= cut.p; col = second ? '#FFE3A8' : '#CDEBC8'; } h += '<rect x="' + (x0 + i * C) + '" y="' + (y0 + j * C) + '" width="' + C + '" height="' + C + '" fill="' + col + '" stroke="#9DB7D8"/>'; }
+    h += '<rect x="' + x0 + '" y="' + y0 + '" width="' + W + '" height="' + H + '" fill="none" stroke="#1D3557" stroke-width="4"/>';
+    if (cut){ h += cut.v ? '<line x1="' + (x0 + cut.p * C) + '" y1="' + y0 + '" x2="' + (x0 + cut.p * C) + '" y2="' + (y0 + H) + '" stroke="#E0574A" stroke-width="5" stroke-dasharray="8 5"/>' : '<line x1="' + x0 + '" y1="' + (y0 + cut.p * C) + '" x2="' + (x0 + W) + '" y2="' + (y0 + cut.p * C) + '" stroke="#E0574A" stroke-width="5" stroke-dasharray="8 5"/>'; }
+    for (let p = 1; p < T.w; p++) h += '<rect class="m2cut" data-v="1" data-p="' + p + '" x="' + (x0 + p * C - 12) + '" y="' + y0 + '" width="24" height="' + H + '" fill="transparent" style="cursor:pointer"/>';
+    for (let p = 1; p < T.h; p++) h += '<rect class="m2cut" data-v="0" data-p="' + p + '" x="' + x0 + '" y="' + (y0 + p * C - 12) + '" width="' + W + '" height="24" fill="transparent" style="cursor:pointer"/>';
+    svg.innerHTML = h;
+    $$('.m2cut', svg).forEach(r => r.onclick = function(){ cutAt(r.dataset.v === '1', +r.dataset.p); });
+  }
+  function task(){ cut = null; $('#c-c', stage).textContent = 'Задание ' + (ti + 1) + ' из ' + TASKS.length; $('#c-q', stage).textContent = TASKS[ti].q + ' (нажми на линию разреза)'; $('#c-x', stage).textContent = ''; draw(); }
+  function cutAt(v, p){
+    const T = TASKS[ti]; cut = { v: v, p: p }; draw();
+    const a = v ? [p, T.h] : [T.w, p], b = v ? [T.w - p, T.h] : [T.w, T.h - p];
+    $('#c-x', stage).textContent = 'Получились: ' + nm(a[0], a[1]) + ' и ' + nm(b[0], b[1]) + '.';
+    if (T.ok(v, p)){ ctx.fb(pick(PRAISE), 'ok'); ti++; if (ti >= TASKS.length){ setTimeout(() => { if (ctx.alive()){ $('#c-q', stage).textContent = 'Все фигуры разрезаны! 🌟'; ctx.done(); } }, 1200); } else setTimeout(() => { if (ctx.alive()) task(); }, 1500); }
+    else { ctx.miss(); ctx.fb('Не то, что нужно. Попробуй другую линию.', 'bad'); }
+  }
+  task();
+};
+
+/* ставим время на часах */
+SCENES.clockSet = function(stage, st, ctx){
+  let r = 0, h = 12, m = 0, T; const rounds = st.rounds || 3;
+  stage.innerHTML = '<div class="ac-qcount" id="k-c"></div><div class="ac-qtxt m2-big" id="k-q"></div><div id="k-v"></div><div class="m2-btns"><button class="ac-btn ac-alt" data-a="h-">− час</button><button class="ac-btn ac-alt" data-a="h+">+ час</button><button class="ac-btn ac-alt" data-a="m-5">− 5 мин</button><button class="ac-btn ac-alt" data-a="m+5">+ 5 мин</button><button class="ac-btn ac-alt" data-a="m-1">− 1 мин</button><button class="ac-btn ac-alt" data-a="m+1">+ 1 мин</button></div><div class="m2-btns"><button class="ac-btn ac-go" id="k-ok">Проверить</button></div>';
+  const draw = () => { $('#k-v', stage).innerHTML = clockSVG(h, m); };
+  function newT(){ const k = r; T = { h: rnd(1, 12), m: k === 0 ? pick([0, 30]) : k === 1 ? rnd(1, 11) * 5 : rnd(1, 59) }; h = 12; m = 0; $('#k-c', stage).textContent = 'Время ' + (r + 1) + ' из ' + rounds; $('#k-q', stage).textContent = 'Поставь время ' + tm(T.h, T.m); draw(); }
+  $$('[data-a]', stage).forEach(b => b.onclick = function(){
+    const a = b.dataset.a; if (a === 'h+') h = h % 12 + 1; else if (a === 'h-') h = h === 1 ? 12 : h - 1; else if (a[0] === 'm'){ m = ((m + (+a.slice(1)) ) % 60 + 60) % 60; }
+    draw();
+  });
+  $('#k-ok', stage).onclick = function(){
+    if (h === T.h && m === T.m){ r++; ctx.fb(pick(PRAISE), 'ok'); if (r >= rounds){ $('#k-q', stage).textContent = 'Все часы поставлены! 🌟'; $('#k-c', stage).textContent = ''; $$('.m2-btns', stage).forEach(e => e.style.display = 'none'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) newT(); }, 900); }
+    else { ctx.miss(); ctx.fb('Сейчас на часах ' + tm(h, m) + '. Нужно ' + tm(T.h, T.m) + '. Короткая стрелка — часы, длинная — минуты.', 'bad'); }
+  };
+  newT();
+};
+
 /* --- общий исполнитель вопросов --- */
 SCENES.quiz = function(stage, st, ctx){
   let i = 0, locked = false;
@@ -1215,6 +1632,99 @@ LESSONS.push(
         { k: '(24 − 3) − x = 8', t: 'Скобки: 24 − 3 = 21. Теперь 21 − x = 8, x = 21 − 8 = 13.' }, { k: 'a + 6 = 7 + 80', t: 'Справа посчитаем: 7 + 80 = 87. Теперь a + 6 = 87, a = 87 − 6 = 81.' } ] }),
       Q('m20s2', 'quiz', 'Решаем уравнения', 'Выбери нужное правило и найди неизвестное. Проверка: подставь число в уравнение.', { count: 10, gens: ['eqGen'] }),
       Q('m20s3', 'quiz', 'Повторяем всё', 'Последнее задание части 2: таблицы умножения, порядок действий, буквенные выражения и уравнения вперемешку.', { count: 10, gens: ['tabAll', 'inverse', 'orderOps', 'letterExpr', 'eqGen', 'cmpExpr'] })
+    ] }
+);
+
+/* ---------- часть 3: уроки 21–30 ---------- */
+LESSONS.push(
+  { id: 'm21', icon: '📏', title: 'Длина: см, дм, м', goal: 'Измерять и сравнивать длины, переводить единицы длины',
+    steps: [
+      Q('m21s1', 'infoTap', 'Сантиметр, дециметр, метр', 'Длину измеряют в сантиметрах, дециметрах и метрах. Запомни, как они связаны. Нажимай на карточки.', { need: 3, items: [
+        { k: '1 дм', v: rulerSVG(10, 0, 10), t: '1 дециметр = 10 сантиметров. Это длина маленькой линейки.' },
+        { k: '1 м', t: '1 метр = 10 дециметров = 100 сантиметров. Метр — это примерно шаг взрослого.' },
+        { k: 'как мерить', v: rulerSVG(10, 2, 7), t: 'Если предмет начинается не у нуля, вычитай: 7 − 2 = 5 см. Или считай деления.' } ] }),
+      Q('m21s2', 'quiz', 'Измеряем линейкой', 'Посмотри, где начинается предмет и где он заканчивается. Если начало не у нуля, вычитай.', { count: 6, gens: ['lenRuler'] }),
+      Q('m21s3', 'quiz', 'Переводим единицы', 'Помни: 1 дм = 10 см, 1 м = 10 дм = 100 см. Когда переводим в более мелкие единицы, умножаем, а в более крупные — делим.', { count: 8, gens: ['lenConv'] }),
+      Q('m21s4', 'quiz', 'Сравниваем и считаем длины', 'Перед сравнением или сложением переведи длины в одинаковые единицы.', { count: 8, gens: ['lenCmp', 'lenOps'] })
+    ] },
+  { id: 'm22', icon: '⚖️', title: 'Масса и ёмкость', goal: 'Читать шкалы приборов, использовать кг, ц и л',
+    steps: [
+      Q('m22s1', 'infoTap', 'Килограмм, центнер, литр', 'Массу измеряют в килограммах и центнерах, а ёмкость — в литрах. Нажимай на карточки.', { need: 3, items: [
+        { k: 'кг', v: dialSVG(4), t: 'Килограмм (кг) — основная единица массы. На весах стрелка показывает массу.' },
+        { k: 'ц', t: '1 центнер = 100 килограммов. В центнерах считают тяжёлые грузы: картофель, зерно.' },
+        { k: 'л', v: jugSVG(6), t: 'Литр (л) — единица ёмкости. Сколько в сосуд помещается воды, молока или сока.' } ] }),
+      Q('m22s2', 'quiz', 'Читаем шкалы приборов', 'У каждого прибора своя шкала: у весов, термометра, мерного стакана. Найди, на какой отметке остановилась стрелка или столбик, и посчитай деления.', { count: 9, gens: ['dialRead', 'jugRead', 'thermoRead'] }),
+      Q('m22s3', 'quiz', 'Масса: переводим и считаем', 'Помни: 1 ц = 100 кг. Складывай массу в одинаковых единицах.', { count: 8, gens: ['massConv', 'massQ'] }),
+      Q('m22s4', 'quiz', 'Литры', 'Литры можно складывать, вычитать, умножать и делить, как обычные числа.', { count: 6, gens: ['volQ'] })
+    ] },
+  { id: 'm23', icon: '⏳', title: 'Единицы времени', goal: 'Знать единицы времени и переводить их',
+    steps: [
+      Q('m23s1', 'infoTap', 'Минуты, часы, сутки, месяцы, годы', 'Время измеряют в минутах, часах, сутках, месяцах и годах. Нажимай на карточки.', { need: 4, items: [
+        { k: 'час', t: '1 час = 60 минут. Урок идёт 45 минут, это меньше часа.' }, { k: 'сутки', t: '1 сутки = 24 часа. За одни сутки сменяются день и ночь.' },
+        { k: 'неделя', t: '1 неделя = 7 суток. В неделе понедельник, вторник, среда, четверг, пятница, суббота, воскресенье.' }, { k: 'месяц', t: 'В одном году 12 месяцев. В каждом месяце 28–31 день.' }, { k: 'год', t: '1 год = 12 месяцев. Первый месяц года — январь, последний — декабрь.' } ] }),
+      Q('m23s2', 'quiz', 'Переводим время', 'Помни: 1 ч = 60 мин, 1 сут = 24 ч, 1 год = 12 мес.', { count: 8, gens: ['timeConv'] }),
+      Q('m23s3', 'quiz', 'Считаем время', 'Складывай и вычитай время. Когда минут становится 60, получается новый час.', { count: 8, gens: ['timeOps'] })
+    ] },
+  { id: 'm24', icon: '🕒', title: 'Часы и минуты', goal: 'Определять время по циферблату',
+    steps: [
+      Q('m24s1', 'clockSet', 'Ставим время на часах', 'У часов две стрелки. Короткая показывает часы, длинная — минуты. Кнопками поставь нужное время. Когда длинная стрелка на 12, ровно целый час. На 6 — половина часа.', { rounds: 3 }),
+      Q('m24s2', 'quiz', 'Сколько времени', 'Посмотри на короткую стрелку, затем на длинную. Между числами на циферблате 5 минут. Считай по пятёркам, потом по одной минуте.', { count: 10, gens: ['clockRead'] })
+    ] },
+  { id: 'm25', icon: '💰', title: 'Деньги', goal: 'Различать монеты и купюры, считать деньги',
+    steps: [
+      Q('m25s1', 'infoTap', 'Монеты и купюры', 'В Казахстане деньги называются тенге. Есть монеты 50 и 100 тенге и купюры 200 и 500 тенге. Нажимай и смотри.', { need: 4, items: [
+        { k: '50 тг', v: moneyHTML([50]), t: 'Монета в 50 тенге.' }, { k: '100 тг', v: moneyHTML([100]), t: 'Монета в 100 тенге. Это две монеты по 50.' },
+        { k: '200 тг', v: moneyHTML([200]), t: 'Купюра в 200 тенге. Это две монеты по 100.' }, { k: '500 тг', v: moneyHTML([500]), t: 'Купюра в 500 тенге. Это две купюры по 200 и ещё монета в 100.' } ] }),
+      Q('m25s2', 'quiz', 'Сколько всего денег', 'Складывай деньги. Сначала крупные, потом мелкие.', { count: 6, gens: ['moneySum'] }),
+      Q('m25s3', 'quiz', 'Покупки и сдача', 'Сдача — это разность между суммой, которую отдали, и ценой.', { count: 6, gens: ['moneyBuy'] }),
+      Q('m25s4', 'quiz', 'Как заплатить', 'Одну и ту же сумму можно заплатить разными деньгами. Найди нужный набор.', { count: 5, gens: ['moneyWays'] })
+    ] },
+  { id: 'm26', icon: '📐', title: 'Углы и фигуры', goal: 'Различать виды углов и многоугольники',
+    steps: [
+      Q('m26s1', 'angleSlider', 'Виды углов', 'Угол образуют два луча с общим началом. Двигай ползунок и смотри: бывают прямые, острые и тупые углы.'),
+      Q('m26s2', 'quiz', 'Какой угол', 'Сравни угол с прямым, как угол листа бумаги.', { count: 6, gens: ['angleType'] }),
+      Q('m26s3', 'quiz', 'Прямоугольник, квадрат, треугольник', 'У прямоугольника и квадрата четыре прямых угла. У квадрата все стороны равны. У прямоугольного треугольника один прямой угол.', { count: 6, gens: ['shapeProp'] }),
+      Q('m26s4', 'quiz', 'Многоугольники', 'Название многоугольника подсказывает, сколько у него углов: пятиугольник — пять углов.', { count: 6, gens: ['polyName'] }),
+      Q('m26s5', 'quiz', 'Сколько сторон', 'Многоугольники делят на виды по числу сторон.', { count: 5, gens: ['polySides'] }),
+      Q('m26s6', 'cutShape', 'Разрезаем фигуры', 'Фигуру можно разрезать на части. Нажимай на линию разреза и смотри, какие фигуры получились.'),
+      Q('m26s7', 'quiz', 'Части и композиции', 'Из частей можно составлять новые фигуры. Представь и ответь.', { count: 5, gens: ['cutQ'] })
+    ] },
+  { id: 'm27', icon: '🔲', title: 'Периметр', goal: 'Находить периметр многоугольников, искать неизвестную сторону',
+    steps: [
+      Q('m27s1', 'infoTap', 'Что такое периметр', 'Периметр — это сумма длин всех сторон фигуры. Запомни три формулы.', { need: 3, items: [
+        { k: 'прямоугольник', v: rectDimSVG(5, 3, 'см'), t: 'P = (a + b) · 2. Здесь (5 + 3) · 2 = 16 см. Две длины и две ширины.' },
+        { k: 'квадрат', v: squareDimSVG(4, 'см'), t: 'P = a · 4. Все стороны равны: 4 · 4 = 16 см.' },
+        { k: 'треугольник', v: triDimSVG(4, 5, 6, 'см'), t: 'P = a + b + c. Складываем три стороны: 4 + 5 + 6 = 15 см.' } ] }),
+      Q('m27s2', 'quiz', 'Прямоугольник и квадрат', 'Находи периметр по формулам. Не забывай про единицы длины.', { count: 6, gens: ['perimRect', 'perimSq'] }),
+      Q('m27s3', 'quiz', 'Треугольник и многоугольник', 'Складывай все стороны фигуры.', { count: 5, gens: ['perimTri', 'perimPoly'] }),
+      Q('m27s4', 'quiz', 'Периметр на клетках', 'Сторона клетки равна 1 см. Посчитай стороны по клеткам и найди периметр.', { count: 4, gens: ['perimGrid'] }),
+      Q('m27s5', 'quiz', 'Неизвестная сторона', 'Если известен периметр и часть сторон, неизвестную сторону находим вычитанием.', { count: 8, gens: ['perimSide', 'perimFormula'] })
+    ] },
+  { id: 'm28', icon: '✏️', title: 'Чертим на клетках', goal: 'Выполнять построения по инструкции, строить фигуры с заданным периметром',
+    steps: [
+      Q('m28s1', 'dotDraw', 'Чертим на точках', 'На точечной бумаге можно чертить по инструкции. Иди по линиям вправо, влево, вверх и вниз, чертить отрезки и прямые углы. Нажимай на точки.', { tasks: ['follow', 'follow', 'segment', 'segment', 'right', 'right'] }),
+      Q('m28s2', 'perimBuild', 'Фигура с нужным периметром', 'Меняй длину и ширину прямоугольника. Получи фигуру с заданным периметром. Её можно построить по-разному.', { tasks: [{ P: 14 }, { P: 12, sq: true }, { P: 18 }] }),
+      Q('m28s3', 'infoTap', 'Периметр и форма', 'У фигур с одинаковым периметром может быть разная форма. Посмотри на три прямоугольника с периметром 12 клеток. Чем длиннее и уже фигура, тем меньше места она занимает.', { need: 3, items: [
+        { k: '5 × 1', v: gridRectSVG(5, 1), t: 'P = (5 + 1) · 2 = 12 клеток. Узкая и длинная фигура.' }, { k: '4 × 2', v: gridRectSVG(4, 2), t: 'P = (4 + 2) · 2 = 12 клеток. Фигура пошире.' },
+        { k: '3 × 3', v: gridRectSVG(3, 3), t: 'P = (3 + 3) · 2 = 12 клеток. Это квадрат. Периметр тот же, а форма другая.' } ] })
+    ] },
+  { id: 'm29', icon: '🔄', title: 'Повороты и направления', goal: 'Понимать повороты и направления движения',
+    steps: [
+      Q('m29s1', 'turnVis', 'Повороты стрелки', 'Полный поворот — это целый круг. Половина поворота — половина круга. Четверть поворота — четвёртая часть круга. Поворачивать можно по часовой стрелке и против неё. Попробуй все повороты.'),
+      Q('m29s2', 'quiz', 'Куда покажет стрелка', 'По часовой стрелке числа на циферблате идут 12, 3, 6, 9, 12. Против часовой — в обратную сторону.', { count: 6, gens: ['turnClock'] }),
+      Q('m29s3', 'quiz', 'Какой это поворот', 'Определи по началу и концу движения, какую часть круга прошла стрелка.', { count: 5, gens: ['turnName'] }),
+      Q('m29s4', 'quiz', 'Направо, налево, назад', 'Повороты направо и налево — это повороты на четверть оборота. Два одинаковых поворота — половина оборота.', { count: 6, gens: ['turnFacing'] })
+    ] },
+  { id: 'm30', icon: '➖', title: 'Точки, отрезки, лучи, прямые', goal: 'Называть и обозначать буквами точки, отрезки, лучи, прямые',
+    steps: [
+      Q('m30s1', 'infoTap', 'Виды линий', 'Точки обозначают большими латинскими буквами: A, B, C. Линии называют по буквам точек. Нажимай на карточки.', { need: 3, items: [
+        { k: 'отрезок', v: linesSVG('отрезок', 'A', 'B'), t: 'Отрезок AB. У него есть начало и конец. Его можно измерить.' },
+        { k: 'луч', v: linesSVG('луч', 'A', 'B'), t: 'Луч AB. У него есть начало (точка A), а конца нет: он продолжается бесконечно.' },
+        { k: 'прямая', v: linesSVG('прямая', 'A', 'B'), t: 'Прямая AB. У неё нет ни начала, ни конца. Через две точки можно провести одну прямую.' } ] }),
+      Q('m30s2', 'quiz', 'Что на рисунке', 'Определи вид линии по рисунку: отрезок, луч или прямая.', { count: 6, gens: ['objType'] }),
+      Q('m30s3', 'quiz', 'Название по буквам', 'Название линии состоит из вида линии и букв точек, например «отрезок CD».', { count: 6, gens: ['objNote', 'objFact'] }),
+      Q('m30s4', 'quiz', 'Точки на линии', 'Смотри, как точки расположены на линии: левее, правее, между.', { count: 6, gens: ['pointsOrder'] }),
+      Q('m30s5', 'quiz', 'Повторяем часть 3', 'Вперемешку: шкалы, время, деньги, углы, периметр.', { count: 10, gens: ['scaleAny', 'clockRead', 'moneySum', 'perimRect', 'angleType', 'timeConv', 'lenConv', 'polyName'] })
     ] }
 );
 
