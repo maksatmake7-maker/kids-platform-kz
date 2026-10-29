@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Естествознание 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+</style>
+</head>
+<body class="w-page" data-subject="estestvo">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Естествознание 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Естествознание 2 класс</h1>
+      <p class="ac-sub">33 урока: исследователь, растения, животные, тело человека, воздух, вода, ресурсы, космос, силы, свет, звук, температура, магниты</p>
+      <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 33</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/estestvo2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/estestvo2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_estestvo2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки 👆') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+/* таблица чисел 1–100 */
+
+const svgW = (w, h, inner, cls) => '<svg viewBox="0 0 ' + w + ' ' + h + '" class="' + (cls || 'm2-fig') + '" role="img" aria-label="рисунок">' + inner + '</svg>';
+const FNT = 'font-family="Baloo 2,sans-serif" font-weight="800" fill="#1D3557"';
+function thermoSVG(v){
+  const y = t => 190 - 4 * t; let s = '<rect x="90" y="20" width="20" height="172" rx="10" fill="#fff" stroke="#1D3557" stroke-width="3"/><circle cx="100" cy="204" r="15" fill="#E0574A" stroke="#1D3557" stroke-width="3"/><rect x="95" y="' + y(v) + '" width="10" height="' + (200 - y(v)) + '" fill="#E0574A"/>';
+  for (let t = 0; t <= 40; t += 2){ const L = t % 10 === 0; s += '<line x1="112" y1="' + y(t) + '" x2="' + (L ? 126 : 120) + '" y2="' + y(t) + '" stroke="#1D3557" stroke-width="2"/>' + (L ? '<text x="132" y="' + (y(t) + 4) + '" font-size="13" ' + FNT + '>' + t + '</text>' : ''); }
+  return svgW(200, 225, s + '<text x="40" y="110" font-size="14" ' + FNT + '>°C</text>', 'm2-fig sm');
+}
+
+/* ---------- банки вопросов ---------- */
+const big2 = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+/* B(имя, [{q, a, w:[неверные], h, v?}]): вопросы идут по колоде без повторов, пока она не кончится */
+function B(name, items){
+  let deck = [];
+  GENS[name] = function(){
+    if (!deck.length) deck = shuffle(items);
+    const it = deck.pop();
+    return { html: (it.v ? '<div class="e2-emo">' + it.v + '</div>' : '') + big2(it.q), opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: it.wide };
+  };
+  GENS[name].items = items;
+}
+/* ВН(имя, [{q, ok:true/false, h}]) — верно ли утверждение */
+function TF(name, items){
+  let deck = [];
+  GENS[name] = function(){
+    if (!deck.length) deck = shuffle(items);
+    const it = deck.pop();
+    return { html: big2('Верно ли?<br><b>' + it.q + '</b>'), opts: ['верно', 'неверно'], ans: it.ok ? 'верно' : 'неверно', hint: it.h };
+  };
+  GENS[name].items = items;
+}
+/* ---------- сцены естествознания ---------- */
+/* сортируем: карточку — в нужную группу. groups [{k, e}], items [{t, e, g, h}] */
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+/* дневник наблюдений: условными знаками отмечаем каждый день. days [{d, t, s}], signs [{s, k}] */
+SCENES.obsTable = function(stage, st, ctx){
+  const D = st.days, rec = []; let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="b-c"></div><div class="ac-qtxt m2-big" id="b-q"></div><div class="m2-cbrow" id="b-s"></div><div id="b-t"></div>';
+  $('#b-s', stage).innerHTML = st.signs.map(x => '<button class="ac-btn ac-alt m2-cbtn" data-s="' + x.s + '">' + x.s + '<br><small>' + x.k + '</small></button>').join('');
+  const tbl = () => '<table class="m2-mt"><tr>' + D.map(x => '<th>' + x.d + '</th>').join('') + '</tr><tr>' + D.map((x, k) => '<td>' + (rec[k] || '') + '</td>').join('') + '</tr></table>';
+  function show(){ $('#b-t', stage).innerHTML = tbl(); if (i >= D.length){ $('#b-q', stage).textContent = 'Дневник заполнен! ' + st.done; $('#b-c', stage).textContent = ''; $('#b-s', stage).style.display = 'none'; ctx.done(); return; } $('#b-c', stage).textContent = 'День ' + (i + 1) + ' из ' + D.length; $('#b-q', stage).textContent = D[i].d + ': ' + D[i].t; }
+  $$('[data-s]', stage).forEach(b => b.onclick = function(){ if (i >= D.length) return;
+    if (b.dataset.s === D[i].s){ rec[i] = D[i].s; i++; ctx.fb(pick(PRAISE), 'ok'); show(); } else { ctx.miss(); ctx.fb('Посмотри на описание дня ещё раз. Какой знак подходит?', 'bad'); } });
+  show();
+};
+/* опыт: гипотеза → проверка → таблица результатов. items [{t, e, r (true=утонет), why}] */
+SCENES.sinkExp = function(stage, st, ctx){
+  const items = st.items, rows = []; let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="x-c"></div><div class="ac-qtxt m2-big" id="x-q"></div><div class="e2-pond" id="x-p"></div><div class="m2-cbrow" id="x-b"><button class="ac-btn ac-alt m2-cbtn" data-h="1">утонет</button><button class="ac-btn ac-alt m2-cbtn" data-h="0">не утонет</button></div><div id="x-t"></div>';
+  const tbl = () => rows.length ? '<table class="m2-mt"><tr><th>Предмет</th><th>Гипотеза</th><th>Результат</th></tr>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>').join('') + '</table>' : '';
+  function show(){ $('#x-t', stage).innerHTML = tbl();
+    if (i >= items.length){ $('#x-q', stage).textContent = 'Опыт закончен! Результаты записаны в таблицу.'; $('#x-c', stage).textContent = ''; $('#x-p', stage).innerHTML = ''; $('#x-b', stage).style.display = 'none'; ctx.fb('Гипотеза — это предположение. Опыт показывает, верно оно или нет.', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#x-c', stage).textContent = 'Предмет ' + (i + 1) + ' из ' + items.length; $('#x-q', stage).textContent = 'Гипотеза: ' + it.t + ' в воде утонет?'; $('#x-p', stage).innerHTML = '<div class="e2-emo">' + it.e + '</div>'; $('#x-b', stage).style.display = ''; }
+  $$('[data-h]', stage).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i], h = b.dataset.h === '1', ok = h === it.r;
+    $('#x-b', stage).style.display = 'none'; $('#x-p', stage).innerHTML = '<div class="e2-emo e2-' + (it.r ? 'sink' : 'float') + '">' + it.e + '</div><div class="e2-water">💧💧💧💧💧</div>';
+    ctx.fb((ok ? 'Гипотеза подтвердилась. ' : 'Гипотеза не подтвердилась. ') + it.t.charAt(0).toUpperCase() + it.t.slice(1) + (it.r ? ' тонет.' : ' не тонет.'), ok ? 'ok' : 'info');
+    rows.push([it.t, h ? 'утонет' : 'не утонет', it.r ? 'тонет' : 'не тонет']); i++;
+    setTimeout(() => { if (ctx.alive()) show(); }, 1700);
+  });
+  show();
+};
+
+/* ---------- банки вопросов: часть 1 ---------- */
+B('n1a', [
+  { q: 'Исследователь всё время спрашивает: «почему?» и «как?». Какое это качество?', a: 'любознательность', w: ['лень', 'хвастовство', 'невнимательность'], h: 'Любознательный человек хочет узнать как можно больше нового.' },
+  { q: 'Растение растёт медленно. Какое качество поможет увидеть результат?', a: 'терпение', w: ['торопливость', 'обидчивость', 'хвастовство'], h: 'Исследователь умеет ждать: многие результаты появляются не сразу.' },
+  { q: 'Исследователь замечает мелкие изменения. Какое качество ему нужно?', a: 'внимательность', w: ['невнимательность', 'скука', 'спешка'], h: 'Чтобы заметить мелочи, нужно смотреть и слушать внимательно.' },
+  { q: 'Опыт получился не так, как хотелось. Как поступает честный исследователь?', a: 'записывает то, что получилось на самом деле', w: ['записывает то, что хотел получить', 'выбрасывает свою запись', 'просит друга записать другой результат'], h: 'Честность — главное для исследователя. Записывать нужно только то, что видишь.', wide: true },
+  { q: 'Что поможет рассмотреть мелкие детали насекомого?', a: 'лупа', w: ['линейка', 'термометр', 'весы'], h: 'Лупа увеличивает предмет, и мелкие детали становятся видны.' },
+  { q: 'Чем измеряют температуру воздуха?', a: 'термометром', w: ['лупой', 'линейкой', 'весами'], h: 'Температуру измеряют термометром.' },
+  { q: 'Чем можно измерить длину листа?', a: 'линейкой', w: ['термометром', 'лупой', 'часами'], h: 'Длину измеряют линейкой.' },
+  { q: 'Какое правило безопасности верное?', a: 'не пробовать незнакомые растения на вкус', w: ['трогать горячее без прихваток', 'играть острыми предметами без взрослых', 'нюхать незнакомые вещества близко'], h: 'Незнакомые растения и вещества могут быть опасными. Их нельзя пробовать.', wide: true },
+  { q: 'Что нужно исследователю, чтобы найти ответ на свой вопрос?', a: 'цель и план', w: ['только удача', 'громкий голос', 'новая игрушка'], h: 'Исследователь знает, что хочет узнать (цель), и продумывает, как это сделать (план).' }
+]);
+TF('n1b', [
+  { q: 'Исследователь записывает то, что хочет увидеть, а не то, что видит.', ok: false, h: 'Исследователь записывает только то, что увидел на самом деле.' },
+  { q: 'Исследователь соблюдает правила безопасности.', ok: true, h: 'Безопасность важна при любом исследовании.' },
+  { q: 'Исследователь замечает мелочи.', ok: true, h: 'Внимательность помогает увидеть то, что другие пропустят.' },
+  { q: 'Исследователь сдаётся сразу, если опыт не получился.', ok: false, h: 'Исследователь терпеливый. Он ищет причину и пробует ещё раз.' },
+  { q: 'Терпение помогает исследователю.', ok: true, h: 'Многие явления происходят медленно, и нужно подождать.' },
+  { q: 'Незнакомые ягоды можно пробовать на вкус.', ok: false, h: 'Незнакомые ягоды могут быть ядовитыми. Их нельзя пробовать.' }
+]);
+B('n2a', [
+  { q: 'Что такое источник информации?', a: 'то, откуда мы узнаём новое', w: ['место, где мы играем', 'прибор для измерения', 'то, что мы едим'], h: 'Источник информации — это книга, человек, прибор или предмет, откуда мы получаем знания.' },
+  { q: 'Мы сами каждый день смотрим на росток и записываем, как он растёт. Какой это источник?', a: 'наблюдение', w: ['сказка', 'реклама', 'игра'], h: 'Когда мы сами смотрим и записываем, наблюдение становится источником знаний.', wide: true },
+  { q: 'Где подробно рассказано о космосе?', a: 'в книге по астрономии', w: ['в кулинарной книге', 'в расписании поездов', 'в телефонном справочнике'], h: 'Про космос лучше читать в книге об астрономии или в энциклопедии.' },
+  { q: 'Как лучше проверить найденную информацию?', a: 'найти то же самое в другом надёжном источнике', w: ['поверить первому, что нашёл', 'спросить у случайного человека', 'не проверять'], h: 'Хороший исследователь проверяет сведения по нескольким надёжным источникам.', wide: true },
+  { q: 'Где можно увидеть настоящие скелеты и минералы?', a: 'в музее', w: ['в магазине игрушек', 'на детской площадке', 'в кинотеатре на сказке'], h: 'В музеях хранят и показывают настоящие предметы и коллекции.' },
+  { q: 'С кем лучше искать информацию в интернете?', a: 'со взрослым', w: ['с незнакомцем из чата', 'на любом сайте без проверки', 'в рекламе'], h: 'Взрослый поможет найти надёжный сайт и не попасть на опасный.' },
+  { q: 'Что из этого — источник информации?', a: 'научно-популярная книга', w: ['пустая тетрадь', 'мягкая игрушка', 'чистый лист'], h: 'В научно-популярной книге есть проверенные сведения.' },
+  { q: 'Кто может ответить на вопросы о животных?', a: 'учёный-зоолог', w: ['продавец игрушек', 'водитель автобуса', 'любой прохожий'], h: 'Зоолог изучает животных. Он знает о них много проверенных фактов.' }
+]);
+B('n3a', [
+  { q: 'Мы хотим узнать, как растёт фасоль. Это…', a: 'цель наблюдения', w: ['объект наблюдения', 'срок наблюдения', 'результат наблюдения'], h: 'Цель — то, что мы хотим узнать.' },
+  { q: 'Фасоль, за которой мы смотрим, — это…', a: 'объект наблюдения', w: ['цель наблюдения', 'план наблюдения', 'вывод'], h: 'Объект — то, за чем мы наблюдаем.' },
+  { q: '«Наблюдаем 10 дней, каждое утро». Это…', a: 'сроки', w: ['объект', 'цель', 'результат'], h: 'Сроки — когда и как долго мы наблюдаем.' },
+  { q: '«Фасоль выросла на 5 сантиметров». Это…', a: 'результат', w: ['цель', 'план', 'сроки'], h: 'Результат — то, что мы увидели и узнали.' },
+  { q: '«1. Посадить. 2. Поливать. 3. Измерять». Это…', a: 'план', w: ['результат', 'объект', 'сроки'], h: 'План — это порядок наших действий.' },
+  { q: 'Что мы определяем сначала, когда готовим наблюдение?', a: 'цель', w: ['вывод', 'результат', 'ответ'], h: 'Сначала понимаем, что хотим узнать, потом делаем план.' },
+  { q: 'Мы наблюдаем за птицами в парке. Что здесь объект?', a: 'птицы', w: ['парк', 'тетрадь', 'карандаш'], h: 'Объект наблюдения — то, за чем следим: птицы.' },
+  { q: 'Что важно сделать после наблюдения?', a: 'сделать вывод', w: ['забыть записи', 'выбросить дневник', 'начать другую игру'], h: 'В конце сравниваем записи и делаем вывод.' }
+]);
+B('n3b', [
+  { q: 'Какой знак поставить: идёт дождь?', a: '🌧️', w: ['☀️', '❄️', '☁️'], h: 'Дождь обозначают тучкой с каплями.' },
+  { q: 'Какой знак поставить: небо чистое, светит солнце?', a: '☀️', w: ['🌧️', '❄️', '☁️'], h: 'Ясную погоду обозначают солнышком.' },
+  { q: 'Какой знак поставить: идёт снег?', a: '❄️', w: ['☀️', '🌧️', '☁️'], h: 'Снег обозначают снежинкой.' },
+  { q: 'Какой знак поставить: всё небо закрыто облаками?', a: '☁️', w: ['☀️', '🌧️', '❄️'], h: 'Облачность обозначают облаком.' },
+  { q: 'Что значит этот знак: 🌧️?', a: 'дождь', w: ['снег', 'ясно', 'ветер'], h: 'Тучка с каплями — дождь.' },
+  { q: 'Что значит этот знак: ☀️?', a: 'ясно', w: ['дождь', 'снег', 'облачно'], h: 'Солнышко — ясная погода.' },
+  { q: 'Что значит этот знак: ❄️?', a: 'снег', w: ['дождь', 'ясно', 'облачно'], h: 'Снежинка — снег.' },
+  { q: 'Для чего нужны условные знаки?', a: 'чтобы быстро и коротко записывать наблюдения', w: ['чтобы украсить тетрадь', 'чтобы никто не понял записи', 'чтобы не наблюдать'], h: 'Знак заменяет несколько слов. Запись получается короткой и понятной.', wide: true }
+]);
+GENS.obsRead = function(){
+  const S = ['☀️', '☁️', '🌧️'], N = { '☀️': 'ясных', '☁️': 'облачных', '🌧️': 'дождливых' }, seq = Array.from({ length: 5 }, () => pick(S)), D = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт'];
+  const tbl = '<table class="m2-mt"><tr>' + D.map(x => '<th>' + x + '</th>').join('') + '</tr><tr>' + seq.map(x => '<td>' + x + '</td>').join('') + '</tr></table>';
+  const s = pick(S), c = seq.filter(x => x === s).length;
+  return { html: '<div class="ac-qtxt m2-big">Это дневник наблюдений за погодой. Сколько было ' + N[s] + ' дней?</div>' + tbl, opts: opts4(c, [c + 1, c - 1, c + 2, 5 - c].filter(x => x >= 0)), ans: c, hint: 'Посчитай знаки ' + s + ' в таблице: их ' + c + '.' };
+};
+B('n5a', [
+  { q: 'Мы думаем, что камень утонет. Это…', a: 'гипотеза', w: ['результат', 'сроки', 'вывод'], h: 'Гипотеза — это предположение, которое мы проверяем опытом.' },
+  { q: 'Лупа, стакан и вода — это…', a: 'ресурсы (что нужно для опыта)', w: ['гипотеза', 'результат', 'цель'], h: 'Ресурсы — приборы и материалы для опыта.', wide: true },
+  { q: 'Чем эксперимент отличается от наблюдения?', a: 'мы сами создаём условия и меняем их', w: ['мы только смотрим со стороны', 'в нём не нужен план', 'он не даёт результата'], h: 'В эксперименте мы сами что-то делаем и смотрим, что получится.', wide: true },
+  { q: 'Куда записываем результаты опыта?', a: 'в таблицу', w: ['на забор', 'нигде', 'в шкаф'], h: 'Результаты опыта удобно записывать в таблицу.' },
+  { q: 'Что делаем после опыта?', a: 'сравниваем результат с гипотезой', w: ['забываем про результат', 'меняем результат', 'выбрасываем таблицу'], h: 'Так мы узнаём, подтвердилась ли гипотеза.', wide: true },
+  { q: 'Мы смотрим, как облака плывут по небу. Это…', a: 'наблюдение', w: ['эксперимент', 'опыт с водой', 'игра'], h: 'Мы ничего не меняем, только смотрим, поэтому это наблюдение.' },
+  { q: 'Мы кладём предметы в воду и смотрим, какие тонут. Это…', a: 'эксперимент', w: ['наблюдение за погодой', 'чтение книги', 'рисование'], h: 'Мы сами создаём условия, поэтому это эксперимент.' },
+  { q: 'Что нужно сделать в эксперименте раньше всего?', a: 'определить цель', w: ['записать результат', 'сделать вывод', 'убрать приборы'], h: 'Сначала цель, потом гипотеза, ресурсы и план.' }
+]);
+B('n6a', [
+  { q: 'Растение поставили в тёмный шкаф. Что с ним будет?', a: 'станет бледным и слабым', w: ['станет ярче', 'вырастет быстрее всех', 'сразу зацветёт'], h: 'Без света растение не может нормально расти.' },
+  { q: 'Растение не поливали две недели. Что с ним будет?', a: 'завянет', w: ['вырастет выше', 'зацветёт сильнее', 'ничего не изменится'], h: 'Без воды растение вянет.' },
+  { q: 'Семена зимой выложили на мороз на улицу. Они прорастут?', a: 'нет, им нужно тепло', w: ['да, мороз им полезен', 'да, они прорастут за день', 'да, снег их согреет сразу'], h: 'Для прорастания нужны тепло, вода и воздух.', wide: true },
+  { q: 'Что нужно семени, чтобы прорасти?', a: 'вода, тепло и воздух', w: ['только свет', 'только холод', 'соль и песок'], h: 'Семя прорастает, когда есть влага, тепло и воздух.' },
+  { q: 'Что даёт растению почва?', a: 'опору и питательные вещества', w: ['только свет', 'только тепло', 'только звуки'], h: 'Корни держатся в почве и берут из неё воду и питание.', wide: true },
+  { q: 'Где растению больше света?', a: 'на солнечном подоконнике', w: ['в тёмном шкафу', 'в закрытой коробке', 'под кроватью'], h: 'Свет нужен растению для роста.' },
+  { q: 'Как проверить, нужен ли растению свет?', a: 'одно поставить на свет, другое в тёмное место и сравнить', w: ['оба поставить в шкаф', 'оба не поливать', 'ничего не делать'], h: 'Мы меняем одно условие (свет) и сравниваем результат.', wide: true },
+  { q: 'Что нужно растению, чтобы не завять?', a: 'вода', w: ['мороз', 'тишина', 'темнота'], h: 'Воду растение берёт корнями.' }
+]);
+TF('n6b', [
+  { q: 'Растению нужен воздух.', ok: true, h: 'Растения дышат: воздух нужен листьям, корням и семенам.' },
+  { q: 'Растения могут расти совсем без воды.', ok: false, h: 'Без воды растение не растёт и вянет.' },
+  { q: 'Для роста растению нужен свет.', ok: true, h: 'Свет нужен листьям для питания.' },
+  { q: 'Семена прорастают в тепле и во влажной почве.', ok: true, h: 'Тепло и влага нужны для прорастания.' },
+  { q: 'Растению не нужна почва: оно может расти на бумаге без воды.', ok: false, h: 'Корням нужна опора и питание из почвы или воды.' },
+  { q: 'Опыт с растением в темноте покажет, нужен ли ему свет.', ok: true, h: 'Сравнив растения на свету и в темноте, мы увидим разницу.' }
+]);
+B('n7a', [
+  { q: 'Какая часть растения держит его в почве и берёт воду?', a: 'корень', w: ['лист', 'цветок', 'плод'], h: 'Корень закрепляет растение в земле и впитывает воду.' },
+  { q: 'Какая часть растения несёт листья и цветы, и по ней поднимается вода?', a: 'стебель', w: ['корень', 'семя', 'плод'], h: 'Стебель держит растение и проводит воду к листьям.' },
+  { q: 'Где растение на свету получает питание и дышит?', a: 'в листьях', w: ['в корне', 'в семени', 'в плоде'], h: 'Листья на свету делают питательные вещества и дышат.' },
+  { q: 'Из какой части потом появляются плоды?', a: 'из цветка', w: ['из корня', 'из листа', 'из стебля'], h: 'После цветения на месте цветка образуется плод.' },
+  { q: 'Что находится внутри плода?', a: 'семена', w: ['корни', 'листья', 'камни'], h: 'В плодах развиваются семена.' },
+  { q: 'Что вырастает из семени?', a: 'новое растение', w: ['камень', 'облако', 'вода'], h: 'Из семени развивается новое растение.' },
+  { q: 'Зачем нужны корни?', a: 'закрепляют растение и впитывают воду', w: ['делают цветы', 'создают плоды', 'дают тень'], h: 'У корня две главные задачи: держать и брать воду.', wide: true },
+  { q: 'Что происходит с плодом, когда он созрел?', a: 'в нём созревают семена для нового растения', w: ['он превращается в корень', 'он становится листом', 'он исчезает без следа'], h: 'Плод защищает семена, пока они не созреют.', wide: true },
+  { q: 'Как называется часть, на которой растут листья?', a: 'стебель', w: ['корень', 'плод', 'семя'], h: 'Листья расположены на стебле.' }
+]);
+B('n8a', [
+  { q: 'Почему у кактуса колючки вместо листьев?', a: 'так он теряет меньше воды', w: ['чтобы украшать пустыню', 'чтобы расти быстрее', 'чтобы дышать корнями'], h: 'Колючки испаряют мало воды, и кактус может долго жить без полива.', wide: true },
+  { q: 'Почему у саксаула длинные корни?', a: 'достают воду глубоко из земли', w: ['чтобы улететь', 'чтобы плавать', 'чтобы собирать снег'], h: 'В пустыне воды мало, и корни уходят глубоко за ней.', wide: true },
+  { q: 'Какое растение любит много воды: кувшинка или кактус?', a: 'кувшинка', w: ['кактус', 'оба одинаково', 'ни одно'], h: 'Кувшинка растёт в воде, а кактус — в сухих местах.' },
+  { q: 'Где растёт камыш?', a: 'у воды, на болоте', w: ['в пустыне', 'на сухих скалах', 'в песках'], h: 'Камыш любит влажные места.' },
+  { q: 'Где растёт верблюжья колючка?', a: 'в пустыне и сухой степи', w: ['на дне озера', 'в болоте', 'в тропическом лесу'], h: 'Верблюжья колючка выдерживает жару и сухость.' },
+  { q: 'В стебле кактуса много…', a: 'запасённой воды', w: ['песка', 'камней', 'снега'], h: 'Толстый стебель кактуса хранит воду про запас.' },
+  { q: 'Что помогает растению пустыни пережить засуху?', a: 'глубокие корни и мелкие листья или колючки', w: ['большие листья на воде', 'очень много цветов', 'тонкие корни у поверхности'], h: 'Эти приспособления помогают добывать и беречь воду.', wide: true }
+]);
+B('n9a', [
+  { q: 'Когда у берёзы желтеют и опадают листья?', a: 'осенью', w: ['весной', 'летом', 'зимой'], h: 'Осенью наступает листопад.' },
+  { q: 'Когда на деревьях распускаются почки?', a: 'весной', w: ['осенью', 'зимой', 'в конце лета'], h: 'Весной тепло и появляется вода: почки раскрываются.' },
+  { q: 'Какое дерево остаётся зелёным зимой?', a: 'ель', w: ['берёза', 'тополь', 'осина'], h: 'У ели иголки (хвоя), и они не опадают все сразу.' },
+  { q: 'Когда растения быстро растут и цветут?', a: 'летом', w: ['зимой', 'в январе', 'в декабре'], h: 'Летом тепло и много света.' },
+  { q: 'Что происходит с семенами зимой?', a: 'ждут весны под снегом и землёй', w: ['сразу прорастают', 'превращаются в листья', 'тают'], h: 'Семена отдыхают, весной они прорастут.', wide: true },
+  { q: 'Зачем деревья сбрасывают листья осенью?', a: 'чтобы легче пережить холодную зиму', w: ['чтобы стать выше', 'чтобы цвести зимой', 'потому что скучают'], h: 'Зимой мало воды и света. Без листьев дерево тратит меньше сил.', wide: true },
+  { q: 'Что появляется на траве весной?', a: 'новые зелёные ростки', w: ['снег', 'осенние листья', 'ледяные корочки'], h: 'Весной трава начинает расти заново.' },
+  { q: 'Когда созревают многие плоды и семена?', a: 'осенью', w: ['зимой', 'в начале весны', 'в январе'], h: 'К осени плоды и семена созревают.' }
+]);
+B('n10a', [
+  { q: 'Чем кустарник отличается от дерева?', a: 'у него несколько тонких стволов от земли', w: ['у него один толстый ствол', 'у него нет корней', 'у него нет листьев'], h: 'У кустарника ветви растут от самой земли, а у дерева один главный ствол.', wide: true },
+  { q: 'У каких растений нет твёрдого ствола, а надземная часть осенью отмирает?', a: 'у трав', w: ['у деревьев', 'у кустарников', 'у кактусов'], h: 'У многих трав стебель мягкий и осенью засыхает.', wide: true },
+  { q: 'Какое из этих растений дерево?', a: 'тополь', w: ['шиповник', 'ковыль', 'ромашка'], h: 'У тополя один высокий ствол.' },
+  { q: 'Какое из этих растений кустарник?', a: 'шиповник', w: ['берёза', 'ковыль', 'одуванчик'], h: 'Шиповник — колючий кустарник.' },
+  { q: 'Какое из этих растений трава?', a: 'ковыль', w: ['сосна', 'карагач', 'облепиха'], h: 'Ковыль — степная трава.' },
+  { q: 'Где в Казахстане растёт ковыль?', a: 'в степи', w: ['на дне озера', 'в тайге на севере у воды', 'на льдинах'], h: 'Ковыль — типичная трава степи.' }
+]);
+B('n11a', [
+  { q: 'Что такое почва?', a: 'верхний плодородный слой земли', w: ['слой камней', 'слой воды', 'слой облаков'], h: 'В почве есть перегной — остатки растений и животных. Он делает её плодородной.', wide: true },
+  { q: 'Как ухаживают за почвой?', a: 'рыхлят, поливают, удобряют', w: ['засыпают мусором', 'вытаптывают', 'заливают маслом'], h: 'Рыхление, полив и удобрение помогают почве оставаться плодородной.' },
+  { q: 'Что вредит почве?', a: 'мусор и химические отходы', w: ['перегной', 'рыхление', 'аккуратный полив'], h: 'Мусор и отходы загрязняют почву.' },
+  { q: 'Что нельзя делать с редкими цветами?', a: 'рвать и выкапывать', w: ['охранять', 'фотографировать издалека', 'любоваться ими'], h: 'Редких цветов осталось мало. Их нужно беречь.' },
+  { q: 'Как называется книга, где записаны редкие растения и животные?', a: 'Красная книга', w: ['Синяя книга', 'Жёлтая книга', 'Зелёная тетрадь'], h: 'В Красную книгу записывают тех, кому грозит исчезновение.' },
+  { q: 'Какое растение Казахстана занесено в Красную книгу?', a: 'тюльпан Грейга', w: ['одуванчик', 'подорожник', 'крапива'], h: 'Тюльпан Грейга — редкий дикий тюльпан. Его нельзя рвать.' },
+  { q: 'Как можно позаботиться о растениях?', a: 'поливать, сажать новые, не ломать ветки', w: ['срывать цветы без причины', 'ломать деревья', 'топтать клумбы'], h: 'Береги то, что растёт: сажай, поливай, не ломай.', wide: true },
+  { q: 'Почему важно беречь деревья?', a: 'они дают кислород, тень и дом для птиц', w: ['они мешают играть', 'они шумят', 'они не нужны'], h: 'Деревья очищают воздух и защищают животных.', wide: true }
+]);
+B('n12a', [
+  { q: 'У кого тело покрыто чешуёй, есть плавники и жабры?', a: 'у рыб', w: ['у птиц', 'у насекомых', 'у млекопитающих'], h: 'Рыбы дышат жабрами и плавают с помощью плавников.' },
+  { q: 'У кого тело покрыто перьями и есть крылья?', a: 'у птиц', w: ['у рыб', 'у земноводных', 'у пресмыкающихся'], h: 'Перья есть только у птиц.' },
+  { q: 'Кто выкармливает детёнышей молоком?', a: 'млекопитающие', w: ['рыбы', 'насекомые', 'птицы'], h: 'Молоком выкармливают детёнышей только млекопитающие.' },
+  { q: 'У кого шесть ног?', a: 'у насекомых', w: ['у птиц', 'у рыб', 'у млекопитающих'], h: 'У насекомых шесть ног и три части тела.' },
+  { q: 'Какое животное — земноводное?', a: 'лягушка', w: ['ящерица', 'карась', 'воробей'], h: 'Лягушка живёт и в воде, и на суше. Кожа у неё голая и влажная.' },
+  { q: 'Какое животное — пресмыкающееся?', a: 'змея', w: ['лягушка', 'щука', 'кошка'], h: 'У змеи сухая кожа, покрытая чешуёй.' },
+  { q: 'К какому классу относится кошка?', a: 'млекопитающие', w: ['птицы', 'рыбы', 'насекомые'], h: 'У кошки шерсть, и котят она выкармливает молоком.' },
+  { q: 'К какому классу относится бабочка?', a: 'насекомые', w: ['птицы', 'рыбы', 'млекопитающие'], h: 'У бабочки шесть ног, поэтому она насекомое.' },
+  { q: 'Какое из этих животных — не рыба?', a: 'лягушка', w: ['карась', 'щука', 'сом'], h: 'У лягушки нет чешуи и плавников, она земноводное.' }
+]);
+
+/* ---------- банки вопросов: часть 2 ---------- */
+B('n13a', [
+  { q: 'Зачем зайцу-беляку зимой белая шёрстка?', a: 'на снегу его трудно заметить', w: ['чтобы было красиво', 'чтобы не мёрзли уши', 'чтобы быстрее бегать'], h: 'Белая шерсть сливается со снегом. Хищнику труднее найти зайца.', wide: true },
+  { q: 'Что хранится в горбах верблюда?', a: 'запас жира', w: ['вода', 'песок', 'воздух'], h: 'В горбах у верблюда запас жира. Поэтому он долго живёт без еды.' },
+  { q: 'Что делает медведь зимой?', a: 'спит в берлоге', w: ['улетает на юг', 'плавает подо льдом', 'строит гнездо'], h: 'Зимой корма мало. Медведь отсыпается в берлоге.' },
+  { q: 'Куда улетают на зиму перелётные птицы?', a: 'в тёплые края', w: ['на Северный полюс', 'под землю', 'на дно озера'], h: 'В тёплых краях зимой есть корм.' },
+  { q: 'Зачем снежному барсу густой мех?', a: 'чтобы не мёрзнуть в горах', w: ['чтобы быть заметнее', 'чтобы лучше плавать', 'чтобы летать'], h: 'Снежный барс живёт высоко в горах, где холодно.', wide: true },
+  { q: 'Почему у рыбы обтекаемое тело?', a: 'так ей легче плыть в воде', w: ['так легче бегать', 'так легче летать', 'так легче зарываться в песок'], h: 'Обтекаемое тело и плавники помогают плыть.', wide: true },
+  { q: 'Что делает хомяк осенью?', a: 'запасает корм', w: ['улетает', 'меняет окраску', 'плавает'], h: 'Хомяк делает запасы корма на зиму.' },
+  { q: 'Зачем кузнечику зелёная окраска?', a: 'в траве его не видно', w: ['чтобы светиться', 'чтобы пугать птиц', 'чтобы нагреваться'], h: 'Окраска, из-за которой животное незаметно, называется маскировкой.' },
+  { q: 'Как называется окраска, из-за которой животное незаметно?', a: 'маскировка', w: ['перелёт', 'спячка', 'линька'], h: 'Маскировка помогает прятаться от врагов.' },
+  { q: 'Какие птицы остаются у нас на зиму?', a: 'воробьи и вороны', w: ['ласточки и журавли', 'утки и гуси', 'соловьи и кукушки'], h: 'Воробьи и вороны зимуют рядом с людьми.', wide: true }
+]);
+B('n14a', [
+  { q: 'Из чего вылупляется цыплёнок?', a: 'из яйца', w: ['из икры', 'из куколки', 'из почки'], h: 'Птицы откладывают яйца. Из яиц вылупляются птенцы.' },
+  { q: 'Кто выходит из икры лягушки?', a: 'головастик', w: ['гусеница', 'птенец', 'малёк'], h: 'Сначала из икры появляется головастик. Потом он вырастает в лягушку.' },
+  { q: 'Из чего появляется бабочка?', a: 'из куколки', w: ['из икры', 'из яйца птицы', 'из головастика'], h: 'Гусеница превращается в куколку, а из куколки выходит бабочка.' },
+  { q: 'Кто откладывает яйца?', a: 'птицы', w: ['волки', 'лошади', 'коровы'], h: 'Птицы строят гнёзда и откладывают в них яйца.' },
+  { q: 'Кто рождает живых детёнышей и кормит их молоком?', a: 'млекопитающие', w: ['птицы', 'рыбы', 'насекомые'], h: 'Только млекопитающие выкармливают малышей молоком.' },
+  { q: 'Как размножаются рыбы?', a: 'мечут икру', w: ['откладывают яйца в гнёзда на деревьях', 'рождают живых детёнышей', 'делятся на части'], h: 'Рыбы откладывают в воду много икринок. Из них появляются мальки.', wide: true },
+  { q: 'Что делает гусеница перед тем, как стать бабочкой?', a: 'превращается в куколку', w: ['откладывает яйца', 'становится головастиком', 'выходит из икры'], h: 'Порядок такой: яйцо, гусеница, куколка, бабочка.', wide: true },
+  { q: 'Кто заботится о птенцах в гнезде?', a: 'родители кормят и греют их', w: ['птенцы сами себя кормят', 'их никто не кормит', 'их кормит рыба'], h: 'Птицы греют птенцов и приносят им корм.', wide: true },
+  { q: 'Как называются малыши рыб?', a: 'мальки', w: ['головастики', 'гусеницы', 'птенцы'], h: 'Из икринок появляются мальки.' }
+]);
+B('n15a', [
+  { q: 'Что такое Красная книга?', a: 'список редких животных и растений, которых надо беречь', w: ['книга о лесных сказках', 'учебник по рисованию', 'список любимых блюд'], h: 'В Красную книгу записывают тех, кто может исчезнуть. Их охраняют.', wide: true },
+  { q: 'Какое животное из Казахстана занесено в Красную книгу?', a: 'снежный барс', w: ['воробей', 'ворона', 'домовая мышь'], h: 'Снежных барсов осталось очень мало. Они живут в горах и охраняются.' },
+  { q: 'Что вредит животным?', a: 'браконьерство (незаконная охота) и вырубка лесов', w: ['заповедники', 'Красная книга', 'кормушки зимой'], h: 'Браконьеры убивают животных, а без леса животным негде жить.', wide: true },
+  { q: 'Что такое заповедник?', a: 'место, где охраняют природу и животных', w: ['место, где можно охотиться', 'магазин', 'огород'], h: 'В заповеднике запрещена охота. Здесь сохраняют природу.', wide: true },
+  { q: 'Как называется старейший заповедник Казахстана?', a: 'Аксу-Жабаглы', w: ['Эверест', 'Ниагара', 'Сахара'], h: 'Заповедник Аксу-Жабаглы создан в 1926 году. Он расположен в горах.' },
+  { q: 'Зачем нужны насекомые?', a: 'они опыляют цветы и служат кормом другим животным', w: ['они только мешают', 'они не нужны', 'они делают дождь'], h: 'Пчёлы и бабочки переносят пыльцу. Без них было бы меньше плодов.', wide: true },
+  { q: 'Как мы можем помочь животным?', a: 'не мусорить, не разорять гнёзда, подкармливать птиц зимой', w: ['ловить птиц и держать дома', 'разорять гнёзда', 'шуметь в лесу'], h: 'Береги природу и не обижай животных.', wide: true },
+  { q: 'Почему важно сохранять разные виды животных?', a: 'все они связаны между собой, исчезновение одних вредит другим', w: ['чтобы было шумнее', 'чтобы их можно было ловить', 'потому что так принято'], h: 'В природе всё связано. Если исчезает один вид, страдают и другие.', wide: true }
+]);
+B('n16a', [
+  { q: 'Что даёт нашему телу скелет?', a: 'опору и защиту', w: ['только цвет', 'только тепло', 'только звук'], h: 'Скелет держит тело и защищает внутренние органы.' },
+  { q: 'Что защищает череп?', a: 'мозг', w: ['сердце', 'желудок', 'лёгкие'], h: 'Череп — прочная коробка для мозга.' },
+  { q: 'Что защищают рёбра?', a: 'сердце и лёгкие', w: ['мозг', 'ступни', 'зубы'], h: 'Рёбра образуют грудную клетку. Внутри неё сердце и лёгкие.' },
+  { q: 'Что соединяет кости и позволяет сгибаться?', a: 'суставы', w: ['волосы', 'ногти', 'зубы'], h: 'В суставах кости соединяются. Колено и локоть — суставы.' },
+  { q: 'Что двигает кости?', a: 'мышцы', w: ['волосы', 'ногти', 'кожа'], h: 'Мышцы сокращаются и тянут кости. Поэтому мы двигаемся.' },
+  { q: 'Что делает мышца, когда мы сгибаем руку?', a: 'сокращается', w: ['расплавляется', 'замерзает', 'становится костью'], h: 'Мышца укорачивается (сокращается) и сгибает руку.' },
+  { q: 'Какая часть скелета держит тело прямо и защищает спинной мозг?', a: 'позвоночник', w: ['череп', 'ладонь', 'колено'], h: 'Позвоночник состоит из позвонков.' },
+  { q: 'Что нужно делать, чтобы мышцы и кости были крепкими?', a: 'заниматься спортом и правильно питаться', w: ['весь день лежать', 'не двигаться', 'есть только сладкое'], h: 'Движение и полезная еда укрепляют кости и мышцы.', wide: true },
+  { q: 'Скелет и мышцы вместе называют…', a: 'опорно-двигательной системой', w: ['пищеварительной системой', 'дыхательной системой', 'нервной системой'], h: 'Опорно-двигательная система даёт опору и движение.', wide: true }
+]);
+B('n17a', [
+  { q: 'Как нужно сидеть за партой, чтобы осанка была правильной?', a: 'спина прямая, ноги стоят на полу', w: ['сильно согнувшись', 'лёжа на парте', 'на одной ноге'], h: 'Прямая спина помогает беречь осанку.', wide: true },
+  { q: 'Как лучше носить школьный рюкзак?', a: 'на двух лямках, ровно на спине', w: ['на одном плече', 'в одной руке всегда', 'на голове'], h: 'Нагрузка на обе лямки не перекашивает спину.', wide: true },
+  { q: 'Когда обязательно мыть руки?', a: 'перед едой и после улицы и туалета', w: ['только по праздникам', 'раз в месяц', 'никогда'], h: 'С чистыми руками на тело не попадают микробы.', wide: true },
+  { q: 'Сколько раз в день надо чистить зубы?', a: 'два раза: утром и вечером', w: ['один раз в неделю', 'раз в месяц', 'только когда болят'], h: 'Чистить зубы нужно утром и вечером.' },
+  { q: 'Что полезно для зубов?', a: 'молочные продукты и овощи', w: ['много конфет', 'сладкая газировка', 'жевательные карамели'], h: 'Молоко и сыр дают зубам кальций.' },
+  { q: 'Как часто нужно ходить к стоматологу?', a: 'примерно раз в полгода', w: ['никогда', 'раз в десять лет', 'только когда зуб выпал'], h: 'Врач заметит проблему вовремя.' },
+  { q: 'Что делают после душа и умывания?', a: 'вытираются своим чистым полотенцем', w: ['чужим грязным полотенцем', 'рукавом', 'ничем'], h: 'У каждого своё полотенце.' },
+  { q: 'Что вредно для осанки?', a: 'сидеть сильно сгорбившись', w: ['ходить с прямой спиной', 'заниматься плаванием', 'делать зарядку'], h: 'Сутулая спина портит осанку.' },
+  { q: 'Зачем стричь ногти?', a: 'под длинными ногтями собирается грязь и микробы', w: ['чтобы ногти были длиннее', 'чтобы ничего не держать', 'для красоты кожи'], h: 'Чистые короткие ногти — часть гигиены.', wide: true }
+]);
+TF('n17b', [
+  { q: 'Молочные зубы можно не чистить, они всё равно выпадут.', ok: false, h: 'Больные молочные зубы могут испортить и постоянные. Чистить надо всегда.' },
+  { q: 'Руки нужно мыть с мылом.', ok: true, h: 'Мыло лучше смывает грязь и микробы.' },
+  { q: 'Осанку нужно беречь с детства.', ok: true, h: 'Правильная осанка помогает здоровью.' },
+  { q: 'Конфеты полезны для зубов.', ok: false, h: 'Сладкое вредит зубам. После сладкого лучше прополоскать рот.' },
+  { q: 'Зубы чистят утром и вечером.', ok: true, h: 'Два раза в день.' },
+  { q: 'Чистить зубы нужно только тогда, когда они болят.', ok: false, h: 'Зубы нужно беречь, пока они здоровы.' }
+]);
+B('n18a', [
+  { q: 'Что мы вдыхаем из воздуха?', a: 'кислород', w: ['песок', 'воду', 'дым'], h: 'В воздухе есть кислород. Он нужен для дыхания.' },
+  { q: 'Воздух — это…', a: 'газ', w: ['жидкость', 'камень', 'твёрдое тело'], h: 'Воздух — газ, поэтому мы его не видим.' },
+  { q: 'Что такое ветер?', a: 'движение воздуха', w: ['движение воды', 'движение света', 'падение листьев'], h: 'Когда воздух движется, мы чувствуем ветер.' },
+  { q: 'Какого цвета воздух?', a: 'бесцветный', w: ['голубой', 'зелёный', 'красный'], h: 'Воздух прозрачный. Небо кажется голубым, но сам воздух бесцветный.' },
+  { q: 'Какой запах у чистого воздуха?', a: 'нет запаха', w: ['запах мяты', 'запах цветов', 'запах дыма'], h: 'Чистый воздух без запаха. Запахи — это примеси в воздухе.' },
+  { q: 'Что делает воздушная оболочка Земли?', a: 'защищает от холода и вредных лучей Солнца', w: ['забирает свет', 'не пускает дождь', 'сушит землю'], h: 'Воздушная оболочка защищает всё живое на Земле.', wide: true },
+  { q: 'Кому нужен воздух?', a: 'людям, животным и растениям', w: ['только людям', 'только птицам', 'только рыбам'], h: 'Дышат все живые существа.' },
+  { q: 'Что нужно живым существам для дыхания?', a: 'кислород', w: ['пыль', 'песок', 'снег'], h: 'Кислород поддерживает жизнь.' }
+]);
+TF('n18b', [
+  { q: 'Воздух имеет запах.', ok: false, h: 'Чистый воздух запаха не имеет.' },
+  { q: 'Воздух бесцветный.', ok: true, h: 'Воздух прозрачный и бесцветный.' },
+  { q: 'Воздух заполняет всё пространство.', ok: true, h: 'Воздух есть везде: даже в «пустом» стакане.' },
+  { q: 'Воздух — это жидкость.', ok: false, h: 'Воздух — газ.' },
+  { q: 'Воздух имеет свою форму.', ok: false, h: 'Газ принимает форму того, что его заполняет.' },
+  { q: 'В воздухе есть кислород, которым мы дышим.', ok: true, h: 'Кислород нужен всем живым существам.' }
+]);
+B('n19a', [
+  { q: 'Что показывает надутый воздушный шарик?', a: 'воздух занимает место', w: ['воздух тяжелее воды', 'воздух всегда холодный', 'воздух бывает цветным'], h: 'Воздух заполняет шарик и распирает его изнутри.', wide: true },
+  { q: 'Почему шуба греет?', a: 'между шерстью воздух, он плохо проводит тепло', w: ['она сама горячая', 'она впитывает воду', 'она сделана из стекла'], h: 'Воздух между волосками удерживает тепло тела.', wide: true },
+  { q: 'Почему в окнах делают два стекла с воздухом между ними?', a: 'воздух удерживает тепло в комнате', w: ['чтобы окно блестело', 'чтобы было тяжелее', 'чтобы окно звенело'], h: 'Воздух плохо проводит тепло. Двойные окна сохраняют тепло.', wide: true },
+  { q: 'Что случится, если пустой стакан опустить вверх дном в воду?', a: 'воздух не пустит воду внутрь', w: ['стакан сразу заполнится', 'стакан превратится в лёд', 'вода станет воздухом'], h: 'В стакане есть воздух, и он занимает место.', wide: true },
+  { q: 'Почему птицы зимой нахохливаются?', a: 'воздух между перьями сохраняет тепло', w: ['чтобы казаться больше для красоты', 'чтобы летать', 'чтобы петь'], h: 'Воздух между перьями — тёплая «подушка».', wide: true },
+  { q: 'Воздух хорошо или плохо проводит тепло?', a: 'плохо', w: ['очень хорошо', 'лучше металла', 'лучше воды'], h: 'Поэтому тёплая одежда, пух и снег сохраняют тепло.' },
+  { q: 'Почему вода выливается из бутылки с бульканьем?', a: 'в бутылку входит воздух вместо воды', w: ['бутылка поёт', 'вода кипит', 'воздух исчезает'], h: 'Когда вода выходит, на её место заходит воздух.', wide: true },
+  { q: 'Как можно доказать, что воздух есть в пустом на вид стакане?', a: 'опустить стакан вверх дном в воду', w: ['посмотреть на свет', 'понюхать', 'потрясти стакан'], h: 'Вода не заполняет стакан, потому что там воздух.', wide: true }
+]);
+B('n20a', [
+  { q: 'Какой цвет у чистой воды?', a: 'бесцветная (прозрачная)', w: ['голубая', 'зелёная', 'белая'], h: 'Чистая вода прозрачная: сквозь неё всё видно.' },
+  { q: 'Какой запах у чистой воды?', a: 'нет запаха', w: ['запах мяты', 'запах яблока', 'запах дыма'], h: 'У чистой воды нет запаха.' },
+  { q: 'Какой вкус у чистой воды?', a: 'нет вкуса', w: ['сладкий', 'солёный', 'кислый'], h: 'Чистая вода не имеет вкуса.' },
+  { q: 'Что значит «вода текучая»?', a: 'она льётся', w: ['она твёрдая', 'она не меняет форму', 'она всегда горячая'], h: 'Вода переливается и течёт.' },
+  { q: 'Какую форму имеет вода?', a: 'форму сосуда, в который налита', w: ['форму шара всегда', 'форму куба всегда', 'свою постоянную форму'], h: 'Вода принимает форму сосуда.', wide: true },
+  { q: 'Налили воду в стакан, потом в тарелку. Что изменилось?', a: 'форма воды', w: ['цвет воды', 'вкус воды', 'запах воды'], h: 'Вода принимает форму сосуда, поэтому форма изменилась.', wide: true },
+  { q: 'Какое из этих веществ растворяется в воде?', a: 'сахар', w: ['камень', 'песок', 'железо'], h: 'Сахар в воде исчезает: он растворяется.' },
+  { q: 'Что можно сказать про воду с сахаром?', a: 'она сладкая', w: ['она твёрдая', 'она солёная', 'она без вкуса'], h: 'Сахар растворился и придал воде вкус.' }
+]);
+B('n21a', [
+  { q: 'Что происходит со льдом в тёплой комнате?', a: 'он тает', w: ['он растёт', 'он кипит', 'он становится камнем'], h: 'Лёд тает и превращается в воду.' },
+  { q: 'При какой температуре вода замерзает?', a: '0 °C', w: ['10 °C', '50 °C', '100 °C'], h: 'При 0 градусов Цельсия вода превращается в лёд.' },
+  { q: 'При какой температуре вода кипит?', a: '100 °C', w: ['0 °C', '20 °C', '50 °C'], h: 'Кипит вода при 100 градусах Цельсия.' },
+  { q: 'Пар — это вода в … состоянии.', a: 'газообразном', w: ['твёрдом', 'жидком', 'каменном'], h: 'Водяной пар — вода в виде газа.' },
+  { q: 'Лёд — это вода в … состоянии.', a: 'твёрдом', w: ['жидком', 'газообразном', 'невидимом'], h: 'Лёд — твёрдая вода.' },
+  { q: 'Откуда берутся капли на холодном стакане?', a: 'из водяного пара в воздухе', w: ['вода просачивается через стекло', 'они выпрыгивают из стакана', 'это снег'], h: 'Пар из воздуха охлаждается и превращается в капельки воды.', wide: true },
+  { q: 'Почему лужи высыхают?', a: 'вода испаряется', w: ['вода замерзает', 'вода превращается в песок', 'вода становится льдом'], h: 'Вода превращается в пар и уходит в воздух.' },
+  { q: 'Как называется превращение воды в пар?', a: 'испарение', w: ['таяние', 'замерзание', 'растворение'], h: 'Испарение — переход из жидкого состояния в газообразное.' },
+  { q: 'Как называется превращение льда в воду?', a: 'таяние', w: ['испарение', 'кипение', 'замерзание'], h: 'При таянии лёд превращается в воду.' }
+]);
+B('n22a', [
+  { q: 'Откуда берёт начало родник?', a: 'вода выходит из-под земли', w: ['воду приносит ветер', 'вода падает с неба только летом', 'вода течёт из облака'], h: 'Родник — это место, где подземная вода выходит на поверхность.', wide: true },
+  { q: 'Какая река протекает по Казахстану?', a: 'Иртыш', w: ['Нил', 'Амазонка', 'Темза'], h: 'Иртыш течёт по востоку и северу Казахстана.' },
+  { q: 'Какое озеро находится в Казахстане?', a: 'Балхаш', w: ['Байкал', 'Виктория', 'Эри'], h: 'Балхаш — большое озеро в Казахстане.' },
+  { q: 'Где в горах хранится много пресной воды?', a: 'в ледниках', w: ['в песке', 'в камнях', 'в тучах'], h: 'Ледники тают и дают воду рекам.' },
+  { q: 'Какая вода в море?', a: 'солёная', w: ['сладкая', 'без вкуса', 'кислая'], h: 'Морская вода солёная, пить её нельзя.' },
+  { q: 'Что такое колодец?', a: 'яма, из которой берут подземную воду', w: ['гора', 'озеро', 'облако'], h: 'Колодцы копают, чтобы достать воду из-под земли.', wide: true },
+  { q: 'Какой источник воды падает с неба?', a: 'дождь и снег', w: ['колодец', 'родник', 'ледник'], h: 'Осадки — тоже источник воды.' },
+  { q: 'Как сберечь воду?', a: 'закрывать кран, когда он не нужен', w: ['всегда лить воду зря', 'мыть руки при открытом кране долго', 'не закрывать кран'], h: 'Пресная вода — драгоценный ресурс.', wide: true }
+]);
+B('n23a', [
+  { q: 'Из чего делают бумагу?', a: 'из древесины', w: ['из нефти', 'из соли', 'из железа'], h: 'Бумагу делают из древесины. Это растительный ресурс.' },
+  { q: 'Что нам даёт овца?', a: 'шерсть', w: ['хлопок', 'железо', 'нефть'], h: 'Шерсть — ресурс животного происхождения.' },
+  { q: 'Из чего получают бензин?', a: 'из нефти', w: ['из песка', 'из молока', 'из хлопка'], h: 'Нефть — минеральный ресурс. Из неё делают топливо.' },
+  { q: 'Из чего делают кирпичи?', a: 'из глины', w: ['из шерсти', 'из бумаги', 'из молока'], h: 'Глина — минеральный ресурс.' },
+  { q: 'Что такое природный ресурс?', a: 'то, что человек берёт у природы и использует', w: ['то, что он купил в магазине', 'то, что он нарисовал', 'то, что он выбросил'], h: 'Лес, вода, нефть, уголь — природные ресурсы.', wide: true },
+  { q: 'Какой ресурс растительного происхождения?', a: 'хлопок', w: ['нефть', 'молоко', 'соль'], h: 'Хлопок растёт на хлопчатнике.' },
+  { q: 'Какой ресурс животного происхождения?', a: 'молоко', w: ['древесина', 'уголь', 'песок'], h: 'Молоко получают от животных.' },
+  { q: 'Какой ресурс минерального происхождения?', a: 'железная руда', w: ['шерсть', 'древесина', 'пшеница'], h: 'Руды и нефть добывают из земли — это минеральные ресурсы.' },
+  { q: 'Для чего человек использует уголь?', a: 'как топливо', w: ['как одежду', 'как еду', 'как мебель'], h: 'Уголь сжигают, чтобы получить тепло.' }
+]);
+
+/* ---------- банки вопросов: часть 3 ---------- */
+B('n24a', [
+  { q: 'Что такое Солнце?', a: 'звезда', w: ['планета', 'спутник', 'облако'], h: 'Солнце — звезда: огромный горячий шар, который светит и греет.' },
+  { q: 'Что даёт Земле Солнце?', a: 'свет и тепло', w: ['только воду', 'только ветер', 'только звук'], h: 'Благодаря Солнцу на Земле тепло и светло, и растут растения.' },
+  { q: 'Почему на Земле сменяются день и ночь?', a: 'Земля вращается вокруг своей оси', w: ['Солнце гаснет', 'Луна закрывает Землю', 'Земля то приближается, то удаляется'], h: 'Земля поворачивается, и Солнце освещает то одну её сторону, то другую.', wide: true },
+  { q: 'За какое время Земля делает один оборот вокруг своей оси?', a: 'за сутки', w: ['за час', 'за год', 'за неделю'], h: 'Один оборот — сутки. Это около 24 часов.' },
+  { q: 'За какое время Земля делает один оборот вокруг Солнца?', a: 'за год', w: ['за сутки', 'за месяц', 'за неделю'], h: 'Земля летит вокруг Солнца около 365 суток. Это год.' },
+  { q: 'Как называется естественный спутник Земли?', a: 'Луна', w: ['Марс', 'Венера', 'Солнце'], h: 'Луна вращается вокруг Земли.' },
+  { q: 'Луна сама светит или отражает свет Солнца?', a: 'отражает свет Солнца', w: ['светит сама, как Солнце', 'совсем не светит и не видна', 'светит из-за огня внутри'], h: 'Луна не светится. Мы видим её, потому что она отражает солнечный свет.', wide: true },
+  { q: 'Что вращается вокруг Земли?', a: 'Луна', w: ['Солнце', 'Юпитер', 'Сатурн'], h: 'Луна — спутник Земли. Она обращается вокруг неё около месяца.' },
+  { q: 'Что такое Земля?', a: 'планета', w: ['звезда', 'спутник', 'комета'], h: 'Земля — третья планета от Солнца.' }
+]);
+B('n25a', [
+  { q: 'Какая планета ближе всех к Солнцу?', a: 'Меркурий', w: ['Венера', 'Земля', 'Нептун'], h: 'Первая от Солнца планета — Меркурий.' },
+  { q: 'Какая по счёту от Солнца планета Земля?', a: 'третья', w: ['первая', 'вторая', 'пятая'], h: 'Порядок: Меркурий, Венера, Земля.' },
+  { q: 'Какая планета самая большая?', a: 'Юпитер', w: ['Земля', 'Марс', 'Меркурий'], h: 'Юпитер — самая большая планета Солнечной системы.' },
+  { q: 'Какую планету называют красной?', a: 'Марс', w: ['Венера', 'Сатурн', 'Нептун'], h: 'Марс красноватый из-за красной пыли и камней.' },
+  { q: 'У какой планеты есть самые заметные кольца?', a: 'у Сатурна', w: ['у Меркурия', 'у Земли', 'у Венеры'], h: 'Кольца Сатурна видны даже в небольшой телескоп.' },
+  { q: 'Какая планета самая далёкая от Солнца?', a: 'Нептун', w: ['Меркурий', 'Земля', 'Юпитер'], h: 'Восьмая от Солнца планета — Нептун.' },
+  { q: 'На какой планете есть жизнь?', a: 'на Земле', w: ['на Меркурии', 'на Юпитере', 'на Сатурне'], h: 'На Земле есть вода, воздух и подходящая температура.' },
+  { q: 'Какая планета самая маленькая?', a: 'Меркурий', w: ['Юпитер', 'Сатурн', 'Нептун'], h: 'Меркурий — самая маленькая планета.' },
+  { q: 'Какая планета самая горячая?', a: 'Венера', w: ['Нептун', 'Марс', 'Уран'], h: 'У Венеры густая атмосфера, которая сильно нагревает её поверхность.' },
+  { q: 'Сколько планет в Солнечной системе?', a: 'восемь', w: ['пять', 'девять', 'двенадцать'], h: 'Меркурий, Венера, Земля, Марс, Юпитер, Сатурн, Уран, Нептун.' }
+]);
+B('n26a', [
+  { q: 'Сколько минут в одном часе?', a: '60 минут', w: ['24 минуты', '100 минут', '30 минут'], h: 'В часе 60 минут.' },
+  { q: 'Сколько часов в сутках?', a: '24 часа', w: ['12 часов', '60 часов', '7 часов'], h: 'В сутках 24 часа.' },
+  { q: 'Сколько суток в неделе?', a: '7 суток', w: ['5 суток', '10 суток', '30 суток'], h: 'В неделе 7 суток.' },
+  { q: 'Сколько месяцев в году?', a: '12 месяцев', w: ['10 месяцев', '7 месяцев', '4 месяца'], h: 'В году 12 месяцев.' },
+  { q: 'Что больше: сутки или час?', a: 'сутки', w: ['час', 'они равны', 'нельзя сравнить'], h: 'В сутках 24 часа, а значит сутки больше.' },
+  { q: 'Сколько времени свет идёт от Солнца до Земли?', a: 'около 8 минут', w: ['около 8 секунд', 'около 8 часов', 'около 8 суток'], h: 'Солнце очень далеко. Свет добирается до нас примерно за 8 минут.' },
+  { q: 'Сколько времени летит ракета до Луны?', a: 'около трёх суток', w: ['около трёх секунд', 'около трёх минут', 'около трёх лет'], h: 'До Луны ракете нужно лететь несколько суток.' },
+  { q: 'Сколько времени лететь до Марса?', a: 'несколько месяцев', w: ['несколько секунд', 'несколько минут', 'всего один день'], h: 'Марс гораздо дальше Луны. Дорога занимает месяцы.' },
+  { q: 'Какая планета делает оборот вокруг Солнца быстрее всех?', a: 'Меркурий', w: ['Нептун', 'Сатурн', 'Юпитер'], h: 'Меркурий ближе всех к Солнцу. Его год всего 88 земных суток.' },
+  { q: 'Почему в космосе расстояния кажутся огромными?', a: 'до планет и звёзд очень-очень далеко', w: ['там всё близко', 'там нет расстояний', 'там время стоит'], h: 'Даже до ближайших планет лететь долго, а до звёзд ещё дальше.', wide: true }
+]);
+B('n27a', [
+  { q: 'Что значит «тело движется»?', a: 'оно меняет своё место', w: ['оно стоит', 'оно меняет цвет', 'оно исчезает'], h: 'Движение — это изменение положения тела.' },
+  { q: 'Кто движется быстрее?', a: 'гепард', w: ['черепаха', 'улитка', 'ёж'], h: 'Гепард — самое быстрое животное на суше.' },
+  { q: 'Кто движется медленнее всех?', a: 'улитка', w: ['пешеход', 'велосипедист', 'автомобиль'], h: 'Улитка ползёт очень медленно.' },
+  { q: 'Что быстрее: самолёт или поезд?', a: 'самолёт', w: ['поезд', 'скорость одинаковая', 'улитка'], h: 'Самолёт летит быстрее поезда.' },
+  { q: 'Скорость — это…', a: 'насколько быстро или медленно движется тело', w: ['цвет тела', 'вес тела', 'размер тела'], h: 'Скорость говорит о том, быстро или медленно движется тело.', wide: true },
+  { q: 'Как называют движение, когда за короткое время проходят большое расстояние?', a: 'быстрое', w: ['медленное', 'неподвижное', 'тихое'], h: 'Чем больше путь за то же время, тем движение быстрее.', wide: true },
+  { q: 'Кто движется быстрее: велосипедист или пешеход?', a: 'велосипедист', w: ['пешеход', 'одинаково', 'оба стоят'], h: 'На велосипеде за то же время проезжают больше, чем проходят пешком.' },
+  { q: 'Какое тело движется быстрее всех?', a: 'ракета', w: ['автомобиль', 'велосипедист', 'пешеход'], h: 'Ракета развивает огромную скорость.' }
+]);
+B('n28a', [
+  { q: 'Что заставляет яблоко падать на землю?', a: 'сила тяжести', w: ['ветер', 'шум', 'тепло'], h: 'Земля притягивает все тела. Это сила тяжести.' },
+  { q: 'Что останавливает катящийся по траве мяч?', a: 'трение', w: ['магнит', 'свет', 'звук'], h: 'Трение замедляет движение тел.' },
+  { q: 'Где санки проедут дальше: по льду или по песку?', a: 'по льду', w: ['по песку', 'одинаково', 'они не поедут'], h: 'На гладком льду трение маленькое. Санки скользят далеко.' },
+  { q: 'Мы открываем дверь на себя. Что мы делаем?', a: 'тянем', w: ['толкаем', 'бросаем', 'поднимаем вверх'], h: 'Когда дверь движется к нам, мы её тянем.' },
+  { q: 'Мы закрываем дверь от себя. Что мы делаем?', a: 'толкаем', w: ['тянем', 'прячем', 'роняем'], h: 'Когда дверь движется от нас, мы её толкаем.' },
+  { q: 'Что может сдвинуть парусную лодку?', a: 'ветер', w: ['тишина', 'темнота', 'тень'], h: 'Ветер толкает парус. Сила ветра двигает лодку.' },
+  { q: 'Что нужно сделать, чтобы мяч покатился?', a: 'толкнуть его', w: ['смотреть на него', 'шептать ему', 'ничего не делать'], h: 'Толчок — это сила, которая приводит тело в движение.' },
+  { q: 'Что тянет вниз воду в реках?', a: 'сила тяжести', w: ['сила звука', 'сила света', 'сила магнита'], h: 'Земля притягивает воду. Поэтому реки текут вниз.' }
+]);
+B('n29a', [
+  { q: 'Чем взвесить муку для пирога?', a: 'кухонными весами', w: ['линейкой', 'термометром', 'часами'], h: 'Продукты взвешивают кухонными весами.' },
+  { q: 'Чем узнать свою массу?', a: 'напольными весами', w: ['линейкой', 'термометром', 'часами'], h: 'Человека взвешивают на напольных весах.' },
+  { q: 'Чем взвесить грузовик с грузом?', a: 'автомобильными весами', w: ['кухонными весами', 'лупой', 'термометром'], h: 'Очень тяжёлые грузы взвешивают на больших автомобильных весах.' },
+  { q: 'В каких единицах измеряют массу?', a: 'в граммах и килограммах', w: ['в метрах', 'в градусах', 'в литрах'], h: 'Массу измеряют в граммах, килограммах, тоннах.' },
+  { q: 'Что тяжелее: килограмм ваты или килограмм железа?', a: 'одинаково', w: ['железо', 'вата', 'нельзя сравнить'], h: 'Масса одинаковая: каждый по одному килограмму.' },
+  { q: 'Что показывают чашечные весы с гирями?', a: 'массу предмета', w: ['температуру', 'длину', 'время'], h: 'На одну чашу кладут предмет, на другую гири.' },
+  { q: 'В каких единицах измерят массу слона?', a: 'в тоннах', w: ['в граммах', 'в метрах', 'в секундах'], h: 'Масса слона несколько тонн.' },
+  { q: 'Какой прибор выбрать, чтобы взвесить яблоко?', a: 'кухонные весы', w: ['напольные весы', 'автомобильные весы', 'термометр'], h: 'Небольшие предметы удобно взвешивать на кухонных весах.' }
+]);
+B('n30a', [
+  { q: 'Почему появляется тень?', a: 'предмет не пропускает свет', w: ['предмет светится', 'предмет прозрачный', 'предмет мягкий'], h: 'Свет не проходит через непрозрачный предмет. За ним образуется тень.', wide: true },
+  { q: 'Что пропускает свет и сквозь что всё видно?', a: 'прозрачное стекло', w: ['деревянная доска', 'камень', 'железная дверь'], h: 'Прозрачные предметы пропускают свет, и сквозь них всё видно.' },
+  { q: 'Какой материал не пропускает свет?', a: 'дерево', w: ['чистое стекло', 'чистая вода', 'прозрачная плёнка'], h: 'Дерево непрозрачное.' },
+  { q: 'Какие из этих предметов полупрозрачные?', a: 'матовое стекло и калька', w: ['кирпич и камень', 'железо и дерево', 'чистая вода и воздух'], h: 'Сквозь полупрозрачные предметы проходит свет, но предметы видны неясно.', wide: true },
+  { q: 'Что из этого является источником света?', a: 'Солнце', w: ['Луна', 'зеркало', 'книга'], h: 'Солнце светится само. Луна лишь отражает его свет.' },
+  { q: 'Как получить тень на стене?', a: 'поставить предмет между лампой и стеной', w: ['выключить лампу', 'убрать предмет', 'закрыть глаза'], h: 'Предмет закрывает свет от стены.', wide: true },
+  { q: 'Через какое окно в комнате будет светлее?', a: 'через прозрачное стекло', w: ['через деревянную доску', 'через кирпич', 'через железо'], h: 'Прозрачное стекло хорошо пропускает свет.' },
+  { q: 'Почему шторы на окне делают комнату темнее?', a: 'они не пропускают часть света', w: ['они светятся', 'они прозрачные как вода', 'они создают свет'], h: 'Плотная ткань пропускает мало света.', wide: true }
+]);
+B('n31a', [
+  { q: 'Что является источником звука?', a: 'колеблющееся тело, например струна гитары', w: ['тишина', 'неподвижный камень', 'темнота'], h: 'Звук возникает, когда тело дрожит (колеблется).', wide: true },
+  { q: 'Какой звук тише всех?', a: 'шёпот', w: ['взлетающий самолёт', 'гром', 'сирена'], h: 'Шёпот — тихий звук.' },
+  { q: 'Какой звук очень громкий?', a: 'гром', w: ['шелест листьев', 'тиканье часов', 'шёпот'], h: 'Гром — очень громкий звук.' },
+  { q: 'Что может навредить слуху?', a: 'очень громкая музыка в наушниках', w: ['тишина', 'шёпот', 'тихая песня'], h: 'Громкие звуки вредят слуху. Музыку лучше слушать негромко.', wide: true },
+  { q: 'Как сделать звук гитары громче?', a: 'сильнее ударить по струнам', w: ['совсем не трогать струны', 'закрыть гитару', 'накрыть её одеялом'], h: 'Чем сильнее колебания, тем громче звук.', wide: true },
+  { q: 'Какое из этих явлений — тихий звук?', a: 'шелест листвы', w: ['сирена скорой помощи', 'взрыв петарды', 'рёв самолёта'], h: 'Шелест листьев — тихий звук.' },
+  { q: 'Какой звук самый громкий?', a: 'рёв взлетающего самолёта', w: ['тиканье часов', 'шёпот', 'капанье воды'], h: 'Рёв самолёта очень громкий и вредный для слуха.' },
+  { q: 'Как беречь слух?', a: 'не слушать громкую музыку и шум', w: ['слушать музыку на полную громкость', 'кричать в ухо', 'стоять рядом с динамиком'], h: 'Слух нужно беречь с детства.', wide: true }
+]);
+GENS.thermoRead2 = function(){
+  const v = rnd(1, 19) * 2;
+  return { html: '<div class="ac-qtxt m2-big">Сколько градусов показывает термометр?</div>' + thermoSVG(v), opts: opts4(v, [v + 2, v - 2, v + 4, v + 1].filter(x => x >= 0)), ans: v, hint: 'Найди, где заканчивается красный столбик, и прочитай число на шкале: ' + v + '. На шкале между подписанными числами стоят чёрточки через два градуса.' };
+};
+B('n32a', [
+  { q: 'Чем измеряют температуру?', a: 'термометром', w: ['линейкой', 'весами', 'часами'], h: 'Температуру измеряют термометром.' },
+  { q: 'В каких единицах измеряют температуру?', a: 'в градусах Цельсия', w: ['в килограммах', 'в метрах', 'в литрах'], h: 'Температуру измеряют в градусах Цельсия (°C).' },
+  { q: 'Какую температуру примерно имеет тело здорового человека?', a: '36,6 °C', w: ['10 °C', '50 °C', '100 °C'], h: 'У здорового человека температура около 36,6 градуса.' },
+  { q: 'При какой температуре замерзает вода?', a: '0 °C', w: ['20 °C', '50 °C', '100 °C'], h: 'При нуле градусов вода превращается в лёд.' },
+  { q: 'Какая температура у кипящей воды?', a: '100 °C', w: ['0 °C', '20 °C', '37 °C'], h: 'Вода кипит при 100 градусах.' },
+  { q: 'Какая температура в тёплой комнате?', a: 'около 20 °C', w: ['около −20 °C', 'около 100 °C', 'около 0 °C'], h: 'В комнате обычно около 20 градусов тепла.' },
+  { q: 'Что теплее: лёд или горячий чай?', a: 'горячий чай', w: ['лёд', 'одинаково', 'нельзя сравнить'], h: 'У горячего чая температура высокая, у льда около нуля.' },
+  { q: 'Что покажет термометр на морозе?', a: 'температуру ниже нуля', w: ['100 градусов', '36,6 градуса', 'нельзя измерить'], h: 'На морозе температура опускается ниже 0 °C.' }
+]);
+B('n33a', [
+  { q: 'Что притягивает магнит?', a: 'железные предметы', w: ['деревянные предметы', 'стеклянные предметы', 'бумажные листы'], h: 'Магнит притягивает железо и сталь.' },
+  { q: 'Какой из предметов магнит НЕ притянет?', a: 'деревянную линейку', w: ['железный гвоздь', 'стальную скрепку', 'железный ключ'], h: 'Дерево магнит не притягивает.' },
+  { q: 'Сколько полюсов у магнита?', a: 'два', w: ['один', 'три', 'пять'], h: 'У магнита два полюса: северный и южный.' },
+  { q: 'Как называют концы магнита, где притяжение самое сильное?', a: 'полюса', w: ['стороны', 'углы', 'ножки'], h: 'Полюса — места наибольшей силы магнита.' },
+  { q: 'Как взаимодействуют одинаковые полюса двух магнитов?', a: 'отталкиваются', w: ['притягиваются', 'не взаимодействуют', 'исчезают'], h: 'Одинаковые полюса отталкиваются, а разные притягиваются.' },
+  { q: 'Какой прибор с магнитной стрелкой показывает стороны света?', a: 'компас', w: ['термометр', 'часы', 'весы'], h: 'Стрелка компаса — маленький магнит. Она показывает на север.' },
+  { q: 'Где используют магниты?', a: 'в замках, застёжках, компасах и на холодильниках', w: ['только в космосе', 'только в лесу', 'нигде'], h: 'Магниты нужны во многих вещах.', wide: true },
+  { q: 'Как с помощью магнита достать скрепки из воды?', a: 'провести магнитом у стенки сосуда', w: ['бросить в воду камень', 'подуть на воду', 'долго смотреть'], h: 'Магнит притягивает железо сквозь стекло.', wide: true }
+]);
+
+/* --- общий исполнитель вопросов --- */
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+/* ---------- часть 1: уроки 1–12 ---------- */
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Естествознание 2 класса». Теперь можно повторять темы в тренажёрах и лекциях.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Темы 2 класса →</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+const LESSONS = [
+  { id: 'n1', icon: '🔬', title: 'Какой он, исследователь', goal: 'Знать качества исследователя и правила безопасности',
+    steps: [
+      Q('n1s1', 'infoTap', 'Качества исследователя', 'Исследователь изучает мир вокруг. Чтобы у него получалось, нужны особые качества. Нажимай на карточки.', { need: 6, items: [
+        { k: 'любознательность', v: '<div class="e2-emo">❓</div>', t: 'Исследователь любознательный. Он спрашивает: почему? как? что будет, если…?' },
+        { k: 'внимательность', v: '<div class="e2-emo">👀</div>', t: 'Исследователь внимательно смотрит, слушает и замечает мелочи.' },
+        { k: 'терпение', v: '<div class="e2-emo">⏳</div>', t: 'Чтобы увидеть результат, часто нужно подождать. Растение не вырастет за один день.' },
+        { k: 'аккуратность', v: '<div class="e2-emo">📝</div>', t: 'Исследователь аккуратно обращается с приборами и точно записывает всё, что увидел.' },
+        { k: 'честность', v: '<div class="e2-emo">✅</div>', t: 'Исследователь записывает то, что получилось на самом деле, даже если ожидал другого.' },
+        { k: 'безопасность', v: '<div class="e2-emo">🧤</div>', t: 'Исследователь соблюдает правила безопасности. Он не пробует незнакомое на вкус, не трогает горячее и работает вместе со взрослыми.' },
+        { k: 'приборы', v: '<div class="e2-emo">🔍</div>', t: 'Лупа, линейка, термометр и весы помогают исследователю измерять и рассматривать.' } ] }),
+      Q('n1s2', 'quiz', 'Что нужно исследователю', 'Выбери нужное качество или прибор.', { count: 6, gens: ['n1a'] }),
+      Q('n1s3', 'quiz', 'Верно или неверно', 'Подумай, как ведёт себя настоящий исследователь.', { count: 5, gens: ['n1b'] })
+    ] },
+  { id: 'n2', icon: '📚', title: 'Откуда узнаём новое', goal: 'Объяснять, что такое источник информации и почему он важен',
+    steps: [
+      Q('n2s1', 'infoTap', 'Источники информации', 'Источник информации — это то, откуда мы узнаём новое. Чем надёжнее источник, тем вернее знания. Нажимай на карточки.', { need: 5, items: [
+        { k: 'книги', v: '<div class="e2-emo">📖</div>', t: 'В книгах и энциклопедиях собраны проверенные знания. Их написали учёные и авторы.' },
+        { k: 'наблюдение', v: '<div class="e2-emo">🌱</div>', t: 'Мы сами смотрим на растение или птицу и записываем, что увидели.' },
+        { k: 'опыт', v: '<div class="e2-emo">🧪</div>', t: 'Мы проводим эксперимент и узнаём ответ сами.' },
+        { k: 'люди', v: '<div class="e2-emo">👩‍🏫</div>', t: 'Можно спросить учителя, родителей, учёного или врача. Они хорошо знают свою область.' },
+        { k: 'музей', v: '<div class="e2-emo">🏛️</div>', t: 'В музее можно увидеть настоящие предметы: кости, минералы, старинные вещи.' },
+        { k: 'интернет', v: '<div class="e2-emo">💻</div>', t: 'В интернете есть и верные, и неверные сведения. Искать лучше вместе со взрослым и проверять в нескольких источниках.' } ] }),
+      Q('n2s2', 'quiz', 'Выбираем источник', 'Подумай, откуда лучше узнать этот факт. Важно, чтобы источник был надёжным.', { count: 6, gens: ['n2a'] })
+    ] },
+  { id: 'n3', icon: '👁️', title: 'Наблюдение: признаки и условные знаки', goal: 'Знать признаки наблюдения и записывать его условными знаками',
+    steps: [
+      Q('n3s1', 'infoTap', 'Из чего состоит наблюдение', 'Наблюдение — это когда мы внимательно смотрим на объект и ничего в нём не меняем. У наблюдения есть пять признаков. Нажимай на карточки.', { need: 6, items: [
+        { k: 'цель', v: '<div class="e2-emo">🎯</div>', t: 'Цель — что мы хотим узнать. Например: как меняется погода за неделю.' },
+        { k: 'объект', v: '<div class="e2-emo">🌤️</div>', t: 'Объект — за чем мы наблюдаем. Например: за небом или за растением.' },
+        { k: 'план', v: '<div class="e2-emo">📋</div>', t: 'План — что и в каком порядке мы будем делать.' },
+        { k: 'сроки', v: '<div class="e2-emo">📅</div>', t: 'Сроки — когда и как долго мы наблюдаем. Например: каждое утро в течение пяти дней.' },
+        { k: 'результат', v: '<div class="e2-emo">📊</div>', t: 'Результат — что мы увидели и узнали. Мы делаем вывод.' },
+        { k: 'знаки', v: '<div class="e2-emo">☀️ ☁️ 🌧️ ❄️</div>', t: 'Чтобы быстро записывать, используют условные знаки: солнышко — ясно, облако — облачно, тучка с каплями — дождь, снежинка — снег.' } ] }),
+      Q('n3s2', 'quiz', 'Признаки наблюдения', 'Определи, какой признак наблюдения описан.', { count: 6, gens: ['n3a'] }),
+      Q('n3s3', 'quiz', 'Условные знаки', 'Выбери знак, который подходит к погоде, или расшифруй знак.', { count: 6, gens: ['n3b'] })
+    ] },
+  { id: 'n4', icon: '📓', title: 'Проводим наблюдение', goal: 'Составлять план наблюдения, проводить его и делать выводы',
+    steps: [
+      Q('n4s1', 'orderSteps', 'Составляем план', 'Давай составим план наблюдения за погодой. Нажимай на шаги в правильном порядке: сначала то, что делаем раньше.', { tasks: [
+        { q: 'План наблюдения за погодой. Расставь шаги по порядку', steps: ['Определить цель: узнать, какая погода будет в течение недели', 'Подготовить дневник и условные знаки', 'Каждый день в одно время смотреть на небо и ставить знак', 'Через пять дней сравнить записи и сделать вывод'], hint: 'Сначала цель, потом подготовка, потом сами наблюдения, а в конце вывод.', done: 'Так выглядит хороший план наблюдения.' } ] }),
+      Q('n4s2', 'obsTable', 'Ведём дневник погоды', 'Сейчас мы проведём наблюдение за пять дней. Читай описание дня и выбирай нужный знак. Так заполнится дневник.', { signs: [{ s: '☀️', k: 'ясно' }, { s: '☁️', k: 'облачно' }, { s: '🌧️', k: 'дождь' }, { s: '❄️', k: 'снег' }], done: 'Вывод: из пяти дней два были ясными, два облачными и один дождливым.', days: [
+        { d: 'Пн', t: 'на небе нет туч, ярко светит солнце', s: '☀️' }, { d: 'Вт', t: 'всё небо закрыто облаками', s: '☁️' }, { d: 'Ср', t: 'идёт дождь', s: '🌧️' }, { d: 'Чт', t: 'небо чистое, солнечно', s: '☀️' }, { d: 'Пт', t: 'пасмурно, небо в облаках', s: '☁️' }] }),
+      Q('n4s3', 'quiz', 'Делаем выводы по дневнику', 'Посмотри на таблицу наблюдений и посчитай знаки.', { count: 6, gens: ['obsRead'] })
+    ] },
+  { id: 'n5', icon: '🧪', title: 'Эксперимент', goal: 'Знать признаки эксперимента и записывать результаты в таблицу',
+    steps: [
+      Q('n5s1', 'infoTap', 'Из чего состоит эксперимент', 'В эксперименте мы сами создаём условия и смотрим, что получится. Он тоже начинается с цели. Нажимай на карточки.', { need: 6, items: [
+        { k: 'цель', v: '<div class="e2-emo">🎯</div>', t: 'Цель — что хотим узнать. Например: какие предметы тонут в воде?' },
+        { k: 'гипотеза', v: '<div class="e2-emo">💭</div>', t: 'Гипотеза — наше предположение. Например: «Камень утонет, а деревянный брусок нет». Опыт покажет, верно ли оно.' },
+        { k: 'ресурсы', v: '<div class="e2-emo">🥣</div>', t: 'Ресурсы — всё, что нужно для опыта: ёмкость с водой, предметы, таблица.' },
+        { k: 'план', v: '<div class="e2-emo">📋</div>', t: 'План — по шагам, что и как мы будем делать.' },
+        { k: 'сроки', v: '<div class="e2-emo">⏱️</div>', t: 'Сроки — сколько времени займёт опыт.' },
+        { k: 'результат', v: '<div class="e2-emo">📊</div>', t: 'Результат записываем в таблицу и сравниваем с гипотезой. Так мы делаем вывод.' } ] }),
+      Q('n5s2', 'sinkExp', 'Тонет или не тонет', 'Проведём эксперимент. Сначала подумай и выбери: утонет предмет или нет. Это твоя гипотеза. Потом мы проверим её, и результат запишется в таблицу.', { items: [
+        { t: 'камень', e: '🪨', r: true }, { t: 'деревянный брусок', e: '🪵', r: false }, { t: 'монета', e: '🪙', r: true }, { t: 'яблоко', e: '🍎', r: false }, { t: 'ключ', e: '🔑', r: true }, { t: 'пластмассовый мячик', e: '🔴', r: false }] }),
+      Q('n5s3', 'quiz', 'Признаки эксперимента', 'Определи, что это: гипотеза, ресурсы, результат. Или чем эксперимент отличается от наблюдения.', { count: 6, gens: ['n5a'] })
+    ] },
+  { id: 'n6', icon: '🌱', title: 'Что нужно растениям', goal: 'Исследовать, в каких условиях растут растения',
+    steps: [
+      Q('n6s1', 'infoTap', 'Условия для роста', 'Чтобы растение выросло, ему нужны определённые условия. Нажимай на карточки.', { need: 5, items: [
+        { k: 'свет', v: '<div class="e2-emo">☀️</div>', t: 'Свет нужен листьям. На свету растение делает для себя питательные вещества. В темноте растение бледнеет и слабеет.' },
+        { k: 'вода', v: '<div class="e2-emo">💧</div>', t: 'Воду растение впитывает корнями. Без воды оно вянет.' },
+        { k: 'тепло', v: '<div class="e2-emo">🌡️</div>', t: 'Для роста нужно тепло. Семена прорастают в тёплой земле.' },
+        { k: 'воздух', v: '<div class="e2-emo">🌬️</div>', t: 'Растения дышат. Воздух нужен листьям, корням и семенам.' },
+        { k: 'почва', v: '<div class="e2-emo">🟤</div>', t: 'В почве корни держатся и берут питательные вещества.' },
+        { k: 'опыт', v: '<div class="e2-emo">🧪</div>', t: 'Чтобы проверить, что нужно растению, ставим два одинаковых растения. Одному создаём условие, а другому нет. Потом сравниваем.' } ] }),
+      Q('n6s2', 'quiz', 'Что будет, если…', 'Подумай, чего не хватает растению, и что с ним будет.', { count: 6, gens: ['n6a'] }),
+      Q('n6s3', 'quiz', 'Верно или неверно', 'Проверь утверждения о растениях.', { count: 5, gens: ['n6b'] })
+    ] },
+  { id: 'n7', icon: '🌿', title: 'Части растения и их работа', goal: 'Описывать, что делают корень, стебель, лист, цветок, плод и семя',
+    steps: [
+      Q('n7s1', 'infoTap', 'Кто что делает', 'У каждой части растения своя работа. Нажимай на карточки.', { need: 6, items: [
+        { k: 'корень', v: '<div class="e2-emo">🥕</div>', t: 'Корень держит растение в почве и впитывает воду с питательными веществами.' },
+        { k: 'стебель', v: '<div class="e2-emo">🌿</div>', t: 'Стебель держит листья и цветы. По нему вода и питательные вещества поднимаются вверх.' },
+        { k: 'лист', v: '<div class="e2-emo">🍃</div>', t: 'В листьях на свету образуются питательные вещества. Через листья растение дышит.' },
+        { k: 'цветок', v: '<div class="e2-emo">🌸</div>', t: 'После цветения на месте цветка образуется плод с семенами.' },
+        { k: 'плод', v: '<div class="e2-emo">🍎</div>', t: 'Плод защищает семена, пока они созревают.' },
+        { k: 'семя', v: '<div class="e2-emo">🌰</div>', t: 'Из семени вырастает новое растение.' } ] }),
+      Q('n7s2', 'quiz', 'Часть и её работа', 'Вспомни, какая часть растения что делает.', { count: 8, gens: ['n7a'] })
+    ] },
+  { id: 'n8', icon: '🌵', title: 'Растения и влага', goal: 'Сравнивать растения, которые любят много и мало влаги',
+    steps: [
+      Q('n8s1', 'infoTap', 'Одним нужно много воды, другим мало', 'Растения приспосабливаются к тому, сколько воды вокруг. Нажимай на карточки.', { need: 4, items: [
+        { k: 'любят воду', v: '<div class="e2-emo">🪷</div>', t: 'Кувшинка, камыш и рогоз растут в воде и у воды. Им всегда хватает влаги.' },
+        { k: 'любят сухость', v: '<div class="e2-emo">🌵</div>', t: 'Кактус, саксаул и верблюжья колючка растут там, где воды мало: в пустыне и сухой степи.' },
+        { k: 'как переживают засуху', v: '<div class="e2-emo">🌾</div>', t: 'У них длинные корни, которые достают воду глубоко. У многих мелкие листья или колючки, чтобы терять меньше воды.' },
+        { k: 'запас воды', v: '<div class="e2-emo">💦</div>', t: 'У кактуса толстый стебель. В нём хранится вода про запас.' } ] }),
+      Q('n8s2', 'sortGroups', 'Где растёт растение', 'Раскладывай растения по группам: любят много влаги или растут там, где мало воды.', { q: 'Где обычно растёт это растение?', groups: [{ k: 'много воды', e: '💧' }, { k: 'мало воды', e: '🌵' }], items: [
+        { t: 'кувшинка', e: '🪷', g: 0, h: 'Кувшинка растёт в воде.' }, { t: 'камыш', e: '🌾', g: 0, h: 'Камыш растёт у воды, на болотах.' }, { t: 'рогоз', e: '🌿', g: 0, h: 'Рогоз растёт по берегам водоёмов.' },
+        { t: 'кактус', e: '🌵', g: 1, h: 'Кактус хранит воду в стебле и живёт в сухих местах.' }, { t: 'саксаул', e: '🌳', g: 1, h: 'Саксаул растёт в пустыне, его корни уходят глубоко.' }, { t: 'верблюжья колючка', e: '🌿', g: 1, h: 'Она переносит жару и сухость.' }, { t: 'ковыль', e: '🌾', g: 1, h: 'Ковыль растёт в сухой степи.' }] }),
+      Q('n8s3', 'quiz', 'Как растения приспосабливаются', 'Подумай, как растению помогает его строение.', { count: 6, gens: ['n8a'] })
+    ] },
+  { id: 'n9', icon: '🍂', title: 'Растения в разные времена года', goal: 'Описывать сезонные изменения у растений',
+    steps: [
+      Q('n9s1', 'infoTap', 'Растения весной, летом, осенью и зимой', 'Растения меняются вместе со временем года. Нажимай на карточки.', { need: 4, items: [
+        { k: 'весна', v: '<div class="e2-emo">🌱</div>', t: 'Весной тает снег. На деревьях распускаются почки, появляются первые листья и цветы. Трава начинает расти.' },
+        { k: 'лето', v: '<div class="e2-emo">🌻</div>', t: 'Летом тепло и много света. Растения быстро растут, цветут, на них созревают плоды.' },
+        { k: 'осень', v: '<div class="e2-emo">🍂</div>', t: 'Осенью листья желтеют и опадают. Это листопад. Созревают плоды и семена.' },
+        { k: 'зима', v: '<div class="e2-emo">❄️</div>', t: 'Зимой деревья без листьев отдыхают. Многие травы спрятались под снег. Ель и сосна остаются зелёными.' } ] }),
+      Q('n9s2', 'orderSteps', 'Год дерева', 'Расставь, что происходит с деревом в течение года, по порядку. Начни с весны.', { tasks: [{ q: 'Что происходит с берёзой в течение года?', steps: ['Весной распускаются почки и появляются листья', 'Летом листья большие и зелёные, созревают плоды', 'Осенью листья желтеют и опадают', 'Зимой дерево стоит без листьев и отдыхает'], hint: 'Год начинается весной. Потом идёт лето, осень и зима.', done: 'Так живёт берёза в течение года.' }] }),
+      Q('n9s3', 'quiz', 'Когда это бывает', 'Вспомни, что происходит с растениями в каждое время года.', { count: 6, gens: ['n9a'] })
+    ] },
+  { id: 'n10', icon: '🌳', title: 'Растения нашей местности', goal: 'Различать деревья, кустарники и травы своей местности',
+    steps: [
+      Q('n10s1', 'infoTap', 'Деревья, кустарники, травы', 'Растения бывают разные. Давай их сравним. Нажимай на карточки.', { need: 4, items: [
+        { k: 'деревья', v: '<div class="e2-emo">🌳</div>', t: 'У дерева один главный толстый ствол и крона. В Казахстане растут тополь, берёза, сосна, карагач.' },
+        { k: 'кустарники', v: '<div class="e2-emo">🌿</div>', t: 'У кустарника ветви растут от самой земли. Это шиповник, облепиха, сирень, смородина.' },
+        { k: 'травы', v: '<div class="e2-emo">🌾</div>', t: 'У трав нет твёрдого ствола. Стебель мягкий. Это ковыль, ромашка, одуванчик, подорожник и тюльпаны.' },
+        { k: 'степь', v: '<div class="e2-emo">🌄</div>', t: 'Большая часть Казахстана — степи. В степи много трав, например ковыля.' } ] }),
+      Q('n10s2', 'sortGroups', 'Раскладываем по группам', 'К какой группе относится растение? Выбирай.', { q: 'Это дерево, кустарник или трава?', take: 9, groups: [{ k: 'деревья', e: '🌳' }, { k: 'кустарники', e: '🌿' }, { k: 'травы', e: '🌾' }], items: [
+        { t: 'тополь', e: '🌳', g: 0, h: 'У тополя один высокий ствол.' }, { t: 'берёза', e: '🌳', g: 0, h: 'У берёзы белый ствол.' }, { t: 'сосна', e: '🌲', g: 0, h: 'Сосна — хвойное дерево.' }, { t: 'карагач', e: '🌳', g: 0, h: 'Карагач — дерево с густой кроной.' },
+        { t: 'шиповник', e: '🌹', g: 1, h: 'Ветви шиповника растут от земли.' }, { t: 'облепиха', e: '🍊', g: 1, h: 'Облепиха — колючий кустарник с оранжевыми ягодами.' }, { t: 'сирень', e: '💜', g: 1, h: 'У сирени несколько стволов от земли.' }, { t: 'смородина', e: '🫐', g: 1, h: 'Смородина — ягодный кустарник.' },
+        { t: 'ковыль', e: '🌾', g: 2, h: 'Ковыль — степная трава.' }, { t: 'ромашка', e: '🌼', g: 2, h: 'У ромашки мягкий стебель.' }, { t: 'одуванчик', e: '🌼', g: 2, h: 'Одуванчик — трава.' }, { t: 'подорожник', e: '🌿', g: 2, h: 'Подорожник — трава.' }] }),
+      Q('n10s3', 'quiz', 'Узнай растение', 'Вспомни, как отличаются деревья, кустарники и травы.', { count: 6, gens: ['n10a'] })
+    ] },
+  { id: 'n11', icon: '🌍', title: 'Почва и забота о растениях', goal: 'Объяснять, зачем ухаживать за почвой и беречь растения',
+    steps: [
+      Q('n11s1', 'infoTap', 'Берегите землю и растения', 'Почва и растения зависят от нас. Нажимай на карточки.', { need: 5, items: [
+        { k: 'почва', v: '<div class="e2-emo">🟤</div>', t: 'Почва — верхний плодородный слой земли. В ней есть перегной: остатки растений и животных. Он делает почву плодородной.' },
+        { k: 'уход', v: '<div class="e2-emo">🧑‍🌾</div>', t: 'За почвой ухаживают: рыхлят, поливают, удобряют. Тогда растения получают питание.' },
+        { k: 'что вредит', v: '<div class="e2-emo">🗑️</div>', t: 'Почве вредят мусор, отходы, топтание и сжигание сухой травы.' },
+        { k: 'беречь растения', v: '<div class="e2-emo">🌷</div>', t: 'Не нужно рвать цветы и ломать ветки без причины. Лучше сажать новые растения и поливать их.' },
+        { k: 'Красная книга', v: '<div class="e2-emo">📕</div>', t: 'В Красную книгу записаны редкие растения и животные. В Красной книге Казахстана есть тюльпан Грейга и яблоня Сиверса. Их нельзя рвать и выкапывать.' } ] }),
+      Q('n11s2', 'quiz', 'Как поступить', 'Выбери правильный ответ про заботу о почве и растениях.', { count: 6, gens: ['n11a'] })
+    ] },
+  { id: 'n12', icon: '🐾', title: 'Классы животных', goal: 'Различать насекомых, рыб, земноводных, пресмыкающихся, птиц и млекопитающих',
+    steps: [
+      Q('n12s1', 'infoTap', 'Шесть классов животных', 'Животных делят на группы — классы — по общим признакам. Нажимай на карточки.', { need: 6, items: [
+        { k: 'насекомые', v: '<div class="e2-emo">🐞</div>', t: 'У насекомых шесть ног и три части тела: голова, грудь и брюшко. У многих есть крылья. Это бабочка, муравей, пчела.' },
+        { k: 'рыбы', v: '<div class="e2-emo">🐟</div>', t: 'Рыбы живут в воде. Тело покрыто чешуёй, есть плавники, дышат жабрами. Это карась, щука, сом.' },
+        { k: 'земноводные', v: '<div class="e2-emo">🐸</div>', t: 'У земноводных голая влажная кожа. Они живут и в воде, и на суше. Это лягушка и тритон.' },
+        { k: 'пресмыкающиеся', v: '<div class="e2-emo">🦎</div>', t: 'У пресмыкающихся сухая кожа с чешуёй или панцирь. Это ящерица, змея, черепаха.' },
+        { k: 'птицы', v: '<div class="e2-emo">🐦</div>', t: 'Тело птиц покрыто перьями, есть крылья и клюв. Птицы откладывают яйца. Это воробей, орёл, лебедь.' },
+        { k: 'млекопитающие', v: '<div class="e2-emo">🐘</div>', t: 'У млекопитающих шерсть. Детёнышей они выкармливают молоком. Это волк, лошадь, кошка, сайгак.' } ] }),
+      Q('n12s2', 'sortGroups', 'К какому классу относится', 'Выбери класс, к которому относится животное.', { q: 'К какому классу относится животное?', take: 10, groups: [{ k: 'насекомые', e: '🐞' }, { k: 'рыбы', e: '🐟' }, { k: 'земноводные', e: '🐸' }, { k: 'пресмыкающиеся', e: '🦎' }, { k: 'птицы', e: '🐦' }, { k: 'млекопитающие', e: '🐘' }], items: [
+        { t: 'бабочка', e: '🦋', g: 0, h: 'У бабочки шесть ног.' }, { t: 'муравей', e: '🐜', g: 0, h: 'У муравья шесть ног и три части тела.' }, { t: 'пчела', e: '🐝', g: 0, h: 'У пчелы шесть ног и крылья.' },
+        { t: 'карась', e: '🐟', g: 1, h: 'Карась покрыт чешуёй и дышит жабрами.' }, { t: 'щука', e: '🐟', g: 1, h: 'Щука — хищная рыба.' },
+        { t: 'лягушка', e: '🐸', g: 2, h: 'У лягушки голая влажная кожа.' }, { t: 'тритон', e: '🦎', g: 2, h: 'Тритон — земноводное.' },
+        { t: 'ящерица', e: '🦎', g: 3, h: 'У ящерицы сухая кожа с чешуёй.' }, { t: 'змея', e: '🐍', g: 3, h: 'Змея — пресмыкающееся.' }, { t: 'черепаха', e: '🐢', g: 3, h: 'У черепахи панцирь. Она пресмыкающееся.' },
+        { t: 'воробей', e: '🐦', g: 4, h: 'У воробья перья и крылья.' }, { t: 'орёл', e: '🦅', g: 4, h: 'Орёл — птица.' }, { t: 'лебедь', e: '🦢', g: 4, h: 'Лебедь — птица.' },
+        { t: 'волк', e: '🐺', g: 5, h: 'У волка шерсть, детёнышей он выкармливает молоком.' }, { t: 'лошадь', e: '🐴', g: 5, h: 'Лошадь — млекопитающее.' }, { t: 'кошка', e: '🐱', g: 5, h: 'Кошка выкармливает котят молоком.' }] }),
+      Q('n12s3', 'quiz', 'Признаки классов', 'Вспомни признаки каждого класса животных.', { count: 8, gens: ['n12a'] })
+    ] }
+];
+
+/* ---------- часть 2: уроки 13–23 ---------- */
+LESSONS.push(
+  { id: 'n13', icon: '🦔', title: 'Как животные приспосабливаются', goal: 'Описывать способы приспособления животных к среде обитания',
+    steps: [
+      Q('n13s1', 'infoTap', 'Приспособления животных', 'Чтобы выжить, животные приспосабливаются к тому месту, где живут. Нажимай на карточки.', { need: 5, items: [
+        { k: 'маскировка', v: '<div class="e2-emo">🦗</div>', t: 'Окраска помогает прятаться. Зелёный кузнечик незаметен в траве. Заяц-беляк зимой белый, как снег.' },
+        { k: 'тёплый мех', v: '<div class="e2-emo">🐆</div>', t: 'Снежный барс живёт в горах. Его густой мех не даёт замёрзнуть.' },
+        { k: 'запасы', v: '<div class="e2-emo">🐹</div>', t: 'Хомяк и белка делают запасы корма на зиму.' },
+        { k: 'спячка', v: '<div class="e2-emo">🐻</div>', t: 'Зимой корма мало. Медведь, ёж и барсук проводят зиму в спячке.' },
+        { k: 'перелёт', v: '<div class="e2-emo">🦢</div>', t: 'Ласточки, журавли и утки улетают на зиму в тёплые края.' },
+        { k: 'в пустыне', v: '<div class="e2-emo">🐪</div>', t: 'Верблюд живёт в пустыне. В горбах у него запас жира. Он долго может обходиться без воды.' } ] }),
+      Q('n13s2', 'sortGroups', 'Как переживают зиму', 'Выбери, как животное переживает зиму.', { q: 'Как это животное переживает зиму?', groups: [{ k: 'спит всю зиму', e: '😴' }, { k: 'делает запасы', e: '🌰' }, { k: 'улетает', e: '✈️' }, { k: 'меняет окраску', e: '⚪' }], items: [
+        { t: 'ёж', e: '🦔', g: 0, h: 'Ёж спит зимой в норе.' }, { t: 'медведь', e: '🐻', g: 0, h: 'Медведь спит в берлоге.' }, { t: 'барсук', e: '🦡', g: 0, h: 'Барсук спит в норе.' },
+        { t: 'хомяк', e: '🐹', g: 1, h: 'Хомяк запасает зёрна.' }, { t: 'белка', e: '🐿️', g: 1, h: 'Белка прячет орехи и грибы.' },
+        { t: 'ласточка', e: '🐦', g: 2, h: 'Ласточки улетают в тёплые края.' }, { t: 'журавль', e: '🦢', g: 2, h: 'Журавли улетают на зиму.' },
+        { t: 'заяц-беляк', e: '🐇', g: 3, h: 'Зимой шерсть зайца-беляка становится белой.' }] }),
+      Q('n13s3', 'quiz', 'Зачем это животному', 'Подумай, как строение или поведение помогает животному выжить.', { count: 6, gens: ['n13a'] })
+    ] },
+  { id: 'n14', icon: '🥚', title: 'Как размножаются животные', goal: 'Объяснять способы размножения животных',
+    steps: [
+      Q('n14s1', 'infoTap', 'Яйца и детёныши', 'Одни животные откладывают яйца, другие рождают живых детёнышей. Нажимай на карточки.', { need: 5, items: [
+        { k: 'птицы', v: '<div class="e2-emo">🐣</div>', t: 'Птицы откладывают яйца в гнёзда и греют их. Потом вылупляются птенцы. Родители кормят птенцов.' },
+        { k: 'рыбы', v: '<div class="e2-emo">🐟</div>', t: 'Рыбы откладывают в воду много икринок. Из них появляются мальки.' },
+        { k: 'лягушка', v: '<div class="e2-emo">🐸</div>', t: 'Лягушка откладывает в воду икру. Из икры выходит головастик. Потом он вырастает в лягушку.' },
+        { k: 'бабочка', v: '<div class="e2-emo">🦋</div>', t: 'Бабочка откладывает яйца. Из яйца выходит гусеница. Гусеница превращается в куколку, а из куколки выходит бабочка.' },
+        { k: 'млекопитающие', v: '<div class="e2-emo">🐄</div>', t: 'Корова, кошка, волк рождают живых детёнышей и выкармливают их молоком.' } ] }),
+      Q('n14s2', 'orderSteps', 'Как развивается животное', 'Расставь стадии развития по порядку. Нажимай в правильном порядке.', { tasks: [
+        { q: 'Как развивается бабочка?', steps: ['Яйцо', 'Гусеница', 'Куколка', 'Бабочка'], hint: 'Сначала яйцо, потом гусеница, потом куколка, в конце бабочка.', done: 'Так развивается бабочка.' },
+        { q: 'Как развивается лягушка?', steps: ['Икра', 'Головастик', 'Лягушка'], hint: 'Сначала икра, потом головастик, потом лягушка.', done: 'Так развивается лягушка.' }] }),
+      Q('n14s3', 'sortGroups', 'Яйца или детёныши', 'Выбери, как размножается животное.', { q: 'Это животное откладывает яйца или рождает детёнышей?', groups: [{ k: 'откладывает яйца или икру', e: '🥚' }, { k: 'рождает детёнышей', e: '🍼' }], items: [
+        { t: 'курица', e: '🐔', g: 0, h: 'Курица откладывает яйца.' }, { t: 'щука', e: '🐟', g: 0, h: 'Рыбы мечут икру.' }, { t: 'лягушка', e: '🐸', g: 0, h: 'Лягушка откладывает икру.' }, { t: 'черепаха', e: '🐢', g: 0, h: 'Черепахи откладывают яйца.' }, { t: 'бабочка', e: '🦋', g: 0, h: 'Бабочка откладывает яйца.' },
+        { t: 'корова', e: '🐄', g: 1, h: 'У коровы рождается телёнок. Она кормит его молоком.' }, { t: 'волк', e: '🐺', g: 1, h: 'Волчица рождает волчат.' }, { t: 'кошка', e: '🐱', g: 1, h: 'Кошка рождает котят.' }, { t: 'лошадь', e: '🐴', g: 1, h: 'Лошадь рождает жеребёнка.' }] }),
+      Q('n14s4', 'quiz', 'Как появляются малыши', 'Вспомни, как развиваются разные животные.', { count: 6, gens: ['n14a'] })
+    ] },
+  { id: 'n15', icon: '🐆', title: 'Берегите животных', goal: 'Объяснять, почему важно сохранять разнообразие животных',
+    steps: [
+      Q('n15s1', 'infoTap', 'Почему нужно беречь животных', 'В природе всё связано. Если исчезают одни животные, страдают другие. Нажимай на карточки.', { need: 5, items: [
+        { k: 'всё связано', v: '<div class="e2-emo">🔗</div>', t: 'Насекомые опыляют цветы, птицы поедают насекомых, хищники охотятся на травоядных. Каждое животное важно.' },
+        { k: 'опасности', v: '<div class="e2-emo">⚠️</div>', t: 'Животным вредят браконьеры, вырубка лесов, пожары, загрязнение воды и мусор.' },
+        { k: 'Красная книга', v: '<div class="e2-emo">📕</div>', t: 'В Красную книгу Казахстана записаны редкие животные: снежный барс, архар и другие. Их охраняет закон.' },
+        { k: 'заповедники', v: '<div class="e2-emo">🏞️</div>', t: 'В заповедниках и национальных парках природа под охраной. Один из них — Аксу-Жабаглы, самый старый в Казахстане.' },
+        { k: 'что можем мы', v: '<div class="e2-emo">🤝</div>', t: 'Мы можем не мусорить в природе, не разорять гнёзда, подкармливать зимой птиц и не обижать животных.' } ] }),
+      Q('n15s2', 'quiz', 'Как помочь природе', 'Выбери правильные ответы о том, как беречь животных.', { count: 6, gens: ['n15a'] })
+    ] },
+  { id: 'n16', icon: '🦴', title: 'Скелет и мышцы', goal: 'Определять функции опорно-двигательной системы и роль мышц в движении',
+    steps: [
+      Q('n16s1', 'infoTap', 'Как мы двигаемся', 'Кости и мышцы вместе позволяют нам стоять, ходить и бегать. Нажимай на карточки.', { need: 6, items: [
+        { k: 'скелет', v: '<div class="e2-emo">💀</div>', t: 'Скелет состоит из костей. Он держит тело и даёт ему форму.' },
+        { k: 'защита', v: '<div class="e2-emo">🛡️</div>', t: 'Череп защищает мозг. Рёбра защищают сердце и лёгкие. Позвоночник защищает спинной мозг.' },
+        { k: 'суставы', v: '<div class="e2-emo">🦵</div>', t: 'Кости соединяются в суставах. Благодаря им мы сгибаем колено, локоть, пальцы.' },
+        { k: 'мышцы', v: '<div class="e2-emo">💪</div>', t: 'Мышцы прикреплены к костям. Когда мышца сокращается, она тянет кость, и мы двигаемся.' },
+        { k: 'работа мышц', v: '<div class="e2-emo">🔄</div>', t: 'Мышцы работают парами. Одна сгибает руку, другая её разгибает.' },
+        { k: 'крепкое тело', v: '<div class="e2-emo">🏃</div>', t: 'Чтобы кости и мышцы были крепкими, нужно двигаться, заниматься спортом и есть полезную еду.' } ] }),
+      Q('n16s2', 'quiz', 'Кости, суставы, мышцы', 'Вспомни, что делают скелет и мышцы.', { count: 8, gens: ['n16a'] })
+    ] },
+  { id: 'n17', icon: '🧼', title: 'Осанка, чистота и зубы', goal: 'Знать, как беречь осанку, соблюдать личную гигиену и ухаживать за зубами',
+    steps: [
+      Q('n17s1', 'infoTap', 'Береги здоровье', 'Здоровье зависит от привычек. Нажимай на карточки.', { need: 5, items: [
+        { k: 'осанка', v: '<div class="e2-emo">🧍</div>', t: 'Правильная осанка — это прямая спина. Сиди ровно, ноги на полу. Рюкзак носи на двух лямках.' },
+        { k: 'гигиена', v: '<div class="e2-emo">🚿</div>', t: 'Личная гигиена — это чистота. Принимай душ, меняй одежду, стриги ногти, пользуйся своим полотенцем.' },
+        { k: 'мытьё рук', v: '<div class="e2-emo">🧼</div>', t: 'Мой руки с мылом перед едой и после улицы и туалета. Так на тело не попадают микробы.' },
+        { k: 'чистим зубы', v: '<div class="e2-emo">🪥</div>', t: 'Зубы нужно чистить утром и вечером не меньше двух минут.' },
+        { k: 'для зубов', v: '<div class="e2-emo">🥛</div>', t: 'Зубам полезны молоко, сыр, овощи. Сладкое вредит. Зубного врача навещай примерно раз в полгода.' },
+        { k: 'молочные зубы', v: '<div class="e2-emo">🦷</div>', t: 'Молочные зубы со временем выпадают, и вырастают постоянные. Постоянные зубы нужно беречь всю жизнь.' } ] }),
+      Q('n17s2', 'orderSteps', 'Как правильно мыть руки', 'Расставь шаги по порядку.', { tasks: [{ q: 'Как правильно мыть руки?', steps: ['Намочить руки водой', 'Намылить ладони, пальцы и запястья', 'Тереть руки около двадцати секунд', 'Смыть мыло водой', 'Вытереть руки чистым полотенцем'], hint: 'Сначала намочить, потом намылить, потереть, смыть и вытереть.', done: 'Так мыть руки правильно.' }] }),
+      Q('n17s3', 'quiz', 'Привычки здоровья', 'Выбери то, что полезно для здоровья.', { count: 6, gens: ['n17a'] }),
+      Q('n17s4', 'quiz', 'Верно или неверно', 'Проверь утверждения о здоровье.', { count: 5, gens: ['n17b'] })
+    ] },
+  { id: 'n18', icon: '🌬️', title: 'Воздух вокруг нас', goal: 'Объяснять значение воздуха и описывать его свойства',
+    steps: [
+      Q('n18s1', 'infoTap', 'Что такое воздух', 'Воздух окружает нас везде, хотя мы его не видим. Нажимай на карточки.', { need: 6, items: [
+        { k: 'для жизни', v: '<div class="e2-emo">🫁</div>', t: 'Всем живым существам нужен воздух для дыхания. В воздухе есть кислород.' },
+        { k: 'оболочка Земли', v: '<div class="e2-emo">🌍</div>', t: 'Вокруг Земли есть воздушная оболочка. Она защищает от холода космоса и от вредных лучей Солнца.' },
+        { k: 'газ', v: '<div class="e2-emo">💨</div>', t: 'Воздух — это газ. Мы не можем его потрогать, но можем почувствовать, когда дует ветер.' },
+        { k: 'цвет', v: '<div class="e2-emo">🔍</div>', t: 'Воздух бесцветный и прозрачный. Голубым нам кажется небо, но не сам воздух.' },
+        { k: 'запах', v: '<div class="e2-emo">👃</div>', t: 'У чистого воздуха нет запаха. Запахи появляются, когда в воздухе есть примеси.' },
+        { k: 'форма', v: '<div class="e2-emo">🎈</div>', t: 'У воздуха нет своей формы. Он принимает форму того места, которое заполняет.' } ] }),
+      Q('n18s2', 'quiz', 'Что мы знаем о воздухе', 'Вспомни значение и свойства воздуха.', { count: 6, gens: ['n18a'] }),
+      Q('n18s3', 'quiz', 'Верно или неверно', 'Проверь утверждения о воздухе.', { count: 5, gens: ['n18b'] })
+    ] },
+  { id: 'n19', icon: '🎈', title: 'Опыты с воздухом', goal: 'Исследовать теплопроводность воздуха и его свойство заполнять пространство',
+    steps: [
+      Q('n19s1', 'infoTap', 'Что показывают опыты', 'С воздухом можно проводить простые опыты. Нажимай на карточки.', { need: 4, items: [
+        { k: 'шарик', v: '<div class="e2-emo">🎈</div>', t: 'Воздух занимает место. Когда мы надуваем шарик, воздух заполняет его и растягивает.' },
+        { k: 'стакан', v: '<div class="e2-emo">🥛</div>', t: 'Если пустой стакан вверх дном опустить в воду, вода не зайдёт внутрь. Место занимает воздух.' },
+        { k: 'тепло', v: '<div class="e2-emo">🧥</div>', t: 'Воздух плохо проводит тепло. Поэтому шубы, одеяла и пух греют: между волосками и перьями есть воздух.' },
+        { k: 'окна', v: '<div class="e2-emo">🪟</div>', t: 'В двойных окнах между стёклами есть воздух. Он помогает сохранять тепло в комнате.' } ] }),
+      Q('n19s2', 'quiz', 'Объясняем опыты', 'Подумай, какое свойство воздуха проявляется в опыте.', { count: 6, gens: ['n19a'] })
+    ] },
+  { id: 'n20', icon: '💧', title: 'Свойства воды', goal: 'Определять физические свойства воды',
+    steps: [
+      Q('n20s1', 'infoTap', 'Какая бывает вода', 'У чистой воды есть свои свойства. Нажимай на карточки.', { need: 5, items: [
+        { k: 'без цвета', v: '<div class="e2-emo">🥛</div>', t: 'Чистая вода прозрачная. Сквозь неё видно дно.' },
+        { k: 'без запаха', v: '<div class="e2-emo">👃</div>', t: 'У чистой воды нет запаха.' },
+        { k: 'без вкуса', v: '<div class="e2-emo">👅</div>', t: 'Чистая вода не имеет вкуса. Вкус придают ей растворённые вещества: сахар, соль.' },
+        { k: 'текучесть', v: '<div class="e2-emo">🌊</div>', t: 'Вода текучая: она переливается и течёт.' },
+        { k: 'форма', v: '<div class="e2-emo">🫗</div>', t: 'У воды нет своей формы. Она принимает форму сосуда, в который налита.' },
+        { k: 'растворяет', v: '<div class="e2-emo">🧂</div>', t: 'В воде растворяются сахар и соль. Камни и песок не растворяются.' } ] }),
+      Q('n20s2', 'quiz', 'Свойства воды', 'Вспомни, какая вода: чистая, прозрачная, текучая.', { count: 6, gens: ['n20a'] })
+    ] },
+  { id: 'n21', icon: '🧊', title: 'Лёд, вода и пар', goal: 'Исследовать, как вода меняет своё состояние',
+    steps: [
+      Q('n21s1', 'infoTap', 'Три состояния воды', 'Вода бывает твёрдой, жидкой и газообразной. Нажимай на карточки.', { need: 5, items: [
+        { k: 'лёд', v: '<div class="e2-emo">🧊</div>', t: 'Лёд, снег и град — вода в твёрдом состоянии. Вода замерзает при нуле градусов.' },
+        { k: 'вода', v: '<div class="e2-emo">💧</div>', t: 'Вода в жидком состоянии течёт и принимает форму сосуда.' },
+        { k: 'пар', v: '<div class="e2-emo">♨️</div>', t: 'Водяной пар — вода в газообразном состоянии. Вода кипит при ста градусах и превращается в пар.' },
+        { k: 'таяние', v: '<div class="e2-emo">🫠</div>', t: 'В тепле лёд тает и превращается в воду.' },
+        { k: 'испарение', v: '<div class="e2-emo">☀️</div>', t: 'Вода испаряется и превращается в пар. Поэтому высыхают лужи и бельё на солнце.' },
+        { k: 'капли', v: '<div class="e2-emo">🥤</div>', t: 'Если пар из воздуха попадёт на холодный стакан, он превратится в капельки воды.' } ] }),
+      Q('n21s2', 'orderSteps', 'Путь капли воды', 'Расставь по порядку, как вода путешествует в природе.', { tasks: [{ q: 'Круговорот воды в природе', steps: ['Солнце нагревает воду, она испаряется', 'Пар поднимается вверх и охлаждается, образуются облака', 'Из облаков идёт дождь или снег', 'Вода стекает в реки и моря'], hint: 'Сначала вода испаряется, потом образуются облака, из них идёт дождь, и вода возвращается в реки.', done: 'Вода в природе всё время путешествует.' }] }),
+      Q('n21s3', 'quiz', 'Состояния воды', 'Вспомни, при какой температуре вода меняет состояние.', { count: 6, gens: ['n21a'] })
+    ] },
+  { id: 'n22', icon: '🏞️', title: 'Откуда берётся вода', goal: 'Определять природные источники воды',
+    steps: [
+      Q('n22s1', 'infoTap', 'Источники воды', 'Вода есть в природе во многих местах. Нажимай на карточки.', { need: 6, items: [
+        { k: 'родники', v: '<div class="e2-emo">⛲</div>', t: 'Родник — место, где вода выходит из-под земли.' },
+        { k: 'реки', v: '<div class="e2-emo">🌊</div>', t: 'Реки текут по земле. В Казахстане текут Иртыш, Сырдарья, Или, Урал.' },
+        { k: 'озёра', v: '<div class="e2-emo">🏞️</div>', t: 'Озеро — водоём, который не течёт. В Казахстане есть озёра Балхаш и Зайсан.' },
+        { k: 'моря', v: '<div class="e2-emo">🌅</div>', t: 'Вода в морях солёная, её нельзя пить. В Казахстане есть Каспийское море.' },
+        { k: 'ледники', v: '<div class="e2-emo">🏔️</div>', t: 'В горах лежат ледники. Они хранят много пресной воды и питают реки.' },
+        { k: 'дождь и снег', v: '<div class="e2-emo">🌧️</div>', t: 'Дождь и снег — тоже источники воды. Подземную воду достают из колодцев.' } ] }),
+      Q('n22s2', 'quiz', 'Где взять воду', 'Вспомни источники воды и как её беречь.', { count: 6, gens: ['n22a'] })
+    ] },
+  { id: 'n23', icon: '⛏️', title: 'Природные ресурсы', goal: 'Определять назначение ресурсов и классифицировать их по происхождению',
+    steps: [
+      Q('n23s1', 'infoTap', 'Что человек берёт у природы', 'Природные ресурсы — то, что человек берёт у природы и использует. Нажимай на карточки.', { need: 5, items: [
+        { k: 'растительные', v: '<div class="e2-emo">🌲</div>', t: 'Древесина, хлопок, зерно, овощи. Из них делают бумагу, мебель, ткани и еду.' },
+        { k: 'животные', v: '<div class="e2-emo">🐑</div>', t: 'Шерсть, молоко, мёд, кожа. Из них делают одежду и продукты.' },
+        { k: 'минеральные', v: '<div class="e2-emo">⛏️</div>', t: 'Нефть, газ, уголь, руда, соль, песок, глина добываются из земли. Из нефти делают бензин, из глины кирпичи, уголь используют как топливо.' },
+        { k: 'вода и воздух', v: '<div class="e2-emo">💧</div>', t: 'Вода, воздух и солнечный свет — тоже важные ресурсы. Они нужны всем.' },
+        { k: 'Казахстан', v: '<div class="e2-emo">🇰🇿</div>', t: 'Казахстан богат нефтью, газом, углём и металлами.' },
+        { k: 'беречь', v: '<div class="e2-emo">♻️</div>', t: 'Ресурсы нужно беречь: не тратить зря воду и бумагу, сдавать бумагу и бутылки в переработку.' } ] }),
+      Q('n23s2', 'sortGroups', 'Откуда этот ресурс', 'Определи происхождение ресурса.', { q: 'Откуда получают этот ресурс?', take: 9, groups: [{ k: 'растительные', e: '🌿' }, { k: 'животные', e: '🐄' }, { k: 'минеральные', e: '⛏️' }], items: [
+        { t: 'древесина', e: '🪵', g: 0, h: 'Древесину получают от деревьев.' }, { t: 'хлопок', e: '☁️', g: 0, h: 'Хлопок растёт на хлопчатнике.' }, { t: 'пшеница', e: '🌾', g: 0, h: 'Пшеница — растение.' },
+        { t: 'шерсть', e: '🐑', g: 1, h: 'Шерсть даёт овца.' }, { t: 'молоко', e: '🥛', g: 1, h: 'Молоко даёт корова.' }, { t: 'мёд', e: '🍯', g: 1, h: 'Мёд делают пчёлы.' }, { t: 'кожа', e: '👞', g: 1, h: 'Кожу получают от животных.' },
+        { t: 'нефть', e: '🛢️', g: 2, h: 'Нефть добывают из-под земли.' }, { t: 'железная руда', e: '🪨', g: 2, h: 'Руду добывают из земли.' }, { t: 'соль', e: '🧂', g: 2, h: 'Соль добывают из земли и озёр.' }, { t: 'песок', e: '🏖️', g: 2, h: 'Песок — минеральный ресурс.' }, { t: 'глина', e: '🧱', g: 2, h: 'Глину добывают из земли.' }] }),
+      Q('n23s3', 'quiz', 'Для чего нужен ресурс', 'Подумай, из какого ресурса получают вещь.', { count: 6, gens: ['n23a'] })
+    ] }
+);
+
+/* ---------- часть 3: уроки 24–33 ---------- */
+LESSONS.push(
+  { id: 'n24', icon: '☀️', title: 'Земля, Солнце и Луна', goal: 'Объяснять связи между Землёй и Солнцем, определять спутник Земли',
+    steps: [
+      Q('n24s1', 'infoTap', 'Солнце, Земля и Луна', 'Земля, Солнце и Луна связаны между собой. Нажимай на карточки.', { need: 6, items: [
+        { k: 'Солнце', v: '<div class="e2-emo">☀️</div>', t: 'Солнце — звезда. Это огромный горячий шар. Он даёт Земле свет и тепло.' },
+        { k: 'Земля', v: '<div class="e2-emo">🌍</div>', t: 'Земля — планета. Она третья от Солнца. На ней есть воздух, вода и жизнь.' },
+        { k: 'день и ночь', v: '<div class="e2-emo">🌗</div>', t: 'Земля вращается вокруг своей оси. Один оборот — сутки. Сторона, которую освещает Солнце, — день. Другая сторона — ночь.' },
+        { k: 'год', v: '<div class="e2-emo">🔄</div>', t: 'Земля летит вокруг Солнца. Один оборот — год. Это около трёхсот шестидесяти пяти суток.' },
+        { k: 'Луна', v: '<div class="e2-emo">🌙</div>', t: 'Луна — естественный спутник Земли. Она вращается вокруг Земли.' },
+        { k: 'свет Луны', v: '<div class="e2-emo">🔦</div>', t: 'Луна сама не светится. Мы видим её, потому что она отражает свет Солнца.' } ] }),
+      Q('n24s2', 'quiz', 'Земля, Солнце, Луна', 'Вспомни, кто вокруг кого вращается.', { count: 6, gens: ['n24a'] })
+    ] },
+  { id: 'n25', icon: '🪐', title: 'Планеты Солнечной системы', goal: 'Определять порядок планет и сравнивать их',
+    steps: [
+      Q('n25s1', 'infoTap', 'Знакомимся с планетами', 'Вокруг Солнца вращаются восемь планет. Нажимай на карточки.', { need: 6, items: [
+        { k: 'Меркурий', v: '<div class="e2-emo">⚫</div>', t: 'Меркурий — первая планета от Солнца и самая маленькая.' },
+        { k: 'Венера', v: '<div class="e2-emo">🟡</div>', t: 'Венера — вторая планета. Она самая горячая.' },
+        { k: 'Земля', v: '<div class="e2-emo">🌍</div>', t: 'Земля — третья планета. На ней есть жизнь.' },
+        { k: 'Марс', v: '<div class="e2-emo">🔴</div>', t: 'Марс — четвёртая планета. Её называют красной.' },
+        { k: 'Юпитер', v: '<div class="e2-emo">🟠</div>', t: 'Юпитер — пятая планета и самая большая из всех.' },
+        { k: 'Сатурн', v: '<div class="e2-emo">🪐</div>', t: 'Сатурн — шестая планета. У неё яркие кольца.' },
+        { k: 'Уран', v: '<div class="e2-emo">🔵</div>', t: 'Уран — седьмая планета. Он очень далёкий и холодный.' },
+        { k: 'Нептун', v: '<div class="e2-emo">🔷</div>', t: 'Нептун — восьмая, самая далёкая от Солнца планета.' } ] }),
+      Q('n25s2', 'orderSteps', 'Порядок планет', 'Расставь планеты по порядку, начиная с ближайшей к Солнцу.', { tasks: [{ q: 'Планеты по порядку от Солнца', steps: ['Меркурий', 'Венера', 'Земля', 'Марс', 'Юпитер', 'Сатурн', 'Уран', 'Нептун'], hint: 'Порядок: Меркурий, Венера, Земля, Марс, Юпитер, Сатурн, Уран, Нептун.', done: 'Ты знаешь порядок всех планет!' }] }),
+      Q('n25s3', 'sortGroups', 'Маленькие и большие', 'Планеты делят на две группы: небольшие твёрдые и огромные планеты-гиганты.', { q: 'К какой группе относится планета?', groups: [{ k: 'небольшие, твёрдые', e: '🪨' }, { k: 'гиганты', e: '🌀' }], items: [
+        { t: 'Меркурий', e: '⚫', g: 0, h: 'Меркурий небольшой и каменный.' }, { t: 'Венера', e: '🟡', g: 0, h: 'Венера — каменная планета.' }, { t: 'Земля', e: '🌍', g: 0, h: 'Земля — каменная планета.' }, { t: 'Марс', e: '🔴', g: 0, h: 'Марс — каменная планета.' },
+        { t: 'Юпитер', e: '🟠', g: 1, h: 'Юпитер — планета-гигант.' }, { t: 'Сатурн', e: '🪐', g: 1, h: 'Сатурн — планета-гигант.' }, { t: 'Уран', e: '🔵', g: 1, h: 'Уран — планета-гигант.' }, { t: 'Нептун', e: '🔷', g: 1, h: 'Нептун — планета-гигант.' }] }),
+      Q('n25s4', 'quiz', 'Сравниваем планеты', 'Вспомни особенности планет.', { count: 8, gens: ['n25a'] })
+    ] },
+  { id: 'n26', icon: '🚀', title: 'Время и расстояния в космосе', goal: 'Различать единицы времени и понимать особенности расстояний и времени в космосе',
+    steps: [
+      Q('n26s1', 'infoTap', 'Единицы времени', 'Время измеряют секундами, минутами, часами, сутками, неделями, месяцами и годами. Нажимай на карточки.', { need: 5, items: [
+        { k: 'секунда, минута', v: '<div class="e2-emo">⏱️</div>', t: 'В одной минуте шестьдесят секунд. В одном часе шестьдесят минут.' },
+        { k: 'сутки', v: '<div class="e2-emo">🕛</div>', t: 'В одних сутках двадцать четыре часа. Это один оборот Земли вокруг оси.' },
+        { k: 'неделя, месяц', v: '<div class="e2-emo">📅</div>', t: 'В неделе семь суток. В году двенадцать месяцев.' },
+        { k: 'год', v: '<div class="e2-emo">🎂</div>', t: 'Год — это время, за которое Земля облетает вокруг Солнца.' },
+        { k: 'в космосе', v: '<div class="e2-emo">🌌</div>', t: 'В космосе расстояния огромные. Свет идёт от Солнца до Земли около восьми минут. Ракете до Луны лететь около трёх суток, а до Марса несколько месяцев.' },
+        { k: 'другие планеты', v: '<div class="e2-emo">🪐</div>', t: 'На других планетах сутки и год другие. Год на Меркурии — всего 88 земных суток.' } ] }),
+      Q('n26s2', 'orderSteps', 'От маленькой единицы к большой', 'Расставь единицы времени от самой маленькой до самой большой.', { tasks: [{ q: 'Единицы времени по порядку', steps: ['секунда', 'минута', 'час', 'сутки', 'неделя', 'месяц', 'год'], hint: 'В минуте 60 секунд, в часе 60 минут, в сутках 24 часа, в неделе 7 суток, в году 12 месяцев.', done: 'Единицы времени расставлены верно.' }] }),
+      Q('n26s3', 'quiz', 'Время и расстояния', 'Выбери верный ответ.', { count: 8, gens: ['n26a'] })
+    ] },
+  { id: 'n27', icon: '🏎️', title: 'Быстро и медленно', goal: 'Приводить примеры движения с разной скоростью',
+    steps: [
+      Q('n27s1', 'infoTap', 'Движение и скорость', 'Тела движутся с разной скоростью. Нажимай на карточки.', { need: 4, items: [
+        { k: 'движение', v: '<div class="e2-emo">🏃</div>', t: 'Если тело меняет своё место, значит оно движется.' },
+        { k: 'медленно', v: '<div class="e2-emo">🐌</div>', t: 'Улитка и черепаха движутся медленно. За то же время они проходят совсем немного.' },
+        { k: 'быстро', v: '<div class="e2-emo">🐆</div>', t: 'Гепард, самолёт и ракета движутся быстро. Они проходят большое расстояние за короткое время.' },
+        { k: 'скорость', v: '<div class="e2-emo">⏱️</div>', t: 'Скорость говорит о том, насколько быстро или медленно движется тело.' } ] }),
+      Q('n27s2', 'orderSteps', 'От медленного к быстрому', 'Расставь тела по скорости: сначала самое медленное, в конце самое быстрое.', { tasks: [{ q: 'Расставь от самого медленного к самому быстрому', steps: ['улитка', 'пешеход', 'велосипедист', 'автомобиль', 'самолёт', 'ракета'], hint: 'Улитка ползёт медленнее всех. Дальше идёт человек пешком, потом велосипед, автомобиль, самолёт. Быстрее всех ракета.', done: 'Ты верно расставил тела по скорости.' }] }),
+      Q('n27s3', 'quiz', 'Кто быстрее', 'Сравни скорости.', { count: 6, gens: ['n27a'] })
+    ] },
+  { id: 'n28', icon: '💪', title: 'Силы вокруг нас', goal: 'Исследовать силы, вызывающие движение',
+    steps: [
+      Q('n28s1', 'infoTap', 'Что заставляет тела двигаться', 'Тела приходят в движение под действием силы. Нажимай на карточки.', { need: 5, items: [
+        { k: 'толчок', v: '<div class="e2-emo">🚪</div>', t: 'Когда мы толкаем тело, оно движется от нас. Мы толкаем дверь, мяч, санки.' },
+        { k: 'тяга', v: '<div class="e2-emo">🧲</div>', t: 'Когда мы тянем тело, оно движется к нам. Мы тянем дверь на себя, санки за верёвку.' },
+        { k: 'сила тяжести', v: '<div class="e2-emo">🍎</div>', t: 'Земля притягивает все тела. Поэтому яблоко падает вниз, а реки текут вниз.' },
+        { k: 'трение', v: '<div class="e2-emo">🛷</div>', t: 'Трение замедляет движение. На льду трение маленькое, и санки скользят далеко. На песке трение большое.' },
+        { k: 'ветер и вода', v: '<div class="e2-emo">⛵</div>', t: 'Силу могут создавать ветер и вода. Ветер толкает парус, а вода крутит колесо мельницы.' } ] }),
+      Q('n28s2', 'quiz', 'Какая сила действует', 'Подумай: что толкает, тянет или останавливает тело?', { count: 6, gens: ['n28a'] })
+    ] },
+  { id: 'n29', icon: '⚖️', title: 'Масса и весы', goal: 'Выбирать и использовать приборы для определения массы',
+    steps: [
+      Q('n29s1', 'infoTap', 'Как узнать массу', 'Массу измеряют в граммах, килограммах и тоннах. Для этого есть разные весы. Нажимай на карточки.', { need: 5, items: [
+        { k: 'единицы', v: '<div class="e2-emo">📏</div>', t: 'Массу малых предметов измеряют в граммах, обычных — в килограммах, очень тяжёлых — в тоннах. В одном килограмме тысяча граммов.' },
+        { k: 'кухонные весы', v: '<div class="e2-emo">🍰</div>', t: 'Кухонные весы нужны, чтобы взвесить муку, сахар, яблоки.' },
+        { k: 'напольные весы', v: '<div class="e2-emo">🧍</div>', t: 'Напольные весы показывают массу человека.' },
+        { k: 'чашечные весы', v: '<div class="e2-emo">⚖️</div>', t: 'На чашечных весах на одну чашу кладут предмет, а на другую гири. Когда чаши равны, масса одинакова.' },
+        { k: 'автомобильные весы', v: '<div class="e2-emo">🚛</div>', t: 'Грузовики взвешивают на больших автомобильных весах.' } ] }),
+      Q('n29s2', 'quiz', 'Какой прибор выбрать', 'Выбери подходящий прибор или единицу массы.', { count: 8, gens: ['n29a'] })
+    ] },
+  { id: 'n30', icon: '💡', title: 'Свет и тень', goal: 'Исследовать, какие тела пропускают свет',
+    steps: [
+      Q('n30s1', 'infoTap', 'Прозрачные и непрозрачные тела', 'Одни тела пропускают свет, другие нет. Нажимай на карточки.', { need: 5, items: [
+        { k: 'источники света', v: '<div class="e2-emo">💡</div>', t: 'Солнце, лампа, свеча и фонарик светят сами. Это источники света.' },
+        { k: 'прозрачные', v: '<div class="e2-emo">🪟</div>', t: 'Прозрачные тела пропускают свет, и сквозь них всё хорошо видно. Это чистое стекло, чистая вода, прозрачная плёнка.' },
+        { k: 'полупрозрачные', v: '<div class="e2-emo">🫧</div>', t: 'Полупрозрачные тела пропускают свет, но сквозь них видно нечётко. Это матовое стекло, калька, тонкая ткань.' },
+        { k: 'непрозрачные', v: '<div class="e2-emo">🧱</div>', t: 'Непрозрачные тела свет не пропускают. Это дерево, камень, металл, картон.' },
+        { k: 'тень', v: '<div class="e2-emo">🌑</div>', t: 'Когда на пути света стоит непрозрачный предмет, за ним появляется тень.' } ] }),
+      Q('n30s2', 'sortGroups', 'Пропускает ли свет', 'Раскладывай предметы по группам.', { q: 'Пропускает ли предмет свет?', groups: [{ k: 'прозрачные', e: '🔍' }, { k: 'полупрозрачные', e: '🫧' }, { k: 'непрозрачные', e: '🧱' }], items: [
+        { t: 'чистое стекло', e: '🪟', g: 0, h: 'Сквозь чистое стекло всё видно.' }, { t: 'чистая вода', e: '💧', g: 0, h: 'Чистая вода прозрачна.' }, { t: 'прозрачная плёнка', e: '🧴', g: 0, h: 'Сквозь прозрачную плёнку всё видно.' },
+        { t: 'калька', e: '📄', g: 1, h: 'Сквозь кальку свет проходит, но предметы видно нечётко.' }, { t: 'матовое стекло', e: '🚿', g: 1, h: 'Матовое стекло рассеивает свет.' },
+        { t: 'деревянная доска', e: '🪵', g: 2, h: 'Дерево не пропускает свет.' }, { t: 'кирпич', e: '🧱', g: 2, h: 'Кирпич не пропускает свет.' }, { t: 'картон', e: '📦', g: 2, h: 'Картон не пропускает свет.' }, { t: 'металл', e: '🔩', g: 2, h: 'Металл не пропускает свет.' }] }),
+      Q('n30s3', 'quiz', 'Свет и тень', 'Подумай, как свет проходит через предметы.', { count: 6, gens: ['n30a'] })
+    ] },
+  { id: 'n31', icon: '🔊', title: 'Звуки: тихие и громкие', goal: 'Классифицировать источники звука по громкости',
+    steps: [
+      Q('n31s1', 'infoTap', 'Откуда берутся звуки', 'Звук возникает, когда тело дрожит. Нажимай на карточки.', { need: 4, items: [
+        { k: 'источник звука', v: '<div class="e2-emo">🎸</div>', t: 'Струна гитары звучит, потому что она дрожит. Голос звучит, когда дрожат голосовые связки.' },
+        { k: 'тихие', v: '<div class="e2-emo">🍃</div>', t: 'Тихие звуки: шёпот, шелест листьев, тиканье часов.' },
+        { k: 'громкие', v: '<div class="e2-emo">📢</div>', t: 'Громкие звуки: крик, барабан, лай собаки.' },
+        { k: 'очень громкие', v: '<div class="e2-emo">✈️</div>', t: 'Очень громкие звуки, например, гром, сирена и взлетающий самолёт, вредят слуху. Слух надо беречь.' } ] }),
+      Q('n31s2', 'sortGroups', 'Тихий или громкий', 'Определи, какой это звук.', { q: 'Какой это звук?', groups: [{ k: 'тихий', e: '🤫' }, { k: 'громкий', e: '📢' }, { k: 'очень громкий', e: '⚠️' }], items: [
+        { t: 'шёпот', e: '🤫', g: 0, h: 'Шёпот — тихий звук.' }, { t: 'шелест листвы', e: '🍃', g: 0, h: 'Листья шелестят тихо.' }, { t: 'тиканье часов', e: '⏰', g: 0, h: 'Часы тикают тихо.' },
+        { t: 'лай собаки', e: '🐕', g: 1, h: 'Лай — громкий звук.' }, { t: 'барабан', e: '🥁', g: 1, h: 'Барабан звучит громко.' }, { t: 'крик', e: '😮', g: 1, h: 'Крик — громкий звук.' },
+        { t: 'гром', e: '⛈️', g: 2, h: 'Гром очень громкий.' }, { t: 'сирена', e: '🚨', g: 2, h: 'Сирена очень громкая.' }, { t: 'самолёт при взлёте', e: '✈️', g: 2, h: 'Самолёт при взлёте очень громкий.' }] }),
+      Q('n31s3', 'quiz', 'Звук и слух', 'Подумай, как возникают звуки и как беречь слух.', { count: 6, gens: ['n31a'] })
+    ] },
+  { id: 'n32', icon: '🌡️', title: 'Измеряем температуру', goal: 'Измерять температуру различных тел',
+    steps: [
+      Q('n32s1', 'infoTap', 'Термометр и градусы', 'Температуру измеряют термометром в градусах Цельсия. Нажимай на карточки.', { need: 5, items: [
+        { k: 'термометр', v: thermoSVG(20), t: 'Термометр — прибор для измерения температуры. Красный столбик поднимается вверх, когда теплее, и опускается, когда холоднее.' },
+        { k: 'как читать', v: thermoSVG(26), t: 'Найди, где заканчивается столбик, и прочитай число на шкале. Между числами стоят чёрточки через два градуса.' },
+        { k: 'ноль', v: '<div class="e2-emo">🧊</div>', t: 'При нуле градусов вода замерзает и превращается в лёд.' },
+        { k: 'комната', v: '<div class="e2-emo">🏠</div>', t: 'В тёплой комнате около двадцати градусов.' },
+        { k: 'человек', v: '<div class="e2-emo">🧒</div>', t: 'У здорового человека температура тела около тридцати шести и шести десятых градуса.' },
+        { k: 'кипяток', v: '<div class="e2-emo">♨️</div>', t: 'Вода кипит при ста градусах. Кипяток очень горячий и опасный.' } ] }),
+      Q('n32s2', 'quiz', 'Читаем термометр', 'Найди, где заканчивается красный столбик, и прочитай число.', { count: 6, gens: ['thermoRead2'] }),
+      Q('n32s3', 'quiz', 'Температура тел', 'Вспомни температуры, которые мы узнали.', { count: 6, gens: ['n32a'] })
+    ] },
+  { id: 'n33', icon: '🧲', title: 'Магниты', goal: 'Описывать, где применяют магниты',
+    steps: [
+      Q('n33s1', 'infoTap', 'Что умеет магнит', 'Магнит притягивает некоторые предметы. Нажимай на карточки.', { need: 5, items: [
+        { k: 'притягивает', v: '<div class="e2-emo">🧲</div>', t: 'Магнит притягивает железные и стальные предметы: гвозди, скрепки, ключи.' },
+        { k: 'не притягивает', v: '<div class="e2-emo">🪵</div>', t: 'Дерево, стекло, пластмасса и бумага к магниту не притягиваются.' },
+        { k: 'полюса', v: '<div class="e2-emo">🧭</div>', t: 'У магнита два полюса: северный и южный. Одинаковые полюса отталкиваются, а разные притягиваются.' },
+        { k: 'компас', v: '<div class="e2-emo">🧭</div>', t: 'Стрелка компаса — маленький магнит. Она показывает направление на север.' },
+        { k: 'применение', v: '<div class="e2-emo">🚪</div>', t: 'Магниты есть в дверцах холодильников, замках, застёжках сумок, магнитных досках и конструкторах. На заводах большие магниты поднимают тяжёлые железные грузы.' } ] }),
+      Q('n33s2', 'sortGroups', 'Притянет ли магнит', 'Определи, притянет ли магнит этот предмет.', { q: 'Притянет ли его магнит?', groups: [{ k: 'притягивается', e: '🧲' }, { k: 'не притягивается', e: '🚫' }], items: [
+        { t: 'железный гвоздь', e: '🔩', g: 0, h: 'Гвоздь сделан из железа.' }, { t: 'стальная скрепка', e: '📎', g: 0, h: 'Сталь притягивается магнитом.' }, { t: 'железный ключ', e: '🔑', g: 0, h: 'Железо притягивается магнитом.' }, { t: 'консервная банка', e: '🥫', g: 0, h: 'Банка сделана из стали.' },
+        { t: 'деревянная линейка', e: '📏', g: 1, h: 'Дерево магнит не притягивает.' }, { t: 'пластмассовая ложка', e: '🥄', g: 1, h: 'Пластмасса не притягивается.' }, { t: 'стеклянный шарик', e: '🔮', g: 1, h: 'Стекло не притягивается.' }, { t: 'лист бумаги', e: '📄', g: 1, h: 'Бумага не притягивается.' }] }),
+      Q('n33s3', 'quiz', 'Магниты в жизни', 'Вспомни свойства магнита и где он нужен.', { count: 6, gens: ['n33a'] })
+    ] }
+);
+
+LESSONS[LESSONS.length - 1].steps.push({ id: 'nfin', scene: 'finale', gate: false, title: 'Ты молодец!', text: 'Ты прошёл все уроки курса. Теперь повторяй темы в тренажёрах и лекциях, чтобы запомнить всё надолго.' });
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
