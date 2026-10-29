@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Математика 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:62px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:14px;height:14px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+</style>
+</head>
+<body class="w-page" data-subject="math">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Математика 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Математика 2 класс</h1>
+      <p class="ac-sub">10 уроков: числа до 100 и 1000, десятки и единицы, счёт группами, римские цифры, устный счёт и столбик</p>
+      <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 10</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/math2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/math2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_math2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+const dg = n => [Math.floor(n / 100), Math.floor(n / 10) % 10, n % 10];
+
+/* ---- рисунки: блоки (сотня, десяток, единица) ---- */
+function blocksHTML(h, t, o, small){
+  let s = '<div class="m2-bl' + (small ? ' sm' : '') + '" aria-label="' + (h ? dSot(h) + ', ' : '') + dDes(t) + ', ' + dEd(o) + '">';
+  for (let i = 0; i < h; i++) s += '<span class="m2-h"></span>';
+  for (let i = 0; i < t; i++) s += '<span class="m2-t"></span>';
+  if (o){ s += '<span class="m2-os">'; for (let i = 0; i < o; i++) s += '<span class="m2-o"></span>'; s += '</span>'; }
+  return s + '</div>';
+}
+function placeTbl(t, o, cls){
+  return '<table class="m2-pt ' + (cls || '') + '"><tr><th>Десятки</th><th>Единицы</th></tr><tr><td>' + t + '</td><td>' + o + '</td></tr></table>';
+}
+/* ---- числовой луч ---- */
+function lineSVG(a, b, step, mark){
+  const x0 = 24, x1 = 416, n = (b - a) / step; let s = '<svg viewBox="0 0 440 96" class="m2-line" role="img" aria-label="числовой луч"><line x1="10" y1="52" x2="430" y2="52" stroke="#1D3557" stroke-width="3"/><path d="M430 52l-9-5v10z" fill="#1D3557"/>';
+  for (let i = 0; i <= n; i++){
+    const v = a + i * step, x = x0 + (x1 - x0) * i / n, isM = v === mark;
+    s += '<line x1="' + x + '" y1="44" x2="' + x + '" y2="60" stroke="#1D3557" stroke-width="2.5"/>';
+    if (isM) s += '<path d="M' + x + ' 38l-8-17h16z" fill="#E0574A"/><text x="' + x + '" y="17" text-anchor="middle" font-size="18" font-weight="800" fill="#E0574A" font-family="Baloo 2,sans-serif">?</text>';
+    else s += '<text x="' + x + '" y="82" text-anchor="middle" font-size="' + (n > 10 ? 12 : 15) + '" font-weight="800" fill="#1D3557" font-family="Baloo 2,sans-serif">' + v + '</text>';
+  }
+  return s + '</svg>';
+}
+/* ---- таблица разрядов в столбик ---- */
+function colTable(a, b, op, state){
+  state = state || {};
+  const cols = (a >= 100 || b >= 100) ? 3 : 2, show = n => { const r = String(n).split(''); while (r.length < cols) r.unshift(''); return r; }, A = show(a), B = show(b);
+  const names = cols === 3 ? ['Сотни', 'Десятки', 'Единицы'] : ['Десятки', 'Единицы'];
+  const note = state.note || [], res = state.res;
+  let h = '<table class="m2-col"><tr><th></th>' + names.map(x => '<th>' + x + '</th>').join('') + '</tr>';
+  h += '<tr class="nt"><td></td>' + names.map((x, i) => '<td>' + (note[i + 3 - cols] || '') + '</td>').join('') + '</tr>';
+  h += '<tr><td></td>' + A.map((d, i) => '<td' + ((state.cut || [])[i + 3 - cols] ? ' class="cut"' : '') + '>' + d + '</td>').join('') + '</tr>';
+  h += '<tr class="ln"><td class="op">' + (op === '+' ? '+' : '−') + '</td>' + B.map(d => '<td>' + d + '</td>').join('') + '</tr>';
+  if (res === 'q') h += '<tr class="rs"><td></td><td colspan="' + cols + '">?</td></tr>';
+  else h += '<tr class="rs"><td></td>' + names.map((x, i) => '<td>' + ((res || [])[i + 3 - cols] || '') + '</td>').join('') + '</tr>';
+  return h + '</table>';
+}
+/* шаги письменного сложения и вычитания */
+function colSteps(a, b, op){
+  const A = dg(a), B = dg(b), st = [], res = ['', '', ''], note = ['', '', ''], cut = [false, false, false];
+  const snap = txt => st.push({ txt: txt, res: res.slice(), note: note.slice(), cut: cut.slice() });
+  snap('Записываем числа в столбик: единицы под единицами, десятки под десятками. Начинаем с единиц.');
+  if (op === '+'){
+    const so = A[2] + B[2], co = so >= 10 ? 1 : 0; res[2] = String(so % 10);
+    if (co){ note[1] = '+1'; snap('Единицы: ' + A[2] + ' + ' + B[2] + ' = ' + so + '. Пишем ' + so % 10 + ', а 1 десяток запоминаем и прибавим к десяткам.'); }
+    else snap('Единицы: ' + A[2] + ' + ' + B[2] + ' = ' + so + '. Пишем ' + so + '.');
+    const stn = A[1] + B[1] + co; res[1] = String(stn);
+    snap('Десятки: ' + A[1] + ' + ' + B[1] + (co ? ' + 1 (запомнили)' : '') + ' = ' + stn + '. Пишем ' + stn + '.');
+  } else if (a === 100){
+    note[0] = '0'; note[1] = '9'; note[2] = '10'; cut[0] = true;
+    snap('У числа 100 нет ни десятков, ни единиц. Разменяем сотню: 100 = 9 десятков и 10 единиц.');
+    res[2] = String(10 - B[2]); snap('Единицы: 10 − ' + B[2] + ' = ' + (10 - B[2]) + '. Пишем ' + (10 - B[2]) + '.');
+    res[1] = String(9 - B[1]); snap('Десятки: 9 − ' + B[1] + ' = ' + (9 - B[1]) + '. Пишем ' + (9 - B[1]) + '.');
+  } else {
+    let t = A[1], bor = A[2] < B[2];
+    if (bor){ t = A[1] - 1; note[1] = String(t); cut[1] = true; res[2] = String(A[2] + 10 - B[2]);
+      snap('Из ' + A[2] + ' единиц нельзя вычесть ' + B[2] + '. Занимаем 1 десяток — это 10 единиц: ' + (A[2] + 10) + ' − ' + B[2] + ' = ' + (A[2] + 10 - B[2]) + '. Пишем ' + (A[2] + 10 - B[2]) + '. Десятков осталось ' + t + '.'); }
+    else { res[2] = String(A[2] - B[2]); snap('Единицы: ' + A[2] + ' − ' + B[2] + ' = ' + (A[2] - B[2]) + '. Пишем ' + (A[2] - B[2]) + '.'); }
+    res[1] = String(t - B[1]); snap('Десятки: ' + t + ' − ' + B[1] + ' = ' + (t - B[1]) + '. Пишем ' + (t - B[1]) + '.');
+  }
+  st.push({ txt: 'Ответ: ' + a + ' ' + (op === '+' ? '+' : '−') + ' ' + b + ' = ' + (op === '+' ? a + b : a - b) + '.', res: (() => { const r = String(op === '+' ? a + b : a - b).split(''); while (r.length < 3) r.unshift(''); return r; })(), note: ['', '', ''], cut: [false, false, false], last: true });
+  return st;
+}
+const colHint = (a, b, op) => colSteps(a, b, op).slice(1, -1).map(s => s.txt).join(' ');
+
+/* десятичная рамка: r — красные кружки, b — синие (доложенные до десятка) */
+function tenFrame(r, b){
+  let h = '<div class="m2-tf">'; for (let i = 0; i < 10; i++) h += '<i class="' + (i < r ? 'r' : i < r + b ? 'b' : '') + '"></i>'; return h + '</div>';
+}
+
+/* ---------- общие сцены ---------- */
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки 👆') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+/* таблица чисел 1–100 */
+SCENES.hundredChart = function(stage, st, ctx){
+  const seen = {}; let n = 0; const need = st.need || 6;
+  let h = '<div class="m2-chart" id="c-g">'; for (let i = 1; i <= 100; i++) h += '<button class="m2-cell" data-n="' + i + '">' + i + '</button>'; h += '</div><div class="m2-show" id="c-s"><div class="ac-qtxt">Нажимай на числа 👆</div></div>';
+  stage.innerHTML = h; const s = $('#c-s', stage);
+  $$('.m2-cell', stage).forEach(b => b.onclick = function(){
+    const v = +b.dataset.n; $$('.m2-cell', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[v]){ seen[v] = 1; n++; }
+    const d = dg(v);
+    let t = '<div class="wd" style="font-size:1.6rem">' + v + ' — ' + ruNum(v) + '</div>';
+    if (v === 100) t += '<div class="ac-qtxt m2-ex">100 — это 10 десятков. Перед ним 99. После него — 101.</div>';
+    else t += '<div class="ac-qtxt m2-ex">' + (v < 10 ? 'Это однозначное число: в нём только единицы.' : 'В числе ' + dDes(d[1]) + ' и ' + dEd(d[2]) + '.') + '<br>Перед ним стоит ' + (v - 1) + ', после него — ' + (v + 1) + '.</div>';
+    if (n >= need){ ctx.fb('Хорошо! Числа идут по порядку: каждое следующее на 1 больше.', 'ok'); ctx.done(); } else ctx.fb('Рассмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+    s.innerHTML = t;
+  });
+};
+
+/* строим число из десятков и единиц */
+SCENES.placeBuilder = function(stage, st, ctx){
+  const rounds = st.rounds || 3; let r = 0, T = 0, O = 0, target = 0, msg = '';
+  stage.innerHTML = '<div class="ac-qcount" id="b-c"></div><div class="ac-qtxt m2-big" id="b-q"></div><div id="b-bl"></div><div id="b-tb"></div><div class="m2-btns"><button class="ac-btn ac-alt" data-a="t+">+ десяток</button><button class="ac-btn ac-alt" data-a="o+">+ единица</button><button class="ac-btn ac-alt" data-a="t-">− десяток</button><button class="ac-btn ac-alt" data-a="o-">− единица</button></div><div class="m2-btns"><button class="ac-btn ac-go" id="b-ok">Проверить</button></div>';
+  function draw(){
+    $('#b-bl', stage).innerHTML = blocksHTML(0, T, O); $('#b-tb', stage).innerHTML = placeTbl(T, O);
+    $('#b-c', stage).textContent = 'Число ' + (r + 1) + ' из ' + rounds;
+  }
+  function newT(){ do { target = rnd(11, 98); } while (target % 10 === 0); T = 0; O = 0; $('#b-q', stage).innerHTML = 'Собери число ' + target + ' <small>(' + ruNum(target) + ')</small>'; draw(); }
+  $$('[data-a]', stage).forEach(b => b.onclick = function(){
+    const a = b.dataset.a;
+    if (a === 't+'){ if (T < 9) T++; }
+    else if (a === 'o+'){ O++; if (O === 10){ O = 0; if (T < 9) T++; ctx.fb('10 единиц — это 1 десяток! Собираем их в палочку.', 'info'); } }
+    else if (a === 't-'){ if (T > 0) T--; }
+    else if (a === 'o-'){ if (O > 0) O--; else if (T > 0){ T--; O = 9; ctx.fb('Десяток разменяли на 10 единиц и одну убрали.', 'info'); } }
+    draw();
+  });
+  $('#b-ok', stage).onclick = function(){
+    if (T * 10 + O === target){
+      r++; ctx.fb(pick(PRAISE), 'ok');
+      if (r >= rounds){ $('#b-q', stage).innerHTML = 'Все числа собраны! 🌟'; $('#b-c', stage).textContent = ''; $$('.m2-btns', stage).forEach(x => x.style.display = 'none'); ctx.done(); }
+      else setTimeout(() => { if (ctx.alive()) newT(); }, 900);
+    } else { ctx.miss(); ctx.fb('Пока получилось ' + (T * 10 + O) + '. Нужно ' + target + ': ' + dDes(Math.floor(target / 10)) + ' и ' + dEd(target % 10) + '.', 'bad'); }
+  };
+  newT();
+};
+
+/* сотни: добавляем по одной сотне до 1000 */
+SCENES.hundredsBuild = function(stage, st, ctx){
+  let k = 0;
+  stage.innerHTML = '<div class="ac-qtxt m2-big" id="h-q"></div><div id="h-bl"></div><div class="ac-qtxt m2-ex" id="h-t"></div><div class="m2-btns"><button class="ac-btn ac-alt" id="h-m">− сотня</button><button class="ac-btn ac-go" id="h-p">+ сотня</button></div>';
+  function draw(){
+    $('#h-q', stage).textContent = k ? (k * 100) + ' — ' + ruNum(k * 100) : 'Нажми «+ сотня»';
+    $('#h-bl', stage).innerHTML = blocksHTML(k, 0, 0, true);
+    $('#h-t', stage).textContent = k === 0 ? '' : k === 10 ? '10 сотен — это 1000, тысяча! Одна сотня — это 10 десятков, то есть 100.' : dSot(k) + ' — это ' + k * 100 + '.';
+    if (k === 10){ ctx.fb('Тысяча! Дальше считать сотнями не нужно.', 'ok'); ctx.done(); } else ctx.fb(k ? 'Считаем сотнями: ' + Array.from({ length: k }, (_, i) => (i + 1) * 100).join(', ') : '', 'info');
+  }
+  $('#h-p', stage).onclick = () => { if (k < 10){ k++; draw(); } };
+  $('#h-m', stage).onclick = () => { if (k > 0){ k--; draw(); } };
+  draw();
+};
+
+/* группы по 3, 4, 5 */
+SCENES.groupsVis = function(stage, st, ctx){
+  const seen = {};
+  stage.innerHTML = '<div class="m2-tabs" id="g-t"></div><div class="m2-groups" id="g-v"></div><div class="ac-qtxt m2-ex" id="g-x">Выбери, как считать 👆</div>';
+  $('#g-t', stage).innerHTML = [3, 4, 5].map(s => '<button class="m2-tab" data-s="' + s + '">по ' + s + '</button>').join('');
+  $$('.m2-tab', stage).forEach(b => b.onclick = function(){
+    const s = +b.dataset.s; $$('.m2-tab', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen'); seen[s] = 1;
+    let h = ''; for (let i = 1; i * s <= 50; i++) h += '<div class="m2-grp"><div class="m2-dots">' + '<i></i>'.repeat(s) + '</div><b>' + i * s + '</b></div>';
+    $('#g-v', stage).innerHTML = h;
+    $('#g-x', stage).innerHTML = 'Считаем по ' + s + ': каждый раз прибавляем ' + s + '. Назад: каждый раз вычитаем ' + s + '. Числа: ' + Array.from({ length: Math.min(5, Math.floor(50 / s)) }, (_, i) => (i + 1) * s).join(', ') + '…';
+    if (Object.keys(seen).length >= 3){ ctx.fb('Все три счёта посмотрели!', 'ok'); ctx.done(); } else ctx.fb('Посмотри ещё: ' + (3 - Object.keys(seen).length), 'info');
+  });
+};
+
+/* чётные и нечётные: пары */
+SCENES.pairsVis = function(stage, st, ctx){
+  const seen = {}; let ev = 0, od = 0;
+  let h = '<div class="m2-tabs" id="p-t">'; for (let i = 1; i <= 20; i++) h += '<button class="m2-tab" data-n="' + i + '">' + i + '</button>'; h += '</div><div class="m2-show" id="p-s"><div class="ac-qtxt" style="margin-top:14px">Нажми на число 👆</div></div>';
+  stage.innerHTML = h;
+  $$('.m2-tab', stage).forEach(b => b.onclick = function(){
+    const v = +b.dataset.n; $$('.m2-tab', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[v]){ seen[v] = 1; if (v % 2) od++; else ev++; }
+    let d = '<div class="m2-pairs">'; for (let i = 0; i < Math.floor(v / 2); i++) d += '<span class="m2-pr"><i></i><i></i></span>'; if (v % 2) d += '<span class="m2-pr one"><i></i></span>'; d += '</div>';
+    $('#p-s', stage).innerHTML = d + '<div class="ac-qtxt m2-ex">' + (v % 2 ? '<b>' + v + ' — нечётное.</b> Один кружок остался без пары.' : '<b>' + v + ' — чётное.</b> Все кружки встали в пары, лишнего нет.') + '</div>';
+    if (ev >= 3 && od >= 3){ ctx.fb('Замечаешь? Чётные числа оканчиваются на 0, 2, 4, 6, 8. Нечётные — на 1, 3, 5, 7, 9.', 'ok'); ctx.done(); } else ctx.fb('Нужно посмотреть несколько чётных и несколько нечётных чисел.', 'info');
+  });
+};
+
+/* делим группу на 6–9 равных частей */
+SCENES.splitVis = function(stage, st, ctx){
+  const seen = {}; const COL = ['#E0574A', '#3B82F6', '#3FAE5A', '#F5B400', '#9B5DE5', '#00A6A6', '#FF8FAB', '#8B6B3E', '#6C7A89'];
+  stage.innerHTML = '<div class="ac-qtxt">На сколько равных частей делим?</div><div class="m2-tabs" id="s-t"></div><div class="m2-split" id="s-v"></div><div class="ac-qtxt m2-ex" id="s-x"></div>';
+  $('#s-t', stage).innerHTML = [6, 7, 8, 9].map(s => '<button class="m2-tab" data-s="' + s + '">' + s + '</button>').join('');
+  $$('.m2-tab', stage).forEach(b => b.onclick = function(){
+    const p = +b.dataset.s, k = rnd(2, 4); $$('.m2-tab', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen'); seen[p] = 1;
+    let h = ''; for (let i = 0; i < p; i++) h += '<div class="m2-part" style="border-color:' + COL[i] + '">' + ('<i style="background:' + COL[i] + '"></i>').repeat(k) + '</div>';
+    $('#s-v', stage).innerHTML = h;
+    $('#s-x', stage).innerHTML = (p * k) + ' кружков разделили на ' + p + ' равных частей. В каждой части по ' + k + '.';
+    if (Object.keys(seen).length >= 3){ ctx.fb('Хорошо! Равные части — это когда в каждой одинаково.', 'ok'); ctx.done(); } else ctx.fb('Попробуй ещё несколько делений.', 'info');
+  });
+};
+
+/* письменное сложение и вычитание по шагам */
+SCENES.colWalk = function(stage, st, ctx){
+  const ex = st.ex, fin = {}; let cur = -1, step = 0, nf = 0; const need = Math.min(st.need || 3, ex.length);
+  stage.innerHTML = '<div class="m2-tabs" id="w-t"></div><div id="w-v" class="m2-colbox"></div><div class="ac-qtxt m2-ex" id="w-x">Выбери пример 👆</div><div class="m2-btns"><button class="ac-btn ac-go" id="w-n" style="display:none">Следующий шаг →</button></div>';
+  $('#w-t', stage).innerHTML = ex.map((e, i) => '<button class="m2-tab" data-i="' + i + '">' + e[0] + (e[2] === '+' ? ' + ' : ' − ') + e[1] + '</button>').join('');
+  function draw(){
+    const e = ex[cur], S = colSteps(e[0], e[1], e[2]), s = S[step];
+    $('#w-v', stage).innerHTML = colTable(e[0], e[1], e[2], { res: s.res, note: s.note, cut: s.cut });
+    $('#w-x', stage).textContent = s.txt;
+    const nb = $('#w-n', stage);
+    if (s.last){ nb.style.display = 'none'; if (!fin[cur]){ fin[cur] = 1; nf++; } if (nf >= need){ ctx.fb('Алгоритм понятен! Теперь потренируемся сами.', 'ok'); ctx.done(); } else ctx.fb('Разобрано примеров: ' + nf + ' из ' + need + '.', 'info'); }
+    else { nb.style.display = ''; nb.textContent = 'Следующий шаг →'; }
+  }
+  $$('.m2-tab', stage).forEach(b => b.onclick = function(){ cur = +b.dataset.i; step = 0; $$('.m2-tab', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen'); draw(); });
+  $('#w-n', stage).onclick = function(){ step++; draw(); };
+};
+
+/* ---------- генераторы вопросов ---------- */
+const SWAP = n => (n % 10) * 10 + Math.floor(n / 10);
+const ROM = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+
+GENS.nextPrev = function(){
+  const n = pick([rnd(11, 98), rnd(2, 9) * 10 + 9, rnd(2, 9) * 10, rnd(11, 98)]), t = rnd(0, 2);
+  if (t === 0) return { html: big('Какое число стоит после ' + n + '?'), opts: opts4(n + 1, [n + 2, n - 1, n + 10, n]), ans: n + 1, hint: 'Следующее число на 1 больше: ' + n + ' + 1 = ' + (n + 1) + '.' };
+  if (t === 1) return { html: big('Какое число стоит перед ' + n + '?'), opts: opts4(n - 1, [n - 2, n + 1, n - 10, n]), ans: n - 1, hint: 'Предыдущее число на 1 меньше: ' + n + ' − 1 = ' + (n - 1) + '.' };
+  return { html: big('Назови число, которое стоит между ' + (n - 1) + ' и ' + (n + 1) + '.'), opts: opts4(n, [n - 2, n + 2, n + 10, n - 10]), ans: n, hint: 'Между ' + (n - 1) + ' и ' + (n + 1) + ' стоит число ' + n + ': ' + (n - 1) + ', ' + n + ', ' + (n + 1) + '.' };
+};
+GENS.lineMark = function(){
+  if (Math.random() < .5){
+    const a = rnd(1, 9) * 10, m = a + rnd(1, 9);
+    return { html: '<div class="ac-qtxt">Какое число отмечено на числовом луче?</div>' + lineSVG(a, a + 10, 1, m), opts: opts4(m, [m + 1, m - 1, m + 2, m - 2]), ans: m, hint: 'Числа на луче идут по порядку, каждое следующее на 1 больше. Посчитай от ' + a + ' до отметки.' };
+  }
+  const m = rnd(1, 9) * 10;
+  return { html: '<div class="ac-qtxt">Какое число отмечено на числовом луче?</div>' + lineSVG(0, 100, 10, m), opts: opts4(m, [m + 10, m - 10, m + 20, m - 20, m + 1]), ans: m, hint: 'На этом луче числа идут через 10: 0, 10, 20, 30… Найди соседние подписанные числа.' };
+};
+GENS.countBack = function(){
+  const t = rnd(0, 3);
+  if (t === 0){ const n = rnd(14, 99); return { html: big(n + ', ' + (n - 1) + ', ' + (n - 2) + ', …'), opts: opts4(n - 3, [n - 4, n - 2, n - 1, n - 13]), ans: n - 3, hint: 'Считаем в обратном порядке: каждое следующее число на 1 меньше.' }; }
+  if (t === 1){ const n = rnd(5, 9) * 10 + rnd(0, 9); return { html: big(n + ', ' + (n - 10) + ', ' + (n - 20) + ', …'), opts: opts4(n - 30, [n - 31, n - 29, n - 21, n - 40]), ans: n - 30, hint: 'Каждое число на 10 меньше предыдущего: уменьшается число десятков.' }; }
+  if (t === 2){ const n = rnd(1, 6) * 10 + rnd(0, 9); return { html: big(n + ', ' + (n + 10) + ', ' + (n + 20) + ', …'), opts: opts4(n + 30, [n + 31, n + 29, n + 21, n + 40]), ans: n + 30, hint: 'Каждое число на 10 больше предыдущего: увеличивается число десятков.' }; }
+  const n = rnd(11, 90); return { html: big('Считай в обратном порядке. Что стоит после ' + n + '?'), opts: opts4(n - 1, [n + 1, n - 2, n - 10, n - 11]), ans: n - 1, hint: 'При счёте назад называем число, которое на 1 меньше.' };
+};
+GENS.formNum = function(){
+  const t = rnd(1, 9), o = rnd(0, 9), n = t * 10 + o, k = rnd(0, 3);
+  if (k === 0) return { html: big(dDes(t) + ' и ' + dEd(o) + ' — это число…'), opts: opts4(n, [SWAP(n), n + 10, n - 10, t + o]), ans: n, hint: 'Десятки пишем на первом месте, единицы — на втором: ' + t + ' и ' + o + ' → ' + n + '.' };
+  if (k === 1) return { html: big('Сколько десятков в числе ' + n + '?'), opts: opts4(t, [o, t + 1, t - 1, n]), ans: t, hint: 'Первая цифра двузначного числа — десятки. В числе ' + n + ' это ' + t + '.' };
+  if (k === 2) return { html: big('Сколько единиц в числе ' + n + '?'), opts: opts4(o, [t, o + 1, o - 1, n]), ans: o, hint: 'Последняя цифра числа — единицы. В числе ' + n + ' это ' + o + '.' };
+  const m = rnd(1, 9); return { html: big(dDes(m) + ' — это число…'), opts: opts4(m * 10, [m, m * 10 + 1, (m + 1) * 10, m * 100]), ans: m * 10, hint: 'Один десяток — это 10. ' + dDes(m) + ' — это ' + m * 10 + '.' };
+};
+GENS.decomp = function(){
+  let t, o; do { t = rnd(1, 9); o = rnd(1, 9); } while (t === o);
+  const n = t * 10 + o, k = rnd(0, 1);
+  if (k === 0) return { html: big(n + ' = ' + t * 10 + ' + ☐'), opts: opts4(o, [t, o + 1, o - 1, n]), ans: o, hint: n + ' — это ' + dDes(t) + ' (' + t * 10 + ') и ' + dEd(o) + '. Значит, ' + n + ' = ' + t * 10 + ' + ' + o + '.' };
+  const ans = t * 10 + ' + ' + o;
+  return { html: big('Разложи число ' + n + ' на разрядные слагаемые'), opts: shuffle([ans, t + ' + ' + o, o * 10 + ' + ' + t, (t + 1) * 10 + ' + ' + o]), ans: ans, wide: true, hint: 'Разрядные слагаемые — это десятки и единицы: ' + dDes(t) + ' = ' + t * 10 + ', ' + dEd(o) + ' = ' + o + '.' };
+};
+GENS.blocksNum = function(){
+  const t = rnd(1, 9), o = rnd(0, 9), n = t * 10 + o;
+  return { html: '<div class="ac-qtxt">Какое число показано?</div>' + blocksHTML(0, t, o), opts: opts4(n, [SWAP(n), n + 10, n - 10, t + o, n + 1]), ans: n, hint: 'Синяя палочка — 1 десяток (10), красный кубик — 1 единица. Здесь ' + dDes(t) + ' и ' + dEd(o) + ': ' + n + '.' };
+};
+GENS.placeTable = function(){
+  const t = rnd(1, 9), o = rnd(0, 9), n = t * 10 + o, k = rnd(0, 2);
+  const tbl = placeTbl(t, o, 'big');
+  if (k === 0) return { html: '<div class="ac-qtxt">Какое число записано в таблице разрядов?</div>' + tbl, opts: opts4(n, [SWAP(n), n + 10, n - 10, t + o]), ans: n, hint: 'Слева в таблице десятки, справа единицы. ' + t + ' и ' + o + ' — это число ' + n + '.' };
+  if (k === 1) return { html: '<div class="ac-qtxt">Сколько десятков в таблице?</div>' + tbl, opts: opts4(t, [o, t + 1, t - 1, n]), ans: t, hint: 'Десятки стоят в левом столбце таблицы.' };
+  return { html: '<div class="ac-qtxt">Запиши число ' + n + ' в таблицу. Сколько будет в столбце «Единицы»?</div>', opts: opts4(o, [t, o + 1, o - 1, n]), ans: o, hint: 'В числе ' + n + ' цифра ' + t + ' — десятки, цифра ' + o + ' — единицы.' };
+};
+GENS.readNum = function(){
+  const n = rnd(12, 99); if (n % 10 === 0) return GENS.readNum();
+  const sw = SWAP(n), k = rnd(0, 1);
+  if (k === 0){
+    const cand = [n + 10, n - 10, sw, n + 1, n - 1].filter(x => x >= 12 && x <= 99 && x !== n);
+    return { html: big('Как читается число ' + n + '?'), opts: opts4(ruNum(n), cand.map(ruNum)), ans: ruNum(n), wide: true, hint: 'Сначала называем десятки, потом единицы: ' + dg(n)[1] + ' и ' + dg(n)[2] + ' → ' + ruNum(n) + '.' };
+  }
+  const cand = [n + 10, n - 10, sw, n + 1, n - 1].filter(x => x >= 12 && x <= 99 && x !== n);
+  return { html: big('Запиши цифрами: ' + ruNum(n)), opts: opts4(n, cand), ans: n, hint: 'Первое слово — десятки, второе — единицы. Запиши сначала цифру десятков, потом единиц.' };
+};
+GENS.cmp = function(){
+  let a = rnd(10, 99), b = Math.random() < .5 ? (Math.floor(a / 10) * 10 + rnd(0, 9)) : rnd(10, 99);
+  const k = rnd(0, 3);
+  if (k === 0) b = a;
+  let left = String(a), right = String(b);
+  if (k === 3){ const t = Math.floor(a / 10) * 10, o = a % 10; left = t + ' + ' + o; right = String(b); }
+  const lv = a, rv = b, ans = lv < rv ? '<' : lv > rv ? '>' : '=';
+  const da = dg(lv), db = dg(rv);
+  let hint;
+  if (ans === '=') hint = 'Оба числа равны: ' + lv + ' = ' + rv + '.';
+  else if (da[1] !== db[1]) hint = 'Сначала сравниваем десятки: ' + da[1] + ' и ' + db[1] + ' — ' + (da[1] < db[1] ? 'меньше' : 'больше') + ', значит и всё число ' + (da[1] < db[1] ? 'меньше' : 'больше') + '.';
+  else hint = 'Десятки равны (' + da[1] + '). Сравниваем единицы: ' + da[2] + ' и ' + db[2] + '.';
+  return { html: big(left + ' ☐ ' + right), opts: ['<', '>', '='], ans: ans, hint: hint };
+};
+GENS.orderGen = function(){
+  const set = new Set(); while (set.size < 3) set.add(rnd(10, 99)); const a = Array.from(set), asc = Math.random() < .6;
+  const sorted = a.slice().sort((x, y) => asc ? x - y : y - x), key = x => x.join(', ');
+  const perms = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]].map(p => p.map(i => a[i])).filter(p => key(p) !== key(sorted));
+  const opts = shuffle([key(sorted)].concat(shuffle(perms).slice(0, 3).map(key)));
+  return { html: big('Расположи числа ' + a.join(', ') + ' ' + (asc ? 'от меньшего к большему' : 'от большего к меньшему')), opts: opts, ans: key(sorted), wide: true, hint: 'Сравни десятки у всех чисел. Если десятки одинаковые — сравни единицы. ' + (asc ? 'Начни с самого маленького.' : 'Начни с самого большого.') };
+};
+GENS.hundredsQ = function(){
+  const k = rnd(1, 9), t = rnd(0, 4);
+  if (t === 0){ const s = rnd(1, 5), lst = [s * 100, (s + 1) * 100, (s + 2) * 100]; return { html: big(lst.join(', ') + ', …'), opts: opts4((s + 3) * 100, [(s + 3) * 100 + 10, (s + 2) * 100 + 1, (s + 4) * 100, (s + 3) * 10]), ans: (s + 3) * 100, hint: 'Считаем сотнями: каждое число на 100 больше предыдущего.' }; }
+  if (t === 1){ const s = rnd(5, 9); return { html: big(s * 100 + ', ' + (s - 1) * 100 + ', ' + (s - 2) * 100 + ', …'), opts: opts4((s - 3) * 100, [(s - 3) * 100 + 10, (s - 2) * 100 + 1, (s - 4) * 100, (s - 3) * 10]), ans: (s - 3) * 100, hint: 'Считаем сотнями в обратном порядке: каждое число на 100 меньше.' }; }
+  if (t === 2) return { html: '<div class="ac-qtxt">Сколько сотен в числе ' + k * 100 + '?</div>' + blocksHTML(k, 0, 0, true), opts: opts4(k, [k * 10, k + 1, k - 1, 10]), ans: k, hint: 'Одна сотня — это 100. Посчитай квадраты: их ' + k + '.' };
+  if (t === 3) return { html: big('Запиши числом: ' + dSot(k)), opts: opts4(k * 100, [k * 10, k * 100 + 10, k, (k + 1) * 100]), ans: k * 100, hint: '1 сотня = 100, значит ' + dSot(k) + ' = ' + k * 100 + '.' };
+  const a = rnd(1, 9); let b = rnd(1, 9); if (b === a) b = a === 9 ? 8 : a + 1; const ans = a < b ? '<' : '>';
+  return { html: big(a * 100 + ' ☐ ' + b * 100), opts: ['<', '>', '='], ans: ans, hint: 'Сравни число сотен: ' + a + ' и ' + b + '. Чем больше сотен, тем больше число.' };
+};
+GENS.groupCount = function(){
+  const s = pick([3, 4, 5]), mx = Math.floor(50 / s), back = Math.random() < .4, i0 = rnd(1, mx - 3);
+  if (!back){ const l = [i0, i0 + 1, i0 + 2].map(i => i * s); return { html: big('Считаем по ' + s + ': ' + l.join(', ') + ', …'), opts: opts4((i0 + 3) * s, [(i0 + 3) * s + 1, (i0 + 3) * s - 1, (i0 + 2) * s + 1, (i0 + 3) * s + s]), ans: (i0 + 3) * s, hint: 'К каждому числу прибавляем ' + s + ': ' + l[2] + ' + ' + s + ' = ' + (i0 + 3) * s + '.' }; }
+  const l = [i0 + 3, i0 + 2, i0 + 1].map(i => i * s); return { html: big('Считаем назад по ' + s + ': ' + l.join(', ') + ', …'), opts: opts4(i0 * s, [i0 * s + 1, i0 * s - 1, i0 * s + s, i0 * s - s]), ans: i0 * s, hint: 'Из каждого числа вычитаем ' + s + ': ' + l[2] + ' − ' + s + ' = ' + i0 * s + '.' };
+};
+GENS.evenOdd = function(){
+  const k = rnd(0, 2);
+  if (k === 0){ const ev = Math.random() < .5, pool = new Set(); while (pool.size < 4){ const x = rnd(10, 99); if (pool.size === 0 ? (x % 2 === 0) === ev : (x % 2 === 0) !== ev) pool.add(x); }
+    const a = Array.from(pool), ans = a[0];
+    return { html: big('Какое число ' + (ev ? 'чётное' : 'нечётное') + '?'), opts: shuffle(a), ans: ans, hint: 'Чётные числа оканчиваются на 0, 2, 4, 6 или 8. Нечётные — на 1, 3, 5, 7 или 9. Смотри на последнюю цифру.' }; }
+  if (k === 1){ const n = rnd(10, 99); return { html: big('Число ' + n + ' — какое?'), opts: ['чётное', 'нечётное'], ans: n % 2 ? 'нечётное' : 'чётное', hint: 'Последняя цифра ' + n % 10 + ': ' + (n % 2 ? 'нечётная, значит и число нечётное.' : 'чётная, значит и число чётное.') }; }
+  const n = rnd(10, 90) * 1; const e = n % 2 ? n + 1 : n + 2; return { html: big('Назови ближайшее чётное число после ' + n + '.'), opts: opts4(e, [e + 1, e - 1, e + 2, n + 1 === e ? e - 2 : n + 1].filter(x => x !== e)), ans: e, hint: 'Чётные числа идут через одно: ... ' + (e - 2) + ', ' + e + ', ' + (e + 2) + '. Первое чётное после ' + n + ' — это ' + e + '.' };
+};
+GENS.splitQ = function(){
+  const p = rnd(6, 9), k = rnd(2, 4), N = p * k;
+  if (Math.random() < .6) return { html: big(N + ' яблок разложили поровну на ' + p + ' тарелок. Сколько яблок на каждой тарелке?'), opts: opts4(k, [k + 1, k - 1, p, k + 2].filter(x => x > 0)), ans: k, hint: 'Раздавай по одному яблоку на каждую тарелку по кругу. Яблок хватит на ' + k + ' круга.' };
+  return { html: big('В ' + p + ' одинаковых коробках лежит по ' + k + ' карандаша. Сколько всего карандашей?'), opts: opts4(N, [N + k, N - k, N + 1, N - 1, p + k]), ans: N, hint: 'Складываем одинаковые числа: ' + Array(p).fill(k).join(' + ') + ' = ' + N + '.' };
+};
+GENS.romanRead = function(){
+  const n = rnd(1, 12);
+  return { html: big('Какое число записано римскими цифрами: ' + ROM[n] + '?'), opts: opts4(n, [n + 1, n - 1, n + 2, n - 2, n === 4 ? 6 : n === 6 ? 4 : n === 9 ? 11 : n === 11 ? 9 : n + 3].filter(x => x >= 1 && x <= 12)), ans: n, hint: 'I — это 1, V — 5, X — 10. Если меньшая цифра стоит справа, прибавляем (VI = 5 + 1). Если слева — вычитаем (IV = 5 − 1, IX = 10 − 1).' };
+};
+GENS.romanWrite = function(){
+  const n = rnd(1, 12), cand = [ROM[n + 1], ROM[n - 1], ROM[n + 2], ROM[n - 2], n === 4 ? 'IIII' : n === 9 ? 'VIIII' : n === 8 ? 'IIX' : 'IIV'].filter(x => x && x !== ROM[n]);
+  return { html: big('Запиши число ' + n + ' римскими цифрами'), opts: shuffle([ROM[n]].concat(shuffle(Array.from(new Set(cand))).slice(0, 3))), ans: ROM[n], hint: 'I — 1, V — 5, X — 10. ' + (n === 4 ? '4 — это 5 − 1, значит IV.' : n === 9 ? '9 — это 10 − 1, значит IX.' : n < 4 ? 'Складываем единицы: ' + ROM[n] + '.' : n < 9 ? '5 и ещё ' + (n - 5) + ': ' + ROM[n] + '.' : '10 и ещё ' + (n - 10) + ': ' + ROM[n] + '.') };
+};
+GENS.mentalTens = function(){
+  const t = rnd(0, 3);
+  if (t === 0){ const a = rnd(2, 7) * 10, b = rnd(11, 29); if (a + b > 99) return GENS.mentalTens(); const bt = b - b % 10; return { html: big(a + ' + ' + b), opts: opts4(a + b, [a + b + 10, a + b - 10, a + b + 1, a + bt, a + b % 10]), ans: a + b, hint: 'Разложи ' + b + ' на ' + bt + ' + ' + b % 10 + '. Сначала ' + a + ' + ' + bt + ' = ' + (a + bt) + ', потом ещё ' + b % 10 + ': ' + (a + b) + '.' }; }
+  if (t === 1){ const n = rnd(41, 99); if (n % 10 === 0) return GENS.mentalTens(); const tt = Math.floor(n / 10), b = rnd(1, tt - 1) * 10; return { html: big(n + ' − ' + b), opts: opts4(n - b, [n - b + 10, n - b - 10, n - b + 1, n % 10]), ans: n - b, hint: 'Вычитаем только десятки: ' + tt + ' дес. − ' + b / 10 + ' дес. = ' + (tt - b / 10) + ' дес. Единицы остаются: ' + (n - b) + '.' }; }
+  if (t === 2){ const u = rnd(1, 9), t1 = rnd(3, 9), t2 = rnd(1, t1 - 1), n = t1 * 10 + u, b = t2 * 10 + u; return { html: big(n + ' − ' + b), opts: opts4(n - b, [n - b + u, n - b + 1, n - b - 10, u]), ans: n - b, hint: 'Единицы одинаковые, их вычитаем: ' + u + ' − ' + u + ' = 0. Десятки: ' + t1 + ' − ' + t2 + ' = ' + (t1 - t2) + ' дес. = ' + (n - b) + '.' }; }
+  const a = rnd(21, 68), b = rnd(11, 31), add = Math.random() < .5;
+  if (add){ if (a % 10 + b % 10 >= 10 || a + b > 99) return GENS.mentalTens(); return { html: big(a + ' + ' + b), opts: opts4(a + b, [a + b + 10, a + b - 10, a + b + 1, a + b - 1]), ans: a + b, hint: 'Десятки с десятками, единицы с единицами: ' + (a - a % 10) + ' + ' + (b - b % 10) + ' = ' + (a - a % 10 + b - b % 10) + ', ' + a % 10 + ' + ' + b % 10 + ' = ' + (a % 10 + b % 10) + '. Всего ' + (a + b) + '.' }; }
+  if (b % 10 > a % 10 || b >= a) return GENS.mentalTens();
+  return { html: big(a + ' − ' + b), opts: opts4(a - b, [a - b + 10, a - b - 10, a - b + 1, a - b - 1]), ans: a - b, hint: 'Десятки из десятков, единицы из единиц: ' + (a - a % 10) + ' − ' + (b - b % 10) + ' = ' + (a - a % 10 - b + b % 10) + ', ' + a % 10 + ' − ' + b % 10 + ' = ' + (a % 10 - b % 10) + '. Всего ' + (a - b) + '.' };
+};
+GENS.hundredsOp = function(){
+  if (Math.random() < .5){
+    const a = rnd(1, 6), b = rnd(1, 9 - a), add = Math.random() < .6;
+    if (add) return { html: big(a * 100 + ' + ' + b * 100 + ' <small>(' + dSot(a) + ' + ' + dSot(b) + ')</small>'), opts: opts4((a + b) * 100, [(a + b) * 10, (a + b) * 100 + 10, (a + b + 1) * 100, (a + b) * 100 - 100].filter(x => x > 0)), ans: (a + b) * 100, hint: dSot(a) + ' + ' + dSot(b) + ' = ' + dSot(a + b) + ' = ' + (a + b) * 100 + '.' };
+    return { html: big((a + b) * 100 + ' − ' + a * 100 + ' <small>(' + dSot(a + b) + ' − ' + dSot(a) + ')</small>'), opts: opts4(b * 100, [b * 10, b * 100 + 100, b * 100 + 10, (b + 1) * 100].filter(x => x > 0)), ans: b * 100, hint: dSot(a + b) + ' − ' + dSot(a) + ' = ' + dSot(b) + ' = ' + b * 100 + '.' };
+  }
+  const a = rnd(12, 19), b = rnd(11, a - 1), add = Math.random() < .3;
+  if (add){ const x = rnd(11, 15), y = rnd(11, 15); return { html: big(x * 10 + ' + ' + y * 10 + ' <small>(' + dDes(x) + ' + ' + dDes(y) + ')</small>'), opts: opts4((x + y) * 10, [x + y, (x + y) * 10 + 10, (x + y) * 10 - 10, (x + y) * 100]), ans: (x + y) * 10, hint: dDes(x) + ' + ' + dDes(y) + ' = ' + dDes(x + y) + ' = ' + (x + y) * 10 + '.' }; }
+  return { html: big(a * 10 + ' − ' + b * 10 + ' <small>(' + dDes(a) + ' − ' + dDes(b) + ')</small>'), opts: opts4((a - b) * 10, [a - b, (a - b) * 10 + 10, (a - b) * 10 - 10, (a - b) * 100].filter(x => x > 0)), ans: (a - b) * 10, hint: dDes(a) + ' − ' + dDes(b) + ' = ' + dDes(a - b) + ' = ' + (a - b) * 10 + '.' };
+};
+GENS.crossSingle = function(){
+  if (Math.random() < .55){
+    const a = rnd(3, 9), b = rnd(11 - a, 9), s = a + b, big1 = Math.max(a, b), sm = Math.min(a, b), need = 10 - big1;
+    return { html: big(a + ' + ' + b), opts: opts4(s, [s - 1, s + 1, s - 10, s + 2, 10 + a - b > 0 ? 10 + a - b : s - 2]), ans: s, hint: 'Дополни до десятка: к ' + big1 + ' нужно ' + need + '. Берём ' + need + ' из ' + sm + ': ' + big1 + ' + ' + need + ' = 10, и ещё ' + (sm - need) + ' — получится ' + s + '.' };
+  }
+  const y = rnd(3, 9), n = rnd(10 + 1, 10 + y - 1) , r = n - y, u = n - 10;
+  if (u >= y) return GENS.crossSingle();
+  return { html: big(n + ' − ' + y), opts: opts4(r, [r - 1, r + 1, r + 10, r - 2, y - u]), ans: r, hint: 'Сначала вычтем ' + u + ', чтобы получить 10: ' + n + ' − ' + u + ' = 10. Осталось вычесть ' + (y - u) + ': 10 − ' + (y - u) + ' = ' + r + '.' };
+};
+GENS.crossTwo = function(){
+  const k = rnd(0, 2);
+  if (k === 0){ const b = rnd(5, 9), a = rnd(2, 8) * 10 + rnd(10 - b, 9); if (a + b > 99) return GENS.crossTwo(); return { html: big(a + ' + ' + b), opts: opts4(a + b, [a + b - 10, a + b + 10, a + b + 1, a + b - 1]), ans: a + b, hint: 'Сначала дополни до круглого десятка: ' + a + ' + ' + (10 - a % 10) + ' = ' + (a + 10 - a % 10) + '. Осталось прибавить ' + (b - (10 - a % 10)) + ': ' + (a + b) + '.' }; }
+  if (k === 1){ const b = rnd(5, 9), a = rnd(3, 9) * 10 + rnd(1, b - 1); return { html: big(a + ' − ' + b), opts: opts4(a - b, [a - b + 10, a - b - 10, a - b + 1, a - b - 1]), ans: a - b, hint: 'Сначала вычти единицы числа: ' + a + ' − ' + a % 10 + ' = ' + (a - a % 10) + '. Осталось вычесть ' + (b - a % 10) + ': ' + (a - a % 10) + ' − ' + (b - a % 10) + ' = ' + (a - b) + '.' }; }
+  const a = rnd(3, 9) * 10, b = rnd(11, 29); if (b % 10 === 0 || b >= a) return GENS.crossTwo();
+  return { html: big(a + ' − ' + b), opts: opts4(a - b, [a - b + 10, a - b - 10, a - b + 1, a - b - 1, a - (b - b % 10) ]), ans: a - b, hint: 'Вычитаем по частям: ' + b + ' = ' + (b - b % 10) + ' + ' + b % 10 + '. ' + a + ' − ' + (b - b % 10) + ' = ' + (a - b + b % 10) + ', ' + (a - b + b % 10) + ' − ' + b % 10 + ' = ' + (a - b) + '.' };
+};
+function colPair(kind){
+  let a, b;
+  if (kind === 'add0'){ do { a = rnd(11, 76); b = rnd(11, 45); } while (a % 10 + b % 10 >= 10 || a + b > 99); }
+  else if (kind === 'addc'){ do { a = rnd(21, 79); b = rnd(11, 29); } while (a % 10 + b % 10 < 10 || a % 10 + b % 10 === 10 || a + b > 99); }
+  else if (kind === 'add10'){ do { a = rnd(21, 69); b = rnd(11, 39); } while (a % 10 + b % 10 !== 10 || a + b > 99); }
+  else if (kind === 'sub0'){ do { a = rnd(31, 99); b = rnd(11, 59); } while (b >= a || b % 10 > a % 10 || a % 10 === 0 && b % 10 > 0); }
+  else if (kind === 'subb'){ do { a = rnd(31, 99); b = rnd(11, 59); } while (b >= a || b % 10 <= a % 10 || a % 10 === 0 && false); }
+  else if (kind === 'sub80'){ a = pick([60, 70, 80, 90, 50, 40]); do { b = rnd(11, a - 1); } while (b % 10 === 0); }
+  else { a = 100; do { b = rnd(11, 89); } while (b % 10 === 0); }
+  return [a, b];
+}
+function colGen(kinds){
+  const kind = pick(kinds), ab = colPair(kind), a = ab[0], b = ab[1], op = kind.slice(0, 3) === 'add' ? '+' : '-', r = op === '+' ? a + b : a - b;
+  const A = dg(a), B = dg(b);
+  const wrong = op === '+' ? [((A[1] + B[1]) % 10) * 10 + (A[2] + B[2]) % 10, r + 10, r - 10, r + 1] : [(A[1] - B[1]) * 10 + Math.abs(A[2] - B[2]), r + 10, r - 10, r + 1, r - 1];
+  return { html: '<div class="ac-qtxt">Реши в столбик</div><div class="m2-colbox">' + colTable(a, b, op, { res: 'q' }) + '</div>', opts: opts4(r, wrong.filter(x => x > 0 && x !== r)), ans: r, hint: colHint(a, b, op) };
+}
+GENS.colAdd = () => colGen(['add0', 'addc', 'add10']);
+GENS.colSub = () => colGen(['sub0', 'subb', 'sub80', 'sub100']);
+GENS.colMix = () => colGen(['add0', 'addc', 'add10', 'sub0', 'subb', 'sub80', 'sub100']);
+GENS.propQ = function(){
+  const k = rnd(0, 3);
+  if (k === 0){ const a = rnd(11, 59), b = rnd(11, 39); return { html: big(a + ' + ' + b + ' = ' + b + ' + ☐'), opts: opts4(a, [b, a + 1, a - 1, a + b]), ans: a, hint: 'От перестановки слагаемых сумма не меняется (переместительное свойство): ' + a + ' + ' + b + ' = ' + b + ' + ' + a + '.' }; }
+  if (k === 1){ const b = rnd(2, 8), c = 10 - b, a = rnd(11, 79 - 0) ; if (a + 10 > 99) return GENS.propQ(); return { html: big('Удобно вычисли: ' + a + ' + ' + b + ' + ' + c), opts: opts4(a + 10, [a + b, a + c, a + 11, a + 9, a + 20]), ans: a + 10, hint: 'Сначала сложи ' + b + ' + ' + c + ' = 10, потом ' + a + ' + 10 = ' + (a + 10) + '. Слагаемые можно группировать как удобно (сочетательное свойство).' }; }
+  if (k === 2){ const a = rnd(11, 39), b = rnd(11, 39), c = rnd(2, 9); return { html: big('(' + a + ' + ' + b + ') + ' + c + ' = ' + a + ' + (' + b + ' + ☐)'), opts: opts4(c, [a, b, c + 1, c - 1].filter(x => x > 0)), ans: c, hint: 'Сумма не изменится, если сгруппировать слагаемые по-другому (сочетательное свойство). Третье слагаемое то же: ' + c + '.' }; }
+  const a = pick([18, 28, 38, 48, 58]), c = a % 10 === 8 ? 2 : 2, b = rnd(5, 9); const s = (a + c) + b;
+  return { html: big('Удобно вычисли: ' + a + ' + ' + b + ' + ' + c), opts: opts4(s, [s + 1, s - 1, s + 10, s - 10]), ans: s, hint: 'Сложи ' + a + ' и ' + c + ': получится ' + (a + c) + '. Потом ' + (a + c) + ' + ' + b + ' = ' + s + '.' };
+};
+GENS.patternNext = function(){
+  const t = rnd(0, 4);
+  if (t === 0){ const d = pick([2, 3, 4, 5, 10]), s = rnd(1, 12), l = [0, 1, 2, 3].map(i => s + i * d); return { html: big(l.join(', ') + ', …'), opts: opts4(s + 4 * d, [s + 4 * d + 1, s + 4 * d - 1, s + 3 * d + d + 2, s + 5 * d]), ans: s + 4 * d, hint: 'Найди, на сколько растёт каждое число: ' + l[1] + ' − ' + l[0] + ' = ' + d + '. Прибавь ' + d + ' к последнему: ' + l[3] + ' + ' + d + ' = ' + (s + 4 * d) + '.' }; }
+  if (t === 1){ const d = pick([2, 3, 5, 10]), s = rnd(70, 99), l = [0, 1, 2, 3].map(i => s - i * d); return { html: big(l.join(', ') + ', …'), opts: opts4(s - 4 * d, [s - 4 * d + 1, s - 4 * d - 1, s - 5 * d, s - 3 * d + 2]), ans: s - 4 * d, hint: 'Числа убывают на ' + d + ': ' + l[0] + ' − ' + l[1] + ' = ' + d + '. Вычти ' + d + ' из последнего: ' + l[3] + ' − ' + d + ' = ' + (s - 4 * d) + '.' }; }
+  if (t === 2){ const d = pick([100, 100, 200]), s = rnd(1, 2) * 100, l = [0, 1, 2].map(i => s + i * d); return { html: big(l.join(', ') + ', …'), opts: opts4(s + 3 * d, [s + 3 * d + 10, s + 3 * d - 10, s + 4 * d, s + 3 * d + 1]), ans: s + 3 * d, hint: 'Числа растут на ' + d + ' (на ' + d / 100 + ' ' + (d / 100 === 1 ? 'сотню' : 'сотни') + '). ' + l[2] + ' + ' + d + ' = ' + (s + 3 * d) + '.' }; }
+  if (t === 3){ const d = pick([2, 3, 4, 5, 6, 10]), s = rnd(1, 15), l = [0, 1, 2, 3].map(i => s + i * d), rules = [2, 3, 4, 5, 6, 10].filter(x => x !== d); return { html: big('Какое правило: ' + l.join(', ') + '?'), opts: shuffle(['прибавляем ' + d].concat(shuffle(rules).slice(0, 3).map(x => 'прибавляем ' + x))), ans: 'прибавляем ' + d, wide: true, hint: 'Вычти из каждого числа предыдущее: ' + l[1] + ' − ' + l[0] + ' = ' + d + '.' }; }
+  const d = pick([3, 4, 5, 6]), s = rnd(1, 9), l = [0, 1, 2].map(i => s + i * d); return { html: big('Начни с ' + s + ' и прибавляй по ' + d + ': ' + l.join(', ') + ', …'), opts: opts4(s + 3 * d, [s + 3 * d + 1, s + 3 * d - 1, s + 4 * d, s + 2 * d + 1]), ans: s + 3 * d, hint: 'Каждый раз прибавляем ' + d + ': ' + l[2] + ' + ' + d + ' = ' + (s + 3 * d) + '.' };
+};
+GENS.patternBreak = function(){
+  const d = pick([2, 3, 4, 5, 10]), s = rnd(2, 20), seq = [0, 1, 2, 3, 4, 5].map(i => s + i * d), p = rnd(2, 4); let bad; do { bad = seq[p] + pick([1, -1, 2, -2]); } while (seq.indexOf(bad) >= 0);
+  const shown = seq.slice(); shown[p] = bad;
+  const others = shuffle(shown.filter((x, i) => i !== p)).slice(0, 3);
+  return { html: big(shown.join(', ') + '<br><small>Какое число нарушает закономерность?</small>'), opts: shuffle([bad].concat(others)), ans: bad, hint: 'Числа должны расти на ' + d + ': ' + seq.slice(0, p).join(', ') + ', … Ищи число, которое не подходит.' };
+};
+
+/* --- общий исполнитель вопросов --- */
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться в тренажёрах «Математики 2 класса»: задания каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Тренажёры 2 класса →</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+const LESSONS = [
+  { id: 'm1', icon: '🔢', title: 'Числа до 100', goal: 'Считать до 100 и назад, находить место числа в ряду',
+    steps: [
+      Q('m1s1', 'hundredChart', 'Таблица чисел', 'Привет! Это Барсик. Здесь все числа от 1 до 100 стоят по порядку. Нажимай на числа, а я подскажу, как они называются и какие числа стоят рядом.', { need: 6 }),
+      Q('m1s2', 'quiz', 'Соседние числа', 'Каждое следующее число на 1 больше предыдущего. Найди число, которое стоит перед, после или между другими числами.', { count: 6, gens: ['nextPrev'] }),
+      Q('m1s3', 'quiz', 'Числовой луч', 'На числовом луче числа стоят по порядку слева направо. Чем правее число, тем оно больше. Найди отмеченное число.', { count: 5, gens: ['lineMark'] }),
+      Q('m1s4', 'quiz', 'Считаем вперёд и назад', 'Можно считать по одному или десятками, вперёд и назад. Продолжи счёт.', { count: 6, gens: ['countBack'] })
+    ] },
+  { id: 'm2', icon: '🧱', title: 'Десятки и единицы', goal: 'Знать разрядный состав двузначных чисел',
+    steps: [
+      Q('m2s1', 'placeBuilder', 'Собираем число', 'В двузначном числе есть десятки и единицы. Десяток — это палочка из 10 кубиков. Добавляй десятки и единицы, чтобы получить нужное число. Когда наберётся 10 единиц, они превращаются в десяток.', { rounds: 3 }),
+      Q('m2s2', 'quiz', 'Сколько десятков и единиц', 'Первая цифра числа — десятки, вторая — единицы. Ответь на вопросы о составе числа.', { count: 6, gens: ['formNum'] }),
+      Q('m2s3', 'quiz', 'Разрядные слагаемые', 'Число можно разложить на десятки и единицы. Например, 53 — это 50 и 3. Такие слагаемые называют разрядными.', { count: 6, gens: ['decomp'] }),
+      Q('m2s4', 'quiz', 'Узнай число по рисунку', 'Синяя палочка — это десяток, красный кубик — единица. Посчитай и скажи, какое число изображено.', { count: 5, gens: ['blocksNum'] })
+    ] },
+  { id: 'm3', icon: '⚖️', title: 'Читаем и сравниваем', goal: 'Читать, записывать и сравнивать двузначные числа',
+    steps: [
+      Q('m3s1', 'quiz', 'Читаем и записываем', 'Сначала называем десятки, потом единицы. Например, 64 — шестьдесят четыре. Прочитай число или запиши его цифрами.', { count: 6, gens: ['readNum'] }),
+      Q('m3s2', 'quiz', 'Таблица разрядов', 'В таблице разрядов десятки стоят слева, а единицы справа. Так удобно записывать числа.', { count: 5, gens: ['placeTable'] }),
+      Q('m3s3', 'quiz', 'Больше, меньше, равно', 'Сначала сравниваем десятки. У какого числа десятков больше, то число больше. Если десятки равны, сравниваем единицы.', { count: 8, gens: ['cmp'] }),
+      Q('m3s4', 'quiz', 'Порядок чисел', 'Расположи числа по порядку. Сравни десятки, а если они равны, то единицы.', { count: 5, gens: ['orderGen'] })
+    ] },
+  { id: 'm4', icon: '💯', title: 'Сотни', goal: 'Считать сотнями до 1000, записывать и сравнивать',
+    steps: [
+      Q('m4s1', 'hundredsBuild', 'Считаем сотнями', 'Бывают и крупные единицы счёта. Сотня — это 10 десятков, то есть 100. Добавляй сотни по одной и смотри, как растёт число.'),
+      Q('m4s2', 'quiz', 'Задачи про сотни', 'Считай сотнями вперёд и назад, записывай числа и сравнивай их. Чем больше сотен, тем больше число.', { count: 8, gens: ['hundredsQ'] }),
+      Q('m4s3', 'quiz', 'Закономерности с сотнями', 'Продолжи ряд чисел. Посмотри, на сколько растёт каждое число.', { count: 5, gens: ['patternNext'] })
+    ] },
+  { id: 'm5', icon: '👥', title: 'Считаем группами', goal: 'Считать по 3, 4, 5, различать чётные и нечётные числа',
+    steps: [
+      Q('m5s1', 'groupsVis', 'Счёт по 3, 4 и 5', 'Считать можно не по одному, а группами: по 3, по 4 или по 5. Так считать быстрее. Выбирай счёт и смотри.'),
+      Q('m5s2', 'quiz', 'Продолжи счёт', 'Считай группами вперёд и назад до 50. Каждый раз прибавляй или вычитай столько, сколько в группе.', { count: 8, gens: ['groupCount'] }),
+      Q('m5s3', 'pairsVis', 'Чётные и нечётные', 'Если предметы можно разложить по парам без остатка, число называют чётным. Если один остаётся без пары, число нечётное. Проверь разные числа.'),
+      Q('m5s4', 'quiz', 'Чётное или нечётное', 'Смотри на последнюю цифру числа. Она подскажет, чётное число или нет.', { count: 7, gens: ['evenOdd'] }),
+      Q('m5s5', 'splitVis', 'Делим на равные части', 'Группу предметов можно разделить на равные части, когда в каждой части одинаково. Посмотри, как делят на 6, 7, 8 и 9 частей.'),
+      Q('m5s6', 'quiz', 'Равные части', 'Раздели поровну или сложи одинаковые группы. Рисунок в голове тебе поможет.', { count: 5, gens: ['splitQ'] })
+    ] },
+  { id: 'm6', icon: '🏛️', title: 'Римские цифры', goal: 'Читать и записывать числа до 12 римскими цифрами',
+    steps: [
+      Q('m6s1', 'infoTap', 'Римские цифры', 'Римляне записывали числа буквами. Для чисел до 12 нужны всего три знака: I — один, V — пять, X — десять. Нажимай на числа и смотри, как они записываются. Римские цифры бывают на циферблате часов.', { need: 6, prompt: 'Нажимай на числа 👆', items: [
+        { k: 'I', t: '<b>I</b> — один. Палочка означает единицу.' }, { k: 'II', t: '<b>II</b> — два: I + I.' }, { k: 'III', t: '<b>III</b> — три: I + I + I.' },
+        { k: 'IV', t: '<b>IV</b> — четыре. Меньшая цифра I стоит слева от V, значит вычитаем: 5 − 1 = 4.' }, { k: 'V', t: '<b>V</b> — пять.' },
+        { k: 'VI', t: '<b>VI</b> — шесть. I стоит справа от V, значит прибавляем: 5 + 1 = 6.' }, { k: 'VII', t: '<b>VII</b> — семь: 5 + 1 + 1.' }, { k: 'VIII', t: '<b>VIII</b> — восемь: 5 + 1 + 1 + 1.' },
+        { k: 'IX', t: '<b>IX</b> — девять. I стоит слева от X, значит вычитаем: 10 − 1 = 9.' }, { k: 'X', t: '<b>X</b> — десять.' },
+        { k: 'XI', t: '<b>XI</b> — одиннадцать: 10 + 1.' }, { k: 'XII', t: '<b>XII</b> — двенадцать: 10 + 1 + 1.' } ] }),
+      Q('m6s2', 'quiz', 'Читаем римские цифры', 'Прочитай число, записанное римскими цифрами. Помни: меньшая цифра справа прибавляется, слева — вычитается.', { count: 6, gens: ['romanRead'] }),
+      Q('m6s3', 'quiz', 'Записываем римскими цифрами', 'Теперь запиши число римскими цифрами. Четыре и девять записывают особым способом.', { count: 6, gens: ['romanWrite'] })
+    ] },
+  { id: 'm7', icon: '🧠', title: 'Считаем в уме', goal: 'Складывать и вычитать двузначные числа без перехода через десяток',
+    steps: [
+      Q('m7s1', 'quiz', 'Десятки и единицы по отдельности', 'Чтобы сложить или вычесть в уме, раздели числа на десятки и единицы. Десятки считай с десятками, единицы с единицами.', { count: 8, gens: ['mentalTens'] }),
+      Q('m7s2', 'quiz', 'Сотни и десятки как единицы счёта', 'Сотни и десятки тоже можно складывать, как обычные числа. Например, 3 сотни + 2 сотни = 5 сотен.', { count: 6, gens: ['hundredsOp'] })
+    ] },
+  { id: 'm8', icon: '🔟', title: 'Через десяток', goal: 'Вычислять устно с переходом через десяток',
+    steps: [
+      Q('m8s1', 'infoTap', 'Дополняем до десятка', 'Когда ответ получается больше десяти, помогает круглый десяток. Сначала дополни число до десятка, потом прибавь остаток. Посмотри примеры.', { need: 4, prompt: 'Выбери пример 👆', items: [
+        { k: '8 + 5', v: '<div class="m2-tfs">' + tenFrame(8, 2) + '<div class="m2-plus">+</div>' + tenFrame(0, 3) + '</div>', t: 'До 10 не хватает 2. Берём 2 из числа 5: 8 + 2 = 10. Остаётся 3. Итого 10 + 3 = 13.' },
+        { k: '13 − 6', t: 'Сначала вычтем 3, чтобы получить 10: 13 − 3 = 10. Осталось вычесть ещё 3: 10 − 3 = 7.' },
+        { k: '45 + 9', t: '9 — это почти 10. Прибавим 10 и вычтем 1: 45 + 10 = 55, 55 − 1 = 54. Или так: 45 + 5 = 50, 50 + 4 = 54.' },
+        { k: '45 − 9', t: 'Сначала вычтем 5: 45 − 5 = 40. Осталось вычесть 4: 40 − 4 = 36.' },
+        { k: '40 − 14', t: 'Вычтем по частям: 40 − 10 = 30, потом 30 − 4 = 26.' } ] }),
+      Q('m8s2', 'quiz', 'Однозначные числа', 'Сложи или вычти с переходом через десяток. Дополняй до 10.', { count: 8, gens: ['crossSingle'] }),
+      Q('m8s3', 'quiz', 'Двузначные числа', 'Тот же приём работает и с двузначными числами: сначала дополни до круглого десятка.', { count: 8, gens: ['crossTwo'] })
+    ] },
+  { id: 'm9', icon: '📝', title: 'Считаем в столбик', goal: 'Применять алгоритмы письменного сложения и вычитания',
+    steps: [
+      Q('m9s1', 'colWalk', 'Как считать в столбик', 'Большие числа удобно считать в столбик. Пиши единицы под единицами, десятки под десятками. Начинай с единиц. Выбери пример и нажимай «Следующий шаг».', { need: 3, ex: [[34, 23, '+'], [45, 19, '+'], [47, 33, '+'], [57, 23, '-'], [45, 19, '-'], [80, 47, '-'], [100, 35, '-']] }),
+      Q('m9s2', 'quiz', 'Складываем в столбик', 'Реши пример в столбик. Если единицы дают 10 или больше, один десяток переходит к десяткам.', { count: 6, gens: ['colAdd'] }),
+      Q('m9s3', 'quiz', 'Вычитаем в столбик', 'Если из единиц нельзя вычесть, занимаем один десяток. Он превращается в 10 единиц.', { count: 6, gens: ['colSub'] }),
+      Q('m9s4', 'quiz', 'Свойства сложения', 'От перестановки слагаемых сумма не меняется. Слагаемые можно группировать, как удобно. Это упрощает счёт.', { count: 6, gens: ['propQ'] })
+    ] },
+  { id: 'm10', icon: '🔁', title: 'Закономерности', goal: 'Находить закономерность и нарушение в ряду чисел',
+    steps: [
+      Q('m10s1', 'quiz', 'Что дальше', 'В ряду чисел часто спрятано правило. Найди его: посмотри, на сколько каждое число отличается от предыдущего.', { count: 8, gens: ['patternNext'] }),
+      Q('m10s2', 'quiz', 'Найди ошибку в ряду', 'В этих рядах одно число стоит не на своём месте. Найди то, которое нарушает правило.', { count: 6, gens: ['patternBreak'] }),
+      Q('m10s3', 'quiz', 'Повторяем всё', 'Последнее задание урока и первой части курса. Здесь вперемешку числа, устный счёт и столбик.', { count: 8, gens: ['nextPrev', 'cmp', 'mentalTens', 'crossSingle', 'colMix', 'hundredsQ'] }),
+      { id: 'm10s4', scene: 'finale', gate: false, title: 'Ты молодец!', text: 'Ты прошёл все уроки курса. Теперь заходи в тренажёры и тренируйся, пока всё не станет получаться легко и быстро.' }
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
