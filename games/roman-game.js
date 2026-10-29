@@ -38,7 +38,7 @@ function initRomanGame(containerId){
     function L1(){
       var n = rnd(1, 12);
       if(Math.random() < .5){
-        return S('1c' + n, Object.assign({ expr:'', cap:'Короткая стрелка показывает ' + n + ' ч. Какая это римская цифра?', say:[G.say('Короткая стрелка показывает ' + n + ' часов. Какая это римская цифра на циферблате?')], ans:R[n - 1], opts:ropts(n), layout:'wide', field:function(el){ el.innerHTML = G.clock(n, 0, { roman:true }); } }, hintR(n)));
+        return S('1c' + n, Object.assign({ expr:'', cap:'Короткая стрелка показывает ' + n + ' ч. Какая это римская цифра?', say:[G.say('Короткая стрелка показывает ' + n + ' ' + G.plural(n, 'час', 'часа', 'часов') + '. Какая это римская цифра на циферблате?')], ans:R[n - 1], opts:ropts(n), layout:'wide', field:function(el){ el.innerHTML = G.clock(n, 0, { roman:true }); } }, hintR(n)));
       }
       return S('1a' + n, Object.assign({ expr:'<span class="g2-chip">' + n + '</span>', cap:'Как записать это число римскими цифрами?', say:[G.say('Как записать число ' + n + ' римскими цифрами?')], ans:R[n - 1], opts:ropts(n), layout:'wide' }, hintR(n)));
     }
