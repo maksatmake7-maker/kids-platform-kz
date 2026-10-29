@@ -19,7 +19,80 @@
   function hsh(s){ var x = 5381; for(var i = 0; i < s.length; i++) x = ((x << 5) + x + s.charCodeAt(i)) | 0; return (x >>> 0).toString(36); }
   var ROMAN_RE = /\b(?=[IVX])(X{0,3}(?:IX|IV|V?I{0,3}))\b/g;
   function romanToArabic(t){ return t.replace(ROMAN_RE, function(m){ if(!m) return m; var v = { I:1, V:5, X:10 }, r = 0; for(var i = 0; i < m.length; i++) r += (i + 1 < m.length && v[m[i]] < v[m[i + 1]]) ? -v[m[i]] : v[m[i]]; return String(r); }); }
-  function say(text){ var k = 'g2_' + hsh(text), sp = romanToArabic(text); V.F.ru[k] = sp; return { id:'f_' + k, text:sp, ru:true }; }
+  /* Предложения с числами собираются из записанных кусочков: текст между числами + числовые клипы Барсика.
+     Работает только когда все кусочки есть на сайте (проверяет MXV.say), иначе читает браузер. */
+  var HUND = { 2:'двести', 3:'триста', 4:'четыреста', 5:'пятьсот', 6:'шестьсот', 7:'семьсот', 8:'восемьсот', 9:'девятьсот' };
+  var SYMS = { '+':'plus', '−':'minus', '-':'minus', '×':'times', '÷':'divby', '=':'eq' };
+  function nc(x){ return V.clips([x], 'ru').map(function(c){ return { id:c.id, text:c.text, ru:true }; }); }
+  function small(x, g){   /* 0–99 с родом для 1 и 2 */
+    if(x === 1 && g === 'f') return [{ id:'g2_n1f', text:'одна', ru:true }];
+    if(x === 1 && g === 'n') return [{ id:'g2_n1n', text:'одно', ru:true }];
+    if(x === 2 && g === 'f') return [{ id:'g2_n2f', text:'две', ru:true }];
+    if(x <= 20 || x % 10 === 0) return nc(x);
+    return nc(x - x % 10).concat(small(x % 10, g));
+  }
+  function numPieces(n, g){
+    if(n > 9999) return null;
+    var out = [];
+    if(n >= 1000){
+      var t = Math.floor(n / 1000); n = n % 1000;
+      out = small(t, 'f').concat([{ id:'g2_th' + (t === 1 ? 1 : t < 5 ? 2 : 5), text:t === 1 ? 'тысяча' : t < 5 ? 'тысячи' : 'тысяч', ru:true }]);
+      if(!n) return out;
+    }
+    if(n < 100) return out.concat(small(n, g));
+    var h = Math.floor(n / 100), r = n % 100;
+    out = out.concat(h === 1 ? nc(100) : [{ id:'g2_n' + h*100, text:HUND[h], ru:true }]);
+    return r ? out.concat(small(r, g)) : out;
+  }
+  var NEUT_M = /^(больше|меньше|раз|раза|минут|минуты|часов|час|часа)$/;
+  function genderOf(n, next){
+    var w = (next || '').replace(/^[^а-яёА-ЯЁ]+/, '').split(/[^а-яёА-ЯЁ]/)[0].toLowerCase(), last = n % 10;
+    if(!w || NEUT_M.test(w) || (n % 100 >= 11 && n % 100 <= 14)) return 'm';
+    if(last === 1) return /[ая]$/.test(w) ? 'f' : (/[оеё]$/.test(w) ? 'n' : 'm');
+    if(last === 2) return /[ыи]$/.test(w) ? 'f' : 'm';
+    return 'm';
+  }
+  var WORDS = { 'плюс':'plus', 'минус':'minus', 'равно':'eq', 'умножить на':'times', 'разделить на':'divby' };
+  function clipFor(tr){
+    var k = SYMS[tr] || WORDS[tr.toLowerCase()];
+    if(k && V.F.ru[k]) return { id:'f_' + k, text:V.F.ru[k], ru:true };
+    return { id:'f_g2_' + hsh(tr), text:tr, ru:true };
+  }
+  function frag(t){
+    t = t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, '').replace(/\s+/g, ' ');
+    var out = [];
+    (t.match(/[^.!?]+[.!?]*/g) || []).forEach(function(sn){
+      var tr = sn.trim().replace(/^[\s.,;:!?—–\-)»"]+/, '').replace(/[\s,;:—–\-(«"]+$/, '');
+      if(/[а-яёА-ЯЁA-Za-z]/.test(tr) || SYMS[tr]) out.push(clipFor(tr));
+    });
+    return out;
+  }
+  function pieces(sp){
+    if(/\d[.,]\d/.test(sp)) return null;
+    var parts = sp.split(/(\d{1,2}:\d{2}|\d+)/), out = [], has = false;
+    for(var i = 0; i < parts.length; i++){
+      var r;
+      if(i % 2){
+        has = true; var tm = parts[i].match(/^(\d{1,2}):(\d{2})$/);
+        if(tm){
+          var h = +tm[1], mm = +tm[2];
+          if(h > 12 || mm > 59) return null;
+          r = small(h, 'm');
+          if(mm === 0) r = r.concat([{ id:'g2_ch' + (h === 1 ? 1 : h < 5 ? 2 : 5), text:h === 1 ? 'час' : h < 5 ? 'часа' : 'часов', ru:true }]);
+          else r = r.concat(mm < 10 ? nc(0).concat(small(mm, 'm')) : small(mm, 'm'));
+        } else { var n = +parts[i]; r = numPieces(n, genderOf(n, parts[i + 1])); }
+      } else r = frag(parts[i]);
+      if(!r) return null;
+      out = out.concat(r);
+    }
+    return has ? out : null;
+  }
+  function say(text){
+    var k = 'g2_' + hsh(text), sp = romanToArabic(text); V.F.ru[k] = sp;
+    var c = { id:'f_' + k, text:sp, ru:true }, pc = pieces(sp);
+    if(pc && pc.length) c.pieces = pc;
+    return c;
+  }
 
   /* ---------- вспомогательное ---------- */
   function esc(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
@@ -257,7 +330,7 @@
   } catch(e){}
 
   window.MXG2 = {
-    say:say, esc:esc, uniq:uniq, numOpts:numOpts, txtOpts:txtOpts, plural:plural,
+    say:say, pieces:pieces, esc:esc, uniq:uniq, numOpts:numOpts, txtOpts:txtOpts, plural:plural,
     blocks:blocks, clock:clock, angle:angle, money:money, ruler:ruler, compass:compass, RIM:RIM,
     hintCard:hintCard, swapIcons:swapIcons, choice:choice, tf:tf, pickPic:pickPic, tapSum:tapSum, deal:deal
   };
