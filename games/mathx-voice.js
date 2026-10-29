@@ -929,7 +929,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
         arm(9000);
         a.onloadedmetadata = function(){ if(isFinite(a.duration)) arm(a.duration / rate * 1000 + 2500 + 1200 * (cl.length - from)); };
         a.onended = function(){ i++; if(isKz && i < cl.length) setTimeout(next, KZ_GAP); else next(); };
-        a.onerror = function(){ var c = cl[from]; if(c && isG2(c) && !c.flat){ c.flat = true; c.url = clipUrl(c, L, true); try { a.src = c.url; a.load(); var q = a.play(); if(q && q.catch) q.catch(function(){ tts(from); }); return; } catch(e){} } tts(from); };
+        a.onerror = function(){ tts(from); };
         var p; try { p = a.play(); } catch(e){ tts(from); return; }
         if(p && p.catch) p.catch(function(){ tts(from); });
       })();
@@ -953,11 +953,12 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   }
   function say(cl, o){
     cl = cl || [];
-    if(!cl.some(function(c){ return c && c.pieces; })){ sayGen++; return say0(cl, o); }
+    if(!cl.some(function(c){ return c && (c.pieces || (c.ru && isG2(c) && !c.url)); })){ sayGen++; return say0(cl, o); }
     var my = ++sayGen; stop();
     return Promise.all(cl.map(function(c){
-      if(!c.pieces) return Promise.resolve([c]);
-      return Promise.all(c.pieces.map(probe)).then(function(ok){ return ok.every(Boolean) ? c.pieces : [c]; });
+      if(c.pieces) return Promise.all(c.pieces.map(probe)).then(function(ok){ return ok.every(Boolean) ? c.pieces : [c]; });
+      if(c.ru && isG2(c) && !c.url) return probe(c).then(function(){ return [c]; });   // найден: c.url; нет: читает браузер
+      return Promise.resolve([c]);
     })).then(function(arr){ if(my !== sayGen) return; return say0([].concat.apply([], arr), o); });
   }
   function setEnabled(v){ enabled = !!v; try { localStorage.setItem('bilim_mx_snd', v ? '1' : '0'); } catch(e){} if(!v) stop(); }
