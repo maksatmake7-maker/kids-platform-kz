@@ -1,119 +1,69 @@
-/* ===== Білім Аралы — игра "Повороты" =====
-   Математика, 2 класс, по программе (приложение 26, 4-я четверть):
-   2.3.2.4 "выполнять действия по инструкции и определять исходную
-   позицию, направление и движение (направо, налево, прямо, полный
-   поворот, половина и четверть поворота по часовой и против часовой
-   стрелки)".
-   Барсик всегда начинает смотреть вверх (↑). Показываем инструкцию
-   поворота, просим выбрать, куда он будет смотреть после поворота.
-   24 вопроса, 4 типа поворотов вперемешку.
-   Использование: initTurnsGame('game-root') после загрузки DOM.
+/* ===== Білім Аралы — «Повороты: Барсик-путешественник» (v3) =====
+   Математика, 2 класс (цель 2.3.2.4 приказа №399): направление и движение, четверть, половина и полный оборот, по часовой и против часовой стрелки.
+   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js + набор games/mathx-g2.js + заставка games/mathx-hero.js
+   подгружаются сами. Режим освоения: 10 заданий подряд без ошибки, три уровня.
 */
+window.__mxHeroCfg = {theme:'forest', icons:['🐯','↻','🧭']};
+(function(){
+  var cs = document.currentScript;
+  var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
+  window.__mxBase = window.__mxBase || base;
+  function load(src, cb){ var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = cb; document.head.appendChild(s); }
+  if(!window.__mxLoad){
+    var waiting = [], done = false, chain = [];
+    if(!window.Barsik) chain.push(base + '../assets/barsik.js');
+    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js'); chain.push(base + 'mathx-g2.js'); chain.push(base + 'mathx-hero.js');
+    chain.slice().forEach(function(u){ try { var l = document.createElement('link'); l.rel = 'preload'; l.as = 'script'; l.href = u; document.head.appendChild(l); } catch(e){} });
+    (function next(){
+      if(!chain.length){ done = true; try { if(window.MXHero) (document.readyState === 'loading' ? document.addEventListener.bind(document, 'DOMContentLoaded') : function(f){ f(); })(MXHero.init); } catch(e){} waiting.forEach(function(f){ f(); }); waiting = []; return; }
+      load(chain.shift(), next);
+    })();
+    window.__mxLoad = function(cb){ if(done) cb(); else waiting.push(cb); };
+  }
+})();
+
 function initTurnsGame(containerId){
-  var root = document.getElementById(containerId);
-  if(!root) return;
-
-  var TOTAL = 24;
-  var score = 0;
-  var questionIndex = 0;
-  var currentAnswer = '';
-
-  // порядок по часовой стрелке от "вверх"
-  var CLOCKWISE = ['up','right','down','left'];
-
-  function msgs(){
-    var lang = document.documentElement.getAttribute('data-current') || 'ru';
-    return (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
-  }
-  function updateProgress(){
-    var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
-  }
-  function updateScore(){
-    var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
-  }
-  function arrowFor(dir){
-    if(dir === 'up') return '↑';
-    if(dir === 'down') return '↓';
-    if(dir === 'left') return '←';
-    return '→';
-  }
-  function rotate(steps){
-    // steps: количество четвертей по часовой стрелке (может быть отрицательным)
-    var idx = ((CLOCKWISE.indexOf('up') + steps) % 4 + 4) % 4;
-    return CLOCKWISE[idx];
-  }
-
-  var TURN_TYPES = [
-    { key: 'turn_quarter_cw', steps: 1 },
-    { key: 'turn_quarter_ccw', steps: -1 },
-    { key: 'turn_half', steps: 2 },
-    { key: 'turn_full', steps: 4 }
-  ];
-
-  function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
-    updateProgress();
-
-    var m = msgs();
-    var turn = TURN_TYPES[Math.floor(Math.random()*TURN_TYPES.length)];
-    var resultDir = rotate(turn.steps);
-    currentAnswer = resultDir;
-
-    var allDirs = ['up','down','left','right'];
-    var optionsHtml = allDirs.map(function(d){
-      return '<button class="count-btn" data-value="' + d + '" style="font-size:2rem;">' + arrowFor(d) + '</button>';
-    }).join('');
-
-    root.innerHTML =
-      '<div style="font-size:3rem; margin-bottom:8px;">↑</div>' +
-      '<div style="font-family:\'Nunito\',sans-serif; font-weight:700; font-size:1.1rem; color:var(--ink); margin-bottom:20px;">' + (m[turn.key] || turn.key) + '</div>' +
-      '<div class="count-options">' + optionsHtml + '</div>' +
-      '<div class="count-feedback" id="count-feedback"></div>';
-
-    root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(btn.getAttribute('data-value'), btn); });
-    });
-  }
-
-  function renderFinish(){
-    recordGameResult('turns', score, TOTAL);
-    var m = msgs();
-    root.innerHTML =
-      '<div class="finish-screen">' +
-        '<div class="finish-emoji">🏆</div>' +
-        '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
-        '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
-      '</div>';
-    document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
-      updateScore();
-      render();
-    });
-  }
-
-  function checkAnswer(value, btn){
-    var feedback = document.getElementById('count-feedback');
-    var m = msgs();
-
-    if(value === currentAnswer){
-      score++;
-      updateScore();
-      btn.classList.add('correct');
-      feedback.textContent = m.correct_msg || 'Great job! 🎉';
-      feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
-    } else {
-      btn.classList.add('wrong');
-      feedback.textContent = m.wrong_msg || 'Try again';
-      feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
+  __mxLoad(function(){
+    var M = MX, G = MXG2, rnd = M.rnd, pick = M.pick, shuffle = M.shuffle;
+    function S(sig, t){ t.sig = sig; return t; }
+    var DIR = { 0:'⬆ вверх', 90:'➡ вправо', 180:'⬇ вниз', 270:'⬅ влево' };
+    function norm(d){ return ((d % 360) + 360) % 360; }
+    var CMD = { cw4:{ t:'повернись направо (четверть оборота по часовой стрелке)', s:'направо, на четверть оборота по часовой стрелке', d:90 }, ccw4:{ t:'повернись налево (четверть оборота против часовой стрелки)', s:'налево, на четверть оборота против часовой стрелки', d:-90 },
+      half:{ t:'повернись кругом (половина оборота)', s:'кругом, на половину оборота', d:180 }, full:{ t:'сделай полный оборот', s:'на полный оборот', d:360 }, fwd:{ t:'иди прямо', s:'иди прямо, не поворачивайся', d:0 } };
+    var SHORT = { cw4:'направо', ccw4:'налево', half:'кругом', full:'полный оборот', fwd:'прямо' };
+    function opts(ans){ return G.txtOpts([0, 90, 180, 270].map(function(d){ return DIR[d]; })); }
+    function turnTask(sig, start, cmds, text, sayText){
+      var end = norm(start + cmds.reduce(function(a, k){ return a + CMD[k].d; }, 0)), x = {}; 
+      var steps = []; var cur = start; cmds.forEach(function(k){ cur = norm(cur + CMD[k].d); steps.push(SHORT[k] + ' → ' + DIR[cur]); });
+      return S(sig, { expr:'', cap:text, say:[G.say(sayText || text)], ans:DIR[end], opts:opts(end), layout:'wide',
+        field:function(el, X, task){ el.innerHTML = G.compass(start); task.reveal = function(){ var g = el.querySelector('.g2-cmp'); if(g) g.style.transform = 'rotate(' + (start + cmds.reduce(function(a, k){ return a + CMD[k].d; }, 0)) + 'deg)'; }; },
+        hintExpr:'<span class="ok">' + DIR[end] + '</span>', hintSay:[G.say('Смотрит ' + DIR[end].replace(/^\S+ /, '') + '.')],
+        hint:G.hintCard(G.compass(end), 'Смотрел: ' + DIR[start] + '<br>' + steps.join('<br>')) });
     }
-  }
 
-  render();
+    /* ⭐ Барсик смотрит вверх: один поворот */
+    function L1(){
+      var k = pick(['cw4', 'ccw4', 'half', 'fwd']);
+      return turnTask('1' + k, 0, [k], 'Барсик смотрит вверх. ' + CMD[k].t.charAt(0).toUpperCase() + CMD[k].t.slice(1) + '. Куда он смотрит теперь?', 'Барсик смотрит вверх. Он ' + (k === 'fwd' ? 'идёт прямо' : 'поворачивается ' + CMD[k].s) + '. Куда он смотрит теперь?');
+    }
+    /* ⭐⭐ любое начало, четверть/половина/полный оборот */
+    function L2(){
+      var start = pick([0, 90, 180, 270]), k = pick(['cw4', 'ccw4', 'half', 'full', 'cw4', 'ccw4']);
+      return turnTask('2' + start + k, start, [k], 'Барсик смотрит ' + DIR[start].replace(/^\S+ /, '') + '. Он поворачивается ' + CMD[k].s + '. Куда он смотрит теперь?');
+    }
+    /* ⭐⭐⭐ два поворота подряд, сколько оборота */
+    function L3(){
+      if(Math.random() < .3){
+        var items = [['cw4', 'четверть оборота'], ['half', 'половина оборота'], ['full', 'полный оборот']], it = pick(items), start = pick([0, 90, 180, 270]), end = norm(start + CMD[it[0]].d);
+        return S('3q' + start + it[0], { expr:'', cap:'Барсик смотрел ' + DIR[start].replace(/^\S+ /, '') + ', а теперь смотрит ' + DIR[end].replace(/^\S+ /, '') + '. Как он повернулся?', say:[G.say('Барсик смотрел ' + DIR[start].replace(/^\S+ /, '') + ', а теперь смотрит ' + DIR[end].replace(/^\S+ /, '') + '. Как он повернулся: на четверть, на половину оборота или на полный оборот?')],
+          ans:it[1], opts:G.txtOpts(['четверть оборота', 'половина оборота', 'полный оборот']), layout:'card',
+          field:function(el, X, task){ el.innerHTML = G.compass(start); task.reveal = function(){ var g = el.querySelector('.g2-cmp'); if(g) g.style.transform = 'rotate(' + (start + CMD[it[0]].d) + 'deg)'; }; },
+          hintExpr:'<span class="ok">' + it[1] + '</span>', hintSay:[G.say('Это ' + it[1] + '.')], hint:G.hintCard(G.compass(end), DIR[start] + ' → ' + DIR[end] + '<br>' + (it[0] === 'cw4' ? 'Вправо от вверха — четверть оборота' : it[0] === 'half' ? 'Туда-обратно — это половина оборота' : 'Вернулся туда же — полный оборот')) });
+      }
+      var start2 = pick([0, 90, 180, 270]), a = pick(['cw4', 'ccw4', 'half']), b = pick(['cw4', 'ccw4', 'half']);
+      return turnTask('3' + start2 + a + b, start2, [a, b], 'Барсик смотрит ' + DIR[start2].replace(/^\S+ /, '') + '. Сначала: ' + SHORT[a] + ', потом: ' + SHORT[b] + '. Куда он смотрит?');
+    }
+
+    M.run({ root:containerId, key:'turns', need:10, theme:'forest', levels:[L1, L2, L3] });
+  });
 }
