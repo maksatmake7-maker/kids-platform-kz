@@ -137,6 +137,16 @@
   .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
   .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
   .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
   .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
   .ac-finish{text-align:center;padding:10px 0;}
   .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
@@ -257,7 +267,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Геометрические фигуры</h1>
-      <p class="ac-sub">6 уроков · фигуры, линии, точка, луч, угол · с играми и проверкой</p>
+      <p class="ac-sub">8 уроков · фигуры, линии, точка, луч, угол, измерение сторон, композиции из фигур · с играми и проверкой</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -883,6 +893,149 @@ const LESSONS = [
         text: 'Теперь ты знаешь плоские и объёмные фигуры, умеешь считать стороны и углы, отличать квадрат от прямоугольника и узнавать линии. Дальше — тренировка без конца в играх про фигуры. Я буду рядом!' }
     ] }
 ];
+
+/* ===================== Новые уроки курса «Геометрия» (приказ №399, прил. 26, 1 класс: стороны фигур, композиции) ===================== */
+SCENES.infoTap = function(stage, st, ctx){
+  const seen = {}, need = st.need || st.cards.length;
+  stage.innerHTML = '<div class="es-pick" id="i-p"></div><div class="es-card" id="i-c"><div class="tx">Нажми на картинку 👆</div></div>';
+  $('#i-p', stage).innerHTML = st.cards.map((c, i) => '<button class="es-pb" data-i="' + i + '" aria-label="' + c.b + '">' + c.e + '<small>' + c.b + '</small></button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const c = st.cards[+b.dataset.i]; seen[b.dataset.i] = 1; $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#i-c', stage).innerHTML = (c.svg ? c.svg : '<div class="em">' + c.e + '</div>') + '<div class="nm">' + (c.nm || c.b) + '</div><div class="tx">' + c.tx + '</div>';
+    const n = Object.keys(seen).length;
+    if (n >= need){ ctx.fb('Здорово! Всё посмотрели.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + ' из ' + need + '.', 'info');
+  });
+};
+/* --- рисунки из фигур --- */
+const CF = '#5AA9F0', CT = '#FF8A7A', CY = '#FFC93C', CG = '#5CC98F';
+const cmpSVG = {
+  house: () => '<svg viewBox="0 0 160 130" width="150"><rect x="30" y="55" width="100" height="65" fill="' + CY + '" stroke="#1D3557" stroke-width="2"/><polygon points="20,55 80,10 140,55" fill="' + CT + '" stroke="#1D3557" stroke-width="2"/><rect x="68" y="80" width="24" height="40" fill="' + CF + '" stroke="#1D3557" stroke-width="2"/></svg>',
+  tree: () => '<svg viewBox="0 0 160 150" width="140"><polygon points="80,5 125,50 35,50" fill="' + CG + '" stroke="#1D3557" stroke-width="2"/><polygon points="80,30 135,85 25,85" fill="' + CG + '" stroke="#1D3557" stroke-width="2"/><polygon points="80,60 145,120 15,120" fill="' + CG + '" stroke="#1D3557" stroke-width="2"/><rect x="68" y="120" width="24" height="26" fill="#8A5A2B" stroke="#1D3557" stroke-width="2"/></svg>',
+  rocket: () => '<svg viewBox="0 0 160 160" width="140"><polygon points="80,5 105,45 55,45" fill="' + CT + '" stroke="#1D3557" stroke-width="2"/><rect x="55" y="45" width="50" height="75" fill="' + CY + '" stroke="#1D3557" stroke-width="2"/><circle cx="80" cy="75" r="12" fill="' + CF + '" stroke="#1D3557" stroke-width="2"/><polygon points="55,90 30,125 55,125" fill="' + CT + '" stroke="#1D3557" stroke-width="2"/><polygon points="105,90 130,125 105,125" fill="' + CT + '" stroke="#1D3557" stroke-width="2"/></svg>',
+  snow: () => '<svg viewBox="0 0 120 160" width="110"><circle cx="60" cy="125" r="30" fill="#fff" stroke="#1D3557" stroke-width="2"/><circle cx="60" cy="80" r="22" fill="#fff" stroke="#1D3557" stroke-width="2"/><circle cx="60" cy="42" r="15" fill="#fff" stroke="#1D3557" stroke-width="2"/></svg>'
+};
+const CMPS = [['house', 'Домик', 'Квадрат и треугольник', 'Стена — квадрат, крыша — треугольник, дверь — прямоугольник.', { 'квадраты': 1, 'прямоугольники': 1, 'треугольники': 1 }], ['tree', 'Ёлка', 'Треугольники и прямоугольник', 'Три треугольника и прямоугольник-ствол.', { 'треугольники': 3, 'прямоугольники': 1 }], ['rocket', 'Ракета', 'Прямоугольник, треугольники и круг', 'Корпус — прямоугольник, нос и крылья — треугольники, иллюминатор — круг.', { 'треугольники': 3, 'прямоугольники': 1, 'круги': 1 }], ['snow', 'Снеговик', 'Три круга', 'Снеговик состоит из трёх кругов.', { 'круги': 3 }]];
+/* --- линейка: измеряем сторону --- */
+const MSC = 26, MX = 20;
+function measureSVG(w, h, ghost){
+  let s = '<svg viewBox="0 0 300 175" width="100%" style="max-width:340px" class="gm-svg"><rect x="' + MX + '" y="14" width="' + (w * MSC) + '" height="' + (h * MSC / 2) + '" fill="#FFF1C9" stroke="#1D3557" stroke-width="2.5"/>';
+  s += '<text x="' + (MX - 6) + '" y="12" font-size="11" font-weight="800" fill="#1D3557">A</text><text x="' + (MX + w * MSC) + '" y="12" font-size="11" font-weight="800" fill="#1D3557">B</text>';
+  s += '<rect x="' + (MX - 6) + '" y="118" width="' + (10 * MSC + 12) + '" height="30" rx="4" fill="#E9F0F8" stroke="#1D3557" stroke-width="1.5"/>';
+  for (let i = 0; i <= 10; i++){ s += '<line x1="' + (MX + i * MSC) + '" x2="' + (MX + i * MSC) + '" y1="118" y2="' + (i % 5 === 0 ? 136 : 130) + '" stroke="#1D3557" stroke-width="1.5"/><text x="' + (MX + i * MSC) + '" y="146" text-anchor="middle" font-size="10" font-weight="800" fill="#1D3557">' + i + '</text>'; }
+  if (ghost) s += '<line x1="' + (MX + w * MSC) + '" x2="' + (MX + w * MSC) + '" y1="14" y2="118" stroke="#E53935" stroke-width="1.5" stroke-dasharray="4 3"/>';
+  for (let i = 0; i <= 10; i++) s += '<circle class="gm-tick" data-n="' + i + '" cx="' + (MX + i * MSC) + '" cy="124" r="11" fill="transparent" style="cursor:pointer"/>';
+  return s + '<text x="150" y="168" text-anchor="middle" font-size="10" fill="#41566E">Ноль линейки — у начала стороны</text></svg>';
+}
+SCENES.sideMeasure = function(stage, st, ctx){
+  const R = [[4, 3], [6, 4], [3, 3], [7, 2], [5, 5]]; let ri = 0, tries = 0; const list = shuffle(R).slice(0, st.n || 4);
+  function round(){
+    const r = list[ri]; tries = 0; window.__side = r[0];
+    const kind = r[0] === r[1] ? 'квадрат' : 'прямоугольник';
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E">Измерение ' + (ri + 1) + ' из ' + list.length + '. Измерь сторону AB: нажми на число, где она заканчивается.</div><div class="es-card" id="m-c">' + measureSVG(r[0], r[1], false) + '</div><div class="es-card" id="m-f"><div class="tx">Нажми на число на линейке.</div></div>';
+    const bind = () => $$('.gm-tick', stage).forEach(c => c.onclick = function(){
+      const n = +c.dataset.n;
+      if (n === r[0]){ ri++; $('#m-f', stage).innerHTML = '<div class="nm">AB = ' + r[0] + ' см</div>'; if (ri >= list.length){ ctx.fb('Ты измерил все стороны!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Сторона AB равна ' + r[0] + ' см.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, st.fast ? 20 : 1200); } }
+      else { ctx.miss(); tries++; $('#m-f', stage).innerHTML = '<div class="tx">Не то. Где заканчивается сторона AB, если ноль линейки у точки A?</div>'; if (tries >= 2){ $('#m-c', stage).innerHTML = measureSVG(r[0], r[1], true); bind(); } }
+    });
+    bind();
+  }
+  round();
+};
+/* --- составляем композиции --- */
+const CP_SH = {
+  sq: ['Квадрат', '🟦', (c) => '<rect x="-22" y="-22" width="44" height="44" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>'],
+  rc: ['Прямоугольник', '▬', (c) => '<rect x="-34" y="-14" width="68" height="28" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>'],
+  tr: ['Треугольник', '🔺', (c) => '<polygon points="0,-24 28,20 -28,20" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>'],
+  ci: ['Круг', '🔵', (c) => '<circle r="22" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>'],
+  sc: ['Полукруг', '🌗', (c) => '<path d="M-26,14 A26,26 0 0 1 26,14 Z" fill="' + c + '" stroke="#1D3557" stroke-width="2"/>']
+};
+const CP_COL = [['красный', '#E8453C'], ['жёлтый', '#F5B400'], ['зелёный', '#3FAE5A'], ['синий', '#2F7BE6'], ['белый', '#FFFFFF']];
+SCENES.composeShapes = function(stage, st, ctx){
+  const S2 = { parts: [], key: 'sq', col: CP_COL[0][0] }; let ti = 0; window.__cs = S2;
+  const hex = n => CP_COL.find(x => x[0] === n)[1];
+  stage.innerHTML = '<div class="gm-task" id="c-t"></div><div class="gm-tb" id="c-k">' + Object.keys(CP_SH).map(k => '<button class="es-nb' + (k === S2.key ? ' seen' : '') + '" data-k="' + k + '">' + CP_SH[k][1] + ' ' + CP_SH[k][0] + '</button>').join('') + '</div><div class="gm-tb" id="c-c">' + CP_COL.map(c => '<button class="gm-col' + (c[0] === S2.col ? ' cur' : '') + '" data-c="' + c[0] + '" style="background:' + c[1] + '" aria-label="' + c[0] + '"></button>').join('') + '</div><svg id="c-s" viewBox="0 0 360 240" class="gm-canvas"></svg><div class="gm-tb"><button class="es-nb" id="c-u">↩️ Убрать последнее</button><button class="es-nb" id="c-x">🧽 Очистить задание</button></div>';
+  const svg = $('#c-s', stage);
+  const cnt = (k) => S2.parts.filter(p => p.t === ti && p.k === k).length;
+  const T = st.tasks;
+  function draw(){ svg.innerHTML = S2.parts.map(p => '<g transform="translate(' + p.x + ',' + p.y + ')">' + CP_SH[p.k][2](hex(p.c)) + '</g>').join(''); }
+  function tasks(){
+    while (ti < T.length && T[ti].ok(cnt, S2, ti)) ti++;
+    $('#c-t', stage).innerHTML = ti < T.length ? '<div class="gm-ti"><b>Задание ' + (ti + 1) + ' из ' + T.length + '.</b> ' + T[ti].t + (T[ti].h ? '<small>' + T[ti].h + '</small>' : '') + '</div>' : '<div class="gm-ti ok">✅ Все задания выполнены!</div>';
+    if (ti >= T.length && !S2.fin){ S2.fin = true; ctx.fb('Отличные композиции!', 'ok'); ctx.done(); }
+  }
+  svg.addEventListener('pointerdown', e => { const r = svg.getBoundingClientRect(); S2.parts.push({ k: S2.key, c: S2.col, t: ti, x: Math.round((e.clientX - r.left) * 360 / r.width), y: Math.round((e.clientY - r.top) * 240 / r.height) }); draw(); tasks(); });
+  $$('#c-k .es-nb', stage).forEach(b => b.onclick = () => { S2.key = b.dataset.k; $$('#c-k .es-nb', stage).forEach(x => x.classList.toggle('seen', x === b)); });
+  $$('#c-c .gm-col', stage).forEach(b => b.onclick = () => { S2.col = b.dataset.c; $$('#c-c .gm-col', stage).forEach(x => x.classList.toggle('cur', x === b)); });
+  $('#c-u', stage).onclick = () => { S2.parts.pop(); draw(); }; $('#c-x', stage).onclick = () => { S2.parts = S2.parts.filter(p => p.t !== ti); draw(); };
+  draw(); tasks();
+};
+/* --- вопросы --- */
+function rectQ(w, h, labels){
+  const sc = 20; return '<svg viewBox="0 0 260 150" width="100%" style="max-width:300px"><rect x="40" y="30" width="' + (w * sc) + '" height="' + (h * sc) + '" fill="#FFF1C9" stroke="#1D3557" stroke-width="2.5"/>' +
+    '<text x="32" y="26" font-size="13" font-weight="800">A</text><text x="' + (40 + w * sc + 4) + '" y="26" font-size="13" font-weight="800">B</text><text x="' + (40 + w * sc + 4) + '" y="' + (30 + h * sc + 14) + '" font-size="13" font-weight="800">C</text><text x="32" y="' + (30 + h * sc + 14) + '" font-size="13" font-weight="800">D</text>' + (labels || '') + '</svg>';
+}
+const lab = (x, y, t) => '<text x="' + x + '" y="' + y + '" font-size="12" font-weight="800" fill="#E53935">' + t + '</text>';
+Object.assign(GENS, {
+  sideLong(){
+    const w = rnd(3, 8); let h = rnd(2, 6); while (h === w) h = rnd(2, 6); const sc = 20;
+    const ans = w > h ? 'AB' : 'BC';
+    return { html: '<div class="ac-qtxt">Какая сторона длиннее: AB или BC?</div><div class="es-card">' + rectQ(w, h, lab(40 + w * sc / 2 - 14, 22, w + ' см') + lab(40 + w * sc + 22, 30 + h * sc / 2, h + ' см')) + '</div>', opts: ['AB', 'BC'], ans: ans, hint: 'AB = ' + w + ' см, BC = ' + h + ' см. Длиннее ' + ans + '.' };
+  },
+  sideEq(){
+    const a = rnd(3, 7), sc = 20;
+    return { html: '<div class="ac-qtxt">Это квадрат. Чему равна сторона CD?</div><div class="es-card">' + rectQ(a, a, lab(40 + a * sc / 2 - 14, 22, 'AB = ' + a + ' см')) + '</div>', opts: nums(a, 1, 9).map(String), ans: String(a), hint: 'У квадрата все стороны равны. Если AB = ' + a + ' см, то и CD = ' + a + ' см.' };
+  },
+  rectOpp(){
+    const w = rnd(4, 8); let h = rnd(2, 5); while (h === w) h = rnd(2, 5); const ask = Math.random() < .5;
+    const known = ask ? ['AB', w, 'CD'] : ['BC', h, 'AD'];
+    return { html: '<div class="ac-qtxt">Это прямоугольник. ' + known[0] + ' = ' + known[1] + ' см. Чему равна сторона ' + known[2] + '?</div><div class="es-card">' + rectQ(w, h, '') + '</div>', opts: nums(known[1], 1, 9).map(String), ans: String(known[1]), hint: 'У прямоугольника противоположные стороны равны. ' + known[0] + ' и ' + known[2] + ' — одинаковой длины.' };
+  },
+  triLong(){
+    const ls = [3, 4, 5];
+    return { html: '<div class="ac-qtxt">Какая сторона треугольника самая длинная?</div><div class="es-card"><svg viewBox="0 0 220 150" width="100%" style="max-width:260px"><polygon points="48,120 48,30 168,120" fill="#FFF1C9" stroke="#1D3557" stroke-width="2.5"/>' + lab(12, 80, '3 см') + lab(98, 138, '4 см') + lab(116, 66, '5 см') + '</svg></div>', opts: ls.map(x => x + ' см'), ans: '5 см', hint: 'Сравни числа: 3, 4 и 5. Самая длинная сторона — 5 см.' };
+  },
+  compWhat(){
+    const c = pick(CMPS), set = shuffle([c].concat(shuffle(CMPS.filter(x => x !== c)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Из каких фигур составлен рисунок?</div><div class="es-card">' + cmpSVG[c[0]]() + '</div>', opts: set.map(x => x[2]), ans: c[2], wide: true, hint: c[1] + ': ' + c[3] };
+  },
+  compCount(){
+    const c = pick(CMPS), keys = Object.keys(c[4]), k = pick(keys), n = c[4][k];
+    const one = { 'квадраты': 'квадратов', 'прямоугольники': 'прямоугольников', 'треугольники': 'треугольников', 'круги': 'кругов' }[k];
+    return { html: '<div class="ac-qtxt">Сколько на рисунке ' + one + '? Посчитай.</div><div class="es-card">' + cmpSVG[c[0]]() + '</div>', opts: nums(n, 1, 5).map(String), ans: String(n), hint: c[1] + ': ' + c[3] };
+  }
+});
+const NEWL = [
+  { id: 'g7', icon: '📏', title: 'Измеряем стороны', goal: 'Измерять и сравнивать стороны квадрата, прямоугольника и треугольника',
+    steps: [
+      { id: 'g7s1', scene: 'infoTap', gate: true, title: 'Сторона и сантиметр', cards: [
+        { e: '📏', b: 'Линейка', nm: 'Линейка и сантиметры', tx: 'Длину измеряют в сантиметрах. На линейке цифры показывают сантиметры.' },
+        { e: '0️⃣', b: 'Ноль', nm: 'Начинаем с нуля', tx: 'Приложи линейку так, чтобы ноль был у начала стороны. Число там, где сторона закончилась, — её длина.' },
+        { e: '🟦', b: 'Квадрат', nm: 'Квадрат', tx: 'У квадрата все четыре стороны одной длины.' },
+        { e: '▭', b: 'Прямоугольник', nm: 'Прямоугольник', tx: 'У прямоугольника противоположные стороны равны.' },
+        { e: '🔺', b: 'Треугольник', nm: 'Треугольник', tx: 'У треугольника стороны могут быть разной длины. Их можно сравнивать.' }],
+        text: 'Сторону фигуры можно измерить линейкой в сантиметрах. Ноль линейки нужно приложить к началу стороны. У квадрата стороны равны, у прямоугольника равны противоположные, у треугольника стороны бывают разные. Нажимай на картинки.' },
+      { id: 'g7s2', scene: 'sideMeasure', gate: true, n: 4, title: 'Измеряем линейкой', text: 'Измерь сторону AB. Нажми на число на линейке там, где сторона заканчивается. Помни: ноль стоит у точки A.' },
+      { id: 'g7s3', scene: 'quiz', gate: true, count: 8, gens: ['sideLong', 'sideEq', 'rectOpp', 'triLong'], title: 'Сравниваем стороны', text: 'Сравни стороны фигур. Какая длиннее? Чему равна сторона квадрата или прямоугольника?' }
+    ] },
+  { id: 'g8', icon: '🧩', title: 'Составляем из фигур', goal: 'Составлять композиции из плоских фигур и их частей',
+    steps: [
+      { id: 'g8s1', scene: 'infoTap', gate: true, title: 'Рисунки из фигур', cards: CMPS.map((c, i) => ({ e: ['🏠', '🎄', '🚀', '⛄'][i], b: c[1], nm: c[1], tx: c[3], svg: '<div style="margin:4px">' + cmpSVG[c[0]]() + '</div>' })),
+        text: 'Из простых фигур можно составить целый рисунок: домик, ёлку, ракету и снеговика. Нажимай и смотри, из чего они собраны.' },
+      { id: 'g8s2', scene: 'composeShapes', gate: true, title: 'Составь композицию', tasks: [
+        { t: 'Составь домик: квадрат и треугольник-крыша', h: 'Выбери «Квадрат», нажми на лист. Потом «Треугольник» и нажми над квадратом.', ok: (c) => c('sq') >= 1 && c('tr') >= 1 },
+        { t: 'Составь ёлку: три треугольника и прямоугольник-ствол', h: 'Поставь три треугольника один над другим, а внизу — прямоугольник.', ok: (c) => c('tr') >= 3 && c('rc') >= 1 },
+        { t: 'Составь снеговика: три круга', h: 'Выбери «Круг» и поставь три круга друг над другом.', ok: (c) => c('ci') >= 3 },
+        { t: 'Добавь полукруг: это часть круга. Получится радуга или зонтик', h: 'Выбери «Полукруг».', ok: (c) => c('sc') >= 1 },
+        { t: 'Составь свой рисунок из 5 и более фигур, используй 3 вида фигур', h: 'Придумай ракету, робота или машину.', ok: (c, S2, ti) => S2.parts.filter(p => p.t === ti).length >= 5 && new Set(S2.parts.filter(p => p.t === ti).map(p => p.k)).size >= 3 }],
+        text: 'Теперь составь свои композиции из фигур. Выбери фигуру и цвет и нажимай на лист. Выполняй задания по порядку.' },
+      { id: 'g8s3', scene: 'quiz', gate: true, count: 8, gens: ['compWhat', 'compCount'], title: 'Из чего состоит рисунок', text: 'Посмотри на рисунок и скажи, из каких фигур он составлен и сколько их.' },
+      { id: 'g8s4', scene: 'finale', title: 'Курс пройден!', text: 'Теперь ты знаешь плоские и объёмные фигуры, умеешь считать стороны и углы, измерять стороны линейкой и составлять рисунки из фигур. Дальше — тренировка без конца в играх про фигуры. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const g5 = LESSONS.find(l => l.id === 'g5'); g5.steps = g5.steps.filter(s => s.scene !== 'finale');
+  NEWL.forEach(l => LESSONS.push(l));
+})();
 
 /* ================= движок ================= */
 const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
