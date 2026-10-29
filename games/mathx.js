@@ -200,6 +200,11 @@
   + '.mxs-balloon.wide .b{background:radial-gradient(circle at 11% 24%,rgba(255,255,255,.8) 0 4.5%,transparent 5.5%),var(--bc);}'
   + '.mxs-balloon.wide .b{font-size:1.5rem;border-radius:46px;height:70px;top:6px;}'
   + '.mxs-balloon.wide:before{top:74px;}.mxs-balloon.wide:after{top:80px;}'
+  + '.mxs-ans.cards{flex-direction:column;align-items:center;gap:9px;min-height:0;padding:10px 12px 74px;}'
+  + '.mxs-balloon.card{width:min(100%,340px);height:auto;min-height:52px;animation:none;}.mxs-balloon.card:before,.mxs-balloon.card:after{display:none;}'
+  + '.mxs-balloon.card .b{position:static;height:auto;min-height:52px;border-radius:20px;padding:9px 14px;background:linear-gradient(#fff,#F4F8FF);color:#25324A;text-shadow:none;font:800 1.02rem/1.2 "Nunito",sans-serif;box-shadow:0 5px 0 rgba(0,0,0,.18);border:3px solid var(--bc);text-align:center;}'
+  + '.mxs-balloon.card:hover .b{transform:translateY(-2px);}'
+  + '.mxs-balloon.card.pop{animation:mxPop .32s forwards;}'
   + '.mxs-balloon.pop{animation:mxPop .32s forwards;}'
   + '.mxs-balloon.bad{animation:mxShake .4s;filter:grayscale(1);opacity:.55;pointer-events:none;}'
   + '.mxs-balloon[disabled]{pointer-events:none;}'
@@ -478,11 +483,11 @@
     function showAnswers(){
       st.ans.innerHTML = '';
       if(!cur.opts) return;
-      st.ans.className = 'mxs-ans' + (cur.layout === 'sym' || cur.layout === 'sym2' ? ' sym' : '');
+      st.ans.className = 'mxs-ans' + (cur.layout === 'sym' || cur.layout === 'sym2' ? ' sym' : '') + (cur.layout === 'card' ? ' cards' : '');
       var colors = shuffle(BALLOON_COLORS);
       cur.opts.forEach(function(op, i){
         var b = document.createElement('button'); b.type = 'button';
-        b.className = 'mxs-balloon' + (cur.layout === 'wide' ? ' wide' : '');
+        b.className = 'mxs-balloon' + (cur.layout === 'wide' ? ' wide' : '') + (cur.layout === 'card' ? ' card' : '');
         b.style.setProperty('--bc', colors[i % colors.length]); b.style.setProperty('--d', (-(Math.random()*3)).toFixed(2) + 's');
         b.setAttribute('data-value', op.v);
         b.innerHTML = '<span class="b">' + op.h + '</span>';

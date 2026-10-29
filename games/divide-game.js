@@ -1,126 +1,72 @@
-/* ===== Білім Аралы — игра "Деление" =====
-   Математика, 2 класс, по программе (приложение 26, 3-я четверть):
-   2.1.2.4 "составлять, знать и применять таблицу умножения и деления
-   на 2, 3, 4, 5";
-   2.1.2.2 "понимать, что умножение и деление – взаимообратные
-   действия".
-   Делитель всегда 2, 3, 4 или 5; частное — от 1 до 10 (обратная
-   операция к таблице умножения). 30 вопросов, без повторов.
-   Использование: initDivideGame('game-root') после загрузки DOM.
+/* ===== Білім Аралы — «Деление: Угощение для друзей» (v3) =====
+   Математика, 2 класс (цели 2.1.2.2, 2.1.2.4 приказа №399): деление на равные части и по содержанию, связь умножения и деления.
+   «Приключения Барсика»: движок games/mathx.js + голос games/mathx-voice.js + набор games/mathx-g2.js + заставка games/mathx-hero.js
+   подгружаются сами. Режим освоения: 10 заданий подряд без ошибки, три уровня.
 */
+window.__mxHeroCfg = {theme:'sunset', icons:['🍪','➗','🍽️']};
+(function(){
+  var cs = document.currentScript;
+  var base = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '../../../games/';
+  window.__mxBase = window.__mxBase || base;
+  function load(src, cb){ var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = cb; document.head.appendChild(s); }
+  if(!window.__mxLoad){
+    var waiting = [], done = false, chain = [];
+    if(!window.Barsik) chain.push(base + '../assets/barsik.js');
+    chain.push(base + 'mathx-voice.js'); chain.push(base + 'mathx.js'); chain.push(base + 'mathx-g2.js'); chain.push(base + 'mathx-hero.js');
+    chain.slice().forEach(function(u){ try { var l = document.createElement('link'); l.rel = 'preload'; l.as = 'script'; l.href = u; document.head.appendChild(l); } catch(e){} });
+    (function next(){
+      if(!chain.length){ done = true; try { if(window.MXHero) (document.readyState === 'loading' ? document.addEventListener.bind(document, 'DOMContentLoaded') : function(f){ f(); })(MXHero.init); } catch(e){} waiting.forEach(function(f){ f(); }); waiting = []; return; }
+      load(chain.shift(), next);
+    })();
+    window.__mxLoad = function(cb){ if(done) cb(); else waiting.push(cb); };
+  }
+})();
+
 function initDivideGame(containerId){
-  var root = document.getElementById(containerId);
-  if(!root) return;
+  __mxLoad(function(){
+    var M = MX, G = MXG2, V = MXV, rnd = M.rnd, pick = M.pick, OK = M.OKV, Q = M.Q(), QB = M.QB();
+    function S(sig, t){ t.sig = sig; return t; }
+    function eqs(p){ return M.exprHtml(p); }
+    function plates(k, per, em){ var h = '<div class="mxs-row">'; for(var i = 0; i < k; i++){ h += '<div class="g2-plate">' + Array.apply(null, Array(per)).map(function(){ return '<span>' + em + '</span>'; }).join('') + '</div>'; } return h + '</div>'; }
+    function hint(total, k, em){
+      var q = total / k; return { hintExpr:eqs([total, '÷', k, '=', OK(q)]),
+        hintSay:[G.say(total + ' разделить на ' + k + ' — это ' + q + '. Проверим: ' + k + ' умножить на ' + q + ' равно ' + total + '.')],
+        hint:G.hintCard(plates(k, q, em), total + ' ÷ ' + k + ' = <b>' + q + '</b><br>Проверка: ' + q + ' × ' + k + ' = ' + total) };
+    }
+    function sayDiv(a, b){ return ['f:howmuch', a, 'f:divby', b]; }
 
-  var TOTAL = 30;
-  var score = 0;
-  var questionIndex = 0;
-  var currentAnswer = 0;
-  var usedPairs = [];
-
-  function msgs(){
-    var lang = document.documentElement.getAttribute('data-current') || 'ru';
-    return (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
-  }
-  function updateProgress(){
-    var el = document.getElementById('count-progress-value');
-    if(el) el.textContent = Math.min(questionIndex, TOTAL) + ' / ' + TOTAL;
-  }
-  function updateScore(){
-    var el = document.getElementById('count-score-value');
-    if(el) el.textContent = score;
-  }
-
-  function pickPair(){
-    var attempts = 0;
-    while(attempts < 200){
-      attempts++;
-      var divisor = [2,3,4,5][Math.floor(Math.random()*4)];
-      var quotient = Math.floor(Math.random()*10)+1;
-      var key = divisor+'/'+quotient;
-      if(usedPairs.indexOf(key) === -1){
-        usedPairs.push(key);
-        return [divisor, quotient];
+    /* ⭐ раздай поровну: тарелки */
+    function L1(em){
+      var k = rnd(2, 5), per = rnd(1, 5), total = k*per;
+      return S('1' + k + per, Object.assign(G.deal({ expr:eqs([total, '÷', k, '=', Q]), q:'Раздай ' + total + ' ' + em + ' на ' + k + ' ' + G.plural(k, 'тарелку', 'тарелки', 'тарелок') + ' поровну', say:[G.say('Раздай ' + total + ' поровну на ' + k + ' ' + G.plural(k, 'тарелку', 'тарелки', 'тарелок') + '. Нажимай «Раздать». Сколько на каждой тарелке?')],
+        plates:k, total:total, em:em, ans:per, opts:M.numOpts(per, 1, 6, [k, total - per]) }), hint(total, k, em)));
+    }
+    /* ⭐⭐ по содержанию, таблица деления */
+    function L2(em){
+      var k = pick([2, 3, 4, 5]), q = rnd(2, 10), total = k*q, t = pick(['expr', 'expr', 'content']);
+      if(t === 'content'){
+        var m = pick([2, 3, 4, 5]), c = rnd(2, 5), tot = m*c;
+        return S('2c' + m + c, Object.assign({ expr:eqs([tot, '÷', m, '=', Q]), cap:'Раскладываем по ' + m + ' ' + em + ' в пакет. Сколько пакетов?', say:[G.say(tot + ' ' + em + ' раскладывают по ' + m + ' в пакет. Сколько получится пакетов?')], ans:String(c), opts:M.numOpts(c, 1, 8, [m, tot - m]),
+          field:function(el){ el.innerHTML = '<div class="mxs-grp">' + Array.apply(null, Array(tot)).map(function(){ return '<span class="mxs-o sm">' + em + '</span>'; }).join('') + '</div>'; } }, hint(tot, m, em), { hintSay:[G.say(tot + ' разделить на ' + m + ' — это ' + c + ' пакетов.')] }));
       }
+      return S('2e' + k + q, Object.assign({ expr:eqs([total, '÷', k, '=', Q]), cap:'Сколько получится?', say:sayDiv(total, k), ans:String(q), opts:M.numOpts(q, 1, 10, [k, q + 1, q - 1]) }, hint(total, k, em)));
     }
-    return [2, Math.floor(Math.random()*10)+1];
-  }
-
-  function render(){
-    questionIndex++;
-    if(questionIndex > TOTAL){ renderFinish(); return; }
-    updateProgress();
-
-    var pair = pickPair();
-    var divisor = pair[0], quotient = pair[1];
-    var dividend = divisor * quotient;
-    currentAnswer = quotient;
-    var m = msgs();
-
-    var options = [currentAnswer];
-    while(options.length < 4){
-      var delta = [1,-1,2,-2][Math.floor(Math.random()*4)];
-      var candidate = currentAnswer + delta;
-      if(candidate > 0 && candidate <= 10 && options.indexOf(candidate) === -1){
-        options.push(candidate);
+    /* ⭐⭐⭐ деление и умножение — обратные действия */
+    function L3(em){
+      var k = pick([2, 3, 4, 5]), q = rnd(2, 9), total = k*q, t = pick(['inv', 'inv', 'fact', 'miss']);
+      if(t === 'inv'){
+        return S('3i' + k + q, Object.assign({ expr:eqs([QB, '×', k, '=', total]), say:V.tpl('expr', { tokens:['?', 'f:times', k, '=', total], q:'missing' }), ans:String(q), opts:M.numOpts(q, 1, 10, [k, total - k]) }, hint(total, k, em),
+          { hintExpr:eqs([OK(q), '×', k, '=', total]), hintSay:[G.say('Какое число умножить на ' + k + ', чтобы получить ' + total + '? Делим: ' + total + ' на ' + k + ' — ' + q + '.')] }));
       }
+      if(t === 'miss'){
+        return S('3d' + total + k, Object.assign({ expr:eqs([total, '÷', QB, '=', q]), say:V.tpl('expr', { tokens:[total, 'f:divby', '?', '=', q], q:'missing' }), ans:String(k), opts:M.numOpts(k, 2, 10, [q, total / 2 | 0]) }, hint(total, k, em),
+          { hintExpr:eqs([total, '÷', OK(k), '=', q]), hintSay:[G.say(total + ' разделить на сколько, чтобы получилось ' + q + '? Проверяем: ' + q + ' умножить на ' + k + ' — ' + total + '.')] }));
+      }
+      var good = total + ' ÷ ' + k + ' = ' + q, bad = [total + ' ÷ ' + k + ' = ' + (q + k), total + ' ÷ ' + q + ' = ' + (q + 1), k + ' ÷ ' + total + ' = ' + q];
+      return S('3f' + k + q, Object.assign(G.choice({ q:'Выбери верное равенство', say:[G.say('Выбери верное равенство. Помни: деление проверяют умножением.')], opts:[good].concat(bad).slice(0, 4), ans:good, layout:'card',
+        field:function(el){ el.innerHTML = '<div class="g2-expl">' + k + ' × ' + q + ' = ' + total + '</div>'; } }), hint(total, k, em), { hintExpr:'<span class="ok">' + good + '</span>' }));
     }
-    for(var j=options.length-1; j>0; j--){
-      var k = Math.floor(Math.random()*(j+1));
-      var tmp = options[j]; options[j]=options[k]; options[k]=tmp;
-    }
 
-    var optionsHtml = options.map(function(o){
-      return '<button class="count-btn" data-value="' + o + '">' + o + '</button>';
-    }).join('');
-
-    root.innerHTML =
-      '<div class="alphabet-pair"><span class="alphabet-letter">' + dividend + ' ÷ ' + divisor + ' =</span></div>' +
-      '<div class="count-options">' + optionsHtml + '</div>' +
-      '<div class="count-feedback" id="count-feedback"></div>';
-
-    root.querySelectorAll('.count-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){ checkAnswer(parseInt(btn.getAttribute('data-value'),10), btn); });
-    });
-  }
-
-  function renderFinish(){
-    recordGameResult('divide', score, TOTAL);
-    var m = msgs();
-    root.innerHTML =
-      '<div class="finish-screen">' +
-        '<div class="finish-emoji">🏆</div>' +
-        '<h2 class="finish-msg">' + (m.finish_msg || 'Game complete! 🎉') + '</h2>' +
-        '<p class="finish-score">' + (m.score_label || 'Score:') + ' ' + score + ' / ' + TOTAL + '</p>' +
-        '<button class="cta" id="play-again-btn">' + (m.play_again || 'Play again') + '</button>' +
-      '</div>';
-    document.getElementById('play-again-btn').addEventListener('click', function(){
-      score = 0;
-      questionIndex = 0;
-      usedPairs = [];
-      updateScore();
-      render();
-    });
-  }
-
-  function checkAnswer(value, btn){
-    var feedback = document.getElementById('count-feedback');
-    var m = msgs();
-
-    if(value === currentAnswer){
-      score++;
-      updateScore();
-      btn.classList.add('correct');
-      feedback.textContent = m.correct_msg || 'Great job! 🎉';
-      feedback.className = 'count-feedback show correct';
-      setTimeout(render, 900);
-    } else {
-      btn.classList.add('wrong');
-      feedback.textContent = m.wrong_msg || 'Try again';
-      feedback.className = 'count-feedback show wrong';
-      setTimeout(function(){ btn.classList.remove('wrong'); }, 500);
-    }
-  }
-
-  render();
+    M.run({ root:containerId, key:'divide', need:10, theme:'sunset', levels:[L1, L2, L3] });
+  });
 }
