@@ -35,9 +35,9 @@ function initTwoDigitOpsGame(containerId){
     // разбор «по частям»: a ± b = (a ± десятки b) ± единицы b
     function steps(a, op, b){
       var bt = T(b)*10, bo = O(b), m = op === '+' ? a + bt : a - bt, r = op === '+' ? a + b : a - b, w = op === '+' ? 'плюс' : 'минус';
-      var txt = bo ? a + ' ' + op + ' ' + bt + ' = ' + m + '<br>' + m + ' ' + op + ' ' + bo + ' = <b>' + r + '</b>' : a + ' ' + op + ' ' + bt + ' = <b>' + r + '</b>';
+      var txt = !bt ? a + ' ' + op + ' ' + b + ' = <b>' + r + '</b>' : bo ? a + ' ' + op + ' ' + bt + ' = ' + m + '<br>' + m + ' ' + op + ' ' + bo + ' = <b>' + r + '</b>' : a + ' ' + op + ' ' + bt + ' = <b>' + r + '</b>';
       return { hintExpr:eqs([a, op === '+' ? '+' : '−', b, '=', OK(r)]),
-        hintSay:[G.say(a + ' ' + w + ' ' + b + '. Сначала ' + w + ' ' + bt + ' — получится ' + m + (bo ? '. Потом ' + w + ' ' + bo + ' — ' + r + '.' : '.'))],
+        hintSay:[G.say(bt ? a + ' ' + w + ' ' + b + '. Сначала ' + w + ' ' + bt + ' — получится ' + m + (bo ? '. Потом ' + w + ' ' + bo + ' — ' + r + '.' : '.') : a + ' ' + w + ' ' + b + ' — это ' + r + '.')],
         hint:G.hintCard('<div class="mxs-row">' + G.blocks(T(a), O(a)) + '</div>', txt) };
     }
     function vis(a, op, b){ return function(el){ el.innerHTML = '<div class="mxs-row" style="align-items:flex-end">' + G.blocks(T(a), O(a)) + '<span class="mxs-plus" style="font-size:2.2rem">' + (op === '+' ? '+' : '−') + '</span>' + G.blocks(T(b), O(b)) + '</div>'; }; }

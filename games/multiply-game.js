@@ -31,7 +31,7 @@ function initMultiplyGame(containerId){
     function addLine(k, n){ var a = []; for(var i = 0; i < k; i++) a.push(n); return a.join(' + '); }
     function hint(k, n, em){
       var r = k*n; return { hintExpr:eqs([k, '×', n, '=', OK(r)]),
-        hintSay:[G.say(k + ' раза по ' + n + ' — это ' + r + '. Можно сложить: ' + addLine(k, n) + ' равно ' + r + '.')],
+        hintSay:[G.say(k + ' ' + G.plural(k, 'раз', 'раза', 'раз') + ' по ' + n + ' — это ' + r + '. Можно сложить: ' + addLine(k, n) + ' равно ' + r + '.')],
         hint:G.hintCard('<div class="g2-tiles">' + Array.apply(null, Array(k)).map(function(){ return '<div class="g2-tile" style="animation:none;cursor:default">' + basket(n, em) + '</div>'; }).join('') + '</div>', addLine(k, n) + ' = <b>' + r + '</b><br>' + k + ' × ' + n + ' = <b>' + r + '</b>') };
     }
     function opts(r, k, n){ var c = [r]; [r + k, r - k, r + n, r - n, r + 1, r - 1].forEach(function(x){ if(x > 0 && c.indexOf(x) < 0 && c.length < 4) c.push(x); }); return M.shuffle(c).map(function(v){ return { v:String(v), h:String(v) }; }); }
@@ -58,11 +58,12 @@ function initMultiplyGame(containerId){
     function L3(em){
       var k = pick([2, 3, 4, 5]), n = rnd(2, 9), r = k*n, t = pick(['miss', 'miss', 'times', 'cmp']);
       if(t === 'miss'){
-        return S('3m' + k + n, Object.assign({ expr:eqs([k, '×', QB, '=', r]), say:V.tpl('expr', { tokens:[k, 'f:times', '?', '=', r], q:'missing' }), ans:String(n), opts:M.numOpts(n, 1, 10, [k, r / k + 1]) }, hint(k, n, em), { hintExpr:eqs([k, '×', OK(n), '=', r]), hintSay:[G.say(k + ' умножить на сколько будет ' + r + '? Считаем по ' + k + ': ' + n + ' раз.')] }));
+        return S('3m' + k + n, Object.assign({ expr:eqs([k, '×', QB, '=', r]), say:V.tpl('expr', { tokens:[k, 'f:times', '?', '=', r], q:'missing' }), ans:String(n), opts:M.numOpts(n, 1, 10, [k, r / k + 1]) }, hint(k, n, em), { hintExpr:eqs([k, '×', OK(n), '=', r]), hintSay:[G.say(k + ' умножить на сколько будет ' + r + '? Считаем по ' + k + ': ' + n + ' ' + G.plural(n, 'раз', 'раза', 'раз') + '.')] }));
       }
       if(t === 'times'){
-        var a = rnd(2, 6), x = pick([2, 3, 4, 5]), who = pick([['Али', 'Бек'], ['Аружан', 'Мадина']]), thing = pick(['яблок', 'конфет', 'наклеек']);
-        return S('3t' + a + x, Object.assign({ expr:'', cap:'У ' + who[0] + ' ' + a + ' ' + thing + '. У ' + who[1] + ' в ' + x + ' ' + G.plural(x, 'раз', 'раза', 'раз') + ' больше. Сколько у ' + who[1] + '?', say:[G.say('У ' + who[0] + ' ' + a + ' ' + thing + '. У ' + who[1] + ' в ' + x + ' раза больше. Сколько у ' + who[1] + '?')], ans:String(a*x), opts:opts(a*x, a, x),
+        var a = rnd(2, 6), x = pick([2, 3, 4, 5]), who = pick([['Али', 'Бек', 'Бека'], ['Аружан', 'Мадина', 'Мадины']]), th = pick([['яблоко', 'яблока', 'яблок'], ['конфета', 'конфеты', 'конфет'], ['наклейка', 'наклейки', 'наклеек']]);
+        var storyTxt = 'У ' + who[0] + ' ' + a + ' ' + G.plural(a, th[0], th[1], th[2]) + '. У ' + who[2] + ' в ' + x + ' ' + G.plural(x, 'раз', 'раза', 'раз') + ' больше. Сколько ' + th[2] + ' у ' + who[2] + '?';
+        return S('3t' + a + x, Object.assign({ expr:'', cap:storyTxt, say:[G.say(storyTxt)], ans:String(a*x),
           field:function(el){ el.innerHTML = '<div class="g2-expl">' + who[0] + ': ' + a + '<br>' + who[1] + ': ' + a + ' × ' + x + ' = ?</div>'; } }, hint(x, a, em), { hintExpr:eqs([a, '×', x, '=', OK(a*x)]) }));
       }
       var a1 = pick([2, 3, 4, 5]), b1 = rnd(2, 7), a2 = pick([2, 3, 4, 5, 6]), b2 = rnd(2, 8); if(a1*b1 === a2*b2) b2 += 1;

@@ -31,6 +31,8 @@ function initTengeGame(containerId){
     function coinsRow(list){ return '<div class="mxs-row" style="gap:6px">' + list.map(function(v){ return G.money(v, v <= 100 ? 50 : 80); }).join('') + '</div>'; }
     function hintSum(list){ var s = list.reduce(function(a, b){ return a + b; }, 0); return { hintExpr:'<span class="ok">' + s + ' ₸</span>', hintSay:[G.say('Складываем: ' + list.join(' плюс ') + '. Получится ' + s + ' тенге.')], hint:G.hintCard(coinsRow(list), list.join(' + ') + ' = <b>' + s + ' ₸</b>') }; }
     function wallet(){ var n = rnd(2, 4), l = []; for(var i = 0; i < n; i++) l.push(pick(DEN)); l.sort(function(a, b){ return b - a; }); var s = l.reduce(function(a, b){ return a + b; }, 0); if(s > 1200) return wallet(); return l; }
+    function vb(n){ return n === 'яблоки' ? 'стоят' : 'стоит'; }
+    function Cp(t){ return t.charAt(0).toUpperCase() + t.slice(1); }
     var SHOP = [['🍞', 'хлеб', 150], ['🥛', 'молоко', 250], ['🍎', 'яблоки', 300], ['🧃', 'сок', 200], ['🍫', 'шоколадка', 350], ['⚽', 'мяч', 450], ['✏️', 'карандаш', 100], ['📒', 'тетрадь', 150], ['🍦', 'мороженое', 200], ['🧸', 'мишка', 400]];
 
     /* ⭐ сколько тенге у Барсика: нажми на деньги и посчитай */
@@ -62,7 +64,7 @@ function initTengeGame(containerId){
       var k = pick(['change', 'change', 'enough', 'total']), a = pick(SHOP), b;
       if(k === 'change'){
         var paid = pick([500, 500, 1000]), item = pick(SHOP.filter(function(x){ return x[2] < paid; })), ch = paid - item[2];
-        return S('3c' + item[1] + paid, Object.assign({ expr:'<span style="font-size:2.2rem">' + item[0] + '</span><span class="g2-chip">' + item[2] + ' ₸</span>', cap:item[1] + ' стоит ' + item[2] + ' ₸. Дали ' + paid + ' ₸. Сколько сдачи?', say:[G.say(item[1] + ' стоит ' + item[2] + ' тенге. Продавцу дали ' + paid + ' тенге. Сколько сдачи?')], ans:String(ch), opts:sumOpts(ch),
+        return S('3c' + item[1] + paid, Object.assign({ expr:'<span style="font-size:2.2rem">' + item[0] + '</span><span class="g2-chip">' + item[2] + ' ₸</span>', cap:Cp(item[1]) + ' ' + vb(item[1]) + ' ' + item[2] + ' ₸. Дали ' + paid + ' ₸. Сколько сдачи?', say:[G.say(Cp(item[1]) + ' ' + vb(item[1]) + ' ' + item[2] + ' тенге. Продавцу дали ' + paid + ' тенге. Сколько сдачи?')], ans:String(ch), opts:sumOpts(ch),
           field:function(el){ el.innerHTML = G.money(paid, 100); } },
           { hintExpr:'<span class="ok">' + ch + ' ₸</span>', hintSay:[G.say('Сдача — это ' + paid + ' минус ' + item[2] + '. Получается ' + ch + ' тенге.')], hint:G.hintCard(G.money(paid, 90), paid + ' − ' + item[2] + ' = <b>' + ch + ' ₸</b>') }));
       }
@@ -70,11 +72,11 @@ function initTengeGame(containerId){
         var l = wallet(), s = l.reduce(function(x, y){ return x + y; }, 0), it = pick(SHOP), ok = Math.random() < .5 ? it[2] <= s : it[2] <= s;
         // подбираем предмет так, чтобы ответы чередовались
         var want = Math.random() < .5; var cand = SHOP.filter(function(x){ return want ? x[2] <= s : x[2] > s; }); if(cand.length) it = pick(cand); ok = it[2] <= s;
-        return S('3e' + it[1] + l.join('-'), Object.assign({ expr:'<span style="font-size:2.2rem">' + it[0] + '</span><span class="g2-chip">' + it[2] + ' ₸</span>', cap:'Хватит ли денег на ' + it[1] + '?', say:[G.say('У Барсика ' + s + ' тенге. ' + it[1] + ' стоит ' + it[2] + ' тенге. Хватит ли денег?')], ans:ok ? 'Хватит' : 'Не хватит', opts:G.txtOpts(['Хватит', 'Не хватит']), layout:'wide',
-          field:function(el){ el.innerHTML = coinsRow(l); } }, hintSum(l), { hintExpr:'<span class="ok">' + (ok ? 'Хватит' : 'Не хватит') + '</span>', hintSay:[G.say('В кошельке ' + s + ' тенге. ' + (ok ? 'Этого достаточно' : 'Этого мало') + ': ' + it[1] + ' стоит ' + it[2] + '.')] }));
+        return S('3e' + it[1] + l.join('-'), Object.assign({ expr:'<span style="font-size:2.2rem">' + it[0] + '</span><span class="g2-chip">' + it[2] + ' ₸</span>', cap:'Хватит ли денег на ' + it[1] + '?', say:[G.say('У Барсика ' + s + ' тенге. ' + Cp(it[1]) + ' ' + vb(it[1]) + ' ' + it[2] + ' тенге. Хватит ли денег?')], ans:ok ? 'Хватит' : 'Не хватит', opts:G.txtOpts(['Хватит', 'Не хватит']), layout:'wide',
+          field:function(el){ el.innerHTML = coinsRow(l); } }, hintSum(l), { hintExpr:'<span class="ok">' + (ok ? 'Хватит' : 'Не хватит') + '</span>', hintSay:[G.say('В кошельке ' + s + ' тенге. ' + (ok ? 'Этого достаточно' : 'Этого мало') + ': ' + Cp(it[1]) + ' ' + vb(it[1]) + ' ' + it[2] + '.')] }));
       }
       b = pick(SHOP.filter(function(x){ return x !== a; })); var tot = a[2] + b[2];
-      return S('3t' + a[1] + b[1], Object.assign({ expr:'<span style="font-size:2rem">' + a[0] + '</span><span>+</span><span style="font-size:2rem">' + b[0] + '</span>', cap:a[1] + ' ' + a[2] + ' ₸ и ' + b[1] + ' ' + b[2] + ' ₸. Сколько вместе?', say:[G.say(a[1] + ' стоит ' + a[2] + ' тенге, ' + b[1] + ' стоит ' + b[2] + ' тенге. Сколько денег нужно на обе покупки?')], ans:String(tot), opts:sumOpts(tot) },
+      return S('3t' + a[1] + b[1], Object.assign({ expr:'<span style="font-size:2rem">' + a[0] + '</span><span>+</span><span style="font-size:2rem">' + b[0] + '</span>', cap:Cp(a[1]) + ' ' + a[2] + ' ₸ и ' + b[1] + ' ' + b[2] + ' ₸. Сколько вместе?', say:[G.say(Cp(a[1]) + ' ' + vb(a[1]) + ' ' + a[2] + ' тенге, ' + b[1] + ' ' + vb(b[1]) + ' ' + b[2] + ' тенге. Сколько денег нужно на обе покупки?')], ans:String(tot), opts:sumOpts(tot) },
         { hintExpr:'<span class="ok">' + tot + ' ₸</span>', hintSay:[G.say(a[2] + ' плюс ' + b[2] + ' — это ' + tot + ' тенге.')], hint:G.hintCard('', a[2] + ' + ' + b[2] + ' = <b>' + tot + ' ₸</b>') }));
     }
 

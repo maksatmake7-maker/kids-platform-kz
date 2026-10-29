@@ -87,7 +87,7 @@ function initPerimeterGame(containerId){
       }
       var a = rnd(4, 12), b = rnd(2, 9); if(a === b) b = a - 1; var P = (a + b)*2, who = pick(['грядка', 'площадка', 'ковёр', 'картина']);
       d = { kind:'rect', sides:[a, b, a, b], P:P, f:'(' + a + ' + ' + b + ') × 2', a:a, b:b };
-      return S('3w' + a + b, Object.assign({ expr:'', cap:'Длина ' + a + ' м, ширина ' + b + ' м. Сколько метров забора вокруг прямоугольной ' + (who === 'грядка' ? 'грядки' : 'площадки') + '?', say:[G.say('Длина прямоугольной грядки ' + a + ' метров, ширина ' + b + ' метров. Сколько метров забора нужно вокруг неё?')], ans:String(P), opts:opts(P),
+      return S('3w' + a + b, Object.assign({ expr:'', cap:'Длина ' + a + ' м, ширина ' + b + ' м. Сколько метров забора вокруг прямоугольной ' + (who === 'грядка' ? 'грядки' : 'площадки') + '?', say:[G.say('Длина прямоугольной грядки ' + a + ' ' + G.plural(a, 'метр', 'метра', 'метров') + ', ширина ' + b + ' ' + G.plural(b, 'метр', 'метра', 'метров') + '. Сколько метров забора нужно вокруг неё?')], ans:String(P), opts:opts(P),
         field:function(el){ el.innerHTML = plot('rect', [String(a), String(b), '', ''], '? м'); } }, hintP(d)));
     }
 

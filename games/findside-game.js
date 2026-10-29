@@ -42,21 +42,21 @@ function initFindSideGame(containerId){
     /* ⭐ квадрат: P ÷ 4 */
     function L1(){
       var q = SQ();
-      return S('1' + q.a, Object.assign({ expr:'', cap:'Периметр загона-квадрата ' + q.P + ' м. Чему равна сторона?', say:[G.say('Периметр квадратного загона ' + q.P + ' метров. Чему равна одна сторона?')], ans:String(q.a), opts:M.numOpts(q.a, 2, 16, [q.a*2, q.P - q.a]),
+      return S('1' + q.a, Object.assign({ expr:'', cap:'Периметр загона-квадрата ' + q.P + ' м. Чему равна сторона?', say:[G.say('Периметр квадратного загона ' + q.P + ' ' + G.plural(q.P, 'метр', 'метра', 'метров') + '. Чему равна одна сторона?')], ans:String(q.a), opts:M.numOpts(q.a, 2, 16, [q.a*2, q.P - q.a]),
         field:function(el){ el.innerHTML = pen('sq', 0, q.P); } }, hintSq(q.a)));
     }
     /* ⭐⭐ прямоугольник: P ÷ 2 − a */
     function L2(){
       var r = RC();
-      return S('2' + r.a + r.b, Object.assign({ expr:'', cap:'Периметр ' + r.P + ' м, одна сторона ' + r.a + ' м. Чему равна другая?', say:[G.say('Периметр прямоугольного загона ' + r.P + ' метров. Одна сторона ' + r.a + ' метров. Чему равна другая сторона?')], ans:String(r.b), opts:M.numOpts(r.b, 1, 14, [r.P/2, r.P - r.a, r.a]),
+      return S('2' + r.a + r.b, Object.assign({ expr:'', cap:'Периметр ' + r.P + ' м, одна сторона ' + r.a + ' м. Чему равна другая?', say:[G.say('Периметр прямоугольного загона ' + r.P + ' ' + G.plural(r.P, 'метр', 'метра', 'метров') + '. Одна сторона ' + r.a + ' ' + G.plural(r.a, 'метр', 'метра', 'метров') + '. Чему равна другая сторона?')], ans:String(r.b), opts:M.numOpts(r.b, 1, 14, [r.P/2, r.P - r.a, r.a]),
         field:function(el){ el.innerHTML = pen('rect', r.a, r.P); } }, hintRect(r.a, r.b)));
     }
     /* ⭐⭐⭐ задачи и выбор решения */
     function L3(){
       var k = pick(['word', 'sol', 'sq']);
-      if(k === 'sq'){ var q = SQ(); return S('3q' + q.a, Object.assign({ expr:'', cap:'Квадратную клумбу огородили забором ' + q.P + ' м. Какая сторона у клумбы?', say:[G.say('Квадратную клумбу огородили забором длиной ' + q.P + ' метров. Какая сторона у клумбы?')], ans:String(q.a), opts:M.numOpts(q.a, 2, 16, [q.a*2, q.P - q.a]) }, hintSq(q.a))); }
+      if(k === 'sq'){ var q = SQ(); return S('3q' + q.a, Object.assign({ expr:'', cap:'Квадратную клумбу огородили забором ' + q.P + ' м. Какая сторона у клумбы?', say:[G.say('Квадратную клумбу огородили забором длиной ' + q.P + ' ' + G.plural(q.P, 'метр', 'метра', 'метров') + '. Какая сторона у клумбы?')], ans:String(q.a), opts:M.numOpts(q.a, 2, 16, [q.a*2, q.P - q.a]) }, hintSq(q.a))); }
       var r = RC();
-      if(k === 'word') return S('3w' + r.a + r.b, Object.assign({ expr:'', cap:'Огород прямоугольный. Периметр ' + r.P + ' м, длина ' + r.a + ' м. Какая ширина?', say:[G.say('Огород прямоугольный. Периметр ' + r.P + ' метров, длина ' + r.a + ' метров. Какая у огорода ширина?')], ans:String(r.b), opts:M.numOpts(r.b, 1, 14, [r.P/2, r.P - r.a, r.a]) }, hintRect(r.a, r.b)));
+      if(k === 'word') return S('3w' + r.a + r.b, Object.assign({ expr:'', cap:'Огород прямоугольный. Периметр ' + r.P + ' м, длина ' + r.a + ' м. Какая ширина?', say:[G.say('Огород прямоугольный. Периметр ' + r.P + ' ' + G.plural(r.P, 'метр', 'метра', 'метров') + ', длина ' + r.a + ' ' + G.plural(r.a, 'метр', 'метра', 'метров') + '. Какая у огорода ширина?')], ans:String(r.b), opts:M.numOpts(r.b, 1, 14, [r.P/2, r.P - r.a, r.a]) }, hintRect(r.a, r.b)));
       var good = r.P + ' ÷ 2 − ' + r.a, bad = [r.P + ' − ' + r.a, r.P + ' ÷ 4', r.P + ' ÷ 2 + ' + r.a];
       return S('3s' + r.a + r.b, Object.assign(G.choice({ q:'Периметр прямоугольника ' + r.P + ' м, сторона ' + r.a + ' м. Как найти другую сторону?', opts:[good].concat(bad), ans:good, layout:'card' }), hintRect(r.a, r.b), { hintExpr:'<span class="ok">' + good + '</span>' }));
     }

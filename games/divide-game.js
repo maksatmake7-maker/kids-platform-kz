@@ -47,7 +47,7 @@ function initDivideGame(containerId){
       if(t === 'content'){
         var m = pick([2, 3, 4, 5]), c = rnd(2, 5), tot = m*c;
         return S('2c' + m + c, Object.assign({ expr:eqs([tot, '÷', m, '=', Q]), cap:'Раскладываем по ' + m + ' ' + em + ' в пакет. Сколько пакетов?', say:[G.say(tot + ' ' + em + ' раскладывают по ' + m + ' в пакет. Сколько получится пакетов?')], ans:String(c), opts:M.numOpts(c, 1, 8, [m, tot - m]),
-          field:function(el){ el.innerHTML = '<div class="mxs-grp">' + Array.apply(null, Array(tot)).map(function(){ return '<span class="mxs-o sm">' + em + '</span>'; }).join('') + '</div>'; } }, hint(tot, m, em), { hintSay:[G.say(tot + ' разделить на ' + m + ' — это ' + c + ' пакетов.')] }));
+          field:function(el){ el.innerHTML = '<div class="mxs-grp">' + Array.apply(null, Array(tot)).map(function(){ return '<span class="mxs-o sm">' + em + '</span>'; }).join('') + '</div>'; } }, hint(tot, m, em), { hintSay:[G.say(tot + ' разделить на ' + m + ' — это ' + c + ' ' + G.plural(c, 'пакет', 'пакета', 'пакетов') + '.')] }));
       }
       return S('2e' + k + q, Object.assign({ expr:eqs([total, '÷', k, '=', Q]), cap:'Сколько получится?', say:sayDiv(total, k), ans:String(q), opts:M.numOpts(q, 1, 10, [k, q + 1, q - 1]) }, hint(total, k, em)));
     }
