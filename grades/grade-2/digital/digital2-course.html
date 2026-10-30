@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Цифровая грамотность 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="digital">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Цифровая грамотность 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Цифровая грамотность 2 класс</h1>
+      <p class="ac-sub">10 уроков: безопасность, ввод и вывод, файлы и папки, поиск, клавиатура, алгоритмы, Scratch, рисунок, звук, роботы</p>
+      <p class="ac-note">Курс по программе 2 класса (приказ №399). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 11</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/digital2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/digital2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_digital2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Цифровая грамотность 2 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по цифровой грамотности →</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.dg1q = mkQuiz([{"q": "Что такое нетикет?", "a": "Правила вежливого общения в сети", "w": ["Название программы", "Вид компьютера"], "h": "Нетикет — правила поведения в интернете"}, {"q": "Почему нельзя трогать провода и розетки?", "a": "Можно получить удар током", "w": ["Провода слишком красивые", "Их нельзя пачкать"], "h": "Электричество опасно для человека"}, {"q": "Что значит сообщение, написанное ЗАГЛАВНЫМИ буквами?", "a": "Похоже, что человек кричит", "w": ["Он пишет тише", "Он пишет быстрее"], "h": "В нетикете так писать не принято"}, {"q": "Как защитить глаза при работе за экраном?", "a": "Делать перерывы и гимнастику для глаз", "w": ["Включать экран на полную яркость", "Смотреть без перерывов"], "h": "Глазам нужен отдых"}, {"q": "Что делать, если в сети тебя обидели?", "a": "Рассказать взрослому", "w": ["Обидеть в ответ", "Скрывать и молчать"], "h": "Взрослые помогут разобраться"}, {"q": "Что правильно?: Глаза устали от экрана. Что сделать?", "a": "Сделать перерыв и посмотреть вдаль", "w": ["Смотреть на экран ещё ближе", "Сделать экран ярче"], "h": "Перерыв помогает глазам отдохнуть"}, {"q": "Что правильно?: Сломался шнур питания, торчат провода. Что сделать?", "a": "Не трогать и позвать взрослого", "w": ["Потрогать провода", "Замотать мокрой тряпкой"], "h": "К проводам прикасаться нельзя"}, {"q": "Что правильно?: Захотелось пить во время работы. Как правильно?", "a": "Отойти и попить подальше от клавиатуры", "w": ["Поставить стакан на клавиатуру", "Пить прямо над клавиатурой"], "h": "Жидкость портит клавиатуру"}, {"q": "Что правильно?: Друг написал в чате грубое слово. Как ответить по нетикету?", "a": "Вежливо попросить так не писать", "w": ["Ответить ещё грубее", "Написать ответ заглавными буквами"], "h": "Вежливость помогает общаться без ссор"}, {"q": "Что правильно?: Незнакомый человек в сети просит твой адрес. Что делать?", "a": "Не отвечать и рассказать взрослому", "w": ["Отправить адрес", "Отправить адрес и телефон"], "h": "Личные данные незнакомцам не сообщают"}, {"q": "Что правильно?: Как лучше сидеть за компьютером?", "a": "Спина прямая, ноги стоят на полу", "w": ["Лёжа на диване", "Склонившись к самому экрану"], "h": "Правильная поза бережёт спину"}, {"q": "Что правильно?: Как начать сообщение учителю?", "a": "С вежливого приветствия", "w": ["С крика", "Без слов, только с картинкой"], "h": "Приветствие — часть нетикета"}, {"q": "Что правильно?: Ты закончил работу. Что сделать с устройством?", "a": "Выключить его по правилам", "w": ["Дёрнуть шнур из розетки", "Оставить включённым на всю ночь"], "h": "Устройство выключают по правилам, а не шнуром"}, {"q": "Что правильно?: Одноклассник просит чужое фото для шутки. Как поступить?", "a": "Не отправлять без разрешения того, кто на фото", "w": ["Отправить сразу", "Отправить всему классу"], "h": "Чужие фото без разрешения отправлять нельзя"}, {"q": "Что правильно?: Сколько можно сидеть за компьютером без перерыва?", "a": "Нужно делать перерывы", "w": ["Целый день подряд", "Пока не заболят глаза"], "h": "Перерывы нужны, чтобы беречь здоровье"}]);
+GENS.dg1t = mkTF([{"q": "Мокрыми руками можно включать компьютер", "a": "Неверно", "h": "Неверно. Вода и электричество вместе опасны"}, {"q": "За компьютером нужно делать перерывы", "a": "Верно", "h": "Верно. Это бережёт глаза и спину"}, {"q": "В сети можно писать обидные слова, ведь никто не видит", "a": "Неверно", "h": "Неверно. За экраном тоже живые люди, им бывает обидно"}, {"q": "Незнакомцу в сети можно сообщить свой адрес", "a": "Неверно", "h": "Неверно. Личные данные незнакомцам не сообщают"}, {"q": "Здороваться и благодарить нужно и в сети", "a": "Верно", "h": "Верно. Это правила нетикета"}, {"q": "Пить сок над клавиатурой безопасно", "a": "Неверно", "h": "Неверно. Жидкость может испортить клавиатуру"}]);
+GENS.dg2q = mkQuiz([{"q": "Для чего нужна мышь?", "a": "Чтобы управлять курсором и выбирать на экране", "w": ["Чтобы печатать на бумаге", "Чтобы воспроизводить звук"], "h": "Мышь — устройство ввода команд"}, {"q": "Как называют устройства, которые показывают информацию?", "a": "Устройства вывода", "w": ["Устройства ввода", "Устройства хранения"], "h": "Вывод — это то, что показывает или воспроизводит компьютер"}, {"q": "Какое устройство входит в устройства ввода?", "a": "Микрофон", "w": ["Принтер", "Монитор"], "h": "Микрофон вводит звук в компьютер"}, {"q": "Что делает принтер?", "a": "Печатает на бумаге", "w": ["Записывает звук", "Передаёт команды"], "h": "Принтер выводит информацию на бумагу"}, {"q": "Что общего у колонок и наушников?", "a": "Они воспроизводят звук", "w": ["Они вводят буквы", "Они печатают"], "h": "Оба устройства выводят звук"}, {"q": "Какое устройство нужно?: Нужно напечатать слово. Что использовать?", "a": "Клавиатуру", "w": ["Колонки", "Принтер"], "h": "Буквы вводят с клавиатуры"}, {"q": "Какое устройство нужно?: Нужно выбрать картинку на экране. Что использовать?", "a": "Мышь", "w": ["Наушники", "Принтер"], "h": "Указывают и выбирают мышью"}, {"q": "Какое устройство нужно?: Нужно записать свой голос. Что использовать?", "a": "Микрофон", "w": ["Монитор", "Принтер"], "h": "Звук записывают микрофоном"}, {"q": "Какое устройство нужно?: Нужно посмотреть рисунок. Что использовать?", "a": "Монитор", "w": ["Микрофон", "Клавиатуру"], "h": "Изображение показывает монитор"}, {"q": "Какое устройство нужно?: Нужно получить рисунок на бумаге. Что использовать?", "a": "Принтер", "w": ["Мышь", "Колонки"], "h": "Принтер печатает на бумаге"}, {"q": "Какое устройство нужно?: Нужно послушать музыку всем классом. Что использовать?", "a": "Колонки", "w": ["Клавиатуру", "Мышь"], "h": "Колонки звучат громко для всех"}, {"q": "Какое устройство нужно?: Нужно послушать музыку, чтобы никому не мешать. Что использовать?", "a": "Наушники", "w": ["Принтер", "Монитор"], "h": "Наушники слышит только тот, кто их надел"}, {"q": "Какое устройство нужно?: Какое устройство только показывает информацию?", "a": "Монитор", "w": ["Мышь", "Микрофон"], "h": "Монитор — устройство вывода"}, {"q": "Какое устройство нужно?: Какое устройство передаёт информацию в компьютер?", "a": "Клавиатура", "w": ["Принтер", "Колонки"], "h": "Клавиатура — устройство ввода"}, {"q": "Какое устройство нужно?: Нужно сказать «Привет!» в программе записи звука. Что понадобится?", "a": "Микрофон", "w": ["Принтер", "Монитор"], "h": "Для записи голоса нужен микрофон"}]);
+GENS.dg2t = mkTF([{"q": "Клавиатура — устройство ввода", "a": "Верно", "h": "Верно. Она передаёт буквы и цифры в компьютер"}, {"q": "Монитор — устройство ввода", "a": "Неверно", "h": "Неверно. Монитор показывает изображение, это устройство вывода"}, {"q": "Микрофон нужен, чтобы записать голос", "a": "Верно", "h": "Верно. Микрофон вводит звук"}, {"q": "Принтер — устройство вывода", "a": "Верно", "h": "Верно. Он печатает на бумаге"}, {"q": "Наушники вводят звук в компьютер", "a": "Неверно", "h": "Неверно. Наушники воспроизводят звук"}, {"q": "Мышь помогает выбирать на экране", "a": "Верно", "h": "Верно. Мышь управляет курсором"}]);
+GENS.dg3q = mkQuiz([{"q": "Для чего нужна папка?", "a": "Чтобы хранить файлы по порядку", "w": ["Чтобы печатать на бумаге", "Чтобы записывать звук"], "h": "Папки помогают держать файлы в порядке"}, {"q": "Что такое ярлык?", "a": "Значок, который быстро открывает программу, файл или папку", "w": ["Вид клавиатуры", "Часть монитора"], "h": "Ярлык — быстрый путь к нужному"}, {"q": "Чем файл отличается от папки?", "a": "Файл хранит информацию, а папка хранит файлы", "w": ["Папка хранит звук, а файл — бумагу", "Ничем не отличаются"], "h": "Папка — «коробка» для файлов"}, {"q": "Как открыть контекстное меню?", "a": "Нажать правую кнопку мыши", "w": ["Нажать две клавиши сразу", "Подуть на экран"], "h": "Контекстное меню показывает команды для выбранного объекта"}, {"q": "Что произойдёт, если удалить ярлык?", "a": "Исчезнет только значок быстрого входа", "w": ["Исчезнет весь компьютер", "Выключится монитор"], "h": "Ярлык — это только быстрый путь"}, {"q": "Что нужно сделать?: Нужно сложить все рисунки в одно место. Что создать?", "a": "Папку", "w": ["Ярлык", "Звуковой файл"], "h": "В папке удобно хранить файлы вместе"}, {"q": "Что нужно сделать?: Нужно сделать копию файла. Что выбрать в контекстном меню?", "a": "Копировать", "w": ["Удалить", "Закрыть"], "h": "Команда «Копировать» создаёт копию"}, {"q": "Что нужно сделать?: Нужно убрать ненужный файл. Что выбрать в контекстном меню?", "a": "Удалить", "w": ["Копировать", "Вставить"], "h": "Команда «Удалить» убирает файл"}, {"q": "Что нужно сделать?: Нужно перенести файл в другую папку. Что сделать?", "a": "Переместить файл", "w": ["Закрыть папку", "Сделать ярлык рисунка"], "h": "Перемещение переносит файл в другое место"}, {"q": "Что нужно сделать?: Как вызвать контекстное меню?", "a": "Нажать правую кнопку мыши", "w": ["Нажать на экран кулаком", "Нажать любую клавишу"], "h": "Контекстное меню открывается правой кнопкой мыши"}, {"q": "Что нужно сделать?: Нужно быстро открыть программу с рабочего стола. Что поможет?", "a": "Ярлык", "w": ["Папка с играми", "Звуковой файл"], "h": "Ярлык быстро открывает программу"}, {"q": "Что нужно сделать?: Что хранится в файле?", "a": "Информация: текст, рисунок или звук", "w": ["Только бумага", "Только провода"], "h": "Файл — место хранения информации"}, {"q": "Что нужно сделать?: Что можно положить в папку?", "a": "Файлы и другие папки", "w": ["Только ярлыки", "Ничего нельзя"], "h": "Папка хранит файлы и папки"}, {"q": "Что нужно сделать?: Чтобы вставить скопированный файл, что выбрать?", "a": "Вставить", "w": ["Закрыть", "Выключить"], "h": "Скопированный файл вставляют командой «Вставить»"}, {"q": "Что нужно сделать?: Нужно создать новую папку. Что выбрать в контекстном меню?", "a": "Создать — Папку", "w": ["Закрыть", "Удалить"], "h": "Папку создают через контекстное меню"}]);
+GENS.dg3t = mkTF([{"q": "В папке могут лежать файлы", "a": "Верно", "h": "Верно. Папка нужна, чтобы хранить файлы"}, {"q": "Файл — это то же самое, что принтер", "a": "Неверно", "h": "Неверно. Файл хранит информацию, принтер печатает"}, {"q": "Копировать файл — значит сделать его копию", "a": "Верно", "h": "Верно. После копирования появится ещё один такой файл"}, {"q": "Контекстное меню открывается правой кнопкой мыши", "a": "Верно", "h": "Верно. Это быстрый список команд"}, {"q": "Ярлык нужен, чтобы быстро открыть нужное", "a": "Верно", "h": "Верно. Ярлык — быстрый путь"}, {"q": "Папку нельзя создать", "a": "Неверно", "h": "Неверно. Папки можно создавать самим"}]);
+GENS.dg4q = mkQuiz([{"q": "Что такое браузер?", "a": "Программа для просмотра сайтов", "w": ["Вид клавиатуры", "Звуковой файл"], "h": "С помощью браузера открывают сайты"}, {"q": "Как лучше написать запрос для поиска?", "a": "Несколькими ключевыми словами по теме", "w": ["Одним словом «всё»", "Как можно длиннее"], "h": "Точные слова помогают найти нужное"}, {"q": "Можно ли верить всему, что написано в интернете?", "a": "Нет, сведения нужно проверять", "w": ["Да, всё верно", "Только то, что со смайликами"], "h": "В сети есть неточная информация"}, {"q": "Как передать текст с сайта в документ?", "a": "Скопировать и вставить", "w": ["Нажать на принтер", "Нажать на мышь"], "h": "Копирование и вставка соединяют программы"}, {"q": "Что такое вкладка?", "a": "Отдельное окно сайта в браузере", "w": ["Часть мыши", "Вид принтера"], "h": "Вкладки позволяют держать несколько сайтов"}, {"q": "Что сделать?: Нужно найти информацию о бобрах. Что ввести в строку поиска?", "a": "Бобры: где живут", "w": ["Бобры игры на скорость", "Просто точку"], "h": "Запрос должен точно говорить о теме"}, {"q": "Что сделать?: Как открыть нужный сайт, если известен адрес?", "a": "Ввести адрес в адресную строку", "w": ["Позвать друга к экрану", "Нажать на принтер"], "h": "Адрес вводят в адресную строку браузера"}, {"q": "Что сделать?: Ты нашёл текст для доклада. Как перенести его в документ?", "a": "Копировать и вставить", "w": ["Перепечатать всё на бумаге", "Выключить браузер"], "h": "Копирование и вставка передают данные между программами"}, {"q": "Что сделать?: Как вернуться на прошлую страницу сайта?", "a": "Нажать кнопку «Назад»", "w": ["Нажать кнопку «Вперёд» много раз", "Закрыть монитор"], "h": "Кнопка «Назад» возвращает к прошлой странице"}, {"q": "Что сделать?: Ты нашёл удивительное известие на одном сайте. Что сделать?", "a": "Проверить его на другом надёжном источнике", "w": ["Сразу поверить", "Сразу отправить всем"], "h": "Не вся информация в сети верна"}, {"q": "Что сделать?: Тема — «Времена года». Какое ключевое слово лучше?", "a": "Времена года", "w": ["Привет", "Красивое"], "h": "Ключевое слово должно быть о теме"}, {"q": "Что сделать?: Страниц нашлось много. Что сделать?", "a": "Выбрать подходящую по названию и описанию", "w": ["Открыть самую первую без чтения", "Закрыть всё"], "h": "Название и описание помогают выбрать"}, {"q": "Что сделать?: Нужно сохранить найденную картинку для проекта. Как поступить?", "a": "Сохранить в свою папку и указать источник", "w": ["Не сохранять и не называть", "Выдать за свой рисунок"], "h": "Источник называют честно"}, {"q": "Что сделать?: Как открыть ещё один сайт, не закрывая этот?", "a": "Открыть новую вкладку", "w": ["Выключить компьютер", "Закрыть браузер"], "h": "Во вкладках можно держать несколько сайтов"}, {"q": "Что сделать?: Для чего нужен браузер?", "a": "Чтобы смотреть сайты", "w": ["Чтобы печатать на бумаге", "Чтобы записывать звук"], "h": "Браузер — программа для работы с сайтами"}]);
+GENS.dg4t = mkTF([{"q": "Браузер нужен, чтобы открывать сайты", "a": "Верно", "h": "Верно. Браузер — программа для сайтов"}, {"q": "Всё, что написано в интернете, всегда правда", "a": "Неверно", "h": "Неверно. Не вся информация в сети верна"}, {"q": "Текст можно копировать из браузера и вставлять в документ", "a": "Верно", "h": "Верно. Так передают данные между приложениями"}, {"q": "Ключевые слова помогают найти нужную информацию", "a": "Верно", "h": "Верно. Они сообщают, что именно мы ищем"}, {"q": "Адрес сайта вводят в строку поиска принтера", "a": "Неверно", "h": "Неверно. Адрес вводят в адресную строку браузера"}, {"q": "Источник найденных сведений можно не называть", "a": "Неверно", "h": "Неверно. Источник нужно указывать"}]);
+GENS.dg5q = mkQuiz([{"q": "Что делает клавиша Enter при наборе текста?", "a": "Переводит курсор на новую строку", "w": ["Стирает всё слово", "Выключает компьютер"], "h": "Enter начинает новую строку"}, {"q": "Чем отличаются Backspace и Delete?", "a": "Backspace стирает слева от курсора, Delete — справа", "w": ["Ничем не отличаются", "Backspace пишет буквы, Delete — цифры"], "h": "Обе клавиши стирают, но с разных сторон от курсора"}, {"q": "Как получить заглавную букву?", "a": "Нажать Shift и букву вместе", "w": ["Нажать Delete и букву", "Нажать только пробел"], "h": "Shift меняет регистр буквы"}, {"q": "Для чего нужны клавиши-стрелки?", "a": "Чтобы двигать курсор", "w": ["Чтобы печатать буквы", "Чтобы включать звук"], "h": "Стрелки перемещают курсор по тексту"}, {"q": "Что делает самая длинная клавиша?", "a": "Ставит пробел между словами", "w": ["Стирает слово", "Печатает цифры"], "h": "Пробел отделяет слова друг от друга"}, {"q": "Какая клавиша нужна?: Нужно напечатать слово с заглавной буквы. Что нажать вместе с буквой?", "a": "Shift", "w": ["Delete", "Пробел"], "h": "Shift вместе с буквой даёт заглавную"}, {"q": "Какая клавиша нужна?: Нужно сделать промежуток между словами. Что нажать?", "a": "Пробел", "w": ["Enter", "Shift"], "h": "Пробел делает промежуток"}, {"q": "Какая клавиша нужна?: Нужно перейти на новую строку. Что нажать?", "a": "Enter", "w": ["Пробел", "Delete"], "h": "Enter переводит на новую строку"}, {"q": "Какая клавиша нужна?: Нужно стереть букву слева от курсора. Что нажать?", "a": "Backspace", "w": ["Enter", "Пробел"], "h": "Backspace стирает символ слева"}, {"q": "Какая клавиша нужна?: Нужно стереть букву справа от курсора. Что нажать?", "a": "Delete", "w": ["Backspace", "Shift"], "h": "Delete стирает символ справа"}, {"q": "Какая клавиша нужна?: Нужно передвинуть курсор вправо. Что нажать?", "a": "Стрелку вправо", "w": ["Стрелку вниз", "Backspace"], "h": "Стрелки двигают курсор"}, {"q": "Какая клавиша нужна?: Какую клавишу нажимают вместе с буквой, чтобы получить заглавную?", "a": "Shift", "w": ["Enter", "Delete"], "h": "Shift нужен для заглавных"}, {"q": "Какая клавиша нужна?: Как скопировать выделенный текст с клавиатуры?", "a": "Ctrl и C одновременно", "w": ["Только пробел", "Enter и Delete"], "h": "Ctrl + C — копировать"}, {"q": "Какая клавиша нужна?: Как вставить скопированный текст с клавиатуры?", "a": "Ctrl и V одновременно", "w": ["Enter и Shift", "Только Delete"], "h": "Ctrl + V — вставить"}, {"q": "Какая клавиша нужна?: Какая клавиша находится длинной полосой внизу клавиатуры?", "a": "Пробел", "w": ["Enter", "Backspace"], "h": "Самая длинная клавиша — пробел"}]);
+GENS.dg5t = mkTF([{"q": "Пробел нужен, чтобы отделять слова друг от друга", "a": "Верно", "h": "Верно. Без пробелов слова слипнутся"}, {"q": "Клавиша Enter стирает буквы", "a": "Неверно", "h": "Неверно. Enter переводит на новую строку"}, {"q": "Backspace стирает символ слева от курсора", "a": "Верно", "h": "Верно. Так исправляют ошибку"}, {"q": "Стрелки двигают курсор", "a": "Верно", "h": "Верно. Курсор перемещается по тексту"}, {"q": "Shift нужен, чтобы выключить компьютер", "a": "Неверно", "h": "Неверно. Shift нужен для заглавных букв"}, {"q": "Ctrl и V вставляют скопированный текст", "a": "Верно", "h": "Верно. Ctrl + V — вставить"}]);
+GENS.dg6q = mkQuiz([{"q": "Что такое алгоритм?", "a": "Точный порядок действий для достижения цели", "w": ["Вид компьютера", "Часть клавиатуры"], "h": "Алгоритм — набор шагов по порядку"}, {"q": "Что такое алгоритм ветвления?", "a": "Алгоритм, где путь выбирается по условию", "w": ["Алгоритм без команд", "Алгоритм из одного слова"], "h": "Условие «если» позволяет выбирать"}, {"q": "Какое слово стоит в записи алгоритма ветвления?", "a": "Если", "w": ["Всегда", "Никогда"], "h": "Если — начало условия"}, {"q": "Что выполняется после слова «иначе»?", "a": "То, что нужно, когда условие неверно", "w": ["То, что нужно, когда условие верно", "Ничего"], "h": "«Иначе» — запасной путь"}, {"q": "Кто выполняет алгоритм?", "a": "Исполнитель", "w": ["Принтер", "Монитор"], "h": "Исполнитель — тот, кто выполняет команды"}, {"q": "Что выполнит исполнитель?: Алгоритм: если светофор красный — стоять, иначе — идти. Светофор зелёный. Что делает исполнитель?", "a": "Идёт", "w": ["Стоит", "Бежит назад"], "h": "Условие «красный» неверно, значит выполняется «иначе»"}, {"q": "Что выполнит исполнитель?: Алгоритм: если светофор красный — стоять, иначе — идти. Светофор красный. Что делает исполнитель?", "a": "Стоит", "w": ["Идёт", "Прыгает"], "h": "Условие верно, значит выполняется первая команда"}, {"q": "Что выполнит исполнитель?: Алгоритм: если идёт дождь — взять зонт, иначе — шапку. Дождя нет. Что возьмёт исполнитель?", "a": "Шапку", "w": ["Зонт", "Ничего"], "h": "Условие неверно, значит выполняется «иначе»"}, {"q": "Что выполнит исполнитель?: Алгоритм: если идёт дождь — взять зонт, иначе — шапку. Идёт дождь. Что возьмёт исполнитель?", "a": "Зонт", "w": ["Шапку", "Мяч"], "h": "Условие верно, значит берём зонт"}, {"q": "Что выполнит исполнитель?: Алгоритм: если звенит звонок — идти в класс, иначе — играть. Звонка нет. Что делает ученик?", "a": "Играет", "w": ["Идёт в класс", "Спит"], "h": "Условие неверно, выполняется «иначе»"}, {"q": "Что выполнит исполнитель?: Алгоритм: если число чётное — прибавить 1, иначе — вычесть 1. Число 8. Что получится?", "a": "9", "w": ["7", "8"], "h": "8 — чётное число, значит прибавляем 1"}, {"q": "Что выполнит исполнитель?: Алгоритм: если число чётное — прибавить 1, иначе — вычесть 1. Число 5. Что получится?", "a": "4", "w": ["6", "5"], "h": "5 — нечётное число, значит вычитаем 1"}, {"q": "Какой алгоритм верный?: Исполнитель Робот должен дойти до двери. Какой алгоритм линейный?", "a": "Шаг вперёд, шаг вперёд, поворот налево", "w": ["Если дверь закрыта — ждать, иначе — открыть", "Если путь свободен — идти, иначе — обойти"], "h": "В линейном алгоритме команды идут подряд без выбора"}, {"q": "Какой алгоритм верный?: Нужно записать алгоритм со словом «если». Какой подойдёт?", "a": "Если лампа не горит — включить свет, иначе — читать", "w": ["Включить свет, читать, выключить свет", "Взять книгу, открыть, читать"], "h": "В алгоритме ветвления есть условие «если»"}, {"q": "Какой алгоритм верный?: Какая запись — это словесная форма алгоритма?", "a": "Команды записаны словами по порядку", "w": ["Только картинка без слов", "Только звук"], "h": "Словесная форма — запись команд словами"}]);
+GENS.dg6t = mkTF([{"q": "Алгоритм — это порядок действий", "a": "Верно", "h": "Верно. Шаги идут друг за другом"}, {"q": "В алгоритме ветвления путь не зависит ни от чего", "a": "Неверно", "h": "Неверно. Путь выбирается по условию"}, {"q": "Исполнитель выполняет команды алгоритма", "a": "Верно", "h": "Верно. Исполнитель — робот, человек или программа"}, {"q": "Словесная запись алгоритма — это запись словами", "a": "Верно", "h": "Верно. Команды записывают словами"}, {"q": "Слово «иначе» значит «если условие верное»", "a": "Неверно", "h": "Неверно. «Иначе» — когда условие неверное"}, {"q": "Алгоритм ветвления всегда состоит из одной команды", "a": "Неверно", "h": "Неверно. В нём есть условие и несколько путей"}]);
+GENS.dg7q = mkQuiz([{"q": "Что такое спрайт?", "a": "Персонаж или объект проекта в Scratch", "w": ["Вид принтера", "Клавиша клавиатуры"], "h": "Спрайтом управляют блоками программы"}, {"q": "Что такое сцена?", "a": "Место, где действуют спрайты", "w": ["Клавиша Shift", "Часть мыши"], "h": "Всё происходит на сцене"}, {"q": "Как управлять героем с клавиатуры?", "a": "Использовать блок «Когда нажата клавиша»", "w": ["Нажать на принтер", "Переименовать папку"], "h": "Блок события запускает действие при нажатии"}, {"q": "Как сделать так, чтобы персонаж заговорил?", "a": "Использовать блок «Сказать»", "w": ["Использовать блок «Идти»", "Поменять фон"], "h": "Блок «Сказать» показывает фразу героя"}, {"q": "Что нужно, чтобы нарисовать собственного героя?", "a": "Открыть графический редактор Scratch", "w": ["Открыть принтер", "Открыть браузер"], "h": "В редакторе можно рисовать, отражать, поворачивать"}, {"q": "Что нужно сделать в Scratch?: Как заставить героя двигаться по нажатию клавиши со стрелкой?", "a": "Блок «Когда нажата клавиша» и блок движения", "w": ["Только фон сцены", "Только блок «Сказать»"], "h": "Блок события запускает движение"}, {"q": "Что нужно сделать в Scratch?: Как герою сказать слово на сцене?", "a": "Блок «Сказать»", "w": ["Блок «Идти»", "Блок «Повернуть»"], "h": "Блок «Сказать» показывает слова персонажа"}, {"q": "Что нужно сделать в Scratch?: Как организовать диалог двух персонажей?", "a": "Каждый по очереди говорит свою реплику", "w": ["Оба молчат", "Один говорит, другой удаляется"], "h": "В диалоге персонажи отвечают друг другу по очереди"}, {"q": "Что нужно сделать в Scratch?: Нужно сделать героя больше. Что изменить?", "a": "Размер", "w": ["Фон", "Звук"], "h": "Размер спрайта можно увеличить"}, {"q": "Что нужно сделать в Scratch?: Нужно, чтобы герой смотрел в другую сторону. Что сделать?", "a": "Повернуть или отразить", "w": ["Стереть сцену", "Закрыть проект"], "h": "Поворот и отражение меняют направление"}, {"q": "Что нужно сделать в Scratch?: Где в Scratch можно нарисовать нового героя?", "a": "В графическом редакторе", "w": ["В адресной строке", "В принтере"], "h": "Спрайт рисуют во встроенном графическом редакторе"}, {"q": "Что нужно сделать в Scratch?: Что делает блок «Идти 10 шагов»?", "a": "Двигает спрайт", "w": ["Меняет фон", "Печатает текст"], "h": "Блок движения перемещает спрайт"}, {"q": "Что нужно сделать в Scratch?: Как поменять костюм героя?", "a": "Выбрать другой костюм во вкладке костюмов", "w": ["Выключить компьютер", "Сменить клавиатуру"], "h": "У спрайта может быть несколько костюмов"}, {"q": "Что нужно сделать в Scratch?: Как сохранить проект Scratch?", "a": "Выбрать сохранение и дать проекту имя", "w": ["Закрыть без сохранения", "Переименовать клавиатуру"], "h": "Проект нужно сохранить, чтобы открыть позже"}, {"q": "Что нужно сделать в Scratch?: Где происходит всё, что делают спрайты?", "a": "На сцене", "w": ["В папке", "В принтере"], "h": "Сцена — место действия проекта"}]);
+GENS.dg7t = mkTF([{"q": "Спрайт — это персонаж проекта", "a": "Верно", "h": "Верно. Спрайт выполняет команды"}, {"q": "Сцена — это часть клавиатуры", "a": "Неверно", "h": "Неверно. Сцена — место действия проекта"}, {"q": "Героя можно нарисовать самому в графическом редакторе", "a": "Верно", "h": "Верно. Есть встроенный графический редактор"}, {"q": "Диалог — это когда персонажи говорят по очереди", "a": "Верно", "h": "Верно. Реплики идут друг за другом"}, {"q": "Блок «Идти» меняет фон", "a": "Неверно", "h": "Неверно. Блок «Идти» двигает спрайт"}, {"q": "Проект нужно сохранять", "a": "Верно", "h": "Верно. Иначе он может пропасть"}]);
+GENS.dg8q = mkQuiz([{"q": "Что делает инструмент «Обрезка»?", "a": "Убирает лишние края рисунка", "w": ["Добавляет звук", "Печатает рисунок"], "h": "Обрезка оставляет только нужную часть"}, {"q": "Что такое отражение рисунка?", "a": "Рисунок как в зеркале", "w": ["Рисунок с новым цветом", "Рисунок с подписью"], "h": "Отражение переворачивает слева направо"}, {"q": "На сколько градусов повернули рисунок, если он оказался вверх ногами?", "a": "На 180", "w": ["На 90", "На 10"], "h": "Поворот на 180 градусов — пол-оборота"}, {"q": "Как получить второй такой же фрагмент рисунка?", "a": "Копировать и вставить", "w": ["Обрезать и закрыть", "Только закрасить"], "h": "Копирование делает копию"}, {"q": "Что можно изменить, чтобы рисунок стал больше?", "a": "Размер", "w": ["Название файла", "Цвет клавиатуры"], "h": "Размер рисунка меняют в редакторе"}, {"q": "Какой инструмент нужен?: На рисунке лишние края. Что сделать?", "a": "Обрезать", "w": ["Отразить", "Сохранить как звук"], "h": "Обрезка убирает лишнее"}, {"q": "Какой инструмент нужен?: Нужно, чтобы рисунок стал больше. Что сделать?", "a": "Изменить размер", "w": ["Обрезать край", "Закрыть программу"], "h": "Размер можно увеличить"}, {"q": "Какой инструмент нужен?: Нужно сделать рисунок зеркально. Что сделать?", "a": "Отразить", "w": ["Обрезать", "Удалить"], "h": "Отражение переворачивает рисунок как в зеркале"}, {"q": "Какой инструмент нужен?: Нужно получить ещё одну такую же ёлочку. Что сделать?", "a": "Копировать и вставить", "w": ["Обрезать", "Закрасить"], "h": "Копия и вставка дают такой же фрагмент"}, {"q": "Какой инструмент нужен?: Нужно, чтобы рисунок смотрел вверх ногами. Что сделать?", "a": "Повернуть на 180 градусов", "w": ["Обрезать", "Копировать"], "h": "Поворот на 180 градусов переворачивает рисунок"}, {"q": "Какой инструмент нужен?: Нужно повернуть рисунок на четверть оборота. Это сколько градусов?", "a": "90", "w": ["10", "360"], "h": "Четверть оборота — 90 градусов"}, {"q": "Какой инструмент нужен?: Нужно оставить на фото только лицо друга. Что сделать?", "a": "Обрезать лишнее", "w": ["Отразить", "Скопировать всё"], "h": "Обрезка оставляет только нужное"}, {"q": "Какой инструмент нужен?: Нужно, чтобы бабочка с одним крылом получила второе в зеркальном виде. Что сделать?", "a": "Скопировать и отразить", "w": ["Только обрезать", "Только удалить"], "h": "Копия с отражением даёт симметричное крыло"}, {"q": "Какой инструмент нужен?: Что значит «изменить размер рисунка»?", "a": "Сделать его больше или меньше", "w": ["Раскрасить", "Стереть"], "h": "Размер — это насколько рисунок большой"}, {"q": "Какой инструмент нужен?: Как выделить часть рисунка для копирования?", "a": "Выделить рамкой", "w": ["Закрыть окно", "Нажать на колонки"], "h": "Выделенный фрагмент можно копировать"}]);
+GENS.dg8t = mkTF([{"q": "Обрезка убирает лишние края рисунка", "a": "Верно", "h": "Верно. Остаётся нужная часть"}, {"q": "Отражение делает рисунок как в зеркале", "a": "Верно", "h": "Верно. Слева направо поменяются местами"}, {"q": "Поворот на 90 градусов — это четверть оборота", "a": "Верно", "h": "Верно. Полный оборот — 360 градусов"}, {"q": "Изменить размер рисунка нельзя", "a": "Неверно", "h": "Неверно. Размер можно увеличить и уменьшить"}, {"q": "Копию фрагмента нельзя вставить", "a": "Неверно", "h": "Неверно. Скопированный фрагмент можно вставить"}, {"q": "Поворот на 180 градусов переворачивает рисунок вверх ногами", "a": "Верно", "h": "Верно. Это пол-оборота"}]);
+GENS.dg9q = mkQuiz([{"q": "Что нужно для записи голоса?", "a": "Микрофон", "w": ["Принтер", "Монитор"], "h": "Микрофон — устройство ввода звука"}, {"q": "Как называется то, что получается после записи?", "a": "Звуковой файл", "w": ["Ярлык", "Папка"], "h": "Звук хранится в файле"}, {"q": "Что делает обрезка звука?", "a": "Убирает лишнюю часть записи", "w": ["Печатает запись", "Рисует звук"], "h": "Обрезка оставляет нужный фрагмент"}, {"q": "Что нужно сделать, чтобы проверить запись?", "a": "Воспроизвести и прослушать", "w": ["Напечатать", "Сохранить и забыть"], "h": "Запись нужно прослушать"}, {"q": "Как сделать запись слышнее?", "a": "Увеличить громкость", "w": ["Уменьшить громкость", "Удалить запись"], "h": "Громкость можно изменять"}, {"q": "Что сделать со звуком?: Нужно записать свой голос. Какое устройство нужно?", "a": "Микрофон", "w": ["Принтер", "Монитор"], "h": "Голос записывают микрофоном"}, {"q": "Что сделать со звуком?: Нужно услышать запись. Что сделать?", "a": "Нажать воспроизведение", "w": ["Нажать запись", "Закрыть файл"], "h": "Воспроизведение запускает звук"}, {"q": "Что сделать со звуком?: В записи в начале долгая тишина. Что сделать?", "a": "Обрезать тишину", "w": ["Стереть всю запись", "Сделать звук тише"], "h": "Обрезка убирает лишнее"}, {"q": "Что сделать со звуком?: Запись звучит слишком тихо. Что сделать?", "a": "Сделать громче", "w": ["Обрезать", "Закрыть"], "h": "Громкость можно увеличить"}, {"q": "Что сделать со звуком?: Запись звучит слишком громко. Что сделать?", "a": "Сделать тише", "w": ["Сделать громче", "Добавить эхо"], "h": "Громкость можно уменьшить"}, {"q": "Что сделать со звуком?: Какое устройство выводит звук при воспроизведении?", "a": "Колонки или наушники", "w": ["Клавиатура", "Мышь"], "h": "Звук выводят колонки или наушники"}, {"q": "Что сделать со звуком?: Нужно проверить запись перед проектом. Что сделать?", "a": "Прослушать её", "w": ["Удалить её", "Не слушать"], "h": "Запись нужно проверять на слух"}, {"q": "Что сделать со звуком?: Как назвать результат записи голоса в компьютере?", "a": "Звуковой файл", "w": ["Ярлык", "Папка"], "h": "Запись хранится в звуковом файле"}, {"q": "Что сделать со звуком?: Нужно сохранить запись, чтобы позже вставить её в проект. Что сделать?", "a": "Сохранить звуковой файл с понятным именем", "w": ["Не сохранять", "Сохранить без имени и забыть"], "h": "Понятное имя помогает найти файл"}, {"q": "Что сделать со звуком?: Какая кнопка останавливает запись?", "a": "Стоп", "w": ["Запись", "Громче"], "h": "Стоп завершает запись"}]);
+GENS.dg9t = mkTF([{"q": "Голос записывают с помощью микрофона", "a": "Верно", "h": "Верно. Микрофон вводит звук в компьютер"}, {"q": "Звуковой файл можно прослушать", "a": "Верно", "h": "Верно. Для этого запускают воспроизведение"}, {"q": "Звук нельзя редактировать", "a": "Неверно", "h": "Неверно. Звук можно обрезать, делать громче или тише"}, {"q": "Воспроизвести звук — значит запустить его", "a": "Верно", "h": "Верно. Мы услышим запись"}, {"q": "Колонки нужны, чтобы вводить звук", "a": "Неверно", "h": "Неверно. Колонки воспроизводят звук"}, {"q": "Пауза навсегда удаляет запись", "a": "Неверно", "h": "Неверно. Пауза временно останавливает звук"}]);
+GENS.dg10q = mkQuiz([{"q": "Что такое робот?", "a": "Устройство, которое выполняет заданную программу", "w": ["Вид монитора", "Часть мыши"], "h": "Робот работает по программе, написанной человеком"}, {"q": "Что делает датчик касания?", "a": "Сообщает, что робот коснулся предмета", "w": ["Печатает на бумаге", "Записывает голос"], "h": "Датчик касания срабатывает при контакте"}, {"q": "Как заставить робота повернуть на 90 градусов?", "a": "Задать поворот на 90 градусов в программе", "w": ["Поставить робота на бок", "Нажать на колонку"], "h": "Поворот задают в программе"}, {"q": "Как задать расстояние, которое проедет робот?", "a": "Количеством оборотов колеса", "w": ["Цветом колеса", "Названием робота"], "h": "За каждый оборот колесо проходит одинаковый путь"}, {"q": "Что нужно сделать, чтобы робот выполнил программу?", "a": "Загрузить программу и запустить её", "w": ["Выключить мотор", "Спрятать колёса"], "h": "Программу загружают и запускают"}, {"q": "Что сделает робот?: Робот получил команду «вперёд». Что он делает?", "a": "Едет вперёд", "w": ["Едет назад", "Поёт"], "h": "Команда «вперёд» двигает робота вперёд"}, {"q": "Что сделает робот?: Робот получил команду «назад». Что он делает?", "a": "Едет назад", "w": ["Едет вперёд", "Стоит"], "h": "Команда «назад» двигает робота назад"}, {"q": "Что сделает робот?: Нужно, чтобы робот развернулся в обратную сторону. На сколько градусов повернуть?", "a": "На 180", "w": ["На 90", "На 10"], "h": "Разворот — поворот на 180 градусов"}, {"q": "Что сделает робот?: Нужно, чтобы робот повернул направо на четверть оборота. На сколько градусов?", "a": "На 90", "w": ["На 180", "На 360"], "h": "Четверть оборота — 90 градусов"}, {"q": "Что сделает робот?: Робот должен проехать ровно два оборота колеса. Что задать в программе?", "a": "Два оборота колеса", "w": ["Два цвета", "Два звука"], "h": "Расстояние можно задать числом оборотов колеса"}, {"q": "Что сделает робот?: Робот врезался в стену. Какой датчик сообщит ему об этом?", "a": "Датчик касания", "w": ["Микрофон", "Колонка"], "h": "Датчик касания срабатывает при касании предмета"}, {"q": "Что сделает робот?: Как заставить робота издать звук в программе?", "a": "Загрузить звуковой файл и добавить блок звука", "w": ["Нажать на колесо", "Выключить мотор"], "h": "Звук добавляют в программу как команду"}, {"q": "Что сделает робот?: Что нужно сделать перед запуском программы робота?", "a": "Загрузить программу в робота", "w": ["Отключить мотор", "Закрыть программу без сохранения"], "h": "Программа должна быть загружена"}, {"q": "Что сделает робот?: Что такое робот?", "a": "Устройство, выполняющее программу", "w": ["Вид клавиатуры", "Звуковой файл"], "h": "Робот действует по программе"}, {"q": "Что сделает робот?: Как заставить робота ехать быстрее?", "a": "Задать большую скорость в программе", "w": ["Поставить громче звук", "Нажать пробел"], "h": "Скорость задают в программе"}]);
+GENS.dg10t = mkTF([{"q": "Робот выполняет программу, которую для него составили", "a": "Верно", "h": "Верно. Робот действует по программе"}, {"q": "Датчик касания реагирует на касание", "a": "Верно", "h": "Верно. Он сообщает, что робот коснулся предмета"}, {"q": "Робот сам решает, что делать, без программы", "a": "Неверно", "h": "Неверно. Без программы образовательный робот не выполняет задачи"}, {"q": "Поворот на 180 градусов — это разворот", "a": "Верно", "h": "Верно. Робот смотрит в обратную сторону"}, {"q": "Колесо робота не может вращаться назад", "a": "Неверно", "h": "Неверно. Робот может ехать и вперёд, и назад"}, {"q": "Проект нужно показать классу и рассказать о нём", "a": "Верно", "h": "Верно. Это защита проекта"}]);
+const LESSONS = [
+  { id: "dg1", icon: "", title: "Безопасно и вежливо", goal: "Соблюдать правила техники безопасности и нетикета",
+    steps: [
+      Q("dg1s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Компьютер любит порядок. Давай узнаем, как работать за ним безопасно и как вежливо общаться в сети. Нажимай на карточки.", {"need": 5, "items": [{"k": "сиди правильно", "v": "", "t": "Сиди прямо, не слишком близко к экрану, и делай перерывы, чтобы отдыхали глаза."}, {"k": "электричество", "v": "", "t": "Не трогай провода и розетки и не включай устройства мокрыми руками. Если что-то сломалось, позови взрослого."}, {"k": "еда и вода", "v": "", "t": "Не ешь и не пей над клавиатурой: крошки и жидкость портят устройство."}, {"k": "нетикет", "v": "", "t": "Нетикет — правила вежливого общения в сети. Здоровайся, не пиши обидных слов и не пиши целые слова заглавными буквами: это похоже на крик."}, {"k": "личные данные", "v": "", "t": "Незнакомым людям в сети не сообщай свой адрес и телефон. Расскажи о таком разговоре взрослому."}]}),
+      Q("dg1s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Правила безопасности"}, {"e": "", "k": "Так делать нельзя"}, {"e": "", "k": "Нетикет: вежливо в сети"}], "items": [{"g": 0, "e": "", "t": "Сидеть прямо и не слишком близко к экрану", "h": "Так не устают спина и глаза"}, {"g": 0, "e": "", "t": "Делать перерывы и гимнастику для глаз", "h": "Глазам нужен отдых от экрана"}, {"g": 0, "e": "", "t": "Включать устройства сухими руками", "h": "Вода и электричество опасны вместе"}, {"g": 1, "e": "", "t": "Трогать провода и розетки", "h": "Можно получить удар током"}, {"g": 1, "e": "", "t": "Есть и пить над клавиатурой", "h": "Крошки и жидкость портят устройство"}, {"g": 1, "e": "", "t": "Включать компьютер мокрыми руками", "h": "Мокрые руки опасны рядом с электричеством"}, {"g": 2, "e": "", "t": "Здороваться и писать вежливо", "h": "В сети общаются так же вежливо, как и в жизни"}, {"g": 2, "e": "", "t": "Не писать обидных слов", "h": "Обидные слова огорчают людей и в сети"}, {"g": 2, "e": "", "t": "Не писать слова ЗАГЛАВНЫМИ буквами", "h": "Заглавные буквы в сообщении похожи на крик"}]}),
+      Q("dg1s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg1q"]}),
+      Q("dg1s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg1t"]})
+    ] },
+  { id: "dg2", icon: "", title: "Ввод и вывод", goal: "Различать устройства ввода и вывода",
+    steps: [
+      Q("dg2s1", "infoTap", "Знакомимся с темой", "У компьютера есть устройства, которые передают ему информацию, и устройства, которые её показывают. Давай разберёмся. Нажимай на карточки.", {"need": 5, "items": [{"k": "мышь", "v": "", "t": "Мышь — устройство ввода. Она двигает курсор и помогает выбирать на экране."}, {"k": "клавиатура", "v": "", "t": "Клавиатура — устройство ввода. С её помощью мы вводим буквы, цифры и знаки."}, {"k": "микрофон", "v": "", "t": "Микрофон — устройство ввода. Он записывает звук, например твой голос."}, {"k": "монитор", "v": "", "t": "Монитор — устройство вывода. Он показывает изображение."}, {"k": "принтер, колонки и наушники", "v": "", "t": "Принтер печатает на бумаге, колонки и наушники воспроизводят звук. Все они — устройства вывода."}]}),
+      Q("dg2s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Устройства ввода"}, {"e": "", "k": "Устройства вывода"}], "items": [{"g": 0, "e": "", "t": "Мышь", "h": "Мышь передаёт компьютеру команды"}, {"g": 0, "e": "", "t": "Клавиатура", "h": "Клавиатура вводит буквы и цифры"}, {"g": 0, "e": "", "t": "Микрофон", "h": "Микрофон вводит звук"}, {"g": 1, "e": "", "t": "Монитор", "h": "Монитор показывает изображение"}, {"g": 1, "e": "", "t": "Принтер", "h": "Принтер печатает на бумаге"}, {"g": 1, "e": "", "t": "Колонки", "h": "Колонки воспроизводят звук"}]}),
+      Q("dg2s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg2q"]}),
+      Q("dg2s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg2t"]})
+    ] },
+  { id: "dg3", icon: "", title: "Файлы и папки", goal: "Объяснять назначение файла, папки и ярлыка",
+    steps: [
+      Q("dg3s1", "infoTap", "Знакомимся с темой", "Информация в компьютере хранится в файлах, а файлы лежат в папках. Давай научимся наводить порядок. Нажимай на карточки.", {"need": 5, "items": [{"k": "файл", "v": "", "t": "Файл — место, где хранится информация: рисунок, текст, звук или фото."}, {"k": "папка", "v": "", "t": "Папка нужна, чтобы хранить файлы по порядку. В папке могут лежать файлы и другие папки."}, {"k": "ярлык", "v": "", "t": "Ярлык — значок, который быстро открывает программу, файл или папку."}, {"k": "что можно делать", "v": "", "t": "Файлы и папки можно создавать, копировать, перемещать и удалять."}, {"k": "контекстное меню", "v": "", "t": "Нажми правую кнопку мыши на файле или папке: откроется контекстное меню со списком команд."}]}),
+      Q("dg3s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Файлы"}, {"e": "", "k": "Папки"}, {"e": "", "k": "Ярлыки"}], "items": [{"g": 0, "e": "", "t": "Мой рисунок", "h": "В файле хранится рисунок"}, {"g": 0, "e": "", "t": "Сочинение", "h": "В файле хранится текст"}, {"g": 0, "e": "", "t": "Запись голоса", "h": "В файле хранится звук"}, {"g": 1, "e": "", "t": "Папка «Школа»", "h": "В папке лежат школьные файлы"}, {"g": 1, "e": "", "t": "Папка «Рисунки»", "h": "В папке лежат рисунки"}, {"g": 1, "e": "", "t": "Папка «Музыка»", "h": "В папке лежат музыкальные файлы"}, {"g": 2, "e": "", "t": "Ярлык программы на рабочем столе", "h": "Ярлык быстро открывает программу"}, {"g": 2, "e": "", "t": "Ярлык на папку «Школа»", "h": "Ярлык ведёт к папке"}, {"g": 2, "e": "", "t": "Ярлык на любимую игру", "h": "Ярлык открывает игру"}]}),
+      Q("dg3s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg3q"]}),
+      Q("dg3s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg3t"]})
+    ] },
+  { id: "dg4", icon: "", title: "Браузер и поиск", goal: "Искать информацию по теме и переносить данные между программами",
+    steps: [
+      Q("dg4s1", "infoTap", "Знакомимся с темой", "Если нужно узнать что-то новое, на помощь приходит интернет. Давай научимся искать в нём нужное. Нажимай на карточки.", {"need": 5, "items": [{"k": "браузер", "v": "", "t": "Браузер — программа для просмотра сайтов. Адрес сайта вводят в адресную строку."}, {"k": "поиск", "v": "", "t": "В строку поиска вводят запрос из нескольких ключевых слов. Например: бобры, где живут."}, {"k": "выбор страницы", "v": "", "t": "Из списка найденных страниц выбирай ту, у которой подходящее название и описание."}, {"k": "проверка", "v": "", "t": "Не вся информация в сети верна. Важные сведения проверяй в другом надёжном источнике."}, {"k": "перенос данных", "v": "", "t": "Текст или картинку можно скопировать на сайте и вставить в свой документ. Не забудь назвать источник."}]}),
+      Q("dg4s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Браузер"}, {"e": "", "k": "Поиск информации"}, {"e": "", "k": "Обмен данными"}], "items": [{"g": 0, "e": "", "t": "Программа для просмотра сайтов", "h": "Браузер открывает сайты"}, {"g": 0, "e": "", "t": "Адресная строка", "h": "В адресную строку вводят адрес сайта"}, {"g": 0, "e": "", "t": "Вкладка", "h": "Во вкладках открывают разные сайты"}, {"g": 1, "e": "", "t": "Строка поиска", "h": "В неё вводят запрос"}, {"g": 1, "e": "", "t": "Ключевое слово", "h": "Ключевые слова помогают найти нужное"}, {"g": 1, "e": "", "t": "Список найденных страниц", "h": "Поисковик показывает результаты"}, {"g": 2, "e": "", "t": "Копировать текст на сайте", "h": "Копирование переносит текст"}, {"g": 2, "e": "", "t": "Вставить текст в документ", "h": "Вставка помещает текст в другую программу"}, {"g": 2, "e": "", "t": "Сохранить картинку в папку", "h": "Картинку сохраняют как файл"}]}),
+      Q("dg4s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg4q"]}),
+      Q("dg4s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg4t"]})
+    ] },
+  { id: "dg5", icon: "", title: "Клавиатура", goal: "Называть клавиши и использовать их при наборе текста",
+    steps: [
+      Q("dg5s1", "infoTap", "Знакомимся с темой", "Чтобы быстро печатать, нужно знать клавиши. Давай познакомимся с самыми важными. Нажимай на карточки.", {"need": 5, "items": [{"k": "пробел", "v": "", "t": "Самая длинная клавиша — пробел. Он делает промежуток между словами."}, {"k": "Enter", "v": "", "t": "Клавиша Enter переводит текст на новую строку."}, {"k": "Shift", "v": "", "t": "Shift нажимают вместе с буквой, чтобы получить заглавную букву."}, {"k": "Backspace и Delete", "v": "", "t": "Backspace стирает символ слева от курсора, а Delete — справа."}, {"k": "стрелки", "v": "", "t": "Клавиши со стрелками двигают курсор вверх, вниз, вправо и влево."}]}),
+      Q("dg5s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Буквы, цифры и пробел"}, {"e": "", "k": "Клавиши правки"}, {"e": "", "k": "Клавиши-стрелки"}], "items": [{"g": 0, "e": "", "t": "Буква А", "h": "Буквенные клавиши вводят буквы"}, {"g": 0, "e": "", "t": "Цифра 5", "h": "Цифровые клавиши вводят цифры"}, {"g": 0, "e": "", "t": "Пробел", "h": "Пробел делает промежуток между словами"}, {"g": 1, "e": "", "t": "Backspace", "h": "Backspace стирает символ слева от курсора"}, {"g": 1, "e": "", "t": "Delete", "h": "Delete стирает символ справа от курсора"}, {"g": 1, "e": "", "t": "Enter", "h": "Enter переводит текст на новую строку"}, {"g": 2, "e": "", "t": "Стрелка вправо", "h": "Двигает курсор вправо"}, {"g": 2, "e": "", "t": "Стрелка влево", "h": "Двигает курсор влево"}, {"g": 2, "e": "", "t": "Стрелка вверх", "h": "Двигает курсор вверх"}]}),
+      Q("dg5s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg5q"]}),
+      Q("dg5s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg5t"]})
+    ] },
+  { id: "dg6", icon: "", title: "Алгоритмы с выбором", goal: "Понимать алгоритм ветвления и записывать алгоритмы словами",
+    steps: [
+      Q("dg6s1", "infoTap", "Знакомимся с темой", "Алгоритм — это порядок действий. Иногда путь зависит от условия. Давай узнаем, как это записывают. Нажимай на карточки.", {"need": 5, "items": [{"k": "алгоритм", "v": "", "t": "Алгоритм — точный порядок действий, который ведёт к цели."}, {"k": "исполнитель", "v": "", "t": "Исполнитель — тот, кто выполняет команды алгоритма: человек, робот или программа."}, {"k": "линейный алгоритм", "v": "", "t": "В линейном алгоритме команды идут по порядку, и выбора нет."}, {"k": "ветвление", "v": "", "t": "В алгоритме ветвления есть условие. Если оно верно, выполняется одно, иначе — другое."}, {"k": "словесная запись", "v": "", "t": "Алгоритм можно записать словами. Например: если идёт дождь, взять зонт, иначе взять шапку."}]}),
+      Q("dg6s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Линейный алгоритм"}, {"e": "", "k": "Алгоритм ветвления"}], "items": [{"g": 0, "e": "", "t": "Открыть кран, намылить руки, смыть мыло", "h": "Все шаги идут друг за другом"}, {"g": 0, "e": "", "t": "Надеть куртку, надеть шапку, выйти из дома", "h": "Шаги идут по порядку, выбора нет"}, {"g": 0, "e": "", "t": "Взять карандаш, нарисовать дом, закрасить крышу", "h": "Команды выполняются подряд"}, {"g": 1, "e": "", "t": "Если на улице дождь, взять зонт, иначе взять шапку", "h": "Выбор зависит от условия «если»"}, {"g": 1, "e": "", "t": "Если светофор красный, стоять, иначе идти", "h": "Есть условие и два пути"}, {"g": 1, "e": "", "t": "Если есть домашнее задание, сделать его, иначе читать", "h": "Решение зависит от условия"}]}),
+      Q("dg6s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg6q"]}),
+      Q("dg6s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg6t"]})
+    ] },
+  { id: "dg7", icon: "", title: "Мой герой в Scratch", goal: "Создавать героя, управлять им с клавиатуры и организовывать диалог",
+    steps: [
+      Q("dg7s1", "infoTap", "Знакомимся с темой", "В игровой среде Scratch можно создать своих героев и заставить их двигаться и разговаривать. Нажимай на карточки.", {"need": 5, "items": [{"k": "спрайт", "v": "", "t": "Спрайт — персонаж проекта. Им управляют блоки программы."}, {"k": "сцена", "v": "", "t": "Сцена — место, где действуют спрайты. Для неё можно выбрать фон."}, {"k": "свой персонаж", "v": "", "t": "Героя можно нарисовать самому во встроенном графическом редакторе: отразить, повернуть, изменить размер."}, {"k": "управление", "v": "", "t": "Блок «Когда нажата клавиша» запускает действие, например движение героя."}, {"k": "диалог", "v": "", "t": "Чтобы получился диалог, персонажи говорят по очереди. Для этого используют блок «Сказать»."}]}),
+      Q("dg7s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Спрайт и сцена"}, {"e": "", "k": "Рисуем персонаж"}, {"e": "", "k": "Программа героя"}], "items": [{"g": 0, "e": "", "t": "Спрайт — персонаж проекта", "h": "Спрайт — герой, которым управляет программа"}, {"g": 0, "e": "", "t": "Сцена — место действия", "h": "На сцене происходит всё, что мы видим"}, {"g": 0, "e": "", "t": "Фон сцены", "h": "Фон можно выбрать или нарисовать"}, {"g": 1, "e": "", "t": "Нарисовать нового спрайта", "h": "Спрайт можно нарисовать самому"}, {"g": 1, "e": "", "t": "Отразить фигуру", "h": "Отражение переворачивает рисунок"}, {"g": 1, "e": "", "t": "Повернуть фигуру", "h": "Поворот меняет направление"}, {"g": 2, "e": "", "t": "Когда нажата клавиша", "h": "Блок запускает программу по нажатию клавиши"}, {"g": 2, "e": "", "t": "Идти 10 шагов", "h": "Блок двигает спрайт"}, {"g": 2, "e": "", "t": "Сказать «Привет!»", "h": "Блок показывает слова персонажа"}]}),
+      Q("dg7s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg7q"]}),
+      Q("dg7s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg7t"]})
+    ] },
+  { id: "dg8", icon: "", title: "Редактируем рисунок", goal: "Обрезать, поворачивать, отражать и копировать фрагменты рисунка",
+    steps: [
+      Q("dg8s1", "infoTap", "Знакомимся с темой", "Любой рисунок можно изменить. Давай узнаем инструменты, которые это делают. Нажимай на карточки.", {"need": 5, "items": [{"k": "обрезка", "v": "", "t": "Обрезка убирает лишние края и оставляет нужную часть рисунка."}, {"k": "размер", "v": "", "t": "Размер рисунка можно увеличить или уменьшить."}, {"k": "поворот", "v": "", "t": "Поворот на 90 градусов — четверть оборота, на 180 градусов — пол-оборота, рисунок окажется вверх ногами."}, {"k": "отражение", "v": "", "t": "Отражение делает рисунок как в зеркале: левое и правое меняются местами."}, {"k": "копирование", "v": "", "t": "Выдели фрагмент, скопируй и вставь: получатся одинаковые детали, например несколько ёлочек."}]}),
+      Q("dg8s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Обрезка и размер"}, {"e": "", "k": "Поворот и отражение"}, {"e": "", "k": "Копирование"}], "items": [{"g": 0, "e": "", "t": "Обрезать лишние края рисунка", "h": "Обрезка убирает края"}, {"g": 0, "e": "", "t": "Увеличить рисунок", "h": "Размер можно увеличить"}, {"g": 0, "e": "", "t": "Уменьшить рисунок", "h": "Размер можно уменьшить"}, {"g": 1, "e": "", "t": "Повернуть рисунок на 90 градусов", "h": "Поворот меняет положение"}, {"g": 1, "e": "", "t": "Отразить рисунок слева направо", "h": "Отражение переворачивает рисунок как в зеркале"}, {"g": 1, "e": "", "t": "Перевернуть рисунок вверх ногами", "h": "Отражение или поворот меняют положение"}, {"g": 2, "e": "", "t": "Копировать фрагмент", "h": "Копия остаётся в памяти"}, {"g": 2, "e": "", "t": "Вставить фрагмент ещё раз", "h": "Вставка делает ещё один такой же фрагмент"}, {"g": 2, "e": "", "t": "Выделить кусок рисунка", "h": "Выделение отмечает фрагмент"}]}),
+      Q("dg8s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg8q"]}),
+      Q("dg8s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg8t"]})
+    ] },
+  { id: "dg9", icon: "", title: "Записываем звук", goal: "Записывать, воспроизводить и редактировать звук",
+    steps: [
+      Q("dg9s1", "infoTap", "Знакомимся с темой", "Компьютер умеет записывать и воспроизводить звук. Давай научимся делать запись и улучшать её. Нажимай на карточки.", {"need": 5, "items": [{"k": "запись", "v": "", "t": "Для записи голоса нужен микрофон. Нажми кнопку записи, скажи фразу и останови запись."}, {"k": "звуковой файл", "v": "", "t": "Запись хранится в звуковом файле. Дай ему понятное имя, чтобы потом легко найти."}, {"k": "воспроизведение", "v": "", "t": "Чтобы услышать запись, нажми воспроизведение. Звук слышно через колонки или наушники."}, {"k": "обрезка звука", "v": "", "t": "Лишнюю тишину в начале и в конце записи можно обрезать."}, {"k": "громкость и эффекты", "v": "", "t": "Звук можно сделать громче или тише и добавить эффект, например эхо."}]}),
+      Q("dg9s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Запись звука"}, {"e": "", "k": "Воспроизведение"}, {"e": "", "k": "Редактирование звука"}], "items": [{"g": 0, "e": "", "t": "Подключить микрофон", "h": "Микрофон нужен для записи"}, {"g": 0, "e": "", "t": "Нажать кнопку записи", "h": "Кнопка записи включает запись"}, {"g": 0, "e": "", "t": "Сказать фразу в микрофон", "h": "Голос записывается в звуковой файл"}, {"g": 1, "e": "", "t": "Нажать кнопку воспроизведения", "h": "Кнопка запускает звук"}, {"g": 1, "e": "", "t": "Включить колонки или наушники", "h": "Звук выводится через колонки или наушники"}, {"g": 1, "e": "", "t": "Прослушать запись", "h": "Запись нужно прослушать, чтобы проверить её"}, {"g": 2, "e": "", "t": "Обрезать лишнюю тишину", "h": "Обрезка убирает лишнее"}, {"g": 2, "e": "", "t": "Сделать звук громче", "h": "Громкость можно увеличить"}, {"g": 2, "e": "", "t": "Сделать звук тише", "h": "Громкость можно уменьшить"}]}),
+      Q("dg9s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg9q"]}),
+      Q("dg9s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg9t"]})
+    ] },
+  { id: "dg10", icon: "", title: "Робот в движении", goal: "Объяснять, что такое робот, и программировать его движение",
+    steps: [
+      Q("dg10s1", "infoTap", "Знакомимся с темой", "Роботы помогают людям. Давай узнаем, как устроен образовательный робот и как заставить его двигаться. Нажимай на карточки.", {"need": 5, "items": [{"k": "что такое робот", "v": "", "t": "Робот — устройство, которое выполняет программу, составленную человеком."}, {"k": "из чего состоит", "v": "", "t": "У образовательного робота есть блок управления, моторы, колёса и датчики."}, {"k": "движение", "v": "", "t": "Робот может ехать вперёд и назад с заданной скоростью. Расстояние можно задать числом оборотов колеса."}, {"k": "повороты", "v": "", "t": "Робот поворачивает на заданный угол: 90 градусов — четверть оборота, 180 градусов — разворот."}, {"k": "датчик касания", "v": "", "t": "Датчик касания сообщает роботу, что он коснулся предмета, например стены лабиринта."}, {"k": "проект", "v": "", "t": "У проекта есть идея, алгоритм и программа. Готового робота показывают классу."}]}),
+      Q("dg10s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Части робота"}, {"e": "", "k": "Команды движения"}, {"e": "", "k": "Работа над проектом"}], "items": [{"g": 0, "e": "", "t": "Мотор", "h": "Мотор вращает колесо"}, {"g": 0, "e": "", "t": "Колесо", "h": "Колесо помогает роботу ехать"}, {"g": 0, "e": "", "t": "Датчик касания", "h": "Датчик сообщает, что робот коснулся предмета"}, {"g": 1, "e": "", "t": "Ехать вперёд", "h": "Робот движется вперёд"}, {"g": 1, "e": "", "t": "Ехать назад", "h": "Робот движется назад"}, {"g": 1, "e": "", "t": "Повернуть на 90 градусов", "h": "Поворот на четверть оборота"}, {"g": 2, "e": "", "t": "Придумать идею проекта", "h": "С идеи начинается проект"}, {"g": 2, "e": "", "t": "Составить алгоритм", "h": "Алгоритм — план действий робота"}, {"g": 2, "e": "", "t": "Загрузить и запустить программу", "h": "Программу загружают в робота и запускают"}]}),
+      Q("dg10s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["dg10q"]}),
+      Q("dg10s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["dg10t"]})
+    ] },
+  { id: "dgfin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("dgfin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал про правила безопасности, устройства ввода и вывода, файлы и папки, поиск в сети, клавиатуру, алгоритмы, Scratch, редактирование рисунка и звука и про роботов. Теперь закрепи знания в играх.", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
