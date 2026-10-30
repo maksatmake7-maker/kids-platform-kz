@@ -92,13 +92,20 @@ function initSpeakButton(buttonId, textKey, audioBasePath){
 }
 
 function initStartGameButton(startBtnId, explainPanelId, gamePanelId, gameInitFn){
-  var startBtn = document.getElementById(startBtnId);
-  if(!startBtn) return;
-  startBtn.addEventListener('click', function(){
-    document.getElementById(explainPanelId).style.display = 'none';
-    document.getElementById(gamePanelId).style.display = 'block';
+  /* Заставки больше нет: страница сразу открывается игрой с Барсиком.
+     Кнопка «Играть» (если осталась в разметке) делает то же самое. */
+  var started = false;
+  function go(){
+    if(started) return; started = true;
+    var ep = document.getElementById(explainPanelId), gp = document.getElementById(gamePanelId);
+    if(ep) ep.style.display = 'none';
+    if(gp) gp.style.display = 'block';
+    var pre = document.getElementById('mx-prehide'); if(pre) pre.remove();
     if(typeof gameInitFn === 'function') gameInitFn();
-  });
+  }
+  var startBtn = document.getElementById(startBtnId);
+  if(startBtn) startBtn.addEventListener('click', go);
+  go();
 }
 
 /**
