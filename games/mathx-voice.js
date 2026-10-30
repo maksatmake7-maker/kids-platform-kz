@@ -931,7 +931,22 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
         a.onended = function(){ i++; if(isKz && i < cl.length) setTimeout(next, KZ_GAP); else next(); };
         a.onerror = function(){ tts(from); };
         var p; try { p = a.play(); } catch(e){ tts(from); return; }
-        if(p && p.catch) p.catch(function(){ tts(from); });
+        if(p && p.catch) p.catch(function(err){
+          if(err && err.name === 'NotAllowedError'){
+            /* Браузер не разрешил звук без касания: ждём первого касания и тогда говорит тот же записанный голос Барсика (а не робот). */
+            arm(120000);
+            var again = function(){
+              document.removeEventListener('pointerdown', again, true); document.removeEventListener('keydown', again, true);
+              if(finished || tok !== token) return;
+              arm(9000);
+              var q; try { q = a.play(); } catch(e){ tts(from); return; }
+              if(q && q.catch) q.catch(function(){ tts(from); });
+            };
+            document.addEventListener('pointerdown', again, true); document.addEventListener('keydown', again, true);
+            return;
+          }
+          tts(from);
+        });
       })();
     });
   }
