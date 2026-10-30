@@ -63,10 +63,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function(){
     initSpeakButton('speak-btn', 'painting_explain', '../../../assets/audio/');
-    document.getElementById('start-video-btn').addEventListener('click', function(){
-      document.getElementById('explain-panel').style.display = 'none';
-      document.getElementById('video-panel').style.display = 'block';
-    });
+    initStartGameButton('start-video-btn', 'explain-panel', 'video-panel');
     document.getElementById('done-btn').addEventListener('click', function(){
       recordGameResult('painting', 1, 1);
       window.location.href = 'index.html';
