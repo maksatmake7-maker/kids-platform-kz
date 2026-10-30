@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Русский язык 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+</style>
+</head>
+<body class="w-page" data-subject="reading">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Русский язык 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Русский язык 2 класс</h1>
+      <p class="ac-sub">10 уроков: правила письма, ударение, части слова, части речи, слова и предложения, текст</p>
+      <p class="ac-note">🔤 Курс по программе 2 класса. Каждый урок: объяснение, игра и проверка</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 11</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/russian2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/russian2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_russian2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки 👆') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Русский язык 2 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по русскому языку →</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.ru1q = mkQuiz([{"q": "Какую букву пишем после Ж и Ш: И или Ы?", "a": "И", "w": ["Ы", "Я"], "h": "Жи и ши пишем с буквой И"}, {"q": "Какую букву пишем после Ч и Щ: А или Я?", "a": "А", "w": ["Я", "Ю"], "h": "Ча и ща пишем с буквой А"}, {"q": "Какую букву пишем после Ч и Щ: У или Ю?", "a": "У", "w": ["Ю", "О"], "h": "Чу и щу пишем с буквой У"}, {"q": "Выбери верное написание", "a": "машина", "w": ["мащина", "машына"], "h": "В слове «машина» после Ш пишем И"}, {"q": "Выбери верное написание", "a": "чайка", "w": ["чяйка", "шайка"], "h": "В слове «чайка» после Ч пишем А"}, {"q": "Допиши слово: ж_раф", "a": "и", "w": ["ы"], "h": "Жи пиши с буквой И"}, {"q": "Допиши слово: ш_на", "a": "и", "w": ["ы"], "h": "Ши пиши с буквой И"}, {"q": "Допиши слово: маш_на", "a": "и", "w": ["ы"], "h": "Ши пиши с буквой И"}, {"q": "Допиши слово: лыж_", "a": "и", "w": ["ы"], "h": "Жи пиши с буквой И"}, {"q": "Допиши слово: ш_шка", "a": "и", "w": ["ы"], "h": "Ши пиши с буквой И"}, {"q": "Допиши слово: кн_жка", "a": "и", "w": ["ы"], "h": "Жи пиши с буквой И"}, {"q": "Допиши слово: ч_йка", "a": "а", "w": ["я"], "h": "Ча пиши с буквой А"}, {"q": "Допиши слово: туч_", "a": "а", "w": ["я"], "h": "Ча пиши с буквой А"}, {"q": "Допиши слово: рощ_", "a": "а", "w": ["я"], "h": "Ща пиши с буквой А"}, {"q": "Допиши слово: пищ_", "a": "а", "w": ["я"], "h": "Ща пиши с буквой А"}, {"q": "Допиши слово: щ_ка", "a": "у", "w": ["ю"], "h": "Щу пиши с буквой У"}, {"q": "Допиши слово: ч_до", "a": "у", "w": ["ю"], "h": "Чу пиши с буквой У"}, {"q": "Допиши слово: ч_лан", "a": "у", "w": ["ю"], "h": "Чу пиши с буквой У"}, {"q": "Допиши слово: ру_ка", "a": "ч", "w": ["ш"], "h": "В сочетании чк пишем Ч"}, {"q": "Допиши слово: то_ный", "a": "ч", "w": ["ш"], "h": "В сочетании чн пишем Ч"}, {"q": "Допиши слово: ску_ный", "a": "ч", "w": ["ш"], "h": "В сочетании чн пишем Ч"}, {"q": "Допиши слово: до_ка", "a": "ч", "w": ["ш"], "h": "В сочетании чк пишем Ч"}]);
+GENS.ru1t = mkTF([{"q": "Слово «жираф» пишется с буквой И после Ж", "a": "Верно", "h": "Верно. Жи пишем с буквой И"}, {"q": "Слово «лыжы» написано верно", "a": "Неверно", "h": "Неверно. Правильно: лыжи. Жи пишем с И"}, {"q": "Слово «чяйка» написано верно", "a": "Неверно", "h": "Неверно. Правильно: чайка. Ча пишем с А"}, {"q": "Слово «щука» пишется с буквой У после Щ", "a": "Верно", "h": "Верно. Щу пишем с буквой У"}, {"q": "Слово «чудо» пишется с буквой Ю после Ч", "a": "Неверно", "h": "Неверно. Правильно: чудо. Чу пишем с У"}, {"q": "Слово «роща» пишется с буквой А после Щ", "a": "Верно", "h": "Верно. Ща пишем с буквой А"}, {"q": "В слове «ручка» пишем буквы чк", "a": "Верно", "h": "Верно. Сочетание чк пишем с буквой Ч"}, {"q": "В слове «точный» пишем буквы шн", "a": "Неверно", "h": "Неверно. Правильно: точный. В сочетании чн пишем Ч"}]);
+GENS.ru2q = mkQuiz([{"q": "Как правильно произносить слово «что»?", "a": "што", "w": ["чьто", "чито"], "h": "В слове «что» букву Ч читаем как Ш: [што]"}, {"q": "Как правильно произносить слово «конечно»?", "a": "конешно", "w": ["конечьно", "кончно"], "h": "В слове «конечно» сочетание чн читаем как шн: [конешно]"}, {"q": "Как правильно произносить слово «скучно»?", "a": "скушно", "w": ["скучьно", "скучно"], "h": "В слове «скучно» сочетание чн читаем как шн: [скушно]"}, {"q": "Как правильно произносить слово «мягкий»?", "a": "мяхкий", "w": ["мягкий", "мякий"], "h": "В слове «мягкий» сочетание гк читаем как хк: [мяхкий]"}, {"q": "Как правильно произносить слово «легко»?", "a": "лехко", "w": ["легко", "лекко"], "h": "В слове «легко» сочетание гк читаем как хк: [лехко]"}, {"q": "Где ударение в слове?: торты", "a": "тОрты", "w": ["тортЫ"], "h": "Правильно: тОрты"}, {"q": "Где ударение в слове?: банты", "a": "бАнты", "w": ["бантЫ"], "h": "Правильно: бАнты"}, {"q": "Где ударение в слове?: шарфы", "a": "шАрфы", "w": ["шарфЫ"], "h": "Правильно: шАрфы"}, {"q": "Где ударение в слове?: звонит", "a": "звонИт", "w": ["звОнит"], "h": "Правильно: звонИт"}, {"q": "Где ударение в слове?: красивее", "a": "красИвее", "w": ["красивЕе"], "h": "Правильно: красИвее"}, {"q": "Где ударение в слове?: свёкла", "a": "свЁкла", "w": ["свеклА"], "h": "Правильно: свЁкла"}, {"q": "Где ударение в слове?: алфавит", "a": "алфавИт", "w": ["алфАвит"], "h": "Правильно: алфавИт"}, {"q": "Где ударение в слове?: каталог", "a": "каталОг", "w": ["катАлог"], "h": "Правильно: каталОг"}, {"q": "Где ударение в слове?: квартал", "a": "квартАл", "w": ["квАртал"], "h": "Правильно: квартАл"}, {"q": "Где ударение в слове?: договор", "a": "дОговор", "w": ["договОр"], "h": "Правильно: дОговор"}, {"q": "Где ударение в слове?: щавель", "a": "щавЕль", "w": ["щАвель"], "h": "Правильно: щавЕль"}, {"q": "Где ударение в слове?: портфель", "a": "портфЕль", "w": ["пОртфель"], "h": "Правильно: портфЕль"}, {"q": "Где ударение в слове?: облегчить", "a": "облегчИть", "w": ["облЕгчить"], "h": "Правильно: облегчИть"}, {"q": "Где ударение в слове?: включит", "a": "включИт", "w": ["вклЮчит"], "h": "Правильно: включИт"}, {"q": "Где ударение в слове?: кухонный", "a": "кУхонный", "w": ["кухОнный"], "h": "Правильно: кУхонный"}]);
+GENS.ru2t = mkTF([{"q": "Слово «торты» произносим с ударением на первый слог", "a": "Верно", "h": "Верно. Правильно: тОрты"}, {"q": "Слово «звонит» произносим с ударением на второй слог", "a": "Верно", "h": "Верно. Правильно: звонИт"}, {"q": "Слово «красивее» произносим с ударением на последний слог", "a": "Неверно", "h": "Неверно. Правильно: красИвее — ударение на второй слог"}, {"q": "Слово «алфавит» произносим с ударением на последний слог", "a": "Верно", "h": "Верно. Правильно: алфавИт"}, {"q": "Слово «каталог» произносим с ударением на первый слог", "a": "Неверно", "h": "Неверно. Правильно: каталОг — ударение на последний слог"}, {"q": "Слово «договор» произносим с ударением на первый слог", "a": "Верно", "h": "Верно. Правильно: дОговор"}, {"q": "В слове «конечно» сочетание чн читаем как шн", "a": "Верно", "h": "Верно. Мы говорим [конешно]"}, {"q": "В слове «что» сочетание чт читаем как шт", "a": "Верно", "h": "Верно. Мы говорим [што]"}]);
+GENS.ru3q = mkQuiz([{"q": "Как проверить безударную гласную в корне слова?", "a": "Изменить слово так, чтобы гласная стала ударной", "w": ["Спросить у соседа", "Написать наугад", "Написать с большой буквы"], "h": "Нужно найти проверочное слово: гласная должна оказаться под ударением"}, {"q": "Какое слово проверочное для слова «вода»?", "a": "воды", "w": ["водичка", "водитель", "водопад"], "h": "В слове «воды» ударение падает на О: во́ды"}, {"q": "Какое слово проверочное для слова «трава»?", "a": "травы", "w": ["травка", "травинка", "травяной"], "h": "В слове «травы» ударение падает на А: тра́вы"}, {"q": "Какое слово проверочное для слова «река»?", "a": "реки", "w": ["речка", "речной", "речушка"], "h": "В слове «реки» ударение падает на Е: ре́ки"}, {"q": "Допиши слово: в_да", "a": "о", "w": ["а", "е"], "h": "воды — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: г_ра", "a": "о", "w": ["а", "у"], "h": "горы — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: тр_ва", "a": "а", "w": ["о", "е"], "h": "травы — проверочное слово. Ударение падает на эту гласную, пишем А"}, {"q": "Допиши слово: р_ка", "a": "е", "w": ["и", "я"], "h": "реки — проверочное слово. Ударение падает на эту гласную, пишем Е"}, {"q": "Допиши слово: з_мля", "a": "е", "w": ["и", "я"], "h": "земли — проверочное слово. Ударение падает на эту гласную, пишем Е"}, {"q": "Допиши слово: л_са", "a": "и", "w": ["е", "я"], "h": "лисы — проверочное слово. Ударение падает на эту гласную, пишем И"}, {"q": "Допиши слово: с_ды", "a": "а", "w": ["о", "я"], "h": "сад — проверочное слово. Ударение падает на эту гласную, пишем А"}, {"q": "Допиши слово: д_ма", "a": "о", "w": ["а", "у"], "h": "дом — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: сн_га", "a": "е", "w": ["и", "я"], "h": "снег — проверочное слово. Ударение падает на эту гласную, пишем Е"}, {"q": "Допиши слово: ст_на", "a": "е", "w": ["и", "я"], "h": "стены — проверочное слово. Ударение падает на эту гласную, пишем Е"}, {"q": "Допиши слово: з_ма", "a": "и", "w": ["е", "я"], "h": "зимы — проверочное слово. Ударение падает на эту гласную, пишем И"}, {"q": "Допиши слово: гл_за", "a": "а", "w": ["о", "я"], "h": "глаз — проверочное слово. Ударение падает на эту гласную, пишем А"}, {"q": "Допиши слово: сосн_", "a": "а", "w": ["о", "у"], "h": "сосны — проверочное слово. Ударение падает на эту гласную, пишем А"}, {"q": "Допиши слово: гр_бы", "a": "и", "w": ["е", "я"], "h": "гриб — проверочное слово. Ударение падает на эту гласную, пишем И"}, {"q": "Допиши слово: н_ра", "a": "о", "w": ["а", "у"], "h": "норы — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: с_ва", "a": "о", "w": ["а", "у"], "h": "совы — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: к_за", "a": "о", "w": ["а", "у"], "h": "козы — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: р_са", "a": "о", "w": ["а", "у"], "h": "росы — проверочное слово. Ударение падает на эту гласную, пишем О"}, {"q": "Допиши слово: тр_па", "a": "о", "w": ["а", "у"], "h": "тропы — проверочное слово. Ударение падает на эту гласную, пишем О"}]);
+GENS.ru3t = mkTF([{"q": "Безударные гласные нужно проверять", "a": "Верно", "h": "Верно. Проверяем: подбираем слово, в котором гласная под ударением"}, {"q": "Слово «вода» проверяем словом «воды»", "a": "Верно", "h": "Верно. В слове «воды» ударение на О, значит, в слове «вода» пишем О"}, {"q": "В слове «земля» пишем букву И, потому что проверочное слово «земли»", "a": "Неверно", "h": "Неверно. Правильно: земля. Проверка: зе́мли, значит, пишем Е"}, {"q": "В слове «трава» пишем букву О", "a": "Неверно", "h": "Неверно. Правильно: трава. Проверка: тра́вы, значит, пишем А"}, {"q": "В слове «снега» пишем букву Е, потому что проверочное слово «снег»", "a": "Верно", "h": "Верно. В слове «снег» ударение на Е"}, {"q": "В слове «леса» пишем букву И", "a": "Неверно", "h": "Неверно. Правильно: леса. Проверка: лес, значит, пишем Е"}]);
+GENS.ru4q = mkQuiz([{"q": "Как проверить парный согласный в конце слова?", "a": "Изменить слово так, чтобы после согласного стояла гласная", "w": ["Спросить у соседа", "Написать наугад", "Сделать слово короче"], "h": "Дуб — дубы: слышим Б, значит, пишем Б"}, {"q": "Какое слово проверочное для слова «гриб»?", "a": "грибы", "w": ["грибной", "грибок", "грибник"], "h": "В слове «грибы» хорошо слышен звук Б"}, {"q": "Какое слово проверочное для слова «мороз»?", "a": "морозы", "w": ["морозный", "морозец", "морозить"], "h": "В слове «морозы» хорошо слышен звук З"}, {"q": "Какая буква пишется в слове «друг»?", "a": "г", "w": ["к", "х"], "h": "Друг — друга: слышим Г, значит, пишем Г"}, {"q": "Допиши слово: ду_", "a": "б", "w": ["п"], "h": "дубы — проверочное слово. Слышим согласный звук, как в слове «дубы», пишем Б"}, {"q": "Допиши слово: гри_", "a": "б", "w": ["п"], "h": "грибы — проверочное слово. Слышим согласный звук, как в слове «грибы», пишем Б"}, {"q": "Допиши слово: хле_", "a": "б", "w": ["п"], "h": "хлеба — проверочное слово. Слышим согласный звук, как в слове «хлеба», пишем Б"}, {"q": "Допиши слово: зу_", "a": "б", "w": ["п"], "h": "зубы — проверочное слово. Слышим согласный звук, как в слове «зубы», пишем Б"}, {"q": "Допиши слово: лу_", "a": "г", "w": ["к"], "h": "луга — проверочное слово. Слышим согласный звук, как в слове «луга», пишем Г"}, {"q": "Допиши слово: сне_", "a": "г", "w": ["к"], "h": "снега — проверочное слово. Слышим согласный звук, как в слове «снега», пишем Г"}, {"q": "Допиши слово: дру_", "a": "г", "w": ["к"], "h": "друга — проверочное слово. Слышим согласный звук, как в слове «друга», пишем Г"}, {"q": "Допиши слово: сапо_", "a": "г", "w": ["к"], "h": "сапоги — проверочное слово. Слышим согласный звук, как в слове «сапоги», пишем Г"}, {"q": "Допиши слово: моро_", "a": "з", "w": ["с"], "h": "морозы — проверочное слово. Слышим согласный звук, как в слове «морозы», пишем З"}, {"q": "Допиши слово: гла_", "a": "з", "w": ["с"], "h": "глаза — проверочное слово. Слышим согласный звук, как в слове «глаза», пишем З"}, {"q": "Допиши слово: но_", "a": "ж", "w": ["ш"], "h": "ножи — проверочное слово. Слышим согласный звук, как в слове «ножи», пишем Ж"}, {"q": "Допиши слово: ры_ка", "a": "б", "w": ["п"], "h": "рыбы — проверочное слово. Слышим согласный звук, как в слове «рыбы», пишем Б"}, {"q": "Допиши слово: ша_ка", "a": "п", "w": ["б"], "h": "шапки — проверочное слово. Слышим согласный звук, как в слове «шапки», пишем П"}, {"q": "Допиши слово: тра_ка", "a": "в", "w": ["ф"], "h": "трава — проверочное слово. Слышим согласный звук, как в слове «трава», пишем В"}, {"q": "Допиши слово: сла_кий", "a": "д", "w": ["т"], "h": "сладок — проверочное слово. Слышим согласный звук, как в слове «сладок», пишем Д"}, {"q": "Допиши слово: ска_ка", "a": "з", "w": ["с"], "h": "сказки — проверочное слово. Слышим согласный звук, как в слове «сказки», пишем З"}]);
+GENS.ru4t = mkTF([{"q": "В слове «дуб» пишем Б, потому что «дубы»", "a": "Верно", "h": "Верно. В слове «дубы» слышим звук Б"}, {"q": "В слове «гриб» пишем П", "a": "Неверно", "h": "Неверно. Правильно: гриб. Проверка: грибы"}, {"q": "В слове «снег» пишем Г, потому что «снега»", "a": "Верно", "h": "Верно. В слове «снега» слышим звук Г"}, {"q": "В слове «мороз» пишем С", "a": "Неверно", "h": "Неверно. Правильно: мороз. Проверка: морозы"}, {"q": "Парные согласные на конце слова нужно проверять", "a": "Верно", "h": "Верно. На конце слова парный согласный звучит неясно, поэтому его проверяют"}, {"q": "В слове «нож» пишем Ш", "a": "Неверно", "h": "Неверно. Правильно: нож. Проверка: ножи"}]);
+GENS.ru5q = mkQuiz([{"q": "Как называется главная часть слова, в которой заключено его значение?", "a": "Корень", "w": ["Приставка", "Окончание", "Предлог"], "h": "Корень — главная часть слова: в нём заключено его значение"}, {"q": "Как называются слова с одним корнем?", "a": "Однокоренные", "w": ["Противоположные", "Одинаковые", "Короткие"], "h": "Слова с общим корнем называют однокоренными: лес, лесник, лесной"}, {"q": "Где стоит приставка?", "a": "Перед корнем", "w": ["После корня", "В конце слова", "Внутри корня"], "h": "Приставка стоит перед корнем: по-ход"}, {"q": "Какое слово лишнее: лес, лесник, лесной, лето?", "a": "лето", "w": ["лес", "лесник", "лесной"], "h": "Слово «лето» — не однокоренное: корень у него другой"}, {"q": "Найди однокоренное слово: снег", "a": "снежинка", "w": ["снимок", "сено"], "h": "Однокоренные слова — слова с одним корнем. снежинка — однокоренное к слову снег"}, {"q": "Найди однокоренное слово: дом", "a": "домик", "w": ["дым", "дама"], "h": "Однокоренные слова — слова с одним корнем. домик — однокоренное к слову дом"}, {"q": "Найди однокоренное слово: лес", "a": "лесник", "w": ["лето", "лист"], "h": "Однокоренные слова — слова с одним корнем. лесник — однокоренное к слову лес"}, {"q": "Найди однокоренное слово: вода", "a": "водичка", "w": ["ворона", "восток"], "h": "Однокоренные слова — слова с одним корнем. водичка — однокоренное к слову вода"}, {"q": "Найди однокоренное слово: книга", "a": "книжка", "w": ["кино", "кнопка"], "h": "Однокоренные слова — слова с одним корнем. книжка — однокоренное к слову книга"}, {"q": "Найди однокоренное слово: сад", "a": "садик", "w": ["сахар", "салат"], "h": "Однокоренные слова — слова с одним корнем. садик — однокоренное к слову сад"}, {"q": "Найди однокоренное слово: река", "a": "речка", "w": ["рыба", "рука"], "h": "Однокоренные слова — слова с одним корнем. речка — однокоренное к слову река"}, {"q": "Найди однокоренное слово: гриб", "a": "грибник", "w": ["грива", "гроза"], "h": "Однокоренные слова — слова с одним корнем. грибник — однокоренное к слову гриб"}, {"q": "Найди однокоренное слово: цвет", "a": "цветок", "w": ["цель", "цирк"], "h": "Однокоренные слова — слова с одним корнем. цветок — однокоренное к слову цвет"}, {"q": "Найди однокоренное слово: мороз", "a": "морозный", "w": ["море", "мост"], "h": "Однокоренные слова — слова с одним корнем. морозный — однокоренное к слову мороз"}, {"q": "Найди приставку: сделал", "a": "с-", "w": ["по-", "за-"], "h": "В слове сделал приставка с-"}, {"q": "Найди приставку: покрасил", "a": "по-", "w": ["про-", "за-"], "h": "В слове покрасил приставка по-"}, {"q": "Найди приставку: прочитал", "a": "про-", "w": ["по-", "до-"], "h": "В слове прочитал приставка про-"}, {"q": "Найди приставку: завязал", "a": "за-", "w": ["про-", "по-"], "h": "В слове завязал приставка за-"}, {"q": "Найди приставку: дописал", "a": "до-", "w": ["за-", "по-"], "h": "В слове дописал приставка до-"}, {"q": "Найди приставку: перешёл", "a": "пере-", "w": ["про-", "до-"], "h": "В слове перешёл приставка пере-"}, {"q": "Как сказать ласково?: белый", "a": "беленький", "w": ["белонький", "белинький"], "h": "Правильно: беленький"}, {"q": "Как сказать ласково?: тихий", "a": "тихонький", "w": ["тихинький", "тихунький"], "h": "Правильно: тихонький"}, {"q": "Как сказать ласково?: новый", "a": "новенький", "w": ["новонький", "новинький"], "h": "Правильно: новенький"}, {"q": "Как сказать ласково?: старый", "a": "старенький", "w": ["старонький", "старунький"], "h": "Правильно: старенький"}, {"q": "Как сказать ласково?: голубой", "a": "голубенький", "w": ["голубинький", "голубунький"], "h": "Правильно: голубенький"}, {"q": "Как сказать ласково?: сухой", "a": "сухонький", "w": ["сухинький", "сухунький"], "h": "Правильно: сухонький"}]);
+GENS.ru5t = mkTF([{"q": "Слова «снег», «снежинка», «снеговик» — однокоренные", "a": "Верно", "h": "Верно. У них общий корень снег/снеж"}, {"q": "Слова «вода» и «ворона» — однокоренные", "a": "Неверно", "h": "Неверно. У этих слов разные корни"}, {"q": "Приставка стоит перед корнем", "a": "Верно", "h": "Верно. Например: по-ход, за-пел"}, {"q": "Слово «беленький» — от слова «белый»", "a": "Верно", "h": "Верно. Суффикс -еньк- помогает сказать ласково"}, {"q": "Слово «тихонький» образовано с суффиксом -оньк-", "a": "Верно", "h": "Верно. Тихий — тихонький, суффикс -оньк-"}, {"q": "Правильно писать «новенький»", "a": "Верно", "h": "Верно. Суффикс -еньк-"}]);
+GENS.ru6q = mkQuiz([{"q": "Сколько слов в предложении «Мама читает книгу»?", "a": "Три", "w": ["Два", "Четыре"], "h": "Мама, читает, книгу — три слова"}, {"q": "Как правильно писать предлог со словом?", "a": "Раздельно", "w": ["Слитно", "Через дефис"], "h": "Предлоги со словами пишем раздельно: на столе"}, {"q": "На какой вопрос отвечает слово «красивый»?", "a": "какой?", "w": ["кто?", "что делать?"], "h": "Красивый (какой?) — слово, которое называет признак"}, {"q": "Как называется слово «и» в предложении «Мама и папа дома»?", "a": "Союз", "w": ["Предлог", "Глагол"], "h": "Слово «и» соединяет слова — это союз"}, {"q": "Какое слово называет действие?", "a": "писать", "w": ["письмо", "письменный"], "h": "Писать — что делать? — слово, которое называет действие"}, {"q": "Допиши предлог: сидит _ столом", "a": "под", "w": ["над", "при"], "h": "Сидит под столом"}, {"q": "Допиши предлог: лежит _ столе", "a": "на", "w": ["из", "у"], "h": "Лежит на столе"}, {"q": "Допиши предлог: идёт _ школы", "a": "из", "w": ["на", "под"], "h": "Идёт из школы"}, {"q": "Допиши предлог: летит _ лесом", "a": "над", "w": ["под", "в"], "h": "Летит над лесом"}, {"q": "Допиши предлог: стоит _ дома", "a": "у", "w": ["за", "из"], "h": "Стоит у дома"}, {"q": "Допиши предлог: спрятался _ деревом", "a": "за", "w": ["на", "из"], "h": "Спрятался за деревом"}, {"q": "Выбери союз: чай _ сок", "a": "и", "w": ["но", "а"], "h": "Чай и сок — слова соединены союзом и"}, {"q": "Выбери союз: дождь, _ мы идём гулять", "a": "но", "w": ["и", "или"], "h": "Дождь, но мы идём гулять — союз но противопоставляет"}, {"q": "Выбери союз: чай _ сок?", "a": "или", "w": ["и", "но"], "h": "Чай или сок? — союз или показывает выбор"}]);
+GENS.ru6t = mkTF([{"q": "Слова «кто?» и «что?» — вопросы к предметам", "a": "Верно", "h": "Верно. Они помогают найти слова, которые называют предметы"}, {"q": "Слово «бегать» называет предмет", "a": "Неверно", "h": "Неверно. Бегать — что делать? Это слово называет действие"}, {"q": "Слово «белый» отвечает на вопрос какой?", "a": "Верно", "h": "Верно. Белый — какой? Слово называет признак"}, {"q": "Предлог пишем слитно со словом", "a": "Неверно", "h": "Неверно. Предлоги пишем раздельно: на столе, под столом"}, {"q": "Слово «над» — предлог", "a": "Верно", "h": "Верно. Предлоги: на, в, над, под, у, за, из"}, {"q": "Слово «но» — союз", "a": "Верно", "h": "Верно. Союзы и, а, но соединяют слова и предложения"}]);
+GENS.ru7q = mkQuiz([{"q": "Как называются слова, близкие по смыслу?", "a": "Синонимы", "w": ["Антонимы", "Однокоренные"], "h": "Слова, близкие по смыслу, — синонимы: смелый — храбрый"}, {"q": "Как называются слова с противоположным значением?", "a": "Антонимы", "w": ["Синонимы", "Однокоренные"], "h": "Слова с противоположным значением — антонимы: день — ночь"}, {"q": "Слово «ключ» может значить:", "a": "и родник, и железный ключ", "w": ["только родник", "только железный ключ"], "h": "У слова «ключ» несколько значений — это многозначное слово"}, {"q": "В какой фразе слово «золотой» употреблено в переносном значении?", "a": "золотые руки", "w": ["золотое кольцо", "золотая цепочка"], "h": "«Золотые руки» — мастер на все руки. Это переносное значение"}, {"q": "Найди слово, близкое по смыслу: большой", "a": "огромный", "w": ["маленький", "узкий"], "h": "огромный — синоним к слову большой, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: смелый", "a": "храбрый", "w": ["трусливый", "тихий"], "h": "храбрый — синоним к слову смелый, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: красивый", "a": "прекрасный", "w": ["ужасный", "старый"], "h": "прекрасный — синоним к слову красивый, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: весёлый", "a": "радостный", "w": ["грустный", "сонный"], "h": "радостный — синоним к слову весёлый, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: дорога", "a": "путь", "w": ["дом", "река"], "h": "путь — синоним к слову дорога, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: идти", "a": "шагать", "w": ["стоять", "лежать"], "h": "шагать — синоним к слову идти, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: говорить", "a": "сказать", "w": ["молчать", "слушать"], "h": "сказать — синоним к слову говорить, они близки по смыслу"}, {"q": "Найди слово, близкое по смыслу: друг", "a": "товарищ", "w": ["враг", "сосед"], "h": "товарищ — синоним к слову друг, они близки по смыслу"}, {"q": "Найди слово с противоположным значением: день", "a": "ночь", "w": ["утро", "вечер"], "h": "ночь — антоним к слову день, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: добрый", "a": "злой", "w": ["умный", "весёлый"], "h": "злой — антоним к слову добрый, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: горячий", "a": "холодный", "w": ["тёплый", "белый"], "h": "холодный — антоним к слову горячий, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: высокий", "a": "низкий", "w": ["длинный", "тонкий"], "h": "низкий — антоним к слову высокий, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: светлый", "a": "тёмный", "w": ["яркий", "белый"], "h": "тёмный — антоним к слову светлый, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: начало", "a": "конец", "w": ["середина", "путь"], "h": "конец — антоним к слову начало, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: друг", "a": "враг", "w": ["товарищ", "сосед"], "h": "враг — антоним к слову друг, они противоположны по смыслу"}, {"q": "Найди слово с противоположным значением: правда", "a": "ложь", "w": ["сказка", "слово"], "h": "ложь — антоним к слову правда, они противоположны по смыслу"}]);
+GENS.ru7t = mkTF([{"q": "«Громкий» и «тихий» — антонимы", "a": "Верно", "h": "Верно. Слова противоположны по смыслу"}, {"q": "«Мороз» и «холод» — антонимы", "a": "Неверно", "h": "Неверно. Это слова, близкие по смыслу, — синонимы"}, {"q": "«Смелый» и «трусливый» — антонимы", "a": "Верно", "h": "Верно. Слова противоположны по смыслу"}, {"q": "У многозначного слова только одно значение", "a": "Неверно", "h": "Неверно. У многозначного слова несколько значений"}, {"q": "Антонимы помогают точнее выразить мысль", "a": "Верно", "h": "Верно. Например: тёплый день, холодная ночь"}, {"q": "«Весёлый» и «радостный» — синонимы", "a": "Верно", "h": "Верно. Слова близки по смыслу"}]);
+GENS.ru8q = mkQuiz([{"q": "С какой буквы пишем начало предложения?", "a": "С заглавной", "w": ["Со строчной", "С любой"], "h": "Первое слово в предложении пишем с заглавной буквы"}, {"q": "Какой знак ставим в конце вопросительного предложения?", "a": "Вопросительный знак", "w": ["Точку", "Запятую"], "h": "Вопрос заканчивается вопросительным знаком: Где ты?"}, {"q": "С какой буквы пишем имена и клички животных?", "a": "С заглавной", "w": ["Со строчной", "С любой"], "h": "Имена людей и клички животных пишем с заглавной: Барсик, Алия"}, {"q": "Как правильно написать название города?", "a": "Астана", "w": ["астана", "АСТАНА"], "h": "Названия городов пишем с заглавной буквы"}, {"q": "Что такое предложение?", "a": "Слова, связанные по смыслу, выражающие законченную мысль", "w": ["Любой набор слов", "Одно слово"], "h": "Предложение выражает законченную мысль"}, {"q": "Какой знак поставить в конце?: Где ты живёшь_", "a": "?", "w": [".", "!"], "h": "Это вопрос, в конце ставим вопросительный знак"}, {"q": "Какой знак поставить в конце?: Мама читает книгу_", "a": ".", "w": ["?", "!"], "h": "Это рассказ, в конце ставим точку"}, {"q": "Какой знак поставить в конце?: Какая красивая весна_", "a": "!", "w": [".", "?"], "h": "Это предложение с чувством, в конце восклицательный знак"}, {"q": "Какой знак поставить в конце?: Когда начнётся урок_", "a": "?", "w": [".", "!"], "h": "Это вопрос, в конце ставим вопросительный знак"}, {"q": "Какой знак поставить в конце?: Мы идём в парк_", "a": ".", "w": ["?", "!"], "h": "Это рассказ, в конце ставим точку"}, {"q": "Какой знак поставить в конце?: Ура, мы победили_", "a": "!", "w": [".", "?"], "h": "Это предложение с чувством, в конце восклицательный знак"}, {"q": "Как правильно написать?: _алия", "a": "Алия", "w": ["алия", "АЛИЯ"], "h": "Алия — с заглавной буквы"}, {"q": "Как правильно написать?: _ерик", "a": "Ерик", "w": ["ерик", "ЕРИК"], "h": "Ерик — с заглавной буквы"}, {"q": "Как правильно написать?: _ормат", "a": "Нормат", "w": ["нормат", "НОРМАТ"], "h": "Нормат — с заглавной буквы"}, {"q": "Как правильно написать?: _арсик", "a": "Барсик", "w": ["барсик", "БАРСИК"], "h": "Барсик — с заглавной буквы"}, {"q": "Как правильно написать?: _стана", "a": "Астана", "w": ["астана", "АСТАНА"], "h": "Астана — с заглавной буквы"}, {"q": "Как правильно написать?: _лматы", "a": "Алматы", "w": ["алматы", "АЛМАТЫ"], "h": "Алматы — с заглавной буквы"}, {"q": "Как правильно написать?: _ктау", "a": "Актау", "w": ["актау", "АКТАУ"], "h": "Актау — с заглавной буквы"}, {"q": "Как правильно написать?: _ымкент", "a": "Шымкент", "w": ["шымкент", "ШЫМКЕНТ"], "h": "Шымкент — с заглавной буквы"}, {"q": "Как правильно написать?: _азахстан", "a": "Казахстан", "w": ["казахстан", "КАЗАХСТАН"], "h": "Казахстан — с заглавной буквы"}]);
+GENS.ru8t = mkTF([{"q": "В конце повествовательного предложения ставим точку", "a": "Верно", "h": "Верно. Повествовательное предложение рассказывает о чём-то"}, {"q": "Имя человека пишем со строчной буквы", "a": "Неверно", "h": "Неверно. Имена людей пишем с заглавной буквы"}, {"q": "Кличку собаки пишем с заглавной буквы", "a": "Верно", "h": "Верно. Например: Тузик, Барсик"}, {"q": "В конце вопроса ставим восклицательный знак", "a": "Неверно", "h": "Неверно. В конце вопроса — вопросительный знак"}, {"q": "Название города пишем с заглавной буквы", "a": "Верно", "h": "Верно. Алматы, Астана, Шымкент"}, {"q": "Первое слово предложения пишем со строчной буквы", "a": "Неверно", "h": "Неверно. Первое слово предложения пишем с заглавной буквы"}]);
+GENS.ru9q = mkQuiz([{"q": "Сколько слогов в слове, если в нём три гласные?", "a": "Три", "w": ["Два", "Один"], "h": "Сколько в слове гласных, столько и слогов"}, {"q": "Можно ли оставить одну букву на строке при переносе?", "a": "Нет", "w": ["Да", "Только гласную"], "h": "Нельзя оставить или перенести одну букву: пе-сня, а не п-есня"}, {"q": "Как можно перенести слово «ёлка»?", "a": "Нельзя переносить", "w": ["ё-лка", "ёл-ка"], "h": "Нельзя оставлять одну букву на строке: ёлка — не переносим"}, {"q": "Как правильно перенести слово «чайка»?", "a": "чай-ка", "w": ["ча-йка", "чайк-а"], "h": "Букву й нельзя отрывать от предыдущей гласной: чай-ка"}, {"q": "Сколько слогов в слове?: ёлка", "a": "2", "w": ["1", "3"], "h": "В слове ёлка две гласные: 2"}, {"q": "Сколько слогов в слове?: арбуз", "a": "2", "w": ["1", "3"], "h": "В слове арбуз две гласные: 2"}, {"q": "Сколько слогов в слове?: осень", "a": "2", "w": ["1", "3"], "h": "В слове осень две гласные: 2"}, {"q": "Сколько слогов в слове?: конфета", "a": "3", "w": ["2", "4"], "h": "В слове конфета три гласные: 3"}, {"q": "Сколько слогов в слове?: машина", "a": "3", "w": ["2", "4"], "h": "В слове машина три гласные: 3"}, {"q": "Сколько слогов в слове?: крыша", "a": "2", "w": ["1", "3"], "h": "В слове крыша две гласные: 2"}, {"q": "Сколько слогов в слове?: лес", "a": "1", "w": ["2", "3"], "h": "В слове лес одна гласная: 1"}, {"q": "Как можно перенести слово?: машина", "a": "ма-шина", "w": ["маш-ина", "м-ашина"], "h": "Правильно переносить: ма-шина"}, {"q": "Как можно перенести слово?: лётчик", "a": "лёт-чик", "w": ["лётч-ик", "л-ётчик"], "h": "Правильно переносить: лёт-чик"}, {"q": "Как можно перенести слово?: песня", "a": "пес-ня", "w": ["п-есня", "песн-я"], "h": "Правильно переносить: пес-ня"}, {"q": "Как можно перенести слово?: коньки", "a": "конь-ки", "w": ["ко-ньки", "кон-ьки"], "h": "Правильно переносить: конь-ки"}, {"q": "Как можно перенести слово?: чайка", "a": "чай-ка", "w": ["ча-йка", "чайк-а"], "h": "Правильно переносить: чай-ка"}]);
+GENS.ru9t = mkTF([{"q": "В слове «школа» два слога", "a": "Верно", "h": "Верно. Две гласные — два слога: шко-ла"}, {"q": "Слова делят для переноса по слогам", "a": "Верно", "h": "Верно. Например: ма-ши-на"}, {"q": "Букву ь можно отрывать от предыдущей буквы при переносе", "a": "Неверно", "h": "Неверно. Ь нельзя отрывать: паль-то"}, {"q": "Слово «мышь» можно перенести", "a": "Неверно", "h": "Неверно. В слове один слог — переносить нельзя"}, {"q": "В слове «кот» один слог", "a": "Верно", "h": "Верно. Одна гласная — один слог"}, {"q": "Одну букву можно оставить на строке", "a": "Неверно", "h": "Неверно. Одну букву нельзя оставить на строке или перенести"}]);
+GENS.ru10q = mkQuiz([{"q": "Что такое заголовок?", "a": "Название текста", "w": ["Последнее предложение", "Любое слово"], "h": "Заголовок называет тему текста или главную мысль"}, {"q": "Из каких частей состоит текст?", "a": "Начало, основная часть, концовка", "w": ["Только начало", "Три одинаковых предложения"], "h": "Текст состоит из начала, основной части и концовки"}, {"q": "Какой текст рассказывает о событиях?", "a": "Повествование", "w": ["Описание", "Загадка"], "h": "Повествование рассказывает о событиях по порядку"}, {"q": "Какой текст говорит о признаках предмета?", "a": "Описание", "w": ["Повествование", "Заголовок"], "h": "Описание говорит о признаках предмета: какой он"}, {"q": "Какой текст рассказывает о природе простыми фактами?", "a": "Научно-познавательный", "w": ["Художественный", "Сказка"], "h": "Научно-познавательный текст рассказывает о явлениях и фактах"}, {"q": "Какой текст создан, чтобы вызывать чувства и образы?", "a": "Художественный", "w": ["Научно-познавательный", "Таблица"], "h": "Художественный текст вызывает чувства и образы: рассказ, сказка, стихотворение"}]);
+GENS.ru10t = mkTF([{"q": "Заголовок помогает понять, о чём текст", "a": "Верно", "h": "Верно. Заголовок называет тему текста"}, {"q": "В тексте все предложения связаны по смыслу", "a": "Верно", "h": "Верно. Предложения в тексте связаны одной темой"}, {"q": "Описание рассказывает, что случилось по порядку", "a": "Неверно", "h": "Неверно. Это повествование. Описание говорит, какой предмет"}, {"q": "Сказка — художественный текст", "a": "Верно", "h": "Верно. Сказка — художественное произведение"}, {"q": "Рассказ о том, как растёт дерево, — научно-познавательный текст", "a": "Верно", "h": "Верно. Он рассказывает о фактах из природы"}, {"q": "У текста не может быть заголовка", "a": "Неверно", "h": "Неверно. У текста обычно есть заголовок"}]);
+const LESSONS = [
+  { id: "ru1", icon: "🦔", title: "Жи–ши, ча–ща, чу–щу", goal: "Писать сочетания жи–ши, ча–ща, чу–щу, чк, чн",
+    steps: [
+      Q("ru1s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Есть правила, которые нужно просто запомнить. Давай выучим сочетания жи–ши, ча–ща, чу–щу. Нажимай на карточки.", {"need": 5, "items": [{"k": "жи–ши", "v": "<div class=\"e2-emo\">🦒</div>", "t": "После Ж и Ш всегда пишем букву И: жираф, лыжи, шишка, машина."}, {"k": "ча–ща", "v": "<div class=\"e2-emo\">🐦</div>", "t": "После Ч и Щ пишем букву А, а не Я: чайка, чашка, роща."}, {"k": "чу–щу", "v": "<div class=\"e2-emo\">🐟</div>", "t": "После Ч и Щ пишем букву У, а не Ю: чудо, чулан, щука."}, {"k": "чк, чн", "v": "<div class=\"e2-emo\">✏️</div>", "t": "В сочетаниях чк и чн пишем Ч: девочка, точный, речка."}, {"k": "как запомнить", "v": "<div class=\"e2-emo\">💡</div>", "t": "Жи и ши пиши с буквой И. Ча и ща пиши с А. Чу и щу пиши с У."}]}),
+      Q("ru1s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🔤", "k": "жи–ши"}, {"e": "🔤", "k": "ча–ща"}, {"e": "🔤", "k": "чу–щу"}], "items": [{"g": 0, "e": "", "t": "жираф", "h": "После Ж пишем И"}, {"g": 0, "e": "", "t": "лыжи", "h": "После Ж пишем И"}, {"g": 0, "e": "", "t": "машина", "h": "После Ш пишем И"}, {"g": 1, "e": "", "t": "чайка", "h": "После Ч пишем А"}, {"g": 1, "e": "", "t": "туча", "h": "После Ч пишем А"}, {"g": 1, "e": "", "t": "роща", "h": "После Щ пишем А"}, {"g": 2, "e": "", "t": "чудо", "h": "После Ч пишем У"}, {"g": 2, "e": "", "t": "щука", "h": "После Щ пишем У"}, {"g": 2, "e": "", "t": "чулан", "h": "После Ч пишем У"}]}),
+      Q("ru1s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru1q"]}),
+      Q("ru1s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru1t"]})
+    ] },
+  { id: "ru2", icon: "🔊", title: "Ударение и произношение", goal: "Находить ударный слог и правильно произносить слова",
+    steps: [
+      Q("ru2s1", "infoTap", "Знакомимся с темой", "Каждое слово произносится с ударением: один слог мы говорим сильнее. Давай научимся находить ударный слог. Нажимай на карточки.", {"need": 5, "items": [{"k": "ударение", "v": "<div class=\"e2-emo\">🔊</div>", "t": "Ударение — это когда мы произносим один слог сильнее и громче остальных."}, {"k": "слоги", "v": "<div class=\"e2-emo\">🥁</div>", "t": "В слове столько слогов, сколько в нём гласных. Ударение падает на гласную."}, {"k": "трудные слова", "v": "<div class=\"e2-emo\">🔄</div>", "t": "Бывает, что ударение запоминают: торты, банты, шарфы, звонит, красивее, алфавит, каталог."}, {"k": "чт, чн", "v": "<div class=\"e2-emo\">🗣️</div>", "t": "В некоторых словах пишем одно, а говорим другое: «что» мы произносим как [што], а «конечно» как [конешно]."}, {"k": "гк", "v": "<div class=\"e2-emo\">👄</div>", "t": "В слове «мягкий» сочетание гк мы произносим как [хк]: [мяхкий]."}]}),
+      Q("ru2s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "1️⃣", "k": "Первый слог"}, {"e": "2️⃣", "k": "Второй слог"}, {"e": "3️⃣", "k": "Третий слог"}], "items": [{"g": 0, "e": "", "t": "торты", "h": "тОрты"}, {"g": 0, "e": "", "t": "банты", "h": "бАнты"}, {"g": 0, "e": "", "t": "шарфы", "h": "шАрфы"}, {"g": 1, "e": "", "t": "звонит", "h": "звонИт"}, {"g": 1, "e": "", "t": "включит", "h": "включИт"}, {"g": 1, "e": "", "t": "квартал", "h": "квартАл"}, {"g": 2, "e": "", "t": "алфавит", "h": "алфавИт"}, {"g": 2, "e": "", "t": "каталог", "h": "каталОг"}, {"g": 2, "e": "", "t": "облегчить", "h": "облегчИть"}]}),
+      Q("ru2s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru2q"]}),
+      Q("ru2s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru2t"]})
+    ] },
+  { id: "ru3", icon: "🌱", title: "Безударные гласные", goal: "Проверять безударные гласные в корне слова",
+    steps: [
+      Q("ru3s1", "infoTap", "Знакомимся с темой", "В слове есть гласные, которые мы слышим неясно. Это безударные гласные. Давай научимся их проверять. Нажимай на карточки.", {"need": 5, "items": [{"k": "безударная гласная", "v": "<div class=\"e2-emo\">🌿</div>", "t": "Безударная гласная — это гласная, на которую не падает ударение. Мы слышим её неясно."}, {"k": "как проверить", "v": "<div class=\"e2-emo\">🔎</div>", "t": "Нужно изменить слово так, чтобы сомнительная гласная стала ударной."}, {"k": "пример 1", "v": "<div class=\"e2-emo\">🏞️</div>", "t": "Вода — воды. В слове «воды» ударение на О, значит, в слове «вода» пишем О."}, {"k": "пример 2", "v": "<div class=\"e2-emo\">⛰️</div>", "t": "Горы — гора. В слове «горы» ударение на О, значит, пишем «гора» с буквой О."}, {"k": "пример 3", "v": "<div class=\"e2-emo\">🌲</div>", "t": "Лес — леса. Проверочное слово — «лес», там ударная Е. Значит, пишем «леса» с буквой Е."}]}),
+      Q("ru3s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🅾️", "k": "пишем О"}, {"e": "🅰️", "k": "пишем А"}, {"e": "🇪", "k": "пишем Е"}], "items": [{"g": 0, "e": "", "t": "в_да", "h": "вода — воды: пишем О"}, {"g": 0, "e": "", "t": "г_ра", "h": "гора — горы: пишем О"}, {"g": 0, "e": "", "t": "д_ма", "h": "дома — дом: пишем О"}, {"g": 1, "e": "", "t": "тр_ва", "h": "трава — травы: пишем А"}, {"g": 1, "e": "", "t": "с_ды", "h": "сады — сад: пишем А"}, {"g": 1, "e": "", "t": "гл_за", "h": "глаза — глаз: пишем А"}, {"g": 2, "e": "", "t": "р_ка", "h": "река — реки: пишем Е"}, {"g": 2, "e": "", "t": "з_мля", "h": "земля — земли: пишем Е"}, {"g": 2, "e": "", "t": "сн_га", "h": "снега — снег: пишем Е"}]}),
+      Q("ru3s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru3q"]}),
+      Q("ru3s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru3t"]})
+    ] },
+  { id: "ru4", icon: "🔨", title: "Парные согласные", goal: "Проверять парные согласные на конце и в середине слова",
+    steps: [
+      Q("ru4s1", "infoTap", "Знакомимся с темой", "Есть согласные, которые звучат похоже, а пишутся по-разному. Это парные согласные. Давай научимся их проверять. Нажимай на карточки.", {"need": 5, "items": [{"k": "пары", "v": "<div class=\"e2-emo\">🔔</div>", "t": "Парные согласные: б–п, в–ф, г–к, д–т, ж–ш, з–с."}, {"k": "в конце слова", "v": "<div class=\"e2-emo\">🔚</div>", "t": "В конце слова мы слышим глухой звук. Например, в слове «зуб» слышим [п], а пишем Б."}, {"k": "как проверить", "v": "<div class=\"e2-emo\">🔎</div>", "t": "Нужно изменить слово, чтобы после согласной оказалась гласная: зуб — зубы, пишем Б."}, {"k": "пример", "v": "<div class=\"e2-emo\">🍄</div>", "t": "Гриб — грибы. Слышим [п], а пишем Б, потому что проверочное слово «грибы»."}, {"k": "в середине слова", "v": "<div class=\"e2-emo\">🔠</div>", "t": "Если согласная стоит рядом с другой согласной, проверяем так же: ложка — ложки, пишем Ж."}]}),
+      Q("ru4s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🅱️", "k": "пишем Б"}, {"e": "🇬", "k": "пишем Г"}, {"e": "🇿", "k": "пишем З"}], "items": [{"g": 0, "e": "", "t": "ду_", "h": "дуб — дубы: пишем Б"}, {"g": 0, "e": "", "t": "гри_", "h": "гриб — грибы: пишем Б"}, {"g": 0, "e": "", "t": "хле_", "h": "хлеб — хлеба: пишем Б"}, {"g": 1, "e": "", "t": "лу_", "h": "луг — луга: пишем Г"}, {"g": 1, "e": "", "t": "сне_", "h": "снег — снега: пишем Г"}, {"g": 1, "e": "", "t": "дру_", "h": "друг — друга: пишем Г"}, {"g": 2, "e": "", "t": "моро_", "h": "мороз — морозы: пишем З"}, {"g": 2, "e": "", "t": "гла_", "h": "глаз — глаза: пишем З"}, {"g": 2, "e": "", "t": "ска_ка", "h": "сказка — сказки: пишем З"}]}),
+      Q("ru4s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru4q"]}),
+      Q("ru4s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru4t"]})
+    ] },
+  { id: "ru5", icon: "🧩", title: "Части слова", goal: "Находить корень, приставку и суффикс, подбирать однокоренные слова",
+    steps: [
+      Q("ru5s1", "infoTap", "Знакомимся с темой", "Слово состоит из частей, как конструктор. Давай найдём в слове корень, приставку и суффикс. Нажимай на карточки.", {"need": 5, "items": [{"k": "корень", "v": "<div class=\"e2-emo\">🌳</div>", "t": "Корень — главная часть слова. В нём заключено его значение."}, {"k": "однокоренные слова", "v": "<div class=\"e2-emo\">👪</div>", "t": "Слова с одним корнем называются однокоренными: лес, лесник, лесной."}, {"k": "приставка", "v": "<div class=\"e2-emo\">🧱</div>", "t": "Приставка стоит перед корнем: по-ход, за-пел, пере-шёл."}, {"k": "суффикс", "v": "<div class=\"e2-emo\">🔧</div>", "t": "Суффикс стоит после корня. Например, суффикс -еньк- или -оньк-: беленький, тихонький."}, {"k": "ласково", "v": "<div class=\"e2-emo\">🌸</div>", "t": "С суффиксами слова можно сказать ласково: белый — беленький, новый — новенький."}]}),
+      Q("ru5s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🧩", "k": "по-"}, {"e": "🧩", "k": "за-"}, {"e": "🧩", "k": "пере-"}], "items": [{"g": 0, "e": "", "t": "покрасил", "h": "Приставка по-, корень -крас-"}, {"g": 0, "e": "", "t": "пошёл", "h": "Приставка по-, корень -шёл-"}, {"g": 0, "e": "", "t": "побежал", "h": "Приставка по-, корень -беж-"}, {"g": 1, "e": "", "t": "запел", "h": "Приставка за-, корень -пел-"}, {"g": 1, "e": "", "t": "записал", "h": "Приставка за-, корень -пис-"}, {"g": 1, "e": "", "t": "завязал", "h": "Приставка за-, корень -вяз-"}, {"g": 2, "e": "", "t": "перешёл", "h": "Приставка пере-, корень -шёл-"}, {"g": 2, "e": "", "t": "переписал", "h": "Приставка пере-, корень -пис-"}, {"g": 2, "e": "", "t": "перелез", "h": "Приставка пере-, корень -лез-"}]}),
+      Q("ru5s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru5q"]}),
+      Q("ru5s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru5t"]})
+    ] },
+  { id: "ru6", icon: "🌊", title: "Части речи", goal: "Различать слова, которые называют предметы, признаки и действия; предлоги и союзы",
+    steps: [
+      Q("ru6s1", "infoTap", "Знакомимся с темой", "Слова бывают разные: одни называют предметы, другие — признаки, третьи — действия. Давай научимся их различать. Нажимай на карточки.", {"need": 5, "items": [{"k": "предмет", "v": "<div class=\"e2-emo\">🧱</div>", "t": "Слово, которое называет предмет, отвечает на вопросы кто? что? Например: стол, кошка, река."}, {"k": "признак", "v": "<div class=\"e2-emo\">🎨</div>", "t": "Слово, которое называет признак предмета, отвечает на вопросы какой? какая? какое? Например: красный, добрая."}, {"k": "действие", "v": "<div class=\"e2-emo\">🏃</div>", "t": "Слово, которое называет действие, отвечает на вопросы что делать? что сделать? Например: бежать, читает."}, {"k": "предлоги", "v": "<div class=\"e2-emo\">📍</div>", "t": "Предлоги — маленькие слова: на, в, под, над, у, за, из. Со словами они пишутся раздельно: на столе."}, {"k": "союзы", "v": "<div class=\"e2-emo\">🔗</div>", "t": "Союзы соединяют слова: и, а, но. Например: чай и сок."}]}),
+      Q("ru6s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🧱", "k": "Предмет"}, {"e": "🎨", "k": "Признак"}, {"e": "🏃", "k": "Действие"}], "items": [{"g": 0, "e": "", "t": "стол", "h": "Отвечает на вопрос что?"}, {"g": 0, "e": "", "t": "кошка", "h": "Отвечает на вопрос кто?"}, {"g": 0, "e": "", "t": "река", "h": "Отвечает на вопрос что?"}, {"g": 1, "e": "", "t": "красный", "h": "Отвечает на вопрос какой?"}, {"g": 1, "e": "", "t": "добрая", "h": "Отвечает на вопрос какая?"}, {"g": 1, "e": "", "t": "тёплое", "h": "Отвечает на вопрос какое?"}, {"g": 2, "e": "", "t": "бежать", "h": "Отвечает на вопрос что делать?"}, {"g": 2, "e": "", "t": "читает", "h": "Отвечает на вопрос что делает?"}, {"g": 2, "e": "", "t": "рисовать", "h": "Отвечает на вопрос что делать?"}]}),
+      Q("ru6s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru6q"]}),
+      Q("ru6s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru6t"]})
+    ] },
+  { id: "ru7", icon: "🤝", title: "Синонимы и антонимы", goal: "Подбирать синонимы и антонимы, понимать многозначные слова",
+    steps: [
+      Q("ru7s1", "infoTap", "Знакомимся с темой", "Слова могут быть друзьями, а могут быть соперниками. Давай узнаем про синонимы и антонимы. Нажимай на карточки.", {"need": 4, "items": [{"k": "синонимы", "v": "<div class=\"e2-emo\">🤝</div>", "t": "Синонимы — слова, близкие по смыслу: смелый — храбрый, большой — огромный."}, {"k": "антонимы", "v": "<div class=\"e2-emo\">↔️</div>", "t": "Антонимы — слова с противоположным значением: день — ночь, добрый — злой."}, {"k": "многозначные слова", "v": "<div class=\"e2-emo\">🔑</div>", "t": "У некоторых слов несколько значений. Слово «ключ» бывает дверным, а бывает родником."}, {"k": "переносное значение", "v": "<div class=\"e2-emo\">✨</div>", "t": "Бывает, что слово употребляют в переносном значении: «золотые руки» — это умелый мастер."}]}),
+      Q("ru7s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🤝", "k": "Синонимы"}, {"e": "↔️", "k": "Антонимы"}], "items": [{"g": 0, "e": "", "t": "большой — огромный", "h": "Слова близки по смыслу"}, {"g": 0, "e": "", "t": "смелый — храбрый", "h": "Слова близки по смыслу"}, {"g": 0, "e": "", "t": "быстро — стремительно", "h": "Слова близки по смыслу"}, {"g": 1, "e": "", "t": "день — ночь", "h": "Слова противоположны по смыслу"}, {"g": 1, "e": "", "t": "добрый — злой", "h": "Слова противоположны по смыслу"}, {"g": 1, "e": "", "t": "горячий — холодный", "h": "Слова противоположны по смыслу"}]}),
+      Q("ru7s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru7q"]}),
+      Q("ru7s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru7t"]})
+    ] },
+  { id: "ru8", icon: "✏️", title: "Предложение", goal: "Различать виды предложений и писать заглавную букву",
+    steps: [
+      Q("ru8s1", "infoTap", "Знакомимся с темой", "Мы говорим и пишем предложениями. Давай вспомним, как записывать предложение и какой знак ставить в конце. Нажимай на карточки.", {"need": 5, "items": [{"k": "предложение", "v": "<div class=\"e2-emo\">💬</div>", "t": "Предложение — слова, связанные по смыслу, которые выражают законченную мысль."}, {"k": "заглавная буква", "v": "<div class=\"e2-emo\">🔠</div>", "t": "Первое слово в предложении пишем с заглавной буквы."}, {"k": "точка", "v": "<div class=\"e2-emo\">⚫</div>", "t": "Повествовательное предложение рассказывает о чём-то. В конце ставим точку."}, {"k": "вопрос", "v": "<div class=\"e2-emo\">❓</div>", "t": "Вопросительное предложение задаёт вопрос. В конце ставим вопросительный знак."}, {"k": "восклицание", "v": "<div class=\"e2-emo\">❗</div>", "t": "Восклицательное предложение произносим с чувством. В конце ставим восклицательный знак."}, {"k": "имена", "v": "<div class=\"e2-emo\">📛</div>", "t": "Имена людей, клички животных и названия городов пишем с заглавной: Алия, Барсик, Астана."}]}),
+      Q("ru8s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Повествовательное"}, {"e": "", "k": "Вопросительное"}, {"e": "", "k": "Восклицательное"}], "items": [{"g": 0, "e": "", "t": "Мама читает книгу.", "h": "Рассказывает, в конце точка"}, {"g": 0, "e": "", "t": "Зимой выпал снег.", "h": "Рассказывает, в конце точка"}, {"g": 0, "e": "", "t": "Мы идём в школу.", "h": "Рассказывает, в конце точка"}, {"g": 1, "e": "", "t": "Где ты живёшь?", "h": "Задаёт вопрос, в конце вопросительный знак"}, {"g": 1, "e": "", "t": "Что ты делаешь?", "h": "Задаёт вопрос, в конце вопросительный знак"}, {"g": 1, "e": "", "t": "Когда начнётся урок?", "h": "Задаёт вопрос, в конце вопросительный знак"}, {"g": 2, "e": "", "t": "Какая красивая весна!", "h": "Произносим с чувством, в конце восклицательный знак"}, {"g": 2, "e": "", "t": "Ура, мы победили!", "h": "Произносим с чувством, в конце восклицательный знак"}, {"g": 2, "e": "", "t": "Как я рад!", "h": "Произносим с чувством, в конце восклицательный знак"}]}),
+      Q("ru8s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru8q"]}),
+      Q("ru8s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru8t"]})
+    ] },
+  { id: "ru9", icon: "✂️", title: "Слоги и перенос", goal: "Делить слова на слоги и переносить их правильно",
+    steps: [
+      Q("ru9s1", "infoTap", "Знакомимся с темой", "Слова можно делить на слоги. Это нужно, чтобы правильно переносить слова на другую строчку. Нажимай на карточки.", {"need": 5, "items": [{"k": "слог", "v": "<div class=\"e2-emo\">🥁</div>", "t": "Сколько в слове гласных, столько и слогов: ма-ши-на — три слога."}, {"k": "один слог", "v": "<div class=\"e2-emo\">1️⃣</div>", "t": "В слове «кот» одна гласная, значит, один слог. Такое слово переносить нельзя."}, {"k": "перенос", "v": "<div class=\"e2-emo\">✂️</div>", "t": "Переносим слова по слогам: ма-шина, ко-рова."}, {"k": "одну букву нельзя", "v": "<div class=\"e2-emo\">🚫</div>", "t": "Одну букву нельзя оставить на строке или перенести. Слово «ёлка» не переносим."}, {"k": "й и ь", "v": "<div class=\"e2-emo\">🔗</div>", "t": "Буквы й и ь нельзя отрывать от предыдущей буквы: чай-ка, конь-ки."}]}),
+      Q("ru9s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "1️⃣", "k": "Один слог"}, {"e": "2️⃣", "k": "Два слога"}, {"e": "3️⃣", "k": "Три слога"}], "items": [{"g": 0, "e": "", "t": "дом", "h": "Одна гласная — один слог"}, {"g": 0, "e": "", "t": "кот", "h": "Одна гласная — один слог"}, {"g": 0, "e": "", "t": "снег", "h": "Одна гласная — один слог"}, {"g": 1, "e": "", "t": "река", "h": "Две гласные — два слога"}, {"g": 1, "e": "", "t": "школа", "h": "Две гласные — два слога"}, {"g": 1, "e": "", "t": "книга", "h": "Две гласные — два слога"}, {"g": 2, "e": "", "t": "корова", "h": "Три гласные — три слога"}, {"g": 2, "e": "", "t": "ромашка", "h": "Три гласные — три слога"}, {"g": 2, "e": "", "t": "собака", "h": "Три гласные — три слога"}]}),
+      Q("ru9s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru9q"]}),
+      Q("ru9s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru9t"]})
+    ] },
+  { id: "ru10", icon: "📖", title: "Текст", goal: "Различать типы текста, находить заголовок и части",
+    steps: [
+      Q("ru10s1", "infoTap", "Знакомимся с темой", "Предложения, связанные по смыслу, составляют текст. Давай узнаем, какие бывают тексты. Нажимай на карточки.", {"need": 5, "items": [{"k": "текст", "v": "<div class=\"e2-emo\">📄</div>", "t": "Текст — это несколько предложений, связанных одной темой."}, {"k": "заголовок", "v": "<div class=\"e2-emo\">📝</div>", "t": "Заголовок — название текста. Он подсказывает, о чём пойдёт речь."}, {"k": "части", "v": "<div class=\"e2-emo\">🧩</div>", "t": "Текст состоит из начала, основной части и концовки."}, {"k": "повествование", "v": "<div class=\"e2-emo\">📖</div>", "t": "Повествование рассказывает, что происходило: сначала одно, потом другое."}, {"k": "описание", "v": "<div class=\"e2-emo\">🎨</div>", "t": "Описание говорит, какой предмет: какие у него признаки."}, {"k": "виды текстов", "v": "<div class=\"e2-emo\">🔬</div>", "t": "Художественный текст вызывает чувства и образы, а научно-познавательный рассказывает о фактах."}]}),
+      Q("ru10s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "📖", "k": "Повествование"}, {"e": "🎨", "k": "Описание"}], "items": [{"g": 0, "e": "", "t": "Утром Алия вышла во двор. Она увидела котёнка и взяла его на руки.", "h": "Рассказывает о событиях по порядку"}, {"g": 0, "e": "", "t": "Мальчики построили снежную крепость, а потом бросили снежки.", "h": "Рассказывает о событиях по порядку"}, {"g": 0, "e": "", "t": "Барсик прыгнул на подоконник и посмотрел на птиц.", "h": "Рассказывает о событиях по порядку"}, {"g": 1, "e": "", "t": "У ёжика острые иголки, маленький чёрный нос и быстрые лапки.", "h": "Говорит, какой предмет"}, {"g": 1, "e": "", "t": "Осенний лес золотой и тихий. Листья жёлтые и красные.", "h": "Говорит, какой предмет"}, {"g": 1, "e": "", "t": "Наша школа большая и светлая, с высокими окнами.", "h": "Говорит, какой предмет"}]}),
+      Q("ru10s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["ru10q"]}),
+      Q("ru10s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["ru10t"]})
+    ] },
+  { id: "rufin", icon: '🏁', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("rufin1", 'finale', 'Курс пройден!', "Поздравляю! Ты повторил правила письма, ударение, части слова и речи, слова-друзья и слова-соперники, предложения и тексты. Закрепляй знания в играх.", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>

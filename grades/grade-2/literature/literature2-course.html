@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Литературное чтение 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+</style>
+</head>
+<body class="w-page" data-subject="reading">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Литературное чтение 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Литературное чтение 2 класс</h1>
+      <p class="ac-sub">10 уроков: жанры, пословицы, загадки и рифмы, главная мысль, герои, яркие слова, план, прогноз, чтение, книги-помощники</p>
+      <p class="ac-note">📚 Курс по программе 2 класса. Каждый урок: объяснение, игра и проверка</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 11</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/literature2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/literature2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_literature2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки 👆') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Литературное чтение 2 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по литературному чтению →</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.lt1q = mkQuiz([{"q": "С каких слов часто начинается сказка?", "a": "Жили-были", "w": ["Сегодня утром", "Вчера на уроке"], "h": "Так начинаются многие сказки: жили-были"}, {"q": "Для чего нужна считалка?", "a": "Чтобы выбрать водящего в игре", "w": ["Чтобы отгадать предмет", "Чтобы сообщить новость"], "h": "Считалку читают перед игрой, чтобы справедливо выбрать водящего"}, {"q": "Для чего нужна скороговорка?", "a": "Чтобы чётко и быстро говорить", "w": ["Чтобы выбрать водящего", "Чтобы запомнить дату"], "h": "Скороговорки помогают тренировать произношение"}, {"q": "Что нужно сделать с загадкой?", "a": "Отгадать её", "w": ["Пересчитать слова", "Выучить наизусть всю книгу"], "h": "Загадку нужно отгадать"}, {"q": "Что есть в стихотворении?", "a": "Строки, которые часто рифмуются", "w": ["Только одно предложение", "Таблица"], "h": "Стихотворение разделено на строки, и они часто рифмуются"}, {"q": "Какое произведение рассказывает о случае из жизни?", "a": "Рассказ", "w": ["Сказка", "Загадка"], "h": "В рассказе описан случай, который мог произойти в жизни"}, {"q": "Кто сочинил народные загадки, пословицы и считалки?", "a": "Народ, автор неизвестен", "w": ["Один современный писатель", "Учитель"], "h": "Такие произведения народ передавал из уст в уста, поэтому их называют устным народным творчеством"}]);
+GENS.lt1t = mkTF([{"q": "Пословица учит жизненной мудрости", "a": "Верно", "h": "Верно. Пословицы коротко говорят о том, как лучше поступать"}, {"q": "Считалку читают, чтобы отгадать предмет", "a": "Неверно", "h": "Неверно. Считалку читают, чтобы выбрать водящего. Предмет отгадывают в загадке"}, {"q": "Скороговорка помогает тренировать произношение", "a": "Верно", "h": "Верно. Её нужно говорить быстро и чётко"}, {"q": "В рассказе всегда есть волшебство", "a": "Неверно", "h": "Неверно. Волшебство бывает в сказках. Рассказ описывает случай из жизни"}, {"q": "Загадку нужно отгадать", "a": "Верно", "h": "Верно. В загадке предмет описан так, чтобы его можно было угадать"}, {"q": "В сказке могут говорить животные", "a": "Верно", "h": "Верно. В сказке есть вымысел и чудеса"}]);
+GENS.lt2q = mkQuiz([{"q": "Что значит пословица «Тише едешь — дальше будешь»?", "a": "Делай спокойно и без спешки — доберёшься до цели", "w": ["Ездить нужно только тихо", "Чем дальше едешь, тем тише"], "h": "Пословица учит не торопиться и быть осторожным"}, {"q": "Что значит пословица «Семь раз отмерь, один раз отрежь»?", "a": "Сначала хорошо подумай, потом действуй", "w": ["Всегда отрезай семь раз", "Не используй ножницы"], "h": "Прежде чем сделать, нужно подумать"}, {"q": "Что значит пословица «Без труда не вытащишь и рыбку из пруда»?", "a": "Без усилий ничего не добьёшься", "w": ["Рыбу ловить нельзя", "Пруд — самое лучшее место"], "h": "Чтобы получить результат, нужно потрудиться"}, {"q": "Что значит пословица «Друг познаётся в беде»?", "a": "Настоящий друг помогает в трудную минуту", "w": ["Друзей нужно искать в беде", "У друга всегда беда"], "h": "Трудности показывают, кто настоящий друг"}, {"q": "Что такое невербальные средства общения?", "a": "Жесты, мимика, поза", "w": ["Только громкий голос", "Только слова"], "h": "Это то, что мы показываем без слов: улыбка, жест, выражение лица"}, {"q": "Продолжи пословицу: Без труда не вытащишь и …", "a": "рыбку из пруда", "w": ["птицу из гнезда", "воду из колодца"], "h": "Правильно: Без труда не вытащишь и рыбку из пруда"}, {"q": "Продолжи пословицу: Одна голова хорошо, а две …", "a": "лучше", "w": ["хуже", "слабее"], "h": "Правильно: Одна голова хорошо, а две лучше"}, {"q": "Продолжи пословицу: Семь раз отмерь, один раз …", "a": "отрежь", "w": ["примерь", "покрась"], "h": "Правильно: Семь раз отмерь, один раз отрежь"}, {"q": "Продолжи пословицу: Тише едешь — …", "a": "дальше будешь", "w": ["быстрее придёшь", "дольше спишь"], "h": "Правильно: Тише едешь — дальше будешь"}, {"q": "Продолжи пословицу: Мал золотник, да …", "a": "дорог", "w": ["мал", "лёгок"], "h": "Правильно: Мал золотник, да дорог"}, {"q": "Продолжи пословицу: Сделал дело — …", "a": "гуляй смело", "w": ["ложись спать", "жди награду"], "h": "Правильно: Сделал дело — гуляй смело"}, {"q": "Продолжи пословицу: Что посеешь, то и …", "a": "пожнёшь", "w": ["съешь", "купишь"], "h": "Правильно: Что посеешь, то и пожнёшь"}, {"q": "Продолжи пословицу: Век живи — век …", "a": "учись", "w": ["играй", "радуйся"], "h": "Правильно: Век живи — век учись"}, {"q": "Продолжи пословицу: Не имей сто рублей, а имей …", "a": "сто друзей", "w": ["сто дней", "сто лет"], "h": "Правильно: Не имей сто рублей, а имей сто друзей"}, {"q": "Продолжи пословицу: Повторение — мать …", "a": "учения", "w": ["скуки", "забавы"], "h": "Правильно: Повторение — мать учения"}, {"q": "Продолжи пословицу: Доброе слово и … приятно", "a": "кошке", "w": ["мышке", "птичке"], "h": "Правильно: Доброе слово и кошке приятно"}, {"q": "Продолжи пословицу: Друг познаётся …", "a": "в беде", "w": ["в игре", "в магазине"], "h": "Правильно: Друг познаётся в беде"}, {"q": "Продолжи пословицу: Дружба крепка не лестью, а …", "a": "правдой и честью", "w": ["деньгами и силой", "шутками и играми"], "h": "Правильно: Дружба крепка не лестью, а правдой и честью"}, {"q": "Продолжи пословицу: Лучше один раз увидеть, чем сто раз …", "a": "услышать", "w": ["сказать", "прочитать"], "h": "Правильно: Лучше один раз увидеть, чем сто раз услышать"}, {"q": "Какая пословица подходит?: Дина торопилась и сделала задание с ошибками. Какая пословица подходит?", "a": "Поспешишь — людей насмешишь", "w": ["Век живи — век учись", "Одна голова хорошо, а две лучше"], "h": "Когда торопишься, легко ошибиться"}, {"q": "Какая пословица подходит?: Ребята вместе убрали класс и сделали всё быстро. Какая пословица подходит?", "a": "Одна голова хорошо, а две лучше", "w": ["Тише едешь — дальше будешь", "Мал золотник, да дорог"], "h": "Вместе работать легче и быстрее"}, {"q": "Какая пословица подходит?: Марат тренировался каждый день и наконец научился плавать. Какая пословица подходит?", "a": "Терпение и труд всё перетрут", "w": ["Доброе слово и кошке приятно", "Не рой другому яму — сам в неё попадёшь"], "h": "Терпение и труд помогают добиться цели"}, {"q": "Какая пословица подходит?: Друг заболел, и Ерлан каждый день носил ему уроки. Какая пословица подходит?", "a": "Друг познаётся в беде", "w": ["Мал золотник, да дорог", "Сделал дело — гуляй смело"], "h": "В трудную минуту видно настоящего друга"}]);
+GENS.lt2t = mkTF([{"q": "Пословицы — короткие мудрые выражения", "a": "Верно", "h": "Верно. В них народ передал жизненный опыт"}, {"q": "Пословицу нужно понимать только буквально", "a": "Неверно", "h": "Неверно. У пословицы есть переносный смысл: «Тише едешь» говорит не только о езде"}, {"q": "Жесты и мимика помогают понять говорящего", "a": "Верно", "h": "Верно. Это невербальные средства общения"}, {"q": "Пословицу нельзя использовать в разговоре", "a": "Неверно", "h": "Неверно. Пословицами можно украсить речь и точнее сказать мысль"}, {"q": "Пословица «Повторение — мать учения» советует повторять выученное", "a": "Верно", "h": "Верно. Повторение помогает запомнить"}, {"q": "Пословица «Друг познаётся в беде» говорит о математике", "a": "Неверно", "h": "Неверно. Она говорит о дружбе"}]);
+GENS.lt3q = mkQuiz([{"q": "Как называются слова с созвучными окончаниями в стихах?", "a": "Рифма", "w": ["Синонимы", "Заголовок"], "h": "Рифма — созвучие слов в конце строк"}, {"q": "Какое слово рифмуется со словом «лук»?", "a": "звук", "w": ["луг", "лес"], "h": "лук — звук, у слов одинаковое окончание"}, {"q": "Какое слово рифмуется со словом «рука»?", "a": "река", "w": ["рыба", "рыбка"], "h": "рука — река, окончания одинаковые"}, {"q": "Что нужно сделать, чтобы написать считалку или стихи по готовой рифмовке?", "a": "Подобрать слова, которые созвучны", "w": ["Убрать все слова", "Записать цифры"], "h": "Нужно подобрать слова в конце строк, которые рифмуются"}, {"q": "Подбери слово в рифму: Мама вымыла окно, в доме стало …", "a": "светло", "w": ["тихо", "весело"], "h": "Рифма: окно — светло"}, {"q": "Подбери слово в рифму: Мы пошли гулять в лесок, там нашли мы …", "a": "грибок", "w": ["гриб", "ягоды"], "h": "Рифма: лесок — грибок"}, {"q": "Подбери слово в рифму: Зимой на горке мы катались, громко все …", "a": "смеялись", "w": ["играли", "бегали"], "h": "Рифма: катались — смеялись"}, {"q": "Подбери слово в рифму: Светит солнышко с утра, на дворе шумит …", "a": "детвора", "w": ["ребёнок", "птицы"], "h": "Рифма: утра — детвора"}, {"q": "Подбери слово в рифму: Тает снег, звенит ручей, много в небе …", "a": "лучей", "w": ["облаков", "солнца"], "h": "Рифма: ручей — лучей"}, {"q": "Подбери слово в рифму: Дождик капает с утра, мокрая вся …", "a": "трава", "w": ["земля", "дорога"], "h": "Рифма: утра — трава"}, {"q": "Подбери слово в рифму: Спит в траве мой друг жучок, а вон там поёт …", "a": "сверчок", "w": ["кузнечик", "комар"], "h": "Рифма: жучок — сверчок"}, {"q": "Отгадай загадку: Не лает, не кусает, а в дом не пускает.", "a": "замок", "w": ["собака", "кот"], "h": "Отгадка — замок. Замок запирает дверь, поэтому в дом не пускает"}, {"q": "Отгадай загадку: Зимой и летом одним цветом.", "a": "ёлка", "w": ["берёза", "яблоня"], "h": "Отгадка — ёлка. Ёлка остаётся зелёной в любое время года"}, {"q": "Отгадай загадку: Сидит дед, во сто шуб одет, кто его раздевает, тот слёзы проливает.", "a": "лук", "w": ["яблоко", "огурец"], "h": "Отгадка — лук. У лука много слоёв, и от него плачут"}, {"q": "Отгадай загадку: Без рук, без ног, а рисует.", "a": "мороз", "w": ["дождь", "снег"], "h": "Отгадка — мороз. Мороз рисует узоры на окнах"}, {"q": "Отгадай загадку: Висит груша — нельзя скушать.", "a": "лампочка", "w": ["яблоко", "слива"], "h": "Отгадка — лампочка. Лампочка похожа на грушу, но её нельзя есть"}, {"q": "Отгадай загадку: Два конца, два кольца, посередине гвоздик.", "a": "ножницы", "w": ["очки", "вилка"], "h": "Отгадка — ножницы. У ножниц два конца, два кольца и винтик посередине"}, {"q": "Отгадай загадку: Не огонь, а жжётся.", "a": "крапива", "w": ["роза", "ромашка"], "h": "Отгадка — крапива. Крапива обжигает кожу"}, {"q": "Отгадай загадку: Течёт, течёт — не вытечет, бежит, бежит — не выбежит.", "a": "река", "w": ["ветер", "дождь"], "h": "Отгадка — река. Река течёт, но всегда остаётся на месте"}]);
+GENS.lt3t = mkTF([{"q": "«Кот» и «рот» — рифмующиеся слова", "a": "Верно", "h": "Верно. Окончания одинаковые"}, {"q": "«Дом» и «лес» рифмуются", "a": "Неверно", "h": "Неверно. Окончания разные"}, {"q": "Загадку нужно отгадать", "a": "Верно", "h": "Верно. В загадке спрятан предмет"}, {"q": "В стихотворении рифмуются слова в конце строк", "a": "Верно", "h": "Верно. Рифма делает стихи звучными"}, {"q": "«Сон» и «слон» рифмуются", "a": "Верно", "h": "Верно. Окончания одинаковые"}, {"q": "Считалка и загадка — одно и то же", "a": "Неверно", "h": "Неверно. Считалку читают в игре, а загадку отгадывают"}]);
+GENS.lt4q = mkQuiz([{"q": "Что такое заголовок?", "a": "Название текста", "w": ["Последнее предложение", "Любое слово"], "h": "Заголовок называет тему текста или его главную мысль"}, {"q": "Как называется то, о чём говорится в тексте?", "a": "Тема", "w": ["Рифма", "Приставка"], "h": "Тема — это то, о чём текст"}, {"q": "Что такое главная мысль?", "a": "То, чему учит нас автор", "w": ["Первое слово текста", "Количество предложений"], "h": "Главная мысль — это то, что автор хотел сказать читателям"}, {"q": "Что помогает понять главную мысль?", "a": "Поступки героев и итог рассказа", "w": ["Количество страниц", "Цвет обложки"], "h": "Смотрим, как поступили герои и чем всё закончилось"}, {"q": "Что хотел сказать автор?: Асет не стал ждать, пока ему помогут, и сам убрал игрушки. Мама улыбнулась: «Какой ты самостоятельный!»", "a": "Нужно быть самостоятельным и помогать дома", "w": ["Игрушки нужно покупать каждый день", "Мама любит играть"], "h": "Главная мысль: Нужно быть самостоятельным и помогать дома"}, {"q": "Что хотел сказать автор?: Два щенка нашли одну косточку. Они начали ссориться, но потом разделили её поровну и вместе пообедали.", "a": "Лучше делиться и договариваться, чем ссориться", "w": ["Щенки не любят кости", "Косточку нельзя делить"], "h": "Главная мысль: Лучше делиться и договариваться, чем ссориться"}, {"q": "Что хотел сказать автор?: Серик обещал другу прийти в пять часов, но опоздал на целый час. Друг ждал на улице и замёрз. Серик долго извинялся.", "a": "Нужно держать слово и не опаздывать", "w": ["На улице всегда холодно", "Друзья не любят гулять"], "h": "Главная мысль: Нужно держать слово и не опаздывать"}, {"q": "Что хотел сказать автор?: Ребята заметили в парке брошенный мусор. Они взяли пакеты и убрали всю площадку. Скоро в парке стало чисто и приятно играть.", "a": "Нужно беречь чистоту и заботиться об общих местах", "w": ["Играть лучше дома", "Мусор бывает только в парке"], "h": "Главная мысль: Нужно беречь чистоту и заботиться об общих местах"}, {"q": "Что хотел сказать автор?: Девочка Дана плохо читала. Каждый день она читала вслух по десять минут. Через месяц чтение стало лёгким.", "a": "Умение приходит с ежедневной тренировкой", "w": ["Читать нужно только по праздникам", "Читать вслух невозможно"], "h": "Главная мысль: Умение приходит с ежедневной тренировкой"}, {"q": "Что хотел сказать автор?: Айнур разбила чашку и сначала испугалась. Но потом сказала маме правду. Мама не рассердилась и обняла её.", "a": "Лучше сказать правду, чем скрывать ошибку", "w": ["Чашки нельзя трогать", "Мама всегда сердится"], "h": "Главная мысль: Лучше сказать правду, чем скрывать ошибку"}, {"q": "Выбери заголовок: Асет не стал ждать, пока ему помогут, и сам убрал игрушки. Мама улыбнулась: «Какой ты самостоятельный!»", "a": "Помощник", "w": ["Весёлый праздник", "Далёкая дорога"], "h": "Подходящий заголовок: Помощник"}, {"q": "Выбери заголовок: Два щенка нашли одну косточку. Они начали ссориться, но потом разделили её поровну и вместе пообедали.", "a": "Косточка на двоих", "w": ["Большая собака", "Дождливый день"], "h": "Подходящий заголовок: Косточка на двоих"}, {"q": "Выбери заголовок: Серик обещал другу прийти в пять часов, но опоздал на целый час. Друг ждал на улице и замёрз. Серик долго извинялся.", "a": "Опоздание", "w": ["Новая игрушка", "Летний вечер"], "h": "Подходящий заголовок: Опоздание"}, {"q": "Выбери заголовок: Ребята заметили в парке брошенный мусор. Они взяли пакеты и убрали всю площадку. Скоро в парке стало чисто и приятно играть.", "a": "Чистый парк", "w": ["Зимняя горка", "Морское путешествие"], "h": "Подходящий заголовок: Чистый парк"}, {"q": "Выбери заголовок: Девочка Дана плохо читала. Каждый день она читала вслух по десять минут. Через месяц чтение стало лёгким.", "a": "Десять минут в день", "w": ["Магазин игрушек", "Лесные ягоды"], "h": "Подходящий заголовок: Десять минут в день"}, {"q": "Выбери заголовок: Айнур разбила чашку и сначала испугалась. Но потом сказала маме правду. Мама не рассердилась и обняла её.", "a": "Правда", "w": ["Новая чашка", "Утренний завтрак"], "h": "Подходящий заголовок: Правда"}]);
+GENS.lt4t = mkTF([{"q": "Заголовок помогает понять, о чём текст", "a": "Верно", "h": "Верно. Он подсказывает тему или главную мысль"}, {"q": "У рассказа не может быть главной мысли", "a": "Неверно", "h": "Неверно. Автор всегда хочет что-то сказать читателям"}, {"q": "Тема текста — это то, о чём в нём рассказано", "a": "Верно", "h": "Верно. Например: тема «дружба», тема «природа»"}, {"q": "Главную мысль можно понять по поступкам героев", "a": "Верно", "h": "Верно. Поступки героев показывают, чему учит текст"}, {"q": "Все тексты рассказывают об одном и том же", "a": "Неверно", "h": "Неверно. У текстов разные темы"}, {"q": "Заголовок всегда стоит в конце текста", "a": "Неверно", "h": "Неверно. Заголовок стоит в начале"}]);
+GENS.lt5q = mkQuiz([{"q": "Что узнаём, когда читаем описание внешнего вида героя?", "a": "Как герой выглядит", "w": ["Что он любит есть", "Сколько ему лет"], "h": "В описании внешнего вида рассказано про рост, волосы, глаза, одежду"}, {"q": "По чему мы узнаём характер героя?", "a": "По его поступкам", "w": ["По названию книги", "По цвету обложки"], "h": "Поступки показывают, добрый герой или злой, смелый или трусливый"}, {"q": "Как можно оценить героя, который помог другу?", "a": "Он добрый", "w": ["Он ленивый", "Он грустный"], "h": "Помощь другу — добрый поступок"}, {"q": "Что такое иллюстрация?", "a": "Рисунок к тексту", "w": ["Название книги", "Последнее слово"], "h": "Иллюстрация помогает представить героев и события"}, {"q": "Оцени поступок: Миша увидел, что малыш упал, и помог ему встать.", "a": "Хороший поступок", "w": ["Плохой поступок", "Смешной поступок"], "h": "Миша помог тому, кому плохо"}, {"q": "Оцени поступок: Айжан взяла чужую игрушку и спрятала её.", "a": "Плохой поступок", "w": ["Хороший поступок", "Смелый поступок"], "h": "Нельзя брать чужое"}, {"q": "Оцени поступок: Сабина нашла чужой кошелёк и отнесла его учителю.", "a": "Хороший поступок", "w": ["Плохой поступок", "Смешной поступок"], "h": "Честный человек возвращает находку"}, {"q": "Оцени поступок: Тимур нарочно толкнул одноклассника и засмеялся.", "a": "Плохой поступок", "w": ["Хороший поступок", "Добрый поступок"], "h": "Нельзя обижать других"}, {"q": "Оцени поступок: Данияр помог младшей сестре собрать рюкзак.", "a": "Хороший поступок", "w": ["Плохой поступок", "Ленивый поступок"], "h": "Старший заботится о младшей"}, {"q": "Как изменился герой?: В начале рассказа Алмаз боялся собак. Потом он подружился с щенком и перестал бояться.", "a": "Стал смелее", "w": ["Стал грустнее", "Стал старше"], "h": "В начале он боялся, а в конце перестал"}, {"q": "Как изменился герой?: Сначала Лейла была злой и ссорилась с соседкой. Потом они вместе играли и стали подругами.", "a": "Стала добрее", "w": ["Стала злее", "Стала выше"], "h": "Сначала была злой, потом подружилась"}, {"q": "Как изменился герой?: Осенью лес был жёлтым и шумным. Зимой он стал белым и тихим.", "a": "Лес стал белым и тихим", "w": ["Лес стал жёлтым", "Лес исчез"], "h": "Лес изменился вместе со временем года"}, {"q": "Что описано?: У Гульназ длинные чёрные косы, большие карие глаза и красное платье.", "a": "Внешний вид героя", "w": ["Поступок героя", "Место действия"], "h": "Описаны косы, глаза и одежда"}, {"q": "Что описано?: Бекзат вышел из дома, сел на велосипед и поехал к бабушке.", "a": "Поступки героя", "w": ["Внешний вид героя", "Время года"], "h": "Описаны действия героя"}, {"q": "Что описано?: Старый кот лениво лежал у печки, жмурил жёлтые глаза и мурлыкал.", "a": "Описание героя", "w": ["Правила игры", "Таблица"], "h": "Показано, как выглядит и что делает кот"}]);
+GENS.lt5t = mkTF([{"q": "Поступки героя помогают понять его характер", "a": "Верно", "h": "Верно. Добрый герой поступает по-доброму"}, {"q": "Нужно одобрять поступок героя, который обидел друга", "a": "Неверно", "h": "Неверно. Обижать друзей нельзя"}, {"q": "Герой в начале и в конце рассказа может быть разным", "a": "Верно", "h": "Верно. Герой может измениться после событий"}, {"q": "Внешний вид героя — это его рост, глаза, одежда", "a": "Верно", "h": "Верно. Это часть описания героя"}, {"q": "В рассказе нельзя описывать героев", "a": "Неверно", "h": "Неверно. Писатели часто описывают героев"}, {"q": "Смелый человек никогда ничего не боится", "a": "Неверно", "h": "Неверно. Смелый человек действует, даже когда ему страшно"}]);
+GENS.lt6q = mkQuiz([{"q": "Как называется красочное слово, которое описывает предмет: «золотая осень»?", "a": "Эпитет", "w": ["Рифма", "Приставка"], "h": "Эпитет делает описание ярким"}, {"q": "Как называется приём, когда предмет похож на другой: «быстро, как ветер»?", "a": "Сравнение", "w": ["Олицетворение", "Заголовок"], "h": "В сравнении есть слова как, словно, точно"}, {"q": "Как называется приём, когда неживое действует как живое: «ручей поёт»?", "a": "Олицетворение", "w": ["Сравнение", "Рифма"], "h": "Неживому предмету придают свойства живого существа"}, {"q": "Для чего авторы используют сравнения и эпитеты?", "a": "Чтобы речь была яркой и красочной", "w": ["Чтобы текст был длиннее", "Чтобы слова писать быстрее"], "h": "С их помощью мы лучше представляем картину"}, {"q": "Найди сравнение: Снег, как пушистое одеяло, укрыл землю.", "a": "как пушистое одеяло", "w": ["укрыл землю", "Снег укрыл"], "h": "Снег сравнивают с одеялом"}, {"q": "Найди сравнение: Луна, словно серебряная монета, висела над горой.", "a": "словно серебряная монета", "w": ["висела над горой", "Луна висела"], "h": "Луну сравнивают с монетой"}, {"q": "Найди сравнение: Мальчик бежал быстро, как ветер.", "a": "как ветер", "w": ["бежал быстро", "Мальчик бежал"], "h": "Бег сравнивают с ветром"}, {"q": "Какое слово делает ветер «живым»?: Ветер шепчет в листве.", "a": "шепчет", "w": ["ветер", "в листве"], "h": "Ветер «шепчет», как человек"}, {"q": "Какие слова делают ручей «живым»?: Ручей бежит и поёт песенку.", "a": "поёт песенку", "w": ["бежит", "Ручей"], "h": "Ручей «поёт», как человек"}, {"q": "Какое слово делает реку «живой»?: Река спит под льдом.", "a": "спит", "w": ["под льдом", "Река"], "h": "Река «спит», как человек"}, {"q": "Найди эпитет: Пришла золотая осень.", "a": "золотая", "w": ["пришла", "осень"], "h": "Золотая — красочное определение, эпитет"}, {"q": "Найди эпитет: Ласковый ветерок гладил лицо.", "a": "ласковый", "w": ["гладил", "лицо"], "h": "Ласковый — эпитет"}, {"q": "Найди эпитет: Над полем раздался звонкий смех.", "a": "звонкий", "w": ["раздался", "поля"], "h": "Звонкий — эпитет"}]);
+GENS.lt6t = mkTF([{"q": "В сравнении часто есть слова «как», «словно»", "a": "Верно", "h": "Верно. Например: белый, как снег"}, {"q": "«Солнышко улыбнулось» — это олицетворение", "a": "Верно", "h": "Верно. Солнце не умеет улыбаться, как человек"}, {"q": "«Звонкий» в сочетании «звонкий смех» — эпитет", "a": "Верно", "h": "Верно. Эпитет красочно описывает смех"}, {"q": "Эпитет — это знак препинания", "a": "Неверно", "h": "Неверно. Эпитет — красочное определение"}, {"q": "«Река спит» — это сравнение", "a": "Неверно", "h": "Неверно. Это олицетворение. В сравнении есть слова как, словно"}, {"q": "Сравнения и эпитеты делают текст выразительнее", "a": "Верно", "h": "Верно. Они помогают представить картину"}]);
+GENS.lt7q = mkQuiz([{"q": "Что такое план?", "a": "Список событий по порядку", "w": ["Любимое слово", "Название книги"], "h": "План помогает пересказать текст в правильном порядке"}, {"q": "На какие части делят текст?", "a": "Начало, основная часть, концовка", "w": ["Только слова", "Только заголовки"], "h": "Так удобнее составить план и пересказать"}, {"q": "Как составить план текста?", "a": "Разделить на части и озаглавить каждую часть", "w": ["Переписать весь текст", "Выучить первое слово"], "h": "Для каждой части выбираем короткое название"}, {"q": "Что помогает пересказать текст?", "a": "План", "w": ["Цвет обложки", "Номер страницы"], "h": "По плану легко вспомнить события по порядку"}, {"q": "Что произошло сначала?: Утром Алия нашла в саду птенца. Она осторожно положила его в коробку и напоила водой. Через два дня птенец окреп и улетел.", "a": "Алия нашла птенца", "w": ["Алия ухаживала за птенцом", "Птенец окреп и улетел"], "h": "В начале произошло: Алия нашла птенца"}, {"q": "Что произошло сначала?: Бека пошёл за грибами. В лесу он заблудился. Тогда он вспомнил совет отца, пошёл по тропинке и скоро вышел к дому.", "a": "Бека пошёл за грибами", "w": ["Бека заблудился в лесу", "Бека вышел к дому"], "h": "В начале произошло: Бека пошёл за грибами"}, {"q": "Что произошло сначала?: Дети решили построить скворечник. Они принесли доски и молотки. Весной в скворечнике поселилась птичья семья.", "a": "Дети решили построить скворечник", "w": ["Дети принесли доски и молотки", "В скворечнике поселилась птичья семья"], "h": "В начале произошло: Дети решили построить скворечник"}, {"q": "Что произошло сначала?: Дождь застал Данияра на улице. Он спрятался под навесом. Потом выглянуло солнце, и появилась радуга.", "a": "Дождь застал Данияра на улице", "w": ["Данияр спрятался под навесом", "Появилась радуга"], "h": "В начале произошло: Дождь застал Данияра на улице"}, {"q": "Что произошло потом?: Утром Алия нашла в саду птенца. Она осторожно положила его в коробку и напоила водой. Через два дня птенец окреп и улетел.", "a": "Алия ухаживала за птенцом", "w": ["Алия нашла птенца", "Птенец окреп и улетел"], "h": "Потом произошло: Алия ухаживала за птенцом"}, {"q": "Что произошло потом?: Бека пошёл за грибами. В лесу он заблудился. Тогда он вспомнил совет отца, пошёл по тропинке и скоро вышел к дому.", "a": "Бека заблудился в лесу", "w": ["Бека пошёл за грибами", "Бека вышел к дому"], "h": "Потом произошло: Бека заблудился в лесу"}, {"q": "Что произошло потом?: Дети решили построить скворечник. Они принесли доски и молотки. Весной в скворечнике поселилась птичья семья.", "a": "Дети принесли доски и молотки", "w": ["Дети решили построить скворечник", "В скворечнике поселилась птичья семья"], "h": "Потом произошло: Дети принесли доски и молотки"}, {"q": "Что произошло потом?: Дождь застал Данияра на улице. Он спрятался под навесом. Потом выглянуло солнце, и появилась радуга.", "a": "Данияр спрятался под навесом", "w": ["Дождь застал Данияра на улице", "Появилась радуга"], "h": "Потом произошло: Данияр спрятался под навесом"}, {"q": "Чем всё закончилось?: Утром Алия нашла в саду птенца. Она осторожно положила его в коробку и напоила водой. Через два дня птенец окреп и улетел.", "a": "Птенец окреп и улетел", "w": ["Алия нашла птенца", "Алия ухаживала за птенцом"], "h": "В конце произошло: Птенец окреп и улетел"}, {"q": "Чем всё закончилось?: Бека пошёл за грибами. В лесу он заблудился. Тогда он вспомнил совет отца, пошёл по тропинке и скоро вышел к дому.", "a": "Бека вышел к дому", "w": ["Бека пошёл за грибами", "Бека заблудился в лесу"], "h": "В конце произошло: Бека вышел к дому"}, {"q": "Чем всё закончилось?: Дети решили построить скворечник. Они принесли доски и молотки. Весной в скворечнике поселилась птичья семья.", "a": "В скворечнике поселилась птичья семья", "w": ["Дети решили построить скворечник", "Дети принесли доски и молотки"], "h": "В конце произошло: В скворечнике поселилась птичья семья"}, {"q": "Чем всё закончилось?: Дождь застал Данияра на улице. Он спрятался под навесом. Потом выглянуло солнце, и появилась радуга.", "a": "Появилась радуга", "w": ["Дождь застал Данияра на улице", "Данияр спрятался под навесом"], "h": "В конце произошло: Появилась радуга"}]);
+GENS.lt7t = mkTF([{"q": "События в плане нужно записывать по порядку", "a": "Верно", "h": "Верно. Сначала записывают то, что случилось раньше, потом то, что позже"}, {"q": "Концовка находится в начале текста", "a": "Неверно", "h": "Неверно. Концовка завершает текст"}, {"q": "Основная часть рассказывает о главных событиях", "a": "Верно", "h": "Верно. Там события развиваются"}, {"q": "Каждую часть текста можно озаглавить", "a": "Верно", "h": "Верно. Заголовки частей — это пункты плана"}, {"q": "План нужен, чтобы запутаться в событиях", "a": "Неверно", "h": "Неверно. План помогает не запутаться"}, {"q": "Пересказ — это когда мы своими словами рассказываем текст", "a": "Верно", "h": "Верно. Пересказывать можно подробно или по плану"}]);
+GENS.lt8q = mkQuiz([{"q": "Что значит прогнозировать конец произведения?", "a": "Догадаться, чем закончится текст", "w": ["Перечитать текст", "Переписать заголовок"], "h": "Прогноз — предположение о том, что будет дальше"}, {"q": "Что помогает догадаться о содержании текста до чтения?", "a": "Заголовок и иллюстрации", "w": ["Номер страницы", "Цвет бумаги"], "h": "Заголовок и рисунки подсказывают, о чём текст"}, {"q": "Можно ли изменить прогноз во время чтения?", "a": "Да, если появились новые сведения", "w": ["Нет, никогда", "Только в конце"], "h": "Мы проверяем и меняем предположения по ходу чтения"}, {"q": "Что подсказывает, что текст — сказка?", "a": "Волшебство и говорящие животные", "w": ["Номер страницы", "Название типографии"], "h": "В сказках часто есть чудеса и говорящие звери"}, {"q": "Что будет дальше?: Заголовок: «Потерянный ключ». Нурлан пришёл домой, но ключа в кармане не оказалось.", "a": "Нурлан будет искать ключ", "w": ["Нурлан улетит на луну", "Нурлан станет космонавтом"], "h": "Герой потерял ключ, поэтому будет искать"}, {"q": "Что будет дальше?: Заголовок: «Тонет мяч». Мяч упал в речку, и его понесло течением.", "a": "Дети придумают, как достать мяч", "w": ["Мяч превратится в слона", "Речка станет горой"], "h": "Дети хотят вернуть мяч"}, {"q": "Что будет дальше?: Заголовок: «Новая подруга». В класс пришла новая девочка и сидела одна на перемене.", "a": "Ребята предложат ей поиграть вместе", "w": ["Девочка исчезнет навсегда", "Класс переедет на остров"], "h": "В рассказе о новой ученице дети подружатся"}, {"q": "Что будет дальше?: Заголовок: «Первый снег». Утром за окном всё стало белым.", "a": "Дети побегут гулять на улицу", "w": ["Наступит жаркое лето", "Пойдёт тропический дождь"], "h": "Выпал снег — дети любят играть"}, {"q": "Что будет дальше?: Заголовок: «Больной щенок». Щенок не ел и грустно лежал в корзине.", "a": "Хозяин отвезёт его к ветеринару", "w": ["Щенок станет королём", "Щенок улетит на облаке"], "h": "Больному щенку нужен врач"}, {"q": "Что будет дальше?: Заголовок: «Двойка за диктант». Асем получила двойку и расстроилась.", "a": "Она начнёт учить правила и исправит оценку", "w": ["Она перестанет ходить в школу навсегда", "Она подарит оценку другу"], "h": "Герой хочет исправить ошибку"}, {"q": "О чём может быть текст?: Заголовок: «Мороз и ёлка»", "a": "Про зиму и новогоднюю ёлку", "w": ["Про летнее купание", "Про космические корабли"], "h": "В заголовке есть мороз и ёлка — это про зиму"}, {"q": "О чём может быть текст?: Заголовок: «Как я помогал бабушке»", "a": "О том, как мальчик помогал бабушке", "w": ["О полёте на ракете", "О дождливой погоде"], "h": "Заголовок говорит о помощи бабушке"}, {"q": "О чём может быть текст?: Заголовок: «Волшебное зеркало»", "a": "Сказка о зеркале с чудесными свойствами", "w": ["Учебник математики", "Правила дорожного движения"], "h": "Слово «волшебное» подсказывает, что это сказка"}]);
+GENS.lt8t = mkTF([{"q": "Прогноз можно строить по заголовку", "a": "Верно", "h": "Верно. Заголовок подсказывает тему и ход событий"}, {"q": "Прогноз всегда должен точно совпасть с текстом", "a": "Неверно", "h": "Неверно. Это только предположение, оно может не оправдаться"}, {"q": "Говорящий ёжик может быть в сказке", "a": "Верно", "h": "Верно. В сказках животные умеют говорить"}, {"q": "В рассказе о школе могут вдруг заговорить деревья", "a": "Неверно", "h": "Неверно. Это признак сказки, а в рассказе всё как в жизни"}, {"q": "Когда мы читаем, мы можем проверять свои догадки", "a": "Верно", "h": "Верно. Так интереснее читать"}, {"q": "Прогноз — это название книги", "a": "Неверно", "h": "Неверно. Прогноз — предположение о том, что будет дальше"}]);
+GENS.lt9q = mkQuiz([{"q": "Как нужно читать вопросительное предложение?", "a": "С вопросительной интонацией, голос поднимается", "w": ["Совсем тихо", "Очень быстро"], "h": "Вопрос читаем так, чтобы было слышно, что мы спрашиваем"}, {"q": "Как делают паузу при чтении?", "a": "После запятой — короткую, после точки — длиннее", "w": ["Нигде не останавливаются", "Только в конце страницы"], "h": "Знаки препинания подсказывают паузы"}, {"q": "Как называется чтение, когда мы читаем без звука?", "a": "Чтение про себя", "w": ["Чтение по ролям", "Чтение вслух"], "h": "Читаем глазами, не произнося слова вслух"}, {"q": "Что такое поисковое чтение?", "a": "Чтение, чтобы найти в тексте нужные сведения", "w": ["Чтение без текста", "Чтение шёпотом всем классом"], "h": "Мы ищем конкретный ответ в тексте"}, {"q": "Что такое чтение по ролям?", "a": "Каждый читает слова своего героя", "w": ["Все читают одну строчку", "Читают только заголовок"], "h": "Кроме героев, читает ещё и рассказчик"}, {"q": "Как проверить, понял ли ты прочитанное?", "a": "Ответить на вопросы по тексту", "w": ["Пересчитать буквы", "Закрыть книгу"], "h": "Вопросы помогают проверить понимание"}, {"q": "Найди ответ в тексте: Дина купила в магазине три яблока и хлеб. Вопрос: Сколько яблок купила Дина?", "a": "Три", "w": ["Два", "Пять"], "h": "Ответ есть в тексте: три яблока"}, {"q": "Найди ответ в тексте: Серик вышел из дома в семь часов утра и пошёл к школе. Вопрос: Когда вышел Серик из дома?", "a": "В семь часов утра", "w": ["Вечером", "В два часа дня"], "h": "Ответ есть в тексте: в семь утра"}, {"q": "Найди ответ в тексте: В нашем дворе растёт высокая берёза. Под ней стоит скамейка. Вопрос: Что стоит под берёзой?", "a": "Скамейка", "w": ["Качели", "Стол"], "h": "Ответ есть в тексте: скамейка"}, {"q": "Найди ответ в тексте: Бабушка испекла пирог с вишней и поставила его остывать на окно. Вопрос: С чем испекла пирог бабушка?", "a": "С вишней", "w": ["С яблоками", "С капустой"], "h": "Ответ есть в тексте: пирог с вишней"}, {"q": "Найди ответ в тексте: Дети кормили уток в парке хлебом. Утки громко крякали. Вопрос: Что делали утки?", "a": "Громко крякали", "w": ["Спали", "Улетали"], "h": "Ответ есть в тексте: утки громко крякали"}, {"q": "Найди ответ в тексте: Мы с папой поехали на озеро. Там мы ловили рыбу. Вопрос: Что делали на озере?", "a": "Ловили рыбу", "w": ["Катались на лыжах", "Собирали грибы"], "h": "Ответ есть в тексте: ловили рыбу"}]);
+GENS.lt9t = mkTF([{"q": "Знаки препинания помогают читать выразительно", "a": "Верно", "h": "Верно. Они подсказывают паузы и интонацию"}, {"q": "При чтении по ролям читают только слова героев", "a": "Неверно", "h": "Неверно. Слова автора тоже читает рассказчик"}, {"q": "Ответ на вопрос часто можно найти в тексте", "a": "Верно", "h": "Верно. Нужно перечитать нужное место"}, {"q": "Читать про себя — значит читать громко", "a": "Неверно", "h": "Неверно. Читать про себя — значит не произносить вслух"}, {"q": "Восклицательное предложение читаем с чувством", "a": "Верно", "h": "Верно. Так передаём радость, удивление"}, {"q": "Вопрос можно читать так же ровно, как повествование", "a": "Неверно", "h": "Неверно. У вопроса особая интонация"}]);
+GENS.lt10q = mkQuiz([{"q": "Где найти значение незнакомого слова?", "a": "В словаре", "w": ["В календаре", "В меню"], "h": "Словарь объясняет значение слов"}, {"q": "Где найти сведения о растениях и животных?", "a": "В энциклопедии", "w": ["В тетради по письму", "В дневнике"], "h": "Энциклопедия рассказывает о мире"}, {"q": "Что такое таблица?", "a": "Способ записать сведения по строкам и столбцам", "w": ["Рассказ в рисунках", "Список слов без порядка"], "h": "В таблице сведения расположены удобно для сравнения"}, {"q": "Как можно оформить творческую работу?", "a": "Добавить рисунки, аппликации или фотографии", "w": ["Ничего не добавлять", "Закрасить текст"], "h": "Иллюстрации делают работу яркой и понятной"}, {"q": "Исправь предложение: Дина одела тёплую шапку.", "a": "Дина надела тёплую шапку.", "w": ["Дина одевала тёплую шапку.", "Дина одела на тёплую шапку."], "h": "Одеваем человека, а надеваем вещь"}, {"q": "Исправь предложение: Мы ложим книги на полку.", "a": "Мы кладём книги на полку.", "w": ["Мы ложили книги на полку.", "Мы кладаем книги на полку."], "h": "Правильно: кладём"}, {"q": "Исправь предложение: Вчера мы видили слона в зоопарке.", "a": "Вчера мы видели слона в зоопарке.", "w": ["Вчера мы видыли слона в зоопарке.", "Вчера мы видили слона в зоопарке."], "h": "Правильно: видели"}, {"q": "Исправь предложение: Мальчик взял книгу и взял карандаш и взял тетрадь.", "a": "Мальчик взял книгу, карандаш и тетрадь.", "w": ["Мальчик взял и взял и взял книгу и карандаш.", "Мальчик взял взял книгу, карандаш, тетрадь."], "h": "Лишние повторы лучше убрать"}, {"q": "Исправь предложение: Ихний дом большой.", "a": "Их дом большой.", "w": ["Иховый дом большой.", "Ихнее дом большой."], "h": "Правильно: их"}, {"q": "Исправь предложение: Бабушка сказала что придёт завтра.", "a": "Бабушка сказала, что придёт завтра.", "w": ["Бабушка, сказала что придёт завтра.", "Бабушка сказала что, придёт завтра."], "h": "Перед словом что ставим запятую"}]);
+GENS.lt10t = mkTF([{"q": "Справочная литература помогает найти нужные сведения", "a": "Верно", "h": "Верно. Словари и энциклопедии — справочная литература"}, {"q": "Значение слова лучше искать в сборнике загадок", "a": "Неверно", "h": "Неверно. Значение слов объясняет словарь"}, {"q": "Свою работу можно украсить рисунком или аппликацией", "a": "Верно", "h": "Верно. Иллюстрации делают творческую работу выразительнее"}, {"q": "Таблицу удобно использовать, чтобы сравнивать сведения", "a": "Верно", "h": "Верно. В таблице всё записано по порядку"}, {"q": "Ошибки в тексте исправлять не нужно", "a": "Неверно", "h": "Неверно. Исправляем ошибки, чтобы текст был правильным"}, {"q": "Энциклопедия — это сборник загадок", "a": "Неверно", "h": "Неверно. Энциклопедия — справочная книга о мире"}]);
+const LESSONS = [
+  { id: "lt1", icon: "🎭", title: "Малые жанры", goal: "Различать загадку, считалку, скороговорку, пословицу, сказку, рассказ и стихотворение",
+    steps: [
+      Q("lt1s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Произведения бывают разных жанров. Давай узнаем, чем они отличаются. Нажимай на карточки.", {"need": 5, "items": [{"k": "загадка", "v": "<div class=\"e2-emo\">❓</div>", "t": "Загадку нужно отгадать: в ней предмет описан так, чтобы его можно было узнать."}, {"k": "считалка", "v": "<div class=\"e2-emo\">🎲</div>", "t": "Считалку читают перед игрой, чтобы справедливо выбрать водящего."}, {"k": "скороговорка", "v": "<div class=\"e2-emo\">👅</div>", "t": "Скороговорку говорят быстро и чётко, чтобы тренировать произношение."}, {"k": "пословица", "v": "<div class=\"e2-emo\">💡</div>", "t": "Пословица коротко говорит о жизни. В ней народная мудрость."}, {"k": "сказка", "v": "<div class=\"e2-emo\">🧚</div>", "t": "В сказке есть вымысел: волшебство и говорящие животные. Начинается часто словами «Жили-были»."}, {"k": "рассказ", "v": "<div class=\"e2-emo\">📖</div>", "t": "Рассказ описывает случай, который мог произойти в жизни."}, {"k": "стихотворение", "v": "<div class=\"e2-emo\">🎶</div>", "t": "Стихотворение разделено на строки, которые часто рифмуются."}]}),
+      Q("lt1s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "❓", "k": "Загадка"}, {"e": "🎲", "k": "Считалка"}, {"e": "👅", "k": "Скороговорка"}], "items": [{"g": 0, "e": "", "t": "Не лает, не кусает, а в дом не пускает.", "h": "Отгадка — замок"}, {"g": 0, "e": "", "t": "Зимой и летом одним цветом.", "h": "Отгадка — ёлка"}, {"g": 0, "e": "", "t": "Без рук, без ног, а рисует.", "h": "Отгадка — мороз"}, {"g": 1, "e": "", "t": "Эники-беники ели вареники.", "h": "Считалку читают перед игрой"}, {"g": 1, "e": "", "t": "Раз, два, три, четыре, пять, вышел зайчик погулять.", "h": "Считалку читают перед игрой"}, {"g": 1, "e": "", "t": "На золотом крыльце сидели царь, царевич, король, королевич.", "h": "Считалку читают перед игрой"}, {"g": 2, "e": "", "t": "Карл у Клары украл кораллы, а Клара у Карла украла кларнет.", "h": "Её трудно произнести быстро"}, {"g": 2, "e": "", "t": "На дворе трава, на траве дрова.", "h": "Её трудно произнести быстро"}, {"g": 2, "e": "", "t": "Шла Саша по шоссе и сосала сушку.", "h": "Её трудно произнести быстро"}]}),
+      Q("lt1s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🧚", "k": "Сказка"}, {"e": "📖", "k": "Рассказ"}, {"e": "🎶", "k": "Стихотворение"}], "items": [{"g": 0, "e": "", "t": "Жил-был в лесу говорящий ёжик, и была у него волшебная иголка.", "h": "Начало сказки, в ней есть волшебство"}, {"g": 0, "e": "", "t": "В некотором царстве жила рыбка, которая исполняла желания.", "h": "Начало сказки, в ней есть волшебство"}, {"g": 0, "e": "", "t": "Заговорила старая яблоня и попросила напоить её водой.", "h": "В сказке деревья умеют говорить"}, {"g": 1, "e": "", "t": "Вечером Асель помогла бабушке полить цветы, и бабушка её похвалила.", "h": "Это случай из жизни"}, {"g": 1, "e": "", "t": "На перемене Ерлан потерял ручку, но друзья помогли её найти.", "h": "Это случай из жизни"}, {"g": 1, "e": "", "t": "В субботу мы всей семьёй ходили в парк кормить уток.", "h": "Это случай из жизни"}, {"g": 2, "e": "", "t": "Падает снежок, мягкий, как пушок. Тихо на крыльцо лёг мне на лицо.", "h": "Строки рифмуются: снежок — пушок, крыльцо — лицо"}, {"g": 2, "e": "", "t": "Солнце светит в небе, а в траве ромашки. Мы идём по лугу и поём вдвоём.", "h": "Строки звучат как песня"}]}),
+      Q("lt1s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt1q"]}),
+      Q("lt1s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt1t"]})
+    ] },
+  { id: "lt2", icon: "💡", title: "Пословицы и поговорки", goal: "Понимать смысл пословиц и использовать их в речи",
+    steps: [
+      Q("lt2s1", "infoTap", "Знакомимся с темой", "Пословицы — это мудрость народа. Они помогают коротко и точно сказать мысль. Нажимай на карточки.", {"need": 5, "items": [{"k": "что это", "v": "<div class=\"e2-emo\">💡</div>", "t": "Пословицы — короткие мудрые выражения. Их придумал народ, автор неизвестен."}, {"k": "смысл", "v": "<div class=\"e2-emo\">🔎</div>", "t": "У пословицы есть переносный смысл: «Тише едешь — дальше будешь» значит, что не нужно торопиться."}, {"k": "про труд", "v": "<div class=\"e2-emo\">🛠️</div>", "t": "«Без труда не вытащишь и рыбку из пруда». Без усилий ничего не добьёшься."}, {"k": "про дружбу", "v": "<div class=\"e2-emo\">🤝</div>", "t": "«Друг познаётся в беде». Настоящий друг помогает в трудную минуту."}, {"k": "в речи", "v": "<div class=\"e2-emo\">🗣️</div>", "t": "Пословицей можно украсить речь. Выбирай такую, которая подходит к случаю."}, {"k": "без слов", "v": "<div class=\"e2-emo\">🙂</div>", "t": "Мы говорим не только словами, но и жестами, мимикой и позой. Это невербальные средства общения."}]}),
+      Q("lt2s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🛠️", "k": "Про труд и учёбу"}, {"e": "🤝", "k": "Про дружбу"}, {"e": "💛", "k": "Про добро и поступки"}], "items": [{"g": 0, "e": "", "t": "Без труда не вытащишь и рыбку из пруда.", "h": "Без усилий ничего не добьёшься"}, {"g": 0, "e": "", "t": "Век живи — век учись.", "h": "Учиться нужно всю жизнь"}, {"g": 0, "e": "", "t": "Повторение — мать учения.", "h": "Повторять полезно, чтобы запомнить"}, {"g": 1, "e": "", "t": "Не имей сто рублей, а имей сто друзей.", "h": "Друзья важнее денег"}, {"g": 1, "e": "", "t": "Друг познаётся в беде.", "h": "Настоящий друг помогает в трудную минуту"}, {"g": 1, "e": "", "t": "Старый друг лучше новых двух.", "h": "Старый друг надёжнее новых знакомых"}, {"g": 2, "e": "", "t": "Доброе слово и кошке приятно.", "h": "Добрые слова приятны всем"}, {"g": 2, "e": "", "t": "Что посеешь, то и пожнёшь.", "h": "Результат зависит от наших дел"}, {"g": 2, "e": "", "t": "Не рой другому яму — сам в неё попадёшь.", "h": "Не делай зла другим"}]}),
+      Q("lt2s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt2q"]}),
+      Q("lt2s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt2t"]})
+    ] },
+  { id: "lt3", icon: "🎵", title: "Загадки и рифмы", goal: "Отгадывать загадки, подбирать рифму",
+    steps: [
+      Q("lt3s1", "infoTap", "Знакомимся с темой", "Загадки и стихи любят рифму. Давай научимся отгадывать загадки и подбирать слова в рифму. Нажимай на карточки.", {"need": 5, "items": [{"k": "рифма", "v": "<div class=\"e2-emo\">🎵</div>", "t": "Рифма — созвучие слов в конце строк. Например: кот — рот, дом — гном."}, {"k": "как подобрать", "v": "<div class=\"e2-emo\">🔎</div>", "t": "Слушай конец слова и ищи слово с таким же созвучным окончанием."}, {"k": "не рифмуются", "v": "<div class=\"e2-emo\">🚫</div>", "t": "Слова с разными окончаниями не рифмуются: кот — стол."}, {"k": "загадка", "v": "<div class=\"e2-emo\">❓</div>", "t": "В загадке спрятан предмет. Внимательно слушай признаки и угадывай."}, {"k": "пример", "v": "<div class=\"e2-emo\">🔑</div>", "t": "«Не лает, не кусает, а в дом не пускает». Это замок."}]}),
+      Q("lt3s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🎵", "k": "Рифмуются"}, {"e": "🚫", "k": "Не рифмуются"}], "items": [{"g": 0, "e": "", "t": "кот — рот", "h": "Одинаковое окончание"}, {"g": 0, "e": "", "t": "дом — гном", "h": "Одинаковое окончание"}, {"g": 0, "e": "", "t": "ночь — дочь", "h": "Одинаковое окончание"}, {"g": 1, "e": "", "t": "кот — стол", "h": "Окончания разные"}, {"g": 1, "e": "", "t": "дом — лес", "h": "Окончания разные"}, {"g": 1, "e": "", "t": "ночь — день", "h": "Окончания разные"}]}),
+      Q("lt3s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt3q"]}),
+      Q("lt3s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt3t"]})
+    ] },
+  { id: "lt4", icon: "💭", title: "О чём хотел сказать автор", goal: "Определять тему и главную мысль, озаглавливать текст",
+    steps: [
+      Q("lt4s1", "infoTap", "Знакомимся с темой", "Автор пишет не просто так. Он хочет нам что-то сказать. Давай научимся находить главную мысль. Нажимай на карточки.", {"need": 4, "items": [{"k": "тема", "v": "<div class=\"e2-emo\">💭</div>", "t": "Тема — это то, о чём текст: о дружбе, о природе, о семье."}, {"k": "заголовок", "v": "<div class=\"e2-emo\">📝</div>", "t": "Заголовок — название текста. Он называет тему или главную мысль."}, {"k": "главная мысль", "v": "<div class=\"e2-emo\">🧠</div>", "t": "Главная мысль — то, чему учит нас автор. Например: нужно держать слово."}, {"k": "как найти", "v": "<div class=\"e2-emo\">🔍</div>", "t": "Подумай, как поступили герои и чем всё закончилось. Это поможет понять главную мысль."}]}),
+      Q("lt4s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🌳", "k": "Про природу"}, {"e": "🏫", "k": "Про школу"}, {"e": "👪", "k": "Про семью"}], "items": [{"g": 0, "e": "", "t": "Весной в лесу просыпаются ёжики и медведи.", "h": "Про лес и животных"}, {"g": 0, "e": "", "t": "Ручей бежит по камням и поёт.", "h": "Про воду и природу"}, {"g": 0, "e": "", "t": "На берёзе распустились клейкие листочки.", "h": "Про деревья"}, {"g": 1, "e": "", "t": "Первоклассники учились писать буквы.", "h": "Про уроки"}, {"g": 1, "e": "", "t": "На перемене мы играли в мяч во дворе школы.", "h": "Про школьную жизнь"}, {"g": 1, "e": "", "t": "Учитель раздал нам тетради.", "h": "Про урок"}, {"g": 2, "e": "", "t": "В воскресенье вся семья пекла пирог.", "h": "Про семью"}, {"g": 2, "e": "", "t": "Бабушка рассказывала нам сказку на ночь.", "h": "Про бабушку"}, {"g": 2, "e": "", "t": "Папа учил брата кататься на велосипеде.", "h": "Про папу и брата"}]}),
+      Q("lt4s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt4q"]}),
+      Q("lt4s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt4t"]})
+    ] },
+  { id: "lt5", icon: "🦸", title: "Герои и поступки", goal: "Описывать героя, оценивать поступки, видеть изменения героя",
+    steps: [
+      Q("lt5s1", "infoTap", "Знакомимся с темой", "В каждом рассказе есть герои. Давай узнаем, как их описывать и как оценивать поступки. Нажимай на карточки.", {"need": 5, "items": [{"k": "внешний вид", "v": "<div class=\"e2-emo\">🙂</div>", "t": "Внешний вид героя — рост, волосы, глаза, одежда."}, {"k": "поступки", "v": "<div class=\"e2-emo\">🏃</div>", "t": "По поступкам мы узнаём характер героя: добрый он или злой, смелый или робкий."}, {"k": "оцени поступок", "v": "<div class=\"e2-emo\">⚖️</div>", "t": "Поступок может быть хорошим или плохим. Помощь другу — хороший, обида — плохой."}, {"k": "герой меняется", "v": "<div class=\"e2-emo\">🔄</div>", "t": "Герой может измениться: в начале боялся, а в конце стал смелее."}, {"k": "иллюстрации", "v": "<div class=\"e2-emo\">🖼️</div>", "t": "Рисунок к тексту помогает представить героев и события."}]}),
+      Q("lt5s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "💛", "k": "Добрый"}, {"e": "🦁", "k": "Смелый"}, {"e": "🛠️", "k": "Трудолюбивый"}], "items": [{"g": 0, "e": "", "t": "Дина поделилась обедом с новенькой девочкой.", "h": "Дина заботится о других"}, {"g": 0, "e": "", "t": "Алибек накормил бездомного котёнка.", "h": "Алибек жалеет животных"}, {"g": 0, "e": "", "t": "Марат уступил место бабушке в автобусе.", "h": "Марат уважает старших"}, {"g": 1, "e": "", "t": "Ерлан не испугался и вытащил щенка из ямы.", "h": "Он действует, хотя ему страшно"}, {"g": 1, "e": "", "t": "Айдана выступила на сцене, хотя очень волновалась.", "h": "Она справилась со страхом"}, {"g": 1, "e": "", "t": "Мальчик первым вошёл в тёмную комнату и включил свет.", "h": "Он не испугался"}, {"g": 2, "e": "", "t": "Аружан каждый день поливала грядки.", "h": "Она трудится старательно"}, {"g": 2, "e": "", "t": "Бек до вечера красил забор, пока не закончил.", "h": "Он доводит дело до конца"}, {"g": 2, "e": "", "t": "Дастан сам вымыл посуду и подмёл пол.", "h": "Он не боится работы"}]}),
+      Q("lt5s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt5q"]}),
+      Q("lt5s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt5t"]})
+    ] },
+  { id: "lt6", icon: "🎨", title: "Сравнение, олицетворение, эпитет", goal: "Находить сравнение, олицетворение и эпитет",
+    steps: [
+      Q("lt6s1", "infoTap", "Знакомимся с темой", "Писатели делают речь яркой. Давай найдём в тексте сравнение, олицетворение и эпитет. Нажимай на карточки.", {"need": 4, "items": [{"k": "сравнение", "v": "<div class=\"e2-emo\">⚖️</div>", "t": "В сравнении один предмет похож на другой. Часто есть слова «как», «словно»: быстрый, как ветер."}, {"k": "олицетворение", "v": "<div class=\"e2-emo\">🌬️</div>", "t": "При олицетворении неживое действует как живое: ручей поёт, ветер шепчет."}, {"k": "эпитет", "v": "<div class=\"e2-emo\">🎨</div>", "t": "Эпитет — красочное слово, которое описывает предмет: золотая осень, ласковый ветерок."}, {"k": "зачем", "v": "<div class=\"e2-emo\">✨</div>", "t": "С их помощью мы лучше представляем картину, и речь становится выразительной."}]}),
+      Q("lt6s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "⚖️", "k": "Сравнение"}, {"e": "🌬️", "k": "Олицетворение"}, {"e": "🎨", "k": "Эпитет"}], "items": [{"g": 0, "e": "", "t": "Снег лежал, как пушистое одеяло.", "h": "Снег сравнивают с одеялом"}, {"g": 0, "e": "", "t": "Луна, словно серебряная монета, висела над горой.", "h": "Луну сравнивают с монетой"}, {"g": 0, "e": "", "t": "Мальчик бежал быстро, как ветер.", "h": "Мальчика сравнивают с ветром"}, {"g": 1, "e": "", "t": "Ветер шепчет в листве.", "h": "Ветер «шепчет», как человек"}, {"g": 1, "e": "", "t": "Солнышко выглянуло из-за тучи и улыбнулось.", "h": "Солнце «улыбается», как человек"}, {"g": 1, "e": "", "t": "Ручей бежит и поёт песенку.", "h": "Ручей «поёт», как человек"}, {"g": 2, "e": "", "t": "золотая осень", "h": "Золотая — эпитет"}, {"g": 2, "e": "", "t": "ласковый ветерок", "h": "Ласковый — эпитет"}, {"g": 2, "e": "", "t": "звонкий смех", "h": "Звонкий — эпитет"}]}),
+      Q("lt6s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt6q"]}),
+      Q("lt6s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt6t"]})
+    ] },
+  { id: "lt7", icon: "📋", title: "План и части текста", goal: "Делить текст на части и составлять план",
+    steps: [
+      Q("lt7s1", "infoTap", "Знакомимся с темой", "Чтобы пересказать текст, нужен план. Давай научимся делить текст на части. Нажимай на карточки.", {"need": 5, "items": [{"k": "части", "v": "<div class=\"e2-emo\">🧩</div>", "t": "Текст состоит из начала, основной части и концовки."}, {"k": "начало", "v": "<div class=\"e2-emo\">🚪</div>", "t": "В начале рассказано, с чего всё началось."}, {"k": "основная часть", "v": "<div class=\"e2-emo\">🛤️</div>", "t": "В основной части происходят главные события."}, {"k": "концовка", "v": "<div class=\"e2-emo\">🏁</div>", "t": "В концовке подводят итог: чем всё закончилось."}, {"k": "план", "v": "<div class=\"e2-emo\">📋</div>", "t": "План — это перечень событий по порядку. Для каждой части придумай короткое название."}, {"k": "пересказ", "v": "<div class=\"e2-emo\">🗣️</div>", "t": "По плану удобно пересказывать: подробно или кратко."}]}),
+      Q("lt7s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🚪", "k": "Начало"}, {"e": "🛤️", "k": "Основная часть"}, {"e": "🏁", "k": "Концовка"}], "items": [{"g": 0, "e": "", "t": "Жили-были брат и сестра.", "h": "Так начинают рассказ"}, {"g": 0, "e": "", "t": "Однажды утром Ерлан проснулся рано.", "h": "Показано, с чего всё началось"}, {"g": 0, "e": "", "t": "Это случилось летом на даче.", "h": "Сообщают, когда и где началось"}, {"g": 1, "e": "", "t": "Вдруг на дороге появилась лиса.", "h": "Происходит главное событие"}, {"g": 1, "e": "", "t": "Дети долго искали выход и наконец придумали план.", "h": "Герои действуют"}, {"g": 1, "e": "", "t": "Тогда мальчик решил позвать на помощь.", "h": "События развиваются"}, {"g": 2, "e": "", "t": "Так закончилась эта история.", "h": "Подводят итог"}, {"g": 2, "e": "", "t": "С тех пор они всегда ходили вместе.", "h": "Рассказ завершается"}, {"g": 2, "e": "", "t": "Все остались довольны и вернулись домой.", "h": "Всё закончилось хорошо"}]}),
+      Q("lt7s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt7q"]}),
+      Q("lt7s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt7t"]})
+    ] },
+  { id: "lt8", icon: "🔮", title: "Что будет дальше?", goal: "Прогнозировать конец по заголовку и началу",
+    steps: [
+      Q("lt8s1", "infoTap", "Знакомимся с темой", "Прочитал заголовок — можно догадаться, о чём текст. Давай научимся предсказывать, что будет дальше. Нажимай на карточки.", {"need": 5, "items": [{"k": "прогноз", "v": "<div class=\"e2-emo\">🔮</div>", "t": "Прогноз — это предположение о том, чем закончится текст."}, {"k": "по заголовку", "v": "<div class=\"e2-emo\">📝</div>", "t": "Заголовок подсказывает, о чём будет текст. «Мороз и ёлка» — наверное, про зиму."}, {"k": "по началу", "v": "<div class=\"e2-emo\">🚪</div>", "t": "Начало рассказа тоже подсказывает: если ключ потерялся, герой, скорее всего, будет его искать."}, {"k": "жизнь и сказка", "v": "<div class=\"e2-emo\">🧚</div>", "t": "В рассказе всё как в жизни, а в сказке бывает волшебство и говорящие животные."}, {"k": "проверяем", "v": "<div class=\"e2-emo\">🔄</div>", "t": "Во время чтения проверяй свои догадки. Они могут не оправдаться."}]}),
+      Q("lt8s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🏠", "k": "Бывает в жизни"}, {"e": "🧚", "k": "Бывает в сказке"}], "items": [{"g": 0, "e": "", "t": "Дети идут в школу.", "h": "Реальное событие"}, {"g": 0, "e": "", "t": "Девочка поливает цветы.", "h": "Реальное событие"}, {"g": 0, "e": "", "t": "Мама печёт пирог.", "h": "Реальное событие"}, {"g": 1, "e": "", "t": "Золотая рыбка исполняет желания.", "h": "Волшебство — признак сказки"}, {"g": 1, "e": "", "t": "Ковёр-самолёт летает над городом.", "h": "Волшебство — признак сказки"}, {"g": 1, "e": "", "t": "Ёжик говорит человеческим голосом.", "h": "Говорящие животные — признак сказки"}]}),
+      Q("lt8s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt8q"]}),
+      Q("lt8s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt8t"]})
+    ] },
+  { id: "lt9", icon: "🎙️", title: "Читаем выразительно", goal: "Читать выразительно, по ролям, про себя и отвечать на вопросы по тексту",
+    steps: [
+      Q("lt9s1", "infoTap", "Знакомимся с темой", "Читать можно по-разному: вслух, про себя, по ролям. Давай научимся читать выразительно. Нажимай на карточки.", {"need": 5, "items": [{"k": "интонация", "v": "<div class=\"e2-emo\">🎙️</div>", "t": "Вопрос читаем с вопросительной интонацией, радость — с чувством, рассказ — спокойно."}, {"k": "паузы", "v": "<div class=\"e2-emo\">⏸️</div>", "t": "После запятой делаем короткую паузу, после точки — длиннее."}, {"k": "по ролям", "v": "<div class=\"e2-emo\">🎭</div>", "t": "При чтении по ролям один читает слова автора, а другие — слова героев."}, {"k": "про себя", "v": "<div class=\"e2-emo\">🤫</div>", "t": "Чтение про себя — это когда мы читаем глазами и не произносим слова вслух."}, {"k": "поиск ответа", "v": "<div class=\"e2-emo\">🔍</div>", "t": "Чтобы ответить на вопрос, найди нужное место в тексте и перечитай его."}]}),
+      Q("lt9s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "❓", "k": "С вопросом"}, {"e": "🎉", "k": "С радостью"}, {"e": "😌", "k": "Спокойно"}], "items": [{"g": 0, "e": "", "t": "Куда ты идёшь?", "h": "Это вопрос"}, {"g": 0, "e": "", "t": "Что ты делаешь?", "h": "Это вопрос"}, {"g": 0, "e": "", "t": "Когда начнётся урок?", "h": "Это вопрос"}, {"g": 1, "e": "", "t": "Ура, мы победили!", "h": "Читаем радостно"}, {"g": 1, "e": "", "t": "Какая красивая весна!", "h": "Читаем с восхищением"}, {"g": 1, "e": "", "t": "Как я рад!", "h": "Читаем с чувством"}, {"g": 2, "e": "", "t": "Наступил тихий вечер.", "h": "Читаем спокойно"}, {"g": 2, "e": "", "t": "Дети шли по тропинке.", "h": "Читаем ровно"}, {"g": 2, "e": "", "t": "На улице идёт снег.", "h": "Читаем спокойно"}]}),
+      Q("lt9s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "📖", "k": "Читает рассказчик"}, {"e": "🗣️", "k": "Читает герой"}], "items": [{"g": 0, "e": "", "t": "Бек открыл дверь.", "h": "Говорит автор"}, {"g": 0, "e": "", "t": "Наступил вечер.", "h": "Говорит автор"}, {"g": 0, "e": "", "t": "Девочка улыбнулась и ответила.", "h": "Говорит автор"}, {"g": 1, "e": "", "t": "— Привет! Как дела?", "h": "Говорит герой"}, {"g": 1, "e": "", "t": "— Я очень рад тебя видеть!", "h": "Говорит герой"}, {"g": 1, "e": "", "t": "— Помоги мне, пожалуйста.", "h": "Говорит герой"}]}),
+      Q("lt9s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt9q"]}),
+      Q("lt9s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt9t"]})
+    ] },
+  { id: "lt10", icon: "📚", title: "Книги-помощники", goal: "Находить нужные сведения в словаре, энциклопедии и сборнике, исправлять неточности",
+    steps: [
+      Q("lt10s1", "infoTap", "Знакомимся с темой", "Книги помогают узнавать новое. Давай выясним, в какой книге что искать. Нажимай на карточки.", {"need": 5, "items": [{"k": "словарь", "v": "<div class=\"e2-emo\">📘</div>", "t": "В словаре объясняют значения слов и показывают, как они пишутся."}, {"k": "энциклопедия", "v": "<div class=\"e2-emo\">🌍</div>", "t": "В энциклопедии рассказано о животных, растениях и явлениях природы."}, {"k": "сборник", "v": "<div class=\"e2-emo\">📖</div>", "t": "В сборнике собраны стихи, сказки или загадки."}, {"k": "таблица", "v": "<div class=\"e2-emo\">📊</div>", "t": "Таблица — способ записать сведения по строкам и столбцам. В ней удобно сравнивать."}, {"k": "исправляем", "v": "<div class=\"e2-emo\">✏️</div>", "t": "Свою работу перечитай и исправь ошибки: например, «надела шапку», а не «одела»."}, {"k": "украшаем", "v": "<div class=\"e2-emo\">🎨</div>", "t": "Работу можно украсить рисунком, аппликацией или фотографией."}]}),
+      Q("lt10s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "📘", "k": "Словарь"}, {"e": "🌍", "k": "Энциклопедия"}, {"e": "📖", "k": "Сборник"}], "items": [{"g": 0, "e": "", "t": "Узнать, как пишется слово «картофель»", "h": "Правописание слов смотрим в словаре"}, {"g": 0, "e": "", "t": "Узнать значение слова «горизонт»", "h": "Значение слов объясняет словарь"}, {"g": 0, "e": "", "t": "Найти слова, близкие по смыслу к слову «смелый»", "h": "Это словарь синонимов"}, {"g": 1, "e": "", "t": "Узнать, чем питается снежный барс", "h": "О животных пишут в энциклопедии"}, {"g": 1, "e": "", "t": "Узнать, как образуются облака", "h": "О явлениях природы пишут в энциклопедии"}, {"g": 1, "e": "", "t": "Узнать, какие звери живут в степи", "h": "О животных пишут в энциклопедии"}, {"g": 2, "e": "", "t": "Найти стихи о весне", "h": "Стихи собраны в сборнике"}, {"g": 2, "e": "", "t": "Найти загадки о животных", "h": "Загадки собраны в сборнике"}, {"g": 2, "e": "", "t": "Найти сказки разных народов", "h": "Сказки собраны в сборнике"}]}),
+      Q("lt10s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["lt10q"]}),
+      Q("lt10s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["lt10t"]})
+    ] },
+  { id: "ltfin", icon: '🏁', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("ltfin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал про жанры, пословицы, рифмы, главную мысль, героев, яркие слова, план, прогноз и выразительное чтение. Теперь закрепляй знания в играх.", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
