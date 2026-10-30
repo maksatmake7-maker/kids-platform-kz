@@ -164,7 +164,7 @@
     var soon=!!s.soon, d=(-(i%5)*0.9).toFixed(1);
     html+='<a class="hi '+(soon?'fog':'ready')+'" '+(soon?'href="#" aria-disabled="true" tabindex="-1"':'href="'+s.href+'"')+' data-id="'+s.id+'" style="--c:'+s.color+';--d:'+d+'s">' +
       '<span class="hi-art"><svg class="art" viewBox="0 0 180 140" aria-hidden="true">'+base(d)+(ART[s.art]?ART[s.art]():'')+'</svg><span class="fogc"></span>'+LOCK+'</span>' +
-      '<span class="hi-plate"><h3 data-i18n="'+s.title+'"></h3><p data-i18n="'+s.desc+'"></p>' +
+      '<span class="hi-plate">'+(s.titleText?'<h3>'+s.titleText+'</h3>':'<h3 data-i18n="'+s.title+'"></h3>')+(s.descText?'<p>'+s.descText+'</p>':'<p data-i18n="'+s.desc+'"></p>')+
       '<span class="hi-prog"><i class="bar"><b></b></i><span class="st">'+STAR+STAR+STAR+'</span></span>' +
       '<span class="badge" data-i18n="'+(soon?'grade_picker_coming_soon':(s.badge||'badge_play'))+'"></span></span></a>';
   });

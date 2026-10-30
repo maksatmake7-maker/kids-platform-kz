@@ -46,10 +46,20 @@
     var GR = SPEC.groups || [], MC = SPEC.mcq || [], TF = SPEC.tf || [];
     function S(sig, t){ t.sig = sig; return t; }
     function big(e){ return '<span style="font-size:3.4rem;line-height:1">' + e + '</span>'; }
+    function word(e){ var n = String(e).replace(/<[^>]*>/g, '').length, fs = n > 45 ? 1.05 : n > 22 ? 1.35 : n > 14 ? 1.8 : 2.6;
+      return '<span style="font:800 ' + fs + 'rem/1.2 \'Baloo 2\',sans-serif;color:#25324A' + (fs < 2.6 ? ';display:block;max-width:34rem;margin:0 auto' : '') + '">' + e + '</span>'; }
+    function vis(it){ return it[0] ? big(it[0]) : word(it[1]); }
     function hintItem(g, it){
-      var t = it[1], why = it[2] || '';
-      return { hintExpr:'<span class="ok">' + g.name + '</span>', hintSay:[G.say(t + ' — ' + g.is + '.' + (why ? ' ' + why + '.' : ''))],
-        hint:G.hintCard(big(it[0]), '<b>' + t + '</b> — ' + g.is + (why ? '<br>' + why : '')) };
+      var t = it[1], why = it[2] || '', sp = it[3] || t;
+      return { hintExpr:'<span class="ok">' + g.name + '</span>', hintSay:[G.say(sp + ' — ' + g.is + '.' + (why ? ' ' + why + '.' : ''))],
+        hint:G.hintCard(vis(it), '<b>' + t + '</b> — ' + g.is + (why ? '<br>' + why : '')) };
+    }
+    /* допиши слово: [маска, верный ответ, [неверные…], слово целиком, разбор] */
+    var SP = SPEC.spell || [];
+    function spellTask(e){
+      var opts = [e[1]].concat(e[2]), o5 = e[5] || {};
+      return S('sp' + e[0] + e[1] + (o5.cap || ''), Object.assign(G.choice({ q:o5.cap || 'Допиши слово', say:[G.say(o5.say || ('Допиши слово: ' + e[3] + '.'))], opts:opts, ans:e[1], layout:o5.layout || 'wide', expr:word(e[0]) }),
+        { expr:word(e[0]), hintSay:[G.say(e[4] + '.')], hint:G.hintCard(word(e[3]), e[4]) }));
     }
     function allItems(){ var a = []; GR.forEach(function(g){ g.items.forEach(function(it){ a.push({ g:g, it:it }); }); }); return a; }
     var ALL = allItems();
@@ -60,15 +70,16 @@
     var EX1 = SPEC.extra1 ? SPEC.extra1(CTX) : [], EX3 = SPEC.extra3 ? SPEC.extra3(CTX) : [];
     function L1(){
       if(EX1.length && Math.random() < (GR.length ? .35 : 1)) return pick(EX1)();
+      if(SP.length && (!GR.length || Math.random() < .4)) return spellTask(pick(SP));
       var x = pick(ALL), g = x.g, it = x.it, ps = peers(g);
       if(ps.length > 2 && Math.random() < .5){
         var pool = [it], seen = {}; seen[g.k] = 1;
         shuffle(ALL.filter(function(y){ return y.g.k !== g.k && (y.g.set || 0) === (g.set || 0); })).forEach(function(y){ if(pool.length < 4 && !seen[y.g.k]){ seen[y.g.k] = 1; pool.push(y.it); } });
         var q = 'Найди: ' + g.find;
-        return S('1p' + g.k + it[1], Object.assign(G.pickPic({ q:q, say:[G.say(q + '.')], items:pool.map(function(p){ return { k:p[1], h:'<span class="e">' + p[0] + '</span>', lab:p[1] }; }), ans:it[1] }), hintItem(g, it)));
+        return S('1p' + g.k + it[1], Object.assign(G.pickPic({ q:q, say:[G.say(q + '.')], items:pool.map(function(p){ return { k:p[1], h:p[0] ? '<span class="e">' + p[0] + '</span>' : '', lab:p[1] }; }), ans:it[1] }), hintItem(g, it)));
       }
       var opts = [g.name].concat(shuffle(ps.filter(function(h){ return h.k !== g.k; })).slice(0, 2).map(function(h){ return h.name; }));
-      return S('1c' + g.k + it[1], Object.assign({ expr:big(it[0]), cap:it[1] + ' — это…', say:[G.say(it[1] + '. ' + (g.ask || SPEC.askQ || 'К какой группе это относится?'))], ans:g.name, opts:G.txtOpts(opts), layout:'card' }, hintItem(g, it)));
+      return S('1c' + g.k + it[1], Object.assign({ expr:vis(it), cap:it[0] ? it[1] + ' — это…' : (g.wordCap || SPEC.wordCap || 'Какое это слово?'), say:[G.say((it[3] || it[1]) + '. ' + (g.ask || SPEC.askQ || 'К какой группе это относится?'))], ans:g.name, opts:G.txtOpts(opts), layout:'card' }, hintItem(g, it)));
     }
     /* ⭐⭐ разложи по корзинам */
     function L2(){
@@ -76,7 +87,7 @@
       var sets = {}; GR.forEach(function(g){ var k = g.set || 0; (sets[k] = sets[k] || []).push(g); });
       var ks = Object.keys(sets).filter(function(k){ return sets[k].length >= 2; }), sk = pick(ks), pool = sets[sk];
       var gs = shuffle(pool).slice(0, Math.min(3, pool.length)), items = [];
-      gs.forEach(function(g){ shuffle(g.items).slice(0, gs.length === 2 ? 3 : 2).forEach(function(it){ items.push({ k:g.k, h:it[0] + ' ' + it[1] }); }); });
+      gs.forEach(function(g){ shuffle(g.items).slice(0, gs.length === 2 ? 3 : 2).forEach(function(it){ items.push({ k:g.k, h:it[0] ? it[0] + ' ' + it[1] : it[1] }); }); });
       return S('2s' + gs.map(function(g){ return g.k; }).sort().join('') + rnd(1, 99999), M.sortTask({ wide:true, items:shuffle(items), say:[G.say(gs[0].sortSay ? gs[0].sortSay : (SPEC.sortSay || 'Разложи по корзинам.'))], cap:gs[0].sortCap || SPEC.sortCap || 'Выбери картинку, потом корзину',
         buckets:gs.map(function(g){ return { k:g.k, name:g.name, icon:g.ic, c1:g.c1, c2:g.c2 }; }), hintSay:[G.say(gs[0].sortHint || SPEC.sortHint || 'Подумай, к какой группе относится каждый предмет.')] }));
     }
@@ -84,10 +95,11 @@
     function L3(){
       var r = Math.random();
       if(EX3.length && r < .25) return pick(EX3)();
+      if(SP.length && r < .45) return spellTask(pick(SP));
       if(MC.length && (r < .4 || !TF.length)){
         var q = pick(MC), e = q[4] || SPEC.icons[0];
-        return S('3q' + q[0], Object.assign(G.choice({ q:q[0], opts:[q[1]].concat(q[2]), ans:q[1], layout:'card' }),
-          { hintSay:[G.say(q[3] + '.')], hint:G.hintCard(big(e), q[3]) }));
+        return S('3q' + q[0], Object.assign(G.choice({ q:q[0], say:q[5] ? [G.say(q[5])] : undefined, opts:[q[1]].concat(q[2]), ans:q[1], layout:'card' }),
+          { hintSay:[G.say(q[3] + '.')], hint:G.hintCard(q[4] === '' ? '' : big(e), q[3]) }));
       }
       var t = pick(TF);
       return S('3t' + t[0], G.tf({ q:t[0], truth:t[1], hint:t[2] }));
