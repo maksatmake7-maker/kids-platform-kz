@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Познание мира 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+</style>
+</head>
+<body class="w-page" data-subject="poznanie">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Познание мира 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Познание мира 2 класс</h1>
+      <p class="ac-sub">10 уроков: семья, школа, родной край, карта, город, права и праздники, погода, путешествия, история и символы страны</p>
+      <p class="ac-note">🧭 Курс по программе 2 класса. Каждый урок: объяснение, игра и проверка</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 11</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/poznanie2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/poznanie2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_poznanie2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки 👆') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Познание мира 2 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по познанию мира →</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.pk1q = mkQuiz([{"q": "Что такое семейный архив?", "a": "Старые фотографии и бумаги семьи, которые хранят", "w": ["Магазин для всей семьи", "Список покупок", "Дом, где живут бабушки"], "h": "В семейном архиве хранят старые фотографии, письма и документы"}, {"q": "Что рассказывают в словесном портрете человека?", "a": "Как он выглядит и какой у него характер", "w": ["Сколько у него денег", "Какая у него машина", "Где он купил одежду"], "h": "В словесном портрете рассказывают о внешности и характере человека"}, {"q": "Как по семейной фотографии составить словесный портрет бабушки?", "a": "Описать лицо, волосы, одежду и добрый характер", "w": ["Назвать цену фотографии", "Сосчитать, сколько на снимке окон", "Назвать цвет рамки"], "h": "Смотрим на фотографию и описываем человека: каким он выглядит и каким мы его знаем"}, {"q": "Что нужно семье в первую очередь?", "a": "Еда, одежда и жильё", "w": ["Игрушки и сладости", "Новые гаджеты", "Модные украшения"], "h": "Это главные потребности: без них трудно жить"}, {"q": "Откуда семья получает деньги на покупки?", "a": "Взрослые зарабатывают их на работе", "w": ["Их выдаёт школа", "Их приносит курьер каждый день", "Их дают соседи"], "h": "Деньги семьи — это зарплата взрослых за работу"}, {"q": "Как лучше всего узнать, что нужно твоей семье?", "a": "Понаблюдать и расспросить родных", "w": ["Угадать самому", "Спросить у прохожего", "Ничего не делать"], "h": "Мы наблюдаем и спрашиваем родных — так узнаём, что нужно семье"}]);
+GENS.pk1t = mkTF([{"q": "Семейные правила помогают всем жить дружно", "a": "Верно", "h": "Верно. Правила в семье — это договорённости, как жить вместе дружно"}, {"q": "У каждой семьи могут быть свои обычаи и правила", "a": "Верно", "h": "Верно. Семьи разные, и у каждой есть свои добрые традиции"}, {"q": "Говорить правду родным — хорошее семейное правило", "a": "Верно", "h": "Верно. Правда помогает доверять друг другу"}, {"q": "Старших в семье можно не слушать", "a": "Неверно", "h": "Неверно. Старших в семье уважают и прислушиваются к ним"}, {"q": "Помогать по дому могут только взрослые", "a": "Неверно", "h": "Неверно. Дети тоже помогают: убирают игрушки, накрывают на стол"}, {"q": "Все продукты семья покупает только в магазине", "a": "Неверно", "h": "Неверно. Часть продуктов можно вырастить самим: на огороде или на даче"}, {"q": "Деньги семья получает, когда взрослые работают", "a": "Верно", "h": "Верно. Зарплата — главный источник денег в семье"}, {"q": "Хлеб и вода — это то, без чего не обойтись", "a": "Верно", "h": "Верно. Еда и вода нужны человеку каждый день"}, {"q": "Новая игрушка — это то, без чего нельзя прожить", "a": "Неверно", "h": "Неверно. Игрушка — это желание, а не необходимость"}, {"q": "Подарок — один из способов получить вещь", "a": "Верно", "h": "Верно. Вещи можно купить, вырастить, сделать самим или получить в подарок"}, {"q": "По фотографиям из семейного архива можно описать родных", "a": "Верно", "h": "Верно. На старых снимках видно, как выглядели наши близкие"}, {"q": "Общественные правила, например вежливость, нужны не только дома", "a": "Верно", "h": "Верно. Вежливость и уважение нужны везде: и в школе, и на улице, и в магазине"}, {"q": "В общественных местах можно шуметь, потому что рядом чужие люди", "a": "Неверно", "h": "Неверно. Правила вежливости действуют везде: нельзя мешать другим"}]);
+GENS.pk2q = mkQuiz([{"q": "Кто отвечает за работу всей школы?", "a": "Директор", "w": ["Библиотекарь", "Повар", "Охранник"], "h": "Директор руководит школой"}, {"q": "Что значит «внеучебная деятельность»?", "a": "Занятия после уроков: кружки, спорт, праздники", "w": ["Уроки в школе", "Домашнее задание", "Перемена между уроками"], "h": "Внеучебная деятельность — это кружки, секции и праздники после уроков"}, {"q": "Зачем на уроке поднимают руку?", "a": "Чтобы говорить по очереди и слышать друг друга", "w": ["Чтобы размяться", "Чтобы привлечь внимание ребят", "Чтобы закончить урок"], "h": "Если все говорят по очереди, мы слышим друг друга"}, {"q": "Как можно рассказать о своём классе?", "a": "Сколько нас, чем мы увлекаемся, какие у нас правила", "w": ["Какого цвета парты в других классах", "Сколько этажей в соседнем доме", "Что показывают по телевизору"], "h": "Характеристика класса — это рассказ о ребятах, интересах и правилах класса"}, {"q": "Что делает библиотекарь?", "a": "Помогает выбрать книгу и выдаёт её", "w": ["Готовит обед", "Лечит ребят", "Ведёт урок математики"], "h": "В библиотеке помогают найти нужную книгу"}, {"q": "Кто следит за здоровьем детей в школе?", "a": "Медсестра", "w": ["Охранник", "Директор", "Повар"], "h": "Медсестра следит за здоровьем и помогает, если что-то болит"}]);
+GENS.pk2t = mkTF([{"q": "Урок — это учебная деятельность", "a": "Верно", "h": "Верно. На уроке мы учимся"}, {"q": "Кружок рисования — это внеучебная деятельность", "a": "Верно", "h": "Верно. Кружки проходят после уроков"}, {"q": "Повар готовит еду в школьной столовой", "a": "Верно", "h": "Верно. Повар заботится о питании детей"}, {"q": "Директор отвечает за всю школу", "a": "Верно", "h": "Верно. Директор руководит школой"}, {"q": "Правила нужны только учителям, а ученикам не нужны", "a": "Неверно", "h": "Неверно. Правила нужны всем: так в школе порядок и дружба"}, {"q": "В группе все говорят одновременно", "a": "Неверно", "h": "Неверно. В группе слушают друг друга по очереди"}, {"q": "Если обидел одноклассника, надо извиниться", "a": "Верно", "h": "Верно. Извинение помогает сохранить дружбу"}, {"q": "Беречь школьное имущество — правило для всего класса", "a": "Верно", "h": "Верно. Парты и книги принадлежат всем, поэтому их берегут"}, {"q": "Охранник помогает готовить уроки", "a": "Неверно", "h": "Неверно. Охранник охраняет школу и следит за порядком у входа"}, {"q": "Класс — это коллектив: ребята учатся вместе", "a": "Верно", "h": "Верно. В коллективе люди делают общее дело и помогают друг другу"}]);
+GENS.pk3q = mkQuiz([{"q": "Что такое достопримечательность?", "a": "Интересное место, которым гордятся жители", "w": ["Любой старый дом", "Новый магазин", "Школьная парта"], "h": "Достопримечательности — это памятники, парки, музеи и красивые места, на которые приезжают посмотреть"}, {"q": "Как можно изобразить достопримечательность своего края?", "a": "Нарисовать, сфотографировать или сделать макет", "w": ["Только сказать слово", "Спрятать рисунок", "Выбросить фотографию"], "h": "Достопримечательность можно нарисовать, сфотографировать или сделать из пластилина и картона"}, {"q": "С чего начать рассказ о достопримечательности своей местности?", "a": "Побывать там или узнать о ней из книг", "w": ["Выдумать историю", "Не готовиться", "Взять рассказ у соседа"], "h": "Сначала нужно узнать или увидеть самому — тогда рассказ получится правдивым"}, {"q": "Какая польза от гор для людей?", "a": "Руда, камень и снег, питающий реки", "w": ["Горы дают много пшеницы", "В горах много морей", "На горах строят порты"], "h": "В горах добывают руду, зимой копится снег, весной он питает реки"}, {"q": "Где лучше выращивать пшеницу?", "a": "На равнине", "w": ["На вершине скалы", "Посреди озера", "В пещере"], "h": "На ровных полях удобно сеять и убирать урожай"}, {"q": "Как реки помогают людям?", "a": "Дают воду, электричество и путь для судов", "w": ["Дают нам шоколад", "Делают погоду жаркой", "Только мешают"], "h": "От реки берут воду, на ГЭС вырабатывают электричество, а по большим рекам ходят суда"}]);
+GENS.pk3t = mkTF([{"q": "На горе Шымбулак зимой можно кататься на лыжах", "a": "Верно", "h": "Верно. Зимой в горах много снега"}, {"q": "На равнинах строить дороги и города обычно легче, чем в горах", "a": "Верно", "h": "Верно. Ровную землю проще застраивать"}, {"q": "Реки не нужны людям", "a": "Неверно", "h": "Неверно. Реки дают воду, рыбу и электричество"}, {"q": "Озёра — удобное место для отдыха", "a": "Верно", "h": "Верно. На озёрах купаются, катаются на лодках и наблюдают за птицами"}, {"q": "Растения лучше всего растут там, где нет воды", "a": "Неверно", "h": "Неверно. Без воды растения засыхают"}, {"q": "У каждой местности есть свои плюсы и свои трудности", "a": "Верно", "h": "Верно. Где-то холодные зимы, где-то мало воды, но везде есть и хорошее"}, {"q": "Сель опасен для жителей гор", "a": "Верно", "h": "Верно. Сель сносит дороги и дома"}, {"q": "Нарисовать достопримечательность — значит описать её красками", "a": "Верно", "h": "Верно. Рисунок помогает рассказать о красивом месте"}]);
+GENS.pk4q = mkQuiz([{"q": "Какой город — столица Казахстана?", "a": "Астана", "w": ["Алматы", "Шымкент", "Караганда"], "h": "Астана — столица Казахстана. Она находится в центре страны, на реке Есиль"}, {"q": "Какой город в Казахстане самый большой?", "a": "Алматы", "w": ["Астана", "Актау", "Костанай"], "h": "Алматы — самый большой город Казахстана"}, {"q": "Какой город стоит на берегу Каспийского моря?", "a": "Актау", "w": ["Караганда", "Павлодар", "Костанай"], "h": "Актау стоит на берегу Каспийского моря"}, {"q": "В какое озеро впадает река Или?", "a": "В озеро Балхаш", "w": ["В озеро Зайсан", "В озеро Тенгиз", "В Каспийское море"], "h": "Река Или впадает в озеро Балхаш"}, {"q": "Как показывают реки, озёра и моря на карте?", "a": "Голубым цветом", "w": ["Красным цветом", "Жёлтым цветом", "Серым цветом"], "h": "На карте вода — голубая"}, {"q": "Через какой город течёт река Есиль?", "a": "Через Астану", "w": ["Через Алматы", "Через Актау", "Через Шымкент"], "h": "На реке Есиль стоит столица Астана"}]);
+GENS.pk5q = mkQuiz([{"q": "Почему яблоко полезнее конфет?", "a": "В нём много витаминов, а в конфетах много сахара", "w": ["Яблоко дороже", "Яблоко круглое", "Конфеты слишком твёрдые"], "h": "Фрукты и овощи дают витамины, а от сладкого болят зубы"}, {"q": "Как называется транспорт, который ездит по рельсам под землёй?", "a": "Метро", "w": ["Трамвай", "Самолёт", "Теплоход"], "h": "Метро — подземный транспорт"}, {"q": "Какой транспорт быстрее всего довезёт на большое расстояние?", "a": "Самолёт", "w": ["Велосипед", "Лодка", "Самокат"], "h": "Самолёт летит быстро и может доставить далеко"}, {"q": "Где нужно ждать автобус?", "a": "На остановке", "w": ["На проезжей части", "У самого края дороги", "Посреди тротуара"], "h": "Остановка — безопасное место для ожидания транспорта"}, {"q": "Что нужно сделать, когда автобус тронулся, а ты стоишь?", "a": "Держаться за поручень", "w": ["Прыгать", "Бегать по салону", "Открыть окно"], "h": "При движении автобуса можно упасть, если не держаться"}, {"q": "Что делать, если потерялся в магазине?", "a": "Остаться на месте и обратиться к продавцу или охраннику", "w": ["Уйти одному домой", "Пойти с незнакомым человеком", "Выбежать на улицу"], "h": "Взрослые, которые работают в магазине, помогут найти родных"}]);
+GENS.pk5t = mkTF([{"q": "Овощи и фрукты — здоровая еда", "a": "Верно", "h": "Верно. В них много витаминов"}, {"q": "Газировку можно пить вместо воды каждый день", "a": "Неверно", "h": "Неверно. В газировке очень много сахара, лучше пить воду"}, {"q": "Скорая помощь — это специальный транспорт", "a": "Верно", "h": "Верно. Она спешит на помощь людям"}, {"q": "Метро — это воздушный транспорт", "a": "Неверно", "h": "Неверно. Метро — подземный транспорт"}, {"q": "Теплоход относится к водному транспорту", "a": "Верно", "h": "Верно. Он плывёт по воде"}, {"q": "В общественном транспорте надо уступать место пожилым людям и малышам", "a": "Верно", "h": "Верно. Так мы проявляем заботу и вежливость"}, {"q": "В автобусе можно высовывать руки из окна", "a": "Неверно", "h": "Неверно. Это опасно, можно получить травму"}, {"q": "Уйти с незнакомым человеком, если он зовёт, можно", "a": "Неверно", "h": "Неверно. С незнакомыми людьми уходить нельзя"}, {"q": "В общественном месте нужно держаться рядом с родителями", "a": "Верно", "h": "Верно. Так ты не потеряешься"}, {"q": "Чипсы и сладости лучше есть редко", "a": "Верно", "h": "Верно. От них вредят зубы и животик"}, {"q": "Самолёт — наземный транспорт", "a": "Неверно", "h": "Неверно. Самолёт летит по небу, это воздушный транспорт"}]);
+GENS.pk6q = mkQuiz([{"q": "Что такое право ребёнка?", "a": "То, что положено каждому ребёнку, например учиться и отдыхать", "w": ["То, что можно делать без правил", "То, что разрешает только директор", "То, что нужно выполнять"], "h": "Права — это то, что положено каждому ребёнку"}, {"q": "Что такое обязанность?", "a": "То, что человек должен выполнять", "w": ["То, что можно не делать", "Подарок от родителей", "Игра на перемене"], "h": "Обязанность — то, что надо делать, например выполнять домашнее задание"}, {"q": "Что значит «отвечать за свой поступок»?", "a": "Признать ошибку и постараться исправить", "w": ["Сказать, что виноват кто-то другой", "Спрятаться", "Не вспоминать об этом"], "h": "Ответственный человек исправляет то, что сделал неправильно"}, {"q": "Какой праздник отмечают 21–23 марта?", "a": "Наурыз", "w": ["День Победы", "День Конституции", "День столицы"], "h": "Наурыз — праздник весны и обновления природы"}, {"q": "Когда отмечают День Независимости Казахстана?", "a": "16 декабря", "w": ["9 мая", "21 марта", "30 августа"], "h": "В декабре мы празднуем независимость нашей страны"}, {"q": "Какой праздник отмечают 1 мая?", "a": "День единства народа Казахстана", "w": ["Наурыз", "День Конституции", "День Победы"], "h": "В этот день отмечают дружбу народов страны"}, {"q": "Какой праздник отмечают 9 мая?", "a": "День Победы", "w": ["Наурыз", "День столицы", "День Независимости"], "h": "В День Победы вспоминают тех, кто защищал страну в Великой Отечественной войне"}, {"q": "Какой праздник отмечают 30 августа?", "a": "День Конституции", "w": ["Наурыз", "День Победы", "День защитника Отечества"], "h": "Конституция — главный закон страны"}]);
+GENS.pk6t = mkTF([{"q": "У каждого ребёнка есть право учиться в школе", "a": "Верно", "h": "Верно. Образование — право каждого ребёнка"}, {"q": "Обязанность — это то, что можно не выполнять", "a": "Неверно", "h": "Неверно. Обязанности нужно выполнять"}, {"q": "Тот, кто разбил чашку, должен признать это и помочь убрать", "a": "Верно", "h": "Верно. Это и есть ответственность за поступок"}, {"q": "Наурыз — праздник весны", "a": "Верно", "h": "Верно. Наурыз отмечают весной, когда природа просыпается"}, {"q": "Наурыз отмечают осенью", "a": "Неверно", "h": "Неверно. Наурыз отмечают весной, 21–23 марта"}, {"q": "День Победы отмечают 9 января", "a": "Неверно", "h": "Неверно. День Победы — 9 мая"}, {"q": "В День защитника Отечества благодарят людей, которые охраняют страну", "a": "Верно", "h": "Верно. Этот праздник отмечают 7 мая"}, {"q": "День столицы отмечают 6 июля", "a": "Верно", "h": "Верно. Это день рождения нашей столицы"}, {"q": "Служить обществу — значит приносить людям пользу", "a": "Верно", "h": "Верно. Врач, пожарный, учитель служат обществу своей работой"}, {"q": "Помогать соседям и убирать двор — это вклад в жизнь общества", "a": "Верно", "h": "Верно. Маленькие добрые дела делают жизнь вокруг лучше"}, {"q": "Праздники нужны, чтобы помнить важные события в истории страны", "a": "Верно", "h": "Верно. Государственные праздники напоминают нам о важном для всей страны"}]);
+GENS.pk7q = mkQuiz([{"q": "Где утром встаёт Солнце?", "a": "На востоке", "w": ["На западе", "На севере", "На юге"], "h": "Солнце встаёт на востоке"}, {"q": "Где Солнце садится?", "a": "На западе", "w": ["На востоке", "На севере", "На юге"], "h": "Солнце садится на западе"}, {"q": "В какой стороне находится Солнце в полдень?", "a": "На юге", "w": ["На севере", "На востоке", "На западе"], "h": "В нашей стране в полдень Солнце стоит на юге"}, {"q": "Что всегда показывает стрелка компаса?", "a": "Направление на север", "w": ["Направление на Солнце", "Где находится дом", "Где идёт дождь"], "h": "Стрелка компаса поворачивается на север"}, {"q": "Где безопаснее всего во время грозы?", "a": "В здании", "w": ["Под одиноким деревом", "В открытом поле", "На берегу реки"], "h": "В грозу прячутся в доме: молния попадает в высокие предметы"}, {"q": "Как называется сход грязи и камней с гор?", "a": "Сель", "w": ["Гололёд", "Туман", "Заморозки"], "h": "Сель — опасное явление в горах"}, {"q": "Что опасно при гололёде?", "a": "Скользко, можно упасть", "w": ["Слишком жарко", "Слишком темно", "Слишком сухо"], "h": "При гололёде нужно идти осторожно, маленькими шагами"}]);
+GENS.pk7t = mkTF([{"q": "Стрелка компаса показывает на север", "a": "Верно", "h": "Верно. Компас помогает найти север, а потом остальные стороны"}, {"q": "Солнце встаёт на западе", "a": "Неверно", "h": "Неверно. Солнце встаёт на востоке, а садится на западе"}, {"q": "Север и юг — противоположные стороны горизонта", "a": "Верно", "h": "Верно. Север напротив юга, а восток напротив запада"}, {"q": "Засуха полезна для растений", "a": "Неверно", "h": "Неверно. Без дождя растения засыхают"}, {"q": "Тёплый дождь весной помогает расти растениям", "a": "Верно", "h": "Верно. Дождь поит землю"}, {"q": "Сель — это опасное явление природы", "a": "Верно", "h": "Верно. Сель сносит всё на своём пути"}, {"q": "Туман опасен для водителей", "a": "Верно", "h": "Верно. В тумане плохо видно дорогу"}, {"q": "Во время бурана нужно идти далеко от дома", "a": "Неверно", "h": "Неверно. В буран лучше остаться дома или в безопасном месте"}, {"q": "Градом называют ледяные шарики, которые падают с неба", "a": "Верно", "h": "Верно. Град может повредить посевы и машины"}, {"q": "Гроза — безопасное время для купания в реке", "a": "Неверно", "h": "Неверно. В грозу нельзя купаться и стоять у воды"}]);
+GENS.pk8q = mkQuiz([{"q": "Что такое туризм?", "a": "Путешествие, чтобы отдохнуть, узнать новое или поправить здоровье", "w": ["Покупка продуктов", "Учёба в школе", "Работа на огороде"], "h": "Туристы путешествуют, чтобы отдохнуть, узнать новое или заняться спортом"}, {"q": "Куда поехать, чтобы увидеть древний мавзолей?", "a": "В город Туркестан", "w": ["В горы Алатау", "На озеро Алаколь", "На космодром"], "h": "Мавзолей Ходжи Ахмеда Ясави находится в городе Туркестан"}, {"q": "Где в Казахстане находится курорт Бурабай?", "a": "В Акмолинской области", "w": ["В Мангистауской области", "В Атырауской области", "В Кызылординской области"], "h": "Бурабай — красивый курорт с лесом и озёрами в Акмолинской области"}, {"q": "Зачем нужны правила поведения в национальном парке?", "a": "Чтобы сберечь природу", "w": ["Чтобы больше мусорить", "Чтобы шуметь", "Чтобы ломать деревья"], "h": "Туристы не оставляют мусор и не вредят природе"}, {"q": "Что нужно взять в горный поход?", "a": "Тёплую одежду, воду и удобную обувь", "w": ["Только лёгкую одежду", "Только сладости", "Ничего"], "h": "В горах быстро меняется погода и нужны вода и удобная обувь"}, {"q": "Какой вид туризма выбрать, если хочешь кататься на лыжах?", "a": "Спортивный", "w": ["Познавательный", "Оздоровительный", "Природный"], "h": "Катание на лыжах — спортивный туризм"}]);
+GENS.pk8t = mkTF([{"q": "Горнолыжный курорт Шымбулак находится рядом с Алматы", "a": "Верно", "h": "Верно. Шымбулак — любимое место для катания на лыжах"}, {"q": "Чарынский каньон — природная достопримечательность", "a": "Верно", "h": "Верно. Его создали ветер и вода за миллионы лет"}, {"q": "Город Туркестан известен мавзолеем Ходжи Ахмеда Ясави", "a": "Верно", "h": "Верно. Сюда приезжает много туристов"}, {"q": "Петроглифы — это рисунки на скалах, которые сделали древние люди", "a": "Верно", "h": "Верно. Один из таких памятников — Тамгалы"}, {"q": "В национальном парке можно оставлять мусор", "a": "Неверно", "h": "Неверно. Мусор вредит природе и животным"}, {"q": "Озеро Алаколь находится на западе Казахстана", "a": "Неверно", "h": "Неверно. Озеро Алаколь находится на востоке страны"}, {"q": "Туристы едут в музеи, чтобы узнавать новое", "a": "Верно", "h": "Верно. Это познавательный туризм"}, {"q": "Для горного похода достаточно лёгких шлёпанцев", "a": "Неверно", "h": "Неверно. В горах нужна удобная прочная обувь"}]);
+GENS.pk9q = mkQuiz([{"q": "Что такое скотоводство?", "a": "Разведение домашних животных", "w": ["Выращивание хлеба", "Строительство городов", "Охота на диких зверей"], "h": "Скотоводство — это разведение скота: овец, лошадей, верблюдов"}, {"q": "Что такое земледелие?", "a": "Выращивание растений: хлеба, овощей", "w": ["Разведение животных", "Рыбалка", "Охота"], "h": "Земледелие — выращивание растений на полях"}, {"q": "Чем занимались гунны?", "a": "Были кочевниками и разводили скот", "w": ["Строили небоскрёбы", "Плавали на кораблях по океану", "Выращивали только рис"], "h": "Гунны кочевали со стадами и были отличными всадниками"}, {"q": "Кто такие кочевники?", "a": "Люди, которые переезжают со стадами с места на место", "w": ["Люди, которые живут на одном месте всю жизнь", "Люди, которые строят большие города", "Люди, которые только рыбачат"], "h": "Кочевники переезжали, чтобы найти новые пастбища для скота"}, {"q": "Какое животное приручили люди Ботайской культуры?", "a": "Лошадь", "w": ["Слона", "Кита", "Льва"], "h": "Ботайцы считаются одними из первых в мире, кто приручил лошадь"}, {"q": "Где находилось поселение Ботай?", "a": "На севере Казахстана", "w": ["На берегу Каспия", "В Алматы", "В горах Алтая"], "h": "Ботайская культура — культура древних людей на севере Казахстана"}, {"q": "Как называли учёного аль-Фараби?", "a": "Вторым учителем после Аристотеля", "w": ["Первым космонавтом", "Великим путешественником по морям", "Учителем танцев"], "h": "Аль-Фараби был великим учёным, его назвали «Вторым учителем»"}, {"q": "Как называется древний город, где родился аль-Фараби?", "a": "Отрар (Фараб)", "w": ["Алматы", "Бурабай", "Актау"], "h": "Аль-Фараби родился в Фарабе — так раньше называли город Отрар"}]);
+GENS.pk9t = mkTF([{"q": "Охота и рыбалка — это присваивающее хозяйство", "a": "Верно", "h": "Верно. Человек берёт у природы то, что выросло само"}, {"q": "Земледелие и скотоводство — производящее хозяйство", "a": "Верно", "h": "Верно. Человек сам выращивает растения и животных"}, {"q": "Гунны были кочевниками", "a": "Верно", "h": "Верно. Они часто переезжали вместе со стадами"}, {"q": "Гунны были отличными всадниками", "a": "Верно", "h": "Верно. Они жили в сёдлах и ездили на лошадях"}, {"q": "Ботайская культура связана с приручением лошади", "a": "Верно", "h": "Верно. Ботайцы охотились на лошадей и приручали их"}, {"q": "Аль-Фараби был великим учёным", "a": "Верно", "h": "Верно. Он писал книги о философии, музыке и других науках"}, {"q": "Аль-Фараби жил очень давно, больше тысячи лет назад", "a": "Верно", "h": "Верно. Он жил в X веке и до сих пор известен всему миру"}, {"q": "Аль-Фараби был космонавтом", "a": "Неверно", "h": "Неверно. Тогда ещё не было ракет, он был учёным и философом"}, {"q": "Отрар — древний город", "a": "Верно", "h": "Верно. От Отрара остались развалины, которые изучают учёные"}, {"q": "Древние люди сразу строили небоскрёбы", "a": "Неверно", "h": "Неверно. Древние люди жили в землянках, юртах и небольших домах"}, {"q": "Тараз — один из древнейших городов нашей страны", "a": "Верно", "h": "Верно. Тараз существует более двух тысяч лет"}, {"q": "Кочевники никогда не ездили на лошадях", "a": "Неверно", "h": "Неверно. Лошадь была главным помощником кочевника"}]);
+GENS.pk10q = mkQuiz([{"q": "Какие государственные символы есть у Казахстана?", "a": "Флаг, герб и гимн", "w": ["Только флаг", "Только герб", "Только песня"], "h": "Государственные символы — флаг, герб и гимн"}, {"q": "Какого цвета государственный флаг Казахстана?", "a": "Небесно-голубого", "w": ["Красного", "Зелёного", "Белого"], "h": "Цвет флага — небесно-голубой, как мирное небо"}, {"q": "Что изображено на флаге над орлом?", "a": "Золотое солнце с лучами", "w": ["Луна", "Звезда", "Облако"], "h": "Над орлом — золотое солнце"}, {"q": "Что находится в центре герба Казахстана?", "a": "Шанырак — купол юрты", "w": ["Корона", "Дерево", "Книга"], "h": "Шанырак — символ родного дома"}, {"q": "Как называются крылатые кони на гербе?", "a": "Тулпары", "w": ["Драконы", "Пегасы", "Единороги"], "h": "Тулпары — крылатые кони из казахских сказаний"}, {"q": "Как нужно слушать государственный гимн?", "a": "Стоя, с уважением", "w": ["Лёжа", "Сидя и разговаривая", "Бегая по залу"], "h": "Гимн слушают стоя — так выражают уважение к стране"}, {"q": "В какой день отмечают День единства народа Казахстана?", "a": "1 мая", "w": ["9 мая", "16 декабря", "30 августа"], "h": "В этот день отмечают дружбу народов нашей страны"}]);
+GENS.pk10t = mkTF([{"q": "Флаг, герб и гимн называют государственными символами", "a": "Верно", "h": "Верно. Это главные знаки нашей страны"}, {"q": "На флаге Казахстана изображён степной орёл", "a": "Верно", "h": "Верно. Орёл парит под солнцем"}, {"q": "Герб Казахстана — это изображение шанырака, тулпаров и звезды", "a": "Верно", "h": "Верно. Это символы дома, силы и мечты"}, {"q": "Гимн Казахстана можно петь неуважительно", "a": "Неверно", "h": "Неверно. К государственным символам относятся с уважением"}, {"q": "Флаг поднимают в школе в торжественные дни", "a": "Верно", "h": "Верно. Флаг — знак нашей страны"}, {"q": "Герб изображён на государственных документах, например на паспорте", "a": "Верно", "h": "Верно. Герб показывает, что документ выдало государство"}, {"q": "В Казахстане живут люди только одной национальности", "a": "Неверно", "h": "Неверно. В нашей стране живут представители более ста народов"}, {"q": "Дружба народов — сила нашей страны", "a": "Верно", "h": "Верно. Когда люди разных народов дружат, страна сильнее"}, {"q": "У разных народов могут быть свои праздники и обычаи", "a": "Верно", "h": "Верно. Многообразие культур делает страну богаче"}, {"q": "Государственный язык Казахстана — казахский", "a": "Верно", "h": "Верно. Казахский язык — государственный, а русский используется наравне с ним"}]);
+const LESSONS = [
+  { id: "pk1", icon: "👪", title: "Моя семья", goal: "Рассказывать о семье, её правилах, потребностях и семейном бюджете",
+    steps: [
+      Q("pk1s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Давай поговорим о семье: какие в ней правила, что семье нужно, а чего просто хочется. Нажимай на карточки.", {"need": 5, "items": [{"k": "правила", "v": "<div class=\"e2-emo\">📜</div>", "t": "Правила помогают жить дружно: уважать старших, помогать друг другу, говорить правду."}, {"k": "семейный архив", "v": "<div class=\"e2-emo\">📸</div>", "t": "В семейном архиве хранят старые фотографии, письма и документы. По ним можно узнать историю семьи."}, {"k": "словесный портрет", "v": "<div class=\"e2-emo\">🖼️</div>", "t": "Словесный портрет — это рассказ о человеке: как он выглядит и какой у него характер."}, {"k": "нужно и хочется", "v": "<div class=\"e2-emo\">⚖️</div>", "t": "Нужно то, без чего трудно жить: еда, одежда, лекарство. Хочется то, без чего можно прожить: игрушки и сладости."}, {"k": "деньги семьи", "v": "<div class=\"e2-emo\">💰</div>", "t": "Деньги семьи — это зарплата взрослых за работу. Сначала их тратят на то, что нужно."}, {"k": "откуда вещи", "v": "<div class=\"e2-emo\">🛒</div>", "t": "Что-то семья покупает в магазине, что-то выращивает сама, а что-то ей дарят."}]}),
+      Q("pk1s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "💛", "k": "Так принято"}, {"e": "🚫", "k": "Так нельзя"}], "items": [{"g": 0, "e": "👵", "t": "Уважать старших", "h": "В семье старших слушают и берегут"}, {"g": 0, "e": "🤝", "t": "Помогать друг другу", "h": "Вместе в семье легче"}, {"g": 0, "e": "🗣️", "t": "Говорить правду", "h": "Правде родные верят"}, {"g": 1, "e": "🤥", "t": "Обманывать родных", "h": "Обман разрушает доверие"}, {"g": 1, "e": "😠", "t": "Грубить старшим", "h": "Старшим надо отвечать вежливо"}, {"g": 1, "e": "😢", "t": "Обижать младших", "h": "Младших нужно беречь"}]}),
+      Q("pk1s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🍞", "k": "Нужно"}, {"e": "🎁", "k": "Хочется"}], "items": [{"g": 0, "e": "🍞", "t": "Хлеб", "h": "Еда нужна каждый день"}, {"g": 0, "e": "🧥", "t": "Тёплая куртка зимой", "h": "Без одежды замёрзнешь"}, {"g": 0, "e": "💊", "t": "Лекарство", "h": "Оно нужно, когда болеешь"}, {"g": 1, "e": "🧸", "t": "Новая игрушка", "h": "Игрушка приятна, но без неё можно жить"}, {"g": 1, "e": "🍭", "t": "Конфеты", "h": "Сладости не обязательны"}, {"g": 1, "e": "🎮", "t": "Игровая приставка", "h": "Это желание, а не необходимость"}]}),
+      Q("pk1s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk1q"]}),
+      Q("pk1s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk1t"]})
+    ] },
+  { id: "pk2", icon: "🏫", title: "Наша школа", goal: "Рассказывать о школьной жизни, людях и правилах школы",
+    steps: [
+      Q("pk2s1", "infoTap", "Знакомимся с темой", "Школа — это место, где мы учимся и дружим. Давай узнаем, кто работает в школе и какие у нас правила. Нажимай на карточки.", {"need": 5, "items": [{"k": "люди школы", "v": "<div class=\"e2-emo\">🧑‍🏫</div>", "t": "Учитель учит детей, директор руководит школой, медсестра следит за здоровьем, библиотекарь помогает найти книгу."}, {"k": "на уроке и после", "v": "<div class=\"e2-emo\">🎒</div>", "t": "На уроке мы учимся. После уроков бывают кружки, секции и праздники. Это внеучебная деятельность."}, {"k": "правила класса", "v": "<div class=\"e2-emo\">📏</div>", "t": "Правила нужны, чтобы всем было удобно: не опаздывать, поднимать руку, беречь школьную мебель."}, {"k": "в группе", "v": "<div class=\"e2-emo\">🤝</div>", "t": "В группе слушают друг друга по очереди, распределяют роли и договариваются, кто что делает."}, {"k": "между друзьями", "v": "<div class=\"e2-emo\">😊</div>", "t": "Друзьям нужно быть вежливыми, не обзываться и просить прощения, если обидел."}, {"k": "характеристика класса", "v": "<div class=\"e2-emo\">📋</div>", "t": "Характеристика класса — это рассказ о ребятах, об их интересах и правилах класса."}]}),
+      Q("pk2s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "📖", "k": "На уроке"}, {"e": "🎭", "k": "После уроков"}], "items": [{"g": 0, "e": "🧮", "t": "Решать задачи по математике", "h": "Это относится к группе «На уроке»"}, {"g": 0, "e": "✏️", "t": "Писать в тетради", "h": "Это относится к группе «На уроке»"}, {"g": 0, "e": "🔬", "t": "Делать опыт на естествознании", "h": "Это относится к группе «На уроке»"}, {"g": 1, "e": "⚽", "t": "Тренироваться в спортивной секции", "h": "Это относится к группе «После уроков»"}, {"g": 1, "e": "🎭", "t": "Играть в школьном спектакле", "h": "Это относится к группе «После уроков»"}, {"g": 1, "e": "🎨", "t": "Рисовать в кружке", "h": "Это относится к группе «После уроков»"}]}),
+      Q("pk2s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 7, "groups": [{"e": "🧑‍🏫", "k": "Учат"}, {"e": "🧑‍💼", "k": "Руководят"}, {"e": "👩‍⚕️", "k": "Заботятся о здоровье"}], "items": [{"g": 0, "e": "🧑‍🏫", "t": "Учитель", "h": "Он ведёт уроки"}, {"g": 0, "e": "👩‍🏫", "t": "Классный руководитель", "h": "Он заботится о классе"}, {"g": 0, "e": "🏃", "t": "Учитель физкультуры", "h": "Он учит бегать, прыгать и играть в команде"}, {"g": 1, "e": "🧑‍💼", "t": "Директор", "h": "Он отвечает за всю школу"}, {"g": 1, "e": "📋", "t": "Завуч", "h": "Он помогает директору и следит за учебой"}, {"g": 2, "e": "👩‍⚕️", "t": "Медсестра", "h": "Она следит за здоровьем детей"}, {"g": 2, "e": "👩‍🍳", "t": "Повар", "h": "Он готовит еду в школьной столовой"}]}),
+      Q("pk2s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk2q"]}),
+      Q("pk2s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk2t"]})
+    ] },
+  { id: "pk3", icon: "🏞️", title: "Мой край", goal: "Знать, чем полезны горы, равнины, реки и озёра, и рассказывать о своей местности",
+    steps: [
+      Q("pk3s1", "infoTap", "Знакомимся с темой", "У каждого края своя природа. Горы, равнины, реки и озёра помогают людям по-разному. Нажимай на карточки и узнавай.", {"need": 5, "items": [{"k": "горы", "v": "<div class=\"e2-emo\">⛰️</div>", "t": "В горах добывают руду и камень, катаются на лыжах. Снег, который лежит в горах, весной питает реки."}, {"k": "равнины", "v": "<div class=\"e2-emo\">🌾</div>", "t": "На равнинах сеют пшеницу, пасут скот на пастбищах, строят дороги и железные дороги."}, {"k": "реки", "v": "<div class=\"e2-emo\">🏞️</div>", "t": "Реки дают воду для полей и электричество на гидроэлектростанциях. По ним плавают суда."}, {"k": "озёра", "v": "<div class=\"e2-emo\">🦆</div>", "t": "Озёра — место отдыха: летом там купаются, катаются на лодках и наблюдают за птицами."}, {"k": "достопримечательность", "v": "<div class=\"e2-emo\">🏛️</div>", "t": "Достопримечательность — интересное место, которым гордятся жители. О нём можно рассказать, нарисовать его или сделать макет."}, {"k": "условия жизни", "v": "<div class=\"e2-emo\">🏡</div>", "t": "Где-то жить удобно: тёплое лето, чистая река, плодородная земля. А где-то трудно: сильные ветры или мало воды."}]}),
+      Q("pk3s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "⛰️", "k": "Горы"}, {"e": "🌾", "k": "Равнины"}, {"e": "🏞️", "k": "Реки"}], "items": [{"g": 0, "e": "⛏️", "t": "Добывать руду и камень", "h": "В горных породах есть полезные ископаемые"}, {"g": 0, "e": "🎿", "t": "Кататься на лыжах", "h": "Зимой в горах много снега"}, {"g": 0, "e": "❄️", "t": "Хранить снег, который весной питает реки", "h": "Растаявший снег наполняет реки"}, {"g": 1, "e": "🌾", "t": "Сеять пшеницу", "h": "На ровной земле удобно распахивать большие поля"}, {"g": 1, "e": "🐑", "t": "Пасти скот на пастбищах", "h": "В степи много травы"}, {"g": 1, "e": "🛣️", "t": "Строить дороги и железные дороги", "h": "По ровной земле строить легче"}, {"g": 2, "e": "⚡", "t": "Вырабатывать электричество на ГЭС", "h": "Течение вращает турбины"}, {"g": 2, "e": "🚜", "t": "Поливать поля", "h": "Вода нужна растениям"}, {"g": 2, "e": "🚤", "t": "Плавать на судах", "h": "По большим рекам ходят суда"}]}),
+      Q("pk3s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "👍", "k": "Хорошо для жизни"}, {"e": "👎", "k": "Трудно для жизни"}], "items": [{"g": 0, "e": "☀️", "t": "Тёплое долгое лето", "h": "Много времени для выращивания урожая"}, {"g": 0, "e": "💧", "t": "Рядом чистая река", "h": "Есть вода для людей и полей"}, {"g": 0, "e": "🌱", "t": "Плодородная земля", "h": "На ней хорошо растут растения"}, {"g": 1, "e": "🥶", "t": "Очень холодная долгая зима", "h": "Нужно много тепла и тёплая одежда"}, {"g": 1, "e": "🏜️", "t": "Мало воды, сухо", "h": "Трудно выращивать растения"}, {"g": 1, "e": "🌬️", "t": "Сильные ветры", "h": "Они мешают и ломают ветки"}]}),
+      Q("pk3s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk3q"]}),
+      Q("pk3s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk3t"]})
+    ] },
+  { id: "pk4", icon: "🗺️", title: "Карта Казахстана", goal: "Находить на карте города, реки, озёра и море Казахстана",
+    steps: [
+      Q("pk4s1", "infoTap", "Знакомимся с темой", "Карта показывает, где что находится. Давай научимся читать карту Казахстана. Нажимай на карточки.", {"need": 5, "items": [{"k": "что такое карта", "v": "<div class=\"e2-emo\">🗺️</div>", "t": "Карта — это уменьшенный рисунок местности. На ней вода показана голубым цветом, а города — точками."}, {"k": "столица", "v": "<div class=\"e2-emo\">🏛️</div>", "t": "Астана — столица Казахстана. Она находится в центре страны, на реке Есиль."}, {"k": "большой город", "v": "<div class=\"e2-emo\">🏙️</div>", "t": "Алматы — самый большой город Казахстана. Он расположен на юго-востоке страны."}, {"k": "море и озёра", "v": "<div class=\"e2-emo\">🌊</div>", "t": "На западе Казахстана — Каспийское море, на его берегу стоит Актау. В стране есть большое озеро Балхаш."}, {"k": "реки", "v": "<div class=\"e2-emo\">🏞️</div>", "t": "Река Урал течёт на западе и впадает в Каспийское море. Река Или впадает в озеро Балхаш."}]}),
+      Q("pk4s2", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk4q"]})
+    ] },
+  { id: "pk5", icon: "🚌", title: "Здоровье и безопасность в городе", goal: "Выбирать здоровую еду, различать виды транспорта и безопасно вести себя в городе",
+    steps: [
+      Q("pk5s1", "infoTap", "Знакомимся с темой", "В городе много интересного: магазины, транспорт, улицы. Давай узнаем, как питаться правильно и вести себя безопасно. Нажимай на карточки.", {"need": 5, "items": [{"k": "здоровая еда", "v": "<div class=\"e2-emo\">🍎</div>", "t": "Здоровая еда: овощи, фрукты, молоко. В ней много витаминов. Сладости и газировку лучше есть редко."}, {"k": "наземный транспорт", "v": "<div class=\"e2-emo\">🚌</div>", "t": "Автобус, поезд и велосипед ездят по земле. Это наземный транспорт."}, {"k": "водный и воздушный", "v": "<div class=\"e2-emo\">✈️</div>", "t": "Теплоход и лодка плавают по воде, самолёт и вертолёт летают. Самолёт быстрее всего довезёт на большое расстояние."}, {"k": "метро", "v": "<div class=\"e2-emo\">🚇</div>", "t": "Метро ездит под землёй по рельсам. Это подземный транспорт."}, {"k": "спецтранспорт", "v": "<div class=\"e2-emo\">🚒</div>", "t": "Скорая помощь, пожарная и полицейская машины спешат на помощь людям."}, {"k": "правила поведения", "v": "<div class=\"e2-emo\">🛑</div>", "t": "В автобусе держись за поручень и уступай место пожилым людям. Не выбегай на дорогу и не высовывайся из окна."}]}),
+      Q("pk5s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🥗", "k": "Здоровая еда"}, {"e": "🍟", "k": "Нездоровая еда"}], "items": [{"g": 0, "e": "🍎", "t": "Яблоко", "h": "В нём много витаминов"}, {"g": 0, "e": "🥕", "t": "Морковь", "h": "Она полезна для зрения и зубов"}, {"g": 0, "e": "🥛", "t": "Молоко", "h": "В нём есть кальций для крепких костей"}, {"g": 1, "e": "🍭", "t": "Леденцы", "h": "В них много сахара, от него болят зубы"}, {"g": 1, "e": "🍟", "t": "Картошка фри", "h": "Она слишком жирная и солёная"}, {"g": 1, "e": "🥤", "t": "Сладкая газировка", "h": "В ней очень много сахара"}]}),
+      Q("pk5s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🚌", "k": "Наземный"}, {"e": "🚢", "k": "Водный"}, {"e": "✈️", "k": "Воздушный"}], "items": [{"g": 0, "e": "🚌", "t": "Автобус", "h": "Едет по дороге"}, {"g": 0, "e": "🚆", "t": "Поезд", "h": "Едет по рельсам"}, {"g": 0, "e": "🚲", "t": "Велосипед", "h": "Едет по дорожке"}, {"g": 1, "e": "⛵", "t": "Парусник", "h": "Плывёт по воде"}, {"g": 1, "e": "🚢", "t": "Теплоход", "h": "Плывёт по реке или морю"}, {"g": 1, "e": "🛶", "t": "Лодка", "h": "Плывёт по воде"}, {"g": 2, "e": "✈️", "t": "Самолёт", "h": "Летит по небу"}, {"g": 2, "e": "🚁", "t": "Вертолёт", "h": "Летит по небу"}, {"g": 2, "e": "🎈", "t": "Воздушный шар", "h": "Поднимается в воздух"}]}),
+      Q("pk5s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk5q"]}),
+      Q("pk5s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk5t"]})
+    ] },
+  { id: "pk6", icon: "⚖️", title: "Права, обязанности и праздники", goal: "Различать права, обязанности и ответственность, знать праздники Казахстана",
+    steps: [
+      Q("pk6s1", "infoTap", "Знакомимся с темой", "У каждого человека есть права и обязанности. Давай разберёмся, что это такое, и вспомним главные праздники страны. Нажимай на карточки.", {"need": 5, "items": [{"k": "право", "v": "<div class=\"e2-emo\">📜</div>", "t": "Право — это то, что положено каждому ребёнку: учиться, получать помощь врача, жить в семье."}, {"k": "обязанность", "v": "<div class=\"e2-emo\">✅</div>", "t": "Обязанность — это то, что человек должен делать: собирать портфель, выполнять домашние задания, соблюдать правила."}, {"k": "ответственность", "v": "<div class=\"e2-emo\">🤲</div>", "t": "Отвечать за свой поступок значит признать ошибку и постараться её исправить."}, {"k": "Наурыз", "v": "<div class=\"e2-emo\">🌷</div>", "t": "Наурыз — праздник весны и обновления природы."}, {"k": "дружба народов", "v": "<div class=\"e2-emo\">🫶</div>", "t": "В Казахстане отмечают день единства народа. Это праздник дружбы народов нашей страны."}, {"k": "другие праздники", "v": "<div class=\"e2-emo\">🎉</div>", "t": "В декабре мы празднуем независимость страны. В День Победы вспоминают тех, кто защищал страну в Великой Отечественной войне."}]}),
+      Q("pk6s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🎓", "k": "Право"}, {"e": "📋", "k": "Обязанность"}, {"e": "🔧", "k": "Ответственность"}], "items": [{"g": 0, "e": "📚", "t": "Учиться в школе", "h": "У каждого ребёнка есть право на образование"}, {"g": 0, "e": "🏥", "t": "Получать помощь врача", "h": "Каждому ребёнку положена медицинская помощь"}, {"g": 0, "e": "🏠", "t": "Жить в семье", "h": "Дети имеют право на любовь и заботу"}, {"g": 1, "e": "🎒", "t": "Собирать портфель", "h": "Каждый ученик сам собирает свои вещи"}, {"g": 1, "e": "📝", "t": "Выполнять домашние задания", "h": "Это обязанность ученика"}, {"g": 1, "e": "📖", "t": "Соблюдать школьные правила", "h": "Правила нужны всем, и ученик их выполняет"}, {"g": 2, "e": "🧩", "t": "Вернуть взятую вещь", "h": "Взял — верни"}, {"g": 2, "e": "😔", "t": "Извиниться и помочь, если обидел", "h": "За свой поступок отвечаем сами"}, {"g": 2, "e": "🔧", "t": "Исправить свою ошибку", "h": "Ошибки можно исправить"}]}),
+      Q("pk6s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🌍", "k": "Помогает обществу"}, {"e": "🚯", "k": "Вредит обществу"}], "items": [{"g": 0, "e": "🌳", "t": "Посадить дерево", "h": "Деревья очищают воздух"}, {"g": 0, "e": "🧹", "t": "Убрать мусор во дворе", "h": "Чистый двор нужен всем"}, {"g": 0, "e": "👵", "t": "Помочь пожилому человеку донести сумку", "h": "Это забота о людях"}, {"g": 1, "e": "🗑️", "t": "Бросить мусор на землю", "h": "Грязный двор мешает всем"}, {"g": 1, "e": "🖍️", "t": "Рисовать на стенах подъезда", "h": "Стены принадлежат всем жителям"}, {"g": 1, "e": "🌿", "t": "Ломать деревья в парке", "h": "Парк существует для всех"}]}),
+      Q("pk6s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk6q"]}),
+      Q("pk6s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk6t"]})
+    ] },
+  { id: "pk7", icon: "🧭", title: "Компас и погода", goal: "Определять стороны горизонта и знать, как вести себя при опасных явлениях природы",
+    steps: [
+      Q("pk7s1", "infoTap", "Знакомимся с темой", "Стороны горизонта помогают не потеряться, а знания о погоде — вести себя безопасно. Нажимай на карточки.", {"need": 5, "items": [{"k": "стороны горизонта", "v": "<div class=\"e2-emo\">🧭</div>", "t": "Основные стороны горизонта: север, юг, запад и восток."}, {"k": "Солнце", "v": "<div class=\"e2-emo\">☀️</div>", "t": "Солнце встаёт на востоке, а садится на западе. В полдень Солнце у нас стоит на юге."}, {"k": "компас", "v": "<div class=\"e2-emo\">🧲</div>", "t": "Стрелка компаса всегда поворачивается одним концом на север."}, {"k": "опасные явления", "v": "<div class=\"e2-emo\">⚡</div>", "t": "Ураган, буран и гроза с молнией — опасные явления. В грозу прячутся в доме, а не стоят под высоким деревом."}, {"k": "в горах", "v": "<div class=\"e2-emo\">🏔️</div>", "t": "Сель — опасное явление в горах: грязевой поток. Рядом с горными реками нужно быть осторожным."}, {"k": "гололёд", "v": "<div class=\"e2-emo\">🧊</div>", "t": "При гололёде идут осторожно, маленькими шагами. Он мешает, но обычно не угрожает жизни."}]}),
+      Q("pk7s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🌞", "k": "Помогает людям"}, {"e": "🌩️", "k": "Мешает людям"}], "items": [{"g": 0, "e": "☀️", "t": "Тёплое солнце летом", "h": "От солнца и тепла растёт урожай"}, {"g": 0, "e": "🌧️", "t": "Тёплый дождь весной", "h": "Дождь поит поля и сады"}, {"g": 0, "e": "❄️", "t": "Снег зимой", "h": "Снег укрывает землю и весной даёт воду полям"}, {"g": 1, "e": "🏜️", "t": "Долгая засуха", "h": "Без дождей посевы засыхают"}, {"g": 1, "e": "🥶", "t": "Сильные морозы", "h": "В холод трудно работать и ездить"}, {"g": 1, "e": "🌫️", "t": "Густой туман", "h": "Водителям плохо видно дорогу"}]}),
+      Q("pk7s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🌫️", "k": "Неблагоприятные"}, {"e": "🌪️", "k": "Опасные"}, {"e": "🌈", "k": "Хорошая погода"}], "items": [{"g": 0, "e": "🧊", "t": "Гололёд", "h": "Скользко, легко упасть"}, {"g": 0, "e": "🌫️", "t": "Туман", "h": "Плохо видно дорогу"}, {"g": 0, "e": "🥶", "t": "Заморозки", "h": "Холод может повредить растения"}, {"g": 1, "e": "🌪️", "t": "Ураган", "h": "Он валит деревья и срывает крыши"}, {"g": 1, "e": "🌨️", "t": "Буран", "h": "В метель можно потерять дорогу"}, {"g": 1, "e": "⛈️", "t": "Гроза с молнией", "h": "Молния опасна для человека"}, {"g": 2, "e": "🌤️", "t": "Ясный день", "h": "Тепло, светло, безопасно"}, {"g": 2, "e": "🌈", "t": "Радуга после дождя", "h": "Она красивая и безопасная"}, {"g": 2, "e": "🍃", "t": "Лёгкий ветерок", "h": "Он приятен и безопасен"}]}),
+      Q("pk7s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk7q"]}),
+      Q("pk7s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk7t"]})
+    ] },
+  { id: "pk8", icon: "🧳", title: "Путешествие по Казахстану", goal: "Знать виды туризма и удивительные места Казахстана",
+    steps: [
+      Q("pk8s1", "infoTap", "Знакомимся с темой", "Туристы путешествуют, чтобы отдохнуть, узнать новое или заняться спортом. Давай отправимся в путешествие по Казахстану. Нажимай на карточки.", {"need": 5, "items": [{"k": "туризм", "v": "<div class=\"e2-emo\">🧳</div>", "t": "Туризм — путешествие, чтобы отдохнуть, узнать новое или поправить здоровье."}, {"k": "познавательный", "v": "<div class=\"e2-emo\">🏛️</div>", "t": "Познавательный туризм: едут узнавать новое. Например, в Туркестан к мавзолею Ходжи Ахмеда Ясави."}, {"k": "оздоровительный", "v": "<div class=\"e2-emo\">🌲</div>", "t": "Оздоровительный туризм: едут отдыхать. Например, на курорт Бурабай в Акмолинской области."}, {"k": "спортивный", "v": "<div class=\"e2-emo\">⛷️</div>", "t": "Спортивный туризм: катаются на лыжах, ходят в горные походы, сплавляются по рекам."}, {"k": "природный", "v": "<div class=\"e2-emo\">🏞️</div>", "t": "Природный туризм: любуются природой, например Чарынским каньоном и Кольсайскими озёрами."}, {"k": "правила туриста", "v": "<div class=\"e2-emo\">🎒</div>", "t": "Турист не оставляет мусор и не вредит природе. В горах нужны вода и удобная обувь."}]}),
+      Q("pk8s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🏛️", "k": "Познавательный"}, {"e": "🌲", "k": "Оздоровительный"}, {"e": "🎿", "k": "Спортивный"}], "items": [{"g": 0, "e": "🕌", "t": "Мавзолей Ходжи Ахмеда Ясави", "h": "Он находится в городе Туркестан"}, {"g": 0, "e": "🏺", "t": "Городище Отрар", "h": "Это древний город в Туркестанской области"}, {"g": 0, "e": "🪨", "t": "Петроглифы Тамгалы", "h": "Древние рисунки на скалах в Алматинской области"}, {"g": 1, "e": "🌲", "t": "Бурабай", "h": "Чистый воздух, сосновый лес и озёра в Акмолинской области"}, {"g": 1, "e": "🏖️", "t": "Озеро Алаколь", "h": "Тёплая вода и отдых на берегу, озеро на востоке страны"}, {"g": 1, "e": "♨️", "t": "Санаторий", "h": "В санатории лечатся и отдыхают"}, {"g": 2, "e": "🎿", "t": "Шымбулак", "h": "Горнолыжный курорт недалеко от Алматы"}, {"g": 2, "e": "🧗", "t": "Горный поход к вершине", "h": "Для сильных и подготовленных туристов"}, {"g": 2, "e": "🚣", "t": "Сплав по горной реке", "h": "Активный отдых для смелых"}]}),
+      Q("pk8s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk8q"]}),
+      Q("pk8s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk8t"]})
+    ] },
+  { id: "pk9", icon: "🏺", title: "В потоке времени", goal: "Знать, чем занимались люди в древности, и рассказывать об аль-Фараби",
+    steps: [
+      Q("pk9s1", "infoTap", "Знакомимся с темой", "Очень давно люди жили не так, как мы сейчас. Давай узнаем, чем они занимались. Нажимай на карточки.", {"need": 5, "items": [{"k": "присваивающее хозяйство", "v": "<div class=\"e2-emo\">🏹</div>", "t": "Раньше люди брали у природы готовое: охотились, ловили рыбу, собирали ягоды и грибы."}, {"k": "скотоводство", "v": "<div class=\"e2-emo\">🐑</div>", "t": "Скотоводство — разведение скота: овец, лошадей, верблюдов."}, {"k": "земледелие", "v": "<div class=\"e2-emo\">🌾</div>", "t": "Земледелие — выращивание растений на полях: хлеба и овощей."}, {"k": "кочевники", "v": "<div class=\"e2-emo\">🐎</div>", "t": "Кочевники переезжали со стадами, чтобы найти новые пастбища. Гунны были отличными всадниками."}, {"k": "Ботай", "v": "<div class=\"e2-emo\">🏺</div>", "t": "Ботайская культура — культура древних людей на севере Казахстана. Ботайцы считаются одними из первых в мире, кто приручил лошадь."}, {"k": "аль-Фараби", "v": "<div class=\"e2-emo\">📚</div>", "t": "Аль-Фараби был великим учёным. Его называли «Вторым учителем». Он родился в Фарабе — так раньше называли город Отрар."}]}),
+      Q("pk9s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "🏹", "k": "Берём у природы"}, {"e": "🌾", "k": "Выращиваем и делаем"}], "items": [{"g": 0, "e": "🏹", "t": "Охота на диких животных", "h": "Дичь живёт в природе, человек её добывает"}, {"g": 0, "e": "🎣", "t": "Рыбалка в реке", "h": "Рыба вырастает сама"}, {"g": 0, "e": "🫐", "t": "Сбор ягод и грибов в лесу", "h": "Ягоды растут сами"}, {"g": 1, "e": "🐑", "t": "Разведение овец и лошадей", "h": "Это скотоводство: люди растят и пасут скот"}, {"g": 1, "e": "🌾", "t": "Выращивание пшеницы", "h": "Это земледелие: люди сеют и собирают урожай"}, {"g": 1, "e": "🥕", "t": "Огород с овощами", "h": "Овощи сажают и ухаживают за ними"}]}),
+      Q("pk9s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk9q"]}),
+      Q("pk9s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk9t"]})
+    ] },
+  { id: "pk10", icon: "🇰🇿", title: "Символы страны", goal: "Знать государственные символы Казахстана и уважать их",
+    steps: [
+      Q("pk10s1", "infoTap", "Знакомимся с темой", "У каждой страны есть главные символы. Давай познакомимся с символами Казахстана. Нажимай на карточки.", {"need": 5, "items": [{"k": "символы", "v": "<div class=\"e2-emo\">🇰🇿</div>", "t": "Государственные символы Казахстана — флаг, герб и гимн."}, {"k": "флаг", "v": "<div class=\"e2-emo\">🏳️</div>", "t": "Флаг небесно-голубого цвета. На нём золотое солнце с лучами и парящий степной орёл."}, {"k": "герб", "v": "<div class=\"e2-emo\">🛡️</div>", "t": "На гербе шанырак — купол юрты, символ родного дома. Рядом крылатые кони — тулпары."}, {"k": "гимн", "v": "<div class=\"e2-emo\">🎵</div>", "t": "Гимн — торжественная песня страны. Его слушают стоя, так выражают уважение к стране."}, {"k": "дружба народов", "v": "<div class=\"e2-emo\">🤝</div>", "t": "В нашей стране живут люди разных народов. Они дружат и уважают друг друга."}]}),
+      Q("pk10s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "🇰🇿", "k": "Флаг"}, {"e": "🛡️", "k": "Герб"}, {"e": "🎵", "k": "Гимн"}], "items": [{"g": 0, "e": "🟦", "t": "Небесно-голубое полотнище", "h": "Цвет мирного голубого неба"}, {"g": 0, "e": "🌞", "t": "Золотое солнце с лучами", "h": "Солнце — символ жизни и тепла"}, {"g": 0, "e": "🦅", "t": "Парящий степной орёл", "h": "Орёл — символ силы и свободы"}, {"g": 1, "e": "🏕️", "t": "Шанырак — купол юрты", "h": "Шанырак — символ дома и семьи"}, {"g": 1, "e": "🐎", "t": "Крылатые кони — тулпары", "h": "Тулпары — крылатые кони из казахских сказаний"}, {"g": 1, "e": "⭐", "t": "Звезда наверху", "h": "Пятиконечная звезда украшает герб сверху"}, {"g": 2, "e": "🎵", "t": "Торжественная музыка и слова", "h": "Гимн — главная песня страны"}, {"g": 2, "e": "🧍", "t": "Слушать, стоя", "h": "Гимн слушают стоя в знак уважения"}, {"g": 2, "e": "🏅", "t": "Звучит на награждении победителей", "h": "Гимн исполняют на церемониях и соревнованиях"}]}),
+      Q("pk10s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["pk10q"]}),
+      Q("pk10s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["pk10t"]})
+    ] },
+  { id: "pkfin", icon: '🏁', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("pkfin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал про семью, школу, родной край, карту, город, права, погоду, путешествия, историю и символы Казахстана. Теперь закрепляй знания в играх.", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
