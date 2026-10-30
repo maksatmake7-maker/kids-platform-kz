@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Литературное чтение 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+</head>
+<body class="w-page" data-subject="reading">
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<section class="subjects" id="subjects" style="padding-top:20px;">
+  <a href="../index.html" class="back-link" data-i18n="back_home"></a>
+  <span class="grade-tag">Литературное чтение · 2 класс</span>
+  <h2>Читаем, думаем, играем</h2>
+  <p class="lead">Десять игр по программе: жанры, пословицы, герои, главная мысль, план и выразительное чтение. Все тексты в играх написаны специально для вас.</p>
+
+  <h3 class="quarter-heading">Фольклор: загадки, пословицы, рифмы</h3>
+  <div class="island-grid">
+    <a href="genre.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">🎭</span>
+      <h3>Малые жанры</h3>
+      <p>Чем отличаются загадка, считалка, скороговорка, пословица, сказка, рассказ и стихотворение</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="proverb.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">💡</span>
+      <h3>Пословицы и поговорки</h3>
+      <p>Продолжаем пословицы, объясняем смысл и подбираем подходящие</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="rhyme.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">🎵</span>
+      <h3>Загадки и рифмы</h3>
+      <p>Отгадай загадку, найди рифму, допиши двустишие</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+  </div>
+
+  <h3 class="quarter-heading">Читаем и понимаем</h3>
+  <div class="island-grid">
+    <a href="read.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">🎙️</span>
+      <h3>Читаем выразительно</h3>
+      <p>Выразительное чтение, чтение по ролям, вопросы к тексту</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="main.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">💭</span>
+      <h3>О чём хотел сказать автор</h3>
+      <p>Тема текста, заголовок и главная мысль</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="hero.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">🦸</span>
+      <h3>Герои и поступки</h3>
+      <p>Описание героя, оценка поступков, как герой меняется</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="figure.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">🎨</span>
+      <h3>Сравнение, олицетворение, эпитет</h3>
+      <p>Находим сравнение, олицетворение и эпитет</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+  </div>
+
+  <h3 class="quarter-heading">Работаем с текстом</h3>
+  <div class="island-grid">
+    <a href="plan.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">📋</span>
+      <h3>План и части текста</h3>
+      <p>Последовательность событий, части текста, план</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="predict.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">🔮</span>
+      <h3>Что будет дальше?</h3>
+      <p>Прогнозируем конец по заголовку и началу</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+    <a href="find.html" class="island read ready" style="text-decoration:none;">
+      <span class="emoji">📚</span>
+      <h3>Книги-помощники</h3>
+      <p>Где искать слова, сведения и стихи; исправляем неточности</p>
+      <span class="badge" data-i18n="badge_play"></span>
+    </a>
+  </div>
+</section>
+
+<footer data-i18n="footer"></footer>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+</body>
+</html>

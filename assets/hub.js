@@ -56,6 +56,12 @@
         '<g><circle cx="130" cy="36" r="11" fill="#3FB088"/><text x="130" y="41" text-anchor="middle" font-size="14" fill="#fff" '+F+'>Б</text><animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="4s" repeatCount="indefinite"/></g>' +
         '<g><circle cx="92" cy="30" r="9" fill="#FFC93C"/><text x="92" y="35" text-anchor="middle" font-size="12" fill="#fff" '+F+'>Я</text><animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="3s" repeatCount="indefinite"/></g>';
     },
+    lit: function(){
+      return '<rect x="44" y="88" width="92" height="15" rx="3" fill="#7E62C0"/><rect x="50" y="73" width="80" height="15" rx="3" fill="#F2B84B"/><rect x="42" y="58" width="86" height="15" rx="3" fill="#4DC98F"/>' +
+        '<path d="M52 95.5 H128 M58 80.5 H122 M50 65.5 H120" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>' +
+        '<path d="M108 58 V72 L112 68 L116 72 V58Z" fill="#E4503F"/>' +
+        '<g><path d="M86 30 L90 40 L101 41 L93 48 L95 59 L86 53 L77 59 L79 48 L71 41 L82 40Z" fill="#FFC93C"/><animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="2.4s" repeatCount="indefinite"/></g>';
+    },
     kaz: function(){
       var lat=''; for(var i=0;i<7;i++){ lat+='<path d="M'+(54+i*11)+' 76 L'+(65+i*11)+' 102 M'+(65+i*11)+' 76 L'+(54+i*11)+' 102" stroke="#CDB68A" stroke-width="1.4"/>'; }
       return '<rect x="52" y="74" width="76" height="28" rx="3" fill="#F5ECDA"/><g clip-path="url(#ycl)">'+lat+'</g><clipPath id="ycl"><rect x="52" y="74" width="76" height="28"/></clipPath>' +
