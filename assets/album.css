@@ -1,0 +1,30 @@
+/* ===== Білім Аралы — «Альбом наклеек Казахстана» на чердаке (после styles.css, world.css, house.css) ===== */
+.al-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;}
+.al-st{position:relative; display:flex; flex-direction:column; align-items:center; gap:6px; padding:0; border:0; background:none; cursor:pointer; font:inherit; color:inherit; border-radius:24px; transition:transform .15s;}
+.al-st:hover{transform:translateY(-3px) rotate(-1.5deg);}
+.al-st:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:4px;}
+.al-st > svg{display:block; width:100%; height:auto; filter:drop-shadow(0 4px 0 rgba(0,0,0,.22));}
+.al-st.sel > svg{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 8px #FFC93C) drop-shadow(0 4px 0 rgba(0,0,0,.22));}
+.al-name{max-width:100%; background:#fff; border:3px solid #3B2A1A; border-radius:12px; padding:2px 10px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:.92rem; line-height:1.15; color:#3B2A1A; text-align:center;}
+.al-badge{display:inline-flex; align-items:center; gap:5px; border-radius:999px; padding:3px 10px; font-weight:800; font-size:.82rem; border:2px solid #3B2A1A;}
+.al-badge.lk{background:#EEE5D0; color:#5A4A36; border-color:#B8A27A;}
+.al-badge.nw{background:#D9483A; color:#fff; border-color:#8E2F3A;}
+.al-st.locked > svg{filter:grayscale(1) brightness(.42) contrast(.85) drop-shadow(0 4px 0 rgba(0,0,0,.22)); opacity:.6;}
+.al-st.new > svg{filter:brightness(0) opacity(.35) drop-shadow(0 4px 0 rgba(0,0,0,.22));}
+.al-st.new{animation:alWig 2.6s ease-in-out infinite;}
+.al-q{position:absolute; left:0; right:0; top:0; aspect-ratio:1; display:grid; place-items:center; pointer-events:none;}
+.al-q svg{width:46%; height:auto; filter:drop-shadow(0 3px 0 rgba(0,0,0,.25)); opacity:1;}
+@keyframes alWig{0%,72%,100%{transform:rotate(0);}76%{transform:rotate(-4deg);}82%{transform:rotate(4deg);}88%{transform:rotate(-3deg);}94%{transform:rotate(2deg);}}
+.al-st.pop > svg{animation:alPop .5s ease-out;}
+@keyframes alPop{0%{transform:scale(.5) rotate(-12deg);}70%{transform:scale(1.12) rotate(4deg);}100%{transform:scale(1) rotate(0);}}
+
+.al-detail{background:#fff; border:3px solid var(--ink,#1D3557); border-radius:22px; padding:14px 16px; display:flex; gap:14px; align-items:center; box-shadow:0 5px 0 rgba(29,53,87,.1);}
+.al-detail[hidden]{display:none;}
+.al-detail .pic{flex:none; width:96px;}
+.al-detail .pic svg{display:block; width:100%; height:auto;}
+.al-detail h3{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.3rem; color:var(--ink,#1D3557); margin:0 0 4px;}
+.al-detail p{margin:0; font-weight:700; line-height:1.35; color:#3B2A1A;}
+
+@media (max-width:860px){ .al-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (max-width:480px){ .al-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;} .al-detail{flex-direction:column; text-align:center;} .al-detail .pic{width:120px;} }
+@media (prefers-reduced-motion:reduce){ .al-st.new,.al-st.pop > svg{animation:none;} .al-st:hover{transform:none;} }

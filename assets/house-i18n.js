@@ -23,7 +23,7 @@
     into_house: '← В дом', back_lessons: 'Вернуться к урокам', back_grade: 'К выбору класса',
     roof_aria: 'Крыша дома с вывеской «Дом Барсика»',
     room_bed: 'Спальня и гардероб', room_kitchen: 'Кухня', room_play: 'Игровая', room_attic: 'Чердак',
-    chip_open: 'Открыто', chip_kitchen: 'Скоро: накормить баурсаками', chip_play: 'Скоро: игрушки и мяч', chip_attic: 'Скоро: альбом наклеек',
+    chip_open: 'Открыто', chip_kitchen: 'Скоро: накормить баурсаками', chip_play: 'Скоро: игрушки и мяч',
     goal_lbl: 'Моя цель', btn_buy: 'Купить', btn_wear: 'Надеть', btn_off: 'Снять', btn_need: 'Ещё {n}',
     note: 'Звёзды копятся за игры и уроки. Купленную вещь можно снимать и надевать сколько угодно. Если надеть вещь, Барсик будет в ней и на других страницах.',
     goal_main: 'Ещё {n} {games}, и куплю {acc}',
@@ -50,7 +50,6 @@
     say_off: 'Сниму. Хочу примерить что-нибудь другое.',
     say_kitchen_soon: 'Здесь скоро будет кухня. Я так люблю баурсаки!',
     say_play_soon: 'Здесь будет игровая. Скоро поиграем!',
-    say_attic_soon: 'А на чердаке будут наклейки. Я соберу их все!',
     say_bye: 'Приходи ещё! Я буду ждать.'
   };
 
@@ -60,7 +59,7 @@
     into_house: '← Үйге', back_lessons: 'Сабаққа оралу', back_grade: 'Сынып таңдауға',
     roof_aria: '«Барсиктің үйі» деген жазуы бар үй төбесі',
     room_bed: 'Жатын бөлме және гардероб', room_kitchen: 'Ас үй', room_play: 'Ойын бөлмесі', room_attic: 'Шатыр',
-    chip_open: 'Ашық', chip_kitchen: 'Жақында: бауырсақ беру', chip_play: 'Жақында: ойыншықтар мен доп', chip_attic: 'Жақында: жапсырмалар альбомы',
+    chip_open: 'Ашық', chip_kitchen: 'Жақында: бауырсақ беру', chip_play: 'Жақында: ойыншықтар мен доп',
     goal_lbl: 'Менің мақсатым', btn_buy: 'Сатып алу', btn_wear: 'Кию', btn_off: 'Шешу', btn_need: 'Тағы {n}',
     note: 'Жұлдыздар ойындар мен сабақтар үшін жиналады. Сатып алынған затты қалағаныңша шешіп, киіп жүре бересің. Затты киіп қойсаң, Барсик басқа беттерде де сонымен жүреді.',
     goal_main: 'Тағы {n} {games}, сонда {acc} сатып аламын',
@@ -87,7 +86,6 @@
     say_off: 'Шешемін. Басқа бірдеңені киіп көргім келеді.',
     say_kitchen_soon: 'Мұнда жақында ас үй болады. Мен бауырсақты қатты жақсы көремін!',
     say_play_soon: 'Мұнда ойын бөлмесі болады. Жақында ойнаймыз!',
-    say_attic_soon: 'Ал шатырда жапсырмалар болады. Мен бәрін жинаймын!',
     say_bye: 'Тағы кел! Мен күтемін.'
   };
 
@@ -97,7 +95,7 @@
     into_house: '← To the house', back_lessons: 'Back to lessons', back_grade: 'To class selection',
     roof_aria: 'House roof with the sign "Barsik\'s House"',
     room_bed: 'Bedroom & wardrobe', room_kitchen: 'Kitchen', room_play: 'Playroom', room_attic: 'Attic',
-    chip_open: 'Open', chip_kitchen: 'Soon: feed Barsik baursaks', chip_play: 'Soon: toys and a ball', chip_attic: 'Soon: sticker album',
+    chip_open: 'Open', chip_kitchen: 'Soon: feed Barsik baursaks', chip_play: 'Soon: toys and a ball',
     goal_lbl: 'My goal', btn_buy: 'Buy', btn_wear: 'Put on', btn_off: 'Take off', btn_need: '{n} more',
     note: 'Stars are earned in games and lessons. You can take a bought item off and put it on as often as you like. If you wear an item, Barsik wears it on other pages too.',
     goal_main: '{n} more {games}, and I\'ll buy {acc}',
@@ -124,7 +122,6 @@
     say_off: "I'll take it off. I want to try something else.",
     say_kitchen_soon: 'A kitchen is coming here soon. I love baursaks!',
     say_play_soon: "A playroom will be here. We'll play soon!",
-    say_attic_soon: "The attic will have stickers. I'll collect them all!",
     say_bye: "Come back soon! I'll be waiting."
   };
 
@@ -134,7 +131,7 @@
     into_house: '← 回到家里', back_lessons: '返回学习', back_grade: '返回选择年级',
     roof_aria: '屋顶上挂着“巴雷斯的家”的牌子',
     room_bed: '卧室和衣柜', room_kitchen: '厨房', room_play: '游戏室', room_attic: '阁楼',
-    chip_open: '已开放', chip_kitchen: '即将推出：喂包尔萨克', chip_play: '即将推出：玩具和皮球', chip_attic: '即将推出：贴纸册',
+    chip_open: '已开放', chip_kitchen: '即将推出：喂包尔萨克', chip_play: '即将推出：玩具和皮球',
     goal_lbl: '我的目标', btn_buy: '购买', btn_wear: '穿上', btn_off: '脱下', btn_need: '还差{n}',
     note: '星星可以通过游戏和课程获得。买到的东西可以随时脱下或穿上。穿上之后，巴雷斯在其他页面也会穿着它。',
     goal_main: '再玩{n}{games}，我就能买{acc}',
@@ -161,7 +158,6 @@
     say_off: '我先脱下来，想试试别的。',
     say_kitchen_soon: '这里很快会有厨房。我最爱吃包尔萨克了！',
     say_play_soon: '这里会有游戏室，很快我们就能一起玩！',
-    say_attic_soon: '阁楼里会有贴纸，我要把它们全部集齐！',
     say_bye: '再来玩哦！我会等你的。'
   };
 
@@ -171,7 +167,7 @@
     into_house: '← Уйга', back_lessons: 'Дарсларга қайтиш', back_grade: 'Синф танлашга',
     roof_aria: '«Барсикнинг уйи» ёзуви бор уй томи',
     room_bed: 'Ётоқхона ва гардероб', room_kitchen: 'Ошхона', room_play: 'Ўйин хонаси', room_attic: 'Чордоқ',
-    chip_open: 'Очиқ', chip_kitchen: 'Тез орада: боурсоқ билан меҳмон қилиш', chip_play: 'Тез орада: ўйинчоқлар ва тўп', chip_attic: 'Тез орада: стикерлар альбоми',
+    chip_open: 'Очиқ', chip_kitchen: 'Тез орада: боурсоқ билан меҳмон қилиш', chip_play: 'Тез орада: ўйинчоқлар ва тўп',
     goal_lbl: 'Менинг мақсадим', btn_buy: 'Сотиб олиш', btn_wear: 'Кийиш', btn_off: 'Ечиш', btn_need: 'Яна {n}',
     note: 'Юлдузлар ўйинлар ва дарслар учун йиғилади. Сотиб олинган нарсани истаганча еч ва кийиб юраверасан. Нарсани кийиб қўйсанг, Барсик бошқа саҳифаларда ҳам шунда бўлади.',
     goal_main: 'Яна {n} та {games}, ва {acc} оламан',
@@ -198,7 +194,6 @@
     say_off: 'Ечаман. Бошқасини кийиб кўргим келяпти.',
     say_kitchen_soon: 'Бу ерда яқинда ошхона бўлади. Мен боурсоқни жуда яхши кўраман!',
     say_play_soon: 'Бу ерда ўйин хонаси бўлади. Тез орада ўйнаймиз!',
-    say_attic_soon: 'Чордоқда стикерлар бўлади. Ҳаммасини йиғаман!',
     say_bye: 'Яна кел! Мен кутаман.'
   };
 
@@ -208,7 +203,7 @@
     into_house: '← Ба хона', back_lessons: 'Бозгашт ба дарсҳо', back_grade: 'Ба интихоби синф',
     roof_aria: 'Бому тахтаи «Хонаи Барсик»',
     room_bed: 'Хонаи хоб ва ҷевони либос', room_kitchen: 'Ошхона', room_play: 'Хонаи бозӣ', room_attic: 'Болохона',
-    chip_open: 'Кушода', chip_kitchen: 'Ба қарибӣ: баурсак додан', chip_play: 'Ба қарибӣ: бозичаҳо ва тӯб', chip_attic: 'Ба қарибӣ: албоми стикерҳо',
+    chip_open: 'Кушода', chip_kitchen: 'Ба қарибӣ: баурсак додан', chip_play: 'Ба қарибӣ: бозичаҳо ва тӯб',
     goal_lbl: 'Ҳадафи ман', btn_buy: 'Харидан', btn_wear: 'Пӯшидан', btn_off: 'Кашидан', btn_need: 'Боз {n}',
     note: 'Ситораҳо барои бозиҳо ва дарсҳо ҷамъ мешаванд. Чизи харидашударо ҳар қадар хоҳӣ, мекашӣ ва мепӯшӣ. Агар чизро пӯшида монӣ, Барсик дар саҳифаҳои дигар низ бо он мегардад.',
     goal_main: 'Боз {n} {games}, ва {acc} мехарам',
@@ -235,7 +230,6 @@
     say_off: 'Мекашам. Мехоҳам чизи дигареро пӯшам.',
     say_kitchen_soon: 'Ин ҷо ба қарибӣ ошхона мешавад. Ман баурсакро хеле дӯст медорам!',
     say_play_soon: 'Ин ҷо хонаи бозӣ мешавад. Ба қарибӣ бозӣ мекунем!',
-    say_attic_soon: 'Дар болохона стикерҳо мешаванд. Ман ҳамаашро ҷамъ мекунам!',
     say_bye: 'Боз биё! Ман интизор мешавам.'
   };
 
@@ -245,7 +239,7 @@
     into_house: '→ ئۆيگە', back_lessons: 'دەرسكە قايتىش', back_grade: 'سىنىپ تاللاشقا',
     roof_aria: '«بارىسنىڭ ئۆيى» دەپ يېزىلغان تاختاي بار ئۆي ئۆگزىسى',
     room_bed: 'ياتاق ۋە كىيىم ئىشكاپى', room_kitchen: 'ئاشخانا', room_play: 'ئويۇن ئۆيى', room_attic: 'ئۆگزە ئۆي',
-    chip_open: 'ئوچۇق', chip_kitchen: 'يېقىندا: باۋىرساق بېرىش', chip_play: 'يېقىندا: ئويۇنچۇق ۋە توپ', chip_attic: 'يېقىندا: چاپلاقلار ئالبومى',
+    chip_open: 'ئوچۇق', chip_kitchen: 'يېقىندا: باۋىرساق بېرىش', chip_play: 'يېقىندا: ئويۇنچۇق ۋە توپ',
     goal_lbl: 'مېنىڭ نىشانىم', btn_buy: 'سېتىۋېلىش', btn_wear: 'كىيىش', btn_off: 'سېلىش', btn_need: 'يەنە {n}',
     note: 'يۇلتۇزلار ئويۇن ۋە دەرسلەردىن يىغىلىدۇ. سېتىۋالغان نەرسىنى خالىغانچە سېلىپ ۋە كىيىپ بولىدۇ. نەرسىنى كىيسىڭىز، بارىس باشقا بەتلەردىمۇ شۇنى كىيىپ تۇرىدۇ.',
     goal_main: 'يەنە {n} {games}، ئاندىن {acc} ئالىمەن',
@@ -272,7 +266,6 @@
     say_off: 'سېلىۋېتىمەن. باشقا نەرسە كىيىپ باقاي.',
     say_kitchen_soon: 'بۇ يەردە ئاشخانا بولىدۇ. مەن باۋىرساقنى ناھايىتى ياخشى كۆرىمەن!',
     say_play_soon: 'بۇ يەردە ئويۇن ئۆيى بولىدۇ. يېقىندا ئوينايمىز!',
-    say_attic_soon: 'ئۆگزە ئۆيدە چاپلاقلار بولىدۇ. مەن ھەممىسىنى يىغىمەن!',
     say_bye: 'يەنە كېلىڭ! مەن كۈتىمەن.'
   };
 
