@@ -172,11 +172,19 @@
     return {done:n, total:s.keys.length};
   }
 
+  /* кнопка «Подарок дня» (страница gift/index.html в корне сайта; получен ли сегодня — из localStorage 'bilim_gift_v1') */
+  function giftChip(){
+    if(kz) return '';   /* пока только русская версия подарка */
+    var got=false; try{ var g=JSON.parse(localStorage.getItem('bilim_gift_v1')), d=new Date(), k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); got=!!(g&&g.days&&g.days[k]); }catch(e){}
+    var t=kz?'Күн сыйы':'Подарок дня';
+    return '<a class="hub-gift'+(got?' got':'')+'" href="'+(C.giftHref||'../../gift/index.html')+'"><i aria-hidden="true"></i><span>'+t+'</span><em>'+(got?(kz?'алынды':'получен'):(kz?'жаңа':'новый'))+'</em></a>';
+  }
+
   /* ---------- сборка страницы ---------- */
   var kz=C.dir==='kz';
   var html='<div class="hub-intro"><div class="hub-bs" aria-hidden="true"><span class="islet"></span><span class="bsw" id="hubBs"></span></div>' +
     '<div class="hub-tx"><span class="grade-tag dirtag" style="--flag:'+(kz?'#3FB088':'#FF6B5B')+'"><i></i><span data-i18n="'+C.tag+'"></span></span>' +
-    '<h2 data-i18n="'+(C.h2||'subjects_h2')+'"></h2><p class="lead" data-i18n="'+(C.lead||'subjects_lead')+'"></p></div></div><div class="hub-archi">';
+    '<h2 data-i18n="'+(C.h2||'subjects_h2')+'"></h2><p class="lead" data-i18n="'+(C.lead||'subjects_lead')+'"></p>'+giftChip()+'</div></div><div class="hub-archi">';
   C.subjects.forEach(function(s,i){
     var soon=!!s.soon, d=(-(i%5)*0.9).toFixed(1);
     html+='<a class="hi '+(soon?'fog':'ready')+'" '+(soon?'href="#" aria-disabled="true" tabindex="-1"':'href="'+s.href+'"')+' data-id="'+s.id+'" style="--c:'+s.color+';--d:'+d+'s">' +
