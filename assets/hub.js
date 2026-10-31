@@ -46,6 +46,13 @@
         '<g transform="translate(138 62)"><circle r="14" fill="#FFC93C"/><circle r="14" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2"/><path d="M-6 0H6M0 -6V6" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><animateTransform attributeName="transform" type="translate" values="138 62;138 56;138 62" dur="3.2s" repeatCount="indefinite"/></g>' +
         '<g transform="translate(32 66)"><circle r="11" fill="#FFB020"/><path d="M-5 0H5" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></g>';
     },
+    quest: function(){
+      return '<rect x="40" y="50" width="100" height="62" rx="8" fill="#F6E7BF" stroke="#B9955A" stroke-width="3"/>' +
+        '<path d="M50 90 C62 62 78 96 96 76 C110 62 122 66 130 58" fill="none" stroke="#E8584A" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>' +
+        '<circle cx="62" cy="84" r="5" fill="#FFC93C" stroke="#7A4620" stroke-width="1.5"/><circle cx="96" cy="76" r="5" fill="#FFC93C" stroke="#7A4620" stroke-width="1.5"/>' +
+        '<g transform="translate(130 56)"><path d="M-9 8 L-9 -12 L9 -6 L-9 0" fill="#E8584A" stroke="#8E2F3A" stroke-width="1.6" stroke-linejoin="round"/><path d="M-9 8 V-14" stroke="#7A4620" stroke-width="2.4" stroke-linecap="round"/><animateTransform attributeName="transform" type="translate" values="130 56;130 51;130 56" dur="3s" repeatCount="indefinite"/></g>' +
+        '<g transform="translate(44 40)"><polygon points="0,-9 2.6,-3 9,-2.4 4.2,2 5.6,8.6 0,5.2 -5.6,8.6 -4.2,2 -9,-2.4 -2.6,-3" fill="#FFC93C"><animateTransform attributeName="transform" type="rotate" values="-10;10;-10" dur="3.4s" repeatCount="indefinite"/></polygon></g>';
+    },
     house: function(){
       return '<rect x="112" y="48" width="12" height="26" fill="#7A3B2E"/>' +
         '<g fill="#fff" opacity=".8"><circle cx="118" cy="40" r="5"><animate attributeName="cy" values="42;28" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="3s" repeatCount="indefinite"/></circle></g>' +
@@ -179,6 +186,20 @@
     return '<div class="hub-chips"><a class="hub-gift hub-gift-ru'+(got?' got':'')+'" href="'+(C.giftHref||'../../gift/index.html')+'"><i aria-hidden="true"></i><span>Подарок дня</span><em>'+(got?'получен':'новый')+'</em></a></div>';
   }
 
+
+  /* плитка «Квесты Барсика» (subject.quest): название и описание на языке страницы (те же слова, что в assets/quest-data.js), ссылка ведёт на задания именно этого класса */
+  var QT={
+    ru:['Квесты Барсика','Приключения с задачками для твоего класса'], kz:['Барсик квесттері','Сыныбыңа лайық тапсырмалы шытырман оқиғалар'],
+    en:["Barsik's Quests",'Adventures with puzzles for your grade'], zh:['巴雷斯的冒险','适合你年级的解谜冒险'],
+    uz:['Барсик квестлари','Синфингга мос топшириқли саргузашт'], tg:['Квестҳои Барсик','Саргузашт бо масъалаҳо барои синфи ту'],
+    ug:['بارىسنىڭ سەرگۈزەشتىلىرى','سىنىپىڭىزغا ماس تاپشۇرۇقلۇق سەرگۈزەشت']
+  };
+  function syncQuest(l){
+    l=l||document.documentElement.getAttribute('data-current')||C.lang||'ru'; var t=QT[l]||QT.ru;
+    $$('[data-qt]',root).forEach(function(e){ e.textContent=t[e.getAttribute('data-qt')==='t'?0:1]; });
+    $$('a[data-quest]',root).forEach(function(a){ a.href=a.getAttribute('data-base')+'&lang='+l; });
+  }
+
   /* ---------- сборка страницы ---------- */
   var kz=C.dir==='kz';
   var html='<div class="hub-intro"><div class="hub-bs" aria-hidden="true"><span class="islet"></span><span class="bsw" id="hubBs"></span></div>' +
@@ -186,7 +207,8 @@
     '<h2 data-i18n="'+(C.h2||'subjects_h2')+'"></h2><p class="lead" data-i18n="'+(C.lead||'subjects_lead')+'"></p>'+giftChip()+'</div></div><div class="hub-archi">';
   C.subjects.forEach(function(s,i){
     var soon=!!s.soon, d=(-(i%5)*0.9).toFixed(1);
-    html+='<a class="hi '+(soon?'fog':'ready')+'" '+(soon?'href="#" aria-disabled="true" tabindex="-1"':'href="'+s.href+'"')+' data-id="'+s.id+'" style="--c:'+s.color+';--d:'+d+'s">' +
+    if(s.quest){ s.titleText='<span data-qt="t"></span>'; s.descText='<span data-qt="d"></span>'; }
+    html+='<a class="hi '+(soon?'fog':'ready')+'" '+(soon?'href="#" aria-disabled="true" tabindex="-1"':'href="'+s.href+'"')+(s.quest?' data-quest="1" data-base="'+s.href+'"':'')+' data-id="'+s.id+'" style="--c:'+s.color+';--d:'+d+'s">' +
       '<span class="hi-art"><svg class="art" viewBox="0 0 180 140" aria-hidden="true">'+base(d)+(ART[s.art]?ART[s.art]():'')+'</svg><span class="fogc"></span>'+LOCK+'</span>' +
       '<span class="hi-plate">'+(s.titleText?'<h3>'+s.titleText+'</h3>':'<h3 data-i18n="'+s.title+'"></h3>')+(s.descText?'<p>'+s.descText+'</p>':'<p data-i18n="'+s.desc+'"></p>')+
       '<span class="hi-prog"><i class="bar"><b></b></i><span class="st">'+STAR+STAR+STAR+'</span></span>' +
@@ -213,13 +235,14 @@
   var BACK={ru:'← К выбору класса',kz:'← Сыныпты таңдау',en:'← Choose grade',zh:'← 选择年级',uz:'← Sinfni tanlash',tg:'← Интихоби синф',ug:'← سىنىپ تاللاش'};
   var back=document.getElementById('hubBack');
   function setBack(l){ if(back) back.textContent=BACK[l]||BACK.ru; }
-  var _al=window.applyLang; window.applyLang=function(l){ var r=_al.apply(this,arguments); setBack(l); return r; };
+  var _al=window.applyLang; window.applyLang=function(l){ var r=_al.apply(this,arguments); setBack(l); syncQuest(l); return r; };
 
   /* Барсик: стоит на своём островке, следит за курсором, внешность по классу */
   if(window.Barsik){ try{ Barsik.mount(document.getElementById('hubBs'),{grade:C.grade||1,track:true}); }catch(e){} }
 
   document.addEventListener('DOMContentLoaded',function(){
     applyLang((C.lang && C.lang!=='ru') ? C.lang : (savedLang()||'ru'));   /* казахский хаб — по-казахски, русский — на запомненном языке */
+    syncQuest();
     fillProgress();
   });
 })();
