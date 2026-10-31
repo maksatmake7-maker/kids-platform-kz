@@ -172,13 +172,22 @@
     return {done:n, total:s.keys.length};
   }
 
-  /* кнопка «Подарок дня» (страница gift/index.html в корне сайта; получен ли сегодня — из localStorage 'bilim_gift_v1') */
+  /* кнопки «Дом Барсика» и «Подарок дня» (страницы house/ и gift/ в корне сайта; получен ли подарок сегодня — из localStorage 'bilim_gift_v1').
+     Название дома — на языке страницы (те же слова, что в assets/house-i18n.js); подарок дня пока только на русском, на других языках его прячет CSS. */
+  var HOUSE_NAME={ru:'Дом Барсика',kz:'Барсиктің үйі',en:"Barsik's House",zh:'巴雷斯的家',uz:'Барсикнинг уйи',tg:'Хонаи Барсик',ug:'بارىسنىڭ ئۆيى'};
   function giftChip(){
-    var hk='<a class="hub-gift hub-house" href="'+(C.houseHref||'../../house/index.html')+'"><i aria-hidden="true"></i><span>'+(kz?'Барсиктің үйі':'Дом Барсика')+'</span></a>';
-    if(kz) return '<div class="hub-chips">'+hk+'</div>';   /* подарок дня пока только на русском */
+    var hh=C.houseHref||'../../house/index.html';
+    var hk='<a class="hub-gift hub-house" href="'+hh+'" data-base="'+hh+'"><i aria-hidden="true"></i><span>'+HOUSE_NAME[C.lang||'ru']+'</span></a>';
     var got=false; try{ var g=JSON.parse(localStorage.getItem('bilim_gift_v1')), d=new Date(), k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); got=!!(g&&g.days&&g.days[k]); }catch(e){}
-    var t=kz?'Күн сыйы':'Подарок дня';
-    return '<div class="hub-chips">'+hk+'<a class="hub-gift'+(got?' got':'')+'" href="'+(C.giftHref||'../../gift/index.html')+'"><i aria-hidden="true"></i><span>'+t+'</span><em>'+(got?(kz?'алынды':'получен'):(kz?'жаңа':'новый'))+'</em></a></div>';
+    return '<div class="hub-chips">'+hk+'<a class="hub-gift hub-gift-ru'+(got?' got':'')+'" href="'+(C.giftHref||'../../gift/index.html')+'"><i aria-hidden="true"></i><span>Подарок дня</span><em>'+(got?'получен':'новый')+'</em></a></div>';
+  }
+  /* название и ссылка дома следуют за выбранным языком (в ссылку кладём ?lang=, чтобы дом открылся на том же языке) */
+  function syncHouse(){
+    var l=document.documentElement.getAttribute('data-current')||C.lang||'ru';
+    [].forEach.call(document.querySelectorAll('.hub-house'),function(a){
+      var sp=a.querySelector('span'); if(sp) sp.textContent=HOUSE_NAME[l]||HOUSE_NAME.ru;
+      a.href=a.getAttribute('data-base')+'?lang='+l;
+    });
   }
 
   /* ---------- сборка страницы ---------- */
@@ -223,5 +232,7 @@
   document.addEventListener('DOMContentLoaded',function(){
     applyLang(C.lang||'ru');
     fillProgress();
+    syncHouse();
+    try{ new MutationObserver(syncHouse).observe(document.documentElement,{attributes:true,attributeFilter:['data-current']}); }catch(e){}
   });
 })();

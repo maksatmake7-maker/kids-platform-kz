@@ -12383,3 +12383,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var orig = window.applyLang;
   window.applyLang = function(lang){ orig(lang); note(translations[lang] ? lang : 'ru'); };
 })();
+
+/* ===== Запоминаем язык, который ребёнок выбрал кнопкой: его подхватывает Дом Барсика (assets/house-i18n.js) ===== */
+document.addEventListener('click', function(e){
+  var b = e.target && e.target.closest ? e.target.closest('.lang-toggle [data-lang]') : null;
+  if(b){ try { localStorage.setItem('bilim_lang_v1', b.getAttribute('data-lang')); } catch(x){} }
+}, true);

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Подарок дня — Білім Аралы</title>
+<title data-hi-title="qk_gift">Подарок дня — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles.css">
@@ -29,10 +29,16 @@
 <main class="hs-wrap">
   <div class="hs-top">
     <a href="../grade-picker.html" class="back-link" id="back" data-back>← Вернуться к урокам</a>
-    <h1>Подарок дня</h1>
+    <h1 data-hi="qk_gift">Подарок дня</h1>
   </div>
 
-  <div class="hs-grid">
+  <!-- подарок дня пока только на русском: на другом языке вместо него короткая пометка -->
+  <div class="gf-box gf-ru" id="ruNote" hidden>
+    <h2 data-hi="gift_ru_only">Подарок дня пока только на русском.</h2>
+    <button type="button" class="gf-cta" id="ruBtn" data-hi="btn_ru">По-русски</button>
+  </div>
+
+  <div class="hs-grid" id="giftGrid">
     <div class="hs-left">
       <div class="hs-stage" id="stage">
         <div class="win"></div>
@@ -90,6 +96,7 @@
 </main>
 
 <script src="../assets/i18n.js"></script>
+<script src="../assets/house-i18n.js"></script>
 <script src="../assets/progress.js"></script>
 <script src="../assets/barsik.js"></script>
 <script src="../assets/house-back.js"></script>
@@ -232,6 +239,15 @@
     else { say(G.say.open, 0); }
   }
   if (window.updateProgressBadge) updateProgressBadge();
+
+  /* язык: загадки и факты пока только русские — на другом языке показываем пометку и кнопку «По-русски» */
+  function gate(){
+    var ru = HI.lang() === 'ru';
+    $('ruNote').hidden = ru; $('giftGrid').hidden = !ru;
+    if (!ru){ stop(); bubble.classList.remove('on'); }
+  }
+  $('ruBtn').addEventListener('click', function(){ applyLang('ru'); });
+  HI.on(gate); gate();
 })();
 </script>
 </body>
