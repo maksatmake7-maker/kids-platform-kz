@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-hi-title="attic_name">Чердак Барсика — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/world.css">
+<link rel="stylesheet" href="../assets/house.css">
+<link rel="stylesheet" href="../assets/album.css">
+</head>
+<body class="w-page">
+
+<header>
+  <a href="../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="hs-wrap">
+  <div class="hs-top">
+    <a href="index.html" class="back-link" data-hi="into_house">← В дом</a>
+    <a href="../grade-picker.html" class="back-link" data-back data-arrow="no">Вернуться к урокам</a>
+    <h1 data-hi="album_h1">Альбом наклеек Казахстана</h1>
+  </div>
+
+  <div class="hs-grid">
+    <div class="hs-left">
+      <div class="hs-stage" id="stage">
+        <div class="win"></div>
+        <div class="floor"></div>
+        <div class="hs-bubble" id="bubble" role="status" aria-live="polite"></div>
+        <div class="hs-bs" id="bs"></div>
+      </div>
+      <div class="hs-goal">
+        <div class="lbl" data-hi="album_lbl">Мой альбом</div>
+        <div class="main" id="goalMain"></div>
+        <div class="bar"><b id="goalBar"></b></div>
+        <div class="sub" id="goalSub"></div>
+      </div>
+    </div>
+    <div>
+      <div class="al-detail" id="detail" hidden><div class="pic"></div><div><h3></h3><p></p></div></div>
+      <div class="al-grid" id="grid" style="margin-top:14px"></div>
+      <p class="hs-note" data-hi="album_hint">Нажми на наклейку, чтобы узнать о ней. Звёзды при этом не тратятся: наклейки открываются сами за звёзды, которые ты заработал.</p>
+    </div>
+  </div>
+</main>
+
+<script src="../assets/i18n.js"></script>
+<script src="../assets/house-i18n.js"></script>
+<script src="../assets/album-data.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/barsik.js"></script>
+<script src="../assets/house-back.js"></script>
+<script src="../assets/house.js"></script>
+<script src="../assets/world.js"></script>
+<script src="../assets/album.js"></script>
+</body>
+</html>
