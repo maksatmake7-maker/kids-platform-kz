@@ -60,5 +60,31 @@
     return svg(240, 160, s, px || 250);
   }
 
-  window.M3 = { svg:svg, blocks3:blocks3, fracBar:fracBar, fracPie:fracPie, frac:frac, euler:euler };
+
+  /* ---------- прямоугольник на клетках, окружность, банкноты ---------- */
+  function grid(w, h, o){
+    o = o || {}; var u = o.u || 26, X = 26, Y = 22, W = w * u + X + 14, H = h * u + Y + 22, s = '';
+    s += '<rect x="' + X + '" y="' + Y + '" width="' + (w * u) + '" height="' + (h * u) + '" fill="' + (o.fill === false ? '#FFFDF5' : '#B3E5FC') + '"/>';
+    if(o.cells !== false){ for(var i = 0; i <= w; i++) s += '<line x1="' + (X + i * u) + '" y1="' + Y + '" x2="' + (X + i * u) + '" y2="' + (Y + h * u) + '" ' + st('#4FC3F7', 1.2) + '/>'; for(var j = 0; j <= h; j++) s += '<line x1="' + X + '" y1="' + (Y + j * u) + '" x2="' + (X + w * u) + '" y2="' + (Y + j * u) + '" ' + st('#4FC3F7', 1.2) + '/>'; }
+    s += '<rect x="' + X + '" y="' + Y + '" width="' + (w * u) + '" height="' + (h * u) + '" fill="none" ' + st('#1E88E5', 3) + '/>';
+    var lt = function(x, y, t){ return '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="15" fill="' + INK + '">' + t + '</text>'; };
+    if(o.a !== undefined) s += lt(X + w * u / 2, Y - 6, o.a);
+    if(o.b !== undefined) s += lt(X - 12, Y + h * u / 2 + 5, o.b);
+    return svg(W, H, s, Math.min(W, 340));
+  }
+  function circle(o){
+    o = o || {}; var s = '<circle cx="100" cy="80" r="64" fill="#FFE0B2" ' + st('#EF6C00', 3) + '/><circle cx="100" cy="80" r="4" fill="' + INK + '"/>';
+    var t = function(x, y, c, tx){ return '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="14" fill="' + c + '">' + tx + '</text>'; };
+    if(o.r) s += '<line x1="100" y1="80" x2="164" y2="80" ' + st('#D81B60', 3) + '/>' + t(132, 72, '#D81B60', o.rl || 'радиус');
+    if(o.d) s += '<line x1="36" y1="80" x2="164" y2="80" ' + st('#1E88E5', 3) + '/>' + t(100, 102, '#1E88E5', o.dl || 'диаметр');
+    s += t(100, 70, INK, 'центр');
+    return svg(200, 160, s, 220);
+  }
+  var NOTE = { 1000:['#D3E4FF', '#6C9BE6'], 2000:['#E8DAFF', '#9C7BE0'], 5000:['#FFD9C2', '#E57F4A'], 10000:['#C8E6C9', '#4CA46C'] };
+  function note(v, w){
+    var c = NOTE[v] || ['#eee', '#999']; w = w || 110;
+    return '<svg viewBox="0 0 110 56" width="' + w + '" height="' + (w * 56 / 110) + '" xmlns="http://www.w3.org/2000/svg" style="display:inline-block"><rect x="2" y="2" width="106" height="52" rx="8" fill="' + c[0] + '" stroke="' + c[1] + '" stroke-width="3"/><circle cx="22" cy="28" r="12" fill="' + c[1] + '" fill-opacity=".5"/><text x="72" y="35" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="22" fill="#25324A">' + v + '</text></svg>';
+  }
+
+  window.M3 = { grid:grid, circle:circle, note:note, svg:svg, blocks3:blocks3, fracBar:fracBar, fracPie:fracPie, frac:frac, euler:euler };
 })();
