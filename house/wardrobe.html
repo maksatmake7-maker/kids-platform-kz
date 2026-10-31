@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гардероб Барсика — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/world.css">
+<link rel="stylesheet" href="../assets/house.css">
+</head>
+<body class="w-page">
+
+<header>
+  <a href="../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="hs-wrap">
+  <div class="hs-top">
+    <a href="index.html" class="back-link">← В дом</a>
+    <h1>Гардероб</h1>
+  </div>
+
+  <div class="hs-grid">
+    <div class="hs-left">
+      <div class="hs-stage" id="stage">
+        <div class="win"></div>
+        <div class="floor"></div>
+        <div class="hs-bubble" id="bubble" role="status" aria-live="polite"></div>
+        <div class="hs-bs" id="bs"></div>
+      </div>
+      <div class="hs-goal">
+        <div class="lbl">Моя цель</div>
+        <div class="main" id="goalMain"></div>
+        <div class="bar"><b id="goalBar"></b></div>
+        <div class="sub" id="goalSub"></div>
+      </div>
+    </div>
+    <div>
+      <div class="hs-shop" id="shop"></div>
+      <p class="hs-note">Звёзды копятся за игры и уроки. Купленную вещь можно снимать и надевать сколько угодно. Если надеть вещь, Барсик будет в ней и на других страницах.</p>
+    </div>
+  </div>
+</main>
+
+<script src="../assets/i18n.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/barsik.js"></script>
+<script src="../assets/house.js"></script>
+<script src="../assets/world.js"></script>
+<script>
+(function(){
+  var STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 16.5,14 18.5,21.5 12,17.5 5.5,21.5 7.5,14 2,9.5 9,9" fill="#FFC93C" stroke="#C98A00" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+  var $ = function(id){ return document.getElementById(id); };
+  var bs = $('bs'), bubble = $('bubble'), shop = $('shop'), bubbleT = null, spinT = null;
+  var b = Barsik.mount(bs, { grade: 1, track: true });   /* дома Барсик без школьного рюкзака */
+
+  function say(id){
+    bubble.textContent = House.say(id);
+    bubble.classList.add('on');
+    clearTimeout(bubbleT); bubbleT = setTimeout(function(){ bubble.classList.remove('on'); }, 3200);
+  }
+  function celebrate(){
+    b.dress(House.worn());
+    b.react('happy', 1900);
+    bs.classList.remove('spin'); void bs.offsetWidth; bs.classList.add('spin');
+    clearTimeout(spinT); spinT = setTimeout(function(){ bs.classList.remove('spin'); }, 1000);
+  }
+
+  function render(){
+    var html = '';
+    House.list().forEach(function(it){
+      var label = it.owned ? (it.worn ? 'Снять' : 'Надеть') : (it.canBuy ? 'Купить' : 'Ещё ' + it.need);
+      var cls = it.owned ? 'have' : (it.canBuy ? '' : 'lock');
+      html += '<div class="hs-card' + (it.worn ? ' worn' : '') + '">' +
+        '<div class="hs-thumb"><svg viewBox="' + it.vb + '" aria-hidden="true">' + it.art + '</svg></div>' +
+        '<h3>' + it.name + '</h3>' +
+        '<div class="hs-row"><span class="hs-price">' + STAR + it.price + '</span>' +
+        '<button type="button" class="hs-btn ' + cls + '" data-id="' + it.id + '"' + (!it.owned && !it.canBuy ? ' aria-disabled="true"' : '') +
+        ' aria-label="' + label + ': ' + it.name + '">' + label + '</button></div></div>';
+    });
+    shop.innerHTML = html;
+    var g = House.goalText();
+    $('goalMain').textContent = g.main; $('goalSub').textContent = g.sub; $('goalBar').style.width = g.pct + '%';
+    House.badge();
+  }
+
+  shop.addEventListener('click', function(e){
+    var btn = e.target.closest('.hs-btn'); if (!btn) return;
+    var id = btn.getAttribute('data-id'), it = House.list().filter(function(x){ return x.id === id; })[0];
+    if (it.owned){
+      var r = House.toggle(id);
+      render(); b.dress(House.worn());
+      if (r === 'on'){ celebrate(); say(House.wow()); } else { say('off'); }
+    } else if (it.canBuy){
+      House.buy(id); render(); celebrate(); say('buy_' + id);
+    } else {
+      say('need_more');
+    }
+  });
+
+  if (House.ensureGift()){
+    b.dress(House.worn()); render();
+    setTimeout(function(){ celebrate(); say('gift'); }, 500);
+  } else {
+    render();
+    setTimeout(function(){ say('wardrobe_in'); }, 400);
+  }
+  bs.addEventListener('click', function(){ say(House.wow()); b.react('happy', 1400); });
+})();
+</script>
+</body>
+</html>

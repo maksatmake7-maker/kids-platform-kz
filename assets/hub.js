@@ -46,6 +46,17 @@
         '<g transform="translate(138 62)"><circle r="14" fill="#FFC93C"/><circle r="14" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2"/><path d="M-6 0H6M0 -6V6" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><animateTransform attributeName="transform" type="translate" values="138 62;138 56;138 62" dur="3.2s" repeatCount="indefinite"/></g>' +
         '<g transform="translate(32 66)"><circle r="11" fill="#FFB020"/><path d="M-5 0H5" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></g>';
     },
+    house: function(){
+      return '<rect x="112" y="48" width="12" height="26" fill="#7A3B2E"/>' +
+        '<g fill="#fff" opacity=".8"><circle cx="118" cy="40" r="5"><animate attributeName="cy" values="42;28" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="3s" repeatCount="indefinite"/></circle></g>' +
+        '<rect x="52" y="66" width="76" height="38" fill="#FFF7E3" stroke="#7A3B2E" stroke-width="2.5"/>' +
+        '<polygon points="44,68 90,32 136,68" fill="#E8584A" stroke="#8E2F3A" stroke-width="2.5" stroke-linejoin="round"/>' +
+        '<rect x="82" y="80" width="17" height="24" rx="3" fill="#7A3B2E"/><circle cx="95" cy="93" r="1.6" fill="#FFC93C"/>' +
+        '<rect x="58" y="74" width="16" height="15" fill="#CFE6FA" stroke="#7A3B2E" stroke-width="2"/><path d="M66 74 V89 M58 81.5 H74" stroke="#7A3B2E" stroke-width="1.4"/>' +
+        '<rect x="106" y="74" width="16" height="15" fill="#CFE6FA" stroke="#7A3B2E" stroke-width="2"/><path d="M114 74 V89 M106 81.5 H122" stroke="#7A3B2E" stroke-width="1.4"/>' +
+        '<circle cx="90" cy="53" r="6.5" fill="#F8AE3F" stroke="#7A4620" stroke-width="1.6"/><circle cx="87.6" cy="52.4" r="1.1" fill="#3B2A1A"/><circle cx="92.4" cy="52.4" r="1.1" fill="#3B2A1A"/>' +
+        '<g transform="translate(150 84)"><polygon points="0,-9 2.6,-3 9,-2.4 4.2,2 5.6,8.6 0,5.2 -5.6,8.6 -4.2,2 -9,-2.4 -2.6,-3" fill="#FFC93C"><animateTransform attributeName="transform" type="rotate" values="-8;8;-8" dur="3.2s" repeatCount="indefinite"/></polygon></g>';
+    },
     read: function(){
       var lines=''; for(var i=0;i<4;i++){ lines+='<path d="M96 '+(74+i*5.5)+' L126 '+(69+i*5.5)+'" stroke="#CFDBE8" stroke-width="2" stroke-linecap="round"/>'; }
       return '<path d="M42 96 L90 103 L138 96 L138 58 L90 65 L42 58Z" fill="#E4503F"/>' +
@@ -172,7 +183,7 @@
       '<span class="hi-art"><svg class="art" viewBox="0 0 180 140" aria-hidden="true">'+base(d)+(ART[s.art]?ART[s.art]():'')+'</svg><span class="fogc"></span>'+LOCK+'</span>' +
       '<span class="hi-plate">'+(s.titleText?'<h3>'+s.titleText+'</h3>':'<h3 data-i18n="'+s.title+'"></h3>')+(s.descText?'<p>'+s.descText+'</p>':'<p data-i18n="'+s.desc+'"></p>')+
       '<span class="hi-prog"><i class="bar"><b></b></i><span class="st">'+STAR+STAR+STAR+'</span></span>' +
-      '<span class="badge" data-i18n="'+(soon?'grade_picker_coming_soon':(s.badge||'badge_play'))+'"></span></span></a>';
+      (s.badgeText&&!soon?'<span class="badge">'+s.badgeText+'</span>':'<span class="badge" data-i18n="'+(soon?'grade_picker_coming_soon':(s.badge||'badge_play'))+'"></span>')+'</span></a>';
   });
   html+='</div>';
   root.className='hub'; root.innerHTML=html;

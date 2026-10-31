@@ -196,15 +196,58 @@
     if (!loop){ loop = true; requestAnimationFrame(frame); }
   }
 
+  /* ---------- одежда из «Дома Барсика» (куплена за звёзды, надета в гардеробе) ----------
+     Что надето — в localStorage 'bilim_house_v1'.worn = {back,neck,head,face}. Барсик одевается сам при mount()
+     (выключить: opts.outfit === false; своя одежда: b.dress({head:'cap'})). Слоты: back — за спиной, neck — шея, head/face — на голове. */
+  var HOUSE_KEY = 'bilim_house_v1';
+  var ITEMS = [
+    {id:'bow', slot:'neck', name:'Бантик', acc:'бантик', price:15, vb:'50 130 100 60',
+     art:'<path d="M100 160 L70 144 Q64 160 70 176 Z" fill="#FF6B8A"/><path d="M100 160 L130 144 Q136 160 130 176 Z" fill="#FF6B8A"/><circle cx="100" cy="160" r="8" fill="#E5456B"/><path d="M76 152 L90 158 M124 152 L110 158" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>'},
+    {id:'cap', slot:'head', name:'Кепка', acc:'кепку', price:30, vb:'46 10 136 84',
+     art:'<path d="M54 70 Q54 24 100 22 Q146 24 146 70 Q100 58 54 70Z" fill="#2F6FB5"/><path d="M118 64 Q160 58 174 74 Q150 84 116 74Z" fill="#214F85"/><circle cx="100" cy="22" r="6" fill="#214F85"/><path d="M80 34 Q100 28 120 34" stroke="#fff" stroke-width="3" fill="none" opacity=".35" stroke-linecap="round"/>'},
+    {id:'hat', slot:'head', name:'Шапка с помпоном', acc:'шапку с помпоном', price:35, vb:'44 0 112 88',
+     art:'<path d="M54 68 Q50 20 100 18 Q150 20 146 68 Q100 54 54 68Z" fill="#E8584A"/><path d="M62 44 Q100 32 138 44 M58 56 Q100 44 142 56" stroke="#FFF7E3" stroke-width="5" fill="none" opacity=".85"/><path d="M50 64 Q100 50 150 64 L148 80 Q100 66 52 80Z" fill="#FFF7E3" stroke="#E5D3A8" stroke-width="2"/><circle cx="100" cy="14" r="11" fill="#FFF7E3" stroke="#E5D3A8" stroke-width="2"/>'},
+    {id:'scarf', slot:'neck', name:'Шарф', acc:'шарф', price:45, vb:'50 140 100 70',
+     art:'<path d="M62 147 Q100 172 138 147 L140 161 Q100 188 60 161Z" fill="#7B5EA7"/><path d="M118 164 L138 198 L120 204 L106 172Z" fill="#7B5EA7"/><g stroke="#FFC93C" stroke-width="3.4" stroke-linecap="round"><path d="M78 157 l4 14"/><path d="M95 161 l1 16"/><path d="M113 160 l-3 15"/><path d="M127 154 l-5 13"/><path d="M114 176 l12 -3 M118 188 l12 -3"/></g>'},
+    {id:'glasses', slot:'face', name:'Тёмные очки', acc:'тёмные очки', price:60, vb:'34 62 132 48',
+     art:'<ellipse cx="72" cy="86" rx="21" ry="16" fill="#1D3557"/><ellipse cx="128" cy="86" rx="21" ry="16" fill="#1D3557"/><path d="M93 84 Q100 78 107 84" stroke="#1D3557" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M51 84 L40 80 M149 84 L160 80" stroke="#1D3557" stroke-width="4" stroke-linecap="round"/><path d="M60 80 L72 74 M118 80 L130 74" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".5"/>'},
+    {id:'cape', slot:'back', name:'Плащ героя', acc:'плащ героя', price:90, vb:'10 130 180 90',
+     art:'<path d="M62 142 Q14 178 28 212 L172 212 Q186 178 138 142 Q100 156 62 142Z" fill="#D9483A"/><path d="M62 142 Q100 156 138 142" stroke="#FFC93C" stroke-width="5" fill="none"/>'},
+    {id:'crown', slot:'head', name:'Корона', acc:'корону', price:150, vb:'50 2 100 70',
+     art:'<path d="M60 56 L64 20 L84 40 L100 12 L116 40 L136 20 L140 56 Q100 66 60 56Z" fill="#FFC93C" stroke="#D99A00" stroke-width="3" stroke-linejoin="round"/><circle cx="100" cy="30" r="5" fill="#E8584A"/><circle cx="75" cy="44" r="3.5" fill="#3FB088"/><circle cx="125" cy="44" r="3.5" fill="#2F6FB5"/>'}
+  ];
+  function worn(){ try { var h = JSON.parse(localStorage.getItem(HOUSE_KEY)); return (h && h.worn) || {}; } catch(e){ return {}; } }
+  function dress(node, w){
+    if (!node) return;
+    [].forEach.call(node.querySelectorAll('.bs-wear'), function(n){ n.parentNode.removeChild(n); });
+    ITEMS.forEach(function(it){
+      if (!w || w[it.slot] !== it.id) return;
+      var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'bs-wear bs-wear-' + it.id);
+      g.innerHTML = it.art;
+      if (it.slot === 'back'){
+        var ref = node.querySelector('.bs-bag') || node.querySelector('.bs-bodyg');
+        if (ref && ref.parentNode) ref.parentNode.insertBefore(g, ref);
+      } else if (it.slot === 'neck'){
+        var b = node.querySelector('.bs-bodyg'); if (b) b.appendChild(g);
+      } else {
+        var h = node.querySelector('.bs-head'); if (h) h.appendChild(g);
+      }
+    });
+  }
+
   window.Barsik = {
+    items: ITEMS, worn: worn,
     mount: function(el, opts){
       inject();
       el.innerHTML = svg(uid++, opts && opts.grade);
       var node = el.querySelector('svg'), base = (opts && opts.state) || 'idle', timer = null;
       node.setAttribute('data-state', base);
       if (opts && opts.track) track(node);
+      if (!opts || opts.outfit !== false) dress(node, (opts && opts.worn) || worn());
       return {
         el: node,
+        dress: function(w){ dress(node, w); },
         set: function(state){ base = state; clearTimeout(timer); timer = null; node.setAttribute('data-state', state); },
         react: function(state, ms){ clearTimeout(timer); node.setAttribute('data-state', state); timer = setTimeout(function(){ timer = null; node.setAttribute('data-state', base); }, ms || 1400); },
         base: function(state){ base = state; if (!timer) node.setAttribute('data-state', state); },
