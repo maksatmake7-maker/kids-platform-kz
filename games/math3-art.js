@@ -54,7 +54,7 @@
   function euler(A, B, both, names, px){
     // A — только первое, B — только второе, both — общее; names=[имя1, имя2]
     function col(list, x, y, w){ return list.map(function(t, i){ return '<text x="' + x + '" y="' + (y + i * 17) + '" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="14" fill="' + INK + '">' + t + '</text>'; }).join(''); }
-    var s = '<circle cx="82" cy="86" r="66" fill="#FFB74D" fill-opacity=".45" ' + st('#EF6C00', 2.5) + '/><circle cx="158" cy="86" r="66" fill="#4FC3F7" fill-opacity=".45" ' + st('#1E88E5', 2.5) + '/>';
+    var s = '<rect x="0" y="0" width="240" height="160" rx="14" fill="#FFFDF5"/><circle cx="82" cy="86" r="66" fill="#FFB74D" fill-opacity=".45" ' + st('#EF6C00', 2.5) + '/><circle cx="158" cy="86" r="66" fill="#4FC3F7" fill-opacity=".45" ' + st('#1E88E5', 2.5) + '/>';
     s += col(A, 52, 74 - (A.length - 1) * 8, 40) + col(B, 188, 74 - (B.length - 1) * 8, 40) + col(both, 120, 74 - (both.length - 1) * 8, 40);
     if(names) s += '<text x="64" y="12" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="13" fill="#B85C00">' + names[0] + '</text><text x="176" y="12" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="13" fill="#1565C0">' + names[1] + '</text>';
     return svg(240, 160, s, px || 250);
