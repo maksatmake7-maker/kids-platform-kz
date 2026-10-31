@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Для родителей — Білім Аралы</title>
+<title data-hi-title="p_title">Для родителей — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
@@ -26,6 +26,12 @@
   .pr-rep li{margin:6px 0 6px 18px;font-weight:700;color:#35506B;} .pr-rep a{color:#2F8FD1;font-weight:800;}
   .pr-btn{display:inline-block;margin-right:8px;padding:10px 18px;border-radius:14px;border:0;background:#FFC93C;color:#1D3557;font:800 1rem 'Baloo 2',sans-serif;cursor:pointer;box-shadow:0 4px 0 #E0A620;}
   .pr-note{font-size:.85rem;color:#6B7C90;font-weight:700;}
+  .pr-wk{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:8px 0;} .pr-wk div{background:#EAF6EF;border-radius:16px;padding:12px;text-align:center;} .pr-wk b{display:block;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D6B4A;} .pr-wk span{font-size:.85rem;font-weight:700;color:#4B6B5C;}
+  .pr-wk b,.pr-sum b{direction:ltr;unicode-bidi:isolate;}
+  .pt-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:12px;} .pt-q{background:#FFF8E6;border:3px solid #F8AE3F;border-radius:18px;padding:12px 14px;} .pt-q.tg{background:#EAF3FB;border-color:#7FB8E8;}
+  .pt-tag{font:800 .85rem 'Baloo 2',sans-serif;color:#8A5A00;letter-spacing:.02em;} .pt-q.tg .pt-tag{color:#2A5F8F;} .pt-q p{font-weight:800;color:#1D3557;font-size:1.05rem;line-height:1.45;margin:4px 0 0;}
+  .pt-tips{margin:14px 0 0;padding-top:10px;border-top:2px solid #EEF2F6;} .pt-tips h3{font-family:'Baloo 2',sans-serif;color:#1D3557;font-size:1.05rem;margin-bottom:4px;} .pt-tips li{margin:6px 0 6px 20px;font-weight:700;color:#35506B;line-height:1.45;}
+  html[dir=rtl] .pr-rep li,html[dir=rtl] .pt-tips li{margin:6px 20px 6px 0;} html[dir=rtl] .pr-c{border-left:0;border-right:4px solid #D5DCE4;margin:8px 8px 4px 0;} html[dir=rtl] .pr-c.done{border-right-color:#3FB088;}
   @media print{ header,.cloud,.back-link,.no-print,footer{display:none!important;} body{background:#fff!important;} .pr .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;} .pr-sub details{display:block;} }
 </style>
 </head>
@@ -33,84 +39,184 @@
 <div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div>
 <header>
   <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
 </header>
 
 <main class="pr">
-  <a href="rewards.html" class="back-link">← К наградам</a>
+  <a href="rewards.html" class="back-link" id="back">← К наградам</a>
 
   <div class="card pr-gate" id="gate">
-    <h1>🔒 Для родителей</h1>
-    <p class="lead">Здесь отчёт об учёбе. Чтобы войти, решите пример:</p>
-    <div style="font:800 2rem 'Baloo 2',sans-serif;color:#1D3557;" id="g-q"></div>
-    <input id="g-a" inputmode="numeric" autocomplete="off"><button class="pr-btn" id="g-ok">Войти</button>
-    <div class="err" id="g-err"></div>
+    <h1><span aria-hidden="true">🔒</span> <span data-hi="gate_h">Для родителей</span></h1>
+    <p class="lead" data-hi="gate_lead">Здесь отчёт об учёбе. Чтобы войти, решите пример:</p>
+    <div style="font:800 2rem 'Baloo 2',sans-serif;color:#1D3557;" id="g-q" dir="ltr"></div>
+    <input id="g-a" inputmode="numeric" autocomplete="off" dir="ltr" aria-labelledby="g-q"><button class="pr-btn" id="g-ok" data-hi="gate_ok">Войти</button>
+    <div class="err" id="g-err" role="alert"></div>
   </div>
 
   <div id="report" style="display:none">
     <div class="card">
-      <h1>Отчёт об учёбе</h1>
+      <h1 data-hi="rep_h">Отчёт об учёбе</h1>
       <div class="pr-who" id="who"></div>
       <div class="pr-note" id="today"></div>
+      <div class="pr-note" id="names" style="margin-top:4px"></div>
     </div>
     <div class="card"><div class="pr-sum" id="sum"></div></div>
-    <div class="card"><h2>Занятия за 14 дней</h2><div class="pr-days" id="days"></div><div class="pr-note" style="margin-top:6px">Столбик — сколько раз за день ребёнок проходил урок или игру.</div></div>
-    <div class="card"><h2>Что повторить</h2><div id="rep"></div></div>
-    <div class="card"><h2>Успехи по предметам</h2><div id="subs"></div></div>
+    <div class="card" id="week"></div>
+    <div class="card" id="teach"></div>
+    <div class="card"><h2 data-hi="days_h">Занятия за 14 дней</h2><div class="pr-days" id="days"></div><div class="pr-note" style="margin-top:6px" data-hi="days_note">Столбик — сколько раз за день ребёнок проходил урок или игру.</div></div>
+    <div class="card"><h2 data-hi="repeat_h">Что повторить</h2><div id="rep"></div></div>
+    <div class="card"><h2 data-hi="subs_h">Успехи по предметам</h2><div id="subs"></div></div>
     <div class="card no-print">
-      <button class="pr-btn" onclick="window.print()">🖨️ Распечатать или сохранить в PDF</button>
-      <div class="pr-note" style="margin-top:10px">Отчёт собран из данных этого браузера на этом устройстве. Если ребёнок занимается на другом телефоне или компьютере, там будет свой отчёт. Звёзды и уровень, если вы вошли в профиль ребёнка, берутся и с сервера.</div>
+      <button class="pr-btn" onclick="window.print()"><span aria-hidden="true">🖨️</span> <span data-hi="print">Распечатать или сохранить в PDF</span></button>
+      <div class="pr-note" style="margin-top:10px" data-hi="foot">Отчёт собран из данных этого браузера на этом устройстве.</div>
     </div>
   </div>
 </main>
 
 <script src="assets/i18n.js"></script>
+<script src="assets/house-i18n.js"></script>
+<script src="assets/parent-i18n.js"></script>
 <script src="assets/auth.js"></script>
 <script src="assets/progress.js"></script>
 <script src="assets/courses-registry.js"></script>
 <script src="assets/rewards.js"></script>
 <script>
 (function(){
-  var R = BilimRewards, esc = R.esc;
-  var a = 6 + Math.floor(Math.random() * 4), b = 6 + Math.floor(Math.random() * 4);
+  var R = BilimRewards, esc = R.esc, t = function(k, v){ return HI.t(k, v); };
+  var LOC = { ru: 'ru-RU', kz: 'kk-KZ', en: 'en-GB', zh: 'zh-CN', uz: 'uz-Cyrl-UZ', tg: 'tg-TJ', ug: 'ug-CN' };
+  var WDRU = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+  var a = 6 + Math.floor(Math.random() * 4), b = 6 + Math.floor(Math.random() * 4), isOpen = false;
   var ok = false; try { ok = sessionStorage.getItem('bilim_parent_ok') === '1'; } catch(e){}
   document.getElementById('g-q').textContent = a + ' × ' + b + ' = ?';
-  function open(){ document.getElementById('gate').style.display = 'none'; document.getElementById('report').style.display = ''; render(); }
+  function open(){ document.getElementById('gate').style.display = 'none'; document.getElementById('report').style.display = ''; isOpen = true; render(); }
   document.getElementById('g-ok').onclick = function(){
     if(+document.getElementById('g-a').value === a * b){ try { sessionStorage.setItem('bilim_parent_ok', '1'); } catch(e){} open(); }
-    else { document.getElementById('g-err').textContent = 'Неверно, попробуйте ещё раз'; }
+    else { document.getElementById('g-err').textContent = t('gate_err'); }
   };
   document.getElementById('g-a').addEventListener('keydown', function(e){ if(e.key === 'Enter') document.getElementById('g-ok').click(); });
   if(ok) open();
+  HI.on(function(){ document.getElementById('g-err').textContent = ''; chrome(); if(isOpen) render(); });
 
-  function subName(id){ var r = (window.BILIM_SUBJECTS || []).filter(function(s){ return s.id === id; })[0]; return r ? r.name : id; }
+  function chrome(){ document.getElementById('back').textContent = HI.arrow() + ' ' + t('back'); }
+  chrome();
+
+  function subName(id){ var r = (window.BILIM_SUBJECTS || []).filter(function(s){ return s.id === id; })[0]; var k = 'sub_' + id; var tr = t(k); return tr || (r ? r.name : id); }
+  function subIcon(id){ var r = (window.BILIM_SUBJECTS || []).filter(function(s){ return s.id === id; })[0]; return r ? r.icon : ''; }
+  function fmtDate(d){ try { return d.toLocaleDateString(LOC[HI.lang()] || 'ru-RU'); } catch(e){ return d.toLocaleDateString('ru-RU'); } }
+  function wd(day){
+    var d = new Date(day + 'T12:00:00');
+    try { var s = d.toLocaleDateString(LOC[HI.lang()] || 'ru-RU', { weekday: 'short' }); if(s) return s; } catch(e){}
+    return WDRU[d.getDay()];
+  }
+
+  /* ключ 'course_<слаг>_<id урока>' → курс и урок из реестра */
+  function lessonOf(key, states){
+    var best = null;
+    states.forEach(function(s){
+      var pre = 'course_' + s.course.slug + '_';
+      if(key.indexOf(pre) === 0 && (!best || s.course.slug.length > best.s.course.slug.length)){
+        var id = key.slice(pre.length), l = s.lessons.filter(function(x){ return x.id === id; })[0];
+        if(l) best = { s: s, l: l };
+      }
+    });
+    return best ? { c: best.s.course, l: best.l } : null;
+  }
+
+  function weekData(states){
+    var rec = R.jget('bilim_recent_v1', {}), days = R.lastDays(7), stars = 0, keys = {}, lessons = {}, order = [];
+    days.forEach(function(d){
+      (rec[d.day] || []).forEach(function(e){
+        stars += +e[1] || 0; keys[e[0]] = 1;
+        var m = lessonOf(e[0], states);
+        if(m){ var id = e[0]; if(!lessons[id]){ lessons[id] = m; order.push(id); } }
+      });
+    });
+    return { activeDays: days.filter(function(d){ return d.count > 0; }).length, stars: stars, topics: Object.keys(keys).length, items: order.map(function(i){ return lessons[i]; }), hasLog: Object.keys(keys).length > 0 };
+  }
+
+  function weekCard(w){
+    var h = '<h2>' + esc(t('week_h')) + '</h2><p class="lead">' + esc(t('week_lead')) + '</p>';
+    if(!w.activeDays) return h + '<p class="pr-note">' + esc(t('w_none')) + '</p>';
+    var three = w.items.filter(function(m){ return m.l.stars === 3; }).length;
+    h += '<div class="pr-wk"><div><b>' + w.activeDays + ' / 7</b><span>' + esc(t('w_days')) + '</span></div>';
+    if(w.hasLog){
+      h += '<div><b>+' + w.stars + '</b><span>' + esc(t('w_stars')) + '</span></div><div><b>' + w.topics + '</b><span>' + esc(t('w_topics')) + '</span></div><div><b>' + three + '</b><span>' + esc(t('w_three')) + '</span></div></div>';
+    } else h += '</div><p class="pr-note">' + esc(t('w_nodetail')) + '</p>';
+    return h;
+  }
+
+  /* вопросы «научи меня»: сначала уроки этой недели, где ребёнок уверен (2–3 звезды), потом остальные, потом лучшие за всё время */
+  function teachCard(w, states){
+    var picked = [], seenSub = {}, used = {};
+    function uid(m){ return m.c.slug + '/' + m.l.id; }
+    function take(list, needNewSubject){
+      list.forEach(function(m){
+        if(picked.length >= 3 || used[uid(m)]) return;
+        if(needNewSubject && seenSub[m.c.subject]) return;
+        used[uid(m)] = 1; seenSub[m.c.subject] = 1; picked.push(m);
+      });
+    }
+    var weekGood = w.items.filter(function(m){ return m.l.stars >= 2; }), weekRest = w.items.filter(function(m){ return m.l.stars === 1; });
+    var all3 = []; states.forEach(function(s){ s.lessons.forEach(function(l){ if(l.stars === 3) all3.push({ c: s.course, l: l }); }); });
+    all3 = all3.reverse();
+    take(weekGood, true); take(all3, true); take(weekGood, false); take(all3, false);
+    var weak = (weekRest[0]) || (function(){ var f = null; states.forEach(function(s){ s.lessons.forEach(function(l){ if(!f && l.stars === 1) f = { c: s.course, l: l }; }); }); return f; })();
+    var h = '<h2>' + esc(t('teach_h')) + '</h2><p class="lead">' + esc(t('teach_lead')) + '</p>';
+    if(!picked.length && !weak) h += '<div class="pt-q"><p>' + esc(t('teach_none')) + '</p></div>';
+    else {
+      h += '<ul class="pt-list">';
+      picked.forEach(function(m){
+        var q = t('tq_' + m.c.subject) || t('teach_none');
+        h += '<li class="pt-q"><div class="pt-tag">' + esc(t('teach_label', { subj: subName(m.c.subject), lesson: m.l.title })) + '</div><p>' + esc(q) + '</p></li>';
+      });
+      if(weak) h += '<li class="pt-q tg"><p>' + esc(t('teach_together', { lesson: weak.l.title })) + '</p></li>';
+      h += '</ul>';
+    }
+    h += '<div class="pt-tips"><h3>' + esc(t('tips_h')) + '</h3><ul><li>' + esc(t('tip1')) + '</li><li>' + esc(t('tip2')) + '</li><li>' + esc(t('tip3')) + '</li></ul></div>';
+    return h;
+  }
+
   function render(){
     var states = R.allStates(), courses = states.filter(function(s){ return s.complete; }).length;
     var lessons = states.reduce(function(x, s){ return x + s.done; }, 0), lessonsAll = states.reduce(function(x, s){ return x + s.total; }, 0);
     var days = R.lastDays(14), week = days.slice(7).reduce(function(x, d){ return x + d.count; }, 0), g = R.gamesPlayed();
-    var d = new Date(); document.getElementById('today').textContent = 'Дата отчёта: ' + d.toLocaleDateString('ru-RU');
+    document.getElementById('today').textContent = t('rep_date', { d: fmtDate(new Date()) });
+    document.getElementById('names').textContent = HI.lang() === 'ru' ? '' : t('names_note');
 
-    document.getElementById('who').innerHTML = '<span class="av">🐆</span><div><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.3rem;color:#1D3557">Ученик (этот браузер)</b><div class="pr-note" id="who2">Вход в профиль ребёнка не выполнен: показаны данные этого устройства.</div></div>';
+    document.getElementById('who').innerHTML = '<span class="av">🐆</span><div><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.3rem;color:#1D3557">' + esc(t('who_name')) + '</b><div class="pr-note" id="who2">' + esc(t('who_note')) + '</div></div>';
     document.getElementById('sum').innerHTML =
-      '<div><b>⭐ ' + R.totalStars() + '</b><span>звёзд всего</span></div>' +
-      '<div><b>🔥 ' + R.streak() + '</b><span>дней подряд</span></div>' +
-      '<div><b>' + courses + ' / ' + states.length + '</b><span>курсов пройдено</span></div>' +
-      '<div><b>' + lessons + ' / ' + lessonsAll + '</b><span>уроков пройдено</span></div>' +
-      '<div><b>' + week + '</b><span>занятий за 7 дней</span></div>' +
-      '<div><b>' + g.kinds + '</b><span>игр опробовано (' + g.times + ' раз)</span></div>';
+      '<div><b>⭐ ' + R.totalStars() + '</b><span>' + esc(t('l_stars')) + '</span></div>' +
+      '<div><b>🔥 ' + R.streak() + '</b><span>' + esc(t('l_streak')) + '</span></div>' +
+      '<div><b>' + courses + ' / ' + states.length + '</b><span>' + esc(t('l_courses')) + '</span></div>' +
+      '<div><b>' + lessons + ' / ' + lessonsAll + '</b><span>' + esc(t('l_lessons')) + '</span></div>' +
+      '<div><b>' + week + '</b><span>' + esc(t('l_week7')) + '</span></div>' +
+      '<div><b>' + g.kinds + '</b><span>' + esc(t('l_games', { n: g.times })) + '</span></div>';
+
+    var w = weekData(states);
+    document.getElementById('week').innerHTML = weekCard(w);
+    document.getElementById('teach').innerHTML = teachCard(w, states);
 
     var max = Math.max.apply(null, days.map(function(x){ return x.count; }).concat([1]));
-    document.getElementById('days').innerHTML = days.map(function(x){ return '<div><b>' + (x.count || '') + '</b><i class="' + (x.count ? '' : 'z') + '" style="height:' + Math.round(x.count * 70 / max) + 'px"></i>' + x.label + '<br>' + x.num + '</div>'; }).join('');
+    document.getElementById('days').innerHTML = days.map(function(x){ return '<div><b>' + (x.count || '') + '</b><i class="' + (x.count ? '' : 'z') + '" style="height:' + Math.round(x.count * 70 / max) + 'px"></i>' + esc(wd(x.day)) + '<br>' + x.num + '</div>'; }).join('');
 
     var weak = [], started = [];
     states.forEach(function(s){ s.lessons.forEach(function(l){ if(l.stars === 1) weak.push({ c: s.course, l: l }); }); if(s.done && !s.complete) started.push(s); });
     var rep = '';
     if(weak.length){
-      rep += '<p class="lead">Уроки, где было много ошибок (1 звезда). Хорошо бы пройти их ещё раз:</p><ul class="pr-rep">' + weak.slice(0, 12).map(function(w){ return '<li>' + esc(subName(w.c.subject)) + ' · курс «' + esc(w.c.title) + '» · урок «' + esc(w.l.title) + '» <a href="' + w.c.url + '">Открыть</a></li>'; }).join('') + '</ul>';
+      rep += '<p class="lead">' + esc(t('repeat_weak')) + '</p><ul class="pr-rep">' + weak.slice(0, 12).map(function(x){ return '<li>' + esc(subName(x.c.subject)) + ' · ' + esc(t('p_course', { c: x.c.title })) + ' · ' + esc(t('p_lesson', { l: x.l.title })) + ' <a href="' + x.c.url + '">' + esc(t('p_open')) + '</a></li>'; }).join('') + '</ul>';
     }
     if(started.length){
-      rep += '<p class="lead" style="margin-top:8px">Курсы, которые начаты, но не закончены:</p><ul class="pr-rep">' + started.map(function(s){ return '<li>«' + esc(s.course.title) + '»: пройдено ' + s.done + ' из ' + s.total + ' <a href="' + s.course.url + '">Продолжить</a></li>'; }).join('') + '</ul>';
+      rep += '<p class="lead" style="margin-top:8px">' + esc(t('repeat_started')) + '</p><ul class="pr-rep">' + started.map(function(s){ return '<li>' + esc(t('p_course', { c: s.course.title })) + ': ' + esc(t('p_prog', { a: s.done, b: s.total })) + ' <a href="' + s.course.url + '">' + esc(t('p_continue')) + '</a></li>'; }).join('') + '</ul>';
     }
-    if(!weak.length && !started.length) rep = lessons ? '<p class="lead">Всё отлично: уроки пройдены уверенно, незаконченных курсов нет.</p>' : '<p class="lead">Ребёнок ещё не проходил уроки курсов на этом устройстве.</p>';
+    if(!weak.length && !started.length) rep = '<p class="lead">' + esc(lessons ? t('all_good') : t('none_yet')) + '</p>';
     document.getElementById('rep').innerHTML = rep;
 
     var html = '';
@@ -118,9 +224,9 @@
       var mine = states.filter(function(x){ return x.course.subject === s.id; }); if(!mine.length) return;
       var L = mine.reduce(function(x, c){ return x + c.done; }, 0), T = mine.reduce(function(x, c){ return x + c.total; }, 0), S = mine.reduce(function(x, c){ return x + c.stars; }, 0);
       var avg = L ? (S / L).toFixed(1) : '—', cdone = mine.filter(function(x){ return x.complete; }).length;
-      html += '<details class="pr-sub"><summary><div>' + s.icon + ' ' + esc(s.name) + '<div class="meta">Курсов: ' + cdone + ' из ' + mine.length + ' · уроков: ' + L + ' из ' + T + ' · средняя оценка: ' + avg + ' из 3</div></div><div class="bar"><i style="width:' + Math.round(L * 100 / T) + '%"></i></div></summary>';
+      html += '<details class="pr-sub"><summary><div>' + s.icon + ' ' + esc(subName(s.id)) + '<div class="meta">' + esc(t('sub_meta', { c: cdone, n: mine.length, l: L, t: T, avg: avg })) + '</div></div><div class="bar"><i style="width:' + Math.round(L * 100 / T) + '%"></i></div></summary>';
       mine.forEach(function(x){
-        html += '<div class="pr-c' + (x.complete ? ' done' : '') + '"><div class="ct">' + (x.complete ? '✅' : x.done ? '🔸' : '▫️') + ' ' + esc(x.course.title) + ' <a href="' + x.course.url + '">открыть</a></div>';
+        html += '<div class="pr-c' + (x.complete ? ' done' : '') + '"><div class="ct">' + (x.complete ? '✅' : x.done ? '🔸' : '▫️') + ' ' + esc(x.course.title) + ' <a href="' + x.course.url + '">' + esc(t('p_open_l')) + '</a></div>';
         x.lessons.forEach(function(l){ html += '<span class="pr-l s' + l.stars + '">' + esc(l.title) + ' <span class="st">' + (l.stars ? '★'.repeat(l.stars) + '☆'.repeat(3 - l.stars) : '—') + '</span></span>'; });
         html += '</div>';
       });
@@ -132,7 +238,7 @@
       var tok = typeof getChildToken === 'function' ? getChildToken() : null;
       if(tok && typeof apiRequestAuth === 'function'){
         apiRequestAuth('/api/children/me/stats', {}, tok).then(function(st){
-          document.getElementById('who').innerHTML = '<span class="av">' + esc(st.avatarEmoji || '🐆') + '</span><div><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.3rem;color:#1D3557">' + esc(st.name) + '</b><div class="pr-note">Уровень ' + esc(st.level && st.level.level) + ' · звёзд на сервере: ' + esc(st.starsTotal) + ' · значков: ' + esc((st.achievements || []).length) + '</div></div>';
+          document.getElementById('who').innerHTML = '<span class="av">' + esc(st.avatarEmoji || '🐆') + '</span><div><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.3rem;color:#1D3557">' + esc(st.name) + '</b><div class="pr-note">' + esc(t('srv_line', { l: st.level && st.level.level, s: st.starsTotal, a: (st.achievements || []).length })) + '</div></div>';
         }).catch(function(){});
       }
     } catch(e){}
