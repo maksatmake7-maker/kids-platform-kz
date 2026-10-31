@@ -84,3 +84,5 @@
 @media (prefers-reduced-motion: reduce){ .hi-art svg.art,.fogc{animation:none!important;} .hi-prog .bar b{transition:none;} }
 
 .hub-chips .hub-gift{margin-top:0;}
+/* подарок дня пока только на русском */
+html[data-current]:not([data-current="ru"]) .hub-gift-ru{display:none;}

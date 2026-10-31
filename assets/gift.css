@@ -40,4 +40,5 @@ a.gf-cta{display:inline-flex; align-items:center; text-decoration:none;}
 
 @media (prefers-reduced-motion:reduce){ .gf-giftbtn .wig,.gf-star{animation:none;} }
 
-.gf-box[hidden],.gf-card[hidden]{display:none !important;}
+.gf-box[hidden],.gf-card[hidden],.hs-grid[hidden]{display:none !important;}
+.gf-ru{max-width:520px; margin:6px auto 18px;}

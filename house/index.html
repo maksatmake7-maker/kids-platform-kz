@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дом Барсика — Білім Аралы</title>
+<title data-hi-title="house_name">Дом Барсика — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles.css">
@@ -32,19 +32,19 @@
 
   <div class="hh-wrap">
     <div class="hh-hello"><div class="hs-bubble" id="bubble" role="status" aria-live="polite"></div></div>
-    <svg class="hh-roof" viewBox="0 0 900 150" role="img" aria-label="Крыша дома с вывеской «Дом Барсика»">
+    <svg class="hh-roof" viewBox="0 0 900 150" role="img" aria-label="Крыша дома с вывеской «Дом Барсика»" data-hi-aria="roof_aria">
       <rect x="690" y="10" width="40" height="70" fill="#7A3B2E"/>
       <polygon points="0,150 450,6 900,150" fill="#D9483A" stroke="#8E2F3A" stroke-width="5" stroke-linejoin="round"/>
       <g stroke="#8E2F3A" stroke-width="3" opacity=".35"><path d="M120 106 L780 106 M70 126 L830 126 M190 84 L710 84"/></g>
       <rect x="270" y="62" width="360" height="72" rx="14" fill="#FFF7E3" stroke="#7A3B2E" stroke-width="6"/>
       <circle cx="288" cy="76" r="4" fill="#7A3B2E"/><circle cx="612" cy="76" r="4" fill="#7A3B2E"/><circle cx="288" cy="120" r="4" fill="#7A3B2E"/><circle cx="612" cy="120" r="4" fill="#7A3B2E"/>
-      <text x="450" y="112" text-anchor="middle" font-family="'Baloo 2', Arial, sans-serif" font-weight="800" font-size="46" fill="#8E2F3A">Дом Барсика</text>
+      <text x="450" y="112" text-anchor="middle" font-family="'Baloo 2', Arial, sans-serif" font-weight="800" font-size="46" fill="#8E2F3A" id="sign" data-hi="house_name">Дом Барсика</text>
     </svg>
 
     <div class="hh-body">
 
       <!-- Спальня и гардероб -->
-      <a class="hh-room" href="wardrobe.html" aria-label="Спальня и гардероб. Открыто">
+      <a class="hh-room" href="wardrobe.html" aria-label="Спальня и гардероб. Открыто" data-hi-aria="room_bed|chip_open">
         <svg class="bg" viewBox="0 0 420 240" aria-hidden="true">
           <rect width="420" height="240" fill="#CFE6FA"/><rect y="190" width="420" height="50" fill="#C98F5B"/>
           <rect x="26" y="34" width="100" height="84" rx="6" fill="#9ED3F5" stroke="#fff" stroke-width="7"/><path d="M76 34 V118 M26 76 H126" stroke="#fff" stroke-width="5"/>
@@ -54,11 +54,11 @@
           <polygon points="315,70 318,79 328,80 320.5,86 323,95.5 315,90.5 307,95.5 309.5,86 302,80 312,79" fill="#FFC93C"/>
         </svg>
         <div class="hh-bs" id="bsRoom"></div>
-        <div class="hh-tags"><span class="hh-name">Спальня и гардероб</span><span class="hh-chip open">Открыто</span></div>
+        <div class="hh-tags"><span class="hh-name" data-hi="room_bed">Спальня и гардероб</span><span class="hh-chip open" data-hi="chip_open">Открыто</span></div>
       </a>
 
       <!-- Кухня -->
-      <button type="button" class="hh-room" data-say="kitchen_soon" aria-label="Кухня. Скоро: накормить баурсаками">
+      <button type="button" class="hh-room" data-say="kitchen_soon" aria-label="Кухня. Скоро: накормить баурсаками" data-hi-aria="room_kitchen|chip_kitchen">
         <svg class="bg" viewBox="0 0 420 240" aria-hidden="true">
           <rect width="420" height="240" fill="#FFE9B8"/><rect y="190" width="420" height="50" fill="#C98F5B"/>
           <rect x="30" y="34" width="90" height="70" rx="6" fill="#9ED3F5" stroke="#fff" stroke-width="7"/>
@@ -68,11 +68,11 @@
           <g fill="#E0A040" stroke="#B87A1E" stroke-width="2"><circle cx="112" cy="124" r="14"/><circle cx="145" cy="120" r="15"/><circle cx="178" cy="124" r="14"/><circle cx="128" cy="106" r="14"/><circle cx="162" cy="106" r="14"/><circle cx="145" cy="90" r="14"/></g>
           <g fill="#F6C46A" opacity=".8"><circle cx="106" cy="119" r="4"/><circle cx="139" cy="115" r="4"/><circle cx="172" cy="119" r="4"/><circle cx="122" cy="101" r="4"/><circle cx="156" cy="101" r="4"/><circle cx="139" cy="85" r="4"/></g>
         </svg>
-        <div class="hh-tags"><span class="hh-name">Кухня</span><span class="hh-chip"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="7" width="12" height="8" rx="2" fill="#3B2A1A"/><path d="M3.5 7 V5 a3.5 3.5 0 0 1 7 0 V7" fill="none" stroke="#3B2A1A" stroke-width="2"/></svg>Скоро: накормить баурсаками</span></div>
+        <div class="hh-tags"><span class="hh-name" data-hi="room_kitchen">Кухня</span><span class="hh-chip"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="7" width="12" height="8" rx="2" fill="#3B2A1A"/><path d="M3.5 7 V5 a3.5 3.5 0 0 1 7 0 V7" fill="none" stroke="#3B2A1A" stroke-width="2"/></svg><span data-hi="chip_kitchen">Скоро: накормить баурсаками</span></span></div>
       </button>
 
       <!-- Игровая -->
-      <button type="button" class="hh-room" data-say="play_soon" aria-label="Игровая. Скоро: игрушки и мяч">
+      <button type="button" class="hh-room" data-say="play_soon" aria-label="Игровая. Скоро: игрушки и мяч" data-hi-aria="room_play|chip_play">
         <svg class="bg" viewBox="0 0 420 240" aria-hidden="true">
           <rect width="420" height="240" fill="#D8F0DD"/><rect y="190" width="420" height="50" fill="#C98F5B"/>
           <ellipse cx="210" cy="212" rx="150" ry="20" fill="#7B5EA7" opacity=".45"/>
@@ -81,11 +81,11 @@
           <circle cx="120" cy="170" r="30" fill="#FF6B5B" stroke="#8E2F3A" stroke-width="3"/><path d="M92 160 Q120 176 148 160 M96 184 Q122 168 146 184" fill="none" stroke="#fff" stroke-width="5" opacity=".8"/>
           <rect x="210" y="150" width="40" height="40" rx="6" fill="#3FB088" stroke="#1F6B4F" stroke-width="3"/><rect x="254" y="164" width="34" height="26" rx="6" fill="#FFC93C" stroke="#C98A00" stroke-width="3"/><rect x="222" y="112" width="34" height="34" rx="6" fill="#2F6FB5" stroke="#214F85" stroke-width="3"/>
         </svg>
-        <div class="hh-tags"><span class="hh-name">Игровая</span><span class="hh-chip"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="7" width="12" height="8" rx="2" fill="#3B2A1A"/><path d="M3.5 7 V5 a3.5 3.5 0 0 1 7 0 V7" fill="none" stroke="#3B2A1A" stroke-width="2"/></svg>Скоро: игрушки и мяч</span></div>
+        <div class="hh-tags"><span class="hh-name" data-hi="room_play">Игровая</span><span class="hh-chip"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="7" width="12" height="8" rx="2" fill="#3B2A1A"/><path d="M3.5 7 V5 a3.5 3.5 0 0 1 7 0 V7" fill="none" stroke="#3B2A1A" stroke-width="2"/></svg><span data-hi="chip_play">Скоро: игрушки и мяч</span></span></div>
       </button>
 
       <!-- Чердак -->
-      <button type="button" class="hh-room" data-say="attic_soon" aria-label="Чердак. Скоро: альбом наклеек">
+      <button type="button" class="hh-room" data-say="attic_soon" aria-label="Чердак. Скоро: альбом наклеек" data-hi-aria="room_attic|chip_attic">
         <svg class="bg" viewBox="0 0 420 240" aria-hidden="true">
           <rect width="420" height="240" fill="#E6DCF5"/><rect y="190" width="420" height="50" fill="#C98F5B"/>
           <rect x="40" y="60" width="340" height="14" rx="4" fill="#A8683A"/><rect x="40" y="120" width="340" height="14" rx="4" fill="#A8683A"/>
@@ -94,7 +94,7 @@
           <circle cx="159" cy="43" r="10" fill="#FF6B5B"/><circle cx="230" cy="40" r="11" fill="#3FB088"/><circle cx="305" cy="43" r="9" fill="#2F6FB5"/><circle cx="91" cy="101" r="10" fill="#8DB23F"/><circle cx="164" cy="103" r="11" fill="#F8AE3F"/><circle cx="236" cy="100" r="10" fill="#E8584A"/>
           <rect x="290" y="150" width="90" height="40" rx="6" fill="#7A3B2E"/><rect x="298" y="158" width="74" height="10" rx="3" fill="#A8683A"/>
         </svg>
-        <div class="hh-tags"><span class="hh-name">Чердак</span><span class="hh-chip"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="7" width="12" height="8" rx="2" fill="#3B2A1A"/><path d="M3.5 7 V5 a3.5 3.5 0 0 1 7 0 V7" fill="none" stroke="#3B2A1A" stroke-width="2"/></svg>Скоро: альбом наклеек</span></div>
+        <div class="hh-tags"><span class="hh-name" data-hi="room_attic">Чердак</span><span class="hh-chip"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="7" width="12" height="8" rx="2" fill="#3B2A1A"/><path d="M3.5 7 V5 a3.5 3.5 0 0 1 7 0 V7" fill="none" stroke="#3B2A1A" stroke-width="2"/></svg><span data-hi="chip_attic">Скоро: альбом наклеек</span></span></div>
       </button>
 
     </div>
@@ -103,6 +103,7 @@
 </main>
 
 <script src="../assets/i18n.js"></script>
+<script src="../assets/house-i18n.js"></script>
 <script src="../assets/progress.js"></script>
 <script src="../assets/barsik.js"></script>
 <script src="../assets/house-back.js"></script>
@@ -112,13 +113,20 @@
 (function(){
   var bubble = document.getElementById('bubble'), bt = null;
   function say(id){
-    bubble.textContent = House.say(id); bubble.classList.add('on');
+    bubble.textContent = House.say(id); bubble.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr'); bubble.classList.add('on');
     clearTimeout(bt); bt = setTimeout(function(){ bubble.classList.remove('on'); }, 3600);
   }
   Barsik.mount(document.getElementById('bsRoom'), { grade: 1, track: true });
   [].forEach.call(document.querySelectorAll('[data-say]'), function(el){
     el.addEventListener('click', function(){ say(el.getAttribute('data-say')); });
   });
+  /* вывеска: длинное название на другом языке уменьшаем, чтобы влезло в табличку */
+  function fitSign(){
+    var sign = document.getElementById('sign'), txt = sign.textContent, wide = /[\u3000-\u9fff]/.test(txt);
+    sign.setAttribute('font-size', Math.min(46, Math.floor(320 / (txt.length * (wide ? 1.05 : 0.56)))));
+  }
+  fitSign();
+  HI.on(function(){ fitSign(); bubble.classList.remove('on'); });
   House.badge();
   setTimeout(function(){ say(Math.random() < 0.5 ? 'hello1' : 'hello2'); }, 500);
 })();

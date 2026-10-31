@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Гардероб Барсика — Білім Аралы</title>
+<title data-hi-title="wardrobe_name">Гардероб Барсика — Білім Аралы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles.css">
@@ -27,9 +27,9 @@
 
 <main class="hs-wrap">
   <div class="hs-top">
-    <a href="index.html" class="back-link">← В дом</a>
+    <a href="index.html" class="back-link" data-hi="into_house">← В дом</a>
     <a href="../grade-picker.html" class="back-link" data-back data-arrow="no">Вернуться к урокам</a>
-    <h1>Гардероб</h1>
+    <h1 data-hi="wardrobe_h1">Гардероб</h1>
   </div>
 
   <div class="hs-grid">
@@ -41,7 +41,7 @@
         <div class="hs-bs" id="bs"></div>
       </div>
       <div class="hs-goal">
-        <div class="lbl">Моя цель</div>
+        <div class="lbl" data-hi="goal_lbl">Моя цель</div>
         <div class="main" id="goalMain"></div>
         <div class="bar"><b id="goalBar"></b></div>
         <div class="sub" id="goalSub"></div>
@@ -49,12 +49,13 @@
     </div>
     <div>
       <div class="hs-shop" id="shop"></div>
-      <p class="hs-note">Звёзды копятся за игры и уроки. Купленную вещь можно снимать и надевать сколько угодно. Если надеть вещь, Барсик будет в ней и на других страницах.</p>
+      <p class="hs-note" data-hi="note">Звёзды копятся за игры и уроки. Купленную вещь можно снимать и надевать сколько угодно. Если надеть вещь, Барсик будет в ней и на других страницах.</p>
     </div>
   </div>
 </main>
 
 <script src="../assets/i18n.js"></script>
+<script src="../assets/house-i18n.js"></script>
 <script src="../assets/progress.js"></script>
 <script src="../assets/barsik.js"></script>
 <script src="../assets/house-back.js"></script>
@@ -69,6 +70,7 @@
 
   function say(id){
     bubble.textContent = House.say(id);
+    bubble.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr');
     bubble.classList.add('on');
     clearTimeout(bubbleT); bubbleT = setTimeout(function(){ bubble.classList.remove('on'); }, 3200);
   }
@@ -82,7 +84,7 @@
   function render(){
     var html = '';
     House.list().forEach(function(it){
-      var label = it.owned ? (it.worn ? 'Снять' : 'Надеть') : (it.canBuy ? 'Купить' : 'Ещё ' + it.need);
+      var label = it.owned ? (it.worn ? HI.t('btn_off') : HI.t('btn_wear')) : (it.canBuy ? HI.t('btn_buy') : HI.t('btn_need', { n: it.need }));
       var cls = it.owned ? 'have' : (it.canBuy ? '' : 'lock');
       html += '<div class="hs-card' + (it.worn ? ' worn' : '') + '">' +
         '<div class="hs-thumb"><svg viewBox="' + it.vb + '" aria-hidden="true">' + it.art + '</svg></div>' +
@@ -119,6 +121,7 @@
     setTimeout(function(){ say('wardrobe_in'); }, 400);
   }
   bs.addEventListener('click', function(){ say(House.wow()); b.react('happy', 1400); });
+  HI.on(function(){ render(); bubble.classList.remove('on'); });   /* смена языка: перерисовать магазин и цель */
 })();
 </script>
 </body>
