@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Естествознание 3 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="estestvo">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Естествознания 3 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Естествознание 3 класс</h1>
+      <p class="ac-sub">13 уроков: исследователь, растения, животные, человек, вещества, воздух, вода, почва, Земля и космос, силы, свет и звук, электричество, магнетизм</p>
+      <p class="ac-note">Курс по программе 3 класса (приказ №399). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 14</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/estestvo3/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/estestvo3/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_estestvo3course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Естествознание 3 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по естествознанию</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.e31q = mkQuiz([{"q": "Что нужно сделать перед экспериментом?", "a": "составить план", "w": ["сразу сделать вывод", "убрать материалы", "забыть вопрос"], "h": "Сначала ставим вопрос и составляем план"}, {"q": "Что такое вывод в конце опыта?", "a": "главный итог: что мы узнали", "w": ["список материалов", "название опыта", "цвет бумаги"], "h": "Вывод отвечает на вопрос опыта"}, {"q": "Какой источник лучше выбрать для школьного доклада?", "a": "детскую энциклопедию", "w": ["случайный пост в сети", "слух от соседа", "рекламу"], "h": "В энциклопедии сведения проверены"}, {"q": "Что нужно делать с информацией из интернета?", "a": "проверять по другому источнику", "w": ["верить сразу", "не читать", "переписывать без проверки"], "h": "Информация в сети бывает неточной"}, {"q": "Что помогает увидеть очень мелкие предметы?", "a": "микроскоп", "w": ["линейка", "компас", "весы"], "h": "Микроскоп увеличивает мелкие предметы"}, {"q": "Что помогает рассмотреть далёкие звёзды?", "a": "телескоп", "w": ["микроскоп", "термометр", "компас"], "h": "Телескоп приближает далёкие объекты"}, {"q": "Как лучше записывать результаты опыта?", "a": "в таблицу или тетрадь", "w": ["только запомнить", "на запотевшем стекле", "нарисовать облако"], "h": "Записи нужны, чтобы сравнить результаты"}, {"q": "Какое открытие помогло людям меньше болеть?", "a": "вакцина", "w": ["пылесос", "радио", "паровоз"], "h": "Вакцины защищают от болезней"}, {"q": "Что значит выдвинуть предположение?", "a": "сказать, что, по нашему мнению, получится", "w": ["закончить опыт", "убрать материалы", "записать вывод"], "h": "Предположение проверяют опытом"}, {"q": "Почему в опыте важно действовать по плану?", "a": "чтобы ничего не пропустить и получить точный результат", "w": ["чтобы опыт был быстрее", "чтобы было красиво", "чтобы не записывать"], "h": "План помогает не ошибиться"}]);
+GENS.e31t = mkTF([{"q": "Эксперимент помогает проверить предположение.", "a": "Верно", "h": "Верно. Опыт показывает, верно ли наше предположение"}, {"q": "Информацию из интернета всегда можно принимать без проверки.", "a": "Неверно", "h": "Неверно. Её нужно проверять по другим источникам"}, {"q": "Научные открытия влияют на повседневную жизнь.", "a": "Верно", "h": "Верно. Например, электричество, вакцины, самолёты"}, {"q": "Результаты опыта записывать не нужно.", "a": "Неверно", "h": "Неверно. Записи нужны, чтобы сделать вывод"}, {"q": "Энциклопедия — надёжный источник информации.", "a": "Верно", "h": "Верно. Её готовят специалисты"}, {"q": "Вывод делают перед началом опыта.", "a": "Неверно", "h": "Неверно. Вывод делают после опыта"}]);
+GENS.e32q = mkQuiz([{"q": "Какой газ выделяют растения при фотосинтезе?", "a": "кислород", "w": ["углекислый газ", "азот", "пар"], "h": "Растения создают кислород, которым дышат люди и животные"}, {"q": "Что растение берёт из воздуха для фотосинтеза?", "a": "углекислый газ", "w": ["кислород", "азот", "пыль"], "h": "Углекислый газ нужен для создания питательных веществ"}, {"q": "Где проходит фотосинтез?", "a": "в зелёных листьях", "w": ["в корнях", "в семенах", "в земле"], "h": "В листьях есть зелёное вещество, которое улавливает свет"}, {"q": "Что нужно растению для фотосинтеза?", "a": "свет, вода и углекислый газ", "w": ["только песок", "только тепло", "камни"], "h": "Три главных условия фотосинтеза"}, {"q": "Как кактус приспособился к сухим местам?", "a": "запасает воду в стебле", "w": ["растёт в воде", "сбрасывает корни", "живёт только зимой"], "h": "Кактус запасает воду на сухое время"}, {"q": "Зачем нужна Красная книга?", "a": "чтобы сохранить редкие и исчезающие растения и животных", "w": ["чтобы продавать цветы", "чтобы красить бумагу", "чтобы считать деревья"], "h": "В неё записывают виды, которым грозит исчезновение"}, {"q": "Как деятельность человека влияет на многообразие растений?", "a": "вырубка лесов и загрязнение уменьшают число видов", "w": ["людей это не касается", "растений становится больше", "всё остаётся прежним"], "h": "Люди могут и вредить, и помогать природе"}, {"q": "Почему нельзя рвать редкие цветы?", "a": "они могут исчезнуть совсем", "w": ["они невкусные", "они тяжёлые", "они стоят дорого"], "h": "Редкие растения охраняются"}, {"q": "Какое растение живёт в тундре?", "a": "карликовая берёза", "w": ["кактус", "кувшинка", "бамбук"], "h": "Низкие растения лучше переносят холод и ветер"}, {"q": "Как называется территория, где природа находится под охраной?", "a": "заповедник", "w": ["рынок", "стадион", "склад"], "h": "В заповеднике охраняют растения и животных"}]);
+GENS.e32t = mkTF([{"q": "Растения выделяют кислород.", "a": "Верно", "h": "Верно. Это происходит при фотосинтезе"}, {"q": "Для фотосинтеза растению не нужен свет.", "a": "Неверно", "h": "Неверно. Свет — источник энергии для фотосинтеза"}, {"q": "Корни берут из почвы воду.", "a": "Верно", "h": "Верно. Вода поднимается к листьям"}, {"q": "Красная книга охраняет редкие и исчезающие виды.", "a": "Верно", "h": "Верно. В неё вносят виды, которым грозит исчезновение"}, {"q": "Вырубка лесов не влияет на многообразие растений.", "a": "Неверно", "h": "Неверно. Когда исчезает лес, пропадают и растения, и животные"}, {"q": "Кактус живёт в сухих местах.", "a": "Верно", "h": "Верно. Он запасает воду в стебле"}]);
+GENS.e33q = mkQuiz([{"q": "Что есть у позвоночных животных?", "a": "позвоночник", "w": ["панцирь", "крылья", "жабры"], "h": "Позвоночник — главный признак позвоночных"}, {"q": "Кто из этих животных беспозвоночное?", "a": "паук", "w": ["собака", "лягушка", "орёл"], "h": "У паука нет позвоночника"}, {"q": "Кто такой хищник?", "a": "животное, которое питается другими животными", "w": ["животное, которое ест траву", "животное, которое спит зимой", "животное, которое живёт в воде"], "h": "Хищники охотятся на других животных"}, {"q": "Где живёт крот?", "a": "в почве", "w": ["в воде", "на дереве", "в небе"], "h": "Крот роет ходы под землёй"}, {"q": "Почему животные зависят от растений?", "a": "растения дают им пищу и убежище", "w": ["растения красивые", "растения шумные", "растения холодные"], "h": "Растительноядные питаются растениями, а хищники — растительноядными"}, {"q": "Что будет с зайцами, если исчезнет трава?", "a": "их станет меньше", "w": ["их станет больше", "ничего не изменится", "они станут хищниками"], "h": "Без пищи численность животных уменьшается"}, {"q": "Что может уменьшить число животных?", "a": "вырубка лесов, браконьерство и загрязнение", "w": ["дождь", "тёплое лето", "смена дня и ночи"], "h": "Это факторы, влияющие на численность"}, {"q": "Что такое конкуренция в природе?", "a": "борьба животных за пищу и место", "w": ["игра животных", "сон животных", "перелёт птиц"], "h": "Например, два зайца едят один и тот же куст"}, {"q": "Как называется животное, которое питается растениями?", "a": "растительноядное", "w": ["хищное", "водное", "ночное"], "h": "Например, заяц и корова"}, {"q": "Кто в цепи питания идёт первым?", "a": "растение", "w": ["хищник", "человек", "паук"], "h": "Растения создают питательные вещества"}]);
+GENS.e33t = mkTF([{"q": "Ящерица — позвоночное животное.", "a": "Верно", "h": "Верно. У неё есть позвоночник"}, {"q": "Дождевой червь — позвоночное животное.", "a": "Неверно", "h": "Неверно. У червя нет позвоночника"}, {"q": "Цепь питания начинается с растения.", "a": "Верно", "h": "Верно. Растения создают пищу"}, {"q": "Хищники питаются только растениями.", "a": "Неверно", "h": "Неверно. Хищники питаются другими животными"}, {"q": "Если исчезнет трава, растительноядных животных станет меньше.", "a": "Верно", "h": "Верно. У них станет меньше пищи"}, {"q": "Все животные живут только на суше.", "a": "Неверно", "h": "Неверно. Есть водные и почвенные животные"}]);
+GENS.e34q = mkQuiz([{"q": "Какой орган перекачивает кровь по телу?", "a": "сердце", "w": ["желудок", "лёгкие", "печень"], "h": "Сердце работает как насос"}, {"q": "Где кислород попадает в кровь?", "a": "в лёгких", "w": ["в желудке", "в кишечнике", "в сердце"], "h": "В лёгких происходит обмен газов"}, {"q": "Что происходит с пищей в желудке?", "a": "она переваривается", "w": ["она превращается в воздух", "она сразу попадает в кровь", "она остаётся целой"], "h": "В желудке пища перемешивается с желудочным соком"}, {"q": "Зачем человеку система пищеварения?", "a": "чтобы получать энергию из пищи", "w": ["чтобы слышать", "чтобы видеть", "чтобы двигать глазами"], "h": "Из пищи организм получает энергию"}, {"q": "Что переносит кислород по телу?", "a": "кровь", "w": ["слюна", "желудочный сок", "пот"], "h": "Кровь течёт по сосудам ко всем органам"}, {"q": "Через какой орган воздух попадает в лёгкие?", "a": "через нос, трахею и бронхи", "w": ["через пищевод", "через желудок", "через кишечник"], "h": "Это путь воздуха"}, {"q": "Что помогает организму защищаться от инфекций?", "a": "прививки и мытьё рук", "w": ["конфеты ночью", "сидение у экрана", "грязная вода"], "h": "Профилактика защищает от болезней"}, {"q": "Где находятся лёгкие?", "a": "в грудной клетке", "w": ["в животе", "в голове", "в ногах"], "h": "Лёгкие защищены рёбрами"}, {"q": "Какие сосуды несут кровь от сердца?", "a": "артерии", "w": ["вены", "бронхи", "трахея"], "h": "Артерии идут от сердца"}, {"q": "Что нужно делать, чтобы не заразиться инфекцией?", "a": "мыть руки и не контактировать с больными", "w": ["не мыться", "есть грязные фрукты", "не гулять никогда"], "h": "Чистота и осторожность защищают здоровье"}]);
+GENS.e34t = mkTF([{"q": "Сердце — это орган кровеносной системы.", "a": "Верно", "h": "Верно. Оно перекачивает кровь"}, {"q": "Лёгкие нужны для пищеварения.", "a": "Неверно", "h": "Неверно. Лёгкие нужны для дыхания"}, {"q": "Желудок находится в брюшной полости.", "a": "Верно", "h": "Верно. Там же печень, кишечник и почки"}, {"q": "Прививки помогают защититься от болезней.", "a": "Верно", "h": "Верно. Организм учится бороться с инфекцией"}, {"q": "Мыть руки перед едой не обязательно.", "a": "Неверно", "h": "Неверно. Мытьё рук смывает микробы"}, {"q": "По венам кровь возвращается к сердцу.", "a": "Верно", "h": "Верно. По артериям — от сердца"}]);
+GENS.e35q = mkQuiz([{"q": "Что происходит со льдом при нагревании?", "a": "он тает и превращается в воду", "w": ["он становится паром сразу", "он твердеет", "он исчезает"], "h": "Лёд плавится"}, {"q": "Как называется переход воды в пар?", "a": "испарение", "w": ["плавление", "замерзание", "таяние"], "h": "При нагревании вода испаряется"}, {"q": "Как называется переход воды в лёд?", "a": "замерзание", "w": ["испарение", "плавление", "кипение"], "h": "При охлаждении вода замерзает"}, {"q": "Что происходит с водяным паром при охлаждении?", "a": "он превращается в капли воды", "w": ["он твердеет в камень", "он становится газом", "он исчезает"], "h": "Это конденсация"}, {"q": "Какое вещество сохраняет форму?", "a": "твёрдое", "w": ["жидкое", "газообразное", "любое"], "h": "Твёрдое тело сохраняет форму"}, {"q": "Какое вещество принимает форму сосуда?", "a": "жидкость", "w": ["камень", "железо", "дерево"], "h": "Жидкость растекается"}, {"q": "Какое вещество не имеет формы и занимает весь объём?", "a": "газ", "w": ["твёрдое тело", "лёд", "камень"], "h": "Газ заполняет всё пространство"}, {"q": "Какое вещество природное?", "a": "нефть", "w": ["пластмасса", "стекло", "капрон"], "h": "Нефть добывают из недр"}, {"q": "Какое вещество создал человек?", "a": "пластмасса", "w": ["песок", "глина", "дерево"], "h": "Пластмассу делают на заводе"}, {"q": "В каком состоянии находится воздух?", "a": "в газообразном", "w": ["в твёрдом", "в жидком", "в каменном"], "h": "Воздух — смесь газов"}]);
+GENS.e35t = mkTF([{"q": "Лёд — твёрдое вещество.", "a": "Верно", "h": "Верно. Он сохраняет форму"}, {"q": "Вода при нагревании превращается в пар.", "a": "Верно", "h": "Верно. Это испарение"}, {"q": "Воздух — жидкость.", "a": "Неверно", "h": "Неверно. Воздух — газ"}, {"q": "Стекло — природное вещество.", "a": "Неверно", "h": "Неверно. Стекло делает человек из песка"}, {"q": "Газы занимают весь предоставленный объём.", "a": "Верно", "h": "Верно. У газа нет собственной формы"}, {"q": "Камень принимает форму сосуда.", "a": "Неверно", "h": "Неверно. Камень — твёрдое тело"}]);
+GENS.e36q = mkQuiz([{"q": "Какой газ в воздухе нужен для дыхания?", "a": "кислород", "w": ["азот", "аргон", "углекислый газ"], "h": "Кислород нужен людям и животным"}, {"q": "Какого газа в воздухе больше всего?", "a": "азота", "w": ["кислорода", "углекислого газа", "водорода"], "h": "Около четырёх пятых воздуха — азот"}, {"q": "Почему свеча гаснет под стеклянной банкой?", "a": "кислород заканчивается", "w": ["ей холодно", "ей слишком светло", "банка тяжёлая"], "h": "Для горения нужен кислород"}, {"q": "Какой газ мы выдыхаем?", "a": "углекислый газ", "w": ["только кислород", "только азот", "водород"], "h": "При выдохе из лёгких выходит углекислый газ"}, {"q": "Что нужно для горения?", "a": "кислород, топливо и тепло", "w": ["только вода", "только песок", "только лёд"], "h": "Без любого условия огонь гаснет"}, {"q": "Чем нельзя тушить горящую электропроводку?", "a": "водой", "w": ["песком", "огнетушителем", "плотным одеялом, отключив ток"], "h": "Вода проводит ток"}, {"q": "Что нужно сделать при пожаре дома?", "a": "выйти из дома и вызвать пожарных", "w": ["спрятаться под кроватью", "продолжить играть", "открыть все окна"], "h": "Нужно позвать взрослых и вызвать пожарных"}, {"q": "Какой номер вызова пожарных в Казахстане?", "a": "101", "w": ["203", "303", "404"], "h": "Можно также позвонить по номеру 112"}, {"q": "Что выделяют растения днём на свету?", "a": "кислород", "w": ["азот", "аргон", "нефть"], "h": "Это результат фотосинтеза"}, {"q": "Что такое воздух?", "a": "смесь газов", "w": ["один газ", "вода", "пыль"], "h": "В нём азот, кислород и другие газы"}]);
+GENS.e36t = mkTF([{"q": "Воздух — смесь газов.", "a": "Верно", "h": "Верно. Азот, кислород и другие"}, {"q": "Больше всего в воздухе кислорода.", "a": "Неверно", "h": "Неверно. Больше всего азота"}, {"q": "Без кислорода огонь не горит.", "a": "Верно", "h": "Верно. Кислород нужен для горения"}, {"q": "Горящий бензин нужно заливать водой.", "a": "Неверно", "h": "Неверно. Его тушат песком или огнетушителем"}, {"q": "Людям для дыхания нужен кислород.", "a": "Верно", "h": "Верно. Он попадает в лёгкие"}, {"q": "Пыль — тоже часть воздуха.", "a": "Верно", "h": "Верно. В воздухе есть мелкие частицы"}]);
+GENS.e37q = mkQuiz([{"q": "Где на Земле больше всего воды?", "a": "в океанах", "w": ["в реках", "в озёрах", "в колодцах"], "h": "Океаны занимают большую часть поверхности"}, {"q": "Какую воду можно пить после очистки?", "a": "пресную", "w": ["солёную морскую", "любую", "нефтяную"], "h": "Пресной воды на Земле мало"}, {"q": "Как называется путь воды: испарение, облака, дождь?", "a": "круговорот воды", "w": ["конденсация", "плавление", "фильтрация"], "h": "Вода постоянно движется по кругу"}, {"q": "Как очистить воду в походе?", "a": "прокипятить", "w": ["выпить как есть", "добавить соль", "разморозить"], "h": "Кипячение убивает микробы"}, {"q": "Что делает фильтр?", "a": "удаляет частицы грязи из воды", "w": ["делает воду солёной", "замораживает воду", "нагревает воду"], "h": "Фильтр задерживает грязь"}, {"q": "Сколько воды в теле человека?", "a": "больше половины", "w": ["совсем нет", "одна капля", "только в крови"], "h": "Вода есть во всех клетках организма"}, {"q": "Почему нужно беречь пресную воду?", "a": "её на Земле мало", "w": ["она дорогая", "она тяжёлая", "она красивая"], "h": "Чистой пресной воды не очень много"}, {"q": "Какое из этих действий помогает беречь воду?", "a": "закрывать кран", "w": ["оставлять кран открытым", "мыть машину каждый день", "заливать двор"], "h": "Вода не должна течь зря"}, {"q": "Что такое родник?", "a": "вода, которая выходит из земли", "w": ["вода в море", "вода в бутылке", "лёд на крыше"], "h": "Родник даёт чистую воду"}, {"q": "Что бывает, если вылить отходы в реку?", "a": "вода загрязняется, страдают рыбы", "w": ["вода становится чище", "рыбы растут быстрее", "река высыхает мгновенно"], "h": "Загрязнение вредит всем живым существам"}]);
+GENS.e37t = mkTF([{"q": "Морскую воду нельзя пить без специальной очистки.", "a": "Верно", "h": "Верно. В ней слишком много соли"}, {"q": "Пресной воды на Земле больше, чем солёной.", "a": "Неверно", "h": "Неверно. Солёной воды гораздо больше"}, {"q": "Кипячение помогает обеззаразить воду.", "a": "Верно", "h": "Верно. Микробы погибают"}, {"q": "Закрывать кран во время чистки зубов не нужно.", "a": "Неверно", "h": "Неверно. Так можно сохранить много воды"}, {"q": "Вода есть не только в реках, но и в живых организмах.", "a": "Верно", "h": "Верно. В теле человека много воды"}, {"q": "Воду можно загрязнять, потому что её много.", "a": "Неверно", "h": "Неверно. Чистой воды мало, её нужно беречь"}]);
+GENS.e38q = mkQuiz([{"q": "Что такое плодородие почвы?", "a": "способность давать урожай", "w": ["цвет почвы", "запах почвы", "вес почвы"], "h": "Плодородная почва питает растения"}, {"q": "Какая почва самая плодородная?", "a": "чернозём", "w": ["песок", "голая глина", "камни"], "h": "В чернозёме много перегноя"}, {"q": "Из чего образуется перегной?", "a": "из остатков растений и животных", "w": ["из песка", "из воды", "из камней"], "h": "Остатки перерабатывают бактерии и грибы"}, {"q": "Кто разрыхляет почву?", "a": "дождевые черви", "w": ["камни", "облака", "ветер"], "h": "Черви делают ходы, воздух попадает к корням"}, {"q": "Какая почва хорошо пропускает воду?", "a": "песчаная", "w": ["глинистая", "каменистая", "ледяная"], "h": "В песке много крупных промежутков"}, {"q": "Какая почва плохо пропускает воду?", "a": "глинистая", "w": ["песчаная", "рыхлая", "сухая"], "h": "Глина удерживает воду"}, {"q": "Из чего состоит почва?", "a": "из песка, глины, воды, воздуха и перегноя", "w": ["только из песка", "только из воды", "только из камней"], "h": "Состав почвы разнообразен"}, {"q": "Почему нужно беречь почву?", "a": "она образуется очень медленно", "w": ["она тяжёлая", "она красивая", "она шумная"], "h": "Плодородный слой накапливается сотни лет"}, {"q": "Что помогает сохранить плодородие почвы?", "a": "посадка деревьев и правильный полив", "w": ["вытаптывание", "сжигание травы", "свалки"], "h": "Корни деревьев защищают почву"}, {"q": "Что нужно корням растений от почвы?", "a": "вода, воздух и питательные вещества", "w": ["только свет", "только песок", "только лёд"], "h": "Почва питает растения"}]);
+GENS.e38t = mkTF([{"q": "В почве есть воздух.", "a": "Верно", "h": "Верно. Он нужен корням и червям"}, {"q": "Перегной образуется из остатков растений и животных.", "a": "Верно", "h": "Верно. Их перерабатывают бактерии и грибы"}, {"q": "Песок хорошо удерживает воду.", "a": "Неверно", "h": "Неверно. Песок быстро пропускает воду"}, {"q": "Дождевые черви вредят почве.", "a": "Неверно", "h": "Неверно. Они разрыхляют почву и делают её плодороднее"}, {"q": "Вытаптывание уплотняет почву.", "a": "Верно", "h": "Верно. Корням становится трудно расти"}, {"q": "Плодородие почвы не зависит от её состава.", "a": "Неверно", "h": "Неверно. Чем больше перегноя, тем плодороднее почва"}]);
+GENS.e39q = mkQuiz([{"q": "Кто первым полетел в космос?", "a": "Юрий Гагарин", "w": ["Нил Армстронг", "Герман Титов", "Алексей Леонов"], "h": "Это случилось 12 апреля 1961 года"}, {"q": "Как называется космодром в Казахстане?", "a": "Байконур", "w": ["Плесецк", "Восточный", "Куру"], "h": "С Байконура запущен первый спутник и корабль Гагарина"}, {"q": "Что запущено в космос в 1957 году?", "a": "первый искусственный спутник Земли", "w": ["первый человек", "первая станция", "первый телескоп"], "h": "Это был Спутник-1, он стартовал с Байконура"}, {"q": "Почему сменяются день и ночь?", "a": "Земля вращается вокруг своей оси", "w": ["Солнце гаснет", "Луна закрывает Солнце", "Земля останавливается"], "h": "Один оборот Земля делает за сутки"}, {"q": "За сколько времени Земля делает один оборот вокруг своей оси?", "a": "за 24 часа", "w": ["за неделю", "за месяц", "за год"], "h": "Это одни сутки"}, {"q": "Сколько примерно дней в году?", "a": "365", "w": ["30", "100", "500"], "h": "Столько Земля совершает оборот вокруг Солнца"}, {"q": "Какая оболочка Земли состоит из воды?", "a": "гидросфера", "w": ["атмосфера", "литосфера", "биосфера"], "h": "Гидро — вода"}, {"q": "Какая оболочка Земли — воздушная?", "a": "атмосфера", "w": ["гидросфера", "литосфера", "биосфера"], "h": "Атмо — воздух"}, {"q": "Кто из казахстанцев летал в космос?", "a": "Токтар Аубакиров", "w": ["Абай Кунанбаев", "Алхан Бокейханов", "Чокан Валиханов"], "h": "Токтар Аубакиров полетел в 1991 году"}, {"q": "Что такое Луна?", "a": "естественный спутник Земли", "w": ["звезда", "планета", "комета"], "h": "Луна обращается вокруг Земли"}]);
+GENS.e39t = mkTF([{"q": "Земля вращается вокруг своей оси.", "a": "Верно", "h": "Верно. От этого сменяются день и ночь"}, {"q": "Солнце — планета.", "a": "Неверно", "h": "Неверно. Солнце — звезда"}, {"q": "Первым человеком в космосе был Юрий Гагарин.", "a": "Верно", "h": "Верно. Полёт состоялся в 1961 году"}, {"q": "Байконур находится в Казахстане.", "a": "Верно", "h": "Верно. Это самый известный космодром мира"}, {"q": "Луна — звезда.", "a": "Неверно", "h": "Неверно. Луна — спутник Земли"}, {"q": "Живые организмы относятся к биосфере.", "a": "Верно", "h": "Верно. Растения, животные, люди и грибы"}]);
+GENS.e310q = mkQuiz([{"q": "Какая сила тянет предметы к Земле?", "a": "сила тяжести", "w": ["сила упругости", "сила трения", "сила звука"], "h": "Поэтому все предметы падают вниз"}, {"q": "Какая сила возвращает резинке прежнюю форму?", "a": "сила упругости", "w": ["сила тяжести", "сила трения", "сила света"], "h": "Упругие тела восстанавливают форму"}, {"q": "Как называется прибор для измерения силы?", "a": "динамометр", "w": ["термометр", "линейка", "барометр"], "h": "Динамометр содержит пружину"}, {"q": "Куда направлена сила тяжести?", "a": "вниз, к центру Земли", "w": ["вверх", "вбок", "вперёд"], "h": "Все тела притягиваются к Земле"}, {"q": "Куда направлена сила трения при движении?", "a": "против движения", "w": ["по направлению движения", "вверх", "вниз"], "h": "Трение тормозит движение"}, {"q": "Что уменьшает трение?", "a": "смазка", "w": ["песок", "шероховатость", "клей"], "h": "Масло делает поверхность скользкой"}, {"q": "Что увеличивает трение?", "a": "шероховатая поверхность", "w": ["смазка", "лёд", "вода"], "h": "Чем шершавее, тем больше трение"}, {"q": "Почему велосипедист тормозит?", "a": "тормозные колодки трутся о колесо", "w": ["колесо исчезает", "ветер толкает вперёд", "дорога тает"], "h": "Это сила трения"}, {"q": "Какая сила действует, когда мы тянем пружину?", "a": "сила упругости", "w": ["сила тяжести", "магнитная сила", "сила света"], "h": "Пружина стремится вернуться"}, {"q": "Почему яблоко падает на землю?", "a": "на него действует сила тяжести", "w": ["оно захотело", "его толкнул ветер", "оно тяжёлое по цвету"], "h": "Земля притягивает все тела"}]);
+GENS.e310t = mkTF([{"q": "Сила тяжести направлена вниз.", "a": "Верно", "h": "Верно. К центру Земли"}, {"q": "Трение всегда вредно.", "a": "Неверно", "h": "Неверно. Оно помогает тормозить и не скользить"}, {"q": "Пружина проявляет силу упругости.", "a": "Верно", "h": "Верно. Она стремится вернуть форму"}, {"q": "Смазка увеличивает трение.", "a": "Неверно", "h": "Неверно. Смазка уменьшает трение"}, {"q": "Динамометр измеряет силу.", "a": "Верно", "h": "Верно. Внутри динамометра — пружина"}, {"q": "Сила трения направлена по движению тела.", "a": "Неверно", "h": "Неверно. Она направлена против движения"}]);
+GENS.e311q = mkQuiz([{"q": "Когда появляется тень?", "a": "когда предмет не пропускает свет", "w": ["когда светло везде", "когда предмет прозрачный", "когда нет предметов"], "h": "Тень — место, куда не попадает свет"}, {"q": "Когда тень длиннее?", "a": "когда Солнце низко над горизонтом", "w": ["в полдень", "когда на небе нет облаков", "когда мы стоим на месте"], "h": "Утром и вечером тени длиннее"}, {"q": "Что нужно, чтобы получилась тень?", "a": "источник света, предмет и экран", "w": ["только звук", "только вода", "только ветер"], "h": "Предмет загораживает свет"}, {"q": "Что делает зеркало со светом?", "a": "отражает его", "w": ["поглощает", "создаёт", "останавливает"], "h": "Свет отражается от гладкой поверхности"}, {"q": "Почему мы видим Луну ночью?", "a": "она отражает свет Солнца", "w": ["она светит сама", "она горит", "на ней огонь"], "h": "Луна сама не светится"}, {"q": "Как движется свет?", "a": "по прямой линии", "w": ["по кругу", "по волнам воды", "зигзагом"], "h": "Поэтому получаются чёткие тени"}, {"q": "Как меняется громкость звука с расстоянием?", "a": "чем дальше от источника, тем звук тише", "w": ["чем дальше, тем громче", "громкость не меняется", "звук пропадает сразу"], "h": "Звук слабеет по мере удаления"}, {"q": "Что такое эхо?", "a": "отражённый звук", "w": ["очень громкий звук", "тихий шёпот", "звук ветра"], "h": "Звук отражается от преград"}, {"q": "Где звук не распространяется?", "a": "в безвоздушном пространстве", "w": ["в воздухе", "в воде", "в твёрдых телах"], "h": "Звуку нужна среда"}, {"q": "Какой предмет пропускает свет?", "a": "стекло", "w": ["картон", "дерево", "камень"], "h": "Стекло прозрачное"}]);
+GENS.e311t = mkTF([{"q": "Луна светит сама.", "a": "Неверно", "h": "Неверно. Луна отражает свет Солнца"}, {"q": "Свет движется по прямой линии.", "a": "Верно", "h": "Верно. Поэтому получаются чёткие тени"}, {"q": "Чем дальше от источника звука, тем звук слышнее.", "a": "Неверно", "h": "Неверно. Чем дальше, тем тише"}, {"q": "Зеркало отражает свет.", "a": "Верно", "h": "Верно. Свет отражается от гладкой поверхности"}, {"q": "Тень даёт прозрачное стекло.", "a": "Неверно", "h": "Неверно. Тень даёт непрозрачный предмет"}, {"q": "Эхо — это отражённый звук.", "a": "Верно", "h": "Верно. Звук отражается от преград"}]);
+GENS.e312q = mkQuiz([{"q": "Что необходимо для работы лампочки в цепи?", "a": "замкнутая цепь с источником тока", "w": ["только провод", "только выключатель", "только лампочка"], "h": "Ток идёт по замкнутому кругу"}, {"q": "Что делает выключатель?", "a": "замыкает и размыкает цепь", "w": ["вырабатывает ток", "нагревает провода", "создаёт свет"], "h": "Так мы включаем и выключаем приборы"}, {"q": "Какой материал проводит электрический ток?", "a": "металл", "w": ["резина", "пластмасса", "стекло"], "h": "Провода делают из меди и алюминия"}, {"q": "Какой материал не проводит ток и защищает нас?", "a": "резина и пластмасса", "w": ["медь", "железо", "алюминий"], "h": "Из них делают оболочку проводов"}, {"q": "Откуда берётся электричество в розетке?", "a": "его вырабатывают электростанции", "w": ["оно приходит из земли", "оно хранится в проводах", "оно берётся из воздуха сразу"], "h": "Электростанции вырабатывают энергию"}, {"q": "Как можно получать электричество без вреда для природы?", "a": "с помощью солнечных батарей и ветряков", "w": ["сжигая мусор", "вырубая лес", "проливая нефть"], "h": "Это чистые источники энергии"}, {"q": "Почему нельзя включать приборы мокрыми руками?", "a": "вода проводит ток, можно получить удар", "w": ["приборы испортятся от мыла", "руки замёрзнут", "провода намокнут"], "h": "Это опасно для жизни"}, {"q": "Что нужно сделать, уходя из комнаты?", "a": "выключить свет", "w": ["оставить свет", "включить все приборы", "открыть окна"], "h": "Так мы бережём энергию"}, {"q": "Какая лампа экономит энергию?", "a": "светодиодная", "w": ["старая лампа накаливания", "свеча", "костёр"], "h": "Светодиодные лампы потребляют меньше"}, {"q": "Что такое электрическая цепь?", "a": "путь, по которому идёт электрический ток", "w": ["тип одежды", "вид растений", "звук"], "h": "Цепь состоит из источника, проводов и потребителя"}]);
+GENS.e312t = mkTF([{"q": "Батарейка — источник электрической энергии.", "a": "Верно", "h": "Верно. Она вырабатывает ток"}, {"q": "Электрический ток проходит через разомкнутую цепь.", "a": "Неверно", "h": "Неверно. Цепь должна быть замкнута"}, {"q": "Металл проводит электрический ток.", "a": "Верно", "h": "Верно. Поэтому провода делают из металла"}, {"q": "Вставлять предметы в розетку можно.", "a": "Неверно", "h": "Неверно. Это опасно"}, {"q": "Энергию нужно беречь.", "a": "Верно", "h": "Верно. Выключай приборы, когда они не нужны"}, {"q": "Лампочка — потребитель электричества.", "a": "Верно", "h": "Верно. Она работает от тока"}]);
+GENS.e313q = mkQuiz([{"q": "Какой металл притягивает магнит?", "a": "железо", "w": ["алюминий", "медь", "золото"], "h": "Магнит притягивает железо и сталь"}, {"q": "Сколько полюсов у магнита?", "a": "два", "w": ["один", "три", "десять"], "h": "Северный и южный"}, {"q": "Что делают одинаковые полюса магнитов?", "a": "отталкиваются", "w": ["притягиваются", "исчезают", "нагреваются"], "h": "Одинаковые полюса отталкиваются"}, {"q": "Что делают разные полюса магнитов?", "a": "притягиваются", "w": ["отталкиваются", "исчезают", "нагреваются"], "h": "Разные полюса притягиваются"}, {"q": "Что показывает компас?", "a": "направление на север", "w": ["время", "температуру", "вес"], "h": "Стрелка компаса — маленький магнит"}, {"q": "Где магнитная сила больше всего?", "a": "на полюсах", "w": ["в середине", "нигде", "на боках"], "h": "Полюса — самые сильные места магнита"}, {"q": "Что можно сделать с железным гвоздём с помощью магнита?", "a": "намагнитить его", "w": ["расплавить его", "покрасить", "сделать из него бумагу"], "h": "Гвоздь может стать слабым магнитом"}, {"q": "Какой предмет магнит не притянет?", "a": "пластмассовую линейку", "w": ["стальную скрепку", "железный гвоздь", "стальные ножницы"], "h": "Пластмасса не притягивается"}, {"q": "Какая планета — огромный магнит?", "a": "Земля", "w": ["Луна", "Солнце", "Юпитер"], "h": "Поэтому работает компас"}, {"q": "Где используют магниты?", "a": "в компасе, на дверце холодильника, в динамике", "w": ["только в космосе", "только на кухне", "нигде"], "h": "Магниты есть в быту и технике"}]);
+GENS.e313t = mkTF([{"q": "Магнит притягивает железо.", "a": "Верно", "h": "Верно. Железо и сталь притягиваются"}, {"q": "Магнит притягивает пластмассу.", "a": "Неверно", "h": "Неверно. Пластмасса не притягивается"}, {"q": "Одинаковые полюса магнитов притягиваются.", "a": "Неверно", "h": "Неверно. Одинаковые полюса отталкиваются"}, {"q": "У магнита есть северный и южный полюса.", "a": "Верно", "h": "Верно. Всегда два полюса"}, {"q": "Компас работает потому, что Земля — большой магнит.", "a": "Верно", "h": "Верно. Стрелка поворачивается к северу"}, {"q": "Алюминий притягивается магнитом.", "a": "Неверно", "h": "Неверно. Алюминий магнитом не притягивается"}]);
+const LESSONS = [
+  { id: "e31", icon: "", title: "Я — исследователь", goal: "Выбирать источники информации и проводить опыты по плану",
+    steps: [
+      Q("e31s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Учёный всё проверяет и узнаёт новое. Нажимай на карточки и становись исследователем.", {"need": 5, "items": [{"k": "источники информации", "v": "", "t": "Информацию можно найти в книгах, энциклопедиях, журналах, в интернете, а ещё спросить у специалиста или увидеть самому."}, {"k": "проверка", "v": "", "t": "Сведения из интернета нужно проверять по другому источнику. Самые надёжные — энциклопедии и сайты музеев и университетов."}, {"k": "перед опытом", "v": "", "t": "Перед опытом ставим вопрос, делаем предположение, составляем план и готовим материалы."}, {"k": "во время опыта", "v": "", "t": "Во время опыта наблюдаем, измеряем и записываем результаты в таблицу."}, {"k": "после опыта", "v": "", "t": "После опыта сравниваем результат с предположением и делаем вывод: что мы узнали."}, {"k": "открытия", "v": "", "t": "Научные открытия меняют жизнь: вакцины защищают от болезней, электричество освещает дома, самолёты быстро везут людей."}]}),
+      Q("e31s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Книги и энциклопедии"}, {"e": "", "k": "Интернет"}, {"e": "", "k": "Опыт и люди"}], "items": [{"g": 0, "e": "", "t": "детская энциклопедия", "h": "проверенные научные сведения"}, {"g": 0, "e": "", "t": "справочник", "h": "точные факты по теме"}, {"g": 0, "e": "", "t": "учебник", "h": "знания по программе"}, {"g": 1, "e": "", "t": "сайт музея или университета", "h": "обычно надёжный"}, {"g": 1, "e": "", "t": "видеоролик с опытом", "h": "можно увидеть, как проходит эксперимент"}, {"g": 1, "e": "", "t": "поисковая система", "h": "помогает найти страницы, но ответы надо проверять"}, {"g": 2, "e": "", "t": "разговор со специалистом", "h": "эксперт рассказывает из первых рук"}, {"g": 2, "e": "", "t": "собственное наблюдение", "h": "увидел сам"}, {"g": 2, "e": "", "t": "эксперимент", "h": "узнал на опыте"}]}),
+      Q("e31s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Перед опытом"}, {"e": "", "k": "Во время опыта"}, {"e": "", "k": "После опыта"}], "items": [{"g": 0, "e": "", "t": "поставить вопрос", "h": "что хотим узнать"}, {"g": 0, "e": "", "t": "выдвинуть предположение", "h": "что, по-нашему, получится"}, {"g": 0, "e": "", "t": "составить план", "h": "список шагов и материалов"}, {"g": 1, "e": "", "t": "наблюдать", "h": "смотреть, что происходит"}, {"g": 1, "e": "", "t": "измерять", "h": "записывать числа"}, {"g": 1, "e": "", "t": "вести записи", "h": "заносить результаты в таблицу"}, {"g": 2, "e": "", "t": "сравнить результат с предположением", "h": "совпало или нет"}, {"g": 2, "e": "", "t": "сделать вывод", "h": "что мы узнали"}, {"g": 2, "e": "", "t": "рассказать о результатах", "h": "поделиться с классом"}]}),
+      Q("e31s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e31q"]}),
+      Q("e31s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e31t"]})
+    ] },
+  { id: "e32", icon: "", title: "Растения", goal: "Объяснять фотосинтез и приспособление растений",
+    steps: [
+      Q("e32s1", "infoTap", "Знакомимся с темой", "Растения кормят всю планету. Нажимай на карточки и узнавай, как они это делают.", {"need": 5, "items": [{"k": "фотосинтез", "v": "", "t": "В зелёных листьях на свету вода и углекислый газ превращаются в питательные вещества. Это называется фотосинтез."}, {"k": "кислород", "v": "", "t": "При фотосинтезе растения выделяют кислород. Им дышат люди и животные."}, {"k": "условия", "v": "", "t": "Растениям нужны свет, вода, воздух, тепло и питательные вещества из почвы."}, {"k": "приспособления", "v": "", "t": "Кактус запасает воду в стебле, у саксаула длинные корни, у ели вместо листьев иглы, а кувшинка растёт на воде."}, {"k": "вред и охрана", "v": "", "t": "Вырубка лесов, пожары и загрязнение уменьшают число растений. Помогают заповедники и посадка деревьев."}, {"k": "Красная книга", "v": "", "t": "В Красную книгу записывают редкие и исчезающие виды, чтобы их сохранить."}]}),
+      Q("e32s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Что растение берёт"}, {"e": "", "k": "Что растение создаёт и выделяет"}], "items": [{"g": 0, "e": "", "t": "солнечный свет", "h": "источник энергии"}, {"g": 0, "e": "", "t": "вода", "h": "корни берут её из почвы"}, {"g": 0, "e": "", "t": "углекислый газ", "h": "растение берёт его из воздуха"}, {"g": 1, "e": "", "t": "кислород", "h": "образуется при фотосинтезе и нужен для дыхания"}, {"g": 1, "e": "", "t": "сахар и питательные вещества", "h": "растение создаёт их само"}, {"g": 1, "e": "", "t": "водяной пар", "h": "растение испаряет воду листьями"}]}),
+      Q("e32s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "В сухих местах"}, {"e": "", "k": "У воды"}, {"e": "", "k": "В холодных местах"}], "items": [{"g": 0, "e": "", "t": "кактус", "h": "запасает воду в стебле"}, {"g": 0, "e": "", "t": "саксаул", "h": "корни уходят глубоко за водой"}, {"g": 0, "e": "", "t": "верблюжья колючка", "h": "длинные корни и колючки"}, {"g": 1, "e": "", "t": "кувшинка", "h": "листья лежат на воде"}, {"g": 1, "e": "", "t": "камыш", "h": "растёт на берегу"}, {"g": 1, "e": "", "t": "тростник", "h": "растёт во влажных местах"}, {"g": 2, "e": "", "t": "ель", "h": "иглы вместо листьев, снег соскальзывает"}, {"g": 2, "e": "", "t": "карликовая берёза", "h": "низкая, прижата к земле"}, {"g": 2, "e": "", "t": "ягель (олений мох)", "h": "растёт в тундре"}]}),
+      Q("e32s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e32q"]}),
+      Q("e32s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e32t"]})
+    ] },
+  { id: "e33", icon: "", title: "Животные", goal: "Классифицировать животных и описывать связи в природе",
+    steps: [
+      Q("e33s1", "infoTap", "Знакомимся с темой", "Животные живут по всей Земле. Нажимай на карточки и узнавай, как их различать.", {"need": 5, "items": [{"k": "позвоночные", "v": "", "t": "У позвоночных есть позвоночник: у рыб, лягушек, ящериц, птиц и зверей."}, {"k": "беспозвоночные", "v": "", "t": "У беспозвоночных нет позвоночника: у червей, пауков, улиток и насекомых."}, {"k": "среда обитания", "v": "", "t": "Животные живут в воде, на земле, в воздухе и в почве. Например, щука — в воде, орёл — в воздухе, крот — в почве."}, {"k": "цепь питания", "v": "", "t": "Цепь питания начинается с растения. Его ест растительноядное животное, а то становится добычей хищника."}, {"k": "связь с растениями", "v": "", "t": "Без растений животным не хватит пищи и укрытий, поэтому их численность уменьшается."}, {"k": "численность", "v": "", "t": "Число животных уменьшают вырубка лесов, браконьерство и загрязнение. Охрана природы помогает их сохранить."}]}),
+      Q("e33s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Позвоночные"}, {"e": "", "k": "Беспозвоночные"}], "items": [{"g": 0, "e": "", "t": "собака", "h": "Это относится к группе «Позвоночные»"}, {"g": 0, "e": "", "t": "орёл", "h": "Это относится к группе «Позвоночные»"}, {"g": 0, "e": "", "t": "щука", "h": "Это относится к группе «Позвоночные»"}, {"g": 1, "e": "", "t": "бабочка", "h": "Это относится к группе «Беспозвоночные»"}, {"g": 1, "e": "", "t": "дождевой червь", "h": "Это относится к группе «Беспозвоночные»"}, {"g": 1, "e": "", "t": "паук", "h": "Это относится к группе «Беспозвоночные»"}]}),
+      Q("e33s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "В воде"}, {"e": "", "k": "На земле и в воздухе"}, {"e": "", "k": "В почве"}], "items": [{"g": 0, "e": "", "t": "щука", "h": "Это относится к группе «В воде»"}, {"g": 0, "e": "", "t": "карп", "h": "Это относится к группе «В воде»"}, {"g": 0, "e": "", "t": "дельфин", "h": "Это относится к группе «В воде»"}, {"g": 1, "e": "", "t": "волк", "h": "Это относится к группе «На земле и в воздухе»"}, {"g": 1, "e": "", "t": "орёл", "h": "Это относится к группе «На земле и в воздухе»"}, {"g": 1, "e": "", "t": "сайгак", "h": "Это относится к группе «На земле и в воздухе»"}, {"g": 2, "e": "", "t": "крот", "h": "Это относится к группе «В почве»"}, {"g": 2, "e": "", "t": "дождевой червь", "h": "Это относится к группе «В почве»"}, {"g": 2, "e": "", "t": "личинка жука", "h": "Это относится к группе «В почве»"}]}),
+      Q("e33s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e33q"]}),
+      Q("e33s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e33t"]})
+    ] },
+  { id: "e34", icon: "", title: "Человек", goal: "Описывать системы органов человека и защиту от болезней",
+    steps: [
+      Q("e34s1", "infoTap", "Знакомимся с темой", "Наше тело — удивительный механизм. Нажимай на карточки и узнавай, как оно работает.", {"need": 5, "items": [{"k": "пищеварение", "v": "", "t": "Пища проходит рот, пищевод, желудок и кишечник. Так организм получает энергию."}, {"k": "дыхание", "v": "", "t": "Воздух идёт через нос, трахею и бронхи в лёгкие. В лёгких кислород попадает в кровь."}, {"k": "кровообращение", "v": "", "t": "Сердце перекачивает кровь по сосудам: артерии идут от сердца, вены возвращаются к сердцу."}, {"k": "где находятся органы", "v": "", "t": "В грудной клетке — сердце и лёгкие, в брюшной полости — желудок, кишечник, печень и почки."}, {"k": "защита от болезней", "v": "", "t": "Здоровье защищают мытьё рук, прививки, закаливание, здоровое питание и сон."}, {"k": "инфекции", "v": "", "t": "Чтобы не заразиться, нужно мыть руки, не пить из чужой посуды и беречься от больных."}]}),
+      Q("e34s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Пищеварение"}, {"e": "", "k": "Дыхание"}, {"e": "", "k": "Кровообращение"}], "items": [{"g": 0, "e": "", "t": "рот", "h": "пища измельчается зубами"}, {"g": 0, "e": "", "t": "пищевод", "h": "трубка, по которой пища идёт в желудок"}, {"g": 0, "e": "", "t": "желудок", "h": "пища переваривается"}, {"g": 1, "e": "", "t": "нос", "h": "воздух входит в тело"}, {"g": 1, "e": "", "t": "трахея", "h": "дыхательное горло"}, {"g": 1, "e": "", "t": "бронхи", "h": "разветвления трахеи"}, {"g": 2, "e": "", "t": "сердце", "h": "перекачивает кровь"}, {"g": 2, "e": "", "t": "артерии", "h": "кровь идёт от сердца"}, {"g": 2, "e": "", "t": "вены", "h": "кровь возвращается к сердцу"}]}),
+      Q("e34s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Грудная клетка"}, {"e": "", "k": "Брюшная полость"}], "items": [{"g": 0, "e": "", "t": "сердце", "h": "Это относится к группе «Грудная клетка»"}, {"g": 0, "e": "", "t": "лёгкие", "h": "Это относится к группе «Грудная клетка»"}, {"g": 0, "e": "", "t": "бронхи", "h": "Это относится к группе «Грудная клетка»"}, {"g": 1, "e": "", "t": "желудок", "h": "Это относится к группе «Брюшная полость»"}, {"g": 1, "e": "", "t": "кишечник", "h": "Это относится к группе «Брюшная полость»"}, {"g": 1, "e": "", "t": "печень", "h": "Это относится к группе «Брюшная полость»"}]}),
+      Q("e34s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e34q"]}),
+      Q("e34s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e34t"]})
+    ] },
+  { id: "e35", icon: "", title: "Вещества", goal: "Классифицировать вещества по происхождению и состоянию",
+    steps: [
+      Q("e35s1", "infoTap", "Знакомимся с темой", "Всё вокруг состоит из веществ. Нажимай на карточки и узнавай, какими они бывают.", {"need": 5, "items": [{"k": "природные и созданные", "v": "", "t": "Природные вещества есть в природе: камень, дерево, вода, нефть. Другие создаёт человек: пластмасса, стекло, бумага."}, {"k": "твёрдые", "v": "", "t": "Твёрдые вещества сохраняют форму: лёд, камень, железо."}, {"k": "жидкие", "v": "", "t": "Жидкости принимают форму сосуда: вода, молоко, масло."}, {"k": "газы", "v": "", "t": "Газы не имеют формы и заполняют весь объём: воздух, водяной пар, кислород."}, {"k": "превращения воды", "v": "", "t": "Лёд тает и становится водой, вода испаряется и становится паром, пар охлаждается и снова превращается в воду."}]}),
+      Q("e35s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Природные"}, {"e": "", "k": "Созданные человеком"}], "items": [{"g": 0, "e": "", "t": "камень", "h": "Это относится к группе «Природные»"}, {"g": 0, "e": "", "t": "дерево", "h": "Это относится к группе «Природные»"}, {"g": 0, "e": "", "t": "вода", "h": "Это относится к группе «Природные»"}, {"g": 1, "e": "", "t": "пластмасса", "h": "Это относится к группе «Созданные человеком»"}, {"g": 1, "e": "", "t": "стекло", "h": "Это относится к группе «Созданные человеком»"}, {"g": 1, "e": "", "t": "бумага", "h": "Это относится к группе «Созданные человеком»"}]}),
+      Q("e35s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Твёрдые"}, {"e": "", "k": "Жидкие"}, {"e": "", "k": "Газообразные"}], "items": [{"g": 0, "e": "", "t": "лёд", "h": "Это относится к группе «Твёрдые»"}, {"g": 0, "e": "", "t": "камень", "h": "Это относится к группе «Твёрдые»"}, {"g": 0, "e": "", "t": "железо", "h": "Это относится к группе «Твёрдые»"}, {"g": 1, "e": "", "t": "вода", "h": "Это относится к группе «Жидкие»"}, {"g": 1, "e": "", "t": "молоко", "h": "Это относится к группе «Жидкие»"}, {"g": 1, "e": "", "t": "растительное масло", "h": "Это относится к группе «Жидкие»"}, {"g": 2, "e": "", "t": "воздух", "h": "Это относится к группе «Газообразные»"}, {"g": 2, "e": "", "t": "водяной пар", "h": "Это относится к группе «Газообразные»"}, {"g": 2, "e": "", "t": "кислород", "h": "Это относится к группе «Газообразные»"}]}),
+      Q("e35s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e35q"]}),
+      Q("e35s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e35t"]})
+    ] },
+  { id: "e36", icon: "", title: "Воздух", goal: "Описывать состав воздуха и условия горения",
+    steps: [
+      Q("e36s1", "infoTap", "Знакомимся с темой", "Воздух мы не видим, но он очень важен. Нажимай на карточки и узнавай, из чего он состоит.", {"need": 5, "items": [{"k": "состав", "v": "", "t": "Воздух — смесь газов. Больше всего в нём азота, около одной пятой — кислорода. Есть ещё углекислый газ, водяной пар и пыль."}, {"k": "дыхание", "v": "", "t": "Для дыхания нужен кислород. Мы выдыхаем углекислый газ."}, {"k": "горение", "v": "", "t": "Чтобы огонь горел, нужны кислород, топливо и тепло."}, {"k": "тушение", "v": "", "t": "Огонь тушат, перекрывая доступ воздуха: накрывают тканью, засыпают песком. Электрические приборы водой тушить нельзя."}, {"k": "безопасность", "v": "", "t": "Если случился пожар, нужно выйти из дома и вызвать пожарных по номеру 101 или 112."}]}),
+      Q("e36s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Главные газы воздуха"}, {"e": "", "k": "Другие частицы воздуха"}], "items": [{"g": 0, "e": "", "t": "азот", "h": "его около четырёх пятых воздуха"}, {"g": 0, "e": "", "t": "кислород", "h": "около одной пятой, нужен для дыхания и горения"}, {"g": 0, "e": "", "t": "аргон", "h": "его около одного процента"}, {"g": 1, "e": "", "t": "углекислый газ", "h": "его очень мало"}, {"g": 1, "e": "", "t": "водяной пар", "h": "влага в воздухе"}, {"g": 1, "e": "", "t": "пыль", "h": "мелкие частицы"}]}),
+      Q("e36s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Нужно для горения"}, {"e": "", "k": "Как потушить огонь"}], "items": [{"g": 0, "e": "", "t": "кислород", "h": "без него огонь гаснет"}, {"g": 0, "e": "", "t": "топливо", "h": "дрова, газ, бумага"}, {"g": 0, "e": "", "t": "высокая температура", "h": "нужен нагрев"}, {"g": 1, "e": "", "t": "накрыть плотной тканью", "h": "перекрывается доступ воздуха"}, {"g": 1, "e": "", "t": "засыпать песком", "h": "песок не пускает воздух"}, {"g": 1, "e": "", "t": "залить водой", "h": "вода охлаждает огонь"}]}),
+      Q("e36s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e36q"]}),
+      Q("e36s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e36t"]})
+    ] },
+  { id: "e37", icon: "", title: "Вода", goal: "Объяснять значение воды и способы её очистки",
+    steps: [
+      Q("e37s1", "infoTap", "Знакомимся с темой", "Вода — источник жизни. Нажимай на карточки и узнавай, как её беречь.", {"need": 5, "items": [{"k": "где вода", "v": "", "t": "Больше всего воды в океанах. Она солёная. Пресная вода есть в реках, озёрах, родниках и ледниках."}, {"k": "вода в живом", "v": "", "t": "Вода есть во всех живых организмах. В теле человека её больше половины."}, {"k": "круговорот", "v": "", "t": "Вода испаряется, собирается в облака и возвращается дождём и снегом. Это круговорот воды."}, {"k": "очистка", "v": "", "t": "Воду очищают фильтрованием, отстаиванием, кипячением и хлорированием."}, {"k": "беречь воду", "v": "", "t": "Пресной воды мало. Закрывай кран, чини протечки, не загрязняй реки и озёра."}]}),
+      Q("e37s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Пресная вода"}, {"e": "", "k": "Солёная вода"}], "items": [{"g": 0, "e": "", "t": "река", "h": "вода течёт по руслу"}, {"g": 0, "e": "", "t": "родник", "h": "вода выходит из земли"}, {"g": 0, "e": "", "t": "ледник", "h": "замёрзшая пресная вода"}, {"g": 1, "e": "", "t": "океан", "h": "самый большой водоём"}, {"g": 1, "e": "", "t": "Каспийское море", "h": "вода солоноватая"}, {"g": 1, "e": "", "t": "морская вода", "h": "в ней много солей"}]}),
+      Q("e37s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Способы очистки воды"}, {"e": "", "k": "Как беречь воду"}, {"e": "", "k": "Что загрязняет воду"}], "items": [{"g": 0, "e": "", "t": "фильтрация", "h": "вода проходит через песок и уголь"}, {"g": 0, "e": "", "t": "отстаивание", "h": "грязь оседает на дно"}, {"g": 0, "e": "", "t": "кипячение", "h": "убивает микробы"}, {"g": 1, "e": "", "t": "закрывать кран", "h": "пока чистишь зубы"}, {"g": 1, "e": "", "t": "чинить протекающие краны", "h": "капли превращаются в литры"}, {"g": 1, "e": "", "t": "собирать дождевую воду", "h": "для полива"}, {"g": 2, "e": "", "t": "выливать отходы в реку", "h": "Это относится к группе «Что загрязняет воду»"}, {"g": 2, "e": "", "t": "мусор на берегу", "h": "Это относится к группе «Что загрязняет воду»"}, {"g": 2, "e": "", "t": "промышленные стоки", "h": "Это относится к группе «Что загрязняет воду»"}]}),
+      Q("e37s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e37q"]}),
+      Q("e37s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e37t"]})
+    ] },
+  { id: "e38", icon: "", title: "Почва", goal: "Объяснять состав и плодородие почвы",
+    steps: [
+      Q("e38s1", "infoTap", "Знакомимся с темой", "Под ногами у нас живая почва. Нажимай на карточки и узнавай, из чего она состоит.", {"need": 5, "items": [{"k": "состав", "v": "", "t": "В почве есть песок, глина, вода, воздух и перегной."}, {"k": "перегной", "v": "", "t": "Перегной образуется из остатков растений и животных. Его создают бактерии и грибы."}, {"k": "плодородие", "v": "", "t": "Плодородие — способность почвы давать урожай. Самый плодородный — чернозём."}, {"k": "что помогает", "v": "", "t": "Плодородие повышают дождевые черви, перегной, правильный полив и рыхление."}, {"k": "что вредит", "v": "", "t": "Почву портят вытаптывание, мусор, ветер, чрезмерный выпас скота и сжигание травы."}]}),
+      Q("e38s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Неживые части почвы"}, {"e": "", "k": "Живое и остатки живого"}], "items": [{"g": 0, "e": "", "t": "песок", "h": "мелкие частицы горных пород"}, {"g": 0, "e": "", "t": "глина", "h": "плохо пропускает воду"}, {"g": 0, "e": "", "t": "вода", "h": "растворяет питательные вещества"}, {"g": 1, "e": "", "t": "перегной", "h": "остатки растений и животных"}, {"g": 1, "e": "", "t": "дождевые черви", "h": "разрыхляют почву"}, {"g": 1, "e": "", "t": "корни растений", "h": "держат почву"}]}),
+      Q("e38s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Повышает плодородие"}, {"e": "", "k": "Ухудшает почву"}], "items": [{"g": 0, "e": "", "t": "перегной", "h": "питает растения"}, {"g": 0, "e": "", "t": "дождевые черви", "h": "разрыхляют почву"}, {"g": 0, "e": "", "t": "правильный полив", "h": "влага для растений"}, {"g": 1, "e": "", "t": "вытаптывание", "h": "почва уплотняется"}, {"g": 1, "e": "", "t": "мусор и химикаты", "h": "загрязняют почву"}, {"g": 1, "e": "", "t": "ветровая эрозия", "h": "ветер уносит верхний слой"}]}),
+      Q("e38s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e38q"]}),
+      Q("e38s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e38t"]})
+    ] },
+  { id: "e39", icon: "", title: "Земля и космос", goal: "Описывать сферы Земли и следствия вращения Земли",
+    steps: [
+      Q("e39s1", "infoTap", "Знакомимся с темой", "Наша Земля — планета среди звёзд. Нажимай на карточки и узнавай про неё.", {"need": 5, "items": [{"k": "сферы Земли", "v": "", "t": "Литосфера — твёрдая оболочка, гидросфера — водная, атмосфера — воздушная, биосфера — живая."}, {"k": "вращение", "v": "", "t": "Земля вращается вокруг своей оси и делает один оборот за сутки. Поэтому сменяются день и ночь."}, {"k": "вокруг Солнца", "v": "", "t": "За год Земля обходит вокруг Солнца. Поэтому сменяются времена года."}, {"k": "космос", "v": "", "t": "Солнце — звезда, Земля — планета, Луна — её спутник."}, {"k": "первые шаги", "v": "", "t": "В 1957 году запущен первый спутник, в 1961 году Юрий Гагарин стал первым человеком в космосе. Оба события связаны с космодромом Байконур в Казахстане."}]}),
+      Q("e39s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Литосфера"}, {"e": "", "k": "Гидросфера"}, {"e": "", "k": "Атмосфера"}], "items": [{"g": 0, "e": "", "t": "горы", "h": "Это относится к группе «Литосфера»"}, {"g": 0, "e": "", "t": "равнины", "h": "Это относится к группе «Литосфера»"}, {"g": 0, "e": "", "t": "полезные ископаемые", "h": "Это относится к группе «Литосфера»"}, {"g": 1, "e": "", "t": "реки", "h": "Это относится к группе «Гидросфера»"}, {"g": 1, "e": "", "t": "моря", "h": "Это относится к группе «Гидросфера»"}, {"g": 1, "e": "", "t": "океаны", "h": "Это относится к группе «Гидросфера»"}, {"g": 2, "e": "", "t": "воздух", "h": "Это относится к группе «Атмосфера»"}, {"g": 2, "e": "", "t": "облака", "h": "Это относится к группе «Атмосфера»"}, {"g": 2, "e": "", "t": "ветер", "h": "Это относится к группе «Атмосфера»"}]}),
+      Q("e39s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Вращение вокруг оси"}, {"e": "", "k": "Движение вокруг Солнца"}], "items": [{"g": 0, "e": "", "t": "смена дня и ночи", "h": "за сутки Земля делает один оборот"}, {"g": 0, "e": "", "t": "восход Солнца утром", "h": "Земля поворачивается к Солнцу"}, {"g": 0, "e": "", "t": "закат вечером", "h": "Земля поворачивается от Солнца"}, {"g": 1, "e": "", "t": "смена времён года", "h": "Земля обращается вокруг Солнца"}, {"g": 1, "e": "", "t": "один год — 365 дней", "h": "полный оборот вокруг Солнца"}, {"g": 1, "e": "", "t": "летом день длиннее", "h": "зависит от наклона оси и положения Земли"}]}),
+      Q("e39s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e39q"]}),
+      Q("e39s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e39t"]})
+    ] },
+  { id: "e310", icon: "", title: "Силы и движение", goal: "Исследовать силу упругости, тяжести и трения",
+    steps: [
+      Q("e310s1", "infoTap", "Знакомимся с темой", "Силы двигают и останавливают всё вокруг. Нажимай на карточки и узнавай, какие они бывают.", {"need": 5, "items": [{"k": "сила упругости", "v": "", "t": "Растянутая резинка, сжатая пружина, согнутая линейка стремятся вернуть форму. Это сила упругости."}, {"k": "сила тяжести", "v": "", "t": "Сила тяжести притягивает все тела к Земле. Она направлена вниз."}, {"k": "сила трения", "v": "", "t": "Трение возникает, когда тела соприкасаются. Оно направлено против движения и тормозит его."}, {"k": "польза трения", "v": "", "t": "Трение помогает ходить, тормозить и держаться на дороге. Но оно изнашивает детали, поэтому их смазывают."}, {"k": "измерение силы", "v": "", "t": "Силу измеряют динамометром."}]}),
+      Q("e310s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Сила упругости"}, {"e": "", "k": "Сила тяжести"}, {"e": "", "k": "Сила трения"}], "items": [{"g": 0, "e": "", "t": "растянутая резинка", "h": "стремится сжаться"}, {"g": 0, "e": "", "t": "сжатая пружина", "h": "распрямляется"}, {"g": 0, "e": "", "t": "согнутая линейка", "h": "выпрямляется"}, {"g": 1, "e": "", "t": "яблоко падает с дерева", "h": "его тянет к земле"}, {"g": 1, "e": "", "t": "мяч падает на землю", "h": "после броска вверх"}, {"g": 1, "e": "", "t": "капли дождя падают вниз", "h": "притяжение Земли"}, {"g": 2, "e": "", "t": "тормоза останавливают велосипед", "h": "трение колодок о колесо"}, {"g": 2, "e": "", "t": "подошва не скользит по полу", "h": "шероховатая поверхность"}, {"g": 2, "e": "", "t": "ладони нагреваются при потирании", "h": "трение превращается в тепло"}]}),
+      Q("e310s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Трение полезно"}, {"e": "", "k": "Трение мешает"}], "items": [{"g": 0, "e": "", "t": "подошва не скользит", "h": "шероховатая обувь"}, {"g": 0, "e": "", "t": "тормоза велосипеда", "h": "колёса останавливаются"}, {"g": 0, "e": "", "t": "шины с рисунком", "h": "держатся на дороге"}, {"g": 1, "e": "", "t": "детали машины стираются", "h": "нужна смазка"}, {"g": 1, "e": "", "t": "дверные петли скрипят", "h": "помогает смазка"}, {"g": 1, "e": "", "t": "тяжело двигать ящик по полу", "h": "нужны колёса"}]}),
+      Q("e310s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e310q"]}),
+      Q("e310s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e310t"]})
+    ] },
+  { id: "e311", icon: "", title: "Свет и звук", goal: "Объяснять появление тени, отражение света и громкость звука",
+    steps: [
+      Q("e311s1", "infoTap", "Знакомимся с темой", "Свет и звук помогают нам видеть и слышать. Нажимай на карточки и узнавай, как они работают.", {"need": 5, "items": [{"k": "источники света", "v": "", "t": "Солнце, лампа, свеча светят сами. Луна, зеркало и снег свет отражают."}, {"k": "тень", "v": "", "t": "Тень появляется, когда предмет не пропускает свет. Чем ниже Солнце, тем длиннее тень."}, {"k": "прозрачные и непрозрачные", "v": "", "t": "Стекло и чистая вода пропускают свет, а дерево, картон и камень не пропускают."}, {"k": "звук", "v": "", "t": "Чем дальше от источника, тем звук тише. Толстая стена звук ослабляет."}, {"k": "эхо", "v": "", "t": "Эхо — это отражённый звук."}]}),
+      Q("e311s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Источники света"}, {"e": "", "k": "Отражают свет"}], "items": [{"g": 0, "e": "", "t": "Солнце", "h": "Это относится к группе «Источники света»"}, {"g": 0, "e": "", "t": "лампа", "h": "Это относится к группе «Источники света»"}, {"g": 0, "e": "", "t": "свеча", "h": "Это относится к группе «Источники света»"}, {"g": 1, "e": "", "t": "Луна", "h": "отражает солнечный свет"}, {"g": 1, "e": "", "t": "зеркало", "h": "хорошо отражает свет"}, {"g": 1, "e": "", "t": "снег", "h": "белый, отражает свет"}]}),
+      Q("e311s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Пропускают свет"}, {"e": "", "k": "Не пропускают свет"}], "items": [{"g": 0, "e": "", "t": "стекло", "h": "Это относится к группе «Пропускают свет»"}, {"g": 0, "e": "", "t": "чистая вода", "h": "Это относится к группе «Пропускают свет»"}, {"g": 0, "e": "", "t": "воздух", "h": "Это относится к группе «Пропускают свет»"}, {"g": 1, "e": "", "t": "дерево", "h": "Это относится к группе «Не пропускают свет»"}, {"g": 1, "e": "", "t": "картон", "h": "Это относится к группе «Не пропускают свет»"}, {"g": 1, "e": "", "t": "металл", "h": "Это относится к группе «Не пропускают свет»"}]}),
+      Q("e311s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e311q"]}),
+      Q("e311s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e311t"]})
+    ] },
+  { id: "e312", icon: "", title: "Электричество", goal: "Описывать источники энергии и простые цепи",
+    steps: [
+      Q("e312s1", "infoTap", "Знакомимся с темой", "Электричество приходит к нам в дом. Нажимай на карточки и узнавай, как оно работает.", {"need": 5, "items": [{"k": "источники", "v": "", "t": "Источники электричества: батарейка, аккумулятор, солнечная батарея, генератор и электростанции."}, {"k": "цепь", "v": "", "t": "В простой цепи есть источник тока, провода, выключатель и потребитель, например, лампочка. Цепь должна быть замкнута."}, {"k": "проводники", "v": "", "t": "Металлы проводят ток, а резина и пластмасса не проводят."}, {"k": "безопасность", "v": "", "t": "Нельзя трогать оголённые провода, вставлять предметы в розетку и включать приборы мокрыми руками."}, {"k": "экономия", "v": "", "t": "Выключай свет, когда уходишь, и вынимай зарядку из розетки. Так мы бережём энергию."}]}),
+      Q("e312s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Источники электричества"}, {"e": "", "k": "Потребители"}], "items": [{"g": 0, "e": "", "t": "батарейка", "h": "маленький источник тока"}, {"g": 0, "e": "", "t": "аккумулятор", "h": "его можно заряжать"}, {"g": 0, "e": "", "t": "розетка", "h": "подключение к сети"}, {"g": 1, "e": "", "t": "лампочка", "h": "Это относится к группе «Потребители»"}, {"g": 1, "e": "", "t": "утюг", "h": "Это относится к группе «Потребители»"}, {"g": 1, "e": "", "t": "телевизор", "h": "Это относится к группе «Потребители»"}]}),
+      Q("e312s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Части цепи"}, {"e": "", "k": "Правила безопасности"}], "items": [{"g": 0, "e": "", "t": "источник тока", "h": "даёт энергию"}, {"g": 0, "e": "", "t": "провода", "h": "соединяют части цепи"}, {"g": 0, "e": "", "t": "выключатель", "h": "замыкает и размыкает цепь"}, {"g": 1, "e": "", "t": "не трогать оголённые провода", "h": "можно получить удар током"}, {"g": 1, "e": "", "t": "не вставлять предметы в розетку", "h": "это опасно"}, {"g": 1, "e": "", "t": "не включать приборы мокрыми руками", "h": "вода проводит ток"}]}),
+      Q("e312s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e312q"]}),
+      Q("e312s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e312t"]})
+    ] },
+  { id: "e313", icon: "", title: "Магнетизм", goal: "Исследовать свойства магнита",
+    steps: [
+      Q("e313s1", "infoTap", "Знакомимся с темой", "Магнит притягивает без прикосновения. Нажимай на карточки и узнавай, как он действует.", {"need": 5, "items": [{"k": "что притягивает", "v": "", "t": "Магнит притягивает железо и сталь. Пластмасса, дерево, стекло, бумага и алюминий не притягиваются."}, {"k": "полюса", "v": "", "t": "У магнита два полюса: северный и южный. Самая большая сила — на полюсах."}, {"k": "взаимодействие", "v": "", "t": "Разные полюса притягиваются, а одинаковые отталкиваются."}, {"k": "намагничивание", "v": "", "t": "Если потереть железный гвоздь магнитом, он сам станет слабым магнитом."}, {"k": "компас", "v": "", "t": "Земля — большой магнит. Стрелка компаса поворачивается к северу."}]}),
+      Q("e313s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Притягиваются магнитом"}, {"e": "", "k": "Не притягиваются магнитом"}], "items": [{"g": 0, "e": "", "t": "железный гвоздь", "h": "железо притягивается"}, {"g": 0, "e": "", "t": "стальная скрепка", "h": "сталь притягивается"}, {"g": 0, "e": "", "t": "стальные ножницы", "h": "лезвия из стали"}, {"g": 1, "e": "", "t": "пластмассовая линейка", "h": "пластмасса не притягивается"}, {"g": 1, "e": "", "t": "деревянный карандаш", "h": "дерево не притягивается"}, {"g": 1, "e": "", "t": "стеклянный стакан", "h": "стекло не притягивается"}]}),
+      Q("e313s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 4, "groups": [{"e": "", "k": "Притягиваются"}, {"e": "", "k": "Отталкиваются"}], "items": [{"g": 0, "e": "", "t": "северный и южный", "h": "разные полюса"}, {"g": 0, "e": "", "t": "южный и северный", "h": "разные полюса"}, {"g": 1, "e": "", "t": "северный и северный", "h": "одинаковые полюса"}, {"g": 1, "e": "", "t": "южный и южный", "h": "одинаковые полюса"}]}),
+      Q("e313s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["e313q"]}),
+      Q("e313s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["e313t"]})
+    ] },
+  { id: "e3fin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("e3fin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал много нового о живой природе, веществах, Земле и физике. Закрепляй знания в играх и проводи опыты!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
