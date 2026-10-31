@@ -28,7 +28,7 @@
 
 <main class="hs-wrap">
   <div class="hs-top">
-    <a href="../index.html" class="back-link" id="back">← Назад</a>
+    <a href="../grade-picker.html" class="back-link" id="back" data-back>← Вернуться к урокам</a>
     <h1>Подарок дня</h1>
   </div>
 
@@ -92,6 +92,7 @@
 <script src="../assets/i18n.js"></script>
 <script src="../assets/progress.js"></script>
 <script src="../assets/barsik.js"></script>
+<script src="../assets/house-back.js"></script>
 <script src="gift-data.js"></script>
 <script src="../assets/world.js"></script>
 <script>
@@ -220,7 +221,6 @@
   $('giftBtn').addEventListener('click', openCard);
   $('openBtn').addEventListener('click', openCard);
   bs.addEventListener('click', function(){ b.react('happy', 1200); });
-  $('back').addEventListener('click', function(e){ e.preventDefault(); stop(); if (document.referrer && history.length > 1) history.back(); else location.href = '../index.html'; });
 
   renderDays();
   if (S.days[today]){
