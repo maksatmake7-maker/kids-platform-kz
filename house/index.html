@@ -27,7 +27,7 @@
 
 <main class="hs-wrap">
   <div class="hs-top">
-    <a href="../index.html" class="back-link" id="back">← Назад</a>
+    <a href="../grade-picker.html" class="back-link" id="back" data-back>← Вернуться к урокам</a>
   </div>
 
   <div class="hh-wrap">
@@ -99,11 +99,13 @@
 
     </div>
   </div>
+  <p style="text-align:center; margin:18px 0 4px"><a href="../grade-picker.html" class="gf-cta" data-back data-arrow="no" style="background:var(--ink,#1D3557); color:#fff; text-decoration:none; display:inline-flex; align-items:center; min-height:52px; padding:0 28px; border-radius:999px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.2rem;">Вернуться к урокам</a></p>
 </main>
 
 <script src="../assets/i18n.js"></script>
 <script src="../assets/progress.js"></script>
 <script src="../assets/barsik.js"></script>
+<script src="../assets/house-back.js"></script>
 <script src="../assets/house.js"></script>
 <script src="../assets/world.js"></script>
 <script>
@@ -119,7 +121,6 @@
   });
   House.badge();
   setTimeout(function(){ say(Math.random() < 0.5 ? 'hello1' : 'hello2'); }, 500);
-  document.getElementById('back').addEventListener('click', function(e){ e.preventDefault(); if (document.referrer && history.length > 1) history.back(); else location.href = '../index.html'; });
 })();
 </script>
 </body>
