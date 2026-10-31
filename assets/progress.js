@@ -156,9 +156,16 @@ function getTotalStars(){
   return loadProgress().totalStars || 0;
 }
 
+/* Звёзды, которые можно потратить в «Доме Барсика»: заработано минус потрачено (трата хранится в bilim_house_v1.spent). */
+function getBalanceStars(){
+  var spent = 0;
+  try { var h = JSON.parse(localStorage.getItem('bilim_house_v1')); spent = (h && +h.spent) || 0; } catch(e){}
+  return Math.max(0, getTotalStars() - spent);
+}
+
 function updateProgressBadge(){
   var badge = document.getElementById('total-stars-badge');
-  if(badge) badge.textContent = '⭐ ' + getTotalStars();
+  if(badge) badge.textContent = '⭐ ' + getBalanceStars();
 }
 
 /**
@@ -205,7 +212,7 @@ function injectProgressBadge(){
   var badge = document.createElement('div');
   badge.id = 'total-stars-badge';
   badge.className = 'total-stars-badge';
-  badge.textContent = '⭐ ' + getTotalStars();
+  badge.textContent = '⭐ ' + getBalanceStars();
   badge.title = 'Мои награды';
   badge.style.cursor = 'pointer';
   badge.addEventListener('click', function(){ window.location.href = PROGRESS_ROOT + 'rewards.html'; });
