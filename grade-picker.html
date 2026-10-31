@@ -231,7 +231,7 @@
     }
     $$('#boat-sw button, .boat-sw button').forEach(function(b){ var on=b.getAttribute('data-d')===d; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }); $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
     try{ history.replaceState(null,'','?dir='+d); }catch(e){}
-    applyLang(d);
+    applyLang(d==='kz' ? 'kz' : (quiet ? (savedLang()||'ru') : 'ru'));   /* при открытии — запомненный язык, при переключении лодки — язык направления */
     if(!quiet){ if(cur>1 && !isles[cur-1].classList.contains('ready')) hopTo(0); }
   }
 
