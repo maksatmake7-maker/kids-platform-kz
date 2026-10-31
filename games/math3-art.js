@@ -86,5 +86,28 @@
     return '<svg viewBox="0 0 110 56" width="' + w + '" height="' + (w * 56 / 110) + '" xmlns="http://www.w3.org/2000/svg" style="display:inline-block"><rect x="2" y="2" width="106" height="52" rx="8" fill="' + c[0] + '" stroke="' + c[1] + '" stroke-width="3"/><circle cx="22" cy="28" r="12" fill="' + c[1] + '" fill-opacity=".5"/><text x="72" y="35" text-anchor="middle" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="22" fill="#25324A">' + v + '</text></svg>';
   }
 
-  window.M3 = { grid:grid, circle:circle, note:note, svg:svg, blocks3:blocks3, fracBar:fracBar, fracPie:fracPie, frac:frac, euler:euler };
+  /* ---------- столбчатая диаграмма, прямые, координаты ---------- */
+  function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'middle') + '" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="' + (o.s || 13) + '" fill="' + (o.c || INK) + '">' + t + '</text>'; }
+  function bars(labels, vals, o){
+    o = o || {}; var n = labels.length, mx = o.max || Math.max.apply(null, vals), step = o.step || (mx > 20 ? 10 : mx > 10 ? 5 : 2), top = Math.ceil(mx / step) * step, W = 60 + n * 52, H = 190, X0 = 40, Y0 = 160, hh = 130, s = '', cols = ['#FF8A65', '#4FC3F7', '#81C784', '#FFD54F', '#BA68C8', '#F06292'];
+    for(var v = 0; v <= top; v += step){ var y = Y0 - v / top * hh; s += '<line x1="' + X0 + '" y1="' + y + '" x2="' + (W - 6) + '" y2="' + y + '" ' + st('#CFD8DC', 1) + '/>' + txt(X0 - 6, y + 4, v, { a:'end', s:11, c:'#607D8B' }); }
+    for(var i = 0; i < n; i++){ var h = vals[i] / top * hh, x = X0 + 12 + i * 52; s += '<rect x="' + x + '" y="' + (Y0 - h) + '" width="34" height="' + h + '" rx="4" fill="' + cols[i % cols.length] + '" ' + st('#25324A', 1.5) + '/>' + txt(x + 17, Y0 + 16, labels[i], { s:12 }); }
+    return svg(W, H, s, Math.min(W * 1.1, 340));
+  }
+  function lines(kind, px){
+    var s = '';
+    if(kind === 'par') s = '<line x1="20" y1="40" x2="180" y2="40" ' + st('#1E88E5', 5) + '/><line x1="20" y1="90" x2="180" y2="90" ' + st('#1E88E5', 5) + '/>';
+    else if(kind === 'perp') s = '<line x1="100" y1="12" x2="100" y2="116" ' + st('#D81B60', 5) + '/><line x1="30" y1="76" x2="170" y2="76" ' + st('#D81B60', 5) + '/><path d="M100 76 L112 76 L112 64 L100 64Z" fill="#FFF59D" ' + st('#EF6C00', 2) + '/>';
+    else s = '<line x1="30" y1="20" x2="170" y2="110" ' + st('#43A047', 5) + '/><line x1="40" y1="110" x2="160" y2="20" ' + st('#43A047', 5) + '/>';
+    return svg(200, 130, s, px || 180);
+  }
+  function coord(pts, o){
+    o = o || {}; var N = o.n || 6, u = 30, X0 = 30, Y0 = 30 + N * u, W = X0 + N * u + 20, H = Y0 + 28, s = '';
+    for(var i = 0; i <= N; i++){ s += '<line x1="' + (X0 + i * u) + '" y1="' + (Y0 - N * u) + '" x2="' + (X0 + i * u) + '" y2="' + Y0 + '" ' + st('#CFD8DC', 1) + '/><line x1="' + X0 + '" y1="' + (Y0 - i * u) + '" x2="' + (X0 + N * u) + '" y2="' + (Y0 - i * u) + '" ' + st('#CFD8DC', 1) + '/>' + txt(X0 + i * u, Y0 + 18, i, { s:12 }) + txt(X0 - 10, Y0 - i * u + 4, i, { s:12, a:'end' }); }
+    s += '<line x1="' + X0 + '" y1="' + Y0 + '" x2="' + (X0 + N * u) + '" y2="' + Y0 + '" ' + st(INK, 3) + '/><line x1="' + X0 + '" y1="' + Y0 + '" x2="' + X0 + '" y2="' + (Y0 - N * u) + '" ' + st(INK, 3) + '/>';
+    (pts || []).forEach(function(p){ s += '<circle cx="' + (X0 + p[0] * u) + '" cy="' + (Y0 - p[1] * u) + '" r="9" fill="#FF7043" ' + st(INK, 2) + '/>' + txt(X0 + p[0] * u, Y0 - p[1] * u + 5, p[2] || '', { s:12, c:'#fff' }); });
+    return svg(W, H, s, Math.min(W * 1.1, 300));
+  }
+
+  window.M3 = { bars:bars, lines:lines, coord:coord, grid:grid, circle:circle, note:note, svg:svg, blocks3:blocks3, fracBar:fracBar, fracPie:fracPie, frac:frac, euler:euler };
 })();
