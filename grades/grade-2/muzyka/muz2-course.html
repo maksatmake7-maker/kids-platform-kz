@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Музыка 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="muzyka">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Музыка 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Музыка 2 класс</h1>
+      <p class="ac-sub">7 уроков: какая бывает музыка, ритм, ноты, жанры, инструменты, пение, творчество</p>
+      <p class="ac-note">Курс по программе 2 класса (приказ №399). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 8</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../games/muz2-art.js"></script>
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/muz2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/muz2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_muz2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Музыка 2 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по музыке</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.mz1q = mkQuiz([{"q": "Как называется скорость музыки?", "a": "Темп", "w": ["Тембр", "Ритм"], "h": "Темп — это скорость музыки"}, {"q": "Как называется громкость музыки?", "a": "Динамика", "w": ["Темп", "Ритм"], "h": "Динамика — это громко или тихо"}, {"q": "Как называется окраска звука, по которой узнают инструмент?", "a": "Тембр", "w": ["Ритм", "Темп"], "h": "По тембру мы узнаём голос инструмента"}, {"q": "Как называется светлый весёлый лад?", "a": "Мажор", "w": ["Минор", "Темп"], "h": "Мажор звучит светло и радостно"}, {"q": "Какую музыку называют минорной?", "a": "Грустную и печальную", "w": ["Быструю и громкую", "Самую короткую"], "h": "Минор звучит печально"}, {"q": "Что такое ритм?", "a": "Порядок долгих и коротких звуков", "w": ["Громкость музыки", "Грустное настроение"], "h": "Ритм — это порядок долгих и коротких звуков"}, {"q": "Что такое музыкальный образ?", "a": "То, что мы представляем, слушая музыку: героя, картину, настроение", "w": ["Ноты на нотном стане", "Название инструмента"], "h": "Музыка может нарисовать образ: птичку, грозу или добрую колыбельную"}]);
+GENS.mz1t = mkTF([{"q": "Быструю музыку исполняют в быстром темпе", "a": "Верно", "h": "Верно. Темп — это скорость музыки"}, {"q": "Громко и тихо — это динамика", "a": "Верно", "h": "Верно. Динамика — громкость музыки"}, {"q": "Минор — это весёлая музыка", "a": "Неверно", "h": "Неверно. Минор звучит грустно, а весёлая музыка — мажор"}, {"q": "Тембр помогает узнать голос инструмента", "a": "Верно", "h": "Верно. Тембр — окраска звука"}, {"q": "Колыбельную обычно поют быстро и громко", "a": "Неверно", "h": "Неверно. Колыбельную поют тихо и медленно"}, {"q": "Музыка может рассказать о настроении", "a": "Верно", "h": "Верно. У музыки бывает весёлый, грустный и спокойный характер"}]);
+GENS.mz2q = mkQuiz([{"q": "Какая нота длится два счёта?", "a": "Половинная", "w": ["Четвертная", "Восьмая"], "h": "Половинная нота — два счёта"}, {"q": "Какая из этих нот самая короткая?", "a": "Восьмая", "w": ["Четвертная", "Половинная"], "h": "Восьмая нота — половина счёта"}, {"q": "Сколько восьмых нот помещается в одну четвертную?", "a": "Две", "w": ["Одна", "Четыре"], "h": "Две восьмые длятся столько же, сколько одна четвертная"}, {"q": "Как называется порядок долгих и коротких звуков?", "a": "Ритм", "w": ["Тембр", "Лад"], "h": "Ритм можно отхлопать"}, {"q": "Чем можно отбивать ритм?", "a": "Хлопками или ударными инструментами", "w": ["Только скрипкой", "Только карандашом по бумаге"], "h": "Ритм отбивают хлопками, ложками, барабаном"}, {"q": "Что нужно, чтобы играть ритм вместе в ансамбле?", "a": "Слушать друг друга и держать общий темп", "w": ["Играть как можно громче", "Играть каждому в своём темпе"], "h": "В ансамбле важно слушать друг друга"}]);
+GENS.mz2t = mkTF([{"q": "Половинная нота длится дольше, чем четвертная", "a": "Верно", "h": "Верно. Половинная — два счёта, четвертная — один"}, {"q": "Восьмая нота длиннее половинной", "a": "Неверно", "h": "Неверно. Восьмая нота самая короткая"}, {"q": "Ритм можно отбивать хлопками", "a": "Верно", "h": "Верно. Хлопки помогают почувствовать ритм"}, {"q": "Две восьмые длятся столько же, сколько одна четвертная", "a": "Верно", "h": "Верно. Две восьмые — это один счёт"}, {"q": "В ансамбле каждому можно играть в своём темпе", "a": "Неверно", "h": "Неверно. В ансамбле темп общий"}, {"q": "Ритм — это порядок долгих и коротких звуков", "a": "Верно", "h": "Верно. Звуки идут один за другим разной длины"}]);
+GENS.mz3q = mkQuiz([{"q": "Сколько линеек в нотном стане?", "a": "Пять", "w": ["Три", "Семь"], "h": "Нотный стан — пять линеек"}, {"q": "Как называется знак в начале нотного стана?", "a": "Скрипичный ключ", "w": ["Знак вопроса", "Знак паузы"], "h": "Скрипичный ключ стоит в начале нотного стана"}, {"q": "Сколько нот в звукоряде?", "a": "Семь", "w": ["Пять", "Десять"], "h": "До, ре, ми, фа, соль, ля, си"}, {"q": "Какая нота первая в звукоряде?", "a": "До", "w": ["Си", "Ля"], "h": "Звукоряд начинается с ноты до"}, {"q": "Что такое мотив?", "a": "Самая маленькая часть мелодии", "w": ["Название песни", "Нотный стан"], "h": "Мотив — маленькая частичка мелодии"}, {"q": "Что больше: мотив или фраза?", "a": "Фраза", "w": ["Мотив", "Они одинаковые"], "h": "Из мотивов складывается фраза, а из фраз — предложение"}, {"q": "Из чего состоит музыкальное предложение?", "a": "Из фраз", "w": ["Из слов", "Из линеек"], "h": "Предложение состоит из фраз"}]);
+GENS.mz3t = mkTF([{"q": "Ноты записывают на нотном стане", "a": "Верно", "h": "Верно. Нотный стан — пять линеек"}, {"q": "В нотном стане семь линеек", "a": "Неверно", "h": "Неверно. В нотном стане пять линеек"}, {"q": "Нота ми стоит на нижней линейке", "a": "Верно", "h": "Верно. Это первая линейка снизу"}, {"q": "Чем выше нота на стане, тем ниже звук", "a": "Неверно", "h": "Неверно. Чем выше нота, тем выше звук"}, {"q": "Первая нота звукоряда — до", "a": "Верно", "h": "Верно. Звукоряд: до, ре, ми, фа, соль, ля, си"}, {"q": "Из мотивов складывается фраза", "a": "Верно", "h": "Верно. Мотив — самая маленькая часть мелодии"}]);
+GENS.mz4q = mkQuiz([{"q": "Кто такой кюйши?", "a": "Народный композитор и исполнитель кюев", "w": ["Танцор", "Певец хора"], "h": "Кюйши сочиняет и играет кюи на домбре"}, {"q": "Кто сочинил кюй «Адай»?", "a": "Курмангазы", "w": ["Абай", "Чайковский"], "h": "Курмангазы — великий народный кюйши"}, {"q": "Кто написал «Детский альбом» с «Маршем деревянных солдатиков»?", "a": "Чайковский", "w": ["Курмангазы", "Моцарт"], "h": "Это композитор Пётр Ильич Чайковский"}, {"q": "Какую музыку называют вокальной?", "a": "Ту, что поют голосом", "w": ["Ту, что играют на барабане", "Ту, что слушают тихо"], "h": "Вокальная музыка — это пение"}, {"q": "Как называется музыка, которую играют на инструментах?", "a": "Инструментальная", "w": ["Вокальная", "Хоровая"], "h": "Инструментальная музыка звучит на инструментах"}, {"q": "Что такое кюй?", "a": "Музыкальное произведение, которое играют на домбре или кобызе", "w": ["Песня без музыки", "Танец с барабаном"], "h": "Кюй — народная инструментальная музыка"}, {"q": "Под какую музыку шагают на параде?", "a": "Под марш", "w": ["Под колыбельную", "Под вальс"], "h": "Марш помогает шагать в ногу"}]);
+GENS.mz4t = mkTF([{"q": "Кюй исполняют на домбре", "a": "Верно", "h": "Верно. Кюй — инструментальная музыка"}, {"q": "Песня всегда звучит без слов", "a": "Неверно", "h": "Неверно. В песне есть слова"}, {"q": "Под марш удобно шагать", "a": "Верно", "h": "Верно. У марша чёткий шаг: раз-два"}, {"q": "Вальс — это танцевальная музыка", "a": "Верно", "h": "Верно. Вальс считают раз-два-три"}, {"q": "Колыбельную поют громко и быстро", "a": "Неверно", "h": "Неверно. Колыбельную поют тихо и медленно"}, {"q": "Курмангазы — народный композитор-кюйши", "a": "Верно", "h": "Верно. Он сочинял кюи для домбры"}]);
+GENS.mz5q = mkQuiz([{"q": "Сколько струн у домбры?", "a": "Две", "w": ["Одна", "Четыре"], "h": "У домбры две струны"}, {"q": "Какой казахский народный инструмент играют смычком?", "a": "Кобыз", "w": ["Домбра", "Сыбызгы"], "h": "На кобызе играют смычком"}, {"q": "Сыбызгы — это…", "a": "Духовой инструмент вроде флейты", "w": ["Барабан", "Клавишный инструмент"], "h": "В сыбызгы дуют, как во флейту"}, {"q": "На каком инструменте играют, нажимая клавиши?", "a": "На фортепиано", "w": ["На домбре", "На сыбызгы"], "h": "У фортепиано клавиши"}, {"q": "Что такое тембр?", "a": "Окраска звука, по которой узнают инструмент", "w": ["Скорость музыки", "Громкость музыки"], "h": "У каждого инструмента свой тембр"}, {"q": "Чем играют на скрипке?", "a": "Смычком", "w": ["Палочкой", "Дыханием"], "h": "Смычок водят по струнам"}]);
+GENS.mz5t = mkTF([{"q": "Домбра — казахский народный инструмент", "a": "Верно", "h": "Верно. У неё две струны"}, {"q": "Скрипка — народный казахский инструмент", "a": "Неверно", "h": "Неверно. Скрипка — классический инструмент"}, {"q": "У домбры две струны", "a": "Верно", "h": "Верно. Это её главная особенность"}, {"q": "Фортепиано относится к классическим инструментам", "a": "Верно", "h": "Верно. У фортепиано есть клавиши"}, {"q": "Сыбызгы — ударный инструмент", "a": "Неверно", "h": "Неверно. Сыбызгы духовой, в него дуют"}, {"q": "Тембр помогает узнать инструмент по звуку", "a": "Верно", "h": "Верно. Каждый инструмент звучит по-своему"}]);
+GENS.mz6q = mkQuiz([{"q": "Что делает дирижёр?", "a": "Показывает жестами, как петь и играть", "w": ["Играет на барабане", "Пишет ноты"], "h": "Дирижёр управляет пением жестами"}, {"q": "Что значит широкий взмах рук дирижёра?", "a": "Петь громче", "w": ["Петь тише", "Остановиться"], "h": "Чем шире жест, тем громче"}, {"q": "Что значат маленькие спокойные движения дирижёра?", "a": "Петь тише", "w": ["Петь громче", "Кричать"], "h": "Маленькие жесты — тише"}, {"q": "Когда нужно начинать петь?", "a": "По знаку дирижёра, все вместе", "w": ["Когда захочется", "Раньше всех"], "h": "Начинаем вместе по знаку"}, {"q": "Как нужно дышать при пении?", "a": "Спокойно, набирая воздух между фразами", "w": ["Очень шумно", "Совсем не дышать"], "h": "Дыхание помогает петь ровно"}, {"q": "Как называется пение одного человека?", "a": "Соло", "w": ["Хор", "Ансамбль"], "h": "Один певец поёт соло"}]);
+GENS.mz6t = mkTF([{"q": "Петь нужно, стараясь кричать", "a": "Неверно", "h": "Неверно. Петь надо красиво и ровно, без крика"}, {"q": "Дирижёр помогает петь вместе", "a": "Верно", "h": "Верно. Он показывает вступление и окончание"}, {"q": "Хор — это много певцов", "a": "Верно", "h": "Верно. В хоре поют вместе"}, {"q": "Начинать петь нужно по знаку дирижёра", "a": "Верно", "h": "Верно. Так песня начинается дружно"}, {"q": "При пении нужно держать спину прямо", "a": "Верно", "h": "Верно. Так легче дышать и петь"}, {"q": "Ансамбль — это один певец", "a": "Неверно", "h": "Неверно. Один певец — солист"}]);
+GENS.mz7q = mkQuiz([{"q": "Что такое импровизация?", "a": "Придумывать музыку сразу, во время игры или пения", "w": ["Читать ноты", "Слушать тишину"], "h": "Импровизация — это музыка, придуманная на ходу"}, {"q": "Как показать характер музыки ритмом?", "a": "Хлопками", "w": ["Нотным станом", "Молчанием"], "h": "Ритм можно отхлопать"}, {"q": "Что можно сделать под весёлую музыку?", "a": "Станцевать", "w": ["Заснуть", "Зашуметь"], "h": "Движения передают характер музыки"}, {"q": "Что нужно сказать о работе товарища?", "a": "Что тебе понравилось", "w": ["Что она плохая", "Ничего не говорить"], "h": "Оценивать нужно вежливо"}, {"q": "Как представить свою музыкальную работу?", "a": "Спеть, сыграть, станцевать или показать рисунок", "w": ["Спрятать", "Забыть о ней"], "h": "Свою работу можно показать разными способами"}, {"q": "Что можно сказать о своей работе?", "a": "Что получилось и что хочется улучшить", "w": ["Что она хуже всех", "Ничего"], "h": "Оценивать свою работу — это нормально"}]);
+GENS.mz7t = mkTF([{"q": "Музыку можно показать рисунком", "a": "Верно", "h": "Верно. Цвета и линии передают настроение музыки"}, {"q": "Импровизация — это когда придумывают сразу", "a": "Верно", "h": "Верно. Музыку придумывают во время исполнения"}, {"q": "Работу товарища нужно высмеивать", "a": "Неверно", "h": "Неверно. Оценивать нужно доброжелательно"}, {"q": "Свою работу можно оценить: что получилось, что улучшить", "a": "Верно", "h": "Верно. Так мы учимся"}, {"q": "Под грустную музыку обычно пляшут быстро", "a": "Неверно", "h": "Неверно. Грустная музыка медленная и тихая"}, {"q": "Характер музыки можно показать хлопками", "a": "Верно", "h": "Верно. Хлопки передают ритм"}]);
+const LESSONS = [
+  { id: "mz1", icon: "", title: "Какая бывает музыка", goal: "Различать темп, громкость, высоту и настроение музыки",
+    steps: [
+      Q("mz1s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Музыку можно слушать и узнавать. Нажимай на карточки, а на оранжевые кнопки — слушай.", {"need": 5, "items": [{"k": "быстро", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"ре\",\"до\"],\"b\":1,\"bpm\":170,\"v\":0.5,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Скорость музыки называется темп. Быстрая музыка бежит."}, {"k": "медленно", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"ре\",\"до\"],\"b\":1,\"bpm\":62,\"v\":0.5,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Медленная музыка идёт спокойным шагом."}, {"k": "громко", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"ре\",\"до\"],\"b\":1,\"bpm\":90,\"v\":0.7,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Громкость музыки называется динамика. Эта музыка звучит громко."}, {"k": "тихо", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"ре\",\"до\"],\"b\":1,\"bpm\":90,\"v\":0.1,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "А эта музыка звучит тихо."}, {"k": "высокие звуки", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"ре\",\"до\"],\"b\":1,\"bpm\":90,\"v\":0.5,\"o\":1}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Высокие звуки тонкие, как голос птички."}, {"k": "низкие звуки", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"ре\",\"до\"],\"b\":1,\"bpm\":90,\"v\":0.5,\"o\":-1}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Низкие звуки густые, как голос большого зверя."}, {"k": "мажор", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ми\",\"соль\",\"ми\",\"до\"],\"b\":[1,1,1,1,2],\"bpm\":90,\"v\":0.5,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Светлая весёлая музыка называется мажор."}, {"k": "минор", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ми♭\",\"соль\",\"ми♭\",\"до\"],\"b\":[1,1,1,1,2],\"bpm\":90,\"v\":0.5,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Грустная печальная музыка называется минор."}]}),
+      Q("mz1s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Темп"}, {"e": "", "k": "Динамика"}, {"e": "", "k": "Ритм"}], "items": [{"g": 0, "e": "", "t": "Быстро или медленно", "h": "Это относится к группе «Темп»"}, {"g": 0, "e": "", "t": "Скорость музыки", "h": "Это относится к группе «Темп»"}, {"g": 0, "e": "", "t": "Музыка бежит или идёт шагом", "h": "Это относится к группе «Темп»"}, {"g": 1, "e": "", "t": "Громко или тихо", "h": "Это относится к группе «Динамика»"}, {"g": 1, "e": "", "t": "Громкость музыки", "h": "Это относится к группе «Динамика»"}, {"g": 1, "e": "", "t": "Музыка становится громче", "h": "Это относится к группе «Динамика»"}, {"g": 2, "e": "", "t": "Порядок долгих и коротких звуков", "h": "Это относится к группе «Ритм»"}, {"g": 2, "e": "", "t": "Звуки, которые можно отхлопать", "h": "Это относится к группе «Ритм»"}, {"g": 2, "e": "", "t": "Как звуки идут друг за другом по длине", "h": "Это относится к группе «Ритм»"}]}),
+      Q("mz1s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Мажор"}, {"e": "", "k": "Минор"}], "items": [{"g": 0, "e": "", "t": "Светлая весёлая музыка", "h": "Это относится к группе «Мажор»"}, {"g": 0, "e": "", "t": "Радостная мелодия", "h": "Это относится к группе «Мажор»"}, {"g": 0, "e": "", "t": "Бодрая праздничная песня", "h": "Это относится к группе «Мажор»"}, {"g": 1, "e": "", "t": "Грустная печальная музыка", "h": "Это относится к группе «Минор»"}, {"g": 1, "e": "", "t": "Тихая печальная мелодия", "h": "Это относится к группе «Минор»"}, {"g": 1, "e": "", "t": "Музыка о грусти", "h": "Это относится к группе «Минор»"}]}),
+      Q("mz1s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz1q"]}),
+      Q("mz1s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz1t"]})
+    ] },
+  { id: "mz2", icon: "", title: "Ритм и длительности", goal: "Различать долгие и короткие звуки, хлопать ритм",
+    steps: [
+      Q("mz2s1", "infoTap", "Знакомимся с темой", "Ритм — это порядок долгих и коротких звуков. Давай посмотрим, как его записывают. Нажимай на карточки.", {"need": 5, "items": [{"k": "четвертная нота", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 184 80\" width=\"220\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"184\" height=\"80\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"58\" x2=\"180\" y2=\"58\" stroke=\"#25324A\" stroke-width=\"1.6\"/><ellipse cx=\"22\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 22 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"28.4\" y1=\"57\" x2=\"28.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"60\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 60 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"66.4\" y1=\"57\" x2=\"66.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"98\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 98 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"104.4\" y1=\"57\" x2=\"104.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"136\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 136 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"142.4\" y1=\"57\" x2=\"142.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Четвертная нота длится один счёт. Хлопни один раз."}, {"k": "половинная нота", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 164 80\" width=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"164\" height=\"80\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"58\" x2=\"160\" y2=\"58\" stroke=\"#25324A\" stroke-width=\"1.6\"/><ellipse cx=\"22\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 22 58)\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"28.4\" y1=\"57\" x2=\"28.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"78\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 78 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"84.4\" y1=\"57\" x2=\"84.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"116\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 116 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"122.4\" y1=\"57\" x2=\"122.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Половинная нота — белая, с палочкой. Она длится два счёта."}, {"k": "восьмая нота", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 216 80\" width=\"260\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"216\" height=\"80\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"58\" x2=\"212\" y2=\"58\" stroke=\"#25324A\" stroke-width=\"1.6\"/><ellipse cx=\"22\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 22 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"46\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 46 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"28.4\" y1=\"57\" x2=\"28.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"52.4\" y1=\"57\" x2=\"52.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"28.4\" y1=\"20\" x2=\"52.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"6\"/><ellipse cx=\"76\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 76 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"100\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 100 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"82.4\" y1=\"57\" x2=\"82.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"106.4\" y1=\"57\" x2=\"106.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"82.4\" y1=\"20\" x2=\"106.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"6\"/><ellipse cx=\"130\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 130 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"136.4\" y1=\"57\" x2=\"136.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"168\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 168 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"174.4\" y1=\"57\" x2=\"174.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Две восьмые ноты занимают один счёт. Они короткие и быстрые."}, {"k": "слушаем ритм", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"rhy\",\"b\":[1,1,0.5,0.5,2],\"bpm\":100,\"v\":0.6}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Послушай ритм и отхлопай его ладошками."}, {"k": "быстрый ритм", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"rhy\",\"b\":[0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5],\"bpm\":160,\"v\":0.6}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Быстрый ритм похож на бег зайчика."}, {"k": "медленный ритм", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"rhy\",\"b\":[2,2,2],\"bpm\":60,\"v\":0.6}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Медленный ритм похож на шаг черепахи."}]}),
+      Q("mz2s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Долгие звуки"}, {"e": "", "k": "Короткие звуки"}], "items": [{"g": 0, "e": "", "t": "Звук тянется долго", "h": "Это относится к группе «Долгие звуки»"}, {"g": 0, "e": "", "t": "Половинная нота — два счёта", "h": "Это относится к группе «Долгие звуки»"}, {"g": 0, "e": "", "t": "Гудит колокол", "h": "Это относится к группе «Долгие звуки»"}, {"g": 1, "e": "", "t": "Звук короткий, как стук", "h": "Это относится к группе «Короткие звуки»"}, {"g": 1, "e": "", "t": "Восьмая нота — половина счёта", "h": "Это относится к группе «Короткие звуки»"}, {"g": 1, "e": "", "t": "Капля упала: кап", "h": "Это относится к группе «Короткие звуки»"}]}),
+      Q("mz2s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Быстрый темп"}, {"e": "", "k": "Медленный темп"}], "items": [{"g": 0, "e": "", "t": "Бег зайчика", "h": "Это относится к группе «Быстрый темп»"}, {"g": 0, "e": "", "t": "Весёлая скачка", "h": "Это относится к группе «Быстрый темп»"}, {"g": 0, "e": "", "t": "Дождь стучит по крыше", "h": "Это относится к группе «Быстрый темп»"}, {"g": 1, "e": "", "t": "Шаг черепахи", "h": "Это относится к группе «Медленный темп»"}, {"g": 1, "e": "", "t": "Колыбельная", "h": "Это относится к группе «Медленный темп»"}, {"g": 1, "e": "", "t": "Облако плывёт по небу", "h": "Это относится к группе «Медленный темп»"}]}),
+      Q("mz2s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz2q"]}),
+      Q("mz2s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz2t"]})
+    ] },
+  { id: "mz3", icon: "", title: "Ноты и нотный стан", goal: "Узнавать ноты на нотном стане и сравнивать звуки по высоте",
+    steps: [
+      Q("mz3s1", "infoTap", "Знакомимся с темой", "Музыку записывают нотами на пяти линейках. Эти линейки называются нотный стан. Нажимай на карточки.", {"need": 5, "items": [{"k": "нотный стан", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 342 90\" width=\"300\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"342\" height=\"90\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"20\" x2=\"338\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"30\" x2=\"338\" y2=\"30\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"40\" x2=\"338\" y2=\"40\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"50\" x2=\"338\" y2=\"50\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"60\" x2=\"338\" y2=\"60\" stroke=\"#25324A\" stroke-width=\"1.6\"/><g transform=\"translate(14 50) scale(0.052 -0.052)\"><path d=\"M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z\" fill=\"#25324A\"/></g><line x1=\"61\" y1=\"70\" x2=\"83\" y2=\"70\" stroke=\"#25324A\" stroke-width=\"1.8\"/><ellipse cx=\"72\" cy=\"70\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 72 70)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"78.4\" y1=\"69\" x2=\"78.4\" y2=\"38\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"110\" cy=\"65\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 110 65)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"116.4\" y1=\"64\" x2=\"116.4\" y2=\"33\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"148\" cy=\"60\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 148 60)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"154.4\" y1=\"59\" x2=\"154.4\" y2=\"28\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"186\" cy=\"55\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 186 55)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"192.4\" y1=\"54\" x2=\"192.4\" y2=\"23\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"224\" cy=\"50\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 224 50)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"230.4\" y1=\"49\" x2=\"230.4\" y2=\"18\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"262\" cy=\"45\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 262 45)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"268.4\" y1=\"44\" x2=\"268.4\" y2=\"13\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"300\" cy=\"40\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 300 40)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"293.6\" y1=\"41\" x2=\"293.6\" y2=\"72\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Нотный стан — это пять линеек. Слева в начале стоит скрипичный ключ."}, {"k": "нота до", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 114 90\" width=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"114\" height=\"90\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"20\" x2=\"110\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"30\" x2=\"110\" y2=\"30\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"40\" x2=\"110\" y2=\"40\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"50\" x2=\"110\" y2=\"50\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"60\" x2=\"110\" y2=\"60\" stroke=\"#25324A\" stroke-width=\"1.6\"/><g transform=\"translate(14 50) scale(0.052 -0.052)\"><path d=\"M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z\" fill=\"#25324A\"/></g><line x1=\"61\" y1=\"70\" x2=\"83\" y2=\"70\" stroke=\"#25324A\" stroke-width=\"1.8\"/><ellipse cx=\"72\" cy=\"70\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 72 70)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"78.4\" y1=\"69\" x2=\"78.4\" y2=\"38\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Нота до стоит под нижней линейкой, на маленькой добавочной чёрточке."}, {"k": "нота ми", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 114 90\" width=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"114\" height=\"90\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"20\" x2=\"110\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"30\" x2=\"110\" y2=\"30\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"40\" x2=\"110\" y2=\"40\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"50\" x2=\"110\" y2=\"50\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"60\" x2=\"110\" y2=\"60\" stroke=\"#25324A\" stroke-width=\"1.6\"/><g transform=\"translate(14 50) scale(0.052 -0.052)\"><path d=\"M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z\" fill=\"#25324A\"/></g><ellipse cx=\"72\" cy=\"60\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 72 60)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"78.4\" y1=\"59\" x2=\"78.4\" y2=\"28\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Нота ми стоит на первой линейке."}, {"k": "нота соль", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 114 90\" width=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"114\" height=\"90\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"20\" x2=\"110\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"30\" x2=\"110\" y2=\"30\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"40\" x2=\"110\" y2=\"40\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"50\" x2=\"110\" y2=\"50\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"60\" x2=\"110\" y2=\"60\" stroke=\"#25324A\" stroke-width=\"1.6\"/><g transform=\"translate(14 50) scale(0.052 -0.052)\"><path d=\"M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z\" fill=\"#25324A\"/></g><ellipse cx=\"72\" cy=\"50\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 72 50)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"78.4\" y1=\"49\" x2=\"78.4\" y2=\"18\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Нота соль стоит на второй линейке."}, {"k": "нота си", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 114 90\" width=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"114\" height=\"90\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"20\" x2=\"110\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"30\" x2=\"110\" y2=\"30\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"40\" x2=\"110\" y2=\"40\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"50\" x2=\"110\" y2=\"50\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"60\" x2=\"110\" y2=\"60\" stroke=\"#25324A\" stroke-width=\"1.6\"/><g transform=\"translate(14 50) scale(0.052 -0.052)\"><path d=\"M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z\" fill=\"#25324A\"/></g><ellipse cx=\"72\" cy=\"40\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 72 40)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"65.6\" y1=\"41\" x2=\"65.6\" y2=\"72\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Нота си стоит на третьей линейке."}, {"k": "вверх", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 266 90\" width=\"260\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"266\" height=\"90\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"20\" x2=\"262\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"30\" x2=\"262\" y2=\"30\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"40\" x2=\"262\" y2=\"40\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"50\" x2=\"262\" y2=\"50\" stroke=\"#25324A\" stroke-width=\"1.6\"/><line x1=\"4\" y1=\"60\" x2=\"262\" y2=\"60\" stroke=\"#25324A\" stroke-width=\"1.6\"/><g transform=\"translate(14 50) scale(0.052 -0.052)\"><path d=\"M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z\" fill=\"#25324A\"/></g><line x1=\"61\" y1=\"70\" x2=\"83\" y2=\"70\" stroke=\"#25324A\" stroke-width=\"1.8\"/><ellipse cx=\"72\" cy=\"70\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 72 70)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"78.4\" y1=\"69\" x2=\"78.4\" y2=\"38\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"110\" cy=\"65\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 110 65)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"116.4\" y1=\"64\" x2=\"116.4\" y2=\"33\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"148\" cy=\"60\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 148 60)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"154.4\" y1=\"59\" x2=\"154.4\" y2=\"28\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"186\" cy=\"55\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 186 55)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"192.4\" y1=\"54\" x2=\"192.4\" y2=\"23\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"224\" cy=\"50\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 224 50)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"230.4\" y1=\"49\" x2=\"230.4\" y2=\"18\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Чем выше нота на нотном стане, тем выше она звучит."}, {"k": "слушаем звукоряд", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"mel\",\"n\":[\"до\",\"ре\",\"ми\",\"фа\",\"соль\",\"ля\",\"си\",\"до²\"],\"b\":1,\"bpm\":110,\"v\":0.5,\"o\":0}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Это семь нот подряд: до, ре, ми, фа, соль, ля, си."}]}),
+      Q("mz3s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Нота на линейке"}, {"e": "", "k": "Нота между линейками"}, {"e": "", "k": "Нота под нижней линейкой"}], "items": [{"g": 0, "e": "", "t": "Нота ми", "h": "Это относится к группе «Нота на линейке»"}, {"g": 0, "e": "", "t": "Нота соль", "h": "Это относится к группе «Нота на линейке»"}, {"g": 0, "e": "", "t": "Нота си", "h": "Это относится к группе «Нота на линейке»"}, {"g": 1, "e": "", "t": "Нота фа", "h": "Это относится к группе «Нота между линейками»"}, {"g": 1, "e": "", "t": "Нота ля", "h": "Это относится к группе «Нота между линейками»"}, {"g": 1, "e": "", "t": "Нота до второй октавы", "h": "Это относится к группе «Нота между линейками»"}, {"g": 2, "e": "", "t": "Нота до", "h": "Это относится к группе «Нота под нижней линейкой»"}, {"g": 2, "e": "", "t": "Нота ре", "h": "Это относится к группе «Нота под нижней линейкой»"}]}),
+      Q("mz3s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Высокие звуки"}, {"e": "", "k": "Низкие звуки"}], "items": [{"g": 0, "e": "", "t": "Писк мышки", "h": "Это относится к группе «Высокие звуки»"}, {"g": 0, "e": "", "t": "Пение птички", "h": "Это относится к группе «Высокие звуки»"}, {"g": 0, "e": "", "t": "Звон тонкого колокольчика", "h": "Это относится к группе «Высокие звуки»"}, {"g": 1, "e": "", "t": "Рычание медведя", "h": "Это относится к группе «Низкие звуки»"}, {"g": 1, "e": "", "t": "Гул большого барабана", "h": "Это относится к группе «Низкие звуки»"}, {"g": 1, "e": "", "t": "Гудок парохода", "h": "Это относится к группе «Низкие звуки»"}]}),
+      Q("mz3s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz3q"]}),
+      Q("mz3s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz3t"]})
+    ] },
+  { id: "mz4", icon: "", title: "Песня, кюй, танец и марш", goal: "Различать песню, кюй, танец и марш",
+    steps: [
+      Q("mz4s1", "infoTap", "Знакомимся с темой", "Музыка бывает разных жанров. Давай познакомимся с ними. Нажимай на карточки.", {"need": 5, "items": [{"k": "песня", "v": "", "t": "Песня — это музыка со словами. Её поют."}, {"k": "кюй", "v": "", "t": "Кюй — это казахская музыка для домбры. Его играет кюйши."}, {"k": "марш", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"meter\",\"m\":2,\"bars\":4,\"bpm\":100,\"v\":0.5}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Марш считают раз-два и шагают."}, {"k": "вальс", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"meter\",\"m\":3,\"bars\":4,\"bpm\":100,\"v\":0.5}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Вальс считают раз-два-три и кружатся."}, {"k": "вокальная музыка", "v": "", "t": "Вокальная музыка — это когда поют."}, {"k": "инструментальная музыка", "v": "", "t": "Инструментальная музыка — это когда играют на инструментах, без слов."}]}),
+      Q("mz4s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Песня"}, {"e": "", "k": "Кюй"}, {"e": "", "k": "Танец"}], "items": [{"g": 0, "e": "", "t": "Колыбельная", "h": "Это относится к группе «Песня»"}, {"g": 0, "e": "", "t": "Школьная песня", "h": "Это относится к группе «Песня»"}, {"g": 0, "e": "", "t": "Песня, которую поют хором", "h": "Это относится к группе «Песня»"}, {"g": 1, "e": "", "t": "Инструментальная пьеса на домбре", "h": "Это относится к группе «Кюй»"}, {"g": 1, "e": "", "t": "Кюй «Адай»", "h": "Это относится к группе «Кюй»"}, {"g": 1, "e": "", "t": "Музыка кюйши на домбре", "h": "Это относится к группе «Кюй»"}, {"g": 2, "e": "", "t": "Вальс", "h": "Это относится к группе «Танец»"}, {"g": 2, "e": "", "t": "Народный танец", "h": "Это относится к группе «Танец»"}, {"g": 2, "e": "", "t": "Музыка для танца на празднике", "h": "Это относится к группе «Танец»"}]}),
+      Q("mz4s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Вокальная музыка"}, {"e": "", "k": "Инструментальная музыка"}], "items": [{"g": 0, "e": "", "t": "Песня со словами", "h": "Это относится к группе «Вокальная музыка»"}, {"g": 0, "e": "", "t": "Хор поёт песню", "h": "Это относится к группе «Вокальная музыка»"}, {"g": 0, "e": "", "t": "Колыбельную поют малышу", "h": "Это относится к группе «Вокальная музыка»"}, {"g": 1, "e": "", "t": "Кюй на домбре", "h": "Это относится к группе «Инструментальная музыка»"}, {"g": 1, "e": "", "t": "Мелодия на скрипке", "h": "Это относится к группе «Инструментальная музыка»"}, {"g": 1, "e": "", "t": "Игра на фортепиано", "h": "Это относится к группе «Инструментальная музыка»"}]}),
+      Q("mz4s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz4q"]}),
+      Q("mz4s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz4t"]})
+    ] },
+  { id: "mz5", icon: "", title: "Голоса инструментов", goal: "Узнавать казахские народные и классические инструменты",
+    steps: [
+      Q("mz5s1", "infoTap", "Знакомимся с темой", "У каждого инструмента свой голос. Он называется тембр. Нажимай на карточки и слушай.", {"need": 5, "items": [{"k": "домбра", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"file\",\"u\":\"../../../assets/audio/muz/dombra-aday-short.mp3\"}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Домбра — казахский народный инструмент с двумя струнами."}, {"k": "скрипка", "v": "<div class=\"e2-emo\"><button type=\"button\" class=\"mz-play\" data-spec='{\"k\":\"file\",\"u\":\"../../../assets/audio/muz/violin-short.mp3\"}' onclick=\"MZ.play(this)\"><svg viewBox=\"0 0 24 24\"><path class=\"pl\" d=\"M7 4l13 8-13 8z\"/><path class=\"st\" d=\"M6 5h4v14H6zM14 5h4v14h-4z\"/></svg><span>Слушать</span></button></div>", "t": "Скрипка — классический смычковый инструмент."}, {"k": "кобыз", "v": "", "t": "Кобыз — народный инструмент, на нём играют смычком."}, {"k": "сыбызгы", "v": "", "t": "Сыбызгы — народный духовой инструмент, в него дуют."}, {"k": "жетыген", "v": "", "t": "Жетыген — народный струнный инструмент."}, {"k": "фортепиано", "v": "", "t": "Фортепиано — классический инструмент с клавишами. А ещё есть флейта и труба."}]}),
+      Q("mz5s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Народные инструменты"}, {"e": "", "k": "Классические инструменты"}], "items": [{"g": 0, "e": "", "t": "Домбра", "h": "Это относится к группе «Народные инструменты»"}, {"g": 0, "e": "", "t": "Кобыз", "h": "Это относится к группе «Народные инструменты»"}, {"g": 0, "e": "", "t": "Сыбызгы", "h": "Это относится к группе «Народные инструменты»"}, {"g": 1, "e": "", "t": "Скрипка", "h": "Это относится к группе «Классические инструменты»"}, {"g": 1, "e": "", "t": "Фортепиано", "h": "Это относится к группе «Классические инструменты»"}, {"g": 1, "e": "", "t": "Флейта", "h": "Это относится к группе «Классические инструменты»"}]}),
+      Q("mz5s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz5q"]}),
+      Q("mz5s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz5t"]})
+    ] },
+  { id: "mz6", icon: "", title: "Пою и дирижирую", goal: "Петь правильно и узнавать солиста, ансамбль и хор",
+    steps: [
+      Q("mz6s1", "infoTap", "Знакомимся с темой", "Петь надо красиво и дружно. Давай узнаем, как это делать. Нажимай на карточки.", {"need": 5, "items": [{"k": "осанка", "v": "", "t": "Когда поёшь, держи спину прямо. Так легче дышать."}, {"k": "дыхание", "v": "", "t": "Дыши спокойно и не кричи. Петь надо красиво и ровно."}, {"k": "солист", "v": "", "t": "Солист поёт один."}, {"k": "ансамбль", "v": "", "t": "Ансамбль — небольшая группа певцов, три или четыре человека."}, {"k": "хор", "v": "", "t": "Хор — это много певцов вместе."}, {"k": "дирижёр", "v": "", "t": "Дирижёр показывает, когда начинать и когда заканчивать песню."}]}),
+      Q("mz6s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Правильно"}, {"e": "", "k": "Неправильно"}], "items": [{"g": 0, "e": "", "t": "Сидеть или стоять прямо", "h": "Это относится к группе «Правильно»"}, {"g": 0, "e": "", "t": "Дышать спокойно", "h": "Это относится к группе «Правильно»"}, {"g": 0, "e": "", "t": "Петь дружно со всеми", "h": "Это относится к группе «Правильно»"}, {"g": 1, "e": "", "t": "Кричать изо всех сил", "h": "Это относится к группе «Неправильно»"}, {"g": 1, "e": "", "t": "Горбиться", "h": "Это относится к группе «Неправильно»"}, {"g": 1, "e": "", "t": "Петь с едой во рту", "h": "Это относится к группе «Неправильно»"}]}),
+      Q("mz6s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Солист"}, {"e": "", "k": "Ансамбль"}, {"e": "", "k": "Хор"}], "items": [{"g": 0, "e": "", "t": "Поёт один", "h": "Это относится к группе «Солист»"}, {"g": 0, "e": "", "t": "Один голос в песне", "h": "Это относится к группе «Солист»"}, {"g": 1, "e": "", "t": "Небольшая группа певцов", "h": "Это относится к группе «Ансамбль»"}, {"g": 1, "e": "", "t": "Три-четыре певца вместе", "h": "Это относится к группе «Ансамбль»"}, {"g": 2, "e": "", "t": "Много певцов вместе", "h": "Это относится к группе «Хор»"}, {"g": 2, "e": "", "t": "Большая группа певцов", "h": "Это относится к группе «Хор»"}]}),
+      Q("mz6s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz6q"]}),
+      Q("mz6s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz6t"]})
+    ] },
+  { id: "mz7", icon: "", title: "Музыка и моё творчество", goal: "Передавать музыку движением, рисунком и рассказом, вежливо оценивать",
+    steps: [
+      Q("mz7s1", "infoTap", "Знакомимся с темой", "Музыку можно не только слушать. Давай узнаем, как показать её по-своему. Нажимай на карточки.", {"need": 5, "items": [{"k": "движение", "v": "", "t": "Под марш можно шагать, а под вальс кружиться."}, {"k": "рисунок", "v": "", "t": "Музыку можно нарисовать красками. Цвета передают настроение."}, {"k": "рассказ", "v": "", "t": "Можно придумать историю про музыку и рассказать, что представил."}, {"k": "хлопки", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 218 80\" width=\"240\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"0\" y=\"0\" width=\"218\" height=\"80\" rx=\"10\" fill=\"#FFFDF5\"/><line x1=\"4\" y1=\"58\" x2=\"214\" y2=\"58\" stroke=\"#25324A\" stroke-width=\"1.6\"/><ellipse cx=\"22\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 22 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"28.4\" y1=\"57\" x2=\"28.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"60\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 60 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"66.4\" y1=\"57\" x2=\"66.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"98\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 98 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><ellipse cx=\"122\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 122 58)\" fill=\"#25324A\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"104.4\" y1=\"57\" x2=\"104.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"128.4\" y1=\"57\" x2=\"128.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"104.4\" y1=\"20\" x2=\"128.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"6\"/><ellipse cx=\"152\" cy=\"58\" rx=\"6.8\" ry=\"5\" transform=\"rotate(-20 152 58)\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"2\"/><line x1=\"158.4\" y1=\"57\" x2=\"158.4\" y2=\"20\" stroke=\"#25324A\" stroke-width=\"2\"/></svg></div>", "t": "Ритм можно отхлопать ладошками или простучать ложками."}, {"k": "вежливая оценка", "v": "", "t": "Оценивать надо вежливо. Например: мне понравилось, как звучит твоя песня."}]}),
+      Q("mz7s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Движением"}, {"e": "", "k": "Рисунком"}, {"e": "", "k": "Рассказом"}], "items": [{"g": 0, "e": "", "t": "Танцевать под музыку", "h": "Это относится к группе «Движением»"}, {"g": 0, "e": "", "t": "Шагать под марш", "h": "Это относится к группе «Движением»"}, {"g": 0, "e": "", "t": "Кружиться под вальс", "h": "Это относится к группе «Движением»"}, {"g": 1, "e": "", "t": "Нарисовать красками образ музыки", "h": "Это относится к группе «Рисунком»"}, {"g": 1, "e": "", "t": "Нарисовать картинку к песне", "h": "Это относится к группе «Рисунком»"}, {"g": 1, "e": "", "t": "Выбрать цвета под настроение музыки", "h": "Это относится к группе «Рисунком»"}, {"g": 2, "e": "", "t": "Придумать историю про музыку", "h": "Это относится к группе «Рассказом»"}, {"g": 2, "e": "", "t": "Рассказать, что представили", "h": "Это относится к группе «Рассказом»"}, {"g": 2, "e": "", "t": "Описать характер музыки словами", "h": "Это относится к группе «Рассказом»"}]}),
+      Q("mz7s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Вежливая оценка"}, {"e": "", "k": "Невежливая оценка"}], "items": [{"g": 0, "e": "", "t": "Мне понравилось, как звучит твоя песня", "h": "Это относится к группе «Вежливая оценка»"}, {"g": 0, "e": "", "t": "Можно спеть чуть тише", "h": "Это относится к группе «Вежливая оценка»"}, {"g": 0, "e": "", "t": "У тебя получился весёлый ритм", "h": "Это относится к группе «Вежливая оценка»"}, {"g": 1, "e": "", "t": "У тебя ничего не получилось", "h": "Это относится к группе «Невежливая оценка»"}, {"g": 1, "e": "", "t": "Это скучно, не хочу слушать", "h": "Это относится к группе «Невежливая оценка»"}, {"g": 1, "e": "", "t": "Ты поёшь хуже всех", "h": "Это относится к группе «Невежливая оценка»"}]}),
+      Q("mz7s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mz7q"]}),
+      Q("mz7s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mz7t"]})
+    ] },
+  { id: "mzfin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("mzfin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал, какая бывает музыка, как записывают ритм и ноты, чем отличаются жанры и инструменты. Теперь можно петь, слушать и придумывать музыку самому!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
