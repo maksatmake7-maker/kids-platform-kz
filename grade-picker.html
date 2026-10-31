@@ -111,9 +111,9 @@
       <span class="isle-art" data-art="2" data-ghost="2"></span>
       <span class="isle-plate"><h3 data-i18n="grade_picker_grade2"></h3><p id="grade-2-desc" data-i18n="grade_picker_coming_soon"></p><span class="badge" id="grade-2-badge">🔒</span></span>
     </a>
-    <a href="#" class="isle g3 fog" data-g="3" aria-disabled="true" tabindex="-1">
+    <a href="#" id="grade-3-link" class="isle g3 fog" data-g="3" aria-disabled="true" tabindex="-1">
       <span class="isle-art" data-art="3" data-ghost="3"></span>
-      <span class="isle-plate"><h3 data-gn="3"></h3><p data-i18n="grade_picker_coming_soon"></p><span class="badge">🔒</span></span>
+      <span class="isle-plate"><h3 data-gn="3"></h3><p id="grade-3-desc" data-i18n="grade_picker_coming_soon"></p><span class="badge" id="grade-3-badge">🔒</span></span>
     </a>
     <a href="#" class="isle g4 fog" data-g="4" aria-disabled="true" tabindex="-1">
       <span class="isle-art" data-art="4" data-ghost="4"></span>
@@ -209,7 +209,7 @@
 
   /* ---------- направление: ru / kz ---------- */
   var params=new URLSearchParams(location.search), dir=params.get('dir')==='kz'?'kz':'ru';
-  var g1=$('#grade-1-link'), g2=$('#grade-2-link'), g2d=$('#grade-2-desc'), g2b=$('#grade-2-badge');
+  var g1=$('#grade-1-link'), g2=$('#grade-2-link'), g2d=$('#grade-2-desc'), g2b=$('#grade-2-badge'), g3=$('#grade-3-link'), g3d=$('#grade-3-desc'), g3b=$('#grade-3-badge');
   function setDir(d, quiet){
     dir=d;
     g1.setAttribute('href', d==='kz'?'grades/grade-1-kaz/index.html':'grades/grade-1/index.html');
@@ -220,10 +220,17 @@
       g2.setAttribute('href','#'); g2.classList.add('fog'); g2.classList.remove('ready'); g2.setAttribute('aria-disabled','true'); g2.setAttribute('tabindex','-1');
       g2d.setAttribute('data-i18n','grade_picker_coming_soon'); g2b.removeAttribute('data-i18n'); g2b.textContent='🔒';
     }
+    if(d==='ru'){
+      g3.setAttribute('href','grades/grade-3/index.html'); g3.classList.remove('fog'); g3.classList.add('ready'); g3.removeAttribute('aria-disabled'); g3.removeAttribute('tabindex');
+      g3d.setAttribute('data-i18n','grade_picker_grade3_desc'); g3b.setAttribute('data-i18n','badge_play'); g3b.textContent='';
+    } else {
+      g3.setAttribute('href','#'); g3.classList.add('fog'); g3.classList.remove('ready'); g3.setAttribute('aria-disabled','true'); g3.setAttribute('tabindex','-1');
+      g3d.setAttribute('data-i18n','grade_picker_coming_soon'); g3b.removeAttribute('data-i18n'); g3b.textContent='🔒';
+    }
     $$('#boat-sw button, .boat-sw button').forEach(function(b){ var on=b.getAttribute('data-d')===d; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }); $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
     try{ history.replaceState(null,'','?dir='+d); }catch(e){}
     applyLang(d);
-    if(!quiet){ if(cur>1 && !g2.classList.contains('ready')) hopTo(0); }
+    if(!quiet){ if(cur>1 && !isles[cur-1].classList.contains('ready')) hopTo(0); }
   }
 
   /* ---------- маршрут и Барсик-ходок ---------- */
