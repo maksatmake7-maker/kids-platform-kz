@@ -12389,3 +12389,12 @@ document.addEventListener('click', function(e){
   var b = e.target && e.target.closest ? e.target.closest('.lang-toggle [data-lang]') : null;
   if(b){ try { localStorage.setItem('bilim_lang_v1', b.getAttribute('data-lang')); } catch(x){} }
 }, true);
+
+/* ===== Установка на экран телефона и офлайн-основа: подгружаем assets/pwa.js (manifest, service worker) ===== */
+(function(){
+  try {
+    var me = document.currentScript; if(!me || !me.src) return;
+    var s = document.createElement('script'); s.src = me.src.replace(/i18n\.js.*$/, 'pwa.js'); s.async = true;
+    document.head.appendChild(s);
+  } catch(e){}
+})();
