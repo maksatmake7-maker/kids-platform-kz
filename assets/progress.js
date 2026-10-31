@@ -25,6 +25,20 @@ function logActivity(){
   } catch(e){}
 }
 
+/* Что именно проходил ребёнок по дням (ключ игры/урока и сколько звёзд) — для недельного отчёта родителю (parent.html).
+   Хранится только в этом браузере, не больше 30 дней. */
+function logTopic(gameKey, score){
+  try {
+    var k = 'bilim_recent_v1', a = JSON.parse(localStorage.getItem(k)) || {}, d = new Date();
+    var s = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    var list = a[s] || (a[s] = []);
+    list.push([String(gameKey), +score || 0]);
+    if(list.length > 80) list.shift();
+    var keys = Object.keys(a).sort(); while(keys.length > 30){ delete a[keys.shift()]; }
+    localStorage.setItem(k, JSON.stringify(a));
+  } catch(e){}
+}
+
 function loadProgress(){
   try {
     var raw = localStorage.getItem(PROGRESS_KEY);
@@ -60,6 +74,7 @@ function recordGameResult(gameKey, score, total){
 
   saveProgress(data);
   logActivity();
+  logTopic(gameKey, score);
   updateProgressBadge();
   syncProgressToServer(gameKey, score, total); // не блокирует и не ломает работу без входа
 }
