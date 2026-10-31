@@ -1,0 +1,36 @@
+/* ===== Білім Аралы — «Квесты Барсика» (после styles.css, world.css, house.css) ===== */
+.qs-grid{display:grid; grid-template-columns:minmax(0,380px) minmax(0,1fr); gap:22px; align-items:start;}
+.qs-stage{position:relative; height:460px; background:linear-gradient(#BFE3F7 0 58%,#8FD08A 58% 100%); border:3px solid var(--ink,#1D3557); border-radius:26px; overflow:hidden;}
+.qs-stage::before{content:''; position:absolute; left:-10%; right:-10%; bottom:36%; height:90px; background:#7CC47F; border-radius:50% 50% 0 0;}
+.qs-stage .hs-bs{bottom:16px;}
+.qs-stage .hs-bubble{left:14px; right:14px; top:14px; max-width:none; text-align:center; font-size:clamp(.98rem,2.2vw,1.15rem);}
+.qs-stage .hs-bubble::after{display:none;}
+.qs-dots{display:flex; gap:8px; justify-content:center; margin:2px 0 12px;}
+.qs-dots i{width:14px; height:14px; border-radius:50%; background:#E3E9F0; border:2px solid #B8C4D2;}
+.qs-dots i.on{background:#FFC93C; border-color:#C98A00;} .qs-dots i.now{background:#fff; border-color:var(--ink,#1D3557); box-shadow:0 0 0 3px #FFC93C;}
+.qs-card{background:#fff; border:3px solid var(--ink,#1D3557); border-radius:24px; padding:16px 18px; box-shadow:0 5px 0 rgba(29,53,87,.1);}
+.qs-card h2{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.4rem; color:var(--ink,#1D3557); margin:0 0 6px;}
+.qs-card .lbl{font-size:.85rem; font-weight:800; color:#6B5436; margin-bottom:6px;}
+.qs-card p{margin:0 0 10px; font-weight:700; line-height:1.4; color:#3B2A1A;}
+.qs-scene{display:block; width:100%; height:auto; border-radius:16px; margin:4px 0 12px; background:#EAF6FF;}
+.qs-story{font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(1.1rem,2.6vw,1.4rem); line-height:1.35; color:var(--ink,#1D3557); margin:0 0 14px;}
+.qs-opts{display:flex; flex-wrap:wrap; gap:12px; margin:0 0 6px;}
+.qs-opt{flex:1 1 120px; min-height:64px; display:flex; align-items:center; justify-content:center; padding:8px 14px; border-radius:20px; border:3px solid var(--ink,#1D3557); background:#FFF7E3; color:var(--ink,#1D3557); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.6rem; box-shadow:0 5px 0 rgba(29,53,87,.16); transition:transform .12s;}
+.qs-opt.txt{font-size:1.15rem;}
+.qs-opt svg{width:44px; height:44px; display:block;}
+.qs-opt:hover:not(:disabled){transform:translateY(-2px);}
+.qs-opt:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:3px;}
+.qs-opt.bad{background:#FFE3DF; border-color:#C0392B; color:#8E2F3A; animation:qsShake .4s;}
+.qs-opt.good{background:#D3EFE2; border-color:#1F6B4F; color:#1F4D3A;}
+.qs-opt:disabled{cursor:default; opacity:.85;}
+.qs-btn{min-height:50px; padding:0 22px; border-radius:999px; border:3px solid var(--ink,#1D3557); background:#FFC93C; color:var(--ink,#1D3557); cursor:pointer; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.15rem; box-shadow:0 5px 0 rgba(29,53,87,.18);}
+.qs-btn.alt{background:#fff;}
+.qs-btn:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:3px;}
+.qs-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:12px;}
+.qs-badge{display:inline-block; background:#D3EFE2; border:2px solid #1F6B4F; color:#1F4D3A; border-radius:999px; padding:2px 12px; font-weight:800; font-size:.9rem; margin:0 0 10px;}
+.qs-final{text-align:center;}
+.qs-final .big{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:2rem; color:var(--ink,#1D3557); margin:4px 0;}
+.qs-final .st{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.3rem; color:#8A5A00; margin:0 0 8px;}
+@keyframes qsShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+@media (max-width:860px){ .qs-grid{grid-template-columns:1fr;} .qs-stage{height:380px;} .qs-stage .hs-bs{width:220px; margin-left:-110px;} }
+@media (prefers-reduced-motion:reduce){ .qs-opt.bad{animation:none;} .qs-opt{transition:none;} }

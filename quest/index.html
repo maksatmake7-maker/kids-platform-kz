@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-hi-title="q_h1">Квесты Барсика — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/world.css">
+<link rel="stylesheet" href="../assets/house.css">
+<link rel="stylesheet" href="../assets/quest.css">
+</head>
+<body class="w-page">
+
+<header>
+  <a href="../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="hs-wrap">
+  <div class="hs-top">
+    <a href="../grade-picker.html" class="back-link" data-back>Вернуться к урокам</a>
+    <h1 data-hi="q_h1">Квесты Барсика</h1>
+  </div>
+
+  <div class="qs-grid">
+    <div class="qs-stage" id="stage">
+      <div class="hs-bubble on" id="bubble" role="status" aria-live="polite"></div>
+      <div class="hs-bs" id="bs"></div>
+    </div>
+    <div id="panel"></div>
+  </div>
+
+  <!-- общие рисунки для сцен -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="q-horse" viewBox="0 0 44 34">
+        <path d="M7 14 C1 16 1 25 4 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="20" cy="17" rx="13" ry="7" fill="currentColor"/>
+        <polygon points="27,15 35,4 40,8 33,20" fill="currentColor"/>
+        <ellipse cx="38.5" cy="6.5" rx="5.2" ry="3.2" transform="rotate(25 38.5 6.5)" fill="currentColor"/>
+        <path d="M35 4 C32 5 30 8 29 12" fill="none" stroke="#3B2A1A" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="9" y="21" width="2.8" height="11" rx="1.2" fill="currentColor"/><rect x="14" y="22" width="2.8" height="10" rx="1.2" fill="currentColor"/>
+        <rect x="24" y="22" width="2.8" height="10" rx="1.2" fill="currentColor"/><rect x="29" y="21" width="2.8" height="11" rx="1.2" fill="currentColor"/>
+        <circle cx="40" cy="5.5" r="1" fill="#3B2A1A"/>
+      </symbol>
+    </defs>
+  </svg>
+</main>
+
+<script src="../assets/i18n.js"></script>
+<script src="../assets/house-i18n.js"></script>
+<script src="../assets/quest-data.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/barsik.js"></script>
+<script src="../assets/house-back.js"></script>
+<script src="../assets/world.js"></script>
+<script src="../assets/quest.js"></script>
+</body>
+</html>

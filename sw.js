@@ -11,7 +11,7 @@ const SHELL = [
   './', 'index.html', 'grade-picker.html', 'offline.html', 'manifest.webmanifest',
   'assets/pwa/icon-192.png', 'assets/pwa/icon-512.png',
   'assets/i18n.js', 'assets/styles.css', 'assets/world.css', 'assets/world.js', 'assets/progress.js', 'assets/barsik.js',
-  'assets/auth.js', 'assets/rewards.js', 'assets/explain.js', 'assets/quick.js', 'assets/pwa.js',
+  'assets/auth.js', 'assets/rewards.js', 'assets/explain.js', 'assets/quick.js', 'assets/quest.js', 'assets/quest-data.js', 'assets/quest.css', 'quest/index.html', 'assets/pwa.js',
   'assets/hub.js', 'assets/hub.css', 'assets/subject.js', 'assets/subject.css', 'assets/subject-themes.js', 'assets/courses-registry.js',
   'assets/house.js', 'assets/house.css', 'assets/house-i18n.js', 'assets/house-back.js', 'assets/gift.css',
   'house/index.html', 'house/wardrobe.html', 'house/attic.html', 'gift/index.html', 'gift/gift-data.js',
