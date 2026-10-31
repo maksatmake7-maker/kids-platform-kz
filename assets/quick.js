@@ -1,12 +1,15 @@
 /* ===== Білім Аралы — быстрые кнопки «Дом Барсика» и «Подарок дня» на первых страницах =====
    Разметка: <div data-quick></div> (необязательно data-root="../" — путь к корню сайта, data-kz — страница открывается сразу по-казахски).
    Название дома — на выбранном языке страницы и в ссылке ?lang=, чтобы дом открылся на том же языке. «Подарок дня» пока только на русском: на других языках его прячет CSS.
+   Третья кнопка — «Установить на экран» (скрыта, пока браузер не готов предложить установку; на iPhone показывает подсказку) — управляется assets/pwa.js.
    Подключать после progress.js. */
 (function(){
   'use strict';
   var CSS = '.qk{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin:16px 0 4px;}' +
-    '.qk a{display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:6px 18px 6px 12px; border-radius:999px; background:#fff; color:#1D3557; text-decoration:none; border:3px solid #F8AE3F; box-shadow:0 4px 0 rgba(29,53,87,.14); font-family:"Baloo 2",sans-serif; font-weight:800; font-size:1.1rem; transition:transform .15s;}' +
-    '.qk a:hover{transform:translateY(-2px);} .qk a:focus-visible{outline:3px dashed #FF6B5B; outline-offset:3px;}' +
+    '.qk a,.qk button{display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:6px 18px 6px 12px; border-radius:999px; background:#fff; color:#1D3557; text-decoration:none; border:3px solid #F8AE3F; box-shadow:0 4px 0 rgba(29,53,87,.14); font-family:"Baloo 2",sans-serif; font-weight:800; font-size:1.1rem; transition:transform .15s;}' +
+    '.qk button{cursor:pointer; padding-left:12px;} .qk button[hidden]{display:none;} .qk .inst{border-color:#3F8F6B;}' +
+    '.qk a:hover,.qk button:hover{transform:translateY(-2px);} .qk a:focus-visible,.qk button:focus-visible{outline:3px dashed #FF6B5B; outline-offset:3px;}' +
+    '.qk-hint{flex-basis:100%; max-width:30em; margin:0 auto; text-align:center; font-weight:700; font-size:.95rem; color:#fff; background:rgba(18,35,94,.85); border:2px solid #F8AE3F; border-radius:16px; padding:8px 14px;} .qk-hint[hidden]{display:none;}' +
     '.qk .ic{flex:none; width:34px; height:30px; display:block;} .qk .ic svg{display:block; width:100%; height:100%;}' +
     'html[data-current]:not([data-current="ru"]) .qk .gift-ru{display:none;}' +
     '.qk .house{border-color:#E8584A;} .qk em{font-style:normal; font-size:.78rem; background:#D9483A; color:#fff; border-radius:999px; padding:2px 10px;} .qk .got em{background:#3F8F6B;}';
@@ -15,6 +18,10 @@
   function got(){
     try { var g = JSON.parse(localStorage.getItem('bilim_gift_v1')), d = new Date(), k = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); return !!(g && g.days && g.days[k]); } catch(e){ return false; }
   }
+  var PHONE = '<svg viewBox="0 0 34 30" aria-hidden="true"><rect x="10" y="2" width="14" height="26" rx="3" fill="#FFF7E3" stroke="#1D3557" stroke-width="2"/><path d="M17 8 V19 M13 15 L17 19 L21 15" fill="none" stroke="#3F8F6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  /* подписи кнопки установки и подсказка для iPhone */
+  var INST = {ru:'Установить на экран', kz:'Экранға орнату', en:'Add to home screen', zh:'添加到主屏幕', uz:'Бош экранга қўшиш', tg:'Ба экрани асосӣ илова кун', ug:'ئاساسىي ئېكرانغا قوشۇش'};
+  var IOS = {ru:'Нажми «Поделиться», затем «На экран Домой».', kz:'«Бөлісу» түймесін басып, «Басты экранға» таңда.', en:'Tap Share, then Add to Home Screen.', zh:'点按“分享”，再选“添加到主屏幕”。', uz:'«Улашиш» тугмасини босиб, «Бош экранга қўшиш»ни танланг.', tg:'«Мубодила»-ро пахш карда, «Ба экрани асосӣ»-ро интихоб кунед.', ug:'«ھەمبەھىرلەش» نى بېسىپ، «ئاساسىي ئېكرانغا قوشۇش» نى تاللاڭ.'};
   /* названия дома — те же слова, что в assets/house-i18n.js */
   var HOUSE_NAME = {ru:'Дом Барсика', kz:'Барсиктің үйі', en:"Barsik's House", zh:'巴雷斯的家', uz:'Барсикнинг уйи', tg:'Хонаи Барсик', ug:'بارىسنىڭ ئۆيى'};
   function curLang(el){
@@ -27,7 +34,13 @@
     var g = got();
     el.className = 'qk';
     el.innerHTML = '<a class="house" href="' + root + 'house/index.html" data-base="' + root + 'house/index.html"><span class="ic">' + HOUSE + '</span><span class="t"></span></a>' +
-      '<a class="gift-ru ' + (g ? 'got' : 'gift') + '" href="' + root + 'gift/index.html"><span class="ic">' + GIFT + '</span>Подарок дня<em>' + (g ? 'получен' : 'новый') + '</em></a>';
+      '<a class="gift-ru ' + (g ? 'got' : 'gift') + '" href="' + root + 'gift/index.html"><span class="ic">' + GIFT + '</span>Подарок дня<em>' + (g ? 'получен' : 'новый') + '</em></a>' +
+      '<button type="button" class="inst" hidden><span class="ic">' + PHONE + '</span><span class="t"></span></button><p class="qk-hint" hidden></p>';
+    var b = el.querySelector('.inst'), hint = el.querySelector('.qk-hint');
+    b.addEventListener('click', function(){
+      var st = window.PWA && PWA.state();
+      if (st === 'prompt') PWA.install(); else if (st === 'ios') hint.hidden = !hint.hidden;
+    });
     sync(el);
   }
   function sync(el){
@@ -35,12 +48,16 @@
     if (!a) return;
     a.querySelector('.t').textContent = HOUSE_NAME[l] || HOUSE_NAME.ru;
     a.href = a.getAttribute('data-base') + '?lang=' + l;
+    var b = el.querySelector('.inst'), hint = el.querySelector('.qk-hint'), st = window.PWA ? PWA.state() : 'none';
+    if (b){ b.hidden = (st === 'none'); b.querySelector('.t').textContent = INST[l] || INST.ru; }
+    if (hint){ hint.textContent = IOS[l] || IOS.ru; if (st !== 'ios') hint.hidden = true; hint.setAttribute('dir', l === 'ug' ? 'rtl' : 'ltr'); }
   }
   function go(){
     if (!document.getElementById('qk-style')){ var s = document.createElement('style'); s.id = 'qk-style'; s.textContent = CSS; document.head.appendChild(s); }
     [].forEach.call(document.querySelectorAll('[data-quick]'), build);
     if (!go.obs){
       go.obs = true;
+      document.addEventListener('pwa-state', function(){ [].forEach.call(document.querySelectorAll('[data-quick]'), sync); });
       try { new MutationObserver(function(){ [].forEach.call(document.querySelectorAll('[data-quick]'), sync); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-current'] }); } catch(e){}
     }
   }

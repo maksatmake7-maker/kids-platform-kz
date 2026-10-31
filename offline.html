@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Білім Аралы</title>
+<style>
+  body{margin:0; min-height:100vh; display:grid; place-items:center; background:linear-gradient(#12235E,#1D3A8A); font-family:'Baloo 2',Nunito,Arial,sans-serif; color:#fff; text-align:center; padding:24px; box-sizing:border-box;}
+  main{max-width:440px;}
+  h1{font-size:clamp(1.6rem,6vw,2.2rem); margin:0 0 10px;}
+  p{font-size:1.1rem; margin:0 0 22px; opacity:.9;}
+  a{display:inline-flex; align-items:center; min-height:52px; padding:0 28px; border-radius:999px; background:#FFC93C; color:#3B2A1A; font-weight:800; font-size:1.15rem; text-decoration:none;}
+  img{width:120px; height:120px; border-radius:28px; margin-bottom:14px;}
+</style>
+</head>
+<body>
+<main>
+  <img id="i" alt="" width="120" height="120">
+  <h1 id="h"></h1>
+  <p id="p"></p>
+  <a id="a" href="#"></a>
+</main>
+<script>
+(function(){
+  var T = {
+    ru: ['Нет интернета', 'Эта страница ещё не сохранилась на телефоне. Подключись к интернету или вернись на главную.', 'На главную'],
+    kz: ['Интернет жоқ', 'Бұл бет әлі телефонға сақталмаған. Интернетке қосыл немесе басты бетке қайт.', 'Басты бетке'],
+    en: ['No internet', "This page isn't saved on your device yet. Connect to the internet or go back to the home page.", 'Home'],
+    zh: ['没有网络', '这个页面还没有保存在设备上。请连接网络，或返回首页。', '回到首页'],
+    uz: ['Интернет йўқ', 'Бу саҳифа ҳали телефонга сақланмаган. Интернетга уланинг ёки бош саҳифага қайтинг.', 'Бош саҳифага'],
+    tg: ['Интернет нест', 'Ин саҳифа ҳанӯз дар телефон захира нашудааст. Ба интернет пайваст шавед ё ба саҳифаи асосӣ баргардед.', 'Ба саҳифаи асосӣ'],
+    ug: ['تور يوق', 'بۇ بەت تېخى تېلېفونغا ساقلانمىغان. تورغا ئۇلىنىڭ ياكى ئاساسىي بەتكە قايتىڭ.', 'ئاساسىي بەتكە']
+  };
+  var l = 'ru'; try { var s = localStorage.getItem('bilim_lang_v1'); if (s && T[s]) l = s; } catch(e){}
+  document.documentElement.lang = l === 'kz' ? 'kk' : l; if (l === 'ug') document.documentElement.dir = 'rtl';
+  document.getElementById('h').textContent = T[l][0]; document.getElementById('p').textContent = T[l][1]; document.getElementById('a').textContent = T[l][2];
+  /* страница могла открыться по любому адресу, поэтому путь к главной берём из области service worker */
+  if (navigator.serviceWorker) navigator.serviceWorker.getRegistration().then(function(r){ if (r){ document.getElementById('a').href = r.scope + 'index.html'; document.getElementById('i').src = r.scope + 'assets/pwa/icon-192.png'; } });
+})();
+</script>
+</body>
+</html>
