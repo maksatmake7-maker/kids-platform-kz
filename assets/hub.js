@@ -174,10 +174,11 @@
 
   /* кнопка «Подарок дня» (страница gift/index.html в корне сайта; получен ли сегодня — из localStorage 'bilim_gift_v1') */
   function giftChip(){
-    if(kz) return '';   /* пока только русская версия подарка */
+    var hk='<a class="hub-gift hub-house" href="'+(C.houseHref||'../../house/index.html')+'"><i aria-hidden="true"></i><span>'+(kz?'Барсиктің үйі':'Дом Барсика')+'</span></a>';
+    if(kz) return '<div class="hub-chips">'+hk+'</div>';   /* подарок дня пока только на русском */
     var got=false; try{ var g=JSON.parse(localStorage.getItem('bilim_gift_v1')), d=new Date(), k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); got=!!(g&&g.days&&g.days[k]); }catch(e){}
     var t=kz?'Күн сыйы':'Подарок дня';
-    return '<a class="hub-gift'+(got?' got':'')+'" href="'+(C.giftHref||'../../gift/index.html')+'"><i aria-hidden="true"></i><span>'+t+'</span><em>'+(got?(kz?'алынды':'получен'):(kz?'жаңа':'новый'))+'</em></a>';
+    return '<div class="hub-chips">'+hk+'<a class="hub-gift'+(got?' got':'')+'" href="'+(C.giftHref||'../../gift/index.html')+'"><i aria-hidden="true"></i><span>'+t+'</span><em>'+(got?(kz?'алынды':'получен'):(kz?'жаңа':'новый'))+'</em></a></div>';
   }
 
   /* ---------- сборка страницы ---------- */
