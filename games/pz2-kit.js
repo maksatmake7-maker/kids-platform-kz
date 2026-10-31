@@ -79,7 +79,7 @@
         return S('1p' + g.k + it[1], Object.assign(G.pickPic({ q:q, say:[G.say(q + '.')], items:pool.map(function(p){ return { k:p[1], h:p[0] ? '<span class="e">' + p[0] + '</span>' : '', lab:p[1] }; }), ans:it[1] }), hintItem(g, it)));
       }
       var opts = [g.name].concat(shuffle(ps.filter(function(h){ return h.k !== g.k; })).slice(0, 2).map(function(h){ return h.name; }));
-      return S('1c' + g.k + it[1], Object.assign({ expr:vis(it), cap:it[0] ? it[1] + ' — это…' : (g.wordCap || SPEC.wordCap || 'Какое это слово?'), say:[G.say((it[3] || it[1]) + '. ' + (g.ask || SPEC.askQ || 'К какой группе это относится?'))], ans:g.name, opts:G.txtOpts(opts), layout:'card' }, hintItem(g, it)));
+      return S('1c' + g.k + it[1], Object.assign({ expr:vis(it), cap:it[0] ? it[1] + ' — это…' : (g.wordCap || (SPEC.askAsCap ? (g.ask || SPEC.askQ) : '') || SPEC.wordCap || 'Какое это слово?'), say:[G.say((it[3] || it[1]) + '. ' + (g.ask || SPEC.askQ || 'К какой группе это относится?'))], ans:g.name, opts:G.txtOpts(opts), layout:'card' }, hintItem(g, it)));
     }
     /* ⭐⭐ разложи по корзинам */
     function L2(){
