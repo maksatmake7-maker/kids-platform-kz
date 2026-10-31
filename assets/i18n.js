@@ -12346,8 +12346,15 @@ function applyLang(lang){
   });
 }
 
+/* Язык, который ребёнок выбрал кнопкой, запоминается (localStorage 'bilim_lang_v1') и подхватывается на всех страницах,
+   которые не задают язык сами. Страницы казахского направления по-прежнему открываются по-казахски. */
+function savedLang(){
+  try { var s = localStorage.getItem('bilim_lang_v1'); if(s && translations[s]) return s; } catch(e){}
+  return null;
+}
+
 document.addEventListener('DOMContentLoaded', function(){
-  applyLang('ru');
+  applyLang(savedLang() || 'ru');
 });
 
 /* ===== Пометка «эта страница не на выбранном языке» (курсы только на русском; вопросы игр — ru/kz/en) ===== */

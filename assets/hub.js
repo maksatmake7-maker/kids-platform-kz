@@ -230,7 +230,7 @@
   if(window.Barsik){ try{ Barsik.mount(document.getElementById('hubBs'),{grade:C.grade||1,track:true}); }catch(e){} }
 
   document.addEventListener('DOMContentLoaded',function(){
-    applyLang(C.lang||'ru');
+    applyLang((C.lang && C.lang!=='ru') ? C.lang : (savedLang()||'ru'));   /* казахский хаб — по-казахски, русский — на запомненном языке */
     fillProgress();
     syncHouse();
     try{ new MutationObserver(syncHouse).observe(document.documentElement,{attributes:true,attributeFilter:['data-current']}); }catch(e){}
