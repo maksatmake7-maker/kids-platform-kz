@@ -1,0 +1,43 @@
+/* ===== Білім Аралы — «Подарок дня» (после styles.css, world.css, house.css) ===== */
+.gf-right{display:flex; flex-direction:column; gap:16px;}
+.gf-box{position:relative; background:#fff; border:3px solid #F8AE3F; border-radius:26px; padding:22px 20px 24px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; box-shadow:0 6px 0 rgba(29,53,87,.1);}
+.gf-box h2{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.5rem; color:var(--ink,#1D3557); margin:0;}
+.gf-box p{font-weight:700; color:#5C7690; margin:0; max-width:26em;}
+.gf-giftbtn{background:none; border:0; padding:0; cursor:pointer; width:min(240px,70%); border-radius:24px;}
+.gf-giftbtn:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:6px;}
+.gf-giftbtn svg{display:block; width:100%; height:auto; overflow:visible;}
+.gf-giftbtn .wig{transform-origin:100px 190px; animation:gfWig 2.4s ease-in-out infinite;}
+@keyframes gfWig{0%,70%,100%{transform:rotate(0);}74%{transform:rotate(-4deg);}80%{transform:rotate(4deg);}86%{transform:rotate(-3deg);}92%{transform:rotate(2deg);}}
+.gf-cta{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.15rem; color:#fff; background:var(--ink,#1D3557); border:0; border-radius:999px; min-height:48px; padding:0 26px; cursor:pointer;}
+.gf-cta:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:3px;}
+a.gf-cta{display:inline-flex; align-items:center; text-decoration:none;}
+
+.gf-card{background:#fff; border:3px solid var(--ink,#1D3557); border-radius:26px; padding:20px; box-shadow:0 6px 0 rgba(29,53,87,.1);}
+.gf-kind{display:inline-block; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:.95rem; color:#fff; background:#7E62C0; border-radius:999px; padding:3px 14px; margin-bottom:8px;}
+.gf-kind.fact{background:#3F8F6B;}
+.gf-card h2{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:clamp(1.3rem,3vw,1.7rem); line-height:1.25; color:var(--ink,#1D3557); margin:0 0 14px;}
+.gf-opts{display:grid; gap:10px;}
+.gf-opt{display:flex; align-items:center; gap:12px; text-align:left; min-height:56px; padding:8px 16px; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:1.2rem; color:var(--ink,#1D3557); background:#FFF6E2; border:3px solid #E5D3A8; border-radius:18px; cursor:pointer;}
+.gf-opt .n{flex:none; width:32px; height:32px; border-radius:50%; background:#fff; border:2px solid #E5D3A8; display:grid; place-items:center; font-size:1rem;}
+.gf-opt:hover:not([disabled]){border-color:var(--ink,#1D3557);}
+.gf-opt:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:3px;}
+.gf-opt.no{background:#EEE5D0; color:#6B5436; text-decoration:line-through; border-color:#D9C9A0; cursor:default;}
+.gf-opt.yes{background:#D3EFE2; border-color:#1F6B4F; color:#1F4D3A;}
+.gf-fb{min-height:1.4em; margin-top:12px; font-weight:800; font-size:1.05rem; color:#6B5436;}
+.gf-fb.ok{color:#1F4D3A;}
+.gf-star{display:inline-flex; align-items:center; gap:6px; background:#FFF0CC; border:3px solid #F8AE3F; border-radius:999px; padding:4px 16px 4px 10px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.2rem; color:#3B2A1A; animation:pop .4s ease-out;}
+.gf-star svg{width:26px; height:26px;}
+@keyframes pop{0%{transform:scale(.6);opacity:0;}100%{transform:scale(1);opacity:1;}}
+
+.gf-days{background:#fff; border:3px solid #E5D3A8; border-radius:22px; padding:14px 18px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;}
+.gf-days .big{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.25rem; color:var(--ink,#1D3557);}
+.gf-days .big b{font-size:1.9rem; color:#D9483A;}
+.gf-week{display:flex; gap:8px;}
+.gf-week .d{display:flex; flex-direction:column; align-items:center; gap:3px; font-size:.78rem; font-weight:800; color:#6B5436;}
+.gf-week .d i{width:26px; height:26px; border-radius:50%; background:#EEE5D0; border:2px solid #D9C9A0; display:block;}
+.gf-week .d.on i{background:#FFC93C; border-color:#C98A00;}
+.gf-week .d.today span{color:var(--ink,#1D3557); text-decoration:underline;}
+
+@media (prefers-reduced-motion:reduce){ .gf-giftbtn .wig,.gf-star{animation:none;} }
+
+.gf-box[hidden],.gf-card[hidden]{display:none !important;}

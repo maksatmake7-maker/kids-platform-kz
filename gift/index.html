@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подарок дня — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/world.css">
+<link rel="stylesheet" href="../assets/house.css">
+<link rel="stylesheet" href="../assets/gift.css">
+</head>
+<body class="w-page">
+
+<header>
+  <a href="../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="hs-wrap">
+  <div class="hs-top">
+    <a href="../index.html" class="back-link" id="back">← Назад</a>
+    <h1>Подарок дня</h1>
+  </div>
+
+  <div class="hs-grid">
+    <div class="hs-left">
+      <div class="hs-stage" id="stage">
+        <div class="win"></div>
+        <div class="floor"></div>
+        <div class="hs-bubble" id="bubble" role="status" aria-live="polite"></div>
+        <div class="hs-bs" id="bs"></div>
+      </div>
+    </div>
+
+    <div class="gf-right">
+      <!-- коробка (подарок ещё не открыт) -->
+      <div class="gf-box" id="boxPane" hidden>
+        <h2>Подарок ждёт тебя</h2>
+        <button type="button" class="gf-giftbtn" id="giftBtn" aria-label="Открыть подарок дня">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <ellipse cx="100" cy="190" rx="70" ry="8" fill="rgba(0,0,0,.18)"/>
+            <g class="wig">
+              <rect x="30" y="92" width="140" height="94" rx="10" fill="#E8584A"/>
+              <rect x="88" y="92" width="24" height="94" fill="#FFC93C"/>
+              <rect x="22" y="66" width="156" height="34" rx="9" fill="#F0746A"/>
+              <rect x="88" y="66" width="24" height="34" fill="#FFD34D"/>
+              <path d="M100 66 C70 20 40 40 62 60 C74 70 92 68 100 66Z" fill="#FFC93C" stroke="#D99A00" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M100 66 C130 20 160 40 138 60 C126 70 108 68 100 66Z" fill="#FFC93C" stroke="#D99A00" stroke-width="3" stroke-linejoin="round"/>
+              <circle cx="100" cy="64" r="9" fill="#FFD34D" stroke="#D99A00" stroke-width="3"/>
+            </g>
+          </svg>
+        </button>
+        <p id="boxNote">Нажми на коробку. Барсик загадал тебе загадку или задал вопрос.</p>
+        <button type="button" class="gf-cta" id="openBtn">Открыть</button>
+      </div>
+
+      <!-- вопрос -->
+      <div class="gf-card" id="card" hidden>
+        <span class="gf-kind" id="kind"></span>
+        <h2 id="q"></h2>
+        <div class="gf-opts" id="opts"></div>
+        <div class="gf-fb" id="fb" role="status" aria-live="polite"></div>
+      </div>
+
+      <!-- подарок уже получен -->
+      <div class="gf-box" id="donePane" hidden>
+        <span class="gf-star" id="starChip"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 16.5,14 18.5,21.5 12,17.5 5.5,21.5 7.5,14 2,9.5 9,9" fill="#FFC93C" stroke="#C98A00" stroke-width="1.5" stroke-linejoin="round"/></svg><span>+1 звезда</span></span>
+        <h2 id="doneTitle">Подарок получен</h2>
+        <p id="doneText"></p>
+        <p><b>Завтра будет новый подарок.</b></p>
+        <a class="gf-cta" href="../house/index.html">Потратить звезду в Доме Барсика</a>
+      </div>
+
+      <div class="gf-days">
+        <div class="big">Дней с Барсиком: <b id="total">0</b></div>
+        <div class="gf-week" id="week" aria-label="Последние семь дней"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../assets/i18n.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/barsik.js"></script>
+<script src="gift-data.js"></script>
+<script src="../assets/world.js"></script>
+<script>
+(function(){
+  var KEY = 'bilim_gift_v1';       /* { total, days:{'YYYY-MM-DD':{id,tries}} } — только последние дни; total не уменьшается */
+  var G = window.GIFT, N = G.items.length;
+  var $ = function(id){ return document.getElementById(id); };
+  var WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
+  function pad(n){ return ('0' + n).slice(-2); }
+  function dstr(d){ return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function dnum(d){ return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000); }
+  function load(){ try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && typeof s === 'object') return { total: +s.total || 0, days: s.days || {} }; } catch(e){} return { total: 0, days: {} }; }
+  function save(s){
+    var keys = Object.keys(s.days).sort(); while (keys.length > 21) delete s.days[keys.shift()];
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){}
+  }
+
+  var now = new Date(), today = dstr(now), idx = dnum(now);
+  var item = G.items[((idx % N) + N) % N];
+  var S = load(), tries = 0, locked = false;
+
+  /* --- голос: цепочка записей; если записи нет или она не играет — молча идём дальше --- */
+  var cur = null, chainId = 0;
+  function speak(ids, done){
+    var my = ++chainId, i = 0;
+    (function next(){
+      if (my !== chainId) return;
+      if (i >= ids.length){ if (done) done(); return; }
+      var id = ids[i++], a, fired = false;
+      function nx(){ if (fired) return; fired = true; next(); }
+      try {
+        a = new Audio('../assets/audio/barsik/ru/gift_' + id + '.mp3'); cur = a;
+        a.addEventListener('ended', nx); a.addEventListener('error', nx);
+        var p = a.play(); if (p && p.catch) p.catch(nx);
+      } catch(e){ nx(); }
+    })();
+  }
+  function stop(){ chainId++; if (cur){ try { cur.pause(); } catch(e){} } }
+
+  var bs = $('bs'), bubble = $('bubble'), bt = null;
+  var b = Barsik.mount(bs, { grade: 1, track: true });
+  function say(text, ms){
+    bubble.textContent = text; bubble.classList.add('on');
+    clearTimeout(bt); if (ms !== 0) bt = setTimeout(function(){ bubble.classList.remove('on'); }, ms || 4200);
+  }
+
+  function renderDays(){
+    $('total').textContent = S.total;
+    var h = '';
+    for (var k = 6; k >= 0; k--){
+      var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - k), s = dstr(d);
+      h += '<div class="d' + (S.days[s] ? ' on' : '') + (k === 0 ? ' today' : '') + '"><i></i><span>' + WD[d.getDay()] + '</span></div>';
+    }
+    $('week').innerHTML = h;
+  }
+
+  function lastDayNum(){
+    var keys = Object.keys(S.days).sort(); if (!keys.length) return null;
+    var p = keys[keys.length - 1].split('-'); return dnum(new Date(+p[0], +p[1] - 1, +p[2]));
+  }
+  var gap = (S.total > 0 && lastDayNum() !== null) ? (idx - lastDayNum()) : 0;   /* 1 = вчера, >1 = пропуск */
+
+  function show(which){ ['boxPane', 'card', 'donePane'].forEach(function(id){ $(id).hidden = (id !== which); }); }
+
+  /* --- уже получен сегодня --- */
+  function showDone(){
+    show('donePane');
+    $('doneText').textContent = item.q + ' — ' + item.opts[item.a] + '. ' + item.ex;
+    say(G.say.done); b.base('idle');
+  }
+
+  /* --- вопрос --- */
+  function openCard(){
+    show('card');
+    $('kind').textContent = item.kind === 'riddle' ? 'Загадка' : 'Знаешь ли ты?';
+    $('kind').className = 'gf-kind' + (item.kind === 'fact' ? ' fact' : '');
+    $('q').textContent = item.q;
+    var h = '';
+    item.opts.forEach(function(o, i){ h += '<button type="button" class="gf-opt" data-i="' + i + '"><span class="n">' + (i + 1) + '</span>' + o + '</button>'; });
+    $('opts').innerHTML = h; $('fb').textContent = ''; $('fb').className = 'gf-fb';
+    b.set('think');
+    bubble.classList.remove('on');
+    var seq = [];
+    if (gap > 1) seq.push('back'); else if (S.total === 0) seq.push('first');
+    seq.push(item.id + '_q');
+    if (gap > 1) say(G.say.back); else if (S.total === 0) say(G.say.first);
+    speak(seq);
+  }
+
+  function win(btn){
+    locked = true; stop();
+    btn.classList.add('yes');
+    [].forEach.call($('opts').children, function(x){ x.disabled = true; });
+    S.days[today] = { id: item.id, tries: tries + 1 }; S.total += 1; save(S);
+    if (typeof recordGameResult === 'function') recordGameResult('gift_' + today, 1, 1);   /* +1 звезда и запись в журнал занятий */
+    renderDays();
+    var ok = ['ok1', 'ok2', 'ok3'][Math.floor(Math.random() * 3)];
+    $('fb').textContent = G.say[ok]; $('fb').className = 'gf-fb ok';
+    b.set('idle'); b.react('happy', 2200);
+    bs.classList.remove('spin'); void bs.offsetWidth; bs.classList.add('spin');
+    say(item.ex, 6000);
+    var t0 = Date.now();
+    speak([ok, item.id + '_a', 'star'], function(){ setTimeout(showDoneAfterWin, Math.max(400, 3500 - (Date.now() - t0))); });
+    setTimeout(showDoneAfterWin, 20000);
+  }
+  var shown = false;
+  function showDoneAfterWin(){
+    if (shown) return; shown = true;
+    show('donePane'); $('doneText').textContent = item.ex;
+  }
+
+  function wrong(btn){
+    tries++; stop();
+    btn.classList.add('no'); btn.disabled = true;
+    var id = tries === 1 ? 'try1' : 'try2';
+    $('fb').textContent = G.say[id]; $('fb').className = 'gf-fb';
+    b.react('oops', 1300); say(G.say[id], 3000);
+    speak([id]);
+  }
+
+  $('opts').addEventListener('click', function(e){
+    var btn = e.target.closest('.gf-opt'); if (!btn || btn.disabled || locked) return;
+    if (+btn.getAttribute('data-i') === item.a) win(btn); else wrong(btn);
+  });
+  $('giftBtn').addEventListener('click', openCard);
+  $('openBtn').addEventListener('click', openCard);
+  bs.addEventListener('click', function(){ b.react('happy', 1200); });
+  $('back').addEventListener('click', function(e){ e.preventDefault(); stop(); if (document.referrer && history.length > 1) history.back(); else location.href = '../index.html'; });
+
+  renderDays();
+  if (S.days[today]){
+    showDone();
+  } else {
+    show('boxPane');
+    if (gap > 1){ say(G.say.back, 0); $('boxNote').textContent = 'Барсик скучал, но ты вернулся! Нажми на коробку.'; }
+    else if (S.total === 0){ say(G.say.first, 0); }
+    else { say(G.say.open, 0); }
+  }
+  if (window.updateProgressBadge) updateProgressBadge();
+})();
+</script>
+</body>
+</html>
