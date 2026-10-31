@@ -6,7 +6,7 @@
    • аудио и видео НЕ сохраняются (браузер запрашивает их кусками) — без интернета голос Барсика не звучит, остаётся текст;
    • чужие адреса (сервер прогресса на Railway, шрифты) не трогаются.
    Чтобы сбросить сохранённое после крупных изменений, поменяйте V. */
-const V = 'bilim-v1';
+const V = 'bilim-v2';
 const SHELL = [
   './', 'index.html', 'grade-picker.html', 'offline.html', 'manifest.webmanifest',
   'assets/pwa/icon-192.png', 'assets/pwa/icon-512.png',

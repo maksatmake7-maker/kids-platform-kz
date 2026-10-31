@@ -34,3 +34,10 @@
 @keyframes qsShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
 @media (max-width:860px){ .qs-grid{grid-template-columns:1fr;} .qs-stage{height:380px;} .qs-stage .hs-bs{width:220px; margin-left:-110px;} }
 @media (prefers-reduced-motion:reduce){ .qs-opt.bad{animation:none;} .qs-opt{transition:none;} }
+
+/* выбор класса */
+.qs-lv{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:12px 0 2px;}
+.qs-lvl{font-weight:800; color:var(--ink,#1D3557); margin-inline-end:4px;}
+.qs-pill{min-height:44px; padding:6px 16px; border-radius:999px; border:3px solid var(--ink,#1D3557); background:#FFF7E3; color:var(--ink,#1D3557); font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.05rem; cursor:pointer;}
+.qs-pill.on{background:#2F8FD1; border-color:#1D5F8E; color:#fff;}
+.qs-pill:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:3px;}
