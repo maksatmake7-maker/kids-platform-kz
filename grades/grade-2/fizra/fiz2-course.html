@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Физическая культура 2 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="fizra">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Физкультура 2 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Физическая культура 2 класс</h1>
+      <p class="ac-sub">7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра</p>
+      <p class="ac-note">Курс по программе 2 класса (приказ №399). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 8</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../games/fiz2-art.js"></script>
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/fiz2/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/fiz2/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_fiz2course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Физическая культура 2 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по физкультуре</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.fz1q = mkQuiz([{"q": "Что происходит с сердцем при беге?", "a": "Оно бьётся быстрее", "w": ["Оно останавливается", "Ничего не меняется"], "h": "При нагрузке сердце бьётся чаще, чтобы тело получило больше воздуха"}, {"q": "Что происходит с дыханием после бега?", "a": "Оно учащается", "w": ["Оно пропадает", "Оно становится тише сна"], "h": "После бега дышат чаще, это нормально"}, {"q": "Что полезно для здоровья?", "a": "Утренняя зарядка", "w": ["Сидеть весь день у экрана", "Ложиться очень поздно"], "h": "Зарядка бодрит и укрепляет тело"}, {"q": "Что нужно сделать после игры?", "a": "Отдохнуть и попить воды", "w": ["Сразу лечь спать", "Съесть много сладкого"], "h": "После нагрузки нужно отдохнуть и попить воды"}, {"q": "Где можно заниматься физкультурой?", "a": "И дома, и в школе", "w": ["Только в школе", "Только на соревнованиях"], "h": "Двигаться полезно и дома, и в школе"}, {"q": "Зачем нужна физкультура?", "a": "Чтобы быть здоровым и сильным", "w": ["Чтобы уставать", "Чтобы не ходить на другие уроки"], "h": "Физкультура помогает быть здоровым, сильным и ловким"}, {"q": "Почему во время бега становится жарко?", "a": "Тело работает и вырабатывает тепло", "w": ["Потому что на улице всегда жарко", "Потому что не надо двигаться"], "h": "Когда мышцы работают, телу становится теплее"}]);
+GENS.fz1t = mkTF([{"q": "При беге сердце бьётся быстрее", "a": "Верно", "h": "Верно. Сердце работает сильнее, когда мы двигаемся"}, {"q": "После бега дыхание становится чаще", "a": "Верно", "h": "Верно. Телу нужно больше воздуха"}, {"q": "Пропускать зарядку полезно для здоровья", "a": "Неверно", "h": "Неверно. Зарядка помогает проснуться и укрепляет тело"}, {"q": "Заниматься физкультурой можно только в школе", "a": "Неверно", "h": "Неверно. Двигаться можно и дома, и во дворе"}, {"q": "Сон по режиму помогает быть здоровым", "a": "Верно", "h": "Верно. Тело отдыхает и набирается сил"}, {"q": "Весь день сидеть у экрана полезно", "a": "Неверно", "h": "Неверно. Телу нужно движение"}]);
+GENS.fz2q = mkQuiz([{"q": "Зачем нужна разминка?", "a": "Чтобы подготовить тело к нагрузке", "w": ["Чтобы устать", "Чтобы не двигаться"], "h": "Разминка согревает мышцы и защищает от травм"}, {"q": "Когда делают разминку?", "a": "Перед нагрузкой", "w": ["После сна", "Вместо урока"], "h": "Разминка нужна до начала занятий"}, {"q": "Что делать, если заболела нога?", "a": "Сказать учителю", "w": ["Молчать", "Бежать быстрее"], "h": "Если что-то болит, нужно сказать взрослому"}, {"q": "Какая обувь нужна на физкультуре?", "a": "Удобные кроссовки", "w": ["Тапочки без шнурков", "Сапоги"], "h": "Удобная обувь помогает не упасть"}, {"q": "Когда начинают упражнение?", "a": "По сигналу учителя", "w": ["Когда захочется", "Пока учитель не видит"], "h": "На уроке начинают по сигналу"}, {"q": "Что делают после бега?", "a": "Идут медленно и дышат ровно", "w": ["Сразу садятся на пол", "Сразу бегут дальше"], "h": "Заминка помогает дыханию успокоиться"}, {"q": "Почему нельзя толкаться?", "a": "Можно упасть и получить травму", "w": ["Это очень весело", "Это полезно"], "h": "Толкаясь, можно причинить боль"}]);
+GENS.fz2t = mkTF([{"q": "Разминку делают перед нагрузкой", "a": "Верно", "h": "Верно. Разминка готовит тело к работе"}, {"q": "Если болит, нужно молчать", "a": "Неверно", "h": "Неверно. Нужно сказать учителю"}, {"q": "Нельзя толкаться на уроке", "a": "Верно", "h": "Верно. Так можно упасть и получить травму"}, {"q": "Шнурки перед уроком можно не завязывать", "a": "Неверно", "h": "Неверно. Развязанные шнурки опасны"}, {"q": "Заминка помогает успокоить дыхание", "a": "Верно", "h": "Верно. После нагрузки идём спокойно и дышим ровно"}, {"q": "Лазить на снаряд без учителя можно", "a": "Неверно", "h": "Неверно. Снаряды используют только с учителем"}]);
+GENS.fz3q = mkQuiz([{"q": "Что делает бегун на старте?", "a": "Ждёт сигнала и начинает бег", "w": ["Ложится спать", "Читает книгу"], "h": "На старте ждут сигнал и бегут"}, {"q": "Как называется бег туда и обратно?", "a": "Челночный бег", "w": ["Прыжок", "Метание"], "h": "В челночном беге бегут туда и обратно"}, {"q": "Чем мерят прыжок в длину?", "a": "От линии старта до места приземления", "w": ["От дома до школы", "По высоте потолка"], "h": "Длину прыжка мерят от линии старта"}, {"q": "Что развивает долгий спокойный бег?", "a": "Выносливость", "w": ["Только силу рук", "Только слух"], "h": "Долгий бег делает нас выносливее"}, {"q": "Что нужно делать при метании мяча?", "a": "Замахнуться и бросить в нужную сторону", "w": ["Бросить назад", "Бросить в человека"], "h": "Мяч бросают в цель, а не в людей"}, {"q": "Что делает эстафета?", "a": "Команды передают палочку или флажок", "w": ["Все стоят на месте", "Один бегает весь урок"], "h": "В эстафете бегут по очереди"}, {"q": "Как приземляться после прыжка?", "a": "На мягкие согнутые ноги", "w": ["На прямые ноги", "На спину"], "h": "Согнутые колени смягчают приземление"}]);
+GENS.fz3t = mkTF([{"q": "Челночный бег — это бег туда и обратно", "a": "Верно", "h": "Верно. Так и бегают в челночном беге"}, {"q": "Мяч можно бросать в человека", "a": "Неверно", "h": "Неверно. Мяч бросают только в цель"}, {"q": "Прыжок в длину мерят от линии старта", "a": "Верно", "h": "Верно. Так результаты честные"}, {"q": "Эстафета — игра для команды", "a": "Верно", "h": "Верно. Участники бегут по очереди"}, {"q": "Долгий спокойный бег развивает выносливость", "a": "Верно", "h": "Верно. Тело привыкает к долгой работе"}, {"q": "Приземляться нужно на прямые ноги", "a": "Неверно", "h": "Неверно. Колени нужно согнуть"}]);
+GENS.fz4q = mkQuiz([{"q": "Что помогает держать равновесие?", "a": "Руки в стороны", "w": ["Закрытые глаза", "Быстрый бег"], "h": "Руки в стороны помогают не упасть"}, {"q": "Что такое осанка?", "a": "То, как человек держит спину", "w": ["Цвет формы", "Название игры"], "h": "Осанка — это положение тела при стоянии и ходьбе"}, {"q": "Как держать спину при ходьбе?", "a": "Прямо", "w": ["Согнуть дугой", "Наклонить набок"], "h": "Прямая спина полезна для здоровья"}, {"q": "Что нужно при лазании по гимнастической стенке?", "a": "Крепко держаться и лезть с учителем", "w": ["Прыгать сверху", "Толкать соседа"], "h": "Лазать нужно осторожно и с учителем"}, {"q": "Что развивают приседания?", "a": "Силу ног", "w": ["Слух", "Зрение"], "h": "Приседания делают ноги сильнее"}, {"q": "Что делает ходьба по скамейке?", "a": "Тренирует равновесие", "w": ["Тренирует чтение", "Тренирует счёт"], "h": "Нужно не упасть и держать равновесие"}, {"q": "Как правильно сидеть за партой?", "a": "Прямо, не сутулясь", "w": ["Лёжа на парте", "Согнувшись"], "h": "Правильная посадка бережёт спину"}]);
+GENS.fz4t = mkTF([{"q": "Для равновесия руки можно развести в стороны", "a": "Верно", "h": "Верно. Так легче не упасть"}, {"q": "Сутулиться полезно для спины", "a": "Неверно", "h": "Неверно. Нужно держать спину прямо"}, {"q": "Ходьба по скамейке тренирует равновесие", "a": "Верно", "h": "Верно. Нужно идти ровно и не падать"}, {"q": "Лазать по стенке можно без учителя", "a": "Неверно", "h": "Неверно. Лазать нужно только под присмотром"}, {"q": "Приседания укрепляют ноги", "a": "Верно", "h": "Верно. Работают мышцы ног"}, {"q": "Правильная осанка — это прямая спина", "a": "Верно", "h": "Верно. Плечи расправлены, голова поднята"}]);
+GENS.fz5q = mkQuiz([{"q": "Как ловят мяч?", "a": "Двумя руками, смотря на мяч", "w": ["Закрыв глаза", "Ногой"], "h": "Мяч ловят двумя руками и смотрят на него"}, {"q": "Как нужно бросать мяч в паре?", "a": "Спокойно, партнёру в руки", "w": ["Изо всех сил в лицо", "Через голову"], "h": "Мяч передают так, чтобы партнёр смог поймать"}, {"q": "Что такое ведение мяча?", "a": "Мяч идёт рядом с игроком", "w": ["Мяч лежит на месте", "Мяч улетел"], "h": "При ведении мяч двигается вместе с игроком"}, {"q": "Что нужно для игры в футбол?", "a": "Мяч", "w": ["Скакалка", "Обруч"], "h": "Футбол — игра с мячом"}, {"q": "Что нужно для игры «Салки»?", "a": "Только бегущие игроки", "w": ["Три мяча", "Скакалка"], "h": "В салках мяч не нужен"}, {"q": "Что важно, когда играешь с мячом?", "a": "Следить за партнёрами и мячом", "w": ["Смотреть в другую сторону", "Толкать соседей"], "h": "Играть нужно внимательно, чтобы никто не пострадал"}, {"q": "Куда нельзя бросать мяч?", "a": "В людей без игры", "w": ["В цель", "В корзину"], "h": "Мяч бросают в цель или в партнёра по правилам игры"}]);
+GENS.fz5t = mkTF([{"q": "Мяч ловят двумя руками", "a": "Верно", "h": "Верно. Так мяч легче удержать"}, {"q": "Мяч можно бросать в лицо партнёру", "a": "Неверно", "h": "Неверно. Мяч передают осторожно"}, {"q": "Для салок нужен мяч", "a": "Неверно", "h": "Неверно. Салки — игра без мяча"}, {"q": "Футбол — игра с мячом", "a": "Верно", "h": "Верно. Мяч ведут ногой"}, {"q": "Ведение мяча — это когда он идёт рядом с игроком", "a": "Верно", "h": "Верно. Мяч двигается вместе с игроком"}, {"q": "Играть с мячом нужно внимательно", "a": "Верно", "h": "Верно. Так никто не пострадает"}]);
+GENS.fz6q = mkQuiz([{"q": "Что такое байга?", "a": "Скачки на лошадях", "w": ["Игра в мяч", "Танец"], "h": "Байга — конные скачки, любимое состязание казахского народа"}, {"q": "Что такое перетягивание каната?", "a": "Игра, в которой две команды тянут канат", "w": ["Игра с мячом", "Бег по кругу"], "h": "Побеждает команда, которая перетянет канат"}, {"q": "Зачем знать национальные игры?", "a": "Чтобы знать традиции своего народа", "w": ["Чтобы не играть", "Чтобы не дружить"], "h": "Игры хранят традиции народа"}, {"q": "Сколько человек играют в тогыз кумалак?", "a": "Двое", "w": ["Тридцать", "Один"], "h": "Тогыз кумалак — игра для двоих"}, {"q": "Что нужно для байги?", "a": "Лошадь", "w": ["Мяч", "Скакалка"], "h": "Байга — конные скачки"}, {"q": "Что такое алтыбакан?", "a": "Качели", "w": ["Мяч", "Скакалка"], "h": "Алтыбакан — большие качели, их ставят на праздниках"}, {"q": "Как играть в национальные игры?", "a": "Честно и по правилам", "w": ["Обманывая соперника", "Толкаясь"], "h": "В любой игре нужно соблюдать правила"}]);
+GENS.fz6t = mkTF([{"q": "Байга — это скачки на лошадях", "a": "Верно", "h": "Верно. Это конное состязание"}, {"q": "В тогыз кумалак играют вдвоём", "a": "Верно", "h": "Верно. Это игра для двух игроков"}, {"q": "Национальные игры нужно забыть", "a": "Неверно", "h": "Неверно. Игры хранят традиции народа"}, {"q": "Перетягивание каната — командная игра", "a": "Верно", "h": "Верно. Играют две команды"}, {"q": "Алтыбакан — это мяч", "a": "Неверно", "h": "Неверно. Алтыбакан — качели"}, {"q": "Играть нужно честно", "a": "Верно", "h": "Верно. Честность важна в каждой игре"}]);
+GENS.fz7q = mkQuiz([{"q": "Кто следит за правилами в игре?", "a": "Судья", "w": ["Зритель", "Соперник"], "h": "Судья следит за правилами и подаёт сигнал"}, {"q": "Что делает капитан?", "a": "Ведёт команду и подбадривает игроков", "w": ["Забирает мяч себе", "Уходит с поля"], "h": "Капитан помогает команде играть дружно"}, {"q": "Что значит играть честно?", "a": "Соблюдать правила", "w": ["Обманывать", "Толкаться"], "h": "Честная игра — по правилам"}, {"q": "Что сказать победителю соперников?", "a": "Поздравляю!", "w": ["Ты обманул", "Мне всё равно"], "h": "Уважение к соперникам — часть честной игры"}, {"q": "Как поддержать товарища, который проигрывает?", "a": "Подбодрить его добрым словом", "w": ["Посмеяться", "Отвернуться"], "h": "Добрые слова помогают не расстраиваться"}, {"q": "Что делает игрок в команде?", "a": "Играет по правилам и помогает партнёру", "w": ["Спорит с судьёй", "Не слушает капитана"], "h": "В команде играют вместе"}, {"q": "Что нужно делать, если проиграл?", "a": "Спокойно принять результат", "w": ["Обижаться", "Ссориться"], "h": "Проигрыш — повод потренироваться"}]);
+GENS.fz7t = mkTF([{"q": "Судья следит за правилами", "a": "Верно", "h": "Верно. Он подаёт сигналы и объявляет результат"}, {"q": "Обманывать в игре можно", "a": "Неверно", "h": "Неверно. Играть нужно честно"}, {"q": "Капитан ведёт команду", "a": "Верно", "h": "Верно. Он подбадривает игроков"}, {"q": "Соперников можно обзывать", "a": "Неверно", "h": "Неверно. К соперникам нужно относиться с уважением"}, {"q": "Победителя нужно поздравить", "a": "Верно", "h": "Верно. Это знак уважения"}, {"q": "В команде нужно помогать друг другу", "a": "Верно", "h": "Верно. Вместе легче победить"}]);
+const LESSONS = [
+  { id: "fz1", icon: "", title: "Здоровье и изменения в теле", goal: "Понимать пользу движения и изменения в теле при нагрузке",
+    steps: [
+      Q("fz1s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Движение делает нас сильными и здоровыми. Нажимай на карточки и узнавай, что происходит с телом.", {"need": 5, "items": [{"k": "сердце", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><path d=\"M50 88 C 8 58 10 22 32 20 C 44 19 50 28 50 32 C 50 28 56 19 68 20 C 90 22 92 58 50 88Z\" fill=\"#E53935\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "При беге сердце бьётся быстрее, чтобы тело получило больше воздуха."}, {"k": "дыхание", "v": "", "t": "После бега мы дышим чаще. Это нормально."}, {"k": "тепло", "v": "", "t": "Когда мышцы работают, телу становится жарко. После нагрузки нужно отдохнуть."}, {"k": "вода", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"40\" y=\"6\" width=\"20\" height=\"12\" rx=\"3\" fill=\"#1E6FD9\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M42 18 H58 L66 34 V88 Q66 94 60 94 H40 Q34 94 34 88 V34Z\" fill=\"#B3E5FC\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M34 54 H66 V88 Q66 94 60 94 H40 Q34 94 34 88Z\" fill=\"#4FC3F7\" opacity=\".85\"/></svg></div>", "t": "После игры полезно попить воды."}, {"k": "зарядка", "v": "", "t": "Утренняя зарядка помогает проснуться и укрепляет тело."}, {"k": "дома и в школе", "v": "", "t": "Двигаться полезно и дома, и в школе: зарядка, прогулки, игры и урок физкультуры."}]}),
+      Q("fz1s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "При нагрузке"}, {"e": "", "k": "В покое"}], "items": [{"g": 0, "e": "", "t": "Сердце бьётся быстрее", "h": "Это относится к группе «При нагрузке»"}, {"g": 0, "e": "", "t": "Дыхание учащается", "h": "Это относится к группе «При нагрузке»"}, {"g": 0, "e": "", "t": "Становится жарко", "h": "Это относится к группе «При нагрузке»"}, {"g": 1, "e": "", "t": "Дыхание спокойное", "h": "Это относится к группе «В покое»"}, {"g": 1, "e": "", "t": "Сердце бьётся ровно", "h": "Это относится к группе «В покое»"}, {"g": 1, "e": "", "t": "Тело остывает", "h": "Это относится к группе «В покое»"}]}),
+      Q("fz1s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Полезно"}, {"e": "", "k": "Вредно"}], "items": [{"g": 0, "e": "", "t": "Утренняя зарядка", "h": "Это относится к группе «Полезно»"}, {"g": 0, "e": "", "t": "Прогулка на свежем воздухе", "h": "Это относится к группе «Полезно»"}, {"g": 0, "e": "", "t": "Сон по режиму", "h": "Это относится к группе «Полезно»"}, {"g": 1, "e": "", "t": "Сидеть весь день у экрана", "h": "Это относится к группе «Вредно»"}, {"g": 1, "e": "", "t": "Пропускать зарядку", "h": "Это относится к группе «Вредно»"}, {"g": 1, "e": "", "t": "Ложиться спать очень поздно", "h": "Это относится к группе «Вредно»"}]}),
+      Q("fz1s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz1q"]}),
+      Q("fz1s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz1t"]})
+    ] },
+  { id: "fz2", icon: "", title: "Разминка и безопасность", goal: "Объяснять, зачем нужна разминка, и соблюдать правила безопасности",
+    steps: [
+      Q("fz2s1", "infoTap", "Знакомимся с темой", "Перед занятием тело нужно подготовить. Давай узнаем, как разминаться и как не получить травму. Нажимай на карточки.", {"need": 5, "items": [{"k": "наклон", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"26,70 24.5,90.9 23.1,111.9\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"34,70 35.5,90.9 36.9,111.9\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"30\" y1=\"70\" x2=\"63.8\" y2=\"57.7\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"59.8289343482927,60.68727484027592 58.5,75.6 57.3,89.6\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"67.8289343482927,60.68727484027592 69.1,75.6 70.4,89.6\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"74.2\" cy=\"53.9\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Наклоны входят в разминку. Они разогревают спину и ноги."}, {"k": "руки в стороны", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,70 43.1,90.8 40.2,111.6\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,70 56.9,90.8 59.8,111.6\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"70\" x2=\"50.0\" y2=\"34.0\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"46,37 31.0,37.0 17.0,37.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,37 69.0,37.0 83.0,37.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"50.0\" cy=\"23.0\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Круги руками разминают плечи."}, {"k": "приседание", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,88 27.0,96.9 25.1,117.8\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,88 73.0,96.9 74.9,117.8\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"88\" x2=\"50.0\" y2=\"52.0\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"46,55 31.2,57.6 17.4,60.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,55 68.8,57.6 82.6,60.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"50.0\" cy=\"41.0\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Приседания разогревают ноги."}, {"k": "зачем разминка", "v": "", "t": "Разминка согревает мышцы и помогает не получить травму."}, {"k": "заминка", "v": "", "t": "После нагрузки идём спокойно и дышим ровно. Это заминка."}, {"k": "если болит", "v": "", "t": "Если что-то болит, нужно сразу сказать учителю."}, {"k": "безопасность", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><path d=\"M10 62 C 10 36 30 34 38 40 L58 52 C 76 54 90 60 90 72 L90 78 H10Z\" fill=\"#1E6FD9\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"10\" y=\"76\" width=\"80\" height=\"10\" rx=\"4\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"38\" y1=\"42\" x2=\"46\" y2=\"52\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"30\" y1=\"46\" x2=\"38\" y2=\"56\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Надевай удобную обувь, завязывай шнурки и слушай учителя."}]}),
+      Q("fz2s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Разминка"}, {"e": "", "k": "Заминка"}], "items": [{"g": 0, "e": "", "t": "Покрутить головой", "h": "Это относится к группе «Разминка»"}, {"g": 0, "e": "", "t": "Размять плечи и руки", "h": "Это относится к группе «Разминка»"}, {"g": 0, "e": "", "t": "Наклоны и повороты", "h": "Это относится к группе «Разминка»"}, {"g": 1, "e": "", "t": "Медленная ходьба", "h": "Это относится к группе «Заминка»"}, {"g": 1, "e": "", "t": "Глубокий вдох и выдох", "h": "Это относится к группе «Заминка»"}, {"g": 1, "e": "", "t": "Спокойное потягивание", "h": "Это относится к группе «Заминка»"}]}),
+      Q("fz2s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Можно"}, {"e": "", "k": "Нельзя"}], "items": [{"g": 0, "e": "", "t": "Надеть удобную форму", "h": "Это относится к группе «Можно»"}, {"g": 0, "e": "", "t": "Завязать шнурки", "h": "Это относится к группе «Можно»"}, {"g": 0, "e": "", "t": "Слушать учителя", "h": "Это относится к группе «Можно»"}, {"g": 1, "e": "", "t": "Толкаться", "h": "Это относится к группе «Нельзя»"}, {"g": 1, "e": "", "t": "Бегать без разрешения", "h": "Это относится к группе «Нельзя»"}, {"g": 1, "e": "", "t": "Лезть на снаряд без учителя", "h": "Это относится к группе «Нельзя»"}]}),
+      Q("fz2s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz2q"]}),
+      Q("fz2s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz2t"]})
+    ] },
+  { id: "fz3", icon: "", title: "Бег, прыжки и метание", goal: "Различать бег, прыжки и метание и сравнивать результаты",
+    steps: [
+      Q("fz3s1", "infoTap", "Знакомимся с темой", "Быстрее, дальше, точнее! Давай узнаем, как бегают, прыгают и бросают. Нажимай на карточки.", {"need": 5, "items": [{"k": "бег", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,70 29.9,83.5 26.3,104.2\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,70 64.5,88.2 84.2,95.4\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"70\" x2=\"57.5\" y2=\"34.8\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"53.48482086943934,37.786686373582995 41.2,46.4 28.0,41.6\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"61.48482086943934,37.786686373582995 73.0,47.4 77.8,34.3\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"59.8\" cy=\"24.0\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Бегун наклоняется вперёд и быстро двигает ногами и руками."}, {"k": "старт", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><path d=\"M14 40 H66 a20 20 0 1 1 -8 36 H30 a16 16 0 0 1 -16 -16Z\" fill=\"#B0BEC5\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"66\" cy=\"58\" r=\"8\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"64\" y=\"22\" width=\"14\" height=\"14\" rx=\"3\" fill=\"#E53935\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Начинают бег по сигналу. Время засекают секундомером."}, {"k": "секундомер", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><circle cx=\"50\" cy=\"56\" r=\"34\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"42\" y=\"10\" width=\"16\" height=\"10\" rx=\"3\" fill=\"#78909C\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"50\" y1=\"56\" x2=\"50\" y2=\"34\" stroke=\"#E53935\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"50\" y1=\"56\" x2=\"66\" y2=\"64\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"33\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"22\" y1=\"55.99999999999999\" x2=\"27\" y2=\"55.99999999999999\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"49.99999999999999\" y1=\"84\" x2=\"49.99999999999999\" y2=\"79\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"78\" y1=\"56.00000000000001\" x2=\"73\" y2=\"56.00000000000001\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Секундомер показывает, за сколько секунд ты пробежал."}, {"k": "прыжок", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,70 36.1,88.5 25.6,106.7\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,70 63.9,88.5 74.4,106.7\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"70\" x2=\"50.0\" y2=\"34.0\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"46,37 36.4,25.5 29.4,13.4\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,37 63.6,25.5 70.6,13.4\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"50.0\" cy=\"23.0\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "При прыжке отталкиваются ногами. Приземляются на мягкие согнутые ноги."}, {"k": "длина прыжка", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 146 56\" width=\"117\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"146\" height=\"56\" rx=\"10\" fill=\"#F4FAFF\"/><rect x=\"0\" y=\"40\" width=\"146\" height=\"16\" fill=\"#E6C98F\"/><line x1=\"18\" y1=\"30\" x2=\"18\" y2=\"48\" stroke=\"#E53935\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"18\" y1=\"44\" x2=\"114\" y2=\"44\" stroke=\"#FB8C00\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"114\" y1=\"8\" x2=\"114\" y2=\"46\" stroke=\"#8D6E63\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"114,8 128,14 114,20\" fill=\"#1E6FD9\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Прыжок в длину мерят от линии старта до места приземления."}, {"k": "метание", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,70 36.1,88.5 26.3,107.1\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,70 61.9,89.5 66.2,110.0\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"70\" x2=\"45.0\" y2=\"34.4\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"40.98976836543764,37.350349525303464 28.0,44.9 21.0,57.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"48.98976836543764,37.350349525303464 56.5,24.4 70.4,23.1\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"43.5\" cy=\"23.5\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "При метании замахиваются рукой и бросают предмет в цель."}, {"k": "эстафета", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><line x1=\"30\" y1=\"8\" x2=\"30\" y2=\"94\" stroke=\"#8D6E63\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"30,12 82,26 30,44\" fill=\"#E53935\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "В эстафете команды бегут по очереди и передают палочку или флажок."}]}),
+      Q("fz3s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Бег"}, {"e": "", "k": "Прыжки"}, {"e": "", "k": "Метание"}], "items": [{"g": 0, "e": "", "t": "Бег на короткую дистанцию", "h": "Это относится к группе «Бег»"}, {"g": 0, "e": "", "t": "Челночный бег", "h": "Это относится к группе «Бег»"}, {"g": 0, "e": "", "t": "Эстафетный бег", "h": "Это относится к группе «Бег»"}, {"g": 1, "e": "", "t": "Прыжок в длину с места", "h": "Это относится к группе «Прыжки»"}, {"g": 1, "e": "", "t": "Прыжок в высоту", "h": "Это относится к группе «Прыжки»"}, {"g": 1, "e": "", "t": "Прыжки через скакалку", "h": "Это относится к группе «Прыжки»"}, {"g": 2, "e": "", "t": "Метание мяча в цель", "h": "Это относится к группе «Метание»"}, {"g": 2, "e": "", "t": "Бросок мяча вдаль", "h": "Это относится к группе «Метание»"}, {"g": 2, "e": "", "t": "Метание мешочка", "h": "Это относится к группе «Метание»"}]}),
+      Q("fz3s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Быстрота"}, {"e": "", "k": "Выносливость"}, {"e": "", "k": "Ловкость"}], "items": [{"g": 0, "e": "", "t": "Бег на 30 метров", "h": "Это относится к группе «Быстрота»"}, {"g": 0, "e": "", "t": "Старт по сигналу", "h": "Это относится к группе «Быстрота»"}, {"g": 0, "e": "", "t": "Быстрая эстафета", "h": "Это относится к группе «Быстрота»"}, {"g": 1, "e": "", "t": "Долгий бег в спокойном темпе", "h": "Это относится к группе «Выносливость»"}, {"g": 1, "e": "", "t": "Быстрая ходьба по парку", "h": "Это относится к группе «Выносливость»"}, {"g": 1, "e": "", "t": "Кросс", "h": "Это относится к группе «Выносливость»"}, {"g": 2, "e": "", "t": "Бег змейкой между конусами", "h": "Это относится к группе «Ловкость»"}, {"g": 2, "e": "", "t": "Ловля мяча", "h": "Это относится к группе «Ловкость»"}, {"g": 2, "e": "", "t": "Прыжки через обруч", "h": "Это относится к группе «Ловкость»"}]}),
+      Q("fz3s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz3q"]}),
+      Q("fz3s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz3t"]})
+    ] },
+  { id: "fz4", icon: "", title: "Гимнастика: равновесие и осанка", goal: "Сохранять равновесие и держать правильную осанку",
+    steps: [
+      Q("fz4s1", "infoTap", "Знакомимся с темой", "Гимнастика делает нас ловкими и сильными. Нажимай на карточки и узнавай, как держать равновесие и спину.", {"need": 5, "items": [{"k": "равновесие", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,70 44.9,91.0 43.8,111.9\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,70 74.9,71.8 95.8,73.7\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"70\" x2=\"50.0\" y2=\"34.0\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"46,37 31.0,37.0 17.0,37.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,37 69.0,37.0 83.0,37.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"50.0\" cy=\"23.0\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Чтобы удержать равновесие, встань на одну ногу и разведи руки в стороны."}, {"k": "скамейка", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect x=\"8\" y=\"38\" width=\"84\" height=\"14\" rx=\"4\" fill=\"#D9A56A\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"16\" y=\"52\" width=\"8\" height=\"34\" fill=\"#8D6E63\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"76\" y=\"52\" width=\"8\" height=\"34\" fill=\"#8D6E63\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "По гимнастической скамейке ходят, держа спину прямо и руки в стороны."}, {"k": "лазанье", "v": "", "t": "Лазать по гимнастической стенке нужно осторожно и вместе с учителем."}, {"k": "сила", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"46,88 27.0,96.9 25.1,117.8\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,88 73.0,96.9 74.9,117.8\" fill=\"none\" stroke=\"#25324A\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"88\" x2=\"50.0\" y2=\"52.0\" stroke=\"#1E6FD9\" stroke-width=\"13\" stroke-linecap=\"round\"/><polyline points=\"46,55 31.2,57.6 17.4,60.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"54,55 68.8,57.6 82.6,60.0\" fill=\"none\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"50.0\" cy=\"41.0\" r=\"9.5\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Приседания делают ноги сильнее."}, {"k": "правильная осанка", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"46\" y1=\"72\" x2=\"46\" y2=\"110\" stroke=\"#25324A\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"54\" y1=\"72\" x2=\"54\" y2=\"110\" stroke=\"#25324A\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"50\" y1=\"72\" x2=\"50\" y2=\"36\" stroke=\"#1E6FD9\" stroke-width=\"14\" stroke-linecap=\"round\"/><line x1=\"50\" y1=\"40\" x2=\"50\" y2=\"72\" stroke=\"#FFCFA3\" stroke-width=\"0\"/><line x1=\"52\" y1=\"40\" x2=\"54\" y2=\"68\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\"/><circle cx=\"50\" cy=\"24\" r=\"10\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "У правильной осанки спина прямая, плечи расправлены, голова поднята."}, {"k": "неправильная осанка", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 120\" width=\"110\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><rect width=\"100\" height=\"120\" rx=\"12\" fill=\"#F4FAFF\"/><line x1=\"8\" y1=\"112\" x2=\"92\" y2=\"112\" stroke=\"#9CCB8F\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"46\" y1=\"72\" x2=\"46\" y2=\"110\" stroke=\"#25324A\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"54\" y1=\"72\" x2=\"54\" y2=\"110\" stroke=\"#25324A\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M48 72 Q32 54 52 42\" fill=\"none\" stroke=\"#1E6FD9\" stroke-width=\"14\" stroke-linecap=\"round\"/><line x1=\"56\" y1=\"46\" x2=\"64\" y2=\"72\" stroke=\"#FFCFA3\" stroke-width=\"5.5\" stroke-linecap=\"round\"/><circle cx=\"66\" cy=\"34\" r=\"10\" fill=\"#FFCFA3\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Когда сутулишься, спина согнута, а голова наклонена вперёд. Так вредно для здоровья."}]}),
+      Q("fz4s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Равновесие"}, {"e": "", "k": "Лазанье и перелезание"}, {"e": "", "k": "Сила"}], "items": [{"g": 0, "e": "", "t": "Стойка на одной ноге", "h": "Это относится к группе «Равновесие»"}, {"g": 0, "e": "", "t": "Ходьба по скамейке", "h": "Это относится к группе «Равновесие»"}, {"g": 0, "e": "", "t": "Ходьба по линии с мешочком на голове", "h": "Это относится к группе «Равновесие»"}, {"g": 1, "e": "", "t": "Лазанье по гимнастической стенке", "h": "Это относится к группе «Лазанье и перелезание»"}, {"g": 1, "e": "", "t": "Перелезание через скамейку", "h": "Это относится к группе «Лазанье и перелезание»"}, {"g": 1, "e": "", "t": "Подлезание под рейку", "h": "Это относится к группе «Лазанье и перелезание»"}, {"g": 2, "e": "", "t": "Отжимание от скамейки", "h": "Это относится к группе «Сила»"}, {"g": 2, "e": "", "t": "Приседания", "h": "Это относится к группе «Сила»"}, {"g": 2, "e": "", "t": "Подъём туловища лёжа", "h": "Это относится к группе «Сила»"}]}),
+      Q("fz4s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Правильная осанка"}, {"e": "", "k": "Неправильная осанка"}], "items": [{"g": 0, "e": "", "t": "Спина прямая", "h": "Это относится к группе «Правильная осанка»"}, {"g": 0, "e": "", "t": "Плечи расправлены", "h": "Это относится к группе «Правильная осанка»"}, {"g": 0, "e": "", "t": "Голова приподнята", "h": "Это относится к группе «Правильная осанка»"}, {"g": 1, "e": "", "t": "Сутулая спина", "h": "Это относится к группе «Неправильная осанка»"}, {"g": 1, "e": "", "t": "Опущенные плечи", "h": "Это относится к группе «Неправильная осанка»"}, {"g": 1, "e": "", "t": "Голова наклонена вперёд", "h": "Это относится к группе «Неправильная осанка»"}]}),
+      Q("fz4s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz4q"]}),
+      Q("fz4s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz4t"]})
+    ] },
+  { id: "fz5", icon: "", title: "Игры с мячом", goal: "Бросать, ловить и вести мяч, знать правила игр",
+    steps: [
+      Q("fz5s1", "infoTap", "Знакомимся с темой", "Мяч — любимый снаряд игроков. Давай узнаем, что с ним можно делать. Нажимай на карточки.", {"need": 5, "items": [{"k": "мяч", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><circle cx=\"50\" cy=\"50\" r=\"38\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"50,32 66,44 60,63 40,63 34,44\" fill=\"#25324A\"/><line x1=\"50\" y1=\"32\" x2=\"50\" y2=\"14\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"66\" y1=\"44\" x2=\"84\" y2=\"38\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"60\" y1=\"63\" x2=\"72\" y2=\"80\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"40\" y1=\"63\" x2=\"28\" y2=\"80\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"34\" y1=\"44\" x2=\"16\" y2=\"38\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Мяч бросают, ловят, передают и ведут."}, {"k": "бросок", "v": "", "t": "Мяч бросают двумя руками от груди в цель или партнёру."}, {"k": "ловля", "v": "", "t": "Мяч ловят двумя руками и смотрят на него."}, {"k": "ведение", "v": "", "t": "При ведении мяч двигается рядом с игроком."}, {"k": "игры с мячом", "v": "", "t": "Вышибалы, футбол и мяч капитану — игры с мячом."}, {"k": "игры без мяча", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><ellipse cx=\"50\" cy=\"52\" rx=\"38\" ry=\"38\" fill=\"none\" stroke=\"#8E44AD\" stroke-width=\"10\"/><ellipse cx=\"50\" cy=\"52\" rx=\"38\" ry=\"38\" fill=\"none\" stroke=\"#E1BEE7\" stroke-width=\"3\" stroke-dasharray=\"14 10\"/></svg></div>", "t": "Салки, эстафеты с обручем и бег с флажками играют без мяча."}]}),
+      Q("fz5s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Бросаем"}, {"e": "", "k": "Ловим"}, {"e": "", "k": "Ведём"}], "items": [{"g": 0, "e": "", "t": "Бросок двумя руками от груди", "h": "Это относится к группе «Бросаем»"}, {"g": 0, "e": "", "t": "Бросок мяча в цель", "h": "Это относится к группе «Бросаем»"}, {"g": 0, "e": "", "t": "Бросок мяча вдаль", "h": "Это относится к группе «Бросаем»"}, {"g": 1, "e": "", "t": "Поймать мяч двумя руками", "h": "Это относится к группе «Ловим»"}, {"g": 1, "e": "", "t": "Поймать отскочивший мяч", "h": "Это относится к группе «Ловим»"}, {"g": 1, "e": "", "t": "Ловить мяч в паре", "h": "Это относится к группе «Ловим»"}, {"g": 2, "e": "", "t": "Ведение мяча рукой на месте", "h": "Это относится к группе «Ведём»"}, {"g": 2, "e": "", "t": "Ведение мяча ногой", "h": "Это относится к группе «Ведём»"}, {"g": 2, "e": "", "t": "Ведение мяча в ходьбе", "h": "Это относится к группе «Ведём»"}]}),
+      Q("fz5s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "С мячом"}, {"e": "", "k": "Без мяча"}], "items": [{"g": 0, "e": "", "t": "Вышибалы", "h": "Это относится к группе «С мячом»"}, {"g": 0, "e": "", "t": "Футбол", "h": "Это относится к группе «С мячом»"}, {"g": 0, "e": "", "t": "Мяч капитану", "h": "Это относится к группе «С мячом»"}, {"g": 1, "e": "", "t": "Салки", "h": "Это относится к группе «Без мяча»"}, {"g": 1, "e": "", "t": "Бег с флажками", "h": "Это относится к группе «Без мяча»"}, {"g": 1, "e": "", "t": "Эстафета с обручем", "h": "Это относится к группе «Без мяча»"}]}),
+      Q("fz5s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz5q"]}),
+      Q("fz5s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz5t"]})
+    ] },
+  { id: "fz6", icon: "", title: "Казахские национальные игры", goal: "Знать казахские национальные игры и играть честно",
+    steps: [
+      Q("fz6s1", "infoTap", "Знакомимся с темой", "У казахского народа много интересных игр. Давай познакомимся с ними. Нажимай на карточки.", {"need": 5, "items": [{"k": "байга", "v": "", "t": "Байга — скачки на лошадях."}, {"k": "кокпар", "v": "", "t": "Кокпар — командная игра верхом на лошадях."}, {"k": "аударыспак", "v": "", "t": "Аударыспак — борьба двух всадников верхом."}, {"k": "асык", "v": "", "t": "Асык — игра с косточками-альчиками."}, {"k": "перетягивание каната", "v": "", "t": "Перетягивание каната — две команды тянут канат в разные стороны."}, {"k": "алтыбакан", "v": "", "t": "Алтыбакан — большие качели, их ставят на праздниках."}, {"k": "тогыз кумалак", "v": "", "t": "Тогыз кумалак — настольная игра для двоих."}]}),
+      Q("fz6s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Игры верхом"}, {"e": "", "k": "Без лошади"}], "items": [{"g": 0, "e": "", "t": "Байга", "h": "Это относится к группе «Игры верхом»"}, {"g": 0, "e": "", "t": "Кокпар", "h": "Это относится к группе «Игры верхом»"}, {"g": 0, "e": "", "t": "Кыз куу", "h": "Это относится к группе «Игры верхом»"}, {"g": 1, "e": "", "t": "Асык", "h": "Это относится к группе «Без лошади»"}, {"g": 1, "e": "", "t": "Перетягивание каната", "h": "Это относится к группе «Без лошади»"}, {"g": 1, "e": "", "t": "Алтыбакан", "h": "Это относится к группе «Без лошади»"}]}),
+      Q("fz6s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 4, "groups": [{"e": "", "k": "Парная игра"}, {"e": "", "k": "Командная игра"}], "items": [{"g": 0, "e": "", "t": "Аударыспак: борются двое", "h": "Это относится к группе «Парная игра»"}, {"g": 0, "e": "", "t": "Тогыз кумалак: играют двое", "h": "Это относится к группе «Парная игра»"}, {"g": 1, "e": "", "t": "Перетягивание каната: две команды", "h": "Это относится к группе «Командная игра»"}, {"g": 1, "e": "", "t": "Кокпар: играют команды", "h": "Это относится к группе «Командная игра»"}]}),
+      Q("fz6s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz6q"]}),
+      Q("fz6s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz6t"]})
+    ] },
+  { id: "fz7", icon: "", title: "Команда, роли и честная игра", goal: "Играть в команде, соблюдать правила и уважать соперников",
+    steps: [
+      Q("fz7s1", "infoTap", "Знакомимся с темой", "В командной игре важно не только победить. Давай узнаем, как играть дружно и честно. Нажимай на карточки.", {"need": 5, "items": [{"k": "капитан", "v": "", "t": "Капитан ведёт команду и подбадривает игроков."}, {"k": "судья", "v": "<div class=\"e2-emo\"><svg viewBox=\"0 0 100 100\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display:block;max-width:100%;height:auto\"><path d=\"M14 40 H66 a20 20 0 1 1 -8 36 H30 a16 16 0 0 1 -16 -16Z\" fill=\"#B0BEC5\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"66\" cy=\"58\" r=\"8\" fill=\"#fff\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"64\" y=\"22\" width=\"14\" height=\"14\" rx=\"3\" fill=\"#E53935\" stroke=\"#25324A\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg></div>", "t": "Судья следит за правилами и подаёт сигнал свистком."}, {"k": "игрок", "v": "", "t": "Игрок выполняет задание, играет по правилам и помогает партнёру."}, {"k": "честная игра", "v": "", "t": "Честная игра — это соблюдать правила и уважать соперников."}, {"k": "поздравить", "v": "", "t": "Победителя нужно поздравить, а проигравшего подбодрить."}, {"k": "вместе", "v": "", "t": "В команде вместе легче победить. Нужно помогать друг другу."}]}),
+      Q("fz7s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Капитан"}, {"e": "", "k": "Судья"}, {"e": "", "k": "Игрок"}], "items": [{"g": 0, "e": "", "t": "Ведёт команду", "h": "Это относится к группе «Капитан»"}, {"g": 0, "e": "", "t": "Подбадривает игроков", "h": "Это относится к группе «Капитан»"}, {"g": 0, "e": "", "t": "Говорит с судьёй", "h": "Это относится к группе «Капитан»"}, {"g": 1, "e": "", "t": "Следит за правилами", "h": "Это относится к группе «Судья»"}, {"g": 1, "e": "", "t": "Подаёт сигнал свистком", "h": "Это относится к группе «Судья»"}, {"g": 1, "e": "", "t": "Объявляет результат", "h": "Это относится к группе «Судья»"}, {"g": 2, "e": "", "t": "Выполняет задание", "h": "Это относится к группе «Игрок»"}, {"g": 2, "e": "", "t": "Играет по правилам", "h": "Это относится к группе «Игрок»"}, {"g": 2, "e": "", "t": "Помогает партнёру", "h": "Это относится к группе «Игрок»"}]}),
+      Q("fz7s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Честная игра"}, {"e": "", "k": "Нечестная игра"}], "items": [{"g": 0, "e": "", "t": "Соблюдать правила", "h": "Это относится к группе «Честная игра»"}, {"g": 0, "e": "", "t": "Уважать соперника", "h": "Это относится к группе «Честная игра»"}, {"g": 0, "e": "", "t": "Поздравить победителя", "h": "Это относится к группе «Честная игра»"}, {"g": 1, "e": "", "t": "Обманывать", "h": "Это относится к группе «Нечестная игра»"}, {"g": 1, "e": "", "t": "Толкать соперника", "h": "Это относится к группе «Нечестная игра»"}, {"g": 1, "e": "", "t": "Обзывать соперников", "h": "Это относится к группе «Нечестная игра»"}]}),
+      Q("fz7s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["fz7q"]}),
+      Q("fz7s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["fz7t"]})
+    ] },
+  { id: "fzfin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("fzfin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал про здоровье, разминку, бег и прыжки, гимнастику, игры с мячом, национальные игры и честную командную игру. Теперь можно двигаться и играть каждый день!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
