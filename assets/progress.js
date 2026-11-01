@@ -271,3 +271,14 @@ function updateAuthLink(){
     link.textContent = 'Профили';
   }
 }
+
+/* Свои рисунки вместо новых смайликов (зубная щётка 🪥 и др.): на части устройств они не показываются.
+   Подключаем assets/emoji-fix.js на каждой странице, где есть progress.js (уроки курсов, игры, квесты). */
+(function(){
+  try {
+    if(window.__bilimIcons) return;
+    var s = document.createElement('script');
+    s.src = (typeof PROGRESS_ROOT === 'string' ? PROGRESS_ROOT : '') + 'assets/emoji-fix.js';
+    (document.head || document.documentElement).appendChild(s);
+  } catch(e){}
+})();
