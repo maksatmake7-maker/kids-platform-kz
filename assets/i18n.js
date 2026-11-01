@@ -12435,7 +12435,7 @@ document.addEventListener('click', function(e){
 })();
 
 
-/* ===== Ссылка «Основатель и инвестор» под подвалом каждой страницы, где он есть (about.html) ===== */
+/* ===== Ссылка «Основатель и инвестор» в шапке сразу после логотипа «Білім Аралы» на каждой странице (about.html) ===== */
 (function(){
   try {
     var me = document.currentScript; if(!me || !me.src) return;
@@ -12443,17 +12443,22 @@ document.addEventListener('click', function(e){
     function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if(s && translations[s]) return s; } catch(e){} return 'ru'; }
     function paint(l){
       document.querySelectorAll('a.founder-link').forEach(function(a){
-        var t = translations[l] || translations.ru; a.textContent = '👤 ' + (t.founder_btn || translations.ru.founder_btn);
+        var t = translations[l] || translations.ru; a.textContent = '\uD83D\uDC64 ' + (t.founder_btn || translations.ru.founder_btn);
       });
     }
     function init(){
-      document.querySelectorAll('footer[data-i18n="footer"]').forEach(function(f){
-        if(f.nextElementSibling && f.nextElementSibling.classList.contains('founder-link-wrap')) return;
-        var w = document.createElement('div'); w.className = 'founder-link-wrap';
-        w.style.cssText = 'text-align:center;padding:0 20px 26px;position:relative;z-index:2';
+      var st = document.createElement('style');
+      st.textContent = '.logo-wrap{display:flex;align-items:center;gap:14px;min-width:0}'
+        + '.logo-wrap a.founder-link{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.9);color:#1D3557;font:800 .85rem/1.2 Nunito,Arial,sans-serif;text-decoration:none;box-shadow:0 3px 0 rgba(29,53,87,.14);white-space:nowrap}'
+        + '.logo-wrap a.founder-link:hover{background:#FFE08A}'
+        + '@media (max-width:760px){.logo-wrap{flex-direction:column;align-items:flex-start;gap:5px}.logo-wrap a.founder-link{font-size:.7rem;padding:4px 10px}}';
+      document.head.appendChild(st);
+      if(/about\.html$/.test(location.pathname)){ return; }
+      document.querySelectorAll('header').forEach(function(h){
+        var logo = h.querySelector('a.logo'); if(!logo || h.querySelector('a.founder-link') || logo.parentNode !== h) return;
+        var w = document.createElement('div'); w.className = 'logo-wrap';
         var a = document.createElement('a'); a.className = 'founder-link'; a.href = url;
-        a.style.cssText = 'display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.85);color:#1D3557;font:800 .9rem Nunito,Arial,sans-serif;text-decoration:none;box-shadow:0 3px 0 rgba(29,53,87,.14)';
-        w.appendChild(a); f.insertAdjacentElement('afterend', w);
+        h.insertBefore(w, logo); w.appendChild(logo); w.appendChild(a);
       });
       paint(lang());
     }
