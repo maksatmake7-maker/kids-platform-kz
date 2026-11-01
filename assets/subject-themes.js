@@ -192,4 +192,21 @@
       sv('<path d="M18 4 L18 24 L32 24Z" fill="#fff"/><path d="M16 8 L16 24 L6 24Z" fill="var(--c)"/><path d="M4 26 H36 L32 34 H8Z" fill="var(--c)" stroke="rgba(0,0,0,.2)" stroke-width="1.4"/>')
     ]
   };
+
+  /* ---------- Английский: Страна слов ---------- */
+  T.english = {
+    accent: '#4C6FD8', cols: ['#4C6FD8', '#FF6B5B', '#FFC93C', '#3FB088', '#C77DD9', '#5EC3E8'],
+    fl: ['A', 'B', 'C', 'Hi', 'Hello', 'Yes', 'No', 'Go', 'OK', 'Cat', 'Sun', 'Bye'].map(function(t){ return { t: t }; }).concat([
+      sv('<path d="M6 8 H34 V26 H20 L12 34 V26 H6Z" fill="var(--c)" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><circle cx="14" cy="17" r="2" fill="#fff"/><circle cx="20" cy="17" r="2" fill="#fff"/><circle cx="26" cy="17" r="2" fill="#fff"/>')
+    ]),
+    isl: [
+      isl('<path d="M22 20 H98 V50 H66 L52 64 V50 H22Z" fill="#fff" stroke="#4C6FD8" stroke-width="3.4" stroke-linejoin="round"/>' + txt(60, 42, 'Hello!', 18, '#4C6FD8')),
+      isl('<rect x="26" y="34" width="68" height="32" rx="4" fill="#FF6B5B" stroke="#B8402F" stroke-width="3"/><rect x="32" y="40" width="56" height="20" rx="2" fill="#FFF7E1"/>' + txt(60, 57, 'ABC', 17, '#B8402F')),
+      isl('<rect x="48" y="18" width="24" height="46" fill="#E9C46A" stroke="#9C7A1E" stroke-width="3"/><path d="M48 18 L60 4 L72 18Z" fill="#9C7A1E"/><circle cx="60" cy="32" r="8" fill="#fff" stroke="#9C7A1E" stroke-width="2.4"/><path d="M60 32 V27 M60 32 L64 34" stroke="#2B2F44" stroke-width="2" stroke-linecap="round"/>'),
+      isl('<g font-family="Baloo 2,sans-serif" font-weight="800" font-size="16" text-anchor="middle" fill="#fff"><rect x="24" y="42" width="28" height="26" rx="4" fill="#3FB088"/><text x="38" y="62">Cat</text><rect x="58" y="42" width="28" height="26" rx="4" fill="#C77DD9"/><text x="72" y="62">Sun</text></g>')
+    ],
+    sea: [
+      sv('<path d="M4 24 H36 L30 34 H10Z" fill="var(--c)" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 24 V6 L32 20Z" fill="#fff"/><text x="20" y="20" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="9" fill="#4C6FD8">A</text>')
+    ]
+  };
 })();
