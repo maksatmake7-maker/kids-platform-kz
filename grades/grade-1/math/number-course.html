@@ -41,6 +41,17 @@
   .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
   @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
 
+
+  /* ----- видео-урок ----- */
+  .ac-vid{max-width:720px;margin:4px auto 0;}
+  .ac-vid-frame{position:relative;border-radius:24px;overflow:hidden;background:#1D3557;border:5px solid #FFC93C;box-shadow:0 10px 0 rgba(29,53,87,.14),0 18px 34px rgba(29,53,87,.2);aspect-ratio:16/9;}
+  .ac-vid-frame video{width:100%;height:100%;display:block;background:#8DD3F7;object-fit:contain;}
+  .ac-vid-tag{position:absolute;left:12px;top:12px;background:#FF6B4A;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:.9rem;padding:4px 12px;border-radius:999px;pointer-events:none;z-index:2;box-shadow:0 3px 0 rgba(0,0,0,.18);}
+  .ac-vid-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:12px 4px 0;}
+  .ac-vid-hint{font-family:'Baloo 2',sans-serif;font-weight:700;color:#1D3557;font-size:1.02rem;}
+  .ac-vid-hint.ac-ok{color:#1D6B2E;}
+  .ac-vid-skip{background:none;border:none;color:#5C7690;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;text-decoration:underline;cursor:pointer;padding:6px;}
+
   /* ----- урок ----- */
   .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
   .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
@@ -232,7 +243,7 @@
     <div class="ac-card">
       <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
       <h1>Курс: Числа и счёт</h1>
-      <p class="ac-sub">4 урока · числа от 0 до 10, счёт вперёд и назад · с играми и проверкой</p>
+      <p class="ac-sub">4 урока · числа от 0 до 10, счёт вперёд и назад · видео, игры и проверка</p>
       <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
       <div class="ac-progress">
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
@@ -538,6 +549,19 @@ const GENS = {
 const SCENES = {};
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
+/* --- видео-урок: смотрим ролик, потом задания --- */
+SCENES.video = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-vid"><div class="ac-vid-frame"><span class="ac-vid-tag">🎬 Видео-урок</span>' +
+    '<video id="ac-video" controls playsinline preload="metadata" poster="' + st.poster + '"><source src="' + st.src + '" type="video/mp4"></video></div>' +
+    '<div class="ac-vid-row"><span class="ac-vid-hint" id="ac-vid-hint">Нажми ▶ и считай вместе с Барсиком</span><button class="ac-vid-skip" id="ac-vid-skip" type="button">Пропустить видео</button></div></div>';
+  const v = $('#ac-video'), hint = $('#ac-vid-hint');
+  const fin = () => { hint.textContent = '✓ Молодец! Теперь задания'; hint.classList.add('ac-ok'); $('#ac-vid-skip').style.display = 'none'; bsReact('happy', 1800); ctx.done(); };
+  v.addEventListener('ended', fin);
+  v.addEventListener('play', () => { hint.textContent = 'Смотри и считай вместе с Барсиком'; });
+  v.addEventListener('error', () => { hint.textContent = 'Видео не загрузилось. Можно пропустить'; }, true);
+  $('#ac-vid-skip').onclick = () => { try { v.pause(); } catch(e){} fin(); };
+};
+
 /* --- Урок 1: считаем рассыпанные яблоки --- */
 SCENES.countTap = function(stage, st, ctx){
   let n = 6, cnt = 0, finished = false;
@@ -730,6 +754,9 @@ const LESSONS = [
     steps: [
       { id: 'n1s1', scene: 'countTap', gate: true, title: 'Сколько яблок?',
         text: 'Привет! Это Барсик. Я рассыпал яблоки и хочу узнать, сколько их. Нажимай на каждое яблоко по очереди, а я буду называть числа. Последнее число и есть ответ!' },
+      { id: 'n1v', scene: 'video', gate: true, silent: true, title: 'Видео: Барсик и десять шариков',
+        src: '../../../assets/video/grade1-math-count10.mp4', poster: '../../../assets/video/grade1-math-count10.jpg',
+        text: 'Посмотри видео: Барсик надувает шарики, а мы считаем до десяти и обратно. Когда досмотришь, нажми «Дальше», и тебя ждут задания.' },
       { id: 'n1s2', scene: 'quiz', gate: true, count: 4, gens: ['countPics'], title: 'Считаем на картинках',
         text: 'Теперь посчитай яблоки на картинках и выбери верный ответ.' },
       { id: 'n1s3', scene: 'digits', gate: true, title: 'Цифры от нуля до десяти',
@@ -821,7 +848,8 @@ function renderStep(){
   };
   renderDots();
   SCENES[st.scene](stage, st, ctx);
-  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+  $('#ac-speak').style.visibility = st.silent ? 'hidden' : '';
+  if ($('#ac-auto').checked && !st.silent) speak(st.id, st.say || st.text);
 }
 /* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
 function courseReward(L, oldStars, newStars){
