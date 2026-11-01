@@ -116,9 +116,9 @@
       <span class="isle-art" data-art="3" data-ghost="3"></span>
       <span class="isle-plate"><h3 data-gn="3"></h3><p id="grade-3-desc" data-i18n="grade_picker_coming_soon"></p><span class="badge" id="grade-3-badge">🔒</span></span>
     </a>
-    <a href="#" class="isle g4 fog" data-g="4" aria-disabled="true" tabindex="-1">
+    <a href="#" id="grade-4-link" class="isle g4 fog" data-g="4" aria-disabled="true" tabindex="-1">
       <span class="isle-art" data-art="4" data-ghost="4"></span>
-      <span class="isle-plate"><h3 data-gn="4"></h3><p data-i18n="grade_picker_coming_soon"></p><span class="badge">🔒</span></span>
+      <span class="isle-plate"><h3 data-gn="4"></h3><p id="grade-4-desc" data-i18n="grade_picker_coming_soon"></p><span class="badge" id="grade-4-badge">🔒</span></span>
     </a>
     <a href="#" class="isle g5 fog" data-g="5" aria-disabled="true" tabindex="-1">
       <span class="isle-art" data-art="5" data-ghost="7"></span>
@@ -211,7 +211,7 @@
 
   /* ---------- направление: ru / kz ---------- */
   var params=new URLSearchParams(location.search), dir=params.get('dir')==='kz'?'kz':'ru';
-  var g1=$('#grade-1-link'), g2=$('#grade-2-link'), g2d=$('#grade-2-desc'), g2b=$('#grade-2-badge'), g3=$('#grade-3-link'), g3d=$('#grade-3-desc'), g3b=$('#grade-3-badge');
+  var g1=$('#grade-1-link'), g2=$('#grade-2-link'), g2d=$('#grade-2-desc'), g2b=$('#grade-2-badge'), g3=$('#grade-3-link'), g3d=$('#grade-3-desc'), g3b=$('#grade-3-badge'), g4=$('#grade-4-link'), g4d=$('#grade-4-desc'), g4b=$('#grade-4-badge');
   function setDir(d, quiet){
     dir=d;
     g1.setAttribute('href', d==='kz'?'grades/grade-1-kaz/index.html':'grades/grade-1/index.html');
@@ -228,6 +228,13 @@
     } else {
       g3.setAttribute('href','#'); g3.classList.add('fog'); g3.classList.remove('ready'); g3.setAttribute('aria-disabled','true'); g3.setAttribute('tabindex','-1');
       g3d.setAttribute('data-i18n','grade_picker_coming_soon'); g3b.removeAttribute('data-i18n'); g3b.textContent='🔒';
+    }
+    if(d==='ru'){
+      g4.setAttribute('href','grades/grade-4/index.html'); g4.classList.remove('fog'); g4.classList.add('ready'); g4.removeAttribute('aria-disabled'); g4.removeAttribute('tabindex');
+      g4d.setAttribute('data-i18n','grade_picker_grade4_desc'); g4b.setAttribute('data-i18n','badge_play'); g4b.textContent='';
+    } else {
+      g4.setAttribute('href','#'); g4.classList.add('fog'); g4.classList.remove('ready'); g4.setAttribute('aria-disabled','true'); g4.setAttribute('tabindex','-1');
+      g4d.setAttribute('data-i18n','grade_picker_coming_soon'); g4b.removeAttribute('data-i18n'); g4b.textContent='🔒';
     }
     $$('#boat-sw button, .boat-sw button').forEach(function(b){ var on=b.getAttribute('data-d')===d; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }); $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
     try{ history.replaceState(null,'','?dir='+d); }catch(e){}
