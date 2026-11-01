@@ -777,6 +777,9 @@ const LESSONS = [
     ] },
   { id: 'n3', icon: '🚀', title: 'Считаем назад', goal: 'Считать в обратном порядке от 10 до 0',
     steps: [
+      { id: 'n3v', scene: 'video', gate: true, silent: true, title: 'Видео: Барсик и ракета',
+        src: '../../../assets/video/grade1-math-countdown.mp4', poster: '../../../assets/video/grade1-math-countdown.jpg',
+        text: 'Посмотри видео: Барсик строит ракету и считает назад от десяти до нуля. Потом считай вместе с ним.' },
       { id: 'n3s1', scene: 'countdown', gate: true, title: 'Ракета готова к старту',
         text: 'Ракета готовится к полёту! Перед стартом всегда считают назад: десять, девять, восемь и так до нуля. Нажми «Пуск» и считай вместе со мной.' },
       { id: 'n3s2', scene: 'quiz', gate: true, count: 5, gens: ['backMissing'], title: 'Какое число потерялось?',
