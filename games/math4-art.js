@@ -49,5 +49,68 @@ function sets(kind, t, n){
   }
   return svg(W, H, s, 250);
 }
-window.M4A = { sets:sets, svg:svg, st:st, txt:txt, box:box, lshape:lshape, INK:INK };
+/* схема движения: kind = 'meet' (навстречу), 'away' (в противоположные стороны), 'chase' (вдогонку). o: v1, v2 — скорости; s — расстояние (число или '?') */
+function way(kind, o){
+  o = o || {}; var W = 260, H = 110, s = '', y = 62;
+  function car(x, dir, col, lab){ var d = dir > 0 ? 1 : -1; return '<g transform="translate(' + x + ',' + (y - 26) + ')"><rect x="-17" y="6" width="34" height="14" rx="5" fill="' + col + '" ' + st() + '/><rect x="' + (d > 0 ? -3 : -13) + '" y="-3" width="16" height="11" rx="3" fill="#E3F2FD" ' + st() + '/><circle cx="-8" cy="22" r="5" fill="#455A64"/><circle cx="8" cy="22" r="5" fill="#455A64"/></g>' + txt(x, y - 38, lab, { s:13, c:col }); }
+  function arrow(x1, x2, col){ var d = x2 > x1 ? -4 : 4; return '<line x1="' + x1 + '" y1="9" x2="' + x2 + '" y2="9" ' + st(col, 3) + '/><polygon points="' + x2 + ',9 ' + (x2 + d * 2) + ',4 ' + (x2 + d * 2) + ',14" fill="' + col + '"/>'; }
+  s += '<line x1="14" y1="' + (y + 2) + '" x2="' + (W - 14) + '" y2="' + (y + 2) + '" ' + st('#90A4AE', 4) + '/>';
+  var l1 = o.v1 != null ? o.v1 + ' км/ч' : '', l2 = o.v2 != null ? o.v2 + ' км/ч' : '';
+  if(kind === 'meet'){
+    s += car(52, 1, '#E53935', l1) + car(W - 52, -1, '#1E88E5', l2) + arrow(70, 112, '#E53935') + arrow(W - 70, W - 112, '#1E88E5');
+    if(o.s != null) s += '<path d="M52 ' + (y + 22) + ' H' + (W - 52) + '" ' + st('#7A5A10', 2, '4 3') + '/>' + txt(W / 2, y + 40, 'S = ' + (typeof o.s === 'number' ? o.s.toLocaleString('ru-RU') + ' км' : o.s), { s:15, c:'#7A5A10' });
+  } else if(kind === 'away'){
+    s += '<circle cx="' + W / 2 + '" cy="' + (y + 2) + '" r="5" fill="#455A64"/>' + car(W / 2 - 46, -1, '#E53935', l1) + car(W / 2 + 46, 1, '#1E88E5', l2) + arrow(W / 2 - 64, W / 2 - 106, '#E53935') + arrow(W / 2 + 64, W / 2 + 106, '#1E88E5');
+  } else {
+    s += car(60, 1, '#E53935', l1) + car(150, 1, '#1E88E5', l2) + arrow(78, 120, '#E53935') + arrow(168, 210, '#1E88E5');
+    if(o.s != null) s += '<path d="M60 ' + (y + 22) + ' H150" ' + st('#7A5A10', 2, '4 3') + '/>' + txt(105, y + 40, 'S = ' + o.s + ' км', { s:15, c:'#7A5A10' });
+  }
+  return svg(W, H, s, 270);
+}
+/* окружность: r — радиус (число, подпись), o: {r:1 — показать радиус, d:1 — диаметр, p:[расстояние от центра точки, подпись] — точка, chord:1 — хорда, rl/dl — подписи} */
+function circ(o){
+  o = o || {}; var cx = 110, cy = 82, R = 62, s = '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="#FFE0B2" ' + st('#EF6C00', 3) + '/><circle cx="' + cx + '" cy="' + cy + '" r="4" fill="' + INK + '"/>' + txt(cx - 14, cy - 8, 'O', { s:15 });
+  if(o.d) s += '<line x1="' + (cx - R) + '" y1="' + cy + '" x2="' + (cx + R) + '" y2="' + cy + '" ' + st('#1E88E5', 3) + '/>' + txt(cx, cy + 20, o.dl || 'диаметр', { c:'#1E88E5', s:14 });
+  if(o.r) s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + R * .7) + '" y2="' + (cy - R * .7) + '" ' + st('#D81B60', 3) + '/>' + txt(cx + R * .42, cy - R * .62, o.rl || 'радиус', { c:'#D81B60', s:14, a:'start' });
+  if(o.chord) s += '<line x1="' + (cx - R * .8) + '" y1="' + (cy - R * .6) + '" x2="' + (cx + R * .8) + '" y2="' + (cy - R * .6) + '" ' + st('#43A047', 3) + '/>' + txt(cx, cy - R * .6 - 7, 'хорда', { c:'#43A047', s:14 });
+  if(o.p){ var px = cx + R * o.p[0], py = cy + (o.p[2] || 0); s += '<circle cx="' + px + '" cy="' + py + '" r="5" fill="#7E57C2"/>' + txt(px + 8, py - 8, o.p[1] || 'A', { c:'#7E57C2', s:15, a:'start' }); }
+  return svg(220, 160, s, 230);
+}
+/* треугольник по двум углам. o: A, B (градусы при вершинах A и B), la:{A,B,C} подписи углов, sides:{ab,bc,ca} подписи сторон, verts:true — буквы */
+function tri(o){
+  var A = o.A, B = o.B, C = 180 - A - B, L = 170, x0 = 30, y0 = 130, r = Math.PI / 180;
+  var dAC = L * Math.sin(B * r) / Math.sin(C * r), cx = x0 + dAC * Math.cos(A * r), cy = y0 - dAC * Math.sin(A * r);
+  var sc = Math.min(1, 105 / (y0 - cy)); if(sc < 1){ cx = x0 + (cx - x0) * sc; cy = y0 - (y0 - cy) * sc; L = L * sc; }
+  var bx = x0 + L, by = y0, s = '', la = o.la || {};
+  s += '<polygon points="' + x0 + ',' + y0 + ' ' + bx + ',' + by + ' ' + cx + ',' + cy + '" fill="#C5E1A5" ' + st('#558B2F', 3) + '/>';
+  function mark(px, py, ax, ay, bx2, by2){
+    var u1 = [ax - px, ay - py], u2 = [bx2 - px, by2 - py], n1 = Math.hypot(u1[0], u1[1]), n2 = Math.hypot(u2[0], u2[1]); u1 = [u1[0] / n1 * 14, u1[1] / n1 * 14]; u2 = [u2[0] / n2 * 14, u2[1] / n2 * 14];
+    return '<polyline points="' + (px + u1[0]) + ',' + (py + u1[1]) + ' ' + (px + u1[0] + u2[0]) + ',' + (py + u1[1] + u2[1]) + ' ' + (px + u2[0]) + ',' + (py + u2[1]) + '" fill="none" ' + st('#D81B60', 2) + '/>';
+  }
+  if(A === 90) s += mark(x0, y0, bx, by, cx, cy); if(B === 90) s += mark(bx, by, x0, y0, cx, cy); if(C === 90) s += mark(cx, cy, x0, y0, bx, by);
+  if(la.A) s += txt(x0 + 40, y0 - 5, la.A, { c:'#D81B60', s:15 });
+  if(la.B) s += txt(bx - 40, by - 5, la.B, { c:'#D81B60', s:15 });
+  if(la.C) s += txt(cx, cy + 26, la.C, { c:'#D81B60', s:15 });
+  if(o.verts){ s += txt(x0 - 12, y0 + 6, 'A', { s:16 }) + txt(bx + 12, by + 6, 'B', { s:16 }) + txt(cx, cy - 8, 'C', { s:16 }); }
+  var sd = o.sides || {};
+  if(sd.ab) s += txt((x0 + bx) / 2, y0 + 20, sd.ab, { c:'#1E88E5', s:14 });
+  if(sd.bc) s += txt((bx + cx) / 2 + 16, (by + cy) / 2, sd.bc, { c:'#1E88E5', s:14, a:'start' });
+  if(sd.ca) s += txt((x0 + cx) / 2 - 12, (y0 + cy) / 2, sd.ca, { c:'#1E88E5', s:14, a:'end' });
+  return svg(250, 160, s, 250);
+}
+/* фигура с осями симметрии: kind = square | rect | equi | isos | circle | rhombus | hex; axes — сколько осей нарисовать (0 — без осей) */
+function sym(kind, axes){
+  var s = '', cx = 110, cy = 80, ax = [], fill = '#B3E5FC', sk = st('#0277BD', 3), D = st('#D81B60', 2.2, '6 4');
+  function L(x1, y1, x2, y2){ return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" ' + D + '/>'; }
+  if(kind === 'square'){ s += '<rect x="60" y="30" width="100" height="100" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 18, 110, 142), L(48, 80, 172, 80), L(52, 22, 168, 138), L(168, 22, 52, 138)]; }
+  else if(kind === 'rect'){ s += '<rect x="40" y="45" width="140" height="70" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 33, 110, 127), L(28, 80, 192, 80)]; }
+  else if(kind === 'equi'){ s += '<polygon points="110,22 170,126 50,126" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 12, 110, 136), L(181, 132, 69, 68), L(39, 132, 151, 68)]; }
+  else if(kind === 'isos'){ s += '<polygon points="110,20 160,130 60,130" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 10, 110, 142)]; }
+  else if(kind === 'circle'){ s += '<circle cx="110" cy="80" r="56" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 14, 110, 146), L(44, 80, 176, 80), L(63, 33, 157, 127), L(157, 33, 63, 127)]; }
+  else if(kind === 'rhombus'){ s += '<polygon points="110,20 170,80 110,140 50,80" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 10, 110, 150), L(38, 80, 182, 80)]; }
+  else { var p = []; for(var i = 0; i < 6; i++) p.push((110 + 58 * Math.cos(i * Math.PI / 3)) + ',' + (80 + 58 * Math.sin(i * Math.PI / 3))); s += '<polygon points="' + p.join(' ') + '" fill="' + fill + '" ' + sk + '/>'; ax = [L(110, 12, 110, 148), L(40, 80, 180, 80), L(145, 140, 75, 20), L(75, 140, 145, 20), L(162, 118, 58, 42), L(58, 118, 162, 42)]; }
+  for(var j = 0; j < Math.min(axes || 0, ax.length); j++) s += ax[j];
+  return svg(220, 160, s, 230);
+}
+window.M4A = { tri:tri, sym:sym, circ:circ, way:way, sets:sets, svg:svg, st:st, txt:txt, box:box, lshape:lshape, INK:INK };
 })();
