@@ -52,11 +52,13 @@
 .hh-room:hover{transform:translateY(-3px);}
 .hh-room:focus-visible{outline:4px dashed var(--coral,#FF6B5B); outline-offset:3px;}
 .hh-room svg.bg{display:block; width:100%; height:auto;}
-.hh-tags{position:absolute; left:10px; right:10px; bottom:10px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+/* подписи — полоской под картинкой, чтобы не закрывать Барсика и мебель */
+.hh-tags{position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:8px 10px 10px; background:#FFF3DA; border-top:3px solid #3B2A1A;}
 .hh-name{background:#fff; border:3px solid #3B2A1A; border-radius:14px; padding:4px 12px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:clamp(1rem,2.4vw,1.25rem); color:#3B2A1A;}
 .hh-chip{display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:4px 12px; font-size:.82rem; font-weight:800; background:#FFF7E3; border:2px solid #3B2A1A; color:#3B2A1A;}
 .hh-chip.open{background:var(--ink,#1D3557); border-color:var(--ink,#1D3557); color:#fff;}
 .hh-chip svg{width:13px; height:15px;}
+.hh-scene{position:relative;}
 .hh-bs{position:absolute; left:42%; bottom:14%; width:26%; pointer-events:none;}
 .hh-hello{position:relative; height:70px; z-index:6;}
 .hh-hello .hs-bubble{left:50%; top:4px; margin-left:-150px; width:300px; max-width:none;}
