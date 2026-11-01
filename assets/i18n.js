@@ -22,6 +22,8 @@ const translations = {
     badge_soon: "Скоро",
     badge_play: "Играть →",
     footer: "Білім Аралы — растём и учимся вместе 🌤️",
+    founder_btn: "Основатель и инвестор",
+    founder_line: "Основатель и инвестор сайта «Білім Аралы»",
     back_home: "← На главную",
     math_game_title: "Посчитай и узнай!",
     math_game_sub: "Сколько предметов ты видишь? Выбери правильный ответ",
@@ -1784,6 +1786,8 @@ const translations = {
     badge_soon: "Жақында",
     badge_play: "Ойнау →",
     footer: "Білім Аралы — бірге өсіп, бірге үйренейік 🌤️",
+    founder_btn: "Негізін қалаушы және инвестор",
+    founder_line: "«Білім Аралы» сайтының негізін қалаушы және инвесторы",
     back_home: "← Басты бетке",
     math_game_title: "Санап шық!",
     math_game_sub: "Қанша зат көрдің? Дұрыс жауапты таңда",
@@ -3546,6 +3550,8 @@ const translations = {
     badge_soon: "Coming soon",
     badge_play: "Play →",
     footer: "Bilim Araly — growing and learning together 🌤️",
+    founder_btn: "Founder and investor",
+    founder_line: "Founder and investor of the «Білім Аралы» website",
     back_home: "← Home",
     math_game_title: "Count and Find Out!",
     math_game_sub: "How many objects do you see? Pick the right answer",
@@ -5308,6 +5314,8 @@ const translations = {
     badge_soon: "即将上线",
     badge_play: "开始游戏 →",
     footer: "Bilim Araly——一起成长，一起学习 🌤️",
+    founder_btn: "创始人兼投资人",
+    founder_line: "«Білім Аралы» 网站创始人兼投资人",
     back_home: "← 返回首页",
     math_game_title: "数一数吧！",
     math_game_sub: "你看到了多少个物品？选择正确答案",
@@ -7070,6 +7078,8 @@ const translations = {
     badge_soon: "Тез орада",
     badge_play: "Ўйнаш →",
     footer: "Білім Аралы — бирга ўсамиз ва ўрганамиз 🌤️",
+    founder_btn: "Асосчи ва инвестор",
+    founder_line: "«Білім Аралы» сайтининг асосчиси ва инвестори",
     back_home: "← Бош саҳифага",
     math_game_title: "Санаб ол!",
     math_game_sub: "Нечта буюм кўряпсан? Тўғри жавобни танла",
@@ -8832,6 +8842,8 @@ const translations = {
     badge_soon: "Ба зудӣ",
     badge_play: "Бозӣ кардан →",
     footer: "Білім Аралы — якҷоя месабзем ва меомӯзем 🌤️",
+    founder_btn: "Асосгузор ва сармоягузор",
+    founder_line: "Асосгузор ва сармоягузори сайти «Білім Аралы»",
     back_home: "← Ба саҳифаи асосӣ",
     math_game_title: "Бишумор ва бифаҳм!",
     math_game_sub: "Чанд чиз мебинӣ? Ҷавоби дурустро интихоб кун",
@@ -10594,6 +10606,8 @@ const translations = {
     badge_soon: "پات ئارىدا",
     badge_play: "ئوينا →",
     footer: "بىلىم ئارالى — بىرگە ئۆسەيلى ۋە ئۆگىنەيلى 🌤️",
+    founder_btn: "قۇرغۇچى ۋە مەبلەغ سالغۇچى",
+    founder_line: "«Білім Аралы» تور بېكىتىنىڭ قۇرغۇچىسى ۋە مەبلەغ سالغۇچىسى",
     back_home: "← باش بەتكە",
     math_game_title: "ساناپ باق!",
     math_game_sub: "قانچە نەرسە كۆرۈۋاتىسىز؟ توغرا جاۋابنى تاللاڭ",
@@ -12417,5 +12431,34 @@ document.addEventListener('click', function(e){
     var me = document.currentScript; if(!me || !me.src) return;
     var s = document.createElement('script'); s.src = me.src.replace(/i18n\.js.*$/, 'pwa.js'); s.async = true;
     document.head.appendChild(s);
+  } catch(e){}
+})();
+
+
+/* ===== Ссылка «Основатель и инвестор» под подвалом каждой страницы, где он есть (about.html) ===== */
+(function(){
+  try {
+    var me = document.currentScript; if(!me || !me.src) return;
+    var url = me.src.replace(/assets\/i18n\.js.*$/, 'about.html');
+    function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if(s && translations[s]) return s; } catch(e){} return 'ru'; }
+    function paint(l){
+      document.querySelectorAll('a.founder-link').forEach(function(a){
+        var t = translations[l] || translations.ru; a.textContent = '👤 ' + (t.founder_btn || translations.ru.founder_btn);
+      });
+    }
+    function init(){
+      document.querySelectorAll('footer[data-i18n="footer"]').forEach(function(f){
+        if(f.nextElementSibling && f.nextElementSibling.classList.contains('founder-link-wrap')) return;
+        var w = document.createElement('div'); w.className = 'founder-link-wrap';
+        w.style.cssText = 'text-align:center;padding:0 20px 26px;position:relative;z-index:2';
+        var a = document.createElement('a'); a.className = 'founder-link'; a.href = url;
+        a.style.cssText = 'display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.85);color:#1D3557;font:800 .9rem Nunito,Arial,sans-serif;text-decoration:none;box-shadow:0 3px 0 rgba(29,53,87,.14)';
+        w.appendChild(a); f.insertAdjacentElement('afterend', w);
+      });
+      paint(lang());
+    }
+    var orig = window.applyLang;
+    window.applyLang = function(l){ if(orig) orig(l); paint(translations[l] ? l : 'ru'); };
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   } catch(e){}
 })();
