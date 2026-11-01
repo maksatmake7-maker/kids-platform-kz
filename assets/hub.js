@@ -211,8 +211,8 @@
   var kz=C.dir==='kz';
   var html='<div class="hub-intro"><div class="hub-bs" aria-hidden="true"><span class="islet"></span><span class="bsw" id="hubBs"></span></div>' +
     '<div class="hub-tx"><span class="grade-tag dirtag" style="--flag:'+(kz?'#3FB088':'#FF6B5B')+'"><i></i><span data-i18n="'+C.tag+'"></span></span>' +
-    '<h2 data-i18n="'+(C.h2||'subjects_h2')+'"></h2><p class="lead" data-i18n="'+(C.lead||'subjects_lead')+'"></p>'+giftChip()+'</div></div><div class="hub-archi">';
-  C.subjects.forEach(function(s,i){
+    '<h2 data-i18n="'+(C.h2||'subjects_h2')+'"></h2><p class="lead" data-i18n="'+(C.lead||'subjects_lead')+'"></p>'+giftChip()+'</div></div>';
+  function cards(list){ list.forEach(function(s,i){
     var soon=!!s.soon, d=(-(i%5)*0.9).toFixed(1);
     if(s.quest){ s.titleText='<span data-qt="t"></span>'; s.descText='<span data-qt="d"></span>'; }
     html+='<a class="hi '+(soon?'fog':'ready')+'" '+(soon?'href="#" aria-disabled="true" tabindex="-1"':'href="'+s.href+'"')+(s.quest?' data-quest="1" data-base="'+s.href+'"':'')+' data-id="'+s.id+'" style="--c:'+s.color+';--d:'+d+'s">' +
@@ -220,7 +220,11 @@
       '<span class="hi-plate">'+(s.titleText?'<h3>'+s.titleText+'</h3>':'<h3 data-i18n="'+s.title+'"></h3>')+(s.descText?'<p>'+s.descText+'</p>':'<p data-i18n="'+s.desc+'"></p>')+
       '<span class="hi-prog"><i class="bar"><b></b></i><span class="st">'+STAR+STAR+STAR+'</span></span>' +
       (s.badgeText&&!soon?'<span class="badge">'+s.badgeText+'</span>':'<span class="badge" data-i18n="'+(soon?'grade_picker_coming_soon':(s.badge||'badge_play'))+'"></span>')+'</span></a>';
-  });
+  }); }
+  /* «Квесты Барсика» — отдельной плиткой над предметами, чтобы не смешивались с уроками и задачками */
+  var QS=C.subjects.filter(function(s){ return s.quest; }), RS=C.subjects.filter(function(s){ return !s.quest; });
+  if(QS.length){ html+='<div class="hub-archi hub-quest">'; cards(QS); html+='</div>'; }
+  html+='<div class="hub-archi">'; cards(RS);
   html+='</div>';
   root.className='hub'; root.innerHTML=html;
 

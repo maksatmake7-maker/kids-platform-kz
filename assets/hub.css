@@ -86,3 +86,8 @@
 .hub-chips .hub-gift{margin-top:0;}
 /* подарок дня пока только на русском */
 html[data-current]:not([data-current="ru"]) .hub-gift-ru{display:none;}
+
+/* «Квесты Барсика» — отдельная плитка над предметами */
+.hub-archi.hub-quest{grid-template-columns:minmax(220px,320px); justify-content:center; margin-top:14px; margin-bottom:2px;}
+.hub-archi.hub-quest .hi:nth-child(even){margin-top:0;}
+.hub-archi.hub-quest + .hub-archi{margin-top:26px;}
