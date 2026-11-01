@@ -92,6 +92,13 @@
         '<path d="M90 31 V22" stroke="#8B5A2B" stroke-width="2"/><path d="M90 22 L102 25 L90 29Z" fill="#5EC3E8"><animateTransform attributeName="transform" type="skewY" values="0;-6;0" dur="2.4s" repeatCount="indefinite"/></path>' +
         flower(44,92,'#FF8FB0') + flower(142,94,'#FFC93C');
     },
+    english: function(){
+      return '<path d="M34 34 H112 V74 H78 L60 92 V74 H34Z" fill="#fff" stroke="#4C6FD8" stroke-width="4" stroke-linejoin="round"/>' +
+        '<text x="73" y="63" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="26" fill="#4C6FD8">Hello!</text>' +
+        '<g><rect x="108" y="64" width="32" height="30" rx="5" fill="#FF6B5B"/><text x="124" y="86" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="18" fill="#fff">ABC</text><animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="2.6s" repeatCount="indefinite"/></g>' +
+        '<g><circle cx="46" cy="26" r="9" fill="#FFC93C"/><text x="46" y="31" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="12" fill="#fff">A</text><animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" dur="3s" repeatCount="indefinite"/></g>' +
+        flower(40,100,'#FF8FB0') + flower(150,98,'#FFC93C');
+    },
     estestvo: function(){
       return '<rect x="86" y="58" width="9" height="44" rx="3" fill="#A9733D"/>' +
         '<g><circle cx="90" cy="46" r="27" fill="#4FB963"/><circle cx="70" cy="60" r="19" fill="#5CC46E"/><circle cx="111" cy="60" r="19" fill="#5CC46E"/><circle cx="82" cy="38" r="9" fill="#74D587" opacity=".7"/>' +

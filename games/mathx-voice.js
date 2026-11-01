@@ -855,7 +855,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   var base = (window.__mxBase || '../../../games/') + '../assets/audio/barsik/';
   var token = 0, curAudio = null, enabled = true;
   /* адрес клипа; клипы 2 класса (id начинается с g2_ / f_g2_) лежат в подпапке g2, чтобы не раздувать общую папку */
-  function clipUrl(c, L, flat){ return base + (c.ru ? 'ru' : (c.kz ? 'kz' : L)) + (!flat && /^(f_)?g2_/.test(c.id) ? '/g2/' : '/') + c.id + '.mp3'; }
+  function clipUrl(c, L, flat){ return base + (c.ru ? 'ru' : (c.kz ? 'kz' : (c.en ? 'en' : L))) + (!flat && /^(f_)?g2_/.test(c.id) ? '/g2/' : '/') + c.id + '.mp3'; }
   function isG2(c){ return /^(f_)?g2_/.test(c.id); }
   try { enabled = localStorage.getItem('bilim_mx_snd') !== '0'; } catch(e){}
 
@@ -888,7 +888,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   var forced = null, KZMAP = null;
   function forceVoice(l){ forced = (l === 'kz') ? 'kz' : null; }
   function kzify(c){
-    if(c.ru || c.kz) return c;
+    if(c.ru || c.kz || c.en) return c;
     if(!KZMAP){ KZMAP = {}; allClips('kz').forEach(function(x){ KZMAP[x.id] = x.text; }); }
     return KZMAP[c.id] ? {id:c.id, text:KZMAP[c.id], kz:true} : c;
   }
@@ -909,7 +909,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
       var tts = function(from){
         if(fellBack) return; fellBack = true;
         if(tok !== token || !window.speechSynthesis) return done();
-        var text = cl.slice(from).map(function(c){ return c.text; }).join(', '); var LL = cl[from] && cl[from].ru ? 'ru' : (cl[from] && cl[from].kz ? 'kz' : L);
+        var text = cl.slice(from).map(function(c){ return c.text; }).join(', '); var LL = cl[from] && cl[from].ru ? 'ru' : (cl[from] && cl[from].kz ? 'kz' : (cl[from] && cl[from].en ? 'en' : L));
         var u = new SpeechSynthesisUtterance(text);
         u.lang = LL === 'en' ? 'en-US' : (LL === 'kz' ? 'kk-KZ' : 'ru-RU'); u.rate = .9; u.pitch = 1;
         var v = bestVoice(LL); if(v){ u.voice = v; u.lang = v.lang; }
