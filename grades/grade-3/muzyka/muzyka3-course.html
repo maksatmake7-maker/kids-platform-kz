@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Музыка 3 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="muzyka">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Музыки 3 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Музыка 3 класс</h1>
+      <p class="ac-sub">10 уроков: характер музыки, средства выразительности, оркестры, пение, форма, жанры, ноты, композиторы, музыка вокруг нас и сочинение</p>
+      <p class="ac-note">Курс по программе 3 класса (приказ №399). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 11</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/muzyka3/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/muzyka3/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_muzyka3course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Музыка 3 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по музыке</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.mu31q = mkQuiz([{"q": "Что такое характер музыки?", "a": "настроение, которое она передаёт", "w": ["длина произведения", "название нот", "цвет инструмента"], "h": "Музыка передаёт чувства"}, {"q": "Какую музыку чаще выбирают для колыбельной?", "a": "тихую и нежную", "w": ["громкую и резкую", "очень быструю", "тревожную"], "h": "Колыбельная убаюкивает"}, {"q": "Как звучит марш?", "a": "чётко и бодро, под шаг", "w": ["тихо и плавно без ритма", "как шёпот", "вразнобой"], "h": "Марш помогает идти в ногу"}, {"q": "Какие звуки помогают передать грозную музыку?", "a": "низкие и громкие", "w": ["тихие и высокие", "звонкий смех", "нежная флейта"], "h": "Низкий громкий звук кажется грозным"}, {"q": "Что значит узнать произведение по интонации?", "a": "услышать знакомую мелодию и вспомнить её", "w": ["посчитать ноты", "увидеть автора", "прочитать название"], "h": "Интонация — это «голос» музыки"}, {"q": "Что делает музыку радостной?", "a": "быстрый темп и яркие звуки", "w": ["очень медленный темп и низкие звуки", "тишина", "редкие глухие удары"], "h": "Быстрое и светлое звучит весело"}, {"q": "Как сравнить две пьесы?", "a": "сказать, чем отличаются их характер и звучание", "w": ["посчитать листы нот", "сравнить цвет обложки", "выбрать самую длинную"], "h": "Сравниваем характер, темп и громкость"}, {"q": "Кто рассказывает о чувствах без слов?", "a": "музыка", "w": ["тишина", "линейка", "карта"], "h": "Музыка передаёт чувства звуками"}]);
+GENS.mu31t = mkTF([{"q": "Колыбельная звучит нежно.", "a": "Верно", "h": "Верно. Она помогает уснуть"}, {"q": "Грозная музыка обычно тихая и нежная.", "a": "Неверно", "h": "Неверно. Грозная музыка громкая и резкая"}, {"q": "Музыка может рассказать о природе.", "a": "Верно", "h": "Верно. Например, о ручье или грозе"}, {"q": "Марш звучит чётко.", "a": "Верно", "h": "Верно. Он помогает идти в ногу"}, {"q": "Весёлая музыка обычно очень медленная.", "a": "Неверно", "h": "Неверно. Весёлая музыка чаще быстрая"}, {"q": "Одну и ту же тему разные композиторы передают по-разному.", "a": "Верно", "h": "Верно. У каждого свой голос"}]);
+GENS.mu32q = mkQuiz([{"q": "Что такое темп?", "a": "скорость музыки", "w": ["громкость", "высота звука", "название ноты"], "h": "Темп — быстро или медленно"}, {"q": "Что такое динамика?", "a": "громкость звучания", "w": ["скорость", "цвет звука", "длина песни"], "h": "Динамика — громко или тихо"}, {"q": "Какой лад звучит светло и радостно?", "a": "мажор", "w": ["минор", "пауза", "бас"], "h": "Мажор звучит светло"}, {"q": "Что значит «форте»?", "a": "громко", "w": ["тихо", "быстро", "медленно"], "h": "Форте — громко"}, {"q": "Что значит «пиано»?", "a": "тихо", "w": ["громко", "быстро", "отрывисто"], "h": "Пиано — тихо"}, {"q": "Как называется плавное исполнение?", "a": "легато", "w": ["стаккато", "форте", "марш"], "h": "Легато — плавно и связно"}, {"q": "Что такое тембр?", "a": "окраска звука, по которой узнаём инструмент", "w": ["скорость музыки", "громкость", "длина песни"], "h": "У каждого инструмента свой тембр"}, {"q": "Что такое ритм?", "a": "чередование долгих и коротких звуков", "w": ["только громкие звуки", "пауза", "цвет ноты"], "h": "Ритм — это «шаги» музыки"}]);
+GENS.mu32t = mkTF([{"q": "Мажор звучит светло.", "a": "Верно", "h": "Верно. Мажор радостный"}, {"q": "Медленный темп называют быстрым.", "a": "Неверно", "h": "Неверно. Медленный темп — это медленно"}, {"q": "Форте — это тихо.", "a": "Неверно", "h": "Неверно. Форте — это громко"}, {"q": "Тембр помогает узнать инструмент по звуку.", "a": "Верно", "h": "Верно. У каждого инструмента свой тембр"}, {"q": "Стаккато — это отрывисто.", "a": "Верно", "h": "Верно. Звуки короткие и отдельные"}, {"q": "Ритм — это чередование долгих и коротких звуков.", "a": "Верно", "h": "Верно. Это основа музыки"}]);
+GENS.mu33q = mkQuiz([{"q": "Сколько струн у домбры?", "a": "две", "w": ["пять", "семь", "двадцать"], "h": "Домбра — двухструнная"}, {"q": "На каком инструменте играют смычком?", "a": "на кобызе", "w": ["на домбре", "на барабане", "на трубе"], "h": "Кобыз — смычковый инструмент"}, {"q": "Какой оркестр называют народным?", "a": "где играют на народных инструментах", "w": ["где играют только на трубах", "где нет музыкантов", "где только поют"], "h": "В нём домбры, кобызы и другие народные инструменты"}, {"q": "Какие инструменты главные в духовом оркестре?", "a": "медные духовые, например труба и тромбон", "w": ["только арфы", "только домбры", "только скрипки"], "h": "Они звучат ярко и громко"}, {"q": "Кто управляет оркестром?", "a": "дирижёр", "w": ["судья", "водящий", "капитан"], "h": "Дирижёр показывает жестами"}, {"q": "Какой инструмент ударный?", "a": "барабан", "w": ["флейта", "скрипка", "труба"], "h": "По барабану бьют палочками"}, {"q": "В каком оркестре есть скрипки и арфы?", "a": "в симфоническом", "w": ["в духовом", "только в школьном хоре", "на стадионе"], "h": "Это инструменты симфонического оркестра"}, {"q": "Как называется семиструнный казахский инструмент?", "a": "жетіген", "w": ["домбра", "кобыз", "сыбызғы"], "h": "«Жеті» значит «семь»"}]);
+GENS.mu33t = mkTF([{"q": "Домбра — щипковый инструмент.", "a": "Верно", "h": "Верно. Звук рождается от щипка струн"}, {"q": "Скрипка относится к духовым инструментам.", "a": "Неверно", "h": "Неверно. Скрипка — струнная"}, {"q": "Дирижёр управляет оркестром.", "a": "Верно", "h": "Верно. Он показывает жестами"}, {"q": "Труба — ударный инструмент.", "a": "Неверно", "h": "Неверно. Труба — духовой инструмент"}, {"q": "В симфоническом оркестре играют скрипки.", "a": "Верно", "h": "Верно. Это основа симфонического оркестра"}, {"q": "На кобызе играют смычком.", "a": "Верно", "h": "Верно. Кобыз — смычковый инструмент"}]);
+GENS.mu34q = mkQuiz([{"q": "Что показывает дирижёр руками?", "a": "когда начинать, как громко и в каком темпе петь", "w": ["какой сегодня день", "как пишутся ноты", "где сидеть"], "h": "Жесты помогают петь вместе"}, {"q": "Что такое хор?", "a": "большой коллектив певцов", "w": ["один певец", "один инструмент", "духовой оркестр"], "h": "В хоре поют вместе"}, {"q": "Что такое дуэт?", "a": "двое исполнителей", "w": ["десять исполнителей", "один исполнитель", "двенадцать нот"], "h": "Ду-э-т — это двое"}, {"q": "Что такое соло?", "a": "исполнение одним человеком", "w": ["исполнение всем классом", "пауза", "конец песни"], "h": "Соло — один исполнитель"}, {"q": "Что нужно сделать перед пением?", "a": "распеться", "w": ["закричать", "выпить ледяной воды", "убежать"], "h": "Распевание готовит голос"}, {"q": "Когда брать дыхание при пении?", "a": "спокойно, между фразами", "w": ["посреди слова", "как можно громче", "никогда"], "h": "Дыхание берём между фразами"}, {"q": "Когда нужно закончить петь вместе с хором?", "a": "по знаку дирижёра", "w": ["когда устал", "когда захочется", "никогда"], "h": "Заканчиваем вместе"}, {"q": "Что значит играть легато?", "a": "плавно и связно", "w": ["отрывисто", "очень громко", "очень быстро"], "h": "Легато — связные звуки"}]);
+GENS.mu34t = mkTF([{"q": "Хор поёт под управлением дирижёра.", "a": "Верно", "h": "Верно. Он показывает вступление и темп"}, {"q": "Кричать на уроке пения полезно для голоса.", "a": "Неверно", "h": "Неверно. Крик вредит голосу"}, {"q": "Стаккато — это отрывисто.", "a": "Верно", "h": "Верно. Звуки короткие"}, {"q": "Дуэт — это когда поют трое.", "a": "Неверно", "h": "Неверно. Дуэт — двое, а трио — трое"}, {"q": "Нужно слушать товарищей, когда поёшь в хоре.", "a": "Верно", "h": "Верно. Так получается слаженно"}, {"q": "Начинать петь можно раньше сигнала дирижёра.", "a": "Неверно", "h": "Неверно. Нужно ждать сигнала"}]);
+GENS.mu35q = mkQuiz([{"q": "Что такое куплет?", "a": "часть песни, где меняются слова", "w": ["часть, которую повторяют всегда", "пауза", "нотный знак"], "h": "В куплете слова новые"}, {"q": "Что такое припев?", "a": "повторяющаяся часть песни", "w": ["самая тихая часть", "название песни", "ноты"], "h": "Припев повторяется"}, {"q": "Как называется песня только с куплетами?", "a": "куплетная", "w": ["одночастная", "припевная", "оркестровая"], "h": "Припева в ней нет"}, {"q": "Как называется форма, где есть куплеты и припев?", "a": "куплетно-припевная", "w": ["двухчастная", "одночастная", "вальсовая"], "h": "В ней есть оба элемента"}, {"q": "Сколько частей в двухчастной форме?", "a": "две", "w": ["одна", "три", "пять"], "h": "Две части: А и Б"}, {"q": "Как обозначают две разные части?", "a": "А и Б", "w": ["Р и Р", "Х и Х", "1 и 1"], "h": "Разные части — разные буквы"}, {"q": "Что значит «контраст» в музыке?", "a": "разные по характеру части", "w": ["одинаковые части", "пауза", "громкий звук"], "h": "Контраст — это различие"}, {"q": "Что помогает запомнить песню?", "a": "припев, который повторяется", "w": ["пауза в конце", "тихий куплет", "название ноты"], "h": "Повтор помогает запоминанию"}]);
+GENS.mu35t = mkTF([{"q": "В куплетно-припевной песне есть припев.", "a": "Верно", "h": "Верно. Это её главный признак"}, {"q": "Одночастная пьеса состоит из двух разных частей.", "a": "Неверно", "h": "Неверно. Одночастная — из одной части"}, {"q": "Припев обычно повторяется.", "a": "Верно", "h": "Верно. Поэтому его легко запомнить"}, {"q": "А и Б — обозначение двух разных частей.", "a": "Верно", "h": "Верно. Так записывают двухчастную форму"}, {"q": "Куплет всегда звучит только один раз.", "a": "Неверно", "h": "Неверно. Куплеты повторяются с новыми словами"}, {"q": "У музыки, как у здания, есть части.", "a": "Верно", "h": "Верно. Так же и у архитектуры"}]);
+GENS.mu36q = mkQuiz([{"q": "Какой жанр помогает идти в ногу?", "a": "марш", "w": ["колыбельная", "вальс", "опера"], "h": "Марш чёткий и бодрый"}, {"q": "Какой жанр поют малышу перед сном?", "a": "колыбельная", "w": ["марш", "полька", "гимн"], "h": "Она нежная и тихая"}, {"q": "Что такое жанр?", "a": "вид музыкального произведения", "w": ["название инструмента", "громкость", "нота"], "h": "Песня, танец и марш — жанры"}, {"q": "Как называется торжественная песня страны?", "a": "гимн", "w": ["марш", "колыбельная", "полька"], "h": "Гимн слушают стоя"}, {"q": "Что такое опера?", "a": "спектакль, где артисты поют", "w": ["концерт без музыки", "игра на улице", "рисунок"], "h": "В опере поют артисты"}, {"q": "Что такое балет?", "a": "спектакль, где артисты танцуют под музыку", "w": ["пение хора", "урок письма", "игра в футбол"], "h": "В балете танцуют"}, {"q": "Что такое фольклор?", "a": "народное творчество", "w": ["работа дирижёра", "нотная запись", "цирковой номер"], "h": "Это песни и сказки народа"}, {"q": "Кто сочиняет классическую музыку?", "a": "композитор", "w": ["художник", "повар", "пастух"], "h": "Композитор сочиняет музыку"}]);
+GENS.mu36t = mkTF([{"q": "Вальс — это танец.", "a": "Верно", "h": "Верно. Он плавный и на три счёта"}, {"q": "Колыбельную поют, чтобы малыш уснул.", "a": "Верно", "h": "Верно. Она нежная"}, {"q": "Марш звучит плавно и тихо, как колыбельная.", "a": "Неверно", "h": "Неверно. Марш чёткий и бодрый"}, {"q": "Фольклор — это народное творчество.", "a": "Верно", "h": "Верно. Песни и сказки народа"}, {"q": "Композитор сочиняет музыку.", "a": "Верно", "h": "Верно. Это его работа"}, {"q": "Балет — это спектакль, где артисты только говорят.", "a": "Неверно", "h": "Неверно. В балете танцуют под музыку"}]);
+GENS.mu37q = mkQuiz([{"q": "Сколько нот в звукоряде?", "a": "семь", "w": ["пять", "десять", "три"], "h": "До, ре, ми, фа, соль, ля, си"}, {"q": "Какая нота идёт после «до»?", "a": "ре", "w": ["си", "соль", "ля"], "h": "До — ре — ми"}, {"q": "Какая нота идёт перед «си»?", "a": "ля", "w": ["ре", "до", "фа"], "h": "Ля — си"}, {"q": "На чём записывают ноты?", "a": "на нотном стане из пяти линеек", "w": ["на двух линейках", "на трёх нитках", "на круге"], "h": "Пять линеек — нотный стан"}, {"q": "Как называется знак в начале нотной строки?", "a": "скрипичный ключ", "w": ["пауза", "куплет", "такт"], "h": "Он «открывает» строку"}, {"q": "Что означает пауза?", "a": "тишину в музыке", "w": ["самый громкий звук", "новую ноту", "конец урока"], "h": "Паузы тоже важны"}, {"q": "Что делит музыку на такты?", "a": "тактовая черта", "w": ["скрипичный ключ", "пауза", "нота"], "h": "Черта отделяет такты"}, {"q": "Какая нота самая первая в звукоряде?", "a": "до", "w": ["си", "ля", "фа"], "h": "Звукоряд начинается с «до»"}]);
+GENS.mu37t = mkTF([{"q": "В звукоряде семь нот.", "a": "Верно", "h": "Верно. До, ре, ми, фа, соль, ля, си"}, {"q": "Ноты пишут на трёх линейках.", "a": "Неверно", "h": "Неверно. Нотный стан имеет пять линеек"}, {"q": "Пауза — это знак тишины.", "a": "Верно", "h": "Верно. В паузе не звучит ничего"}, {"q": "Скрипичный ключ стоит в начале нотной строки.", "a": "Верно", "h": "Верно. Он показывает высоту нот"}, {"q": "Нота «ми» идёт после «ре».", "a": "Верно", "h": "Верно. До — ре — ми"}, {"q": "Тактовая черта соединяет ноты в аккорд.", "a": "Неверно", "h": "Неверно. Она делит музыку на такты"}]);
+GENS.mu38q = mkQuiz([{"q": "Кто такой композитор?", "a": "человек, который сочиняет музыку", "w": ["дирижёр", "слушатель", "скрипач"], "h": "Он придумывает произведения"}, {"q": "Кто автор кюя «Сарыарқа»?", "a": "Құрманғазы", "w": ["Моцарт", "Чайковский", "Григ"], "h": "Құрманғазы — великий кюйші"}, {"q": "Кто написал балет «Щелкунчик»?", "a": "Чайковский", "w": ["Моцарт", "Бетховен", "Құрманғазы"], "h": "Это знаменитый балет Чайковского"}, {"q": "Кто написал «К Элизе»?", "a": "Бетховен", "w": ["Моцарт", "Григ", "Вивальди"], "h": "Это пьеса Бетховена"}, {"q": "Кто такой кюйші?", "a": "исполнитель и автор кюев", "w": ["продавец", "спортсмен", "учитель труда"], "h": "Кюй играют на домбре"}, {"q": "На каком инструменте играл Құрманғазы?", "a": "на домбре", "w": ["на трубе", "на барабане", "на гобое"], "h": "Он был домбристом"}, {"q": "Кто такая выдающаяся личность?", "a": "человек, который сделал много важного для людей", "w": ["тот, кто громче всех кричит", "тот, кто ничего не делает", "тот, кто всегда выигрывает"], "h": "Таких людей помнят потомки"}, {"q": "Как называется человек, который управляет оркестром?", "a": "дирижёр", "w": ["композитор", "художник", "судья"], "h": "Он показывает жестами"}]);
+GENS.mu38t = mkTF([{"q": "Құрманғазы — композитор-домбрист.", "a": "Верно", "h": "Верно. Он создал много кюев"}, {"q": "Чайковский сочинил «Щелкунчик».", "a": "Верно", "h": "Верно. Это балет"}, {"q": "Бетховен сочинял только казахские кюи.", "a": "Неверно", "h": "Неверно. Бетховен жил в Европе"}, {"q": "Кюй исполняют на домбре.", "a": "Верно", "h": "Верно. Это народный жанр"}, {"q": "Вивальди написал «Времена года».", "a": "Верно", "h": "Верно. Это знаменитые концерты"}, {"q": "Композитор сочиняет музыку.", "a": "Верно", "h": "Верно. Это его работа"}]);
+GENS.mu39q = mkQuiz([{"q": "Что изображает журчание ручья в музыке?", "a": "воду", "w": ["огонь", "гору", "ночь"], "h": "Лёгкие быстрые звуки похожи на ручей"}, {"q": "Как музыка может рассказать о дожде?", "a": "короткими отрывистыми звуками, похожими на капли", "w": ["громким маршем", "тишиной", "криком"], "h": "Стаккато похоже на капли"}, {"q": "Чего нельзя делать в наушниках?", "a": "слушать очень громко", "w": ["слушать тихо", "делать перерывы", "слушать недолго"], "h": "Громкий звук вредит слуху"}, {"q": "Какой праздник отмечают весной?", "a": "Наурыз", "w": ["Новый год", "День Независимости", "День Конституции"], "h": "Наурыз приходит с весной"}, {"q": "Что нужно делать на концерте?", "a": "слушать тихо и аплодировать в конце", "w": ["громко разговаривать", "бегать по залу", "включать музыку на телефоне"], "h": "Нужно уважать артистов и слушателей"}, {"q": "Что общего у музыки и архитектуры?", "a": "в обеих есть части, которые повторяются и сочетаются", "w": ["обе всегда из камня", "в обеих нет порядка", "обе нельзя придумать"], "h": "Ритм, повтор и симметрия есть и в музыке, и в зданиях"}, {"q": "Как провести праздник дружно?", "a": "петь и танцевать вместе", "w": ["ссориться", "молчать", "уйти"], "h": "Праздник — это радость вместе"}, {"q": "Что такое концерт?", "a": "выступление исполнителей перед слушателями", "w": ["урок письма", "спортивная игра", "уборка"], "h": "Артисты показывают музыку"}]);
+GENS.mu39t = mkTF([{"q": "Музыка может рассказывать о природе.", "a": "Верно", "h": "Верно. Звуками можно нарисовать ручей или грозу"}, {"q": "Слушать музыку на полной громкости в наушниках полезно.", "a": "Неверно", "h": "Неверно. Так можно испортить слух"}, {"q": "На концерте нужно слушать, не мешая другим.", "a": "Верно", "h": "Верно. Это уважение"}, {"q": "Наурыз — весенний праздник.", "a": "Верно", "h": "Верно. Его отмечают весной"}, {"q": "В музыке нельзя изобразить воду.", "a": "Неверно", "h": "Неверно. Воду изображают плавными и лёгкими звуками"}, {"q": "Петь вместе с друзьями — хороший отдых.", "a": "Верно", "h": "Верно. Это весело и полезно"}]);
+GENS.mu310q = mkQuiz([{"q": "Что такое импровизация?", "a": "сочинять музыку прямо во время игры", "w": ["читать ноты", "учить стихотворение", "слушать тишину"], "h": "Импровизация рождается сразу"}, {"q": "С чего начать сочинение?", "a": "с идеи и темы", "w": ["с аплодисментов", "с уборки", "с оценки"], "h": "Сначала нужна идея"}, {"q": "Как оценивать работу друга?", "a": "назвать, что понравилось, и дать совет", "w": ["посмеяться", "промолчать со злостью", "сказать только плохое"], "h": "Оценка должна быть доброй"}, {"q": "Что нужно сказать перед показом?", "a": "название и тему работы", "w": ["пароль", "номер телефона", "цвет формы"], "h": "Так слушателям понятнее"}, {"q": "Какой инструмент подойдёт, чтобы передать капли?", "a": "металлофон или треугольник", "w": ["большой барабан", "туба", "контрабас"], "h": "Они звучат звонко и коротко"}, {"q": "Что можно использовать как шумовой инструмент?", "a": "ложки, коробочки, шуршащую бумагу", "w": ["только ноты", "только тишину", "только телефон"], "h": "Шумовые инструменты можно сделать самому"}, {"q": "Что такое ритмический рисунок?", "a": "последовательность долгих и коротких звуков", "w": ["список имён", "цвет ноты", "название жанра"], "h": "Ритм можно прохлопать"}, {"q": "Как провести показ?", "a": "выйти, представить работу, исполнить и поблагодарить", "w": ["убежать", "играть спиной", "не начинать"], "h": "Показ — это маленькое выступление"}]);
+GENS.mu310t = mkTF([{"q": "Музыку можно сочинять самому.", "a": "Верно", "h": "Верно. Для этого нужны идея и звуки"}, {"q": "Над ошибкой друга нужно смеяться.", "a": "Неверно", "h": "Неверно. Лучше поддержать"}, {"q": "Перед показом можно назвать тему работы.", "a": "Верно", "h": "Верно. Так слушателям понятнее"}, {"q": "Импровизация — сочинение музыки прямо во время игры.", "a": "Верно", "h": "Верно. Это быстрая фантазия"}, {"q": "Идеи для музыки можно брать из природы.", "a": "Верно", "h": "Верно. Например, из шума ручья"}, {"q": "Совет другу должен быть добрым.", "a": "Верно", "h": "Верно. Так он поможет"}]);
+const LESSONS = [
+  { id: "mu31", icon: "", title: "Характер музыки", goal: "Определять и сравнивать характер музыки",
+    steps: [
+      Q("mu31s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Музыка умеет рассказывать без слов. Нажимай на карточки.", {"need": 5, "items": [{"k": "характер", "v": "", "t": "Характер музыки — это её настроение: весёлое, нежное, грустное или грозное."}, {"k": "весёлая музыка", "v": "", "t": "Весёлая музыка быстрая и яркая, под неё хочется двигаться."}, {"k": "нежная музыка", "v": "", "t": "Нежная музыка тихая и плавная. Например, колыбельная."}, {"k": "грозная музыка", "v": "", "t": "Грозная музыка громкая и низкая, как гром."}, {"k": "интонация", "v": "", "t": "Мелодию можно узнать по интонации — по её «голосу»."}]}),
+      Q("mu31s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Весёлая, радостная"}, {"e": "", "k": "Нежная, грустная"}, {"e": "", "k": "Тревожная, грозная"}], "items": [{"g": 0, "e": "", "t": "быстрый темп и яркие звуки", "h": "так звучит веселье"}, {"g": 0, "e": "", "t": "плясовая мелодия", "h": "хочется двигаться"}, {"g": 0, "e": "", "t": "звонкие колокольчики", "h": "светлый звук"}, {"g": 1, "e": "", "t": "колыбельная", "h": "нежная, баюкает"}, {"g": 1, "e": "", "t": "медленный темп и тихая мелодия", "h": "успокаивает"}, {"g": 1, "e": "", "t": "протяжная мелодия скрипки", "h": "звучит печально"}, {"g": 2, "e": "", "t": "резкие громкие удары барабана", "h": "звучит грозно"}, {"g": 2, "e": "", "t": "низкие звуки и быстрое нарастание", "h": "появляется тревога"}, {"g": 2, "e": "", "t": "гроза и буря в оркестре", "h": "сильные тревожные звуки"}]}),
+      Q("mu31s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Музыка о природе"}, {"e": "", "k": "Музыка о людях"}], "items": [{"g": 0, "e": "", "t": "шум ручья в пьесе", "h": "музыка рисует воду"}, {"g": 0, "e": "", "t": "пение птиц на флейте", "h": "флейта похожа на птицу"}, {"g": 0, "e": "", "t": "шелест листвы на струнных", "h": "тихие мягкие звуки"}, {"g": 1, "e": "", "t": "колыбельная мамы", "h": "человеческая нежность"}, {"g": 1, "e": "", "t": "танец друзей", "h": "общее веселье"}, {"g": 1, "e": "", "t": "марш солдат", "h": "строй и шаг"}]}),
+      Q("mu31s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu31q"]}),
+      Q("mu31s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu31t"]})
+    ] },
+  { id: "mu32", icon: "", title: "Средства выразительности", goal: "Знать темп, громкость, лад и штрихи",
+    steps: [
+      Q("mu32s1", "infoTap", "Знакомимся с темой", "У музыки есть свои краски. Нажимай на карточки и узнавай, какие.", {"need": 5, "items": [{"k": "темп", "v": "", "t": "Темп — это скорость музыки: быстро, медленно или умеренно."}, {"k": "динамика", "v": "", "t": "Динамика — громкость. «Форте» — громко, «пиано» — тихо."}, {"k": "лад", "v": "", "t": "Мажор звучит светло и радостно, а минор — грустно и задумчиво."}, {"k": "штрихи", "v": "", "t": "Легато — плавно и связно, стаккато — отрывисто."}, {"k": "тембр и ритм", "v": "", "t": "Тембр — окраска звука инструмента, а ритм — чередование долгих и коротких звуков."}]}),
+      Q("mu32s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Темп"}, {"e": "", "k": "Громкость"}, {"e": "", "k": "Штрих"}], "items": [{"g": 0, "e": "", "t": "быстро", "h": "быстрый темп"}, {"g": 0, "e": "", "t": "медленно", "h": "медленный темп"}, {"g": 0, "e": "", "t": "умеренно", "h": "не быстро и не медленно"}, {"g": 1, "e": "", "t": "громко", "h": "сильный звук"}, {"g": 1, "e": "", "t": "тихо", "h": "слабый звук"}, {"g": 1, "e": "", "t": "постепенно громче", "h": "звук нарастает"}, {"g": 2, "e": "", "t": "плавно и связно", "h": "так играют легато"}, {"g": 2, "e": "", "t": "отрывисто", "h": "так играют стаккато"}, {"g": 2, "e": "", "t": "звуки как капли", "h": "звуки отдельные и короткие"}]}),
+      Q("mu32s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Мажор"}, {"e": "", "k": "Минор"}], "items": [{"g": 0, "e": "", "t": "светлая радостная мелодия", "h": "звучит как солнце"}, {"g": 0, "e": "", "t": "бодрая праздничная песня", "h": "светлое звучание"}, {"g": 0, "e": "", "t": "звонкая весёлая песенка", "h": "мажорный лад"}, {"g": 1, "e": "", "t": "печальная задумчивая мелодия", "h": "как пасмурный день"}, {"g": 1, "e": "", "t": "тихая грустная песня", "h": "минорный лад"}, {"g": 1, "e": "", "t": "тоскливая мелодия", "h": "минорное звучание"}]}),
+      Q("mu32s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu32q"]}),
+      Q("mu32s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu32t"]})
+    ] },
+  { id: "mu33", icon: "", title: "Оркестры и инструменты", goal: "Различать инструменты трёх оркестров",
+    steps: [
+      Q("mu33s1", "infoTap", "Знакомимся с темой", "Бывают разные оркестры. Нажимай на карточки и знакомься с ними.", {"need": 5, "items": [{"k": "народный оркестр", "v": "", "t": "В народном оркестре играют домбра, кобыз, сыбызғы и жетіген."}, {"k": "духовой оркестр", "v": "", "t": "В духовом оркестре звучат труба, тромбон и туба."}, {"k": "симфонический оркестр", "v": "", "t": "В симфоническом оркестре играют скрипки, виолончели, арфа и литавры."}, {"k": "группы инструментов", "v": "", "t": "Инструменты бывают струнные, духовые и ударные."}, {"k": "дирижёр", "v": "", "t": "Оркестром управляет дирижёр."}]}),
+      Q("mu33s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Народный оркестр"}, {"e": "", "k": "Духовой оркестр"}, {"e": "", "k": "Симфонический оркестр"}], "items": [{"g": 0, "e": "", "t": "домбра", "h": "две струны, щипковый"}, {"g": 0, "e": "", "t": "кобыз", "h": "смычковый, звук древний"}, {"g": 0, "e": "", "t": "сыбызғы", "h": "духовая дудочка"}, {"g": 1, "e": "", "t": "труба", "h": "медный духовой"}, {"g": 1, "e": "", "t": "тромбон", "h": "с выдвижной кулисой"}, {"g": 1, "e": "", "t": "туба", "h": "самый низкий медный"}, {"g": 2, "e": "", "t": "скрипка", "h": "главный смычковый инструмент"}, {"g": 2, "e": "", "t": "виолончель", "h": "большая, звучит низко"}, {"g": 2, "e": "", "t": "арфа", "h": "струны перебирают пальцами"}]}),
+      Q("mu33s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Струнные"}, {"e": "", "k": "Духовые"}, {"e": "", "k": "Ударные"}], "items": [{"g": 0, "e": "", "t": "скрипка", "h": "смычок касается струн"}, {"g": 0, "e": "", "t": "гитара", "h": "звук от щипков струн"}, {"g": 0, "e": "", "t": "арфа", "h": "струны перебирают пальцами"}, {"g": 1, "e": "", "t": "флейта", "h": "звук рождает воздух"}, {"g": 1, "e": "", "t": "труба", "h": "дуют в мундштук"}, {"g": 1, "e": "", "t": "кларнет", "h": "воздух и трость"}, {"g": 2, "e": "", "t": "барабан", "h": "бьют палочками"}, {"g": 2, "e": "", "t": "треугольник", "h": "звенит от удара"}, {"g": 2, "e": "", "t": "тарелки", "h": "ударяют друг о друга"}]}),
+      Q("mu33s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu33q"]}),
+      Q("mu33s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu33t"]})
+    ] },
+  { id: "mu34", icon: "", title: "Пение и игра на инструментах", goal: "Исполнять по жестам дирижёра и разными штрихами",
+    steps: [
+      Q("mu34s1", "infoTap", "Знакомимся с темой", "Петь и играть нужно красиво и вместе. Нажимай на карточки.", {"need": 5, "items": [{"k": "соло, дуэт, хор", "v": "", "t": "Соло — один исполнитель, дуэт — двое, хор — большой коллектив."}, {"k": "жесты дирижёра", "v": "", "t": "Жесты дирижёра показывают, когда начинать, как громко и в каком темпе петь."}, {"k": "дыхание", "v": "", "t": "Дыхание берём спокойно, между фразами."}, {"k": "осанка", "v": "", "t": "Пой с ровной спиной, чтобы легче дышать."}, {"k": "берегу голос", "v": "", "t": "Кричать вредно, голос нужно беречь."}]}),
+      Q("mu34s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Соло"}, {"e": "", "k": "Хор"}, {"e": "", "k": "Ансамбль"}], "items": [{"g": 0, "e": "", "t": "один певец с песней", "h": "поёт один"}, {"g": 0, "e": "", "t": "один музыкант играет мелодию", "h": "сольное исполнение"}, {"g": 0, "e": "", "t": "сольный номер на концерте", "h": "выступает один"}, {"g": 1, "e": "", "t": "много певцов поют вместе", "h": "большой коллектив"}, {"g": 1, "e": "", "t": "школьный хор на празднике", "h": "поют ребята разных классов"}, {"g": 1, "e": "", "t": "поют по голосам: высокие и низкие", "h": "части хора"}, {"g": 2, "e": "", "t": "дуэт: двое исполнителей", "h": "малый состав"}, {"g": 2, "e": "", "t": "трио: трое музыкантов", "h": "небольшая группа"}, {"g": 2, "e": "", "t": "небольшая группа играет вместе", "h": "ансамбль"}]}),
+      Q("mu34s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Правильно"}, {"e": "", "k": "Неправильно"}], "items": [{"g": 0, "e": "", "t": "петь с ровной спиной", "h": "так легче дышать"}, {"g": 0, "e": "", "t": "начинать по сигналу дирижёра", "h": "поём вместе"}, {"g": 0, "e": "", "t": "слушать товарищей", "h": "поём слаженно"}, {"g": 1, "e": "", "t": "кричать изо всех сил", "h": "можно сорвать голос"}, {"g": 1, "e": "", "t": "петь согнувшись", "h": "трудно дышать"}, {"g": 1, "e": "", "t": "начинать раньше всех", "h": "нет слаженности"}]}),
+      Q("mu34s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu34q"]}),
+      Q("mu34s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu34t"]})
+    ] },
+  { id: "mu35", icon: "", title: "Форма музыки", goal: "Определять строение песен и пьес",
+    steps: [
+      Q("mu35s1", "infoTap", "Знакомимся с темой", "У песен и пьес есть строение. Нажимай на карточки и узнавай, какое.", {"need": 5, "items": [{"k": "куплет", "v": "", "t": "Куплет — часть песни, где слова меняются, а мелодия повторяется."}, {"k": "припев", "v": "", "t": "Припев повторяется после куплетов, и его легко запомнить."}, {"k": "куплетная форма", "v": "", "t": "В куплетной песне нет припева."}, {"k": "куплетно-припевная форма", "v": "", "t": "В куплетно-припевной песне есть и куплеты, и припев."}, {"k": "части", "v": "", "t": "Одночастная пьеса — одна часть, двухчастная — две разные части: А и Б."}]}),
+      Q("mu35s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Куплетная"}, {"e": "", "k": "Куплетно-припевная"}], "items": [{"g": 0, "e": "", "t": "каждый куплет поют на одну мелодию, а припева нет", "h": "куплеты повторяются по музыке"}, {"g": 0, "e": "", "t": "песня-рассказ из нескольких куплетов без припева", "h": "куплетная форма"}, {"g": 0, "e": "", "t": "слова новые, а мелодия та же, припева нет", "h": "куплеты"}, {"g": 1, "e": "", "t": "после каждого куплета повторяется припев", "h": "куплет и припев"}, {"g": 1, "e": "", "t": "в песне есть куплеты и припев", "h": "куплетно-припевная"}, {"g": 1, "e": "", "t": "припев запоминается, а куплеты разные по словам", "h": "припев повторяется"}]}),
+      Q("mu35s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Одночастная"}, {"e": "", "k": "Двухчастная"}], "items": [{"g": 0, "e": "", "t": "короткая пьеса с одной мелодией", "h": "одна часть"}, {"g": 0, "e": "", "t": "небольшая музыка без новой темы", "h": "одна часть"}, {"g": 0, "e": "", "t": "миниатюра", "h": "коротко и цельно"}, {"g": 1, "e": "", "t": "сначала спокойная часть, потом быстрая", "h": "две разные части"}, {"g": 1, "e": "", "t": "две разные темы одна за другой", "h": "А и Б"}, {"g": 1, "e": "", "t": "в середине музыка меняется на новую", "h": "вторая часть"}]}),
+      Q("mu35s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu35q"]}),
+      Q("mu35s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu35t"]})
+    ] },
+  { id: "mu36", icon: "", title: "Жанры и стили", goal: "Различать музыкальные жанры и стили",
+    steps: [
+      Q("mu36s1", "infoTap", "Знакомимся с темой", "Музыка бывает разной. Нажимай на карточки и знакомься с жанрами.", {"need": 5, "items": [{"k": "песня", "v": "", "t": "Песню поют. Колыбельная и гимн — тоже песни."}, {"k": "танец", "v": "", "t": "Танцуют под вальс, польку и казахскую қара жорға."}, {"k": "марш", "v": "", "t": "Марш чёткий и бодрый, под него идут в ногу."}, {"k": "народная музыка", "v": "", "t": "Народную музыку передают из поколения в поколение. К ней относятся кюи."}, {"k": "классическая музыка", "v": "", "t": "Классическую музыку сочиняют композиторы: симфонии, оперы, балеты."}]}),
+      Q("mu36s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Песня"}, {"e": "", "k": "Танец"}, {"e": "", "k": "Марш"}], "items": [{"g": 0, "e": "", "t": "музыка, которую поют со словами", "h": "песня"}, {"g": 0, "e": "", "t": "колыбельная", "h": "нежная песня для малыша"}, {"g": 0, "e": "", "t": "гимн", "h": "торжественная песня страны"}, {"g": 1, "e": "", "t": "вальс", "h": "плавный танец на три счёта"}, {"g": 1, "e": "", "t": "полька", "h": "быстрый весёлый танец"}, {"g": 1, "e": "", "t": "қара жорға", "h": "казахский народный танец"}, {"g": 2, "e": "", "t": "бодрый ритм под шаг", "h": "идти в ногу"}, {"g": 2, "e": "", "t": "музыка для парада", "h": "чёткий шаг"}, {"g": 2, "e": "", "t": "духовой оркестр на параде", "h": "марш"}]}),
+      Q("mu36s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Народная музыка"}, {"e": "", "k": "Классическая музыка"}], "items": [{"g": 0, "e": "", "t": "кюй на домбре", "h": "народная музыка"}, {"g": 0, "e": "", "t": "старинная песня, которую передавали из поколения в поколение", "h": "фольклор"}, {"g": 0, "e": "", "t": "казахская народная песня", "h": "создана народом"}, {"g": 1, "e": "", "t": "симфония Бетховена", "h": "написал композитор"}, {"g": 1, "e": "", "t": "опера или балет в театре", "h": "классика"}, {"g": 1, "e": "", "t": "произведение для симфонического оркестра", "h": "классическая музыка"}]}),
+      Q("mu36s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu36q"]}),
+      Q("mu36s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu36t"]})
+    ] },
+  { id: "mu37", icon: "", title: "Ноты и мелодии", goal: "Читать ноты и знаки простых мелодий",
+    steps: [
+      Q("mu37s1", "infoTap", "Знакомимся с темой", "Музыку можно записать. Нажимай на карточки и учись читать ноты.", {"need": 5, "items": [{"k": "звукоряд", "v": "", "t": "В звукоряде семь нот: до, ре, ми, фа, соль, ля, си."}, {"k": "нотный стан", "v": "", "t": "Ноты пишут на нотном стане из пяти линеек."}, {"k": "скрипичный ключ", "v": "", "t": "Скрипичный ключ стоит в начале нотной строки."}, {"k": "пауза", "v": "", "t": "Пауза — это знак тишины."}, {"k": "такт", "v": "", "t": "Тактовая черта делит музыку на такты."}]}),
+      Q("mu37s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Ноты"}, {"e": "", "k": "Знаки записи"}], "items": [{"g": 0, "e": "", "t": "до", "h": "первая нота звукоряда"}, {"g": 0, "e": "", "t": "ре", "h": "вторая нота"}, {"g": 0, "e": "", "t": "ми", "h": "третья нота"}, {"g": 1, "e": "", "t": "скрипичный ключ", "h": "стоит в начале нотной строки"}, {"g": 1, "e": "", "t": "нотный стан из пяти линеек", "h": "на нём пишут ноты"}, {"g": 1, "e": "", "t": "пауза", "h": "знак тишины"}]}),
+      Q("mu37s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Высокие звуки"}, {"e": "", "k": "Низкие звуки"}], "items": [{"g": 0, "e": "", "t": "писк птички", "h": "высокий"}, {"g": 0, "e": "", "t": "звон колокольчика", "h": "высокий"}, {"g": 0, "e": "", "t": "тонкий голос свирели", "h": "высокий"}, {"g": 1, "e": "", "t": "гул тубы", "h": "низкий"}, {"g": 1, "e": "", "t": "рычание медведя", "h": "низкий"}, {"g": 1, "e": "", "t": "бас контрабаса", "h": "низкий"}]}),
+      Q("mu37s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu37q"]}),
+      Q("mu37s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu37t"]})
+    ] },
+  { id: "mu38", icon: "", title: "Композиторы и их музыка", goal: "Знать выдающихся композиторов и их произведения",
+    steps: [
+      Q("mu38s1", "infoTap", "Знакомимся с темой", "Музыку сочиняют композиторы. Нажимай на карточки и знакомься с ними.", {"need": 5, "items": [{"k": "композитор", "v": "", "t": "Композитор — человек, который сочиняет музыку."}, {"k": "Құрманғазы", "v": "", "t": "Құрманғазы — великий домбрист. Он сочинил кюи «Сарыарқа», «Адай» и «Балбырауын»."}, {"k": "Чайковский", "v": "", "t": "Чайковский написал балет «Щелкунчик» и пьесы «Времена года»."}, {"k": "Моцарт", "v": "", "t": "Моцарт сочинил «Маленькую ночную серенаду» и оперу «Волшебная флейта»."}, {"k": "Абай", "v": "", "t": "Абай был поэтом, и его песни поют до сих пор."}]}),
+      Q("mu38s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Из Казахстана"}, {"e": "", "k": "Из других стран"}], "items": [{"g": 0, "e": "", "t": "Құрманғазы", "h": "композитор-домбрист"}, {"g": 0, "e": "", "t": "Абай", "h": "поэт, его песни поют и сегодня"}, {"g": 0, "e": "", "t": "Біржан сал", "h": "певец-акын"}, {"g": 1, "e": "", "t": "Чайковский", "h": "русский композитор, «Щелкунчик»"}, {"g": 1, "e": "", "t": "Моцарт", "h": "австрийский композитор"}, {"g": 1, "e": "", "t": "Бетховен", "h": "немецкий композитор, «К Элизе»"}]}),
+      Q("mu38s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Құрманғазы"}, {"e": "", "k": "Чайковский"}, {"e": "", "k": "Моцарт"}], "items": [{"g": 0, "e": "", "t": "«Сарыарқа»", "h": "кюй"}, {"g": 0, "e": "", "t": "«Адай»", "h": "кюй"}, {"g": 0, "e": "", "t": "«Балбырауын»", "h": "кюй"}, {"g": 1, "e": "", "t": "«Щелкунчик»", "h": "балет"}, {"g": 1, "e": "", "t": "«Времена года»", "h": "цикл пьес для фортепиано"}, {"g": 1, "e": "", "t": "«Детский альбом»", "h": "пьесы для детей"}, {"g": 2, "e": "", "t": "«Маленькая ночная серенада»", "h": "для струнных"}, {"g": 2, "e": "", "t": "«Волшебная флейта»", "h": "опера"}, {"g": 2, "e": "", "t": "«Турецкое рондо»", "h": "пьеса для фортепиано"}]}),
+      Q("mu38s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu38q"]}),
+      Q("mu38s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu38t"]})
+    ] },
+  { id: "mu39", icon: "", title: "Музыка вокруг нас", goal: "Находить музыку в природе, воде и праздниках",
+    steps: [
+      Q("mu39s1", "infoTap", "Знакомимся с темой", "Музыка живёт везде. Нажимай на карточки и слушай мир.", {"need": 5, "items": [{"k": "природа в музыке", "v": "", "t": "Флейта может звучать как птица, а струнные — как шелест листьев."}, {"k": "вода в музыке", "v": "", "t": "Плавные звуки изображают волны, а отрывистые — капли дождя."}, {"k": "праздники", "v": "", "t": "Наурыз, Новый год и день рождения звучат песнями и танцами."}, {"k": "музыка и архитектура", "v": "", "t": "В музыке и в зданиях есть повторы, части и симметрия."}, {"k": "береги слух", "v": "", "t": "Громкая музыка в наушниках вредит слуху."}]}),
+      Q("mu39s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Природа"}, {"e": "", "k": "Вода"}, {"e": "", "k": "Праздник"}], "items": [{"g": 0, "e": "", "t": "шелест листьев", "h": "тихие шорохи струнных"}, {"g": 0, "e": "", "t": "пение птиц", "h": "высокие звуки флейты"}, {"g": 0, "e": "", "t": "восход солнца", "h": "музыка постепенно светлеет"}, {"g": 1, "e": "", "t": "журчание ручья", "h": "быстрые лёгкие звуки"}, {"g": 1, "e": "", "t": "морские волны", "h": "плавные волны мелодии"}, {"g": 1, "e": "", "t": "капли дождя", "h": "короткие отрывистые звуки"}, {"g": 2, "e": "", "t": "Наурыз", "h": "песни и танцы весны"}, {"g": 2, "e": "", "t": "Новый год", "h": "весёлая музыка у ёлки"}, {"g": 2, "e": "", "t": "день рождения", "h": "поздравительная песня"}]}),
+      Q("mu39s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Музыка на пользу"}, {"e": "", "k": "Музыка во вред"}], "items": [{"g": 0, "e": "", "t": "слушать любимую музыку", "h": "поднимает настроение"}, {"g": 0, "e": "", "t": "петь с друзьями", "h": "радость вместе"}, {"g": 0, "e": "", "t": "ходить на концерт", "h": "узнаёшь новое"}, {"g": 1, "e": "", "t": "слушать музыку очень громко в наушниках", "h": "вредит слуху"}, {"g": 1, "e": "", "t": "слушать музыку всю ночь", "h": "не хватает сна"}, {"g": 1, "e": "", "t": "шуметь во время концерта", "h": "мешает слушателям"}]}),
+      Q("mu39s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu39q"]}),
+      Q("mu39s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu39t"]})
+    ] },
+  { id: "mu310", icon: "", title: "Сочиняем и показываем", goal: "Придумывать идеи и представлять музыкальные работы",
+    steps: [
+      Q("mu310s1", "infoTap", "Знакомимся с темой", "Ты тоже можешь стать композитором. Нажимай на карточки.", {"need": 5, "items": [{"k": "идея", "v": "", "t": "Сначала придумай тему: ручей, доброта или ночной лес."}, {"k": "средства", "v": "", "t": "Выбери темп, громкость и инструменты, которые передадут тему."}, {"k": "импровизация", "v": "", "t": "Импровизация — сочинение музыки прямо во время игры."}, {"k": "показ", "v": "", "t": "Назови работу и тему, исполни без спешки и поблагодари слушателей."}, {"k": "оценка", "v": "", "t": "Оценивай по-доброму: скажи, что понравилось, и дай совет."}]}),
+      Q("mu310s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Тема работы"}, {"e": "", "k": "Средство выразительности"}], "items": [{"g": 0, "e": "", "t": "весенний ручей", "h": "тема для пьесы"}, {"g": 0, "e": "", "t": "доброта", "h": "тема для песни"}, {"g": 0, "e": "", "t": "ночной лес", "h": "тема для пьесы"}, {"g": 1, "e": "", "t": "медленный темп", "h": "музыка успокаивает"}, {"g": 1, "e": "", "t": "низкий барабан", "h": "звучит грозно"}, {"g": 1, "e": "", "t": "звонкий металлофон", "h": "светлый звук"}]}),
+      Q("mu310s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Хороший показ"}, {"e": "", "k": "Плохой показ"}], "items": [{"g": 0, "e": "", "t": "назвать работу и тему", "h": "слушателям понятно"}, {"g": 0, "e": "", "t": "поблагодарить слушателей", "h": "вежливость"}, {"g": 0, "e": "", "t": "выслушать советы друзей", "h": "помогают улучшить"}, {"g": 1, "e": "", "t": "торопиться и играть невнятно", "h": "ничего не слышно"}, {"g": 1, "e": "", "t": "смеяться над ошибками друга", "h": "обижает"}, {"g": 1, "e": "", "t": "не слушать других", "h": "неуважение"}]}),
+      Q("mu310s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["mu310q"]}),
+      Q("mu310s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["mu310t"]})
+    ] },
+  { id: "mu3fin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("mu3fin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал про характер музыки, оркестры, жанры, композиторов и учился сочинять. Слушай музыку каждый день!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
