@@ -88,6 +88,18 @@ html[dir=rtl] .subjects .direction-btn::after{content:"‹";}
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 22 Q150 0 300 20 T600 20 T900 20 T1200 20 V40 H0Z' fill='%23FFF8E8'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;
 }
 
+/* кнопки быстрого доступа — справа вверху, над Барсиком */
+.hero-grid .copy .qk{
+  position:absolute; z-index:6; top:6px; right:clamp(16px,4vw,56px);
+  display:flex; flex-wrap:nowrap; justify-content:flex-end; gap:10px; margin:0;
+}
+.hero-grid .copy .qk a,.hero-grid .copy .qk button{min-height:42px; font-size:.95rem; padding:4px 14px 4px 10px; gap:8px; border-width:2.5px; white-space:nowrap;}
+.hero-grid .copy .qk .ic{width:28px; height:26px;}
+.hero-grid .copy .qk .qk-hint{position:absolute; top:calc(100% + 8px); right:0; width:max-content; max-width:min(320px,90vw); font-size:.85rem; flex-basis:auto;}
+@media (min-width:881px) and (max-width:1180px){
+  .hero-grid .copy .qk{flex-direction:column; align-items:stretch; top:6px;}
+}
+
 /* ===== узкий экран ===== */
 @media (max-width:880px){
   .stage{--W:min(100%,560px);}
@@ -96,6 +108,10 @@ html[dir=rtl] .subjects .direction-btn::after{content:"‹";}
   .copy{padding:78px 20px 6px; text-align:center;}
   .copy h1{font-size:clamp(1.9rem,8.2vw,2.8rem);}
   .copy p.sub{margin:0 auto; font-size:1rem;}
+  .hero-grid .copy .qk{position:static; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; margin:16px 0 4px;}
+  .hero-grid .copy .qk a,.hero-grid .copy .qk button{font-size:1.1rem; min-height:48px; padding:6px 18px 6px 12px; gap:10px; border-width:3px;}
+  .hero-grid .copy .qk .ic{width:34px; height:30px;}
+  .hero-grid .copy .qk .qk-hint{position:static; width:auto; flex-basis:100%;}
   .scene{width:100%; align-self:stretch;}
   .scene::before{
     content:""; position:absolute; left:0; right:0; bottom:0; top:57%; z-index:0;
