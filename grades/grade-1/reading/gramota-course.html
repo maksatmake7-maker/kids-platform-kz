@@ -375,6 +375,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -632,6 +633,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: из каких звуков и букв состоит слово --- */
 SCENES.soundLetter = function(stage, st, ctx){
@@ -763,6 +765,9 @@ SCENES.stressTap = function(stage, st, ctx){
 const LESSONS = [
   { id: 'g1', icon: '🔤', title: 'Звуки и буквы', goal: 'Различать звуки и буквы',
     steps: [
+      { id: 'g1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Звуки и буквы',
+        src: '../../../assets/video/grade1-reading-gramota-g1.mp4', poster: '../../../assets/video/grade1-reading-gramota-g1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g1s1', scene: 'soundLetter', gate: true, title: 'Из чего состоит слово',
         text: 'Привет! Это Барсик. Слова состоят из звуков и букв. Звуки мы слышим и говорим. Буквы мы видим и пишем. Нажимай на картинки и смотри, как слово собирается из звуков и букв.' },
       { id: 'g1s2', scene: 'quiz', gate: true, count: 6, gens: ['soundLetterQ'], title: 'Звуки или буквы?',
@@ -772,6 +777,9 @@ const LESSONS = [
     ] },
   { id: 'g2', icon: '🏠', title: 'Гласные и согласные', goal: 'Отличать гласные от согласных',
     steps: [
+      { id: 'g2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Гласные и согласные',
+        src: '../../../assets/video/grade1-reading-gramota-g2.mp4', poster: '../../../assets/video/grade1-reading-gramota-g2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g2s1', scene: 'vowelHouse', gate: true, title: 'Два домика',
         text: 'Гласные звуки можно петь: воздух идёт свободно. Это а, о, у, ы, э, я, ё, ю, е, и. А согласным звукам что-то мешает: губы, зубы или язык. Разложи буквы по домикам.' },
       { id: 'g2s2', scene: 'quiz', gate: true, count: 6, gens: ['isVowel'], title: 'Гласная или согласная?',
@@ -781,6 +789,9 @@ const LESSONS = [
     ] },
   { id: 'g3', icon: '👏', title: 'Слоги', goal: 'Делить слова на слоги',
     steps: [
+      { id: 'g3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слоги',
+        src: '../../../assets/video/grade1-reading-gramota-g3.mp4', poster: '../../../assets/video/grade1-reading-gramota-g3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g3s1', scene: 'syllableClap', gate: true, title: 'Хлопаем по слогам',
         text: 'Слово можно разделить на слоги. В каждом слоге есть одна гласная. Сколько в слове гласных, столько и слогов. Нажми на картинку и хлопай вместе со мной.' },
       { id: 'g3s2', scene: 'quiz', gate: true, count: 6, gens: ['syllCount'], title: 'Сколько слогов?',
@@ -790,6 +801,9 @@ const LESSONS = [
     ] },
   { id: 'g4', icon: '💬', title: 'Слово и предложение', goal: 'Различать слово и предложение, ставить знак в конце',
     steps: [
+      { id: 'g4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слово и предложение',
+        src: '../../../assets/video/grade1-reading-gramota-g4.mp4', poster: '../../../assets/video/grade1-reading-gramota-g4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g4s1', scene: 'sentBuild', gate: true, title: 'Собери предложение',
         text: 'Из слов получаются предложения. Предложение пишут с большой буквы, а в конце ставят знак. Собери предложения из слов по порядку.' },
       { id: 'g4s2', scene: 'quiz', gate: true, count: 6, gens: ['sentOrWord'], title: 'Слово или предложение?',
@@ -799,6 +813,9 @@ const LESSONS = [
     ] },
   { id: 'g5', icon: '🎯', title: 'Ударение', goal: 'Находить ударный слог',
     steps: [
+      { id: 'g5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Ударение',
+        src: '../../../assets/video/grade1-reading-gramota-g5.mp4', poster: '../../../assets/video/grade1-reading-gramota-g5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g5s1', scene: 'stressTap', gate: true, title: 'Ударный слог',
         text: 'В слове один слог мы произносим громче и дольше. Он называется ударным. Над его гласной ставят знак ударения. Найди ударный слог.' },
       { id: 'g5s2', scene: 'quiz', gate: true, count: 6, gens: ['stressQ'], title: 'Какой слог ударный?',
@@ -1041,6 +1058,9 @@ const Q1 = '<br><br>' + ST1;
 const NEW_LESSONS = [
   { id: 'g6', icon: '👂', title: 'Слушаем рассказ', goal: 'Понимать, о ком и о чём текст, пересказывать по порядку, предполагать содержание по заголовку',
     steps: [
+      { id: 'g6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слушаем рассказ',
+        src: '../../../assets/video/grade1-reading-gramota-g6.mp4', poster: '../../../assets/video/grade1-reading-gramota-g6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g6s1', scene: 'quiz', gate: true, count: 4, gens: ['st1a'], title: 'О ком и о чём рассказ', text: 'Нажми «Послушать» и узнай рассказ. Потом ответь на вопросы.' + Q1 },
       { id: 'g6s2', scene: 'seqBuild', gate: true, title: 'Расскажи по порядку', q: 'Расставь события рассказа по порядку.', hint: 'Вспомни рассказ: что было сначала?', ok: 'Ты пересказал рассказ по порядку!',
         items: [{ e: '🌳', t: 'Барсик пошёл гулять в парк' }, { e: '🐦', t: 'Он увидел больного воробья' }, { e: '🩺', t: 'Он отнёс воробья к доктору' }, { e: '☀️', t: 'Воробей снова полетел' }],
@@ -1050,11 +1070,17 @@ const NEW_LESSONS = [
     ] },
   { id: 'g7', icon: '🤝', title: 'Вежливые слова', goal: 'Использовать речевой этикет, слова-описания и интонацию',
     steps: [
+      { id: 'g7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Вежливые слова',
+        src: '../../../assets/video/grade1-reading-gramota-g7.mp4', poster: '../../../assets/video/grade1-reading-gramota-g7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g7s1', scene: 'quiz', gate: true, count: 7, gens: ['polite'], title: 'Что сказать?', text: 'Вежливые слова: здравствуйте, пожалуйста, спасибо, извините, до свидания. Выбери подходящие слова.' },
       { id: 'g7s2', scene: 'quiz', gate: true, count: 6, gens: ['desc'], title: 'Описываем и сравниваем', text: 'Слова-описания рассказывают, какой предмет. Ещё мы показываем чувства лицом и голосом.' }
     ] },
   { id: 'g8', icon: '🖼️', title: 'Рассказ по картинкам', goal: 'Составлять рассказ по сюжетным картинкам, картинный план, передавать информацию рисунком',
     steps: [
+      { id: 'g8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Рассказ по картинкам',
+        src: '../../../assets/video/grade1-reading-gramota-g8.mp4', poster: '../../../assets/video/grade1-reading-gramota-g8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g8s1', scene: 'seqBuild', gate: true, title: 'Цветок для мамы', q: 'Расставь картинки по порядку и расскажи рассказ.', hint: 'Что сделали сначала?', ok: 'Рассказ готов!',
         items: [{ e: '🌱', t: 'Мальчик посадил семечко' }, { e: '💧', t: 'Он полил росток' }, { e: '🌻', t: 'Вырос красивый цветок' }, { e: '🎁', t: 'Мальчик подарил цветок маме' }],
         text: 'По картинкам можно составить рассказ. Нажимай на картинки в том порядке, как всё происходило.' },
@@ -1069,6 +1095,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g9', icon: '📖', title: 'Читаем слова и предложения', goal: 'Читать и составлять схемы слов и предложений, знать виды чтения',
     steps: [
+      { id: 'g9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Читаем слова и предложения',
+        src: '../../../assets/video/grade1-reading-gramota-g9.mp4', poster: '../../../assets/video/grade1-reading-gramota-g9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g9s1', scene: 'infoTap', gate: true, title: 'Как мы читаем', cards: [
         { e: '👏', b: 'По слогам', tx: 'Сначала читаем по слогам: ма-ма. Это плавное слоговое чтение.' },
         { e: '📚', b: 'Целыми словами', tx: 'Потом читаем целыми словами: мама, школа, книга. Так читать быстрее.' },
@@ -1079,6 +1108,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g10', icon: '🧩', title: 'Части текста и жанры', goal: 'Определять начало, середину и конец; задавать вопросы к тексту; сравнивать сказку, рассказ и стихотворение',
     steps: [
+      { id: 'g10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Части текста и жанры',
+        src: '../../../assets/video/grade1-reading-gramota-g10.mp4', poster: '../../../assets/video/grade1-reading-gramota-g10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g10s1', scene: 'seqBuild', gate: true, title: 'Начало, середина, конец', q: 'Расставь части сказки по порядку: начало, середина, конец.', hint: 'В начале рассказывают, кто жил. В конце — чем всё закончилось.', ok: 'Все части на своих местах!',
         items: [{ t: 'Жил-был маленький гномик. Он любил делать подарки.' }, { t: 'Однажды он нашёл красный камешек и решил подарить его друзьям.' }, { t: 'Друзья обрадовались, и они вместе пошли пить чай.' }],
         text: 'У каждого текста есть начало, середина и конец. Расставь части сказки по порядку.' },
@@ -1087,6 +1119,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g11', icon: '🅰️', title: 'Буквы Я, Е, Ё, Ю', goal: 'Понимать роль йотированных букв и роль гласной после согласной',
     steps: [
+      { id: 'g11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Буквы Я, Е, Ё, Ю',
+        src: '../../../assets/video/grade1-reading-gramota-g11.mp4', poster: '../../../assets/video/grade1-reading-gramota-g11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g11s1', scene: 'infoTap', gate: true, title: 'Особые гласные', cards: [
         { e: '🅰️', b: 'Я', nm: 'Буква Я', tx: 'В начале слова и после гласной Я даёт два звука: [й] и [а]. Например, яма: [й][а][м][а].' },
         { e: '🌲', b: 'Ё', nm: 'Буква Ё', tx: 'В слове ёлка Ё даёт два звука: [й] и [о].' },
@@ -1098,6 +1133,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g12', icon: '🔑', title: 'Мягкий и твёрдый знаки', goal: 'Понимать роль Ь и Ъ, писать слова с мягким знаком',
     steps: [
+      { id: 'g12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Мягкий и твёрдый знаки',
+        src: '../../../assets/video/grade1-reading-gramota-g12.mp4', poster: '../../../assets/video/grade1-reading-gramota-g12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g12s1', scene: 'infoTap', gate: true, title: 'Знаки без звука', cards: [
         { e: '🪶', b: 'Мягкий знак', nm: 'Мягкий знак Ь', tx: 'Мягкий знак звука не даёт. Он показывает, что согласный мягкий: конь, день, соль.' },
         { e: '✉️', b: 'Где пишем', nm: 'Где пишется Ь', tx: 'Мягкий знак пишется на конце слова (конь, день) и в середине слова (письмо, пальто).' },
@@ -1108,6 +1146,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g13', icon: '✍️', title: 'Правила письма', goal: 'Применять правила правописания: жи–ши, ча–ща, чу–щу, большая буква, перенос, слова с несовпадением',
     steps: [
+      { id: 'g13v0', scene: 'video', gate: true, silent: true, title: 'Видео: Правила письма',
+        src: '../../../assets/video/grade1-reading-gramota-g13.mp4', poster: '../../../assets/video/grade1-reading-gramota-g13.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g13s1', scene: 'quiz', gate: true, count: 9, gens: ['zhi'], title: 'Жи–ши, ча–ща, чу–щу', text: 'После Ж и Ш пишем И. После Ч и Щ пишем А и У. Запомни: жи-ши пиши с буквой И, ча-ща пиши с буквой А, чу-щу пиши с буквой У.' },
       { id: 'g13s2', scene: 'quiz', gate: true, count: 6, gens: ['caps'], title: 'Большая буква', text: 'С большой буквы пишем начало предложения, имена людей, клички животных и названия городов.' },
       { id: 'g13s3', scene: 'quiz', gate: true, count: 5, gens: ['wrap'], title: 'Переносим слова', text: 'Слова переносят по слогам. Одну букву на строке не оставляют.' },
@@ -1115,6 +1156,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g14', icon: '🔠', title: 'Слова-предметы, признаки и действия', goal: 'Различать слова-предметы, слова-признаки, слова-действия; изменять по числам',
     steps: [
+      { id: 'g14v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слова-предметы, признаки и действия',
+        src: '../../../assets/video/grade1-reading-gramota-g14.mp4', poster: '../../../assets/video/grade1-reading-gramota-g14.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g14s1', scene: 'infoTap', gate: true, title: 'Три вида слов', cards: [
         { e: '🏠', b: 'Предмет', nm: 'Слова-предметы', tx: 'Отвечают на вопросы «кто?» «что?»: кот, стол, дом, девочка.' },
         { e: '🎨', b: 'Признак', nm: 'Слова-признаки', tx: 'Отвечают на вопрос «какой?»: красный, большой, весёлый.' },
@@ -1125,6 +1169,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'g15', icon: '📝', title: 'Пишем сами', goal: 'Писать буквы, составлять и писать предложения и короткие тексты, проверять написание',
     steps: [
+      { id: 'g15v0', scene: 'video', gate: true, silent: true, title: 'Видео: Пишем сами',
+        src: '../../../assets/video/grade1-reading-gramota-g15.mp4', poster: '../../../assets/video/grade1-reading-gramota-g15.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g15s1', scene: 'freeDraw', gate: true, title: 'Обводим букву А', q: 'Обведи букву пальцем или мышкой.', guide: 'А', bg: '#FFFDF4', colors: ['#25324A', '#2F7BE6'], need: 3, text: 'Буквы пишут плавно и аккуратно. Обведи светлую букву А несколько раз.' },
       { id: 'g15s2', scene: 'freeDraw', gate: true, title: 'Обводим букву М', q: 'Обведи букву пальцем или мышкой.', guide: 'М', bg: '#FFFDF4', colors: ['#25324A', '#2F7BE6'], need: 3, text: 'Теперь обведи светлую букву М.' },
       { id: 'g15s3', scene: 'quiz', gate: true, count: 3, gens: ['topic'], title: 'Предложение на тему', text: 'Предложение можно составить из опорных слов. Не забудь большую букву в начале и точку в конце.' },

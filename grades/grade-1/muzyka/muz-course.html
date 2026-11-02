@@ -363,6 +363,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -688,6 +689,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function tapScene(stage, ctx, o){
   const seen = {};
   stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
@@ -721,6 +723,9 @@ SCENES.pianoKeys = function(stage, st, ctx){
 const LESSONS = [
   { id: 'u1', icon: '🎻', title: 'Музыкальные инструменты', goal: 'Знать музыкальные инструменты',
     steps: [
+      { id: 'u1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Музыкальные инструменты',
+        src: '../../../assets/video/grade1-muzyka-muz-u1.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u1s1', scene: 'instTap', gate: true, title: 'Знакомимся с инструментами',
         text: 'Привет! Это Барсик. Сегодня мы поговорим о музыке. Музыку играют на разных инструментах. Есть фортепиано, скрипка, домбра, барабан, бубен, ксилофон, треугольник, конырау и маракасы. Нажимай на инструменты, и я покажу, как каждый из них звучит.' },
       { id: 'u1s2', scene: 'quiz', gate: true, count: 6, gens: ['instName'], title: 'Как называется инструмент?',
@@ -730,6 +735,9 @@ const LESSONS = [
     ] },
   { id: 'u2', icon: '🎧', title: 'Слушаем инструменты', goal: 'Узнавать инструменты по звучанию; знать шумовые инструменты',
     steps: [
+      { id: 'u2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слушаем инструменты',
+        src: '../../../assets/video/grade1-muzyka-muz-u2.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u2s1', scene: 'quiz', gate: true, count: 6, gens: ['instListen'], title: 'Послушай и найди',
         text: 'Теперь слушай внимательно. Нажми на кнопку с динамиком, послушай звук и найди инструмент, который так звучит. Не забудь включить звук.' },
       { id: 'u2s2', scene: 'quiz', gate: true, count: 6, gens: ['noiseYN'], title: 'Шумовые инструменты',
@@ -739,6 +747,9 @@ const LESSONS = [
     ] },
   { id: 'u3', icon: '🎶', title: 'Домбра и конырау', goal: 'Знать казахские народные инструменты',
     steps: [
+      { id: 'u3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Домбра и конырау',
+        src: '../../../assets/video/grade1-muzyka-muz-u3.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u3s1', scene: 'folkTap', gate: true, title: 'Народные инструменты',
         text: 'У казахского народа есть свои народные инструменты. Это домбра, у неё две струны, и конырау, который звенит, как колокольчик. Нажми на каждый, послушай и рассмотри.' },
       { id: 'u3s2', scene: 'quiz', gate: true, count: 6, gens: ['folkWho'], title: 'Какой инструмент народный?',
@@ -748,6 +759,9 @@ const LESSONS = [
     ] },
   { id: 'u4', icon: '🎹', title: 'Высоко, громко, быстро', goal: 'Различать высокие и низкие, громкие и тихие, быстрые и медленные звуки',
     steps: [
+      { id: 'u4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Высоко, громко, быстро',
+        src: '../../../assets/video/grade1-muzyka-muz-u4.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u4s1', scene: 'pianoKeys', gate: true, title: 'Высокие и низкие звуки',
         text: 'Звуки бывают высокие и низкие. Низкий звук гудит, как большой медведь, а высокий звенит тонко, как птичка. На фортепиано слева звуки ниже, а справа выше. Нажми на низкий и высокий звук, а потом поиграй на клавишах.' },
       { id: 'u4s2', scene: 'quiz', gate: true, count: 6, gens: ['cmpPitch', 'cmpLoud'], title: 'Выше или ниже, громче или тише',
@@ -757,6 +771,9 @@ const LESSONS = [
     ] },
   { id: 'u5', icon: '🥁', title: 'Ритм', goal: 'Слышать ритм: короткие и длинные звуки',
     steps: [
+      { id: 'u5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Ритм',
+        src: '../../../assets/video/grade1-muzyka-muz-u5.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u5s1', scene: 'rhythmTap', gate: true, title: 'Что такое ритм',
         text: 'У музыки есть ритм. Звуки бывают короткие и длинные. Короткий звук мы рисуем точкой, а длинный чёрточкой. Нажимай на карточки и слушай ритм.' },
       { id: 'u5s2', scene: 'quiz', gate: true, count: 6, gens: ['rhythmQ'], title: 'Какой ритм?',
@@ -1053,6 +1070,9 @@ SCENES.present = function(stage, st, ctx){
 const NEW_LESSONS = [
   { id: 'u6', icon: '🎤', title: 'Как правильно петь', goal: 'Исполнять песни по правилам пения и понимать жесты дирижёра',
     steps: [
+      { id: 'u6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Как правильно петь',
+        src: '../../../assets/video/grade1-muzyka-muz-u6.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u6s1', scene: 'quiz', gate: true, count: 8, gens: ['singYN'], title: 'Правила пения', text: 'Чтобы красиво петь, нужно знать правила. Сиди или стой прямо, вдохни спокойно, открывай рот и пой чистым голосом. Не кричи и береги горло. Реши, верное ли правило.' },
       { id: 'u6s2', scene: 'infoTap', gate: true, title: 'Жесты дирижёра', cards: [
         { e: '🙌', b: 'Приготовиться', nm: 'Приготовиться', tx: 'Дирижёр поднимает руки. Это значит: внимание и вдох перед началом.' },
@@ -1066,6 +1086,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u7', icon: '🎶', title: 'Куплет и припев', goal: 'Различать строение песни: куплет и припев',
     steps: [
+      { id: 'u7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Куплет и припев',
+        src: '../../../assets/video/grade1-muzyka-muz-u7.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u7s1', scene: 'infoTap', gate: true, title: 'Из чего состоит песня', cards: [
         { e: '📖', b: 'Куплет', nm: 'Куплет', tx: 'В куплете рассказывается история. В каждом куплете слова новые. Например: «Утром солнышко встаёт, Барсик весело поёт».', snd: 'verse' },
         { e: '🔁', b: 'Припев', nm: 'Припев', tx: 'Припев повторяется после каждого куплета. Слова те же, и его легко запомнить. Например: «Ля-ля-ля, ля-ля-ля, здравствуй, новый день, земля!»', snd: 'chorus' }],
@@ -1077,6 +1100,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u8', icon: '🥁', title: 'Песня, танец, марш', goal: 'Знать музыкальные жанры',
     steps: [
+      { id: 'u8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Песня, танец, марш',
+        src: '../../../assets/video/grade1-muzyka-muz-u8.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u8s1', scene: 'infoTap', gate: true, title: 'Три жанра', cards: [
         { e: '🎤', b: 'Песня', nm: 'Песня', tx: 'Песню можно петь. Её мелодия плавная, напевная. Например, колыбельная.', snd: 'lullaby' },
         { e: '💃', b: 'Танец', nm: 'Танец', tx: 'Под танец можно кружиться и двигаться. Например, вальс.', snd: 'waltz' },
@@ -1086,6 +1112,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u9', icon: '🎭', title: 'Музыка и настроение', goal: 'Определять на слух средства выразительности и передавать характер музыки',
     steps: [
+      { id: 'u9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Музыка и настроение',
+        src: '../../../assets/video/grade1-muzyka-muz-u9.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u9s1', scene: 'infoTap', gate: true, title: 'Какая бывает музыка', cards: [
         { e: '☀️', b: 'Весёлая', nm: 'Весёлая музыка', tx: 'Она быстрая, звонкая и лёгкая.', snd: 'happy' },
         { e: '🌧️', b: 'Грустная', nm: 'Грустная музыка', tx: 'Она медленная и тихая, как дождик.', snd: 'sad' },
@@ -1106,6 +1135,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u10', icon: '📚', title: 'Музыкальные слова', goal: 'Знать основные музыкальные понятия',
     steps: [
+      { id: 'u10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Музыкальные слова',
+        src: '../../../assets/video/grade1-muzyka-muz-u10.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u10s1', scene: 'infoTap', gate: true, title: 'Слова о музыке', cards: [
         { e: '🎵', b: 'Мелодия', tx: 'Главная «линия» музыки, которую можно напеть.' },
         { e: '🥁', b: 'Ритм', tx: 'Порядок длинных и коротких звуков.' },
@@ -1121,6 +1153,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u11', icon: '🎼', title: 'Знакомство с нотами', goal: 'Знать основы нотной грамоты',
     steps: [
+      { id: 'u11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Знакомство с нотами',
+        src: '../../../assets/video/grade1-muzyka-muz-u11.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u11s1', scene: 'infoTap', gate: true, title: 'Нотный стан', cards: [
         { e: '📏', b: 'Нотный стан', nm: 'Нотный стан', tx: 'Это пять линеек. На них и между ними записывают ноты.' },
         { e: '🎼', b: 'Ключ', nm: 'Скрипичный ключ', tx: 'Скрипичный ключ стоит в начале нотного стана.' },
@@ -1133,6 +1168,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u12', icon: '🪘', title: 'Играем вместе', goal: 'Сопровождать исполнение музыки игрой на музыкальных инструментах',
     steps: [
+      { id: 'u12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Играем вместе',
+        src: '../../../assets/video/grade1-muzyka-muz-u12.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u12s1', scene: 'padPlay', gate: true, title: 'Сопровождаем мелодию', rounds: [
         { bpm: 80, tune: 'jacques', task: 'Играй на каждую долю, когда загорается кружок.', strong: false },
         { bpm: 80, tune: 'twinkle', task: 'Теперь играй только на первую долю (отмечена жёлтым), раз в четыре кружка.', strong: true }],
@@ -1140,6 +1178,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'u13', icon: '🌟', title: 'Я композитор', goal: 'Сочинять простые музыкальные работы и представлять свою работу',
     steps: [
+      { id: 'u13v0', scene: 'video', gate: true, silent: true, title: 'Видео: Я композитор',
+        src: '../../../assets/video/grade1-muzyka-muz-u13.mp4', poster: '../../../assets/video/grade1-muzyka-muz-u13.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'u13s1', scene: 'composer', gate: true, title: 'Сочини мелодию', text: 'Теперь ты композитор! Выбери в каждом столбце по одной ноте. Чем выше клетка, тем выше звук. Потом нажми «Сыграть».' },
       { id: 'u13s2', scene: 'present', gate: true, title: 'Представь свою мелодию', text: 'Композитор представляет свою мелодию слушателям. Придумай название, скажи, какая она по характеру и как её играть. Потом сыграй для всех.' },
       { id: 'u13s3', scene: 'quiz', gate: true, count: 12, gens: ['instName', 'instListen', 'noiseYN', 'cmpPitch', 'rhythmQ', 'singYN', 'gest', 'struct', 'genre', 'mood', 'tuneName', 'terms', 'noteName', 'noteDur'], title: 'Смешанные задания', text: 'Последняя проверка курса: инструменты, песня, жанры, настроение и ноты.' },
