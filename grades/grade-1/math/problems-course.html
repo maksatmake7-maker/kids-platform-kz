@@ -358,6 +358,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -605,6 +606,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: ищем вопрос задачи --- */
@@ -740,6 +742,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'q1', icon: '📖', title: 'Из чего состоит задача', goal: 'Отличать условие от вопроса задачи',
     steps: [
+      { id: 'q1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Из чего состоит задача',
+        src: '../../../assets/video/grade1-math-problems-q1.mp4', poster: '../../../assets/video/grade1-math-problems-q1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'q1s1', scene: 'taskParts', gate: true, title: 'Найди вопрос задачи',
         text: 'Привет! Это Барсик. В задаче есть условие, где сказано, что известно, и вопрос, где сказано, что нужно найти. Вопрос заканчивается знаком вопроса. Нажми на предложение, которое является вопросом.' },
       { id: 'q1s2', scene: 'quiz', gate: true, count: 8, gens: ['qOrCond'], title: 'Условие или вопрос',
@@ -747,6 +752,9 @@ const LESSONS = [
     ] },
   { id: 'q2', icon: '➕', title: 'Сумма и остаток', goal: 'Записывать задачу кратко, рисовать схему и решать задачи на сумму и остаток',
     steps: [
+      { id: 'q2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сумма и остаток',
+        src: '../../../assets/video/grade1-math-problems-q2.mp4', poster: '../../../assets/video/grade1-math-problems-q2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'q2s1', scene: 'bars', gate: true, title: 'Краткая запись и схема',
         text: 'Чтобы понять задачу, её можно записать коротко и нарисовать схему. Выбирай сумму или остаток, нажимай кнопку и смотри, как строится схема и как находится ответ.' },
       { id: 'q2s2', scene: 'quiz', gate: true, count: 6, gens: ['sumTask'], title: 'Находим сумму',
@@ -758,6 +766,9 @@ const LESSONS = [
     ] },
   { id: 'q3', icon: '⚖️', title: 'Больше и меньше', goal: 'Решать задачи «на несколько больше, меньше» и на разностное сравнение',
     steps: [
+      { id: 'q3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Больше и меньше',
+        src: '../../../assets/video/grade1-math-problems-q3.mp4', poster: '../../../assets/video/grade1-math-problems-q3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'q3s1', scene: 'moreLess', gate: true, title: 'На сколько больше',
         text: 'Меняй числа кнопками и смотри на предметы. Лишние предметы показывают, на сколько одно число больше другого. Чтобы это узнать, из большего числа вычитают меньшее.' },
       { id: 'q3s2', scene: 'quiz', gate: true, count: 6, gens: ['incTask'], title: 'На несколько больше или меньше',
@@ -767,6 +778,9 @@ const LESSONS = [
     ] },
   { id: 'q4', icon: '❓', title: 'Неизвестное число', goal: 'Находить неизвестное в равенстве и в задаче',
     steps: [
+      { id: 'q4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Неизвестное число',
+        src: '../../../assets/video/grade1-math-problems-q4.mp4', poster: '../../../assets/video/grade1-math-problems-q4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'q4s1', scene: 'boxEq', gate: true, title: 'Число в квадрате',
         text: 'В равенстве может быть спрятано неизвестное число. Мы показываем его квадратом. Подбирай число кнопками, пока равенство не станет верным.' },
       { id: 'q4s2', scene: 'quiz', gate: true, count: 6, gens: ['unknownEq'], title: 'Найди число в квадрате',
@@ -776,6 +790,9 @@ const LESSONS = [
     ] },
   { id: 'q5', icon: '🔁', title: 'Обратные задачи и повторение', goal: 'Составлять обратные задачи и повторить всё изученное',
     steps: [
+      { id: 'q5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Обратные задачи и повторение',
+        src: '../../../assets/video/grade1-math-problems-q5.mp4', poster: '../../../assets/video/grade1-math-problems-q5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'q5s1', scene: 'quiz', gate: true, count: 5, gens: ['whichInverse'], title: 'Какая задача обратная',
         text: 'У каждой задачи есть обратная. В ней ответ становится известным, а искать нужно то, что было известно раньше. Выбери обратную задачу.' },
       { id: 'q5s2', scene: 'quiz', gate: true, count: 10, gens: ['qOrCond', 'sumTask', 'restTask', 'pickOp', 'incTask', 'diffTask', 'unknownEq', 'unknownTask', 'whichInverse'], title: 'Смешанные задания',

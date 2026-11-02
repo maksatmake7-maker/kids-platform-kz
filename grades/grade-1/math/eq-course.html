@@ -338,6 +338,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -628,6 +629,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: разложи равенства --- */
 SCENES.eqSort = function(stage, st, ctx){
@@ -685,6 +687,9 @@ SCENES.letterBox = function(stage, st, ctx){
 const LESSONS = [
   { id: 'e1', icon: '⚖️', title: 'Верные и неверные равенства', goal: 'Отличать верное равенство от неверного',
     steps: [
+      { id: 'e1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Верные и неверные равенства',
+        src: '../../../assets/video/grade1-math-eq-e1.mp4', poster: '../../../assets/video/grade1-math-eq-e1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e1s1', scene: 'eqSort', gate: true, title: 'Верно или нет?',
         text: 'Привет! Это Барсик. Запись со знаком «равно» называется равенством. Равенство бывает верным, а бывает неверным. Сосчитай левую часть и сравни с правой.' },
       { id: 'e1s2', scene: 'quiz', gate: true, count: 6, gens: ['eqTrue'], title: 'Верное или неверное?',
@@ -695,6 +700,9 @@ const LESSONS = [
     ] },
   { id: 'e2', icon: '🔤', title: 'Равенство, неравенство, уравнение', goal: 'Различать выражение, равенство, неравенство и уравнение',
     steps: [
+      { id: 'e2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Равенство, неравенство, уравнение',
+        src: '../../../assets/video/grade1-math-eq-e2.mp4', poster: '../../../assets/video/grade1-math-eq-e2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e2s1', scene: 'quiz', gate: true, count: 6, gens: ['cmpExpr'], title: 'Сравниваем выражения',
         text: 'Найди значения обоих выражений и сравни их. Если слева больше, ставь «больше», если меньше, ставь «меньше», если одинаково, ставь «равно».' },
       { id: 'e2s2', scene: 'quiz', gate: true, count: 8, gens: ['recName'], title: 'Как называется запись?',
@@ -703,6 +711,9 @@ const LESSONS = [
     ] },
   { id: 'e3', icon: '🔍', title: 'Уравнения: ищем неизвестное', goal: 'Решать уравнения подбором и с помощью вычитания',
     steps: [
+      { id: 'e3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Уравнения: ищем неизвестное',
+        src: '../../../assets/video/grade1-math-eq-e3.mp4', poster: '../../../assets/video/grade1-math-eq-e3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e3s1', scene: 'boxPick', gate: true, title: 'Подбери число в окошко',
         text: 'В уравнении спрятано неизвестное число — окошко. Подставляй числа, пока равенство не станет верным. Этот способ называется подбором.' },
       { id: 'e3s2', scene: 'quiz', gate: true, count: 6, gens: ['solveBox'], title: 'Найди неизвестное',
@@ -712,6 +723,9 @@ const LESSONS = [
     ] },
   { id: 'e4', icon: '🔗', title: 'Сложение и вычитание дружат', goal: 'Использовать связь сложения и вычитания',
     steps: [
+      { id: 'e4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сложение и вычитание дружат',
+        src: '../../../assets/video/grade1-math-eq-e4.mp4', poster: '../../../assets/video/grade1-math-eq-e4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e4s1', scene: 'quiz', gate: true, count: 6, gens: ['linkQ'], title: 'Одно число — три записи',
         text: 'Из одного сложения получаются два вычитания. Если 3 + 4 = 7, то 7 − 3 = 4 и 7 − 4 = 3. Пользуйся этим, когда ищешь неизвестное число.' },
       { id: 'e4s2', scene: 'quiz', gate: true, count: 5, gens: ['famSelect'], title: 'Найди пару',
@@ -719,6 +733,9 @@ const LESSONS = [
     ] },
   { id: 'e5', icon: '🔠', title: 'Буква вместо числа', goal: 'Находить значение выражения с буквой',
     steps: [
+      { id: 'e5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Буква вместо числа',
+        src: '../../../assets/video/grade1-math-eq-e5.mp4', poster: '../../../assets/video/grade1-math-eq-e5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e5s1', scene: 'letterBox', gate: true, title: 'Что такое a',
         text: 'Математики часто обозначают число буквой. Буква может быть разным числом, поэтому значение выражения может меняться.' },
       { id: 'e5s2', scene: 'quiz', gate: true, count: 6, gens: ['letterVal'], title: 'Подставь число',

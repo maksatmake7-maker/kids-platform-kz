@@ -303,6 +303,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -538,6 +539,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Уроки 1 и 5: соединяем яблоки парами --- */
@@ -691,6 +693,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'c1', icon: '⚖️', title: 'Больше, меньше, поровну', goal: 'Сравнивать группы предметов с помощью пар',
     steps: [
+      { id: 'c1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Больше, меньше, поровну',
+        src: '../../../assets/video/grade1-math-compare-c1.mp4', poster: '../../../assets/video/grade1-math-compare-c1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c1s1', scene: 'pairs', gate: true, title: 'Соединяем яблоки парами',
         text: 'Привет! Это Барсик. У меня два ряда яблок: красные и зелёные. Чтобы узнать, каких больше, считать необязательно. Нажми «Соединить парами»: яблоки без пары покажут, где больше.' },
       { id: 'c1s2', scene: 'quiz', gate: true, count: 5, gens: ['moreFewer'], title: 'Где больше яблок?',
@@ -700,6 +705,9 @@ const LESSONS = [
     ] },
   { id: 'c2', icon: '🐊', title: 'Знаки «больше», «меньше», «равно»', goal: 'Ставить знаки >, < и =',
     steps: [
+      { id: 'c2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Знаки «больше», «меньше», «равно»',
+        src: '../../../assets/video/grade1-math-compare-c2.mp4', poster: '../../../assets/video/grade1-math-compare-c2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c2s1', scene: 'signs', gate: true, title: 'Знаки для сравнения',
         text: 'Для сравнения есть знаки. Знак похож на пасть крокодила: она всегда открыта к большему числу. Меняй числа кнопками и смотри, какой знак получается. Найди все три знака!' },
       { id: 'c2s2', scene: 'quiz', gate: true, count: 6, gens: ['signQ'], title: 'Поставь знак',
@@ -709,6 +717,9 @@ const LESSONS = [
     ] },
   { id: 'c3', icon: '📏', title: 'Сравниваем на числовом луче', goal: 'Понимать: чем правее число, тем оно больше',
     steps: [
+      { id: 'c3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сравниваем на числовом луче',
+        src: '../../../assets/video/grade1-math-compare-c3.mp4', poster: '../../../assets/video/grade1-math-compare-c3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c3s1', scene: 'lineCmp', gate: true, title: 'Правее — больше',
         text: 'На числовом луче числа стоят по порядку. Чем правее число, тем оно больше. Нажми на два числа, и я покажу, какое из них больше.' },
       { id: 'c3s2', scene: 'quiz', gate: true, count: 6, gens: ['signQ'], title: 'Знаки для чисел',
@@ -720,6 +731,9 @@ const LESSONS = [
     ] },
   { id: 'c4', icon: '➕', title: 'Сравниваем выражения', goal: 'Сравнивать число с суммой или разностью',
     steps: [
+      { id: 'c4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сравниваем выражения',
+        src: '../../../assets/video/grade1-math-compare-c4.mp4', poster: '../../../assets/video/grade1-math-compare-c4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c4s1', scene: 'exprDemo', gate: true, title: 'Сначала считаем, потом сравниваем',
         text: 'Сравнивать можно не только числа, но и выражения. Сначала найди значение выражения, потом сравни. Нажми кнопку и смотри, как это делается.' },
       { id: 'c4s2', scene: 'quiz', gate: true, count: 6, gens: ['exprSign'], title: 'Выражение и число',
@@ -729,6 +743,9 @@ const LESSONS = [
     ] },
   { id: 'c5', icon: '🔎', title: 'На сколько больше или меньше?', goal: 'Находить разницу между числами',
     steps: [
+      { id: 'c5v0', scene: 'video', gate: true, silent: true, title: 'Видео: На сколько больше или меньше?',
+        src: '../../../assets/video/grade1-math-compare-c5.mp4', poster: '../../../assets/video/grade1-math-compare-c5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c5s1', scene: 'pairs', mode: 'diff', gate: true, title: 'Сколько лишних?',
         text: 'Иногда нужно узнать, на сколько одних яблок больше, чем других. Соединяй яблоки парами: те, что останутся без пары, и покажут разницу. Её можно найти и вычитанием!' },
       { id: 'c5s2', scene: 'quiz', gate: true, count: 5, gens: ['diffPics'], title: 'Разница на картинках',

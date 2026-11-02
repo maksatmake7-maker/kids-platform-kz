@@ -241,6 +241,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -477,6 +478,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: забираем яблоки --- */
@@ -759,6 +761,9 @@ SCENES.quiz = function(stage, st, ctx){
 const LESSONS = [
   { id: 'l1', icon: '🍎', title: 'Что такое вычитание?', goal: 'Убирать часть и читать запись 7 − 3 = 4',
     steps: [
+      { id: 'l1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое вычитание?',
+        src: '../../../assets/video/grade1-math-subtraction-l1.mp4', poster: '../../../assets/video/grade1-math-subtraction-l1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l1s1', scene: 'take', gate: true, title: 'Забираем яблоки',
         text: 'Привет! Это снова Барсик. В большой корзине лежат яблоки. Когда мы <b>забираем</b> часть, мы выполняем <b>вычитание</b>. Нажми «Забрать» и посмотри, сколько останется!' },
       { id: 'l1s2', scene: 'builderMinus', gate: true, title: 'Убираем сами',
@@ -772,6 +777,9 @@ const LESSONS = [
     ] },
   { id: 'l2', icon: '🐰', title: 'Вычитание на числовом луче', goal: 'Вычитать прыжками влево по числовому лучу',
     steps: [
+      { id: 'l2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Вычитание на числовом луче',
+        src: '../../../assets/video/grade1-math-subtraction-l2.mp4', poster: '../../../assets/video/grade1-math-subtraction-l2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l2s1', scene: 'nlDemoBack', gate: true, title: 'Заяц прыгает назад',
         text: 'Складывая, заяц прыгал вправо. Чтобы вычесть, он прыгает <b>влево</b>. Выбери, где он стоит и сколько прыжков сделает, и нажми «Прыгай»!' },
       { id: 'l2s2', scene: 'nlPredictBack', gate: true, title: 'Куда он приземлится?',
@@ -783,6 +791,9 @@ const LESSONS = [
     ] },
   { id: 'l3', icon: '🤝', title: 'Сложение и вычитание — друзья', goal: 'Понимать, как связаны сложение и вычитание',
     steps: [
+      { id: 'l3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сложение и вычитание — друзья',
+        src: '../../../assets/video/grade1-math-subtraction-l3.mp4', poster: '../../../assets/video/grade1-math-subtraction-l3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l3s1', scene: 'family', gate: true, title: 'Семья из трёх чисел',
         text: 'Три числа могут дружить: из них получается сразу четыре равенства — два на сложение и два на вычитание. Нажми «Другая тройка», чтобы посмотреть ещё.' },
       { id: 'l3s2', scene: 'check', gate: true, title: 'Проверка вычитания',
@@ -794,6 +805,9 @@ const LESSONS = [
     ] },
   { id: 'l4', icon: '🔟', title: 'Вычитание из 10 и особые случаи', goal: 'Вычитать из 10, вычитать ноль и столько же',
     steps: [
+      { id: 'l4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Вычитание из 10 и особые случаи',
+        src: '../../../assets/video/grade1-math-subtraction-l4.mp4', poster: '../../../assets/video/grade1-math-subtraction-l4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l4s1', scene: 'tenMinus', gate: true, title: 'Из десяти',
         text: 'Десять — очень удобное число. Выбирай, сколько кружков забрать из десяти, и смотри, сколько останется. Заметь: то, что осталось, и то, что забрали, вместе снова дают десять!' },
       { id: 'l4s2', scene: 'minusSpecial', gate: true, title: 'Минус ноль и минус столько же',
@@ -805,6 +819,9 @@ const LESSONS = [
     ] },
   { id: 'l5', icon: '📝', title: 'Задачи на вычитание', goal: 'Решать задачи и записывать их кратко',
     steps: [
+      { id: 'l5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Задачи на вычитание',
+        src: '../../../assets/video/grade1-math-subtraction-l5.mp4', poster: '../../../assets/video/grade1-math-subtraction-l5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l5s1', scene: 'story', gate: true, title: 'Как записать задачу',
         text: 'Задача — это маленькая история с вопросом. Её удобно записать коротко: что было, что ушло, что осталось. Нажми «Составить краткую запись» и смотри!' },
       { id: 'l5s2', scene: 'quiz', gate: true, count: 4, gens: ['storyQ'], title: 'Решаем задачи',

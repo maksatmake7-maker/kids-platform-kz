@@ -348,6 +348,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -621,6 +622,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: части суток --- */
 SCENES.dayParts = function(stage, st, ctx){
@@ -719,6 +721,9 @@ SCENES.clockSet = function(stage, st, ctx){
 const LESSONS = [
   { id: 't1', icon: '🌅', title: 'Утро, день, вечер, ночь', goal: 'Знать части суток и их порядок',
     steps: [
+      { id: 't1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Утро, день, вечер, ночь',
+        src: '../../../assets/video/grade1-math-time-t1.mp4', poster: '../../../assets/video/grade1-math-time-t1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't1s1', scene: 'dayParts', gate: true, title: 'Из чего состоят сутки',
         text: 'Привет! Это Барсик. Сутки делятся на четыре части: утро, день, вечер и ночь. Нажимай на каждую и смотри, чем я занимаюсь.' },
       { id: 't1s2', scene: 'orderDay', gate: true, title: 'Что за чем идёт',
@@ -728,6 +733,9 @@ const LESSONS = [
     ] },
   { id: 't2', icon: '⏳', title: 'Раньше и позже', goal: 'Определять, что было раньше, что позже, и различать вчера, сегодня, завтра',
     steps: [
+      { id: 't2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Раньше и позже',
+        src: '../../../assets/video/grade1-math-time-t2.mp4', poster: '../../../assets/video/grade1-math-time-t2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't2s1', scene: 'quiz', gate: true, count: 6, gens: ['beforeAfter'], title: 'Что было раньше?',
         text: 'Сначала что-то случается, а потом — следующее. То, что случилось первым, было раньше. То, что потом, — позже. Выбери нужное событие.' },
       { id: 't2s2', scene: 'quiz', gate: true, count: 6, gens: ['ydt'], title: 'Вчера, сегодня, завтра',
@@ -735,6 +743,9 @@ const LESSONS = [
     ] },
   { id: 't3', icon: '🕒', title: 'Часы показывают час', goal: 'Читать и ставить часы с точностью до часа',
     steps: [
+      { id: 't3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Часы показывают час',
+        src: '../../../assets/video/grade1-math-time-t3.mp4', poster: '../../../assets/video/grade1-math-time-t3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't3s1', scene: 'clockLearn', gate: true, title: 'Как устроены часы',
         text: 'На часах две стрелки. Короткая красная — часовая, она показывает час. Длинная стрелка в начале каждого часа смотрит на число двенадцать. Минуты ты узнаешь позже, а пока читаем только ровный час. Нажимай на числа.' },
       { id: 't3s2', scene: 'clockSet', gate: true, title: 'Поставь часы',
@@ -744,6 +755,9 @@ const LESSONS = [
     ] },
   { id: 't5', icon: '📅', title: 'Неделя, месяц, год', goal: 'Различать единицы времени: день, неделя, месяц, год',
     steps: [
+      { id: 't5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Неделя, месяц, год',
+        src: '../../../assets/video/grade1-math-time-t5.mp4', poster: '../../../assets/video/grade1-math-time-t5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't5s1', scene: 'weekTap', gate: true, title: 'Дни недели',
         text: 'Сутки — это один день. Семь дней вместе — это неделя. Расставь дни недели по порядку.' },
       { id: 't5s2', scene: 'quiz', gate: true, count: 6, gens: ['dayNext', 'howManyUnits'], title: 'Какой день дальше?',
@@ -755,6 +769,9 @@ const LESSONS = [
     ] },
   { id: 't4', icon: '🕗', title: 'Время в нашем дне', goal: 'Связывать время на часах с событиями дня',
     steps: [
+      { id: 't4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Время в нашем дне',
+        src: '../../../assets/video/grade1-math-time-t4.mp4', poster: '../../../assets/video/grade1-math-time-t4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't4s1', scene: 'quiz', gate: true, count: 5, gens: ['routine'], title: 'Какие часы нужны?',
         text: 'Барсик рассказывает, когда он что делает. Найди часы, которые показывают это время.' },
       { id: 't4s2', scene: 'quiz', gate: true, count: 5, gens: ['hourLater'], title: 'Через час и час назад',

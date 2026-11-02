@@ -343,6 +343,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -573,6 +574,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: знакомство с монетами --- */
 SCENES.coinTap = function(stage, st, ctx){
@@ -623,6 +625,9 @@ SCENES.coinPay = function(stage, st, ctx){
 const LESSONS = [
   { id: 'c1', icon: '💰', title: 'Монеты Казахстана', goal: 'Знать монеты в 1, 2, 5, 10 и 20 тенге',
     steps: [
+      { id: 'c1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Монеты Казахстана',
+        src: '../../../assets/video/grade1-math-coins-c1.mp4', poster: '../../../assets/video/grade1-math-coins-c1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c1s1', scene: 'coinTap', gate: true, title: 'Знакомимся с монетами',
         text: 'Привет! Это Барсик. В Казахстане платят тенге. Есть монеты в 1, 2, 5, 10 и 20 тенге. Нажимай на каждую монету и смотри.' },
       { id: 'c1s2', scene: 'quiz', gate: true, count: 6, gens: ['coinBig'], title: 'Какая дороже?',
@@ -630,6 +635,9 @@ const LESSONS = [
     ] },
   { id: 'c2', icon: '🧮', title: 'Сколько денег?', goal: 'Считать, сколько тенге в нескольких монетах',
     steps: [
+      { id: 'c2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сколько денег?',
+        src: '../../../assets/video/grade1-math-coins-c2.mp4', poster: '../../../assets/video/grade1-math-coins-c2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c2s1', scene: 'quiz', gate: true, count: 6, gens: ['coinCount'], title: 'Считаем монеты',
         text: 'Чтобы узнать, сколько всего денег, сложи числа на монетах. Начни с самых больших монет.' },
       { id: 'c2s2', scene: 'quiz', gate: true, count: 5, gens: ['exchange'], title: 'Разменяем монету',
@@ -637,6 +645,9 @@ const LESSONS = [
     ] },
   { id: 'c3', icon: '🛒', title: 'Покупаем', goal: 'Платить ровно столько, сколько стоит покупка',
     steps: [
+      { id: 'c3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Покупаем',
+        src: '../../../assets/video/grade1-math-coins-c3.mp4', poster: '../../../assets/video/grade1-math-coins-c3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c3s1', scene: 'coinPay', gate: true, title: 'Заплати ровно',
         text: 'В магазине у каждой вещи есть цена. Выбирай монеты из кошелька так, чтобы вышла ровно цена, и нажимай «Заплатить».' },
       { id: 'c3s2', scene: 'quiz', gate: true, count: 5, gens: ['whichCoins'], title: 'Чем заплатить?',
@@ -646,6 +657,9 @@ const LESSONS = [
     ] },
   { id: 'c4', icon: '💱', title: 'Хватит ли денег? Сдача', goal: 'Сравнивать деньги с ценой и находить сдачу',
     steps: [
+      { id: 'c4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Хватит ли денег? Сдача',
+        src: '../../../assets/video/grade1-math-coins-c4.mp4', poster: '../../../assets/video/grade1-math-coins-c4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'c4s1', scene: 'quiz', gate: true, count: 6, gens: ['canBuy'], title: 'Хватит ли денег?',
         text: 'Сравни, сколько денег есть и сколько стоит вещь. Если денег не меньше, чем цена, то хватит.' },
       { id: 'c4s2', scene: 'quiz', gate: true, count: 6, gens: ['change'], title: 'Сдача',

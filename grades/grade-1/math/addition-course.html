@@ -241,6 +241,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -473,6 +474,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: объединяем яблоки --- */
 SCENES.join = function(stage, st, ctx){
@@ -828,6 +830,9 @@ SCENES.quiz = function(stage, st, ctx){
 const LESSONS = [
   { id: 'l1', icon: '🍎', title: 'Что такое сложение?', goal: 'Объединять группы и читать запись 3 + 2 = 5',
     steps: [
+      { id: 'l1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое сложение?',
+        src: '../../../assets/video/grade1-math-addition-l1.mp4', poster: '../../../assets/video/grade1-math-addition-l1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l1s1', scene: 'join', gate: true, title: 'Объединяем яблоки',
         text: 'Привет! Я Барсик. У меня в одной корзине яблоки, и в другой тоже. Когда мы <b>объединяем</b> две группы в одну, мы выполняем <b>сложение</b>. Нажми на кнопку «Объединить»!' },
       { id: 'l1s2', scene: 'builder', gate: true, title: 'Собираем числа',
@@ -841,6 +846,9 @@ const LESSONS = [
     ] },
   { id: 'l2', icon: '🐰', title: 'Сложение на числовом луче', goal: 'Прибавлять прыжками вправо по числовому лучу',
     steps: [
+      { id: 'l2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сложение на числовом луче',
+        src: '../../../assets/video/grade1-math-addition-l2.mp4', poster: '../../../assets/video/grade1-math-addition-l2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l2s1', scene: 'nlDemo', gate: true, title: 'Заяц прыгает по лучу',
         text: 'Числовой луч — это линия, на которой числа стоят по порядку. Прибавить — значит прыгнуть вправо. Выбери, где стоит заяц и сколько прыжков сделать, и нажми «Прыгай»!' },
       { id: 'l2s2', scene: 'nlPredict', gate: true, title: 'Куда он приземлится?',
@@ -852,6 +860,9 @@ const LESSONS = [
     ] },
   { id: 'l3', icon: '🏠', title: 'Состав числа', goal: 'Знать, из каких чисел состоит число до 10',
     steps: [
+      { id: 'l3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Состав числа',
+        src: '../../../assets/video/grade1-math-addition-l3.mp4', poster: '../../../assets/video/grade1-math-addition-l3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l3s1', scene: 'house', gate: true, title: 'Домик числа',
         text: 'У каждого числа есть домик с двумя окошками. Все кружки живут в этих окошках. Меняй, сколько кружков в левом окошке, — в правом будет столько, сколько осталось. Это и есть <b>состав числа</b>.' },
       { id: 'l3s2', scene: 'allpairs', title: 'Все способы',
@@ -863,6 +874,9 @@ const LESSONS = [
     ] },
   { id: 'l4', icon: '🔄', title: 'Свойства сложения', goal: 'Менять слагаемые местами, прибавлять 0 и 1',
     steps: [
+      { id: 'l4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Свойства сложения',
+        src: '../../../assets/video/grade1-math-addition-l4.mp4', poster: '../../../assets/video/grade1-math-addition-l4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l4s1', scene: 'swap', gate: true, title: 'От перемены мест…',
         text: 'Что будет, если поменять слагаемые местами? Нажми на кнопку и посмотри, как изменится сумма.' },
       { id: 'l4s2', scene: 'zeroOne', gate: true, title: 'Плюс ноль и плюс один',
@@ -874,6 +888,9 @@ const LESSONS = [
     ] },
   { id: 'l5', icon: '🧮', title: 'Таблица сложения', goal: 'Находить суммы в таблице и запоминать их',
     steps: [
+      { id: 'l5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Таблица сложения',
+        src: '../../../assets/video/grade1-math-addition-l5.mp4', poster: '../../../assets/video/grade1-math-addition-l5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l5s1', scene: 'table', gate: true, title: 'Волшебная таблица',
         text: 'Это таблица сложения. Строка — первое слагаемое, столбец — второе, а в клетке — сумма. Нажимай на клетки и смотри, что подсвечивается.' },
       { id: 'l5s2', scene: 'findsum', gate: true, title: 'Охота за суммой',

@@ -308,6 +308,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -575,6 +576,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: заполняем рамку десятка --- */
@@ -739,6 +741,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 't1', icon: '🔟', title: 'Что такое десяток', goal: 'Понимать, что 10 единиц — это 1 десяток',
     steps: [
+      { id: 't1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое десяток',
+        src: '../../../assets/video/grade1-math-teens-t1.mp4', poster: '../../../assets/video/grade1-math-teens-t1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't1s1', scene: 'tenFrame', gate: true, title: 'Заполняем рамку',
         text: 'Привет! Это Барсик. Видишь рамку с десятью клетками? Добавляй кружки кнопкой «плюс», пока рамка не заполнится. Десять единиц вместе называют десятком.' },
       { id: 't1s2', scene: 'quiz', gate: true, count: 5, gens: ['toTen'], title: 'Сколько не хватает?',
@@ -748,6 +753,9 @@ const LESSONS = [
     ] },
   { id: 't2', icon: '🧺', title: 'Числа от 11 до 19', goal: 'Видеть в числе десяток и единицы',
     steps: [
+      { id: 't2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Числа от 11 до 19',
+        src: '../../../assets/video/grade1-math-teens-t2.mp4', poster: '../../../assets/video/grade1-math-teens-t2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't2s1', scene: 'teenBuild', gate: true, title: 'Десяток и ещё немного',
         text: 'Когда в рамке десять, а рядом лежат ещё кружки, получаются числа от одиннадцати до девятнадцати. Меняй число кнопками и смотри: это всегда десяток и несколько единиц.' },
       { id: 't2s2', scene: 'quiz', gate: true, count: 5, gens: ['teenPics'], title: 'Сколько всего?',
@@ -757,6 +765,9 @@ const LESSONS = [
     ] },
   { id: 't3', icon: '📖', title: 'Читаем и пишем числа 11–20', goal: 'Читать, называть и записывать числа от 11 до 20',
     steps: [
+      { id: 't3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Читаем и пишем числа 11–20',
+        src: '../../../assets/video/grade1-math-teens-t3.mp4', poster: '../../../assets/video/grade1-math-teens-t3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't3s1', scene: 'teenWords', gate: true, title: 'Как называется число',
         text: 'У каждого числа есть своё имя. В названии слышно «надцать», то есть «на десять». Нажимай на числа, и я покажу, как они записываются и читаются. Слева стоит десяток, справа единицы.' },
       { id: 't3s2', scene: 'quiz', gate: true, count: 6, gens: ['teenWord'], title: 'Читаем и записываем',
@@ -766,6 +777,9 @@ const LESSONS = [
     ] },
   { id: 't4', icon: '🚂', title: 'Считаем до двадцати', goal: 'Считать вперёд и назад в пределах 20 и сравнивать числа',
     steps: [
+      { id: 't4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Считаем до двадцати',
+        src: '../../../assets/video/grade1-math-teens-t4.mp4', poster: '../../../assets/video/grade1-math-teens-t4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't4s1', scene: 'teenLine', gate: true, title: 'Лесенка от 10 до 20',
         text: 'Числа продолжают стоять по порядку. Нажми на любое число, и я покажу, какое стоит перед ним, а какое после.' },
       { id: 't4s2', scene: 'quiz', gate: true, count: 6, gens: ['teenMissing', 'teenNextPrev'], title: 'Потерялись числа',
@@ -777,6 +791,9 @@ const LESSONS = [
     ] },
   { id: 't6', icon: '✌️', title: 'Считаем по 2 до двадцати', goal: 'Считать группами по 2 в пределах 20',
     steps: [
+      { id: 't6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Считаем по 2 до двадцати',
+        src: '../../../assets/video/grade1-math-teens-t6.mp4', poster: '../../../assets/video/grade1-math-teens-t6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't6s1', scene: 'skip2', gate: true, title: 'Счёт по 2',
         text: 'Предметы можно считать парами, то есть по два: два, четыре, шесть и так до двадцати. Нажми кнопку и посчитай вместе со мной!' },
       { id: 't6s2', scene: 'quiz', gate: true, count: 6, gens: ['skip2Missing'], title: 'Продолжи счёт',
@@ -786,6 +803,9 @@ const LESSONS = [
     ] },
   { id: 't5', icon: '➕', title: 'Складываем и вычитаем до 20', goal: 'Складывать и вычитать в пределах 20: 10 + 4, 12 + 5, 14 − 4, 17 − 3',
     steps: [
+      { id: 't5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Складываем и вычитаем до 20',
+        src: '../../../assets/video/grade1-math-teens-t5.mp4', poster: '../../../assets/video/grade1-math-teens-t5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't5s1', scene: 'tenPlus', gate: true, title: 'Три равенства из одного числа',
         text: 'Из десятка и единиц получаются сразу три равенства. Например, десять плюс четыре равно четырнадцать. Если убрать единицы, останется десяток. Если убрать десяток, останутся единицы. Выбери число и нажми «Показать»!' },
       { id: 't5s2', scene: 'quiz', gate: true, count: 6, gens: ['tenPlusQ'], title: 'Десять плюс',

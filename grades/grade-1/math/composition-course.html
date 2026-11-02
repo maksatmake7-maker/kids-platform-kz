@@ -339,6 +339,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -561,6 +562,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: делим число на две части --- */
@@ -635,6 +637,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'z1', icon: '🧩', title: 'Число из двух частей', goal: 'Понимать, что число можно разделить на две части',
     steps: [
+      { id: 'z1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Число из двух частей',
+        src: '../../../assets/video/grade1-math-composition-z1.mp4', poster: '../../../assets/video/grade1-math-composition-z1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'z1s1', scene: 'splitN', gate: true, title: 'Делим число на части',
         text: 'Привет! Это Барсик. Любое число можно разделить на две части. Например, пять — это два и три, а ещё один и четыре. Выбирай число и меняй первую часть кнопками. Смотри, как меняется вторая.' },
       { id: 'z1s2', scene: 'quiz', gate: true, count: 6, gens: ['partPic'], title: 'Сколько ещё?',
@@ -642,6 +647,9 @@ const LESSONS = [
     ] },
   { id: 'z2', icon: '🏠', title: 'Состав чисел до 5', goal: 'Знать состав чисел 3, 4, 5',
     steps: [
+      { id: 'z2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Состав чисел до 5',
+        src: '../../../assets/video/grade1-math-composition-z2.mp4', poster: '../../../assets/video/grade1-math-composition-z2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'z2s1', scene: 'compTable', lo: 3, hi: 5, need: 3, gate: true, title: 'Все пары чисел',
         text: 'Выбери число, и я покажу все его пары. Красные кружки — первая часть, жёлтые — вторая. Вместе они всегда дают выбранное число.' },
       { id: 'z2s2', scene: 'quiz', gate: true, count: 6, gens: ['missLow'], title: 'Домик числа',
@@ -651,6 +659,9 @@ const LESSONS = [
     ] },
   { id: 'z3', icon: '✋', title: 'Состав чисел 6–9', goal: 'Знать состав чисел от 6 до 9',
     steps: [
+      { id: 'z3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Состав чисел 6–9',
+        src: '../../../assets/video/grade1-math-composition-z3.mp4', poster: '../../../assets/video/grade1-math-composition-z3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'z3s1', scene: 'compTable', lo: 6, hi: 9, need: 3, gate: true, title: 'Пары чисел 6–9',
         text: 'Чем больше число, тем больше у него пар. Смотри на пары и замечай: если первая часть растёт, вторая уменьшается.' },
       { id: 'z3s2', scene: 'quiz', gate: true, count: 8, gens: ['missHigh'], title: 'Домик числа',
@@ -660,6 +671,9 @@ const LESSONS = [
     ] },
   { id: 'z4', icon: '🔟', title: 'Состав числа 10', goal: 'Знать состав числа 10',
     steps: [
+      { id: 'z4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Состав числа 10',
+        src: '../../../assets/video/grade1-math-composition-z4.mp4', poster: '../../../assets/video/grade1-math-composition-z4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'z4s1', scene: 'compTable', lo: 10, hi: 10, need: 1, gate: true, title: 'Пары числа 10',
         text: 'Число десять — особенное. Нажми на него и посмотри все пары. Их нужно знать особенно хорошо.' },
       { id: 'z4s2', scene: 'quiz', gate: true, count: 8, gens: ['missTen'], title: 'Дополни до десяти',
@@ -667,6 +681,9 @@ const LESSONS = [
     ] },
   { id: 'z5', icon: '🎯', title: 'Повторяем состав чисел', goal: 'Закрепить состав чисел до 10',
     steps: [
+      { id: 'z5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Повторяем состав чисел',
+        src: '../../../assets/video/grade1-math-composition-z5.mp4', poster: '../../../assets/video/grade1-math-composition-z5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'z5s1', scene: 'quiz', gate: true, count: 5, gens: ['oddPair'], title: 'Какая запись лишняя?',
         text: 'Три записи дают одно и то же число, а одна нет. Сложи числа и найди лишнюю.' },
       { id: 'z5s2', scene: 'quiz', gate: true, count: 10, gens: ['partPic', 'missLow', 'missHigh', 'missTen', 'pairLow', 'pairHigh', 'oddPair'], title: 'Смешанные задания',

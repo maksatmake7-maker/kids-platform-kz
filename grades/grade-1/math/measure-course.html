@@ -343,6 +343,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -643,6 +644,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: линейка, длина карандаша --- */
 SCENES.rulerLearn = function(stage, st, ctx){
@@ -779,6 +781,9 @@ SCENES.liters = function(stage, st, ctx){
 const LESSONS = [
   { id: 'm1', icon: '📏', title: 'Сантиметр', goal: 'Измерять длину линейкой и чертить отрезок заданной длины',
     steps: [
+      { id: 'm1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сантиметр',
+        src: '../../../assets/video/grade1-math-measure-m1.mp4', poster: '../../../assets/video/grade1-math-measure-m1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm1s1', scene: 'rulerLearn', gate: true, title: 'Линейка и сантиметры',
         text: 'Привет! Это Барсик. Длину измеряют линейкой. Карандаш кладут началом на ноль, а число у его конца показывает длину в сантиметрах. Нажимай на числа и смотри.' },
       { id: 'm1s2', scene: 'measureIt', gate: true, title: 'Измерь сам',
@@ -792,6 +797,9 @@ const LESSONS = [
     ] },
   { id: 'm2', icon: '📐', title: 'Дециметр', goal: 'Знать, что 1 дм = 10 см, и переводить дециметры в сантиметры',
     steps: [
+      { id: 'm2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Дециметр',
+        src: '../../../assets/video/grade1-math-measure-m2.mp4', poster: '../../../assets/video/grade1-math-measure-m2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm2s1', scene: 'dmStrip', gate: true, title: 'Десять сантиметров',
         text: 'Когда сантиметров набирается десять, получается новая единица — дециметр. Нажимай кнопки и смотри, как сантиметры собираются в дециметры.' },
       { id: 'm2s2', scene: 'quiz', gate: true, count: 6, gens: ['dmcm'], title: 'Дециметры и сантиметры',
@@ -801,6 +809,9 @@ const LESSONS = [
     ] },
   { id: 'm3', icon: '⚖️', title: 'Килограмм', goal: 'Знать единицу массы — килограмм — и решать задачи на массу',
     steps: [
+      { id: 'm3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Килограмм',
+        src: '../../../assets/video/grade1-math-measure-m3.mp4', poster: '../../../assets/video/grade1-math-measure-m3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm3s1', scene: 'scales', gate: true, title: 'Взвешиваем на весах',
         text: 'Массу измеряют весами в килограммах. На одну чашу кладут товар, на другую — гири. Когда весы ровные, масса товара равна массе гирь. Добавляй гири по 1 килограмму.' },
       { id: 'm3s2', scene: 'quiz', gate: true, count: 5, gens: ['heavier'], title: 'Что тяжелее?',
@@ -810,6 +821,9 @@ const LESSONS = [
     ] },
   { id: 'm4', icon: '🥛', title: 'Литр', goal: 'Знать единицу ёмкости — литр — и решать задачи',
     steps: [
+      { id: 'm4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Литр',
+        src: '../../../assets/video/grade1-math-measure-m4.mp4', poster: '../../../assets/video/grade1-math-measure-m4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm4s1', scene: 'liters', gate: true, title: 'Наливаем литры',
         text: 'Сколько жидкости помещается в сосуд, измеряют в литрах. Нажимай кнопку, чтобы налить воду литр за литром, и остановись на нужном числе.' },
       { id: 'm4s2', scene: 'quiz', gate: true, count: 6, gens: ['literSum'], title: 'Задачи про литры',
@@ -817,6 +831,9 @@ const LESSONS = [
     ] },
   { id: 'm5', icon: '🧭', title: 'Чем и в чём измерять', goal: 'Выбирать, чем и в каких единицах измерять длину, массу и жидкость',
     steps: [
+      { id: 'm5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Чем и в чём измерять',
+        src: '../../../assets/video/grade1-math-measure-m5.mp4', poster: '../../../assets/video/grade1-math-measure-m5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm5s1', scene: 'quiz', gate: true, count: 6, gens: ['how'], title: 'Чем измерить?',
         text: 'Длину измеряют линейкой, массу — весами, а сколько жидкости — литровой банкой. Выбери подходящий прибор.' },
       { id: 'm5s2', scene: 'quiz', gate: true, count: 6, gens: ['unit'], title: 'В каких единицах?',

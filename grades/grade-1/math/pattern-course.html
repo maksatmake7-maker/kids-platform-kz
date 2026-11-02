@@ -325,6 +325,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -602,6 +603,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: ищем повторяющуюся группу --- */
@@ -704,6 +706,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'p1', icon: '🔷', title: 'Что такое узор', goal: 'Находить повторяющуюся группу и продолжать узор',
     steps: [
+      { id: 'p1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое узор',
+        src: '../../../assets/video/grade1-math-pattern-p1.mp4', poster: '../../../assets/video/grade1-math-pattern-p1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p1s1', scene: 'patReveal', gate: true, title: 'Узор повторяется',
         text: 'Привет! Это Барсик. Посмотри на узор из фигур. Одни и те же фигуры идут снова и снова. Нажми на кнопку, и я покажу, какая группа повторяется.' },
       { id: 'p1s2', scene: 'quiz', gate: true, count: 5, gens: ['nextItem'], title: 'Что будет дальше?',
@@ -713,6 +718,9 @@ const LESSONS = [
     ] },
   { id: 'p2', icon: '🎨', title: 'Фигуры и цвета', goal: 'Продолжать узоры из фигур и цветов, находить длину группы',
     steps: [
+      { id: 'p2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Фигуры и цвета',
+        src: '../../../assets/video/grade1-math-pattern-p2.mp4', poster: '../../../assets/video/grade1-math-pattern-p2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p2s1', scene: 'extend', kind: 'pic', gate: true, title: 'Продолжи узор',
         text: 'Теперь строим узор сами. Нажимай на фигуры внизу, чтобы продолжить ряд. Если фигура не подходит, ряд подскажет, что искать.' },
       { id: 'p2s2', scene: 'quiz', gate: true, count: 5, gens: ['patternCore'], title: 'Сколько фигур в группе?',
@@ -722,6 +730,9 @@ const LESSONS = [
     ] },
   { id: 'p3', icon: '🔢', title: 'Числовые ряды', goal: 'Находить, на сколько растёт или уменьшается числовой ряд',
     steps: [
+      { id: 'p3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Числовые ряды',
+        src: '../../../assets/video/grade1-math-pattern-p3.mp4', poster: '../../../assets/video/grade1-math-pattern-p3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p3s1', scene: 'numSeq', gate: true, title: 'Числа тоже повторяются',
         text: 'В числовых рядах числа растут или уменьшаются на одно и то же число. Выбирай разные ряды и нажимай кнопку, чтобы посмотреть, как они устроены.' },
       { id: 'p3s2', scene: 'quiz', gate: true, count: 6, gens: ['seqNext'], title: 'Какое число дальше?',
@@ -733,6 +744,9 @@ const LESSONS = [
     ] },
   { id: 'p4', icon: '🔤', title: 'Ряды знаков', goal: 'Продолжать ряды из букв, цифр и знаков',
     steps: [
+      { id: 'p4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Ряды знаков',
+        src: '../../../assets/video/grade1-math-pattern-p4.mp4', poster: '../../../assets/video/grade1-math-pattern-p4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p4s1', scene: 'extend', kind: 'sym', gate: true, title: 'Продолжи ряд знаков',
         text: 'Ряды бывают не только из фигур, но и из букв, цифр и знаков. Нажимай на нужные знаки внизу и продолжай ряд.' },
       { id: 'p4s2', scene: 'quiz', gate: true, count: 6, gens: ['symNext'], title: 'Что будет дальше?',
@@ -742,6 +756,9 @@ const LESSONS = [
     ] },
   { id: 'p5', icon: '🔍', title: 'Ищем закономерность', goal: 'Находить лишнее и нарушение закономерности, повторять всё изученное',
     steps: [
+      { id: 'p5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Ищем закономерность',
+        src: '../../../assets/video/grade1-math-pattern-p5.mp4', poster: '../../../assets/video/grade1-math-pattern-p5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p5s1', scene: 'quiz', gate: true, count: 5, gens: ['odd'], title: 'Что лишнее?',
         text: 'Иногда нужно найти того, кто не подходит к остальным. Три фигуры одной формы, а одна другая. Найди лишнюю.' },
       { id: 'p5s2', scene: 'quiz', gate: true, count: 6, gens: ['brokenNum', 'brokenSym', 'brokenPic'], title: 'Нарушение закономерности',
