@@ -346,6 +346,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -610,6 +611,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 /* общая сцена «нажми и узнай»: items [{k, b (значок кнопки), small, card (html)}] */
 function tapScene(stage, ctx, o){
   const seen = {};
@@ -651,6 +653,9 @@ SCENES.plantGrow = function(stage, st, ctx){
 const LESSONS = [
   { id: 'e1', icon: '👀', title: 'Тело и органы чувств', goal: 'Знать части тела и для чего они нужны',
     steps: [
+      { id: 'e1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Тело и органы чувств',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e1.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e1s1', scene: 'bodyTap', gate: true, title: 'Части тела',
         text: 'Привет! Это Барсик. Сегодня узнаем про живую природу. Начнём с себя. У человека есть глаза, уши, нос, рот, руки и ноги. Нажимай на картинки и узнавай, для чего они нужны.' },
       { id: 'e1s2', scene: 'quiz', gate: true, count: 6, gens: ['bodyDo'], title: 'Чем мы это делаем?',
@@ -660,6 +665,9 @@ const LESSONS = [
     ] },
   { id: 'e2', icon: '🍎', title: 'Что нужно, чтобы расти', goal: 'Знать, что для роста нужны питание и отдых',
     steps: [
+      { id: 'e2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что нужно, чтобы расти',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e2.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e2s1', scene: 'needTap', gate: true, title: 'Питание и отдых',
         text: 'Чтобы расти и быть здоровым, человеку нужны питание и отдых. Нажимай на картинки и смотри.' },
       { id: 'e2s2', scene: 'quiz', gate: true, count: 6, gens: ['needYN'], title: 'Нужно или нет?',
@@ -669,6 +677,9 @@ const LESSONS = [
     ] },
   { id: 'e3', icon: '🌱', title: 'Части растения', goal: 'Знать корень, стебель, лист, цветок, плод и семя',
     steps: [
+      { id: 'e3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Части растения',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e3.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e3s1', scene: 'plantTap', gate: true, title: 'Из чего состоит растение',
         text: 'У растения есть корень, стебель, листья, цветок, плод и семена. Нажимай на названия, и я покажу эту часть на рисунке.' },
       { id: 'e3s2', scene: 'quiz', gate: true, count: 6, gens: ['plantName'], title: 'Как называется часть?',
@@ -678,6 +689,9 @@ const LESSONS = [
     ] },
   { id: 'e4', icon: '💧', title: 'Что нужно растениям', goal: 'Знать, что растениям нужны вода, свет и тепло',
     steps: [
+      { id: 'e4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что нужно растениям',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e4.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e4s1', scene: 'plantGrow', gate: true, title: 'Вырасти, семечко!',
         text: 'Чтобы семечко выросло, ему нужны вода, свет и тепло. Дай ему всё это по очереди.' },
       { id: 'e4s2', scene: 'quiz', gate: true, count: 6, gens: ['plantNeedYN'], title: 'Нужно растению или нет?',
@@ -689,6 +703,9 @@ const LESSONS = [
     ] },
   { id: 'e5', icon: '🐾', title: 'Животные', goal: 'Различать диких и домашних животных, знать, как движутся животные',
     steps: [
+      { id: 'e5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Животные',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e5.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e5s1', scene: 'animalTap', gate: true, title: 'Дикие и домашние',
         text: 'Животные бывают дикие и домашние. Дикие живут на воле. Домашние живут рядом с человеком, и он о них заботится. Нажимай на животных.' },
       { id: 'e5s2', scene: 'quiz', gate: true, count: 6, gens: ['animalWD'], title: 'Дикое или домашнее?',
@@ -698,6 +715,9 @@ const LESSONS = [
     ] },
   { id: 'e6', icon: '❄️', title: 'Животные зимой', goal: 'Знать, как животные готовятся к зиме',
     steps: [
+      { id: 'e6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Животные зимой',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e6.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e6s1', scene: 'winterTap', gate: true, title: 'Как пережить зиму',
         text: 'Зимой холодно и мало еды. Одни птицы улетают в тёплые края. Белки и хомяки делают запасы. А медведи и ежи спят всю зиму. Нажимай и смотри.' },
       { id: 'e6s2', scene: 'quiz', gate: true, count: 6, gens: ['winterHow'], title: 'Что делает животное?',
@@ -850,6 +870,9 @@ SCENES.whyTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 4, done: 'Пр�
 const NEWL = [
   { id: 'e7', icon: '🔭', title: 'Зачем изучать природу', goal: 'Объяснять, зачем изучать мир вокруг, и проводить наблюдения',
     steps: [
+      { id: 'e7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Зачем изучать природу',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e7.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e7s1', scene: 'whyTap', gate: true, title: 'Зачем изучать природу?', text: 'Зачем людям изучать растения, животных и погоду? Нажимай на картинки и узнаешь.' },
       { id: 'e7s2', scene: 'quiz', gate: true, count: 6, gens: ['whyQ'], title: 'Зачем это нужно?', text: 'Выбери, зачем нужно знать то, о чём спрашивает вопрос.' },
       { id: 'e7s3', scene: 'obsWeather', gate: true, title: 'Дневник погоды', text: 'Ты будешь настоящим исследователем. Четыре дня подряд смотри в окно и на термометр и записывай в дневник погоду и температуру.' },
@@ -857,6 +880,9 @@ const NEWL = [
     ] },
   { id: 'e8', icon: '🧪', title: 'Опыты и сравнения', goal: 'Объяснять опыт и сравнивать животных и растения',
     steps: [
+      { id: 'e8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Опыты и сравнения',
+        src: '../../../assets/video/grade1-estestvo-estestvo-e8.mp4', poster: '../../../assets/video/grade1-estestvo-estestvo-e8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'e8s1', scene: 'expDemo', gate: true, title: 'Смотрим опыты', text: 'Сейчас ты увидишь три опыта. Сначала посмотри, что мы приготовили. Потом нажми «Запустить опыт», увидь результат и объясни, почему так получилось.' },
       { id: 'e8s2', scene: 'quiz', gate: true, count: 6, gens: ['expQ'], title: 'Что получится?', text: 'Подумай, что получится в опыте, и выбери ответ.' },
       { id: 'e8s3', scene: 'cmpSort', gate: true, title: 'Животные и растения', text: 'Давай сравним животных и растения. Выбери, у кого есть этот признак: только у животных, только у растений или у обоих.' },

@@ -351,6 +351,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -623,6 +624,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: светофор --- */
 SCENES.trafficLight = function(stage, st, ctx){
@@ -722,6 +724,9 @@ SCENES.seasonTap = function(stage, st, ctx){
 const LESSONS = [
   { id: 'p1', icon: '🚦', title: 'Безопасная дорога', goal: 'Знать цвета светофора и правила перехода',
     steps: [
+      { id: 'p1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Безопасная дорога',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p1.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p1s1', scene: 'trafficLight', gate: true, title: 'Светофор',
         text: 'Привет! Это Барсик. Сегодня поговорим о безопасности. Светофор помогает переходить дорогу. Красный и жёлтый свет — стой. Зелёный — можно идти, но сначала посмотри по сторонам. Нажимай на цвета.' },
       { id: 'p1s2', scene: 'quiz', gate: true, count: 6, gens: ['lightAction'], title: 'Что делать пешеходу?',
@@ -731,6 +736,9 @@ const LESSONS = [
     ] },
   { id: 'p2', icon: '🚸', title: 'Дорожные знаки', goal: 'Узнавать знаки и понимать, что они означают',
     steps: [
+      { id: 'p2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Дорожные знаки',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p2.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p2s1', scene: 'signTap', gate: true, title: 'Знакомимся со знаками',
         text: 'Дорожные знаки помогают водителям и пешеходам. Нажимай на знаки и читай, что они означают.' },
       { id: 'p2s2', scene: 'quiz', gate: true, count: 6, gens: ['signName'], title: 'Как называется знак?',
@@ -740,6 +748,9 @@ const LESSONS = [
     ] },
   { id: 'p3', icon: '🚒', title: 'Службы спасения', goal: 'Знать номера 101, 102 и 103',
     steps: [
+      { id: 'p3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Службы спасения',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p3.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p3s1', scene: 'serviceTap', gate: true, title: 'Три службы помощи',
         text: 'В беде помогают спасатели. 101 — пожарная служба. 102 — полиция. 103 — скорая помощь. Нажимай на машины и запоминай номера.' },
       { id: 'p3s2', scene: 'quiz', gate: true, count: 6, gens: ['serviceCase'], title: 'Кого позвать?',
@@ -751,6 +762,9 @@ const LESSONS = [
     ] },
   { id: 'p4', icon: '🇰🇿', title: 'Флаг Казахстана', goal: 'Узнавать флаг Казахстана и знать его части',
     steps: [
+      { id: 'p4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Флаг Казахстана',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p4.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p4s1', scene: 'flagParts', gate: true, title: 'Из чего состоит флаг',
         text: 'Флаг — символ нашей страны. На флаге Казахстана голубой фон, золотое солнце, под ним орёл, а у древка узор. Нажимай на части флага.' },
       { id: 'p4s2', scene: 'quiz', gate: true, count: 5, gens: ['flagFact'], title: 'Что на флаге?',
@@ -760,6 +774,9 @@ const LESSONS = [
     ] },
   { id: 'p5', icon: '🍂', title: 'Время года и дни недели', goal: 'Знать порядок времён года и дней недели',
     steps: [
+      { id: 'p5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Время года и дни недели',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p5.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p5s1', scene: 'seasonTap', gate: true, title: 'Четыре времени года',
         text: 'В году четыре времени года: зима, весна, лето и осень. Они идут по кругу. Нажимай на картинки и узнавай, чем они отличаются.' },
       { id: 'p5s2', scene: 'quiz', gate: true, count: 6, gens: ['seasonClue', 'seasonNext'], title: 'Какое время года?',
@@ -1066,6 +1083,9 @@ SCENES.freeDraw = function(stage, st, ctx){
 const NEW_LESSONS = [
   { id: 'p6', icon: '👨‍👩‍👧‍👦', title: 'Моя семья', goal: 'Понимать, что такое семья, знать своё место в ней, заботиться о близких, рассказать о семейном празднике',
     steps: [
+      { id: 'p6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Моя семья',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p6.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p6s1', scene: 'infoTap', gate: true, title: 'Что такое семья', cards: [
         { e: '👨‍👩‍👧‍👦', b: 'Семья', tx: 'Семья — это близкие люди: мама, папа, дети, бабушка и дедушка. Они любят друг друга и заботятся друг о друге.' },
         { e: '👵', b: 'Бабушка и дедушка', tx: 'Мама и папа наших родителей — это бабушка и дедушка. Они старше всех в семье.' },
@@ -1083,6 +1103,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p7', icon: '🪙', title: 'Деньги и потребности', goal: 'Объяснять, как люди покупают товары за деньги; знать, что человеку нужно и откуда берутся вещи',
     steps: [
+      { id: 'p7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Деньги и потребности',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p7.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p7s1', scene: 'infoTap', gate: true, title: 'Деньги и магазин', cards: [
         { e: '🪙', b: 'Деньги', tx: 'Деньги Казахстана называются тенге. Мы платим ими, когда что-то покупаем.' },
         { e: '🛒', b: 'Магазин', tx: 'В магазине продают товары. Мы отдаём деньги и получаем товар: хлеб, молоко, одежду.' },
@@ -1094,6 +1117,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p8', icon: '🏫', title: 'Моя школа', goal: 'Знать, зачем нужна школа, где что находится, как вести себя и кто такие одноклассники',
     steps: [
+      { id: 'p8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Моя школа',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p8.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p8s1', scene: 'quiz', gate: true, count: 4, gens: ['whySch'], title: 'Зачем нужна школа', text: 'В школе мы узнаём много нового. Ответь, зачем нужна школа.' },
       { id: 'p8s2', scene: 'infoTap', gate: true, title: 'Места в школе', cards: [
         { e: '✏️', b: 'Класс', tx: 'В классе проходят уроки. Здесь мы учимся читать, писать и считать.' },
@@ -1109,6 +1135,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p9', icon: '⏰', title: 'Режим дня', goal: 'Понимать важность режима дня и составлять примерный режим одного дня',
     steps: [
+      { id: 'p9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Режим дня',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p9.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p9s1', scene: 'quiz', gate: true, count: 5, gens: ['dayQ'], title: 'Зачем нужен режим', text: 'Режим дня — это порядок, в котором мы делаем дела. Он помогает всё успевать и быть здоровым.' },
       { id: 'p9s2', scene: 'seqBuild', gate: true, title: 'Мой день', q: 'Расставь дела школьного дня по порядку: нажимай на картинки, как идёт день.', hint: 'Подумай: что делают раньше, а что позже?', ok: 'Режим дня составлен!',
         items: [{ e: '🌅', t: 'Проснуться и умыться' }, { e: '🥣', t: 'Позавтракать' }, { e: '🏫', t: 'Учиться в школе' }, { e: '🍲', t: 'Пообедать' }, { e: '📚', t: 'Сделать уроки' }, { e: '🚶', t: 'Погулять' }, { e: '🍽️', t: 'Поужинать' }, { e: '🛌', t: 'Лечь спать' }],
@@ -1116,6 +1145,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p10', icon: '🏠', title: 'Где я живу', goal: 'Называть свой адрес, описывать положение своего населённого пункта, знать главную улицу, здания и достопримечательности',
     steps: [
+      { id: 'p10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Где я живу',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p10.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p10s1', scene: 'infoTap', gate: true, title: 'Мой адрес', cards: [
         { e: '🇰🇿', b: 'Страна', tx: 'Мы живём в Казахстане. Это наша страна.' },
         { e: '🏙️', b: 'Город или село', tx: 'В стране много городов и сёл. Назови, где живёшь ты.' },
@@ -1136,6 +1168,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p11', icon: '🧼', title: 'Здоровье и безопасность дома', goal: 'Соблюдать личную гигиену и режим питания, знать правила безопасного поведения дома',
     steps: [
+      { id: 'p11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Здоровье и безопасность дома',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p11.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p11s1', scene: 'infoTap', gate: true, title: 'Личная гигиена', cards: [
         { e: '🧼', b: 'Мыть руки', tx: 'Руки нужно мыть с мылом перед едой, после улицы и после туалета.' },
         { e: '🪥', b: 'Чистить зубы', tx: 'Зубы чистят два раза в день: утром и вечером.' },
@@ -1163,6 +1198,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p12', icon: '🗺️', title: 'Безопасный маршрут', goal: 'Составлять план безопасного маршрута от дома до школы',
     steps: [
+      { id: 'p12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Безопасный маршрут',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p12.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p12s1', scene: 'quiz', gate: true, count: 5, gens: ['route'], title: 'Как идти в школу', text: 'Дорога в школу должна быть безопасной. Ответь, как нужно идти.' },
       { id: 'p12s2', scene: 'seqBuild', gate: true, title: 'План пути в школу', q: 'Составь безопасный маршрут от дома до школы. Нажимай по порядку.', hint: 'Сначала выйди из дома, потом иди к переходу.', ok: 'Маршрут составлен! Ты дойдёшь до школы безопасно.',
         items: [{ e: '🏠', t: 'Выйти из дома' }, { e: '🚶', t: 'Идти по тротуару' }, { e: '🚸', t: 'Дойти до перехода' }, { e: '🚦', t: 'Дождаться зелёного света' }, { e: '👀', t: 'Посмотреть налево и направо' }, { e: '🏫', t: 'Перейти и дойти до школы' }],
@@ -1170,6 +1208,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p13', icon: '🧭', title: 'Стороны горизонта', goal: 'Определять стороны горизонта по местным признакам',
     steps: [
+      { id: 'p13v0', scene: 'video', gate: true, silent: true, title: 'Видео: Стороны горизонта',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p13.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p13.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p13s1', scene: 'infoTap', gate: true, title: 'Где восток, где запад', cards: [
         { e: '🌅', b: 'Восток', tx: 'Утром Солнце встаёт на востоке.' },
         { e: '🌇', b: 'Запад', tx: 'Вечером Солнце садится на западе.' },
@@ -1180,12 +1221,18 @@ const NEW_LESSONS = [
     ] },
   { id: 'p14', icon: '🌳', title: 'Природа, погода и отдых', goal: 'Соблюдать правила поведения на природе, знать влияние погоды и занятия в разное время года',
     steps: [
+      { id: 'p14v0', scene: 'video', gate: true, silent: true, title: 'Видео: Природа, погода и отдых',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p14.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p14.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p14s1', scene: 'quiz', gate: true, count: 7, gens: ['natr'], title: 'Правила в природе', text: 'В природе мы гости. Реши, как нужно себя вести.' },
       { id: 'p14s2', scene: 'quiz', gate: true, count: 6, gens: ['wea'], title: 'Погода и люди', text: 'Погода влияет на нашу одежду и дела. Подбери одежду и ответь на вопросы.' },
       { id: 'p14s3', scene: 'quiz', gate: true, count: 6, gens: ['leis'], title: 'Отдых в разное время года', text: 'У каждого времени года свои занятия. Чем заняться в какое время?' }
     ] },
   { id: 'p15', icon: '🎒', title: 'Туризм', goal: 'Знать, что такое туризм и каковы цели туриста',
     steps: [
+      { id: 'p15v0', scene: 'video', gate: true, silent: true, title: 'Видео: Туризм',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p15.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p15.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p15s1', scene: 'infoTap', gate: true, title: 'Кто такой турист', cards: [
         { e: '🎒', b: 'Турист', tx: 'Турист — человек, который путешествует, чтобы отдохнуть и увидеть новые места.' },
         { e: '🏞️', b: 'Туризм', tx: 'Туризм — это поездки и походы по красивым и интересным местам.' },
@@ -1196,6 +1243,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p16', icon: '🏹', title: 'Древние люди и саки', goal: 'Рассказывать о жизни древних людей, о древностях и о жизни саков',
     steps: [
+      { id: 'p16v0', scene: 'video', gate: true, silent: true, title: 'Видео: Древние люди и саки',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p16.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p16.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p16s1', scene: 'infoTap', gate: true, title: 'Как жили древние люди', cards: [
         { e: '🏹', b: 'Охота', tx: 'Древние люди охотились и собирали ягоды, корни и плоды, чтобы получить еду.' },
         { e: '🪨', b: 'Орудия', nm: 'Каменные орудия', tx: 'Они делали топоры, скребки и наконечники стрел из камня.' },
@@ -1214,6 +1264,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p17', icon: '📜', title: 'Древняя письменность и Томирис', goal: 'Рассказывать о древней письменности, изобразить древние знаки, рассказывать о Томирис',
     steps: [
+      { id: 'p17v0', scene: 'video', gate: true, silent: true, title: 'Видео: Древняя письменность и Томирис',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p17.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p17.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p17s1', scene: 'infoTap', gate: true, title: 'Древние знаки', cards: [
         { e: '📜', b: 'Письменность', tx: 'Письменность помогает записывать мысли и сохранять знания.' },
         { e: '🪨', b: 'Руны', nm: 'Древнетюркские руны', tx: 'Древние тюрки писали рунами. Знаки высекали на камнях, и эти надписи сохранились до нашего времени.' }],
@@ -1230,6 +1283,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'p18', icon: '🇰🇿', title: 'Мой Казахстан', goal: 'Отличать государственные символы Казахстана, знать признаки независимого государства, рассказать о столице',
     steps: [
+      { id: 'p18v0', scene: 'video', gate: true, silent: true, title: 'Видео: Мой Казахстан',
+        src: '../../../assets/video/grade1-poznanie-poznanie-p18.mp4', poster: '../../../assets/video/grade1-poznanie-poznanie-p18.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p18s1', scene: 'infoTap', gate: true, title: 'Государственные символы', cards: [
         { e: '🇰🇿', b: 'Флаг', tx: 'Флаг Казахстана голубой, на нём золотое солнце с лучами, под ним парящий орёл и узор у древка.' },
         { e: '🛡️', b: 'Герб', tx: 'На гербе на голубом фоне — шанырак, купол юрты. По сторонам — два крылатых коня, тулпара. Вверху — звезда.' },

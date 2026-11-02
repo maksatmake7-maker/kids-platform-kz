@@ -344,6 +344,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -570,6 +571,7 @@ GENS.spaceWho = function(){
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function tapScene(stage, ctx, o){
   const seen = {};
   stage.innerHTML = (o.top || '') + '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на картинку 👆</div></div>';
@@ -608,6 +610,9 @@ SCENES.magnetTry = function(stage, st, ctx){
 const LESSONS = [
   { id: 'm1', icon: '☀️', title: 'Свет', goal: 'Различать естественные и искусственные источники света',
     steps: [
+      { id: 'm1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Свет',
+        src: '../../../assets/video/grade1-estestvo-mir-m1.mp4', poster: '../../../assets/video/grade1-estestvo-mir-m1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm1s1', scene: 'lightTap', gate: true, title: 'Источники света',
         text: 'Привет! Это Барсик. Сегодня узнаем о мире вокруг нас. Свет даёт Солнце, лампа и свеча. Есть естественные источники света: Солнце, Луна, молния. Их создала природа. И есть искусственные: лампочка, свеча, фонарик. Их сделал человек. Нажимай на картинки.' },
       { id: 'm1s2', scene: 'quiz', gate: true, count: 6, gens: ['lightKind'], title: 'Естественный или искусственный?',
@@ -617,6 +622,9 @@ const LESSONS = [
     ] },
   { id: 'm2', icon: '🔥', title: 'Тепло и холод', goal: 'Различать тёплое и холодное',
     steps: [
+      { id: 'm2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Тепло и холод',
+        src: '../../../assets/video/grade1-estestvo-mir-m2.mp4', poster: '../../../assets/video/grade1-estestvo-mir-m2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm2s1', scene: 'heatTap', gate: true, title: 'Тёплое и холодное',
         text: 'Одни предметы тёплые, другие холодные. Костёр, свеча и Солнце дают тепло. Снежинки, лёд и ночь холодные. Нажимай на картинки.' },
       { id: 'm2s2', scene: 'quiz', gate: true, count: 6, gens: ['heatKind'], title: 'Тёплое или холодное?',
@@ -626,6 +634,9 @@ const LESSONS = [
     ] },
   { id: 'm3', icon: '🔔', title: 'Звуки', goal: 'Различать естественные и искусственные источники звука',
     steps: [
+      { id: 'm3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Звуки',
+        src: '../../../assets/video/grade1-estestvo-mir-m3.mp4', poster: '../../../assets/video/grade1-estestvo-mir-m3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm3s1', scene: 'soundTap', gate: true, title: 'Источники звука',
         text: 'Вокруг нас много звуков. Лает собака, поёт птица, гремит гром. Это естественные источники звука. А колокольчик, радио и труба звучат, потому что их сделал человек. Это искусственные. Нажимай на картинки.' },
       { id: 'm3s2', scene: 'quiz', gate: true, count: 6, gens: ['soundKind'], title: 'Естественный или искусственный?',
@@ -635,6 +646,9 @@ const LESSONS = [
     ] },
   { id: 'm4', icon: '🧲', title: 'Магнит', goal: 'Знать, что магнит притягивает железные предметы',
     steps: [
+      { id: 'm4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Магнит',
+        src: '../../../assets/video/grade1-estestvo-mir-m4.mp4', poster: '../../../assets/video/grade1-estestvo-mir-m4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm4s1', scene: 'magnetTry', gate: true, title: 'Что притянет магнит?',
         text: 'Магнит умеет притягивать некоторые предметы. Пробуй притянуть разные предметы и смотри, что получится.' },
       { id: 'm4s2', scene: 'quiz', gate: true, count: 6, gens: ['magnetYN'], title: 'Притянет или нет?',
@@ -644,6 +658,9 @@ const LESSONS = [
     ] },
   { id: 'm5', icon: '⚡', title: 'Электричество', goal: 'Знать, что работает от электричества, и правила безопасности',
     steps: [
+      { id: 'm5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Электричество',
+        src: '../../../assets/video/grade1-estestvo-mir-m5.mp4', poster: '../../../assets/video/grade1-estestvo-mir-m5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm5s1', scene: 'elecTap', gate: true, title: 'Что работает от электричества',
         text: 'Электричество заставляет работать лампочку, телевизор и компьютер. Но электричество опасно. Розетки и провода трогать нельзя. Нажимай на картинки.' },
       { id: 'm5s2', scene: 'quiz', gate: true, count: 6, gens: ['elecYN'], title: 'Работает от электричества?',
@@ -653,6 +670,9 @@ const LESSONS = [
     ] },
   { id: 'm6', icon: '🌍', title: 'Земля, космос и время', goal: 'Знать, что Земля круглая, и приборы для космоса и времени',
     steps: [
+      { id: 'm6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Земля, космос и время',
+        src: '../../../assets/video/grade1-estestvo-mir-m6.mp4', poster: '../../../assets/video/grade1-estestvo-mir-m6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'm6s1', scene: 'earthTap', gate: true, title: 'Какая Земля?',
         text: 'Земля круглая, как шар. Глобус — это маленькая модель Земли. Нажимай на предметы и смотри, какие из них круглые, как Земля.' },
       { id: 'm6s2', scene: 'quiz', gate: true, count: 6, gens: ['earthRound'], title: 'Круглое, как Земля?',

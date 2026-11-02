@@ -355,6 +355,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -655,6 +656,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function tapScene(stage, ctx, o){
   const seen = {};
   stage.innerHTML = (o.top || '') + '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆 — Барсик скажет по-казахски</div></div>';
@@ -704,6 +706,9 @@ SCENES.storyBuild = function(stage, st, ctx){
 const LESSONS = [
   { id: 'k1', icon: '🔤', title: 'Особые буквы', goal: 'Знать особые буквы казахского алфавита',
     steps: [
+      { id: 'k1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Особые буквы',
+        src: '../../../assets/video/grade1-kazakh-kaz-k1.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k1s1', scene: 'letTap', gate: true, title: 'Особые казахские буквы',
         text: 'Привет! Это Барсик. Сегодня мы начинаем учить казахский язык. В казахском алфавите есть восемь особых букв, которых нет в русском. Нажимай на каждую букву, и я скажу, как она звучит и в каком слове живёт.' },
       { id: 'k1s2', scene: 'quiz', gate: true, count: 6, gens: ['letPic'], title: 'Найди слово с буквой',
@@ -713,6 +718,9 @@ const LESSONS = [
     ] },
   { id: 'k2', icon: '🧸', title: 'Первые слова', goal: 'Знать первые казахские слова',
     steps: [
+      { id: 'k2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Первые слова',
+        src: '../../../assets/video/grade1-kazakh-kaz-k2.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k2s1', scene: 'wordTap', gate: true, title: 'Всё обо мне',
         text: 'Выучим первые казахские слова. Они про школу и про тебя: ученик, книга, карандаш, игрушка, число семь, имя, слово сидеть и слова я, ты, он. Нажимай на картинки, и я произнесу слово по-казахски.' },
       { id: 'k2s2', scene: 'quiz', gate: true, count: 6, gens: ['wPic', 'wTr'], title: 'Скажи по-казахски',
@@ -722,6 +730,9 @@ const LESSONS = [
     ] },
   { id: 'k3', icon: '❓', title: 'Вопросы', goal: 'Задавать вопросы кто, что, какой, сколько',
     steps: [
+      { id: 'k3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Вопросы',
+        src: '../../../assets/video/grade1-kazakh-kaz-k3.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k3s1', scene: 'qwTap', gate: true, title: 'Кто? Что? Какой? Сколько?',
         text: 'Чтобы говорить, нужно уметь спрашивать. По-казахски есть четыре главных вопроса: кто, что, какой и сколько. Про людей спрашиваем кто. Про предметы что. Про цвет и размер какой. А про количество сколько. Нажимай на карточки.' },
       { id: 'k3s2', scene: 'quiz', gate: true, count: 6, gens: ['qPic'], title: 'Какой вопрос задать?',
@@ -731,6 +742,9 @@ const LESSONS = [
     ] },
   { id: 'k4', icon: '🔠', title: 'Большая буква', goal: 'Писать имена, города и клички с заглавной буквы',
     steps: [
+      { id: 'k4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Большая буква',
+        src: '../../../assets/video/grade1-kazakh-kaz-k4.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k4s1', scene: 'capTap', gate: true, title: 'Слова с большой буквы',
         text: 'Есть слова, которые обязательно пишутся с большой буквы. Это имена людей, названия городов и клички животных. А обычные слова, например книга или дом, пишутся с маленькой буквы. Нажимай на карточки и смотри.' },
       { id: 'k4s2', scene: 'quiz', gate: true, count: 6, gens: ['capWrite'], title: 'Как правильно писать?',
@@ -740,6 +754,9 @@ const LESSONS = [
     ] },
   { id: 'k5', icon: '📚', title: 'Жанры', goal: 'Различать стихотворение, сказку и загадку',
     steps: [
+      { id: 'k5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Жанры',
+        src: '../../../assets/video/grade1-kazakh-kaz-k5.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k5s1', scene: 'genreTap', gate: true, title: 'Три жанра',
         text: 'Мы читаем и слушаем разные тексты. Стихотворение, где строчки рифмуются. Сказка, где есть волшебство. И загадка, которую нужно отгадать. Нажимай на карточки и слушай казахские названия.' },
       { id: 'k5s2', scene: 'quiz', gate: true, count: 6, gens: ['genDesc', 'genRu'], title: 'Какой это жанр?',
@@ -749,6 +766,9 @@ const LESSONS = [
     ] },
   { id: 'k6', icon: '🖼️', title: 'Рассказ по картинкам', goal: 'Составлять рассказ по порядку картинок',
     steps: [
+      { id: 'k6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Рассказ по картинкам',
+        src: '../../../assets/video/grade1-kazakh-kaz-k6.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k6s1', scene: 'storyBuild', gate: true, title: 'Расставь по порядку',
         text: 'Чтобы рассказать историю, нужно знать, что было сначала, а что потом. Перед тобой картинки истории, но они перепутались. Нажимай на картинки по порядку, начиная с того, что было первым.' },
       { id: 'k6s2', scene: 'quiz', gate: true, count: 6, gens: ['storyFirst', 'storyLast', 'storyNext'], title: 'Что было раньше?',
@@ -1086,6 +1106,9 @@ SCENES.demTap = kzInfo(DEM.map(d => ({ k: d[0], b: '<span class="kz-let" style="
 const NEWL = [
   { id: 'k7', icon: '👂', title: 'Слушаем и понимаем', goal: 'Слушать речь, понимать, о ком и о чём она, выбирать картинку',
     steps: [
+      { id: 'k7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слушаем и понимаем',
+        src: '../../../assets/video/grade1-kazakh-kaz-k7.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k7s1', scene: 'cmdGame', gate: true, title: 'Команды Барсика', text: 'Послушай казахскую команду, выбери картинку и сделай движение сам. Если звука нет, прочитай слово на карточке.' },
       { id: 'k7s2', scene: 'quiz', gate: true, count: 6, gens: ['lsWho'], title: 'О ком говорится?', text: 'Послушай короткий текст. О ком или о чём он? Если звука нет, нажми «Показать текст».' },
       { id: 'k7s3', scene: 'quiz', gate: true, count: 6, gens: ['lsPic'], title: 'Найди картинку', text: 'Послушай и найди картинку, которая подходит к тому, что ты услышал.' },
@@ -1093,6 +1116,9 @@ const NEWL = [
     ] },
   { id: 'k8', icon: '📖', title: 'Читаем слова и тексты', goal: 'Читать слова целиком, понимать значение слов в тексте, находить информацию',
     steps: [
+      { id: 'k8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Читаем слова и тексты',
+        src: '../../../assets/video/grade1-kazakh-kaz-k8.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k8s1', scene: 'nnTap', gate: true, title: 'Новые слова', text: 'Вот много казахских слов: люди, животные, вещи. Нажимай на картинки и слушай.' },
       { id: 'k8s2', scene: 'quiz', gate: true, count: 8, gens: ['rdPic', 'rdRu'], title: 'Читаем слова', text: 'Прочитай слово целиком и найди картинку или перевод.' },
       { id: 'k8s3', scene: 'colTap', gate: true, title: 'Цвета и числа', text: 'Цвета: қызыл, көк, сары, жасыл, ақ, қара. Числа от одного до десяти. Нажимай на карточки.' },
@@ -1101,6 +1127,9 @@ const NEWL = [
     ] },
   { id: 'k9', icon: '✍️', title: 'Пишем', goal: 'Писать буквы и слова, создавать постер со словами-признаками',
     steps: [
+      { id: 'k9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Пишем',
+        src: '../../../assets/video/grade1-kazakh-kaz-k9.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k9s1', scene: 'spellWord', gate: true, n: 5, title: 'Пишем слова из букв', text: 'Посмотри на картинку, послушай слово и собери его из букв по порядку.' },
       { id: 'k9s2', scene: 'traceLetter', gate: true, items: ['Ә', 'ә', 'Қ', 'қ', 'Ү', 'ү', 'ата'], title: 'Пишем буквы', text: 'Обведи пальцем или мышкой серую большую и маленькую букву. Старайся не выходить за контур.' },
       { id: 'k9s3', scene: 'kcChip', gate: true, title: 'Мой постер', q: 'Составь постер: предмет и слова-признаки.',
@@ -1110,6 +1139,9 @@ const NEWL = [
     ] },
   { id: 'k10', icon: '🧩', title: 'Слова и «много»', goal: 'Различать слова-предметы, действия, признаки, количество и ставить слово во множественное число',
     steps: [
+      { id: 'k10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слова и «много»',
+        src: '../../../assets/video/grade1-kazakh-kaz-k10.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k10s1', scene: 'kindTap', gate: true, title: 'Четыре вида слов', text: 'Слова бывают разные: предмет, действие, признак и количество. Нажми на каждую карточку.' },
       { id: 'k10s2', scene: 'quiz', gate: true, count: 8, gens: ['kind'], title: 'Какое это слово?', text: 'Прочитай слово и скажи, что оно обозначает: предмет, действие, признак или количество.' },
       { id: 'k10s3', scene: 'plTap', gate: true, title: 'Много!', text: 'Когда предметов много, у слова меняется конец. Это окончания лар, лер, дар, дер, тар, тер. Нажимай на карточки.' },
@@ -1117,6 +1149,9 @@ const NEWL = [
     ] },
   { id: 'k11', icon: '🔗', title: 'Мой, твой; где? куда?', goal: 'Использовать личные, притяжательные и падежные окончания',
     steps: [
+      { id: 'k11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Мой, твой; где? куда?',
+        src: '../../../assets/video/grade1-kazakh-kaz-k11.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k11s1', scene: 'posTap', gate: true, title: 'Мой, твой, его', text: 'Менің значит «мой». Сенің значит «твой». Оның значит «его» или «её». А у слова меняется конец.' },
       { id: 'k11s2', scene: 'quiz', gate: true, count: 6, gens: ['posQ'], title: 'Чей это предмет?', text: 'Выбери верное слово: мой, твой или его.' },
       { id: 'k11s3', scene: 'persTap', gate: true, title: 'Я, ты, мы', text: 'Мен значит «я». Сен значит «ты». Біз значит «мы». У слова тоже меняется конец.' },
@@ -1126,6 +1161,9 @@ const NEWL = [
     ] },
   { id: 'k12', icon: '🏃', title: 'Что делаем?', goal: 'Использовать глаголы в разных формах и указательные слова',
     steps: [
+      { id: 'k12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что делаем?',
+        src: '../../../assets/video/grade1-kazakh-kaz-k12.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k12s1', scene: 'vbTap', gate: true, title: 'Глаголы', text: 'Глагол отвечает на вопрос «что делать?». Он меняется: сейчас, раньше и приказ. Нажимай на карточки.' },
       { id: 'k12s2', scene: 'quiz', gate: true, count: 8, gens: ['vbPres', 'vbPast'], title: 'Сейчас или раньше?', text: 'Выбери правильную форму: я делаю сейчас или я делал раньше.' },
       { id: 'k12s3', scene: 'quiz', gate: true, count: 8, gens: ['vbImp', 'vbInf'], title: 'Приказ и начальная форма', text: 'Приказ — слово без окончания. Начальная форма отвечает на вопрос «что делать?».' },
@@ -1134,6 +1172,9 @@ const NEWL = [
     ] },
   { id: 'k13', icon: '💬', title: 'Предложения и мнение', goal: 'Составлять предложения, пересказывать по картинкам, высказывать своё мнение',
     steps: [
+      { id: 'k13v0', scene: 'video', gate: true, silent: true, title: 'Видео: Предложения и мнение',
+        src: '../../../assets/video/grade1-kazakh-kaz-k13.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k13.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k13s1', scene: 'sentBuild', gate: true, n: 5, title: 'Складываем предложения', text: 'В казахском предложении сначала стоит тот, кто делает, потом то, что он делает, а глагол всегда в конце.' },
       { id: 'k13s2', scene: 'retell', gate: true, n: 2, title: 'Рассказ по картинкам', text: 'Расскажи историю по картинкам. Нажимай предложения по порядку.' },
       { id: 'k13s3', scene: 'kcChip', gate: true, title: 'Мне понравилось', q: 'Скажи своё мнение.',
@@ -1144,6 +1185,9 @@ const NEWL = [
     ] },
   { id: 'k14', icon: '🌟', title: 'Повторяем всё', goal: 'Закрепить слушание, чтение, письмо и речь',
     steps: [
+      { id: 'k14v0', scene: 'video', gate: true, silent: true, title: 'Видео: Повторяем всё',
+        src: '../../../assets/video/grade1-kazakh-kaz-k14.mp4', poster: '../../../assets/video/grade1-kazakh-kaz-k14.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'k14s1', scene: 'quiz', gate: true, count: 12, gens: ['lsWho', 'lsPic', 'rdPic', 'rdRu', 'rdCol', 'rdNum', 'kind', 'plQ', 'posQ', 'perQ', 'caseQ', 'vbPres', 'vbPast', 'vbImp', 'demQ', 'opQ', 'wordOrd', 'topic'], title: 'Смешанные задания', text: 'Последняя проверка курса: слушаем, читаем, пишем и говорим по-казахски.' },
       { id: 'k14s2', scene: 'finale', title: 'Курс пройден!', text: 'Ты научился слушать и понимать казахскую речь, читать слова и короткие тексты, писать буквы, говорить много, мой и твой, где и куда. Ты умеешь складывать предложения. Дальше тренируйся в играх. Я буду рядом!' }
     ] }
