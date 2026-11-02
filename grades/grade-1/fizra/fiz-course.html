@@ -354,6 +354,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -568,6 +569,7 @@ const mkYN = (cat, ico) => () => {
 };
 
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function tapScene(stage, ctx, o){
   const seen = {};
   stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
@@ -1001,6 +1003,9 @@ SCENES.wallScene = function(stage, st, ctx){
 const LESSONS = [
   { id: 'f1', icon: '🏃', title: 'Что такое физкультура', goal: 'Знать, что такое физическая культура, и понимать режим дня',
     steps: [
+      { id: 'f1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое физкультура',
+        src: '../../../assets/video/grade1-fizra-fiz-f1.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f1s1', scene: 'fkTap', gate: true, title: 'Зачем нужна физкультура',
         text: 'Привет! Это Барсик. Сегодня мы начинаем занятия по физической культуре. Физкультура делает тело сильным и здоровым. Нажми на карточки и узнай про пользу, зарядку, режим дня и здоровье.' },
       { id: 'f1s2', scene: 'ordScene', gate: true, title: 'Расставь по порядку',
@@ -1010,6 +1015,9 @@ const LESSONS = [
     ] },
   { id: 'f2', icon: '🦺', title: 'Техника безопасности', goal: 'Знать и соблюдать правила безопасности на занятиях',
     steps: [
+      { id: 'f2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Техника безопасности',
+        src: '../../../assets/video/grade1-fizra-fiz-f2.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f2s1', scene: 'safeTap', gate: true, title: 'Правила безопасности',
         text: 'На физкультуре нужно быть очень внимательным, чтобы не получить травму. Нажми на карточки и узнай правила про форму, место, учителя и инвентарь.' },
       { id: 'f2s2', scene: 'quiz', gate: true, count: 8, gens: ['ynSafe'], title: 'Правильно или нет?',
@@ -1019,6 +1027,9 @@ const LESSONS = [
     ] },
   { id: 'f3', icon: '❤️', title: 'Разминка, сердце и дыхание', goal: 'Понимать, зачем нужны разминка и заминка и как меняются сердце и дыхание',
     steps: [
+      { id: 'f3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Разминка, сердце и дыхание',
+        src: '../../../assets/video/grade1-fizra-fiz-f3.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f3s1', scene: 'warmTap', gate: true, title: 'Разминка и заминка',
         text: 'Перед занятием тело нужно разогреть. Это разминка. В конце занятия тело нужно успокоить. Это заминка. Нажми на карточки и узнай, как проходит занятие.' },
       { id: 'f3s2', scene: 'heartScene', gate: true, title: 'Сердце и дыхание',
@@ -1028,6 +1039,9 @@ const LESSONS = [
     ] },
   { id: 'f4', icon: '🏅', title: 'Бег, прыжки, метание', goal: 'Различать основные движения и знать физические качества',
     steps: [
+      { id: 'f4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Бег, прыжки, метание',
+        src: '../../../assets/video/grade1-fizra-fiz-f4.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f4s1', scene: 'moveTap', gate: true, title: 'Основные движения',
         text: 'Основные движения — это ходьба, бег, прыжки и метание. Нажми на карточки и посмотри, чем они отличаются. Ещё мы прыгаем со скакалкой и играем с мячом.' },
       { id: 'f4s2', scene: 'qualTap', gate: true, title: 'Физические качества',
@@ -1039,6 +1053,9 @@ const LESSONS = [
     ] },
   { id: 'f5', icon: '🤸', title: 'Осанка и гимнастика', goal: 'Знать правильную осанку, гимнастические фигуры и снаряды',
     steps: [
+      { id: 'f5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Осанка и гимнастика',
+        src: '../../../assets/video/grade1-fizra-fiz-f5.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f5s1', scene: 'gymTap', gate: true, title: 'Осанка, фигуры и снаряды',
         text: 'Осанка — это то, как мы держим спину. На занятиях по гимнастике мы учим фигуры: ласточку, группировку, берёзку и мост. Нажми на карточки. Берёзку и мост делай только вместе с учителем.' },
       { id: 'f5s2', scene: 'wallScene', gate: true, title: 'Проверь осанку у стены',
@@ -1048,6 +1065,9 @@ const LESSONS = [
     ] },
   { id: 'f6', icon: '🤝', title: 'Игры и казахские народные игры', goal: 'Знать правила игры, работать в команде и знать народные игры',
     steps: [
+      { id: 'f6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Игры и казахские народные игры',
+        src: '../../../assets/video/grade1-fizra-fiz-f6.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f6s1', scene: 'gameTap', gate: true, title: 'Как играть дружно',
         text: 'В играх нужно соблюдать правила, быть честным и помогать товарищам. В команде бывают разные роли, например капитан. Нажми на карточки.' },
       { id: 'f6s2', scene: 'kgTap', gate: true, title: 'Казахские народные игры',
@@ -1057,6 +1077,9 @@ const LESSONS = [
     ] },
   { id: 'f7', icon: '💚', title: 'Здоровый образ жизни', goal: 'Знать, как беречь здоровье, и оценивать свои возможности',
     steps: [
+      { id: 'f7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Здоровый образ жизни',
+        src: '../../../assets/video/grade1-fizra-fiz-f7.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f7s1', scene: 'lifeTap', gate: true, title: 'Что полезно для здоровья',
         text: 'Чтобы быть здоровым, нужно много двигаться, гулять на свежем воздухе, пить воду, правильно питаться, вовремя спать и быть чистым. Нажми на карточки.' },
       { id: 'f7s2', scene: 'selfTap', gate: true, title: 'Мои возможности',
@@ -1226,6 +1249,9 @@ SCENES.simon = function(stage, st, ctx){
 const NEW_LESSONS = [
   { id: 'f8', icon: '⏱️', title: 'Как мы двигаемся', goal: 'Знать, что движение имеет время, пространство, вес и плавность',
     steps: [
+      { id: 'f8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Как мы двигаемся',
+        src: '../../../assets/video/grade1-fizra-fiz-f8.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f8s1', scene: 'infoTap', gate: true, title: 'Четыре свойства движения', cards: [
         { e: '⏱️', b: 'Время', nm: 'Время', tx: 'Можно двигаться быстро, как гепард, или медленно, как черепаха. Это скорость, то есть время движения.', an: [['slow', '🐢'], ['fast', '🐆']] },
         { e: '🧭', b: 'Пространство', nm: 'Пространство', tx: 'Куда и где мы двигаемся: вперёд, назад, вбок, вверх и вниз, высоко и низко, широко и узко.', an: [['up', '🦘'], ['side', '🧍']] },
@@ -1236,6 +1262,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'f9', icon: '💪', title: 'Что я умею', goal: 'Знать основные навыки, рассказывать о своих умениях и трудностях',
     steps: [
+      { id: 'f9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что я умею',
+        src: '../../../assets/video/grade1-fizra-fiz-f9.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f9s1', scene: 'infoTap', gate: true, title: 'Основные навыки', cards: [
         { e: '🏃', b: 'Бег', nm: 'Бег', tx: 'Корпус слегка наклонён вперёд, руки согнуты в локтях и помогают бежать.' },
         { e: '🦘', b: 'Прыжок', nm: 'Прыжок', tx: 'Оттолкнись ногами и приземлись мягко, на полусогнутые ноги.' },
@@ -1252,6 +1281,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'f10', icon: '🧭', title: 'Где и как двигаться', goal: 'Выполнять простые действия в разных пространствах и запоминать комбинации движений',
     steps: [
+      { id: 'f10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Где и как двигаться',
+        src: '../../../assets/video/grade1-fizra-fiz-f10.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f10s1', scene: 'infoTap', gate: true, title: 'Разные места', cards: [
         { e: '🏫', b: 'Спортзал', nm: 'Спортзал', tx: 'Пол ровный. Можно бегать и играть в мяч, но держи дистанцию.' },
         { e: '🌳', b: 'Площадка', nm: 'Школьная площадка', tx: 'Места много, но смотри под ноги и по сторонам. Не выбегай на дорогу.' },
@@ -1264,6 +1296,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'f11', icon: '🎯', title: 'Цели и планы', goal: 'Понимать двигательные идеи, стратегии и планы; работать самостоятельно ради цели',
     steps: [
+      { id: 'f11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Цели и планы',
+        src: '../../../assets/video/grade1-fizra-fiz-f11.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f11s1', scene: 'infoTap', gate: true, title: 'Цель, план, стратегия', cards: [
         { e: '🎯', b: 'Цель', nm: 'Цель', tx: 'То, чему я хочу научиться. Например: прыгать через скакалку двадцать раз.' },
         { e: '📋', b: 'План', nm: 'План', tx: 'Шаги, которые ведут к цели. Они идут по порядку.' },
@@ -1282,6 +1317,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'f12', icon: '🎭', title: 'Роли и творчество', goal: 'Знать свою роль и роли других, придумывать и передавать творческие идеи, делить место и идеи',
     steps: [
+      { id: 'f12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Роли и творчество',
+        src: '../../../assets/video/grade1-fizra-fiz-f12.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f12s1', scene: 'infoTap', gate: true, title: 'Кто есть кто в игре', cards: [
         { e: '👑', b: 'Капитан', nm: 'Капитан', tx: 'Ведёт команду и подбадривает игроков.' },
         { e: '🏃', b: 'Игрок', nm: 'Игрок', tx: 'Выполняет задание в игре.' },
@@ -1299,6 +1337,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'f13', icon: '🇰🇿', title: 'Родина и дружба', goal: 'Понимать, что такое патриотизм, и дружно действовать в команде',
     steps: [
+      { id: 'f13v0', scene: 'video', gate: true, silent: true, title: 'Видео: Родина и дружба',
+        src: '../../../assets/video/grade1-fizra-fiz-f13.mp4', poster: '../../../assets/video/grade1-fizra-fiz-f13.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'f13s1', scene: 'infoTap', gate: true, title: 'Что такое патриотизм', cards: [
         { e: '🇰🇿', b: 'Родина', nm: 'Любовь к Родине', tx: 'Патриотизм — это любовь и уважение к своей стране, её людям и традициям.' },
         { e: '🦴', b: 'Народные игры', nm: 'Народные игры', tx: 'Казахские народные игры, например асық ату и арқан тарту, хранят традиции народа. Играть в них — значит уважать свои корни.' },
