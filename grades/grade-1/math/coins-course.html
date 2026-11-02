@@ -750,7 +750,8 @@ function renderStep(){
   };
   renderDots();
   SCENES[st.scene](stage, st, ctx);
-  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+  $('.ac-speakrow').style.display = st.silent ? 'none' : '';
+  if ($('#ac-auto').checked && !st.silent) speak(st.id, st.say || st.text);
 }
 /* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
 function courseReward(L, oldStars, newStars){
@@ -797,7 +798,7 @@ $('#ac-speak').onclick = function(){
   const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
 };
 $('#ac-auto').checked = loadAuto();
-$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; if (!st.silent) speak(st.id, st.say || st.text); } else stopSpeak(); };
 if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
 
 window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
