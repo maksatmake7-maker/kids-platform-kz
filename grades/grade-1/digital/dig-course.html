@@ -360,6 +360,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -589,6 +590,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function tapScene(stage, ctx, o){
   const seen = {};
   stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
@@ -630,6 +632,9 @@ SCENES.algBuild = function(stage, st, ctx){
 const LESSONS = [
   { id: 'd1', icon: '🖥️', title: 'Устройства компьютера', goal: 'Называть основные устройства компьютера',
     steps: [
+      { id: 'd1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Устройства компьютера',
+        src: '../../../assets/video/grade1-digital-dig-d1.mp4', poster: '../../../assets/video/grade1-digital-dig-d1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd1s1', scene: 'devTap', gate: true, title: 'Знакомимся с устройствами',
         text: 'Привет! Это Барсик. Сегодня мы познакомимся с компьютером. У компьютера есть разные устройства. Монитор, клавиатура, мышь, принтер, колонки, ноутбук, наушники и джойстик. Нажимай на каждое и узнавай, для чего оно нужно.' },
       { id: 'd1s2', scene: 'quiz', gate: true, count: 6, gens: ['devName'], title: 'Как называется устройство?',
@@ -639,6 +644,9 @@ const LESSONS = [
     ] },
   { id: 'd2', icon: '⌨️', title: 'Что делает устройство?', goal: 'Знать, для чего нужны устройства',
     steps: [
+      { id: 'd2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что делает устройство?',
+        src: '../../../assets/video/grade1-digital-dig-d2.mp4', poster: '../../../assets/video/grade1-digital-dig-d2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd2s1', scene: 'quiz', gate: true, count: 6, gens: ['devDo'], title: 'Угадай устройство',
         text: 'Я опишу устройство, а ты угадаешь, что это. Читай внимательно.' },
       { id: 'd2s2', scene: 'quiz', gate: true, count: 6, gens: ['devGroup'], title: 'Управляем или смотрим?',
@@ -648,6 +656,9 @@ const LESSONS = [
     ] },
   { id: 'd3', icon: '🧘', title: 'Правила работы', goal: 'Знать правила безопасной работы за компьютером',
     steps: [
+      { id: 'd3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Правила работы',
+        src: '../../../assets/video/grade1-digital-dig-d3.mp4', poster: '../../../assets/video/grade1-digital-dig-d3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd3s1', scene: 'rulesTap', gate: true, title: 'Правила за компьютером',
         text: 'За компьютером нужно вести себя правильно. Сиди прямо и не слишком близко к экрану. Делай перерывы, когда устали глаза. Не трогай розетки и провода. Никому не говори свой пароль. А если что-то напугало, позови взрослого. Нажимай на карточки и читай.' },
       { id: 'd3s2', scene: 'quiz', gate: true, count: 6, gens: ['ruleYN'], title: 'Правильно или нет?',
@@ -657,6 +668,9 @@ const LESSONS = [
     ] },
   { id: 'd4', icon: '🧩', title: 'Порядок действий', goal: 'Понимать, что действия выполняются по порядку',
     steps: [
+      { id: 'd4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Порядок действий',
+        src: '../../../assets/video/grade1-digital-dig-d4.mp4', poster: '../../../assets/video/grade1-digital-dig-d4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd4s1', scene: 'algBuild', gate: true, title: 'Расставь шаги по порядку',
         text: 'Компьютер умеет выполнять действия только по порядку, шаг за шагом. Такой порядок действий называют алгоритмом. Попробуй сам. Нажимай на шаги по порядку: что делаем сначала, что потом.' },
       { id: 'd4s2', scene: 'quiz', gate: true, count: 6, gens: ['algFirst', 'algLast', 'algNext'], title: 'Что делаем раньше?',
@@ -985,6 +999,9 @@ SCENES.robot = function(stage, st, ctx){
 const NEW_LESSONS = [
   { id: 'd5', icon: '👀', title: 'Как мы получаем информацию', goal: 'Определять виды информации по способу восприятия',
     steps: [
+      { id: 'd5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Как мы получаем информацию',
+        src: '../../../assets/video/grade1-digital-dig-d5.mp4', poster: '../../../assets/video/grade1-digital-dig-d5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd5s1', scene: 'infoTap', gate: true, title: 'Пять способов узнавать мир', cards: [
         { e: '👀', b: 'Глаза', nm: 'Зрительная информация', tx: 'Мы получаем её глазами: картинки, буквы, сигнал светофора.' },
         { e: '👂', b: 'Уши', nm: 'Слуховая информация', tx: 'Мы получаем её ушами: музыка, речь, звонок.' },
@@ -997,6 +1014,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd6', icon: '📝', title: 'Формы информации', goal: 'Различать информацию по форме: текст, числа, рисунки, звук, видео',
     steps: [
+      { id: 'd6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Формы информации',
+        src: '../../../assets/video/grade1-digital-dig-d6.mp4', poster: '../../../assets/video/grade1-digital-dig-d6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd6s1', scene: 'infoTap', gate: true, title: 'Как выглядит информация', cards: [
         { e: '📝', b: 'Текст', nm: 'Текстовая информация', tx: 'Слова и буквы: сообщение, книга, подпись к картинке.' },
         { e: '🔢', b: 'Числа', nm: 'Числовая информация', tx: 'Цифры и числа: цена, номер телефона, возраст.' },
@@ -1009,6 +1029,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd7', icon: '📡', title: 'Передача информации', goal: 'Приводить примеры источников, каналов связи и приёмников информации',
     steps: [
+      { id: 'd7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Передача информации',
+        src: '../../../assets/video/grade1-digital-dig-d7.mp4', poster: '../../../assets/video/grade1-digital-dig-d7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd7s1', scene: 'infoTap', gate: true, title: 'Источник, канал, приёмник', cards: [
         { e: '🗣️', b: 'Источник', nm: 'Источник информации', tx: 'Тот, кто передаёт информацию: учитель, мама, книга, телевизор.' },
         { e: '📡', b: 'Канал связи', nm: 'Канал связи', tx: 'Путь, по которому идёт информация: воздух (голос), телефон, письмо, Интернет.' },
@@ -1021,6 +1044,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd8', icon: '🌐', title: 'Что такое Интернет', goal: 'Приводить примеры использования сети Интернет в жизни человека',
     steps: [
+      { id: 'd8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое Интернет',
+        src: '../../../assets/video/grade1-digital-dig-d8.mp4', poster: '../../../assets/video/grade1-digital-dig-d8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd8s1', scene: 'infoTap', gate: true, title: 'Для чего нужен Интернет', cards: [
         { e: '🌐', b: 'Сеть', nm: 'Что такое Интернет', tx: 'Интернет — большая сеть. Она соединяет компьютеры и телефоны по всему миру.' },
         { e: '🔎', b: 'Поиск', nm: 'Искать информацию', tx: 'Можно найти ответ на вопрос: как растут цветы, где живут пингвины.' },
@@ -1032,6 +1058,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd9', icon: '🛡️', title: 'Безопасность в сети', goal: 'Понимать, что не вся информация в сети достоверна и полезна, беречь личные данные',
     steps: [
+      { id: 'd9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Безопасность в сети',
+        src: '../../../assets/video/grade1-digital-dig-d9.mp4', poster: '../../../assets/video/grade1-digital-dig-d9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd9s1', scene: 'quiz', gate: true, count: 6, gens: ['trust'], title: 'Можно ли этому верить?', text: 'В Интернете не вся информация правдива. Бывают обманщики. Прочитай и реши, можно ли верить.' },
       { id: 'd9s2', scene: 'quiz', gate: true, count: 6, gens: ['useful'], title: 'Полезная или вредная?', text: 'Информация бывает полезной, а бывает вредной. Подумай, какая она.' },
       { id: 'd9s3', scene: 'quiz', gate: true, count: 8, gens: ['priv'], title: 'Личная информация', text: 'Личную информацию нельзя сообщать незнакомым людям: адрес, телефон, пароль, школу. Реши, что можно, а что нельзя.' },
@@ -1039,6 +1068,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd10', icon: '🎨', title: 'Рисуем фигурами', goal: 'Создавать изображение из стандартных фигур, выбирать цвет, контур, заливку и фон',
     steps: [
+      { id: 'd10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Рисуем фигурами',
+        src: '../../../assets/video/grade1-digital-dig-d10.mp4', poster: '../../../assets/video/grade1-digital-dig-d10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd10s1', scene: 'infoTap', gate: true, title: 'Графический редактор', cards: [
         { e: '⭐', b: 'Фигуры', nm: 'Стандартные фигуры', tx: 'Круг, квадрат, треугольник, звезда, стрелка. Из них можно составить рисунок.' },
         { e: '🎨', b: 'Палитра', nm: 'Палитра', tx: 'Палитра — набор цветов. Из неё выбирают цвет линии, заливки или фона.' },
@@ -1057,6 +1089,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd11', icon: '✂️', title: 'Правим рисунок', goal: 'Выделять фрагмент, копировать, вырезать, вставлять, поворачивать и отражать, закрашивать',
     steps: [
+      { id: 'd11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Правим рисунок',
+        src: '../../../assets/video/grade1-digital-dig-d11.mp4', poster: '../../../assets/video/grade1-digital-dig-d11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd11s1', scene: 'infoTap', gate: true, title: 'Инструменты правки', cards: [
         { e: '🔲', b: 'Выделить', nm: 'Выделение', tx: 'Чтобы работать с фрагментом, его нужно выделить рамкой: прямоугольной или овальной.' },
         { e: '📄', b: 'Копировать', nm: 'Копировать и вставить', tx: 'Копировать запоминает фрагмент, Вставить кладёт его ещё раз. Так получается копия.' },
@@ -1079,6 +1114,9 @@ const NEW_LESSONS = [
     ] },
   { id: 'd12', icon: '🤖', title: 'Алгоритмы и роботы', goal: 'Объяснять понятия алгоритм, действие, команда; определять исполнителя и систему команд; приводить примеры алгоритмов',
     steps: [
+      { id: 'd12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Алгоритмы и роботы',
+        src: '../../../assets/video/grade1-digital-dig-d12.mp4', poster: '../../../assets/video/grade1-digital-dig-d12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd12s1', scene: 'infoTap', gate: true, title: 'Слова-помощники', cards: [
         { e: '📋', b: 'Алгоритм', nm: 'Алгоритм', tx: 'Понятный порядок действий, который ведёт к цели. Например: как помыть руки.' },
         { e: '👣', b: 'Действие', nm: 'Действие', tx: 'Один шаг: открыть кран, взять мыло.' },

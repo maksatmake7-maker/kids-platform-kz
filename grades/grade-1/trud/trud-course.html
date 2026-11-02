@@ -342,6 +342,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -556,6 +557,7 @@ const mkYN = (cat, ico) => () => {
 };
 
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function tapScene(stage, ctx, o){
   const seen = {};
   stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
@@ -923,6 +925,9 @@ SCENES.planScene = function(stage, st, ctx){
 const LESSONS = [
   { id: 't1', icon: '🧵', title: 'Материалы', goal: 'Знать названия материалов и делить их на группы',
     steps: [
+      { id: 't1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Материалы',
+        src: '../../../assets/video/grade1-trud-trud-t1.mp4', poster: '../../../assets/video/grade1-trud-trud-t1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't1s1', scene: 'matTap', gate: true, title: 'Какие бывают материалы',
         text: 'Привет! Это Барсик. Сегодня мы начинаем трудовое обучение. Из чего можно делать поделки? Из цветной бумаги и картона, из пластилина, из листьев, шишек, камешков и веточек, из ткани и ниток. Нажми на каждую карточку и узнай, какой это материал.' },
       { id: 't1s2', scene: 'sortMat', gate: true, title: 'Группы материалов',
@@ -932,6 +937,9 @@ const LESSONS = [
     ] },
   { id: 't2', icon: '👐', title: 'Свойства материалов', goal: 'Знать свойства материалов и где их применять',
     steps: [
+      { id: 't2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Свойства материалов',
+        src: '../../../assets/video/grade1-trud-trud-t2.mp4', poster: '../../../assets/video/grade1-trud-trud-t2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't2s1', scene: 'propTap', gate: true, title: 'Какие бывают свойства',
         text: 'У каждого материала есть свои свойства. Это цвет, форма и размер. Ещё материал бывает мягкий или твёрдый, гладкий или шершавый. Нажми на карточки и узнай. А ещё можно потрогать материал пальцами.' },
       { id: 't2s2', scene: 'quiz', gate: true, count: 8, gens: ['matProp'], title: 'Какой материал?',
@@ -941,6 +949,9 @@ const LESSONS = [
     ] },
   { id: 't3', icon: '✂️', title: 'Инструменты и безопасность', goal: 'Знать инструменты и правила безопасной работы',
     steps: [
+      { id: 't3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Инструменты и безопасность',
+        src: '../../../assets/video/grade1-trud-trud-t3.mp4', poster: '../../../assets/video/grade1-trud-trud-t3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't3s1', scene: 'toolTap', gate: true, title: 'Инструменты',
         text: 'Для работы нужны инструменты. Это ножницы, клей, линейка, карандаш и иголка. Нажми на каждый и узнай, для чего он нужен. Ножницы и иголка острые, с ними нужно быть очень осторожным.' },
       { id: 't3s2', scene: 'quiz', gate: true, count: 6, gens: ['toolName', 'toolUse'], title: 'Какой инструмент?',
@@ -950,6 +961,9 @@ const LESSONS = [
     ] },
   { id: 't4', icon: '🧼', title: 'Рабочее место и чистота', goal: 'Знать и соблюдать гигиенические правила',
     steps: [
+      { id: 't4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Рабочее место и чистота',
+        src: '../../../assets/video/grade1-trud-trud-t4.mp4', poster: '../../../assets/video/grade1-trud-trud-t4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't4s1', scene: 'hygTap', gate: true, title: 'Правила рабочего места',
         text: 'Чтобы работать удобно и красиво, на рабочем месте нужен порядок. Надень фартук, сядь ровно, убери лишнее. После работы выброси мусор и вымой руки с мылом. Нажми на карточки.' },
       { id: 't4s2', scene: 'ordScene', gate: true, title: 'Расставь шаги по порядку',
@@ -959,6 +973,9 @@ const LESSONS = [
     ] },
   { id: 't5', icon: '🧸', title: 'Делаем поделку', goal: 'Планировать работу, выбирать материалы и способ изготовления',
     steps: [
+      { id: 't5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Делаем поделку',
+        src: '../../../assets/video/grade1-trud-trud-t5.mp4', poster: '../../../assets/video/grade1-trud-trud-t5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't5s1', scene: 'techTap', gate: true, title: 'Как делают поделку',
         text: 'Поделку делают разными способами. Можно вырезать, приклеить, согнуть, слепить, сшить и разметить по линейке. Нажми на карточки и посмотри, что делает каждый способ.' },
       { id: 't5s2', scene: 'planScene', gate: true, title: 'Выбери материалы для работы',
@@ -970,6 +987,9 @@ const LESSONS = [
     ] },
   { id: 't6', icon: '🧶', title: 'Казахские узоры и вещи', goal: 'Называть элементы национальной культуры в творческих работах',
     steps: [
+      { id: 't6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Казахские узоры и вещи',
+        src: '../../../assets/video/grade1-trud-trud-t6.mp4', poster: '../../../assets/video/grade1-trud-trud-t6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't6s1', scene: 'natTap', gate: true, title: 'Элементы национальной культуры',
         text: 'У казахского народа красивая культура. Это юрта с круглым окном, шанырак, кошма из овечьей шерсти и шапочка, которую называют тақия. Любимый узор называется «қошқар мүйіз», то есть бараньи рога. Такие узоры можно приклеить на свою поделку. Нажми на карточки.' },
       { id: 't6s2', scene: 'ornBuild', gate: true, title: 'Допиши узор',
@@ -979,6 +999,9 @@ const LESSONS = [
     ] },
   { id: 't7', icon: '🖼️', title: 'Моя выставка', goal: 'Презентовать свою работу, обсуждать и оценивать',
     steps: [
+      { id: 't7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Моя выставка',
+        src: '../../../assets/video/grade1-trud-trud-t7.mp4', poster: '../../../assets/video/grade1-trud-trud-t7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 't7s1', scene: 'exhTap', gate: true, title: 'Как показать и оценить работу',
         text: 'Когда поделка готова, её можно показать на выставке. Придумай название и расскажи, из чего и как ты сделал. Потом вместе с друзьями обсуди работы. Скажи, что получилось хорошо и что можно улучшить. Нажми на карточки.' },
       { id: 't7s2', scene: 'quiz', gate: true, count: 8, gens: ['evalGood', 'ynExh', 'ynHyg'], title: 'Оцени правильно',
