@@ -12425,6 +12425,15 @@ document.addEventListener('click', function(e){
   if(b){ try { localStorage.setItem('bilim_lang_v1', b.getAttribute('data-lang')); } catch(x){} }
 }, true);
 
+/* ===== Слой перевода надписей, которые написаны прямо на страницах (assets/ui-i18n.js + ui-<язык>.js) ===== */
+(function(){
+  try {
+    var me = document.currentScript; if(!me || !me.src) return;
+    var s = document.createElement('script'); s.src = me.src.replace(/i18n\.js.*$/, 'ui-i18n.js'); s.async = true;
+    document.head.appendChild(s);
+  } catch(e){}
+})();
+
 /* ===== Установка на экран телефона и офлайн-основа: подгружаем assets/pwa.js (manifest, service worker) ===== */
 (function(){
   try {
