@@ -315,6 +315,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -548,6 +549,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: палочки-десятки --- */
@@ -662,6 +664,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'd1', icon: '🥢', title: 'Палочки-десятки', goal: 'Понимать, что десяток — это 10, и считать десятками',
     steps: [
+      { id: 'd1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Палочки-десятки',
+        src: '../../../assets/video/grade1-math-tens-d1.mp4', poster: '../../../assets/video/grade1-math-tens-d1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd1s1', scene: 'bundles', gate: true, title: 'Один десяток — это 10',
         text: 'Привет! Это Барсик. Десять кубиков можно собрать в одну палочку, и это один десяток. Меняй число палочек кнопками и смотри, сколько получается кубиков.' },
       { id: 'd1s2', scene: 'quiz', gate: true, count: 5, gens: ['bundles'], title: 'Сколько десятков?',
@@ -671,6 +676,9 @@ const LESSONS = [
     ] },
   { id: 'd2', icon: '🔟', title: 'Считаем десятками', goal: 'Считать до 100 десятками и называть круглые числа',
     steps: [
+      { id: 'd2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Считаем десятками',
+        src: '../../../assets/video/grade1-math-tens-d2.mp4', poster: '../../../assets/video/grade1-math-tens-d2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd2s1', scene: 'tensLine', gate: true, title: 'Десять, двадцать, тридцать',
         text: 'Нажимай на круглые числа от десяти до ста. Я покажу, сколько в каждом десятков и какое число стоит рядом.' },
       { id: 'd2s2', scene: 'quiz', gate: true, count: 6, gens: ['tensMissing', 'tensNextPrev'], title: 'Какое число пропущено?',
@@ -682,6 +690,9 @@ const LESSONS = [
     ] },
   { id: 'd3', icon: '➕', title: 'Складываем и вычитаем десятки', goal: 'Устно складывать и вычитать десятки',
     steps: [
+      { id: 'd3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Складываем и вычитаем десятки',
+        src: '../../../assets/video/grade1-math-tens-d3.mp4', poster: '../../../assets/video/grade1-math-tens-d3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd3s1', scene: 'tensCalc', gate: true, title: 'Десятки плюс десятки',
         text: 'Три десятка и два десятка — это пять десятков. А пять десятков — это пятьдесят. Выбирай сложение или вычитание и смотри примеры.' },
       { id: 'd3s2', scene: 'quiz', gate: true, count: 6, gens: ['roundSum'], title: 'Складываем десятки',
@@ -691,6 +702,9 @@ const LESSONS = [
     ] },
   { id: 'd4', icon: '⚖️', title: 'Сравниваем и повторяем', goal: 'Сравнивать десятки и повторять всё изученное',
     steps: [
+      { id: 'd4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сравниваем и повторяем',
+        src: '../../../assets/video/grade1-math-tens-d4.mp4', poster: '../../../assets/video/grade1-math-tens-d4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'd4s1', scene: 'quiz', gate: true, count: 6, gens: ['signTens'], title: 'Больше или меньше?',
         text: 'Сравни десятки: где десятков больше, то число больше. Открытая сторона знака смотрит на большее число.' },
       { id: 'd4s2', scene: 'quiz', gate: true, count: 8, gens: ['bundleTotal', 'tensMissing', 'tensNextPrev', 'tensWord', 'roundSum', 'roundDiff', 'signTens'], title: 'Смешанные задания',

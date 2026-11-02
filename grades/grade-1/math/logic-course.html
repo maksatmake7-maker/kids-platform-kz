@@ -354,6 +354,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -668,6 +669,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 2: разложи по признакам --- */
 SCENES.sortShapes = function(stage, st, ctx){
@@ -719,6 +721,9 @@ SCENES.pictoBuild = function(stage, st, ctx){
 const LESSONS = [
   { id: 'l1', icon: '✅', title: 'Верно или неверно', goal: 'Проверять утверждения и отличать верные от неверных',
     steps: [
+      { id: 'l1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Верно или неверно',
+        src: '../../../assets/video/grade1-math-logic-l1.mp4', poster: '../../../assets/video/grade1-math-logic-l1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l1s1', scene: 'quiz', gate: true, count: 6, gens: ['tfCount'], title: 'Проверяем по картинке',
         text: 'Привет! Это Барсик. Утверждение — это предложение, про которое можно сказать: верно оно или неверно. Посчитай фигуры на картинке и проверь, правду ли говорит утверждение.' },
       { id: 'l1s2', scene: 'quiz', gate: true, count: 6, gens: ['tfNum'], title: 'Проверяем числа',
@@ -728,6 +733,9 @@ const LESSONS = [
     ] },
   { id: 'l2', icon: '🧩', title: 'Признаки и лишнее', goal: 'Разбивать предметы на группы по цвету и форме и находить лишнее',
     steps: [
+      { id: 'l2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Признаки и лишнее',
+        src: '../../../assets/video/grade1-math-logic-l2.mp4', poster: '../../../assets/video/grade1-math-logic-l2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l2s1', scene: 'sortShapes', gate: true, title: 'Раскладываем фигуры',
         text: 'У предметов бывают признаки: цвет, форма, размер. По признаку можно разложить предметы на группы. Нажми на фигуру, а потом на коробку, куда она подходит.' },
       { id: 'l2s2', scene: 'quiz', gate: true, count: 5, gens: ['attrCount'], title: 'Сколько с таким признаком?',
@@ -737,6 +745,9 @@ const LESSONS = [
     ] },
   { id: 'l3', icon: '📊', title: 'Пиктограммы', goal: 'Читать и рисовать пиктограммы и отвечать на вопросы по ним',
     steps: [
+      { id: 'l3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Пиктограммы',
+        src: '../../../assets/video/grade1-math-logic-l3.mp4', poster: '../../../assets/video/grade1-math-logic-l3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l3s1', scene: 'pictoBuild', gate: true, title: 'Рисуем пиктограмму',
         text: 'Пиктограмма — это картинка с данными: один значок значит один предмет. Так удобно считать и сравнивать. Нарисуй пиктограмму по рассказу Барсика.' },
       { id: 'l3s2', scene: 'quiz', gate: true, count: 6, gens: ['pictoRead'], title: 'Читаем пиктограмму',
@@ -744,6 +755,9 @@ const LESSONS = [
     ] },
   { id: 'l4', icon: '🔮', title: 'Ребусы и логические задачи', goal: 'Решать ребусы и простые логические задачи',
     steps: [
+      { id: 'l4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Ребусы и логические задачи',
+        src: '../../../assets/video/grade1-math-logic-l4.mp4', poster: '../../../assets/video/grade1-math-logic-l4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l4s1', scene: 'quiz', gate: true, count: 6, gens: ['rebus'], title: 'Ребусы с картинками',
         text: 'В ребусе одинаковые картинки значат одинаковые числа. Подбери число, чтобы запись стала верной.' },
       { id: 'l4s2', scene: 'quiz', gate: true, count: 5, gens: ['orderLogic'], title: 'Кто выше?',
@@ -753,6 +767,9 @@ const LESSONS = [
     ] },
   { id: 'l5', icon: '👕', title: 'Комбинации', goal: 'Составлять варианты комбинаций «по два»',
     steps: [
+      { id: 'l5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Комбинации',
+        src: '../../../assets/video/grade1-math-logic-l5.mp4', poster: '../../../assets/video/grade1-math-logic-l5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'l5s1', scene: 'comboBuild', gate: true, title: 'Составляем наряды',
         text: 'Комбинация — это сочетание двух предметов, например, футболки и шапки. Составь все возможные пары и не пропусти ни одной.' },
       { id: 'l5s2', scene: 'quiz', gate: true, count: 5, gens: ['pairsCount', 'pairsOf3'], title: 'Сколько вариантов?',

@@ -346,6 +346,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -659,6 +660,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: ряд животных, нажимаем и узнаём, кто слева и справа --- */
 SCENES.rowTap = function(stage, st, ctx){
@@ -693,6 +695,9 @@ SCENES.ballMove = function(stage, st, ctx){
 const LESSONS = [
   { id: 'p1', icon: '↔️', title: 'Слева, справа, впереди, между', goal: 'Определять расположение предметов: слева, справа, впереди, позади, между',
     steps: [
+      { id: 'p1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Слева, справа, впереди, между',
+        src: '../../../assets/video/grade1-math-pos-p1.mp4', poster: '../../../assets/video/grade1-math-pos-p1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p1s1', scene: 'rowTap', gate: true, title: 'Кто где стоит',
         text: 'Привет! Это Барсик. Чтобы сказать, где находится предмет, используют слова: слева, справа, между, с краю, посередине. Нажимай на животных!' },
       { id: 'p1s2', scene: 'quiz', gate: true, count: 6, gens: ['leftRight'], title: 'Слева или справа?',
@@ -704,6 +709,9 @@ const LESSONS = [
     ] },
   { id: 'p2', icon: '⬆️', title: 'Выше, ниже, над, под', goal: 'Определять расположение: на, над, под, рядом, выше, ниже',
     steps: [
+      { id: 'p2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Выше, ниже, над, под',
+        src: '../../../assets/video/grade1-math-pos-p2.mp4', poster: '../../../assets/video/grade1-math-pos-p2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p2s1', scene: 'ballMove', gate: true, title: 'Где мячик',
         text: 'Нажимай на кнопки, и мячик будет перемещаться. Смотри внимательно: на столе, под столом, над столом, рядом, в коробке, вне коробки.' },
       { id: 'p2s2', scene: 'quiz', gate: true, count: 6, gens: ['onUnder'], title: 'На, под, над, рядом',
@@ -713,6 +721,9 @@ const LESSONS = [
     ] },
   { id: 'p3', icon: '📦', title: 'Внутри, снаружи, посередине', goal: 'Различать внутри и снаружи (вне), находить предмет посередине',
     steps: [
+      { id: 'p3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Внутри, снаружи, посередине',
+        src: '../../../assets/video/grade1-math-pos-p3.mp4', poster: '../../../assets/video/grade1-math-pos-p3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p3s1', scene: 'quiz', gate: true, count: 6, gens: ['inOut'], title: 'Внутри или снаружи?',
         text: 'Если предмет окружён со всех сторон, он внутри. Если он за границей, он вне, то есть снаружи.' },
       { id: 'p3s2', scene: 'quiz', gate: true, count: 5, gens: ['center'], title: 'Слева, посередине, справа',
@@ -720,6 +731,9 @@ const LESSONS = [
     ] },
   { id: 'p4', icon: '📏', title: 'Сравниваем предметы', goal: 'Сравнивать предметы: больше-меньше, выше-ниже, шире-уже, толще-тоньше',
     steps: [
+      { id: 'p4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Сравниваем предметы',
+        src: '../../../assets/video/grade1-math-pos-p4.mp4', poster: '../../../assets/video/grade1-math-pos-p4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p4s1', scene: 'quiz', gate: true, count: 8, gens: ['cmpPair'], title: 'Что больше, выше, шире, толще?',
         text: 'Посмотри на два предмета и сравни их. Больше — меньше, выше — ниже, шире — уже, толще — тоньше.' },
       { id: 'p4s2', scene: 'quiz', gate: true, count: 6, gens: ['cmpThing'], title: 'Сравни в жизни',
@@ -727,6 +741,9 @@ const LESSONS = [
     ] },
   { id: 'p5', icon: '🛣️', title: 'Ближе, дальше, числовой луч', goal: 'Определять расстояние и расположение чисел на числовом луче',
     steps: [
+      { id: 'p5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Ближе, дальше, числовой луч',
+        src: '../../../assets/video/grade1-math-pos-p5.mp4', poster: '../../../assets/video/grade1-math-pos-p5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'p5s1', scene: 'quiz', gate: true, count: 5, gens: ['nearFar'], title: 'Ближе или дальше?',
         text: 'Расстояние — это путь от одного места до другого. Что ближе к школе, до того путь короче.' },
       { id: 'p5s2', scene: 'quiz', gate: true, count: 6, gens: ['rayRight', 'rayWhich', 'rayBetween'], title: 'Слева и справа на луче',

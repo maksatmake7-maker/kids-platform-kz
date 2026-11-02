@@ -327,6 +327,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -543,6 +544,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- Урок 1: раздаём поровну на две тарелки --- */
@@ -648,6 +650,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'h1', icon: '🍎', title: 'Делим поровну', goal: 'Понимать, что половина — это одна из двух равных частей',
     steps: [
+      { id: 'h1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Делим поровну',
+        src: '../../../assets/video/grade1-math-half-h1.mp4', poster: '../../../assets/video/grade1-math-half-h1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'h1s1', scene: 'share', gate: true, title: 'Раздаём на две тарелки',
         text: 'Привет! Это Барсик. Когда предметы делят на две одинаковые части, каждая часть называется половиной. Нажимай на предметы, и они по очереди ложатся на две тарелки. Смотри, сколько получится на каждой.' },
       { id: 'h1s2', scene: 'quiz', gate: true, count: 6, gens: ['halfPic'], title: 'Какая половина?',
@@ -657,6 +662,9 @@ const LESSONS = [
     ] },
   { id: 'h2', icon: '🔢', title: 'Половина числа', goal: 'Находить половину чисел 2, 4, 6, 8, 10',
     steps: [
+      { id: 'h2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Половина числа',
+        src: '../../../assets/video/grade1-math-half-h2.mp4', poster: '../../../assets/video/grade1-math-half-h2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'h2s1', scene: 'halfTable', gate: true, title: 'Половины чисел',
         text: 'Половину можно найти у чётных чисел: два, четыре, шесть, восемь, десять. Нажимай на числа и смотри, на какие две равные части они делятся.' },
       { id: 'h2s2', scene: 'pickHalf', gate: true, title: 'Выдели половину',
@@ -668,6 +676,9 @@ const LESSONS = [
     ] },
   { id: 'h3', icon: '🍬', title: 'Половина в задачах', goal: 'Применять половину в задачах и повторить изученное',
     steps: [
+      { id: 'h3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Половина в задачах',
+        src: '../../../assets/video/grade1-math-half-h3.mp4', poster: '../../../assets/video/grade1-math-half-h3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'h3s1', scene: 'quiz', gate: true, count: 5, gens: ['halfStory'], title: 'Барсик делится',
         text: 'Барсик делится с другом поровну. Найди половину и ответь на вопрос задачи.' },
       { id: 'h3s2', scene: 'quiz', gate: true, count: 8, gens: ['halfPic', 'isHalf', 'halfNum', 'doubleNum', 'halfStory'], title: 'Смешанные задания',

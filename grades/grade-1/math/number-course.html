@@ -43,14 +43,6 @@
 
 
   /* ----- видео-урок ----- */
-  .ac-vid{max-width:720px;margin:4px auto 0;}
-  .ac-vid-frame{position:relative;border-radius:24px;overflow:hidden;background:#1D3557;border:5px solid #FFC93C;box-shadow:0 10px 0 rgba(29,53,87,.14),0 18px 34px rgba(29,53,87,.2);aspect-ratio:16/9;}
-  .ac-vid-frame video{width:100%;height:100%;display:block;background:#8DD3F7;object-fit:contain;}
-  .ac-vid-tag{position:absolute;left:12px;top:12px;background:#FF6B4A;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:.9rem;padding:4px 12px;border-radius:999px;pointer-events:none;z-index:2;box-shadow:0 3px 0 rgba(0,0,0,.18);}
-  .ac-vid-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:12px 4px 0;}
-  .ac-vid-hint{font-family:'Baloo 2',sans-serif;font-weight:700;color:#1D3557;font-size:1.02rem;}
-  .ac-vid-hint.ac-ok{color:#1D6B2E;}
-  .ac-vid-skip{background:none;border:none;color:#5C7690;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;text-decoration:underline;cursor:pointer;padding:6px;}
 
   /* ----- урок ----- */
   .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
@@ -301,6 +293,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -547,20 +540,8 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
-
-/* --- видео-урок: смотрим ролик, потом задания --- */
-SCENES.video = function(stage, st, ctx){
-  stage.innerHTML = '<div class="ac-vid"><div class="ac-vid-frame"><span class="ac-vid-tag">🎬 Видео-урок</span>' +
-    '<video id="ac-video" controls playsinline preload="metadata" poster="' + st.poster + '"><source src="' + st.src + '" type="video/mp4"></video></div>' +
-    '<div class="ac-vid-row"><span class="ac-vid-hint" id="ac-vid-hint">Нажми ▶ и считай вместе с Барсиком</span><button class="ac-vid-skip" id="ac-vid-skip" type="button">Пропустить видео</button></div></div>';
-  const v = $('#ac-video'), hint = $('#ac-vid-hint');
-  const fin = () => { hint.textContent = '✓ Молодец! Теперь задания'; hint.classList.add('ac-ok'); $('#ac-vid-skip').style.display = 'none'; bsReact('happy', 1800); ctx.done(); };
-  v.addEventListener('ended', fin);
-  v.addEventListener('play', () => { hint.textContent = 'Смотри и считай вместе с Барсиком'; });
-  v.addEventListener('error', () => { hint.textContent = 'Видео не загрузилось. Можно пропустить'; }, true);
-  $('#ac-vid-skip').onclick = () => { try { v.pause(); } catch(e){} fin(); };
-};
 
 /* --- Урок 1: считаем рассыпанные яблоки --- */
 SCENES.countTap = function(stage, st, ctx){
@@ -754,7 +735,7 @@ const LESSONS = [
     steps: [
       { id: 'n1s1', scene: 'countTap', gate: true, title: 'Сколько яблок?',
         text: 'Привет! Это Барсик. Я рассыпал яблоки и хочу узнать, сколько их. Нажимай на каждое яблоко по очереди, а я буду называть числа. Последнее число и есть ответ!' },
-      { id: 'n1v', scene: 'video', gate: true, silent: true, title: 'Видео: Барсик и десять шариков',
+      { id: 'n1v', scene: 'video', gate: true, silent: true, title: 'Видео: Барсик и десять шариков', hint: 'Нажми ▶ и считай вместе с Барсиком',
         src: '../../../assets/video/grade1-math-count10.mp4', poster: '../../../assets/video/grade1-math-count10.jpg',
         text: 'Посмотри видео: Барсик надувает шарики, а мы считаем до десяти и обратно. Когда досмотришь, нажми «Дальше», и тебя ждут задания.' },
       { id: 'n1s2', scene: 'quiz', gate: true, count: 4, gens: ['countPics'], title: 'Считаем на картинках',
@@ -766,6 +747,9 @@ const LESSONS = [
     ] },
   { id: 'n2', icon: '👣', title: 'Какое число следующее?', goal: 'Находить число перед, после и между, расставлять числа по порядку',
     steps: [
+      { id: 'n2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Какое число следующее?',
+        src: '../../../assets/video/grade1-math-number-n2.mp4', poster: '../../../assets/video/grade1-math-number-n2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'n2s1', scene: 'ladder', gate: true, title: 'Лесенка чисел',
         text: 'Числа стоят по порядку, как ступеньки. Нажми на любое число, и я покажу, какое число стоит перед ним, а какое после.' },
       { id: 'n2s2', scene: 'quiz', gate: true, count: 5, gens: ['missing'], title: 'Какое число потерялось?',
@@ -777,7 +761,7 @@ const LESSONS = [
     ] },
   { id: 'n3', icon: '🚀', title: 'Считаем назад', goal: 'Считать в обратном порядке от 10 до 0',
     steps: [
-      { id: 'n3v', scene: 'video', gate: true, silent: true, title: 'Видео: Барсик и ракета',
+      { id: 'n3v', scene: 'video', gate: true, silent: true, title: 'Видео: Барсик и ракета', hint: 'Нажми ▶ и считай назад вместе с Барсиком',
         src: '../../../assets/video/grade1-math-countdown.mp4', poster: '../../../assets/video/grade1-math-countdown.jpg',
         text: 'Посмотри видео: Барсик строит ракету и считает назад от десяти до нуля. Потом считай вместе с ним.' },
       { id: 'n3s1', scene: 'countdown', gate: true, title: 'Ракета готова к старту',
@@ -793,6 +777,9 @@ const LESSONS = [
     ] },
   { id: 'n4', icon: '🎈', title: 'Порядковый счёт', goal: 'Отличать «сколько» от «каким по счёту»: первый, второй, третий…',
     steps: [
+      { id: 'n4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Порядковый счёт',
+        src: '../../../assets/video/grade1-math-number-n4.mp4', poster: '../../../assets/video/grade1-math-number-n4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'n4s1', scene: 'ordinal', gate: true, title: 'Какой по счёту?',
         text: 'Можно спросить «сколько?», и тогда ответ число: семь. А можно спросить «какой по счёту?», и тогда говорят: первый, второй, третий. Нажми на шарик, и я скажу, каким он стоит по счёту.' },
       { id: 'n4s2', scene: 'ordTap', gate: true, title: 'Найди шарик по номеру',

@@ -352,6 +352,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -606,6 +607,7 @@ const GENS = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 
 /* --- Урок 1: раскладываем по множествам --- */
 SCENES.sortSets = function(stage, st, ctx){
@@ -669,6 +671,9 @@ SCENES.venn = function(stage, st, ctx){
 const LESSONS = [
   { id: 's1', icon: '🧺', title: 'Что такое множество', goal: 'Понимать, что множество — это группа предметов, объединённых общим признаком',
     steps: [
+      { id: 's1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое множество',
+        src: '../../../assets/video/grade1-math-sets-s1.mp4', poster: '../../../assets/video/grade1-math-sets-s1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 's1s1', scene: 'sortSets', gate: true, title: 'Собираем множества',
         text: 'Привет! Это Барсик. Когда предметы собраны в одну группу по общему признаку, это множество. Например, все фрукты — одно множество, все игрушки — другое. Раскладывай предметы по множествам.' },
       { id: 's1s2', scene: 'quiz', gate: true, count: 6, gens: ['inSet'], title: 'Что не входит в множество?',
@@ -678,6 +683,9 @@ const LESSONS = [
     ] },
   { id: 's2', icon: '🔢', title: 'Элементы множества', goal: 'Считать элементы множества и знать, что такое пустое множество',
     steps: [
+      { id: 's2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Элементы множества',
+        src: '../../../assets/video/grade1-math-sets-s2.mp4', poster: '../../../assets/video/grade1-math-sets-s2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 's2s1', scene: 'countSet', gate: true, title: 'Считаем элементы',
         text: 'У каждого множества есть элементы, и их можно посчитать. Нажимай на элементы по одному, и они получат номера.' },
       { id: 's2s2', scene: 'quiz', gate: true, count: 6, gens: ['setCount'], title: 'Сколько элементов?',
@@ -687,6 +695,9 @@ const LESSONS = [
     ] },
   { id: 's3', icon: '🤝', title: 'Объединяем множества', goal: 'Объединять множества и сравнивать их по числу элементов',
     steps: [
+      { id: 's3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Объединяем множества',
+        src: '../../../assets/video/grade1-math-sets-s3.mp4', poster: '../../../assets/video/grade1-math-sets-s3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 's3s1', scene: 'venn', gate: true, title: 'Собираем вместе',
         text: 'Два множества можно объединить в одно: тогда все их элементы окажутся вместе. Нажми «Объединить» и посмотри, сколько получится.' },
       { id: 's3s2', scene: 'quiz', gate: true, count: 6, gens: ['unionCount'], title: 'Сколько в объединении?',

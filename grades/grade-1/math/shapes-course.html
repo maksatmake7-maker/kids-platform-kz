@@ -325,6 +325,7 @@
 <script src="../../../assets/i18n.js"></script>
 <script src="../../../assets/progress.js"></script>
 <script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
 <script src="../../../assets/world.js"></script>
 <script src="../../../assets/subject.js"></script>
 <script>
@@ -662,6 +663,7 @@ const SOLID_FACT = {
 
 /* ================= сцены ================= */
 const SCENES = {};
+SCENES.video = window.LessonVideoScene;
 function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
 
 /* --- галерея: нажимаем и узнаём название --- */
@@ -830,6 +832,9 @@ SCENES.finale = function(stage, st, ctx){
 const LESSONS = [
   { id: 'g1', icon: '🔺', title: 'Плоские фигуры', goal: 'Узнавать круг, треугольник, квадрат и прямоугольник',
     steps: [
+      { id: 'g1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Плоские фигуры',
+        src: '../../../assets/video/grade1-math-shapes-g1.mp4', poster: '../../../assets/video/grade1-math-shapes-g1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g1s1', scene: 'gallery', set: 'flat', need: 4, gate: true, title: 'Знакомимся с фигурами',
         text: 'Привет! Это Барсик. Фигуры есть везде: в окнах, колёсах, книжках. Нажимай на фигуры, и я расскажу, как они называются и чем отличаются.' },
       { id: 'g1s2', scene: 'quiz', gate: true, count: 6, gens: ['shapeName'], title: 'Как называется фигура?',
@@ -839,6 +844,9 @@ const LESSONS = [
     ] },
   { id: 'g2', icon: '📐', title: 'Стороны и углы', goal: 'Считать стороны и углы, отличать квадрат от прямоугольника',
     steps: [
+      { id: 'g2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Стороны и углы',
+        src: '../../../assets/video/grade1-math-shapes-g2.mp4', poster: '../../../assets/video/grade1-math-shapes-g2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g2s1', scene: 'countParts', gate: true, title: 'Считаем стороны и углы',
         text: 'У фигур есть стороны и углы. Сторона — это линия, которая ограничивает фигуру, а угол — это место, где две стороны встречаются. Выбирай фигуры и смотри, сколько у них сторон и углов.' },
       { id: 'g2s2', scene: 'quiz', gate: true, count: 6, gens: ['sidesQ'], title: 'Сколько сторон и углов?',
@@ -850,6 +858,9 @@ const LESSONS = [
     ] },
   { id: 'g3', icon: '✏️', title: 'Линии и отрезки', goal: 'Различать прямую, кривую, ломаную линию и отрезок',
     steps: [
+      { id: 'g3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Линии и отрезки',
+        src: '../../../assets/video/grade1-math-shapes-g3.mp4', poster: '../../../assets/video/grade1-math-shapes-g3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g3s1', scene: 'gallery', set: 'lines', need: 3, gate: true, title: 'Какие бывают линии',
         text: 'Линии бывают разные: прямые, кривые, ломаные. А ещё бывают отрезки. Нажимай на линии и смотри, чем они отличаются.' },
       { id: 'g3s2', scene: 'quiz', gate: true, count: 6, gens: ['lineType'], title: 'Как называется линия?',
@@ -861,6 +872,9 @@ const LESSONS = [
     ] },
   { id: 'g6', icon: '📏', title: 'Точка, луч, угол', goal: 'Узнавать точку, луч, угол, отрезок, прямую, замкнутые и незамкнутые линии',
     steps: [
+      { id: 'g6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Точка, луч, угол',
+        src: '../../../assets/video/grade1-math-shapes-g6.mp4', poster: '../../../assets/video/grade1-math-shapes-g6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g6s1', scene: 'gallery', set: 'geo', need: 5, gate: true, title: 'Знакомимся с линиями',
         text: 'Из точек и линий строятся все фигуры. Нажимай на картинки и смотри: у кого есть начало, у кого — конец, а кто замкнулся в кольцо.' },
       { id: 'g6s2', scene: 'quiz', gate: true, count: 6, gens: ['geoName'], title: 'Как называется?',
@@ -872,6 +886,9 @@ const LESSONS = [
     ] },
   { id: 'g4', icon: '🧊', title: 'Объёмные фигуры', goal: 'Узнавать шар, куб, цилиндр, конус, пирамиду и прямоугольный параллелепипед',
     steps: [
+      { id: 'g4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Объёмные фигуры',
+        src: '../../../assets/video/grade1-math-shapes-g4.mp4', poster: '../../../assets/video/grade1-math-shapes-g4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g4s1', scene: 'gallery', set: 'solid', need: 4, gate: true, title: 'Знакомимся с объёмными фигурами',
         text: 'Эти фигуры можно взять в руки и повертеть. Они называются объёмными. Нажимай на них, и я расскажу, на что они похожи.' },
       { id: 'g4s2', scene: 'quiz', gate: true, count: 6, gens: ['solidName'], title: 'Как называется фигура?',
@@ -883,6 +900,9 @@ const LESSONS = [
     ] },
   { id: 'g5', icon: '🏠', title: 'Фигуры вокруг нас', goal: 'Находить фигуры в рисунке и повторять всё изученное',
     steps: [
+      { id: 'g5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Фигуры вокруг нас',
+        src: '../../../assets/video/grade1-math-shapes-g5.mp4', poster: '../../../assets/video/grade1-math-shapes-g5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g5s1', scene: 'picture', gate: true, title: 'Дом из фигур',
         text: 'Посмотри, какой дом построил Барсик! Он собран из разных фигур. Нажимай на части рисунка, и я скажу, какая это фигура.' },
       { id: 'g5s2', scene: 'quiz', gate: true, count: 5, gens: ['countShapes'], title: 'Сколько фигур?',
@@ -1007,6 +1027,9 @@ Object.assign(GENS, {
 const NEWL = [
   { id: 'g7', icon: '📏', title: 'Измеряем стороны', goal: 'Измерять и сравнивать стороны квадрата, прямоугольника и треугольника',
     steps: [
+      { id: 'g7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Измеряем стороны',
+        src: '../../../assets/video/grade1-math-shapes-g7.mp4', poster: '../../../assets/video/grade1-math-shapes-g7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g7s1', scene: 'infoTap', gate: true, title: 'Сторона и сантиметр', cards: [
         { e: '📏', b: 'Линейка', nm: 'Линейка и сантиметры', tx: 'Длину измеряют в сантиметрах. На линейке цифры показывают сантиметры.' },
         { e: '0️⃣', b: 'Ноль', nm: 'Начинаем с нуля', tx: 'Приложи линейку так, чтобы ноль был у начала стороны. Число там, где сторона закончилась, — её длина.' },
@@ -1019,6 +1042,9 @@ const NEWL = [
     ] },
   { id: 'g8', icon: '🧩', title: 'Составляем из фигур', goal: 'Составлять композиции из плоских фигур и их частей',
     steps: [
+      { id: 'g8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Составляем из фигур',
+        src: '../../../assets/video/grade1-math-shapes-g8.mp4', poster: '../../../assets/video/grade1-math-shapes-g8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
       { id: 'g8s1', scene: 'infoTap', gate: true, title: 'Рисунки из фигур', cards: CMPS.map((c, i) => ({ e: ['🏠', '🎄', '🚀', '⛄'][i], b: c[1], nm: c[1], tx: c[3], svg: '<div style="margin:4px">' + cmpSVG[c[0]]() + '</div>' })),
         text: 'Из простых фигур можно составить целый рисунок: домик, ёлку, ракету и снеговика. Нажимай и смотри, из чего они собраны.' },
       { id: 'g8s2', scene: 'composeShapes', gate: true, title: 'Составь композицию', tasks: [
