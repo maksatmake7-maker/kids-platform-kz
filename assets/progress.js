@@ -86,6 +86,7 @@ function recordGameResult(gameKey, score, total){
  * Сетевые ошибки тихо игнорируются — прогресс уже в безопасности локально.
  */
 function syncProgressToServer(gameKey, score, total){
+  if(window.BILIM_AUTH_ENABLED === false) return; // вход выключен (assets/media-base.js): на сервер ничего не отправляем
   var token = null;
   try { token = localStorage.getItem('bilim_araly_child_token'); } catch(e){ return; }
   if(!token) return;
@@ -251,6 +252,14 @@ document.addEventListener('DOMContentLoaded', function(){
  * не выбран. Если не вошёл — оставляет "Войти" как есть.
  */
 function updateAuthLink(){
+  if(window.BILIM_AUTH_ENABLED === false){
+    // вход выключен: прячем все ссылки на вход, регистрацию и профили
+    try {
+      var hide = document.querySelectorAll('#auth-link, a[href$="auth.html"], a[href$="profiles.html"], a[href$="myprofile.html"]');
+      for(var i = 0; i < hide.length; i++) hide[i].style.display = 'none';
+    } catch(e){}
+    return;
+  }
   var link = document.getElementById('auth-link');
   if(!link) return;
   var parentToken = null, childInfoRaw = null;

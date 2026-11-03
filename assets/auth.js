@@ -44,6 +44,7 @@ function setChildInfo(info){
 }
 
 function apiRequest(path, options){
+  if(window.BILIM_AUTH_ENABLED === false) return Promise.reject(new Error('Вход пока недоступен')); // выключатель в assets/media-base.js
   options = options || {};
   var headers = options.headers || {};
   headers['Content-Type'] = 'application/json';
