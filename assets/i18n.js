@@ -12556,3 +12556,16 @@ document.addEventListener('click', function(e){
     (document.head || document.documentElement).appendChild(s);
   } catch(e){}
 })();
+
+
+/* ===== Окно «Отзывы и предложения»: подключаем assets/feedback.js на всех страницах, где есть i18n.js ===== */
+(function(){
+  try {
+    var me = document.currentScript;
+    if (!me || !me.src || window.BilimFeedback) return;
+    var s = document.createElement('script');
+    s.src = me.src.replace(/i18n\.js.*$/, 'feedback.js');
+    s.defer = true;
+    (document.head || document.documentElement).appendChild(s);
+  } catch(e){}
+})();
