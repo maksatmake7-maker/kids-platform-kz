@@ -12489,32 +12489,42 @@ document.addEventListener('click', function(e){
 /* ===== Кнопка «Отзывы и предложения (для взрослых)» под подвалом: открывает Google Форму для родителей и учителей ===== */
 (function(){
   try {
+    var me = document.currentScript;
+    var ROOT = (me && me.src) ? me.src.replace(/assets\/i18n\.js.*$/, '') : '';
     var FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSdGioSuVXgR6nnKvrKNDBCOVKtouZHGFHxuXdoOvkTK_vMUSw/viewform';
     var TXT = {
       ru: '✉ Отзывы и предложения (для взрослых)',
-      kk: '✉ Пікірлер мен ұсыныстар (ересектерге арналған)',
+      kz: '✉ Пікірлер мен ұсыныстар (ересектерге арналған)',
       en: '✉ Feedback and suggestions (for adults)'
     };
+    var PRIV = { ru: 'Политика конфиденциальности', kz: 'Құпиялылық саясаты', en: 'Privacy policy' };
     function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if(s && TXT[s]) return s; } catch(e){} return 'ru'; }
     function paint(l){
-      var t = TXT[l] || TXT.ru;
+      var t = TXT[l] || TXT.ru, p = PRIV[l] || PRIV.ru;
       document.querySelectorAll('a.feedback-link').forEach(function(a){ a.textContent = t; });
+      document.querySelectorAll('a.privacy-link').forEach(function(a){ a.textContent = p; });
     }
     function make(){
       var w = document.createElement('div'); w.className = 'feedback-wrap';
       var a = document.createElement('a'); a.className = 'feedback-link'; a.href = FORM; a.target = '_blank'; a.rel = 'noopener';
-      w.appendChild(a); return w;
+      w.appendChild(a);
+      if(ROOT){
+        var b = document.createElement('a'); b.className = 'privacy-link'; b.href = ROOT + 'privacy.html';
+        w.appendChild(b);
+      }
+      return w;
     }
     function init(){
       var st = document.createElement('style');
-      st.textContent = '.feedback-wrap{position:relative;z-index:2;text-align:center;padding:0 16px 34px}'
+      st.textContent = '.feedback-wrap{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 16px 34px}'
         + '.feedback-wrap a.feedback-link{display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.75);border:2px solid rgba(29,53,87,.22);color:#1D3557;font:700 .82rem/1.3 Nunito,Arial,sans-serif;text-decoration:none}'
+        + '.feedback-wrap a.privacy-link{display:inline-block;padding:8px 18px;border-radius:999px;color:#3A5A78;font:700 .82rem/1.3 Nunito,Arial,sans-serif;text-decoration:underline}'
         + '.feedback-wrap a.feedback-link:hover{background:#FFE08A}';
       document.head.appendChild(st);
       var foot = document.querySelector('footer');
       if(foot && foot.parentNode && !document.querySelector('.feedback-wrap')){
         foot.parentNode.insertBefore(make(), foot.nextSibling);
-      } else if(/parent\.html$/.test(location.pathname) && !document.querySelector('.feedback-wrap')){
+      } else if(/(parent|privacy)\.html$/.test(location.pathname) && !document.querySelector('.feedback-wrap')){
         document.body.appendChild(make());
       }
       paint(lang());
