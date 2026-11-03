@@ -12498,11 +12498,17 @@ document.addEventListener('click', function(e){
       en: '✉ Feedback and suggestions (for adults)'
     };
     var PRIV = { ru: 'Политика конфиденциальности', kz: 'Құпиялылық саясаты', en: 'Privacy policy' };
+    var COPY = {
+      ru: '© 2026 Суннатов М. Н. «Білім Аралы». Все права защищены.',
+      kz: '© 2026 Суннатов М. Н. «Білім Аралы». Барлық құқықтар қорғалған.',
+      en: '© 2026 M. N. Sunnatov. “Білім Аралы”. All rights reserved.'
+    };
     function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if(s && TXT[s]) return s; } catch(e){} return 'ru'; }
     function paint(l){
       var t = TXT[l] || TXT.ru, p = PRIV[l] || PRIV.ru;
       document.querySelectorAll('a.feedback-link').forEach(function(a){ a.textContent = t; });
       document.querySelectorAll('a.privacy-link').forEach(function(a){ a.textContent = p; });
+      document.querySelectorAll('.feedback-wrap .copy-line').forEach(function(d){ d.textContent = COPY[l] || COPY.ru; });
     }
     function make(){
       var w = document.createElement('div'); w.className = 'feedback-wrap';
@@ -12512,6 +12518,8 @@ document.addEventListener('click', function(e){
         var b = document.createElement('a'); b.className = 'privacy-link'; b.href = ROOT + 'privacy.html';
         w.appendChild(b);
       }
+      var c = document.createElement('div'); c.className = 'copy-line';
+      w.appendChild(c);
       return w;
     }
     function init(){
@@ -12519,7 +12527,8 @@ document.addEventListener('click', function(e){
       st.textContent = '.feedback-wrap{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 16px 34px}'
         + '.feedback-wrap a.feedback-link{display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.75);border:2px solid rgba(29,53,87,.22);color:#1D3557;font:700 .82rem/1.3 Nunito,Arial,sans-serif;text-decoration:none}'
         + '.feedback-wrap a.privacy-link{display:inline-block;padding:8px 18px;border-radius:999px;color:#3A5A78;font:700 .82rem/1.3 Nunito,Arial,sans-serif;text-decoration:underline}'
-        + '.feedback-wrap a.feedback-link:hover{background:#FFE08A}';
+        + '.feedback-wrap a.feedback-link:hover{background:#FFE08A}'
+        + '.feedback-wrap .copy-line{flex-basis:100%;text-align:center;color:#5C7690;font:600 .75rem/1.4 Nunito,Arial,sans-serif}';
       document.head.appendChild(st);
       var foot = document.querySelector('footer');
       if(foot && foot.parentNode && !document.querySelector('.feedback-wrap')){
