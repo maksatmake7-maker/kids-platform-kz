@@ -6,11 +6,11 @@
    • аудио и видео НЕ сохраняются (браузер запрашивает их кусками) — без интернета голос Барсика не звучит, остаётся текст;
    • чужие адреса (сервер прогресса на Railway, шрифты) не трогаются.
    Чтобы сбросить сохранённое после крупных изменений, поменяйте V. */
-const V = 'bilim-v2';
+const V = 'bilim-v3';
 const SHELL = [
   './', 'index.html', 'grade-picker.html', 'offline.html', 'manifest.webmanifest',
   'assets/pwa/icon-192.png', 'assets/pwa/icon-512.png',
-  'assets/i18n.js', 'assets/ui-i18n.js', 'assets/ui-en.js', 'assets/emoji-fix.js', 'assets/styles.css', 'assets/world.css', 'assets/world.js', 'assets/progress.js', 'assets/barsik.js',
+  'assets/media-base.js', 'assets/i18n.js', 'assets/ui-i18n.js', 'assets/ui-en.js', 'assets/emoji-fix.js', 'assets/styles.css', 'assets/world.css', 'assets/world.js', 'assets/progress.js', 'assets/barsik.js',
   'assets/auth.js', 'assets/rewards.js', 'assets/explain.js', 'assets/quick.js', 'assets/island.js', 'assets/quest.js', 'assets/quest-data.js', 'assets/quest.css', 'quest/index.html', 'assets/pwa.js',
   'assets/hub.js', 'assets/hub.css', 'assets/subject.js', 'assets/subject.css', 'assets/subject-themes.js', 'assets/courses-registry.js',
   'assets/house.js', 'assets/house.css', 'assets/house-i18n.js', 'assets/house-back.js', 'assets/gift.css',
