@@ -23,6 +23,18 @@
     en: { btn: '👁 My mode', h: 'My mode', lead: 'Choose what is easier for you. It is remembered on this device.',
       hint: 'Handy if small text is hard to read or motion on the screen tires you out.',
       big: 'Bigger text', read: 'Easy-to-read font', calm: 'Less motion', focus: 'Clear outlines on buttons', contrast: 'Higher contrast', close: 'Done', reset: 'Reset all' }
+    ,uz: { btn: '👁 Менинг режимим', h: 'Менинг режимим', lead: 'Ўзингга қулайини танла. Бу шу қурилмада сақланади.',
+      hint: 'Майда матнни ўқиш қийин бўлса ёки экрандаги ҳаракатдан тез чарчасанг, қулай.',
+      big: 'Матн каттароқ', read: 'Ўқишга қулай шрифт', calm: 'Ҳаракат кам', focus: 'Тугмаларнинг аниқ чизиқлари', contrast: 'Контраст юқорироқ', close: 'Тайёр', reset: 'Ҳаммасини бекор қилиш' },
+    zh: { btn: '👁 我的模式', h: '我的模式', lead: '选一个对你更方便的方式。会记在这台设备上。',
+      hint: '如果小字很难读，或者屏幕上的动画让你容易疲劳，这会很方便。',
+      big: '更大的文字', read: '易读字体', calm: '减少动态效果', focus: '按钮轮廓更清晰', contrast: '更高对比度', close: '完成', reset: '全部重置' },
+    tg: { btn: '👁 Ҳолати ман', h: 'Ҳолати ман', lead: 'Он чиро, ки барои ту қулайтар аст, интихоб кун. Ин дар ҳамин дастгоҳ нигоҳ дошта мешавад.',
+      hint: 'Агар хондани матни хурд душвор бошад ё аз ҳаракат дар экран зуд хаста шавӣ, қулай аст.',
+      big: 'Матни калонтар', read: 'Ҳуруфи хонданбоб', calm: 'Ҳаракати камтар', focus: 'Чорчӯбаҳои возеҳи тугмаҳо', contrast: 'Контрасти баландтар', close: 'Тайёр', reset: 'Ҳамаро барқарор кардан' },
+    ug: { btn: '👁 مېنىڭ ھالىتىم', h: 'مېنىڭ ھالىتىم', lead: 'ئۆزۈڭگە قولايلىقىنى تاللا. بۇ مۇشۇ ئۈسكۈنىدە ساقلىنىدۇ.',
+      hint: 'كىچىك خەتنى ئوقۇش تەس بولسا ياكى ئېكراندىكى ھەرىكەتتىن تېز چارچىساڭ، قولايلىق.',
+      big: 'چوڭراق خەت', read: 'ئوقۇشقا قولايلىق خەت', calm: 'ھەرىكەت ئاز', focus: 'كۇنۇپكىلارنىڭ ئېنىق چېگرىسى', contrast: 'سېلىشتۇرما يۇقىرىراق', close: 'تامام', reset: 'ھەممىنى ئەسلىگە قايتۇرۇش' }
   };
 
   var CSS =
@@ -96,7 +108,7 @@
     lastFocus = document.activeElement;
     var o = load();
     back = document.createElement('div'); back.className = 'a11y-back';
-    var box = document.createElement('div'); box.className = 'a11y-box';
+    var box = document.createElement('div'); box.className = 'a11y-box'; if ((cur || lang()) === 'ug') box.setAttribute('dir', 'rtl');
     box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'a11y-h');
     var h = document.createElement('h2'); h.id = 'a11y-h'; h.textContent = t('h');
     var p = document.createElement('p'); p.textContent = t('lead');

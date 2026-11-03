@@ -1,6 +1,7 @@
 /* English UI strings for assets/ui-i18n.js. Add: 'Russian text': 'English text'. Draft translation — needs review by a native speaker. */
 UI_I18N_REG('en',{
 ex:{
+"Русский язык": "Russian language",
 "Мои награды": "My rewards",
 "Барсик": "Barsik",
 "Повторить": "Repeat",
