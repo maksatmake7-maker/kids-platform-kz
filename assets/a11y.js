@@ -1,24 +1,28 @@
 /* Білім Аралы — «Мой режим» (assets/a11y.js)
-   Четыре переключателя для удобства чтения и спокойной работы:
+   Пять переключателей для удобства чтения и спокойной работы:
      big   — крупнее текст
      read  — читаемый шрифт и больше места между буквами и строками
      calm  — меньше движения (без прыжков, облаков и плавных переходов)
      focus — чёткие рамки у кнопок и ссылок, ссылки подчёркнуты
+     contrast — выше контрастность и насыщенность цветов
    Выбор хранится только в этом браузере (ключ bilim_a11y_v1) и переносится вместе с прогрессом.
    Подключается из assets/i18n.js. Кнопка «Мой режим» появляется под подвалом страницы, рядом с «Отзывами». */
 (function(){
   'use strict';
   if (window.BilimA11y) return;
   var KEY = 'bilim_a11y_v1';
-  var OPTS = ['big', 'read', 'calm', 'focus'];
+  var OPTS = ['big', 'read', 'calm', 'focus', 'contrast'];
 
   var TXT = {
-    ru: { btn: 'Мой режим', h: 'Мой режим', lead: 'Выбери, как тебе удобнее. Это запомнится на этом устройстве.',
-      big: 'Крупнее текст', read: 'Читаемый шрифт', calm: 'Меньше движения', focus: 'Чёткие рамки у кнопок', close: 'Готово', reset: 'Сбросить всё' },
-    kz: { btn: 'Менің режимім', h: 'Менің режимім', lead: 'Өзіңе ыңғайлысын таңда. Бұл осы құрылғыда сақталады.',
-      big: 'Мәтін үлкенірек', read: 'Оқуға ыңғайлы қаріп', calm: 'Қозғалыс аз', focus: 'Батырмалардың анық жиектері', close: 'Дайын', reset: 'Бәрін тастау' },
-    en: { btn: 'My mode', h: 'My mode', lead: 'Choose what is easier for you. It is remembered on this device.',
-      big: 'Bigger text', read: 'Easy-to-read font', calm: 'Less motion', focus: 'Clear outlines on buttons', close: 'Done', reset: 'Reset all' }
+    ru: { btn: '👁 Мой режим', h: 'Мой режим', lead: 'Выбери, как тебе удобнее. Это запомнится на этом устройстве.',
+      hint: 'Удобно, если мелкий текст читать трудно или быстро устаёшь от движения на экране.',
+      big: 'Крупнее текст', read: 'Читаемый шрифт', calm: 'Меньше движения', focus: 'Чёткие рамки у кнопок', contrast: 'Выше контрастность', close: 'Готово', reset: 'Сбросить всё' },
+    kz: { btn: '👁 Менің режимім', h: 'Менің режимім', lead: 'Өзіңе ыңғайлысын таңда. Бұл осы құрылғыда сақталады.',
+      hint: 'Ұсақ мәтінді оқу қиын болса немесе экрандағы қозғалыстан тез шаршасаң, ыңғайлы.',
+      big: 'Мәтін үлкенірек', read: 'Оқуға ыңғайлы қаріп', calm: 'Қозғалыс аз', focus: 'Батырмалардың анық жиектері', contrast: 'Контраст жоғары', close: 'Дайын', reset: 'Бәрін тастау' },
+    en: { btn: '👁 My mode', h: 'My mode', lead: 'Choose what is easier for you. It is remembered on this device.',
+      hint: 'Handy if small text is hard to read or motion on the screen tires you out.',
+      big: 'Bigger text', read: 'Easy-to-read font', calm: 'Less motion', focus: 'Clear outlines on buttons', contrast: 'Higher contrast', close: 'Done', reset: 'Reset all' }
   };
 
   var CSS =
@@ -32,11 +36,13 @@
     'html.a11y-focus a,html.a11y-focus button,html.a11y-focus summary,html.a11y-focus [role=button],html.a11y-focus input,html.a11y-focus select,html.a11y-focus textarea{outline:3px solid #1D3557!important;outline-offset:2px!important}' +
     'html.a11y-focus a:not(.logo):not(.back-link):not([class*=card]):not([class*=btn]){text-decoration:underline!important}' +
     'html.a11y-focus a:focus-visible,html.a11y-focus button:focus-visible,html.a11y-focus input:focus-visible,html.a11y-focus summary:focus-visible{outline:4px solid #E8590C!important;outline-offset:3px!important}' +
+    'html.a11y-contrast{filter:contrast(1.28) saturate(1.12)}' +
     '.a11y-open{display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.75);border:2px solid rgba(29,53,87,.22);color:#1D3557;font:700 .82rem/1.3 Nunito,Arial,sans-serif;cursor:pointer}' +
     '.a11y-open:hover{background:#FFE08A}' +
     '.a11y-back{position:fixed;inset:0;z-index:99999;background:rgba(29,53,87,.55);display:flex;align-items:center;justify-content:center;padding:16px}' +
     '.a11y-box{width:100%;max-width:420px;background:#fff;border-radius:24px;padding:22px 20px;box-shadow:0 10px 0 rgba(0,0,0,.12);color:#1D3557;font-family:Nunito,Arial,sans-serif}' +
     '.a11y-box h2{font:800 1.4rem/1.2 "Baloo 2",Nunito,Arial,sans-serif;margin:0 0 6px}' +
+    '.a11y-box p.a11y-hint{margin:0 0 12px;font-weight:600;font-size:.88rem;color:#4A6076}' +
     '.a11y-box p{margin:0 0 12px;color:#41566E;font-weight:700;font-size:.95rem;line-height:1.4}' +
     '.a11y-row{display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:14px;background:#F5F8FA;margin:8px 0;font-weight:800;font-size:1rem;cursor:pointer}' +
     '.a11y-row input{width:26px;height:26px;accent-color:#2F8FD1;flex:none}' +
@@ -94,7 +100,8 @@
     box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'a11y-h');
     var h = document.createElement('h2'); h.id = 'a11y-h'; h.textContent = t('h');
     var p = document.createElement('p'); p.textContent = t('lead');
-    box.appendChild(h); box.appendChild(p);
+    var hn = document.createElement('p'); hn.className = 'a11y-hint'; hn.textContent = t('hint');
+    box.appendChild(h); box.appendChild(p); box.appendChild(hn);
     var inputs = {};
     OPTS.forEach(function(k){
       var row = document.createElement('label'); row.className = 'a11y-row';
@@ -118,13 +125,14 @@
 
   function paintBtn(){
     var b = document.querySelectorAll('.a11y-open');
-    for (var i = 0; i < b.length; i++) b[i].textContent = t('btn');
+    for (var i = 0; i < b.length; i++){ b[i].textContent = t('btn'); b[i].setAttribute('aria-label', t('btn').replace(/^\S+\s/, '')); }
   }
   function addButton(tries){
     if (document.querySelector('.a11y-open')) return;
     var w = document.querySelector('.feedback-wrap');
     if (!w){ if (tries > 0) setTimeout(function(){ addButton(tries - 1); }, 250); return; }
     var b = document.createElement('button'); b.type = 'button'; b.className = 'a11y-open'; b.textContent = t('btn');
+    b.setAttribute('aria-label', t('btn').replace(/^\S+\s/, ''));
     b.setAttribute('aria-haspopup', 'dialog');
     b.onclick = open;
     w.insertBefore(b, w.firstChild);
