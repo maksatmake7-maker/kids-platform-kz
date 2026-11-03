@@ -10,7 +10,7 @@
 
   /* === НАСТРОЙКА: номера полей Google-формы (из «предварительно заполненной ссылки»: entry.123456789) ===
      Пока type и text пустые — окно не включается, работает обычная ссылка на форму. */
-  var ENTRY = { type: '', text: '', page: '', device: '' };
+  var ENTRY = { type: 'entry.182511445', text: 'entry.1121072470', page: 'entry.1665852833', device: 'entry.1345362721' };
   var FORM_VIEW = 'https://docs.google.com/forms/d/e/1FAIpQLSdGioSuVXgR6nnKvrKNDBCOVKtouZHGFHxuXdoOvkTK_vMUSw/viewform';
   var FORM_POST = FORM_VIEW.replace(/\/viewform.*$/, '/formResponse');
 
