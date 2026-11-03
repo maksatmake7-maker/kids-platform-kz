@@ -12543,3 +12543,16 @@ document.addEventListener('click', function(e){
     if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   } catch(e){}
 })();
+
+
+/* ===== «Мой режим» (крупный текст, читаемый шрифт, меньше движения, чёткие рамки): подключаем assets/a11y.js на всех страницах с i18n.js ===== */
+(function(){
+  try {
+    var me = document.currentScript;
+    if (!me || !me.src || window.BilimA11y) return;
+    var s = document.createElement('script');
+    s.src = me.src.replace(/i18n\.js.*$/, 'a11y.js');
+    s.defer = true;
+    (document.head || document.documentElement).appendChild(s);
+  } catch(e){}
+})();
