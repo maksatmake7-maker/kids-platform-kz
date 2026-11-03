@@ -123,12 +123,29 @@
     inputs[OPTS[0]].focus();
   }
 
+  function plain(){ return t('btn').replace(/^\S+\s/, ''); }
   function paintBtn(){
     var b = document.querySelectorAll('.a11y-open');
-    for (var i = 0; i < b.length; i++){ b[i].textContent = t('btn'); b[i].setAttribute('aria-label', t('btn').replace(/^\S+\s/, '')); }
+    for (var i = 0; i < b.length; i++){ b[i].textContent = t('btn'); b[i].setAttribute('aria-label', plain()); }
+    var c = document.querySelectorAll('.a11y-top');
+    for (var j = 0; j < c.length; j++){ c[j].setAttribute('aria-label', plain()); c[j].title = plain(); }
+  }
+  /* Значок «Мой режим» вверху страницы, рядом с кнопкой музыки (круглая кнопка в стиле шапки). */
+  var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  function addTop(){
+    var m = document.getElementById('musicbtn');
+    if (!m || !m.parentNode) return false;
+    if (document.querySelector('.a11y-top')) return true;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'mbtn a11y-top'; b.innerHTML = EYE;
+    b.setAttribute('aria-label', plain()); b.title = plain(); b.setAttribute('aria-haspopup', 'dialog');
+    b.onclick = open;
+    m.parentNode.insertBefore(b, m);
+    return true;
   }
   function addButton(tries){
-    if (document.querySelector('.a11y-open')) return;
+    if (document.querySelector('.a11y-open, .a11y-top')) return;
+    if (addTop()) return;
+    if (tries > 16){ setTimeout(function(){ addButton(tries - 1); }, 250); return; }  /* сначала ждём шапку с кнопкой музыки */
     var w = document.querySelector('.feedback-wrap');
     if (!w){ if (tries > 0) setTimeout(function(){ addButton(tries - 1); }, 250); return; }
     var b = document.createElement('button'); b.type = 'button'; b.className = 'a11y-open'; b.textContent = t('btn');
@@ -141,6 +158,6 @@
   window.BilimA11y = { open: open };
   var orig = window.applyLang;
   window.applyLang = function(l){ if (orig) orig(l); cur = TXT[l] ? l : 'ru'; paintBtn(); };
-  function init(){ addButton(20); }
+  function init(){ addButton(24); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
