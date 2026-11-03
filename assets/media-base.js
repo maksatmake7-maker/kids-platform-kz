@@ -10,17 +10,45 @@
    Картинки-постеры (assets/video/*.jpg) остаются на сайте и не переносятся.
    Пока MEDIA_BASE пустой — ничего не меняется, сайт работает как раньше.
 
-   Для проверки без правки файла: в консоли браузера
-     localStorage.setItem('bilim_media_base', 'https://адрес')   (убрать: removeItem)  */
+   Для проверки без правки файла: открыть страницу с хвостом ?mediabase=https://адрес.r2.dev (выключить: ?mediabase=off). */
 (function(){
   'use strict';
   if (window.BilimMedia) return;
 
   var MEDIA_BASE = '';
 
-  var base = MEDIA_BASE;
-  try { var t = localStorage.getItem('bilim_media_base'); if (t !== null && t !== '') base = t; } catch(e){}
+  /* Переключатель для проверки: открыть любую страницу сайта с хвостом ?mediabase=https://адрес.r2.dev —
+     браузер запомнит адрес и будет брать аудио/видео из хранилища (только у этого человека).
+     Выключить: ?mediabase=off. Разрешены только адреса *.r2.dev, чужая ссылка ничего не подменит. */
+  var TEST_OK = /^https:\/\/[a-z0-9-]+\.r2\.dev$/i;
+  try {
+    var q = /[?&]mediabase=([^&#]*)/.exec(location.search);
+    if (q) {
+      var qv = decodeURIComponent(q[1]).replace(/\/+$/, '');
+      if (qv === 'off') localStorage.removeItem('bilim_media_base');
+      else if (TEST_OK.test(qv)) localStorage.setItem('bilim_media_base', qv);
+    }
+  } catch(e){}
+
+  var base = MEDIA_BASE, testMode = false;
+  try {
+    var t = localStorage.getItem('bilim_media_base');
+    if (t !== null && t !== '' && TEST_OK.test(String(t).replace(/\/+$/, ''))) { base = t; testMode = true; }
+  } catch(e){}
   base = String(base || '').replace(/\/+$/, '');
+
+  /* В режиме проверки в углу экрана виден маленький значок — чтобы не перепутать, откуда идут файлы. */
+  if (testMode && base){
+    var mark = function(){
+      if (!document.body || document.getElementById('bilim-media-test')) return;
+      var d = document.createElement('div');
+      d.id = 'bilim-media-test';
+      d.textContent = '\u2601 тест';
+      d.setAttribute('style', 'position:fixed;left:6px;bottom:6px;z-index:2147483647;font:11px/1 sans-serif;color:#fff;background:rgba(30,120,220,.85);padding:3px 6px;border-radius:8px;pointer-events:none');
+      document.body.appendChild(d);
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mark); else mark();
+  }
 
   var nativeFetch = window.fetch;
   var down = 0;               // если облако не ответило — до этого момента (мс) берём локальные файлы
