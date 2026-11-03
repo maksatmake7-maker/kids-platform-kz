@@ -12492,7 +12492,7 @@ document.addEventListener('click', function(e){
     var FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSdGioSuVXgR6nnKvrKNDBCOVKtouZHGFHxuXdoOvkTK_vMUSw/viewform';
     var TXT = {
       ru: '✉ Отзывы и предложения (для взрослых)',
-      kk: '✉ Пікірлер мен ұсыныстар (ересектерге арналған)',
+      kz: '✉ Пікірлер мен ұсыныстар (ересектерге арналған)',
       en: '✉ Feedback and suggestions (for adults)'
     };
     function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if(s && TXT[s]) return s; } catch(e){} return 'ru'; }
