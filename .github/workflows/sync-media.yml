@@ -1,0 +1,73 @@
+# Заливка аудио и видео в облачное хранилище (S3-совместимое: Cloudflare R2, Backblaze B2 и др.)
+# Запускается ВРУЧНУЮ: GitHub → Actions → «Залить аудио и видео в хранилище» → Run workflow.
+# Первый запуск — с галочкой «только показать» (ничего не заливает, пишет в журнал, что было бы залито).
+# Нужны 4 секрета в Settings → Secrets and variables → Actions:
+#   MEDIA_ENDPOINT           адрес S3 API хранилища (для R2: https://<ID аккаунта>.r2.cloudflarestorage.com)
+#   MEDIA_BUCKET             имя бакета
+#   MEDIA_ACCESS_KEY_ID      ключ доступа
+#   MEDIA_SECRET_ACCESS_KEY  секретный ключ
+# Раскладка в хранилище:  assets/audio/…  →  audio/…   и   assets/video/*.mp4  →  video/*.mp4   (+ файл ping)
+name: Залить аудио и видео в хранилище
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Только показать, что будет залито (ничего не менять)'
+        type: boolean
+        default: true
+      force_all:
+        description: 'Залить все файлы заново (иначе только новые и изменившиеся по размеру)'
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.MEDIA_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.MEDIA_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+      ENDPOINT: ${{ secrets.MEDIA_ENDPOINT }}
+      BUCKET: ${{ secrets.MEDIA_BUCKET }}
+    steps:
+      - name: Забрать аудио и видео из репозитория
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            assets/audio
+            assets/video
+
+      - name: Проверить, что секреты заданы
+        run: |
+          for v in ENDPOINT BUCKET AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do
+            if [ -z "${!v}" ]; then echo "::error::Не задан секрет для $v (Settings → Secrets and variables → Actions)"; exit 1; fi
+          done
+
+      - name: Залить
+        run: |
+          set -e
+          FLAGS="--endpoint-url $ENDPOINT --cache-control public,max-age=86400"
+          if [ "${{ inputs.force_all }}" != "true" ]; then FLAGS="$FLAGS --size-only"; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="$FLAGS --dryrun"; echo "РЕЖИМ ПРОВЕРКИ: ничего не заливается"; fi
+          echo "== аудио =="
+          aws s3 sync assets/audio "s3://$BUCKET/audio" $FLAGS --only-show-errors || { echo "::error::Заливка аудио не удалась"; exit 1; }
+          echo "== видео (только mp4) =="
+          aws s3 sync assets/video "s3://$BUCKET/video" $FLAGS --exclude "*" --include "*.mp4" --only-show-errors || { echo "::error::Заливка видео не удалась"; exit 1; }
+          if [ "${{ inputs.dry_run }}" != "true" ]; then
+            printf 'ok' > ping
+            aws s3 cp ping "s3://$BUCKET/ping" --endpoint-url "$ENDPOINT" --cache-control public,max-age=60
+          fi
+
+      - name: Сверка (после настоящей заливки)
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -e
+          echo "В репозитории: аудио $(find assets/audio -type f -name '*.mp3' | wc -l), видео $(find assets/video -type f -name '*.mp4' | wc -l)"
+          for d in audio video; do
+            echo "В хранилище, $d:"
+            aws s3 ls "s3://$BUCKET/$d/" --recursive --summarize --endpoint-url "$ENDPOINT" | tail -2
+          done

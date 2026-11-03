@@ -16,10 +16,11 @@
       ".ac-vid-skip{background:none;border:none;color:#5C7690;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;text-decoration:underline;cursor:pointer;padding:6px;}";
     document.head.appendChild(s);
   }
+  function mb(u){ return window.BilimMedia ? BilimMedia.url(u) : u; }
   window.LessonVideoScene = function(stage, st, ctx){
     var hint0 = st.hint || 'Нажми ▶ и смотри вместе с Барсиком';
     stage.innerHTML = '<div class="ac-vid"><div class="ac-vid-frame"><span class="ac-vid-tag">🎬 Видео-урок</span>' +
-      '<video id="ac-video" controls playsinline preload="metadata" poster="' + st.poster + '"><source src="' + st.src + '" type="video/mp4"></video></div>' +
+      '<video id="ac-video" controls playsinline preload="metadata" poster="' + st.poster + '"><source src="' + mb(st.src) + '" data-local="' + (window.BilimMedia && BilimMedia.url(st.src) !== st.src ? BilimMedia.local(st.src) : '') + '" type="video/mp4"></video></div>' +
       '<div class="ac-vid-row"><span class="ac-vid-hint" id="ac-vid-hint">' + hint0 + '</span><button class="ac-vid-skip" id="ac-vid-skip" type="button">Пропустить видео</button></div></div>';
     var v = stage.querySelector('#ac-video'), hint = stage.querySelector('#ac-vid-hint'), skip = stage.querySelector('#ac-vid-skip');
     var fin = function(){
