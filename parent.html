@@ -81,6 +81,21 @@
       <button class="pr-btn" onclick="window.print()"><span aria-hidden="true">🖨️</span> <span data-hi="print">Распечатать или сохранить в PDF</span></button>
       <div class="pr-note" style="margin-top:10px" data-hi="foot">Отчёт собран из данных этого браузера на этом устройстве.</div>
     </div>
+    <div class="card no-print" id="xfer">
+      <h2 data-hi="xf_h">Перенести прогресс на другое устройство</h2>
+      <p class="pr-note" data-hi="xf_lead">Прогресс хранится в браузере на этом устройстве. Чтобы продолжить на другом телефоне, планшете или компьютере, получите код здесь и введите его там, в этом же разделе.</p>
+      <p style="margin-top:10px"><button class="pr-btn" id="xf-make" data-hi="xf_make">Получить код</button></p>
+      <div id="xf-out" style="display:none;margin-top:10px">
+        <textarea id="xf-code" readonly rows="4" dir="ltr" aria-label="code" style="width:100%;font:700 .85rem monospace;padding:8px;border:3px solid #D5DCE4;border-radius:12px;word-break:break-all"></textarea>
+        <p style="margin-top:8px"><button class="pr-btn" id="xf-copy" data-hi="xf_copy">Скопировать</button></p>
+        <div class="pr-note" data-hi="xf_note">В коде весь прогресс ребёнка: звёзды, пройденные уроки, наклейки. Не отправляйте его посторонним. Мы нигде его не храним.</div>
+      </div>
+      <h2 style="margin-top:18px" data-hi="xf_in_h">У меня есть код</h2>
+      <textarea id="xf-in" rows="3" dir="ltr" data-hi-ph="xf_in_ph" placeholder="Вставьте код сюда" style="width:100%;font:700 .85rem monospace;padding:8px;border:3px solid #D5DCE4;border-radius:12px;word-break:break-all"></textarea>
+      <p style="margin-top:8px"><button class="pr-btn" id="xf-apply" data-hi="xf_apply">Загрузить прогресс</button></p>
+      <div id="xf-ask" style="display:none;margin-top:8px"><div class="pr-note" id="xf-ask-t" style="color:#8A5A00"></div><p style="margin-top:8px"><button class="pr-btn" id="xf-yes" data-hi="xf_yes">Да, заменить</button></p></div>
+      <div class="pr-note" id="xf-msg" role="status" style="margin-top:8px;min-height:1.3em"></div>
+    </div>
   </div>
 </main>
 
@@ -246,6 +261,104 @@
       }
     } catch(e){}
   }
+})();
+</script>
+<script>
+/* Перенос прогресса по коду: код = сжатый список записей браузера (bilim_*) без паролей и входа.
+   Никуда не отправляется и нигде не хранится. */
+(function(){
+  'use strict';
+  var EXCL = { bilim_araly_parent_token:1, bilim_araly_child_token:1, bilim_araly_child_info:1, bilim_no_stats:1, bilim_media_base:1 };
+  function okKey(k){ return /^bilim[A-Za-z0-9_.-]{0,80}$/.test(k) && !EXCL[k]; }
+  function $(id){ return document.getElementById(id); }
+  function t(k, v){ return window.HI ? HI.t(k, v) : k; }
+  function msg(s, bad){ var m = $('xf-msg'); m.textContent = s || ''; m.style.color = bad ? '#C0392B' : '#1D6B4A'; }
+  function stars(map){ try { return +(JSON.parse(map.bilim_araly_progress_v1 || '{}').totalStars) || 0; } catch(e){ return 0; } }
+  function collect(){
+    var d = {};
+    try { for(var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if(okKey(k)) d[k] = localStorage.getItem(k); } } catch(e){}
+    return d;
+  }
+  function b64u(bytes){
+    var s = ''; for(var i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  function unb64u(s){
+    s = s.replace(/-/g, '+').replace(/_/g, '/'); while(s.length % 4) s += '=';
+    var b = atob(s), u = new Uint8Array(b.length); for(var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u;
+  }
+  function pipe(stream, bytes){
+    return new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer().then(function(b){ return new Uint8Array(b); });
+  }
+  function encode(obj){
+    var raw = new TextEncoder().encode(JSON.stringify(obj));
+    if(window.CompressionStream) return pipe(new CompressionStream('deflate-raw'), raw).then(function(z){ return 'BA1.' + b64u(z); });
+    return Promise.resolve('BA0.' + b64u(raw));
+  }
+  function decode(code){
+    code = (code || '').replace(/\s+/g, '');
+    var m = /^(BA[01])\.([A-Za-z0-9_-]+)$/.exec(code);
+    if(!m) return Promise.reject(new Error('format'));
+    var bytes; try { bytes = unb64u(m[2]); } catch(e){ return Promise.reject(e); }
+    var p = m[1] === 'BA1' ? (window.DecompressionStream ? pipe(new DecompressionStream('deflate-raw'), bytes) : Promise.reject(new Error('nodecomp'))) : Promise.resolve(bytes);
+    return p.then(function(raw){ return JSON.parse(new TextDecoder().decode(raw)); });
+  }
+  /* строгая проверка: только свои ключи, только строки, без угловых скобок, ограничение размера */
+  function validate(obj){
+    if(!obj || obj.v !== 1 || !obj.d || typeof obj.d !== 'object') return null;
+    var out = {}, n = 0, total = 0;
+    for(var k in obj.d){
+      if(!Object.prototype.hasOwnProperty.call(obj.d, k)) continue;
+      var v = obj.d[k];
+      if(!okKey(k) || typeof v !== 'string' || v.length > 300000 || /[<>]/.test(v)) return null;
+      total += v.length; if(++n > 400 || total > 3000000) return null;
+      out[k] = v;
+    }
+    return n ? out : null;
+  }
+
+  var pending = null;
+  function paintPh(){ var i = $('xf-in'); if(i) i.placeholder = t('xf_in_ph'); }
+
+  $('xf-make').onclick = function(){
+    var d = collect();
+    if(!Object.keys(d).length){ msg(t('xf_empty'), true); return; }
+    encode({ v: 1, t: new Date().toISOString().slice(0, 10), d: d }).then(function(code){
+      $('xf-code').value = code; $('xf-out').style.display = 'block'; msg(t('xf_ready'));
+    }).catch(function(){ msg(t('xf_bad'), true); });
+  };
+  $('xf-copy').onclick = function(){
+    var ta = $('xf-code'); ta.focus(); ta.select();
+    var done = function(){ msg(t('xf_copied')); };
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, function(){ document.execCommand('copy'); done(); });
+      else { document.execCommand('copy'); done(); }
+    } catch(e){}
+  };
+  $('xf-apply').onclick = function(){
+    $('xf-ask').style.display = 'none'; pending = null; msg('');
+    decode($('xf-in').value).then(function(obj){
+      var d = validate(obj);
+      if(!d) throw new Error('invalid');
+      pending = d;
+      var a = stars(d), b = stars(collect());
+      $('xf-ask-t').textContent = t('xf_confirm', { a: a, b: b }) + (a < b ? ' ' + t('xf_confirm_less') : '');
+      $('xf-ask').style.display = 'block';
+    }).catch(function(){ msg(t('xf_bad'), true); });
+  };
+  $('xf-yes').onclick = function(){
+    if(!pending) return;
+    try {
+      var old = collect(); for(var k in old) localStorage.removeItem(k);
+      for(var key in pending) localStorage.setItem(key, pending[key]);
+    } catch(e){ msg(t('xf_bad'), true); return; }
+    pending = null; $('xf-ask').style.display = 'none'; msg(t('xf_done'));
+    setTimeout(function(){ location.reload(); }, 900);
+  };
+
+  paintPh();
+  var orig = window.applyLang;
+  window.applyLang = function(l){ if(orig) orig(l); paintPh(); };
 })();
 </script>
 </body>
