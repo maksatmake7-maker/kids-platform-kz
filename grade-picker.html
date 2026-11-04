@@ -17,7 +17,7 @@
 .gp .lead{color:var(--txt); font-weight:700; text-shadow:0 1px 3px var(--txs); margin:0 auto; max-width:34em;}
 
 /* архипелаг */
-.archi{position:relative; margin-top:22px; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; align-items:start; padding-bottom:18px;}
+.archi{position:relative; margin-top:22px; display:grid; grid-template-columns:repeat(4,1fr); gap:14px; align-items:start; padding-bottom:18px;}
 .route{position:absolute; left:0; top:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:visible;}
 .route path{fill:none; stroke:#fff; stroke-width:4; stroke-linecap:round; stroke-dasharray:1 11; opacity:.9; animation:dots 24s linear infinite;}
 .route path.dim{opacity:.4;}
@@ -77,6 +77,27 @@
   .isle.g5 .isle-art{max-width:230px;}
   .gp{padding-inline:14px;}
 }
+
+/* порталы в другие миры: 5–8 и 9–11 */
+.beyond{margin:30px auto 4px; max-width:860px; text-align:left;}
+.beyond-h{display:flex; align-items:center; gap:12px; color:var(--txt); font-weight:800; text-shadow:0 1px 3px var(--txs); margin:0 0 12px; font-size:.95rem; letter-spacing:.02em;}
+.beyond-h::before,.beyond-h::after{content:""; height:2px; flex:1; background:rgba(255,255,255,.7); border-radius:2px;}
+.portals{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.portal{display:flex; flex-direction:column; gap:6px; padding:18px 20px 16px; border-radius:18px; text-decoration:none; position:relative; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease; min-height:132px;}
+.portal:hover,.portal:focus-visible{transform:translateY(-4px);}
+.portal:focus-visible{outline:3px solid #fff; outline-offset:3px;}
+.portal small{font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; opacity:.85;}
+.portal b{font-size:1.35rem; line-height:1.15; font-family:'Manrope','Nunito',system-ui,sans-serif; font-weight:800;}
+.portal span.d{font-size:.88rem; line-height:1.35; opacity:.9; font-weight:600;}
+.portal span.go{margin-top:auto; font-weight:800; font-size:.88rem;}
+.portal.mid{background:#fff; color:#1A2240; border:1px solid #E2E6F2; box-shadow:0 10px 26px rgba(26,34,64,.16);}
+.portal.mid small{color:#4455D6;}
+.portal.mid::after{content:""; position:absolute; right:-26px; top:-26px; width:110px; height:110px; border-radius:50%; background:linear-gradient(135deg,#4455D6,#0FA89A); opacity:.16;}
+.portal.sen{background:#0C1016; color:#E8ECF2; border:1px solid #252F3C; box-shadow:0 10px 26px rgba(12,16,22,.45);}
+.portal.sen small{color:#3DDC97;}
+.portal.sen b{padding-right:58px;}
+.portal.sen::after{content:""; position:absolute; right:18px; top:18px; width:46px; height:46px; border-radius:10px; border:1px solid #252F3C; background:repeating-linear-gradient(0deg,#1A222C 0 6px,transparent 6px 12px);}
+@media (max-width:620px){.portals{grid-template-columns:1fr;}.portal{min-height:0;}}
 @media (prefers-reduced-motion: reduce){ .route path,.fogc,.boat svg.bt{animation:none!important;} }
 </style>
 </head>
@@ -123,13 +144,16 @@
       <span class="isle-art" data-art="4" data-ghost="4"></span>
       <span class="isle-plate"><h3 data-gn="4"></h3><p id="grade-4-desc" data-i18n="grade_picker_coming_soon"></p><span class="badge" id="grade-4-badge">🔒</span></span>
     </a>
-    <a href="#" class="isle g5 fog" data-g="5" aria-disabled="true" tabindex="-1">
-      <span class="isle-art" data-art="5" data-ghost="7"></span>
-      <span class="isle-plate"><h3 data-gn="5"></h3><p data-i18n="grade_picker_coming_soon"></p><span class="badge">🔒</span></span>
-    </a>
-
     <div class="walker" id="walker" aria-hidden="true"></div>
   </div>
+
+  <section class="beyond" aria-labelledby="beyond-h">
+    <h3 class="beyond-h" id="beyond-h" data-bw="h"></h3>
+    <div class="portals">
+      <a class="portal mid" href="grades/grade-5/index.html"><small data-bw="t1"></small><b data-bw="n1"></b><span class="d" data-bw="d1"></span><span class="go" data-bw="go"></span></a>
+      <a class="portal sen" href="grades/grade-9/index.html"><small data-bw="t2"></small><b data-bw="n2"></b><span class="d" data-bw="d2"></span><span class="go" data-bw="go"></span></a>
+    </div>
+  </section>
 
   <div class="boat-row">
     <div class="boat" id="boat" role="group" aria-label="Язык обучения / Оқыту тілі">
@@ -162,9 +186,22 @@
     4:{ru:'4 класс',kz:'4 сынып',en:'Grade 4',zh:'四年级',uz:'4-sinf',tg:'Синфи 4',ug:'4-синип'},
     5:{ru:'5–11 классы',kz:'5–11 сыныптар',en:'Grades 5–11',zh:'5–11年级',uz:'5–11-sinflar',tg:'Синфҳои 5–11',ug:'5–11-синиплар'}
   };
+
+  var BW={
+    h:{ru:'Дальше — за горизонтом',kz:'Әрі қарай — көкжиек артында',en:'Beyond the horizon'},
+    t1:{ru:'Средняя школа',kz:'Орта мектеп',en:'Middle school'},
+    n1:{ru:'Академия · 5–8 классы',kz:'Академия · 5–8 сыныптар',en:'Academy · Grades 5–8'},
+    d1:{ru:'Предметы, цели недели, прогресс по каждой теме',kz:'Пәндер, апталық мақсаттар, әр тақырып бойынша прогресс',en:'Subjects, weekly goals, progress on every topic'},
+    t2:{ru:'Старшая школа',kz:'Жоғары мектеп',en:'High school'},
+    n2:{ru:'Подготовка к ЕНТ · 9–11 классы',kz:'ҰБТ-ға дайындық · 9–11 сыныптар',en:'Exam prep · Grades 9–11'},
+    d2:{ru:'Пробные тесты с таймером, разбор ошибок, цель по баллам',kz:'Таймерлі сынақ тесттер, қателерді талдау, балл мақсаты',en:'Timed mock tests, mistake review, score target'},
+    go:{ru:'Открыть макет →',kz:'Макетті ашу →',en:'Open preview →'}
+  };
+  function beyond(lang){ if(!BW.h[lang]) lang='ru'; $$('[data-bw]').forEach(function(e){ e.textContent=BW[e.getAttribute('data-bw')][lang]; }); }
     function labels(lang){
     if(!GN[3][lang]) lang='ru';
     $$('[data-gn]').forEach(function(h){ h.textContent=GN[h.getAttribute('data-gn')][lang]; });
+    beyond(lang);
   }
   var _al=window.applyLang; window.applyLang=function(l){ var r=_al.apply(this,arguments); labels(l); layout(); return r; };
 
