@@ -45,7 +45,7 @@
       for (var i = 0; i < d.pat.length; i++){
         var m = d.pat[i][0].exec(t); if (!m) continue;
         var g = d.pat[i][2];   // номер группы, которую надо перевести по словарю (например название урока)
-        if (g){ var sub = d.ex[m[g]]; if (sub !== undefined) m[g] = sub; }
+        if (g){ [].concat(g).forEach(function(k){ var sub = d.ex[m[k]]; if (sub !== undefined) m[k] = sub; }); }   // g — номер группы или массив номеров
         r = d.pat[i][1].replace(/\$(\d)/g, function(_, k){ return m[+k] === undefined ? '' : m[+k]; }); break;
       }
     }
@@ -66,7 +66,7 @@
       seenP.add(p0); if (/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p0.nodeName)) continue;
       var rec0 = htmls.get(p0), h0 = p0.innerHTML;
       if (rec0 && rec0.out === h0) continue;
-      if (h0.length > 3000 || !/<(b|i|em|strong|br)\b/i.test(h0)) continue;
+      if (h0.length > 3000 || !/<(b|i|em|strong|br)\b|<span class="ac-/i.test(h0)) continue;
       var o0 = tr(h0, d); if (o0 !== null){ htmls.set(p0, { orig: h0, out: o0 }); p0.innerHTML = o0; }
     }
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, list = [];
