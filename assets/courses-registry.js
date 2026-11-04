@@ -795,7 +795,7 @@ window.BILIM_COURSES = [
    },
    {
     "id": "p6",
-    "icon": "👨‍👩‍👧‍👦",
+    "icon": "👨👩👧👦",
     "title": "Моя семья"
    },
    {

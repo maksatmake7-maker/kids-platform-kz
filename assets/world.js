@@ -58,8 +58,8 @@
 
   /* ---------- шапка ---------- */
   var FACE='<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#FFC93C"/><circle cx="9" cy="10" r="6" fill="#F8AE3F"/><circle cx="31" cy="10" r="6" fill="#F8AE3F"/><circle cx="9.5" cy="11" r="3" fill="#FFB4A8"/><circle cx="30.5" cy="11" r="3" fill="#FFB4A8"/><ellipse cx="20" cy="22" rx="14" ry="13" fill="#F8AE3F"/><ellipse cx="20" cy="27" rx="8" ry="6" fill="#FFF7E3"/><ellipse cx="13.5" cy="20" rx="3.6" ry="4.2" fill="#fff" stroke="#3B2A1A" stroke-width="1"/><ellipse cx="26.5" cy="20" rx="3.6" ry="4.2" fill="#fff" stroke="#3B2A1A" stroke-width="1"/><circle cx="14" cy="20.6" r="2.3" fill="#3B2A1A"/><circle cx="26" cy="20.6" r="2.3" fill="#3B2A1A"/><path d="M17.5 24.5 Q20 23 22.5 24.5 Q21 27 20 27 Q19 27 17.5 24.5Z" fill="#E5707F"/></svg>';
-  var NAMES={ru:'Русский',kz:'Қазақша',en:'English',zh:'中文',uz:'Oʻzbekcha',tg:'Тоҷикӣ',ug:'ئۇيغۇرچە'};
-  var CODES={ru:'RU',kz:'ҚАЗ',en:'EN',zh:'中文',uz:"O'ZB",tg:'ТҶК',ug:'ئۇيغۇر'};
+  var NAMES={ru:'Русский',kz:'Қазақша',en:'English',zh:'中文',uz:'Oʻzbekcha',tg:'Тоҷикӣ',ug:'Уйғурчә'};
+  var CODES={ru:'RU',kz:'ҚАЗ',en:'EN',zh:'中文',uz:"O'ZB",tg:'ТҶК',ug:'УЙҒ'};
   var GLOBE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>';
   var CARET='<svg class="car" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg>';
   var NOTE='<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>';

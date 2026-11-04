@@ -38,7 +38,7 @@
   var b = Barsik.mount(bs, { grade: 1, track: true });
   function bubbleSay(text){
     bubble.textContent = text || '';
-    bubble.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr');
+    bubble.setAttribute('dir', 'ltr');
     bubble.style.display = text ? '' : 'none';
   }
 

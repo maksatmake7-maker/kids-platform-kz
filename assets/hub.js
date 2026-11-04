@@ -199,7 +199,7 @@
     ru:['Квесты Барсика','Приключения с задачками для твоего класса'], kz:['Барсик квесттері','Сыныбыңа лайық тапсырмалы шытырман оқиғалар'],
     en:["Barsik's Quests",'Adventures with puzzles for your grade'], zh:['巴雷斯的冒险','适合你年级的解谜冒险'],
     uz:['Барсик квестлари','Синфингга мос топшириқли саргузашт'], tg:['Квестҳои Барсик','Саргузашт бо масъалаҳо барои синфи ту'],
-    ug:['بارىسنىڭ سەرگۈزەشتىلىرى','سىنىپىڭىزغا ماس تاپشۇرۇقلۇق سەرگۈزەشت']
+    ug:['Барсикниң сәргүзәштилири','Синипиңизға мас тапшуруқлуқ сәргүзәшт']
   };
   function syncQuest(l){
     l=l||document.documentElement.getAttribute('data-current')||C.lang||'ru'; var t=QT[l]||QT.ru;
@@ -243,7 +243,7 @@
   }
 
   /* подпись «назад» (в i18n.js такой фразы нет) */
-  var BACK={ru:'← К выбору класса',kz:'← Сыныпты таңдау',en:'← Choose grade',zh:'← 选择年级',uz:'← Sinfni tanlash',tg:'← Интихоби синф',ug:'← سىنىپ تاللاش'};
+  var BACK={ru:'← К выбору класса',kz:'← Сыныпты таңдау',en:'← Choose grade',zh:'← 选择年级',uz:'← Sinfni tanlash',tg:'← Интихоби синф',ug:'← Синип таллаш'};
   var back=document.getElementById('hubBack');
   function setBack(l){ if(back) back.textContent=BACK[l]||BACK.ru; }
   var _al=window.applyLang; window.applyLang=function(l){ var r=_al.apply(this,arguments); setBack(l); syncQuest(l); return r; };

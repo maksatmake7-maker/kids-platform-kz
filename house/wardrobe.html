@@ -24,7 +24,7 @@
     <button data-lang="zh" onclick="applyLang('zh')">中文</button>
     <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
     <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
-    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
   </div>
 </header>
 
@@ -73,7 +73,7 @@
 
   function say(id){
     bubble.textContent = House.say(id);
-    bubble.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr');
+    bubble.setAttribute('dir', 'ltr');
     bubble.classList.add('on');
     clearTimeout(bubbleT); bubbleT = setTimeout(function(){ bubble.classList.remove('on'); }, 3200);
   }
