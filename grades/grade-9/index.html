@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="dark">
+<title>Старшая школа и ЕНТ, 9–11 классы — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/world-senior.css">
+</head>
+<body class="senior">
+<div class="s-shell">
+  <aside class="s-side">
+    <a class="s-logo" href="../../index.html"><span class="s-logo-mark" aria-hidden="true">Б</span> Білім Аралы</a>
+    <nav class="s-nav" aria-label="Разделы">
+      <a href="#overview" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-3H4zM14 8h6V4h-6z"/></svg>Обзор</a>
+      <a href="#subjects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zM4 5.5V21"/></svg>Предметы</a>
+      <a href="#test"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>Пробный тест</a>
+      <a href="#errors"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20zM12 10v5M12 18h.01"/></svg>Разбор ошибок</a>
+    </nav>
+    <div class="s-goal">Цель<b class="mono" id="goalSide">120 баллов</b>
+      <a class="s-back" href="../../grade-picker.html">← К выбору класса</a></div>
+  </aside>
+
+  <main class="s-main" id="overview">
+    <div class="s-demo" role="note"><span aria-hidden="true">🧪</span><div><b>Макет оформления.</b> Показ нового «мира» для 9–11 классов и подготовки к ЕНТ. Баллы, темы и вопрос — демонстрационные; настоящего содержимого здесь пока нет.</div></div>
+
+    <div class="s-head">
+      <div><div class="s-eyebrow">Старшая школа</div><h1>Подготовка к ЕНТ</h1></div>
+      <div class="s-seg" role="group" aria-label="Класс" id="seg">
+        <button type="button" aria-pressed="false">9 класс</button>
+        <button type="button" aria-pressed="false">10 класс</button>
+        <button type="button" aria-pressed="true">11 класс</button>
+      </div>
+    </div>
+
+    <section class="s-kpis" aria-label="Показатели">
+      <div class="s-panel">
+        <div class="s-k">Прогнозный балл (по пробным тестам)</div>
+        <div class="s-big mono" style="margin-top:6px">96 <small>/ 140</small></div>
+        <div class="s-track" role="img" aria-label="Прогресс к цели: 96 из 120 баллов"><i style="width:68.6%"></i><em style="left:85.7%" title="Цель"></em></div>
+        <div class="s-cap"><span>0</span><span>цель: <span class="mono" id="goalTxt">120</span></span><span>140</span></div>
+      </div>
+      <div class="s-panel"><div class="s-k">До экзамена</div><div class="s-kv mono" id="days">—</div>
+        <div class="s-date"><label class="s-k" for="exam">дата:</label><input type="date" id="exam"></div></div>
+      <div class="s-panel"><div class="s-k">Пробных тестов</div><div class="s-kv mono">7</div><div class="s-k" style="margin-top:6px">последний: +6 к прошлому</div></div>
+    </section>
+
+    <div class="s-grid2">
+      <section class="s-panel" id="subjects" aria-labelledby="sh">
+        <h2 id="sh">Готовность по предметам</h2>
+        <div class="s-row"><span class="n">История Казахстана<small>слабая тема: Новое время</small></span><div class="s-bar"><i style="width:58%;--c:var(--s-warn)"></i></div><span class="s-pct mono">58%</span></div>
+        <div class="s-row"><span class="n">Математическая грамотность<small>слабая тема: проценты</small></span><div class="s-bar"><i style="width:74%"></i></div><span class="s-pct mono">74%</span></div>
+        <div class="s-row"><span class="n">Грамотность чтения<small>слабая тема: выводы по тексту</small></span><div class="s-bar"><i style="width:81%;--c:var(--s-acc)"></i></div><span class="s-pct mono">81%</span></div>
+        <div class="s-row"><span class="n">Профильный предмет 1<small>слабая тема: —</small></span><div class="s-bar"><i style="width:66%"></i></div><span class="s-pct mono">66%</span></div>
+        <div class="s-row"><span class="n">Профильный предмет 2<small>слабая тема: —</small></span><div class="s-bar"><i style="width:49%;--c:var(--s-bad)"></i></div><span class="s-pct mono">49%</span></div>
+      </section>
+
+      <section class="s-panel" id="errors" aria-labelledby="eh">
+        <h2 id="eh">Разбор ошибок</h2>
+        <div class="s-err"><span>Проценты: нахождение числа по его части</span><span class="s-chip bad">3 ошибки</span></div>
+        <div class="s-err"><span>Выводы по тексту: главная мысль и подтекст</span><span class="s-chip warn">2 ошибки</span></div>
+        <div class="s-err"><span>Хронология: даты и последовательность событий</span><span class="s-chip warn">2 ошибки</span></div>
+        <div class="s-err"><span>Решение неравенств методом интервалов</span><span class="s-chip">1 ошибка</span></div>
+        <button class="s-btn ghost" type="button" style="margin-top:14px" disabled>Повторить слабые темы · скоро</button>
+      </section>
+    </div>
+
+    <section class="s-panel" id="test" aria-labelledby="th">
+      <div class="s-test">
+        <div><h2 id="th" style="margin-bottom:4px">Пробный тест</h2><div class="s-k">Режим экзамена: таймер, без подсказок, разбор в конце</div></div>
+        <div style="display:flex;gap:12px;align-items:center"><span class="s-timer mono" id="tm" aria-live="off">00:00</span><button class="s-btn" type="button" id="go">Начать</button></div>
+      </div>
+      <div class="s-qmeta"><span>Вопрос <b class="mono">1</b> из <span class="mono">20</span></span><span>·</span><span>Математическая грамотность</span><span>·</span><span>пример</span></div>
+      <p class="s-q">Цена товара выросла на 20 %, затем снизилась на 20 %. Как изменилась цена относительно первоначальной?</p>
+      <div class="s-opts" id="opts"></div>
+      <div class="s-expl" id="expl" role="status" aria-live="polite"><b>Разбор.</b> Пусть цена была 100. После роста: 120. После снижения на 20 % от 120: 120 − 24 = 96. Итог: цена уменьшилась на 4 %. Проценты считаются от разных баз, поэтому изменения не компенсируют друг друга.</div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var seg=document.getElementById('seg');
+  seg.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(seg.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false')})});
+  /* дата экзамена и обратный отсчёт */
+  var inp=document.getElementById('exam'),days=document.getElementById('days'),KEY='bilim_senior_exam_v1';
+  function calc(){
+    if(!inp.value){days.textContent='—';return}
+    var d=Math.ceil((new Date(inp.value+'T00:00:00')-new Date().setHours(0,0,0,0))/864e5);
+    days.textContent=d>=0?d+' дн.':'прошёл';
+  }
+  try{var s=localStorage.getItem(KEY);if(s)inp.value=s}catch(e){}
+  inp.addEventListener('change',function(){try{localStorage.setItem(KEY,inp.value)}catch(e){}calc()});
+  calc();
+  /* таймер пробного теста */
+  var tm=document.getElementById('tm'),go=document.getElementById('go'),t0=0,iv=null;
+  function fmt(n){return (n<10?'0':'')+n}
+  go.addEventListener('click',function(){
+    if(iv){clearInterval(iv);iv=null;go.textContent='Начать';return}
+    t0=Date.now();go.textContent='Стоп';
+    iv=setInterval(function(){var s=Math.floor((Date.now()-t0)/1000);tm.textContent=fmt(Math.floor(s/60))+':'+fmt(s%60)},500);
+  });
+  /* вопрос */
+  var opts=document.getElementById('opts'),ex=document.getElementById('expl'),done=false;
+  [['A','Не изменилась',0],['B','Уменьшилась на 4 %',1],['C','Увеличилась на 4 %',0],['D','Уменьшилась на 2 %',0]].forEach(function(o){
+    var b=document.createElement('button');b.type='button';b.className='s-opt';b.innerHTML='<kbd>'+o[0]+'</kbd><span>'+o[1]+'</span>';
+    b.addEventListener('click',function(){
+      if(done)return;done=true;b.classList.add(o[2]?'ok':'no');
+      if(!o[2])[].forEach.call(opts.children,function(x,i){if(i===1)x.classList.add('ok')});
+      ex.classList.add('on');
+    });
+    opts.appendChild(b);
+  });
+  document.addEventListener('keydown',function(e){var k={a:0,b:1,c:2,d:3}[e.key.toLowerCase()];if(k!==undefined&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&e.target.tagName!=='INPUT'){opts.children[k].click()}});
+})();
+</script>
+</body>
+</html>
