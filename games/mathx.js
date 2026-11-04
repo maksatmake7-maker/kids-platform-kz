@@ -598,6 +598,14 @@
     buildStage();
     paintProgress();
     render();
+    /* Сменили язык, пока игра открыта — перерисовываем текущее задание на новом языке (серия правильных ответов сохраняется) */
+    try {
+      var lgNow = MXV.lang();
+      new MutationObserver(function(){
+        var n = MXV.lang(); if(n === lgNow) return; lgNow = n;
+        if(!busy) render();
+      }).observe(document.documentElement, { attributes:true, attributeFilter:['data-current'] });
+    } catch(e){}
     return { render:render };
   }
 
