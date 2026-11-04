@@ -12406,6 +12406,8 @@ document.addEventListener('DOMContentLoaded', function(){
       var old = document.getElementById('mx-langnote'); if(old) old.remove();
       var txt = null;
       if(/-course\.html$/.test(location.pathname)) txt = COURSE[lang];
+      /* 1 класс переведён на казахский (assets/ui-kz-g1.js): плашку «только на русском» там не показываем */
+      if(lang === 'kz' && /\/grades\/grade-1\//.test(location.pathname)) txt = null;
       else if(window.__mxHeroCfg) txt = GAME[lang];
       var hd = document.querySelector('header');
       if(!txt || !hd) return;

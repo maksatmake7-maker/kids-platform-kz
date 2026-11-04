@@ -1,7 +1,7 @@
 /* ===== Білім Аралы — слой перевода надписей интерфейса =====
    Зачем: на многих страницах надписи (кнопки, названия курсов и тем, ссылки «К играм по…») написаны прямо в HTML/JS,
    а не в словаре i18n.js. Этот файл подменяет такие надписи на выбранный язык, не трогая сами страницы.
-   Как работает: если выбран язык, для которого есть файл assets/ui-<язык>.js (сейчас ui-en.js, ui-kz.js), он подгружается, и каждый
+   Как работает: если выбран язык, для которого есть файл assets/ui-<язык>.js (есть для всех языков, кроме русского), он подгружается, и каждый
    текст на странице (а также title / aria-label / alt / placeholder), который ТОЧНО совпадает с ключом словаря, заменяется
    переводом. Всё остальное не трогается. При смене языка оригинал возвращается. Русский работает как раньше.
    Добавить перевод: в assets/ui-<язык>.js добавьте пару  'русский текст': 'перевод'. */
@@ -9,9 +9,11 @@
   if (window.__uiI18n) return; window.__uiI18n = true;
   var me = document.currentScript, base = (me && me.src) ? me.src.replace(/ui-i18n\.js.*$/, '') : '';
   var DICT = {}, LOADING = {}, texts = new Map(), attrEls = new Set(), busy = false, ATTRS = ['title', 'aria-label', 'alt', 'placeholder'];
-  window.UI_I18N_REG = function(l, d){
-    var ex = Object.create(null); for (var k in d.ex) if (Object.prototype.hasOwnProperty.call(d.ex, k)) ex[k] = d.ex[k];
-    DICT[l] = { ex: ex, pat: (d.pat || []).map(function(p){ return [new RegExp(p[0]), p[1], p[2]]; }) };
+  window.UI_I18N_REG = function(l, d){   // можно вызывать несколько раз: пакеты дополняют словарь языка, а не заменяют его
+    var cur0 = DICT[l] || { ex: Object.create(null), pat: [] };
+    for (var k in d.ex) if (Object.prototype.hasOwnProperty.call(d.ex, k)) cur0.ex[k] = d.ex[k];
+    (d.pat || []).forEach(function(p){ cur0.pat.push([new RegExp(p[0]), p[1], p[2]]); });
+    DICT[l] = cur0;
     run();
   };
   function cur(){
@@ -19,10 +21,17 @@
     if (!l){ try { l = localStorage.getItem('bilim_lang_v1'); } catch(e){} }
     return l || 'ru';
   }
+  /* Пакеты по классам: тексты уроков и игр лежат отдельно (ui-<язык>-g1.js — 1 класс), чтобы не грузить их на остальных страницах */
+  var PACKS = [ [/\/grades\/grade-1\//, 'g1'] ];
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
     s.onerror = function(){ DICT[l] = null; }; document.head.appendChild(s);
+    PACKS.forEach(function(pk){
+      if (!pk[0].test(location.pathname)) return;
+      var q = document.createElement('script'); q.src = base + 'ui-' + l + '-' + pk[1] + '.js'; q.async = true;
+      q.onerror = function(){}; document.head.appendChild(q);
+    });
   }
   function tr(str, d){
     var t = str.replace(/\s+/g, ' ').trim(); if (!t) return null;
@@ -43,11 +52,23 @@
     if (r === undefined || r === t) return null;
     return str.match(/^\s*/)[0] + r + str.match(/\s*$/)[0];
   }
+  var htmls = new Map();   // элементы, у которых заменили целиком innerHTML (фразы с <b>, <br>): элемент -> { orig, out }
   function restore(){
+    htmls.forEach(function(v, e){ try { e.innerHTML = v.orig; } catch(x){} }); htmls.clear();
     texts.forEach(function(v, n){ try { n.nodeValue = v.orig; } catch(e){} }); texts.clear();
     attrEls.forEach(function(e){ var o = e.__uiO; if (o){ for (var a in o){ try { e.setAttribute(a, o[a]); } catch(x){} } e.__uiO = null; } }); attrEls.clear();
   }
   function walk(root, d){
+    /* Фразы с разметкой внутри (<b>слово</b>, <br>): текст разбит на куски, поэтому сверяем innerHTML родителя целиком */
+    var seenP = new Set(), w0 = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n0;
+    while ((n0 = w0.nextNode())){
+      var p0 = n0.parentNode; if (!p0 || seenP.has(p0) || !p0.children || !p0.children.length || p0.children.length > 8) continue;
+      seenP.add(p0); if (/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p0.nodeName)) continue;
+      var rec0 = htmls.get(p0), h0 = p0.innerHTML;
+      if (rec0 && rec0.out === h0) continue;
+      if (h0.length > 3000 || !/<(b|i|em|strong|br)\b/i.test(h0)) continue;
+      var o0 = tr(h0, d); if (o0 !== null){ htmls.set(p0, { orig: h0, out: o0 }); p0.innerHTML = o0; }
+    }
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, list = [];
     while ((n = w.nextNode())){ var p = n.parentNode; if (p && !/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p.nodeName)) list.push(n); }
     list.forEach(function(n){

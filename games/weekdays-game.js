@@ -86,20 +86,20 @@ function initWeekdaysGame(containerId){
       return S('r' + kind + i, { expr:'', say:V.tpl('seq', {list:['f:wd_today', WK(DAYS[i]), 'f:' + key]}), cap:F()[key], ans:String(ans), layout:'wide', opts:dopts(ans, [mod(i), mod(i + 1), mod(i - 1), mod(i + 2)]),
         field:function(el){ el.innerHTML = '<div class="mxwk-card"><small>' + F().wd_today + '</small>' + DAYS[i] + '</div>'; }, hintSay:['f:r_wd_order'], hintExpr:'', hint:hintWeek([i, ans]) });
     }
-    /* расставь все семь дней по порядку */
+    /* расставь все семь дней по порядку (сверяем по data-v, а не по тексту: текст кнопки может быть переведён слоем ui-i18n) */
     function orderTask(){
       return S('o', { expr:'', say:V.tpl('q', {k:'wd_order'}), ans:'ok', gate:false,
         field:function(el, X, task){
           var tl = shuffle(DAYS.slice()); if(tl.join() === DAYS.join()) tl.reverse();
-          el.innerHTML = '<div class="mxwk-line"></div><div class="mxwk-pool">' + tl.map(function(d, i){ return '<button type="button" style="animation-delay:' + (i*.05) + 's">' + d + '</button>'; }).join('') + '</div>';
+          el.innerHTML = '<div class="mxwk-line"></div><div class="mxwk-pool">' + tl.map(function(d, i){ return '<button type="button" data-v="' + d + '" style="animation-delay:' + (i*.05) + 's">' + d + '</button>'; }).join('') + '</div>';
           var line = el.querySelector('.mxwk-line'), btns = [].slice.call(el.querySelectorAll('.mxwk-pool button')), n = 0;
           function paint(){ line.innerHTML = DAYS.slice(0, n).map(function(d, i){ return '<b>' + (i + 1) + '. ' + d + '</b>'; }).join('') + (n < 7 ? '<b class="q">?</b>' : ''); }
           paint();
           btns.forEach(function(b){ b.addEventListener('click', function(){ if(task._done || b.classList.contains('used')) return;
-            if(b.textContent !== DAYS[n]){ task._done = true; X.sfx.no(); task.submit('no', b); return; }
+            if(b.getAttribute('data-v') !== DAYS[n]){ task._done = true; X.sfx.no(); task.submit('no', b); return; }
             b.classList.add('used'); n++; X.sfx.tap(n); paint();
             if(n === 7){ task._done = true; X.sleep(350).then(function(ok){ if(ok) task.submit('ok', line); }); } }); });
-          task.auto = function(wrong){ if(wrong){ var w = btns.filter(function(b){ return b.textContent !== DAYS[0]; })[0]; w.click(); return; } DAYS.forEach(function(d){ var b = btns.filter(function(x){ return !x.classList.contains('used') && x.textContent === d; })[0]; if(b) b.click(); }); };
+          task.auto = function(wrong){ if(wrong){ var w = btns.filter(function(b){ return b.getAttribute('data-v') !== DAYS[0]; })[0]; w.click(); return; } DAYS.forEach(function(d){ var b = btns.filter(function(x){ return !x.classList.contains('used') && x.getAttribute('data-v') === d; })[0]; if(b) b.click(); }); };
         }, hintSay:['f:r_wd_order'], hintExpr:'', hint:hintWeek([0,1,2,3,4,5,6]) });
     }
     /* время суток: когда это бывает */
