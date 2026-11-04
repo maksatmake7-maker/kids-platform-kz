@@ -9,11 +9,12 @@
   if (window.__uiI18n) return; window.__uiI18n = true;
   var me = document.currentScript, base = (me && me.src) ? me.src.replace(/ui-i18n\.js.*$/, '') : '';
   var DICT = {}, LOADING = {}, texts = new Map(), attrEls = new Set(), busy = false, ATTRS = ['title', 'aria-label', 'alt', 'placeholder'];
+  var VER = 0;   // версия словарей: растёт при каждом пополнении, чтобы заново перевести уже переведённое (частично) более ранним пакетом
   window.UI_I18N_REG = function(l, d){   // можно вызывать несколько раз: пакеты дополняют словарь языка, а не заменяют его
     var cur0 = DICT[l] || { ex: Object.create(null), pat: [] };
     for (var k in d.ex) if (Object.prototype.hasOwnProperty.call(d.ex, k)) cur0.ex[k] = d.ex[k];
     (d.pat || []).forEach(function(p){ cur0.pat.push([new RegExp(p[0]), p[1], p[2]]); });
-    DICT[l] = cur0;
+    DICT[l] = cur0; VER++;
     run();
   };
   function cur(){
@@ -66,16 +67,24 @@
       var p0 = n0.parentNode; if (!p0 || seenP.has(p0) || !p0.children || !p0.children.length || p0.children.length > 8) continue;
       seenP.add(p0); if (/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p0.nodeName)) continue;
       var rec0 = htmls.get(p0), h0 = p0.innerHTML;
-      if (rec0 && rec0.out === h0) continue;
+      if (rec0 && rec0.out === h0){
+        if (rec0.ver === VER) continue;
+        rec0.ver = VER; var o1 = tr(rec0.orig, d); if (o1 !== null && o1 !== h0){ rec0.out = o1; p0.innerHTML = o1; }
+        continue;
+      }
       if (h0.length > 3000 || !/<(b|i|em|strong|br)\b|<span class="ac-/i.test(h0)) continue;
-      var o0 = tr(h0, d); if (o0 !== null){ htmls.set(p0, { orig: h0, out: o0 }); p0.innerHTML = o0; }
+      var o0 = tr(h0, d); if (o0 !== null){ htmls.set(p0, { orig: h0, out: o0, ver: VER }); p0.innerHTML = o0; }
     }
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, list = [];
     while ((n = w.nextNode())){ var p = n.parentNode; if (p && !/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p.nodeName)) list.push(n); }
     list.forEach(function(n){
       var rec = texts.get(n), v = n.nodeValue;
-      if (rec && rec.out === v) return;
-      var o = tr(v, d); if (o !== null){ texts.set(n, { orig: v, out: o }); n.nodeValue = o; }
+      if (rec && rec.out === v){
+        if (rec.ver === VER) return;
+        rec.ver = VER; var o2 = tr(rec.orig, d); if (o2 !== null && o2 !== v){ rec.out = o2; n.nodeValue = o2; }
+        return;
+      }
+      var o = tr(v, d); if (o !== null){ texts.set(n, { orig: v, out: o, ver: VER }); n.nodeValue = o; }
     });
     [].forEach.call(root.querySelectorAll('[title],[aria-label],[alt],[placeholder]'), function(e){
       ATTRS.forEach(function(a){
