@@ -32,10 +32,10 @@
     zh: ['没有网络', '这个页面还没有保存在设备上。请连接网络，或返回首页。', '回到首页'],
     uz: ['Интернет йўқ', 'Бу саҳифа ҳали телефонга сақланмаган. Интернетга уланинг ёки бош саҳифага қайтинг.', 'Бош саҳифага'],
     tg: ['Интернет нест', 'Ин саҳифа ҳанӯз дар телефон захира нашудааст. Ба интернет пайваст шавед ё ба саҳифаи асосӣ баргардед.', 'Ба саҳифаи асосӣ'],
-    ug: ['تور يوق', 'بۇ بەت تېخى تېلېفونغا ساقلانمىغان. تورغا ئۇلىنىڭ ياكى ئاساسىي بەتكە قايتىڭ.', 'ئاساسىي بەتكە']
+    ug: ['Тор ёқ', 'Бу бәт техи телефонға сақланмиған. Торға улиниң яки асасий бәткә қайтиң.', 'Асасий бәткә']
   };
   var l = 'ru'; try { var s = localStorage.getItem('bilim_lang_v1'); if (s && T[s]) l = s; } catch(e){}
-  document.documentElement.lang = l === 'kz' ? 'kk' : l; if (l === 'ug') document.documentElement.dir = 'rtl';
+  document.documentElement.lang = l === 'kz' ? 'kk' : l;
   document.getElementById('h').textContent = T[l][0]; document.getElementById('p').textContent = T[l][1]; document.getElementById('a').textContent = T[l][2];
   /* страница могла открыться по любому адресу, поэтому путь к главной берём из области service worker */
   if (navigator.serviceWorker) navigator.serviceWorker.getRegistration().then(function(r){ if (r){ document.getElementById('a').href = r.scope + 'index.html'; document.getElementById('i').src = r.scope + 'assets/pwa/icon-192.png'; } });

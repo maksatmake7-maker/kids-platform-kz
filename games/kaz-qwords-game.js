@@ -36,7 +36,7 @@ function initKazQwordsGame(containerId){
     function KK(w){ return 'f:k_w_' + w.toLowerCase().replace(/[?\s]/g, '').split('').map(function(c){ return TK[c]; }).join(''); }
     function KLK(l){ return 'f:k_l_' + TK[l.toLowerCase()]; }
     /* 10 сценариев из прежней игры: [значок, сколько штук, вопрос] */
-    var SC = [['🧒',1,'kim'],['👩‍🏫',1,'kim'],['📕',1,'ne'],['✏️',1,'ne'],['🧸',1,'ne'],['sw:#E53935',1,'qandai'],['sw:#43A047',1,'qandai'],['🍎',3,'neshe'],['⭐',5,'neshe'],['📕',2,'neshe']];
+    var SC = [['🧒',1,'kim'],['👩🏫',1,'kim'],['📕',1,'ne'],['✏️',1,'ne'],['🧸',1,'ne'],['sw:#E53935',1,'qandai'],['sw:#43A047',1,'qandai'],['🍎',3,'neshe'],['⭐',5,'neshe'],['📕',2,'neshe']];
     var QW = { kim:'КІМ?', ne:'НЕ?', qandai:'ҚАНДАЙ?', neshe:'НЕШЕ?' };
     var QK = ['kim','ne','qandai','neshe'];
     var QI = { kim:'🙋', ne:'📦', qandai:'🎨', neshe:'🔢' };

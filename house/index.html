@@ -24,7 +24,7 @@
     <button data-lang="zh" onclick="applyLang('zh')">中文</button>
     <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
     <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
-    <button data-lang="ug" onclick="applyLang('ug')">ئۇيغۇر</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
   </div>
 </header>
 
@@ -116,7 +116,7 @@
 (function(){
   var bubble = document.getElementById('bubble'), bt = null;
   function say(id){
-    bubble.textContent = House.say(id); bubble.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr'); bubble.classList.add('on');
+    bubble.textContent = House.say(id); bubble.setAttribute('dir', 'ltr'); bubble.classList.add('on');
     clearTimeout(bt); bt = setTimeout(function(){ bubble.classList.remove('on'); }, 3600);
   }
   Barsik.mount(document.getElementById('bsRoom'), { grade: 1, track: true });

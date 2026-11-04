@@ -49,7 +49,7 @@
   var b = Barsik.mount(bs, { grade: 1, track: true });
   function say(id, voice){
     bubble.textContent = HI.t('say_' + id);
-    bubble.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr');
+    bubble.setAttribute('dir', 'ltr');
     bubble.classList.add('on');
     clearTimeout(bt); bt = setTimeout(function(){ bubble.classList.remove('on'); }, 4200);
     if (voice !== false) speak(['album_' + id.replace(/^album_/, '')]);
@@ -87,7 +87,7 @@
     d.hidden = false;
     d.querySelector('.pic').innerHTML = svg(s);
     d.querySelector('h3').textContent = t.name; d.querySelector('p').textContent = t.fact;
-    d.setAttribute('dir', HI.lang() === 'ug' ? 'rtl' : 'ltr');
+    d.setAttribute('dir', 'ltr');
   }
 
   $('grid').addEventListener('click', function(e){

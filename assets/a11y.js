@@ -32,9 +32,9 @@
     tg: { btn: '👁 Ҳолати ман', h: 'Ҳолати ман', lead: 'Он чиро, ки барои ту қулайтар аст, интихоб кун. Ин дар ҳамин дастгоҳ нигоҳ дошта мешавад.',
       hint: 'Агар хондани матни хурд душвор бошад ё аз ҳаракат дар экран зуд хаста шавӣ, қулай аст.',
       big: 'Матни калонтар', read: 'Ҳуруфи хонданбоб', calm: 'Ҳаракати камтар', focus: 'Чорчӯбаҳои возеҳи тугмаҳо', contrast: 'Контрасти баландтар', close: 'Тайёр', reset: 'Ҳамаро барқарор кардан' },
-    ug: { btn: '👁 مېنىڭ ھالىتىم', h: 'مېنىڭ ھالىتىم', lead: 'ئۆزۈڭگە قولايلىقىنى تاللا. بۇ مۇشۇ ئۈسكۈنىدە ساقلىنىدۇ.',
-      hint: 'كىچىك خەتنى ئوقۇش تەس بولسا ياكى ئېكراندىكى ھەرىكەتتىن تېز چارچىساڭ، قولايلىق.',
-      big: 'چوڭراق خەت', read: 'ئوقۇشقا قولايلىق خەت', calm: 'ھەرىكەت ئاز', focus: 'كۇنۇپكىلارنىڭ ئېنىق چېگرىسى', contrast: 'سېلىشتۇرما يۇقىرىراق', close: 'تامام', reset: 'ھەممىنى ئەسلىگە قايتۇرۇش' }
+    ug: { btn: '👁 Мениң һалитим', h: 'Мениң һалитим', lead: 'Өзүңгә қолайлиқини талла. Бу мушу үскүнидә сақлиниду.',
+      hint: 'Кичик хәтни оқуш тәс болса яки екрандики һәрикәттин тез чарчисаң, қолайлиқ.',
+      big: 'Чоңрақ хәт', read: 'Оқушқа қолайлиқ хәт', calm: 'Һәрикәт аз', focus: 'Кунупкиларниң ениқ чегриси', contrast: 'Селиштурма юқирирақ', close: 'Тамам', reset: 'Һәммини әслигә қайтуруш' }
   };
 
   var CSS =
@@ -108,7 +108,7 @@
     lastFocus = document.activeElement;
     var o = load();
     back = document.createElement('div'); back.className = 'a11y-back';
-    var box = document.createElement('div'); box.className = 'a11y-box'; if ((cur || lang()) === 'ug') box.setAttribute('dir', 'rtl');
+    var box = document.createElement('div'); box.className = 'a11y-box';
     box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'a11y-h');
     var h = document.createElement('h2'); h.id = 'a11y-h'; h.textContent = t('h');
     var p = document.createElement('p'); p.textContent = t('lead');
