@@ -12409,8 +12409,8 @@ document.addEventListener('DOMContentLoaded', function(){
       /* 1 класс переведён на казахский (assets/ui-kz-g1.js): плашку «только на русском» там не показываем */
       if(lang === 'kz' && /\/grades\/grade-1\//.test(location.pathname)) txt = null;
       else if(window.__mxHeroCfg) txt = GAME[lang];
-      /* 1 класс переведён на таджикский (assets/ui-tg-g1.js): плашку курса не показываем; плашка про вопросы игр остаётся, пока не переведены банки вопросов */
-      else if(lang === 'tg' && /\/grades\/grade-1\//.test(location.pathname)) txt = null;
+      /* 1 класс переведён на таджикский и узбекский (assets/ui-tg-g1.js, ui-uz-g1.js): плашку курса не показываем; плашка про вопросы игр остаётся, пока не переведены банки вопросов */
+      else if((lang === 'tg' || lang === 'uz') && /\/grades\/grade-1\//.test(location.pathname)) txt = null;
       var hd = document.querySelector('header');
       if(!txt || !hd) return;
       var d = document.createElement('div'); d.id = 'mx-langnote'; d.textContent = txt;
