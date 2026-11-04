@@ -1,10 +1,10 @@
 /* ===== Білім Аралы — слой перевода надписей интерфейса =====
    Зачем: на многих страницах надписи (кнопки, названия курсов и тем, ссылки «К играм по…») написаны прямо в HTML/JS,
    а не в словаре i18n.js. Этот файл подменяет такие надписи на выбранный язык, не трогая сами страницы.
-   Как работает: если выбран язык, для которого есть файл assets/ui-<язык>.js (сейчас ui-en.js), он подгружается, и каждый
+   Как работает: если выбран язык, для которого есть файл assets/ui-<язык>.js (сейчас ui-en.js, ui-kz.js), он подгружается, и каждый
    текст на странице (а также title / aria-label / alt / placeholder), который ТОЧНО совпадает с ключом словаря, заменяется
-   переводом. Всё остальное не трогается. При смене языка оригинал возвращается. Русский и казахский работают как раньше.
-   Добавить перевод: в assets/ui-en.js добавьте пару  'русский текст': 'English text'. */
+   переводом. Всё остальное не трогается. При смене языка оригинал возвращается. Русский работает как раньше.
+   Добавить перевод: в assets/ui-<язык>.js добавьте пару  'русский текст': 'перевод'. */
 (function(){
   if (window.__uiI18n) return; window.__uiI18n = true;
   var me = document.currentScript, base = (me && me.src) ? me.src.replace(/ui-i18n\.js.*$/, '') : '';
@@ -27,6 +27,11 @@
   function tr(str, d){
     var t = str.replace(/\s+/g, ' ').trim(); if (!t) return null;
     var r = d.ex[t];
+    if (r === undefined){   // запасной вариант: то же предложение, но точка в конце есть только с одной стороны
+      var m0 = /^(.*[^.!?…])([.!?…]+)$/.exec(t);
+      if (m0){ var x = d.ex[m0[1]]; if (x !== undefined) r = x + m0[2]; }
+      else if (d.ex[t + '.'] !== undefined) r = d.ex[t + '.'].replace(/\.$/, '');
+    }
     if (r === undefined){
       for (var i = 0; i < d.pat.length; i++){
         var m = d.pat[i][0].exec(t); if (!m) continue;
@@ -62,7 +67,7 @@
   function run(){
     if (busy) return; busy = true;
     try {
-      var l = cur(); if (l === 'ru' || l === 'kz'){ restore(); return; }
+      var l = cur(); if (l === 'ru'){ restore(); return; }
       var d = DICT[l]; if (d === undefined){ load(l); return; } if (!d) return;
       if (document.body) walk(document.body, d);
       var t = tr(document.title, d); if (t !== null) document.title = t;
