@@ -45,7 +45,8 @@
       for (var i = 0; i < d.pat.length; i++){
         var m = d.pat[i][0].exec(t); if (!m) continue;
         var g = d.pat[i][2];   // номер группы, которую надо перевести по словарю (например название урока)
-        if (g){ [].concat(g).forEach(function(k){ var sub = d.ex[m[k]]; if (sub !== undefined) m[k] = sub; }); }   // g — номер группы или массив номеров
+        if (g){ [].concat(g).forEach(function(k){ var pre = ''; if (typeof k === 'string'){ var q = k.split(':'); k = +q[0]; pre = q[1] + ':'; }   // g — номер группы, массив номеров или «номер:префикс» (словарь по контексту)
+          var sub = pre ? d.ex[pre + m[k]] : undefined; if (sub === undefined) sub = d.ex[m[k]]; if (sub !== undefined) m[k] = sub; }); }
         r = d.pat[i][1].replace(/\$(\d)/g, function(_, k){ return m[+k] === undefined ? '' : m[+k]; }); break;
       }
     }
