@@ -34,8 +34,7 @@
       q.onerror = function(){}; document.head.appendChild(q);
     });
   }
-  function tr(str, d){
-    var t = str.replace(/\s+/g, ' ').trim(); if (!t) return null;
+  function one(t, d){   // перевод одной фразы: точное совпадение, запасной вариант с точкой, затем шаблоны (undefined — не нашли)
     var r = d.ex[t];
     if (r === undefined){   // запасной вариант: то же предложение, но точка в конце есть только с одной стороны
       var m0 = /^(.*[^.!?…])([.!?…]+)$/.exec(t);
@@ -50,6 +49,16 @@
           var sub = pre ? d.ex[pre + m[k]] : undefined; if (sub === undefined) sub = d.ex[m[k]]; if (sub !== undefined) m[k] = sub; }); }
         r = d.pat[i][1].replace(/\$(\d)/g, function(_, k){ return m[+k] === undefined ? '' : m[+k]; }); break;
       }
+    }
+    return r;
+  }
+  function tr(str, d){
+    var t = str.replace(/\s+/g, ' ').trim(); if (!t) return null;
+    var r = one(t, d);
+    if (r === undefined && t.length < 600 && /[.!?…] \S/.test(t)){   // несколько предложений подряд (озвучка Барсика склеивает фразы): переводим по предложениям, но только если переведены ВСЕ
+      var parts = t.replace(/([.!?…]) (?=\S)/g, '$1\u0001').split('\u0001'), out = [];
+      for (var j = 0; j < parts.length; j++){ var x = one(parts[j], d); if (x === undefined){ out = null; break; } out.push(x); }
+      if (out) r = out.join(' ');
     }
     if (r === undefined || r === t) return null;
     return str.match(/^\s*/)[0] + r + str.match(/\s*$/)[0];
