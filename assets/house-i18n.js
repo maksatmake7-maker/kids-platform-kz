@@ -1,5 +1,5 @@
 /* ===== Білім Аралы — переводы «Дома Барсика» (дом, гардероб) на 7 языков =====
-   Языки: ru, kz, en, zh, uz (кириллица), tg, ug (арабское письмо, справа налево) — как в assets/i18n.js.
+   Языки: ru, kz, en, zh, uz (латиница), tg, ug (арабское письмо, справа налево) — как в assets/i18n.js.
    Подключать после assets/i18n.js (он задаёт applyLang) и до house-back.js / house.js.
 
    Что делает:
@@ -161,40 +161,40 @@
     say_bye: '再来玩哦！我会等你的。'
   };
 
-  /* ---------------------------------------------------------------- ўзбекча (кирилл, как на остальном сайте) */
+  /* ---------------------------------------------------------------- o'zbekcha (lotin, как на остальном сайте) */
   T.uz = {
-    house_name: 'Барсикнинг уйи', wardrobe_name: 'Барсикнинг гардероби', wardrobe_h1: 'Гардероб',
-    into_house: '← Уйга', back_lessons: 'Дарсларга қайтиш', back_grade: 'Синф танлашга',
-    roof_aria: '«Барсикнинг уйи» ёзуви бор уй томи',
-    room_bed: 'Ётоқхона ва гардероб', room_kitchen: 'Ошхона', room_play: 'Ўйин хонаси', room_attic: 'Чордоқ',
-    chip_open: 'Очиқ', chip_kitchen: 'Тез орада: боурсоқ билан меҳмон қилиш', chip_play: 'Тез орада: ўйинчоқлар ва тўп',
-    goal_lbl: 'Менинг мақсадим', btn_buy: 'Сотиб олиш', btn_wear: 'Кийиш', btn_off: 'Ечиш', btn_need: 'Яна {n}',
-    note: 'Юлдузлар ўйинлар ва дарслар учун йиғилади. Сотиб олинган нарсани истаганча еч ва кийиб юраверасан. Нарсани кийиб қўйсанг, Барсик бошқа саҳифаларда ҳам шунда бўлади.',
-    goal_main: 'Яна {n} та {games}, ва {acc} оламан',
-    goal_sub: '{price} юлдуздан {need} таси етмайди. Битта ўйин учун тахминан {per} юлдуз берилади.',
-    goal_done_main: 'Юлдуз ҳамма нарсага етади', goal_done_sub: 'Нимани кийишни танла. Янги нарсалар кейин чиқади.',
-    games_other: 'ўйин',
-    item_bow: 'Бантик', acc_bow: 'бантикни', item_cap: 'Кепка', acc_cap: 'кепкани',
-    item_hat: 'Помпонли шапка', acc_hat: 'помпонли шапкани', item_scarf: 'Шарф', acc_scarf: 'шарфни',
-    item_glasses: 'Қора кўзойнак', acc_glasses: 'қора кўзойнакни', item_cape: 'Қаҳрамон плащи', acc_cape: 'қаҳрамон плащини',
-    item_crown: 'Тож', acc_crown: 'тожни',
-    gift_ru_only: 'Кун совғаси ҳозирча фақат рус тилида.', btn_ru: 'Русча',
-    qk_house: 'Барсикнинг уйи', qk_gift: 'Кун совғаси', qk_new: 'янги', qk_got: 'олинди',
-    say_hello1: 'Салом! Бу менинг уйим. Кир!',
-    say_hello2: 'Ура, келдинг! Қани, нима кийиб кўрсам экан?',
-    say_wardrobe_in: 'Бу менинг гардеробим. Бу ерда барча нарсаларим туради.',
-    say_gift: 'Қара, менга бантик совға қилишди! Раҳмат!',
-    say_wow1: 'Вой, қандай чиройли!', say_wow2: 'Менга жуда ярашди!', say_wow3: 'Мана бу янги кийим!',
-    say_wow4: 'Ура, мен энг чиройли мушукман!', say_wow5: 'Мур-р! Менга ёқди!',
-    say_buy_bow: 'Бантик! Худди байрамдагидек.', say_buy_cap: 'Кепка! Энди мен спортчиман!',
-    say_buy_hat: 'Помпонли шапка! Илиқ ва чиройли!', say_buy_scarf: 'Шарф! Энди умуман совуқ қотмайман.',
-    say_buy_glasses: 'Қора кўзойнак! Мен чинакам юлдузман!', say_buy_cape: 'Қаҳрамон плащи! Масалаларни қутқаришга учаман!',
-    say_buy_crown: 'Тож! Энди мен оролнинг шоҳиман!',
-    say_need_more: 'Ҳозирча юлдуз етмайди. Яна ўйнайлик!',
-    say_off: 'Ечаман. Бошқасини кийиб кўргим келяпти.',
-    say_kitchen_soon: 'Бу ерда яқинда ошхона бўлади. Мен боурсоқни жуда яхши кўраман!',
-    say_play_soon: 'Бу ерда ўйин хонаси бўлади. Тез орада ўйнаймиз!',
-    say_bye: 'Яна кел! Мен кутаман.'
+    house_name: 'Barsikning uyi', wardrobe_name: 'Barsikning garderobi', wardrobe_h1: 'Garderob',
+    into_house: '← Uyga', back_lessons: 'Darslarga qaytish', back_grade: 'Sinf tanlashga',
+    roof_aria: '«Barsikning uyi» yozuvi bor uy tomi',
+    room_bed: 'Yotoqxona va garderob', room_kitchen: 'Oshxona', room_play: 'O\'yin xonasi', room_attic: 'Chordoq',
+    chip_open: 'Ochiq', chip_kitchen: 'Tez orada: boursoq bilan mehmon qilish', chip_play: 'Tez orada: o\'yinchoqlar va to\'p',
+    goal_lbl: 'Mening maqsadim', btn_buy: 'Sotib olish', btn_wear: 'Kiyish', btn_off: 'Yechish', btn_need: 'Yana {n}',
+    note: 'Yulduzlar o\'yinlar va darslar uchun yig\'iladi. Sotib olingan narsani istagancha yech va kiyib yuraverasan. Narsani kiyib qo\'ysang, Barsik boshqa sahifalarda ham shunda bo\'ladi.',
+    goal_main: 'Yana {n} ta {games}, va {acc} olaman',
+    goal_sub: '{price} yulduzdan {need} tasi yetmaydi. Bitta o\'yin uchun taxminan {per} yulduz beriladi.',
+    goal_done_main: 'Yulduz hamma narsaga yetadi', goal_done_sub: 'Nimani kiyishni tanla. Yangi narsalar keyin chiqadi.',
+    games_other: 'o\'yin',
+    item_bow: 'Bantik', acc_bow: 'bantikni', item_cap: 'Kepka', acc_cap: 'kepkani',
+    item_hat: 'Pomponli shapka', acc_hat: 'pomponli shapkani', item_scarf: 'Sharf', acc_scarf: 'sharfni',
+    item_glasses: 'Qora ko\'zoynak', acc_glasses: 'qora ko\'zoynakni', item_cape: 'Qahramon plashchi', acc_cape: 'qahramon plashchini',
+    item_crown: 'Toj', acc_crown: 'tojni',
+    gift_ru_only: 'Kun sovg\'asi hozircha faqat rus tilida.', btn_ru: 'Ruscha',
+    qk_house: 'Barsikning uyi', qk_gift: 'Kun sovg\'asi', qk_new: 'yangi', qk_got: 'olindi',
+    say_hello1: 'Salom! Bu mening uyim. Kir!',
+    say_hello2: 'Ura, kelding! Qani, nima kiyib ko\'rsam ekan?',
+    say_wardrobe_in: 'Bu mening garderobim. Bu yerda barcha narsalarim turadi.',
+    say_gift: 'Qara, menga bantik sovg\'a qilishdi! Rahmat!',
+    say_wow1: 'Voy, qanday chiroyli!', say_wow2: 'Menga juda yarashdi!', say_wow3: 'Mana bu yangi kiyim!',
+    say_wow4: 'Ura, men eng chiroyli mushukman!', say_wow5: 'Mur-r! Menga yoqdi!',
+    say_buy_bow: 'Bantik! Xuddi bayramdagidek.', say_buy_cap: 'Kepka! Endi men sportchiman!',
+    say_buy_hat: 'Pomponli shapka! Iliq va chiroyli!', say_buy_scarf: 'Sharf! Endi umuman sovuq qotmayman.',
+    say_buy_glasses: 'Qora ko\'zoynak! Men chinakam yulduzman!', say_buy_cape: 'Qahramon plashchi! Masalalarni qutqarishga uchaman!',
+    say_buy_crown: 'Toj! Endi men orolning shohiman!',
+    say_need_more: 'Hozircha yulduz yetmaydi. Yana o\'ynaylik!',
+    say_off: 'Yechaman. Boshqasini kiyib ko\'rgim kelyapti.',
+    say_kitchen_soon: 'Bu yerda yaqinda oshxona bo\'ladi. Men boursoqni juda yaxshi ko\'raman!',
+    say_play_soon: 'Bu yerda o\'yin xonasi bo\'ladi. Tez orada o\'ynaymiz!',
+    say_bye: 'Yana kel! Men kutaman.'
   };
 
   /* ---------------------------------------------------------------- тоҷикӣ */

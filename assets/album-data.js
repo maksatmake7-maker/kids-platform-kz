@@ -24,7 +24,7 @@
         kz: ['Бауырсақ', 'Бауырсақ — қуырылған жұмсақ қамырдан жасалады. Оны қонаққа ұсынады.'],
         en: ['Baursak', 'Baursaks are puffy pieces of fried dough. They are served to guests.'],
         zh: ['包尔萨克', '包尔萨克是膨松的油炸面团，用来招待客人。'],
-        uz: ['Боурсоқ', 'Боурсоқ қовурилган юмшоқ хамирдан тайёрланади. Уни меҳмонларга тортишади.'],
+        uz: ['Boursoq', 'Boursoq qovurilgan yumshoq xamirdan tayyorlanadi. Uni mehmonlarga tortishadi.'],
         tg: ['Баурсак', 'Баурсак — порчаҳои пухтаи хамири бирёншуда аст. Онро ба меҳмонон пешкаш мекунанд.'],
         ug: ['Бавирсақ', 'Бавирсақ қорулған юмшақ хемирдин етилиду. Уни меһманларға тәқдим қилиду.']
       } },
@@ -35,7 +35,7 @@
         kz: ['Киіз үй', 'Киіз үйді тез жинап, көшіріп апаруға болады. Онда көшпенділер тұрған.'],
         en: ['Yurt', 'A yurt can be taken down and moved quickly. Nomads lived in it.'],
         zh: ['毡房', '毡房可以很快拆开搬走，游牧民族住在里面。'],
-        uz: ['Юрта', 'Юртани тез йиғиб, кўчириб кетиш мумкин. Унда кўчманчилар яшаган.'],
+        uz: ['Yurta', 'Yurtani tez yig\'ib, ko\'chirib ketish mumkin. Unda ko\'chmanchilar yashagan.'],
         tg: ['Хайма', 'Хаймаро зуд ҷамъ карда, кӯчонидан мумкин аст. Дар он кӯчманчиён зиндагӣ мекарданд.'],
         ug: ['Кигиз өй', 'Кигиз өйни тез йиғип көчүрүп кетишкә болиду. Униңда көчмәнләр яшиған.']
       } },
@@ -46,7 +46,7 @@
         kz: ['Домбыра', 'Домбыраның екі ішегі бар. Онда күй тартады.'],
         en: ['Dombra', 'A dombra has two strings. People play kuis on it.'],
         zh: ['冬不拉', '冬不拉有两根弦，人们用它演奏乐曲。'],
-        uz: ['Дўмбира', 'Дўмбиранинг иккита тори бор. Унда куйлар чалинади.'],
+        uz: ['Do\'mbira', 'Do\'mbiraning ikkita tori bor. Unda kuylar chalinadi.'],
         tg: ['Домбра', 'Домбра ду тор дорад. Бар он кӯйҳо менавозанд.'],
         ug: ['Домбра', 'Домбраниң икки тари бар. Униңда күйләр челиниду.']
       } },
@@ -57,7 +57,7 @@
         kz: ['Қызғалдақ', 'Қазақстанның дала мен тауларында жабайы қызғалдақ өседі. Көктемде олар түрлі-түсті кілемдей гүлдейді.'],
         en: ['Tulip', 'Wild tulips grow in the steppes and mountains of Kazakhstan. In spring they bloom like bright carpets.'],
         zh: ['郁金香', '哈萨克斯坦的草原和山上长着野生郁金香，春天开成一片鲜艳的花毯。'],
-        uz: ['Лола', 'Қозоғистоннинг даштлари ва тоғларида ёввойи лолалар ўсади. Баҳорда улар чиройли гиламдек очилади.'],
+        uz: ['Lola', 'Qozog\'istonning dashtlari va tog\'larida yovvoyi lolalar o\'sadi. Bahorda ular chiroyli gilamdek ochiladi.'],
         tg: ['Лола', 'Дар дашту кӯҳҳои Қазоқистон лолаҳои худрӯй мерӯянд. Баҳорон онҳо мисли қолини рангин мешукуфанд.'],
         ug: ['Лалә', 'Қазақстанниң дала вә тағлирида ябайи лалә өсиду. Баһарда улар рәңдар гиләмдәк ечилиду.']
       } },
@@ -68,7 +68,7 @@
         kz: ['Алма', 'Алматы қаласының атауы «алма» сөзінен шыққан. Жақын таулардың арасында жабайы алма ағаштары өседі.'],
         en: ['Apple', 'The city name Almaty comes from the word alma, which means apple. Wild apple trees grow in the mountains nearby.'],
         zh: ['苹果', '阿拉木图这个名字来自“阿尔玛”，意思是苹果。附近的山里长着野苹果树。'],
-        uz: ['Олма', 'Алмати шаҳрининг номи «алма» — олма сўзидан келиб чиққан. Яқин тоғларда ёввойи олма дарахтлари ўсади.'],
+        uz: ['Olma', 'Almati shahrining nomi «alma» — olma so\'zidan kelib chiqqan. Yaqin tog\'larda yovvoyi olma daraxtlari o\'sadi.'],
         tg: ['Себ', 'Номи шаҳри Олмаато аз калимаи «алма» — себ омадааст. Дар кӯҳҳои наздик себҳои ёвво мерӯянд.'],
         ug: ['Алма', 'Алмута шәһириниң нами «алма» дегән сөздин кәлгән. Йеқин әтраптики тағларда ябайи алма дәрихи өсиду.']
       } },
@@ -79,7 +79,7 @@
         kz: ['Қар барысы', 'Қар барысы, яғни ирбис, биік тауда тұрады. Оны көру өте қиын.'],
         en: ['Snow leopard', 'The snow leopard, or irbis, lives high in the mountains. It is almost impossible to spot.'],
         zh: ['雪豹', '雪豹生活在高高的山上，几乎没人能见到它。'],
-        uz: ['Қор барси', 'Қор барси, яъни ирбис, баланд тоғларда яшайди. Уни кўриш деярли мумкин эмас.'],
+        uz: ['Qor barsi', 'Qor barsi, ya\'ni irbis, baland tog\'larda yashaydi. Uni ko\'rish deyarli mumkin emas.'],
         tg: ['Паланги барфӣ', 'Паланги барфӣ, яъне ирбис, дар кӯҳҳои баланд зиндагӣ мекунад. Дидани он қариб номумкин аст.'],
         ug: ['Қар барси', 'Қар барси егиз тағларда яшайду. Уни көрүш дегәндәк мумкин әмәс.']
       } },
@@ -90,7 +90,7 @@
         kz: ['Бәйтерек', 'Бәйтерек — Астанадағы биіктігі 105 метр мұнара. Оның төбесінде алтын шар бар.'],
         en: ['Baiterek', 'Baiterek is a tower in Astana, 105 meters tall. It has a golden ball at the top.'],
         zh: ['巴伊杰列克塔', '巴伊杰列克塔在阿斯塔纳，高105米，塔顶有一个金色的圆球。'],
-        uz: ['Байтерак', 'Байтерак — Остонадаги баландлиги 105 метр минора. Унинг тепасида олтин шар бор.'],
+        uz: ['Bayterak', 'Bayterak — Ostonadagi balandligi 105 metr minora. Uning tepasida oltin shar bor.'],
         tg: ['Байтерек', 'Байтерек — манора дар Остона бо баландии 105 метр. Дар болои он кураи тиллоӣ ҳаст.'],
         ug: ['Бәйтәрәк', 'Бәйтәрәк — астанадики егизлики 105 метир мунар. Униң үстидә алтун шар бар.']
       } },
@@ -101,7 +101,7 @@
         kz: ['Түйе', 'Түйе суға тоймай ұзақ жүре алады. Оны шөлдің кемесі дейді.'],
         en: ['Camel', 'A camel can walk a long time without water. It is called the ship of the desert.'],
         zh: ['骆驼', '骆驼可以很久不喝水，被称为沙漠之舟。'],
-        uz: ['Туя', 'Туя сувсиз узоқ юра олади. Уни саҳро кемаси дейишади.'],
+        uz: ['Tuya', 'Tuya suvsiz uzoq yura oladi. Uni sahro kemasi deyishadi.'],
         tg: ['Шутур', 'Шутур бе об муддати дароз роҳ рафта метавонад. Онро киштии биёбон меноманд.'],
         ug: ['Төгә', 'Төгә сусиз узун ёл йүрәләйду. Уни қумлуқ кемиси дәп атайду.']
       } },
@@ -112,7 +112,7 @@
         kz: ['Шаңырақ', 'Шаңырақ — киіз үйдің күмбезіндегі дөңгелек терезе. Ол Қазақстанның елтаңбасында да бар.'],
         en: ['Shanyrak', 'The shanyrak is the round opening at the top of a yurt. It is also on the coat of arms of Kazakhstan.'],
         zh: ['沙尼拉克', '沙尼拉克是毡房顶上的圆形天窗，哈萨克斯坦国徽上也有它。'],
-        uz: ['Шанирак', 'Шанирак — юрта гумбазидаги думалоқ дераза. У Қозоғистон гербида ҳам бор.'],
+        uz: ['Shanirak', 'Shanirak — yurta gumbazidagi dumaloq deraza. U Qozog\'iston gerbida ham bor.'],
         tg: ['Шанирак', 'Шанирак — тирезаи мудаввар дар гумбази хайма. Он дар нишони давлатии Қазоқистон ҳам ҳаст.'],
         ug: ['Шаңирақ', 'Шаңирақ — кигиз өй гүмбизидики юмилақ деризә. У Қазақстан гербидиму бар.']
       } },
@@ -123,7 +123,7 @@
         kz: ['Бесбармақ', 'Бесбармақ — «бес саусақ» деген мағына береді, оны қолмен жейді. Бұл ас мерекелік дастарханға қойылады.'],
         en: ['Beshbarmak', 'Beshbarmak means five fingers, because people eat it with their hands. It is served at festive tables.'],
         zh: ['别什巴尔马克', '“别什巴尔马克”意思是五指，因为要用手抓着吃，它是节日餐桌上的名菜。'],
-        uz: ['Бешбармоқ', 'Бешбармоқ «беш бармоқ» деган маънони билдиради: уни қўл билан ейишади. Бу таом байрам дастурхонига қўйилади.'],
+        uz: ['Beshbarmoq', 'Beshbarmoq «besh barmoq» degan ma\'noni bildiradi: uni qo\'l bilan yeyishadi. Bu taom bayram dasturxoniga qo\'yiladi.'],
         tg: ['Бешбармак', 'Бешбармак маънои «панҷ ангушт»-ро дорад: онро бо даст мехӯранд. Ин хӯрок ба дастурхони ид гузошта мешавад.'],
         ug: ['Бәшбармақ', 'Бәшбармақ «бәш бармақ» дегән мәнидә, уни қол билән йәйду. Бу таам байрам дастихиниға қоюлиду.']
       } },
@@ -134,7 +134,7 @@
         kz: ['Беркут', 'Беркут — үлкен қыран. Қазақ аңшылары оны қолға үйретіп, бірге аң аулайды.'],
         en: ['Golden eagle', 'The golden eagle is a large eagle. Kazakh hunters tame it and hunt together.'],
         zh: ['金雕', '金雕是一种大型的鹰，哈萨克猎人驯养它，一起打猎。'],
-        uz: ['Бургут', 'Бургут — йирик қуш. Қозоқ овчилари уни ўргатиб, бирга овга чиқишади.'],
+        uz: ['Burgut', 'Burgut — yirik qush. Qozoq ovchilari uni o\'rgatib, birga ovga chiqishadi.'],
         tg: ['Уқоб', 'Уқоб — паррандаи калон. Шикорчиёни қазоқ онро ром карда, якҷоя шикор мекунанд.'],
         ug: ['Бүркүт', 'Бүркүт — чоң қуш. Қазақ овчилири уни өгитип, биллә овға чиқиду.']
       } },
@@ -145,7 +145,7 @@
         kz: ['Теңге', 'Теңге — Қазақстанның ақшасы. Оны 1993 жылы енгізді.'],
         en: ['Tenge', 'The tenge is the money of Kazakhstan. It was introduced in 1993.'],
         zh: ['坚戈', '坚戈是哈萨克斯坦的货币，1993年开始使用。'],
-        uz: ['Тенге', 'Тенге — Қозоғистоннинг пули. У 1993 йилда жорий этилган.'],
+        uz: ['Tenge', 'Tenge — Qozog\'istonning puli. U 1993 yilda joriy etilgan.'],
         tg: ['Тенге', 'Тенге — пули Қазоқистон аст. Онро соли 1993 ҷорӣ карданд.'],
         ug: ['Тәңгә', 'Тәңгә — Қазақстанниң пули. У 1993-йили қоллинилған.']
       } },
@@ -156,7 +156,7 @@
         kz: ['Наурыз', 'Наурыз — көктем мерекесі. Оны 21, 22 және 23 наурызда тойлайды.'],
         en: ['Nauryz', 'Nauryz is the spring holiday. It is celebrated on March 21, 22 and 23.'],
         zh: ['诺鲁孜节', '诺鲁孜节是春天的节日，在3月21日、22日和23日庆祝。'],
-        uz: ['Наврўз', 'Наврўз — баҳор байрами. У 21, 22 ва 23 мартда нишонланади.'],
+        uz: ['Navro\'z', 'Navro\'z — bahor bayrami. U 21, 22 va 23 martda nishonlanadi.'],
         tg: ['Наврӯз', 'Наврӯз — ҷашни баҳор аст. Онро 21, 22 ва 23-юми март ҷашн мегиранд.'],
         ug: ['Норуз', 'Норуз — баһар байрими. У 3-айниң 21, 22 вә 23-күнлири тәбриклиниду.']
       } },
@@ -167,7 +167,7 @@
         kz: ['Асық', 'Асық — көне ойынға арналған сүйектер. Басқа асықты дәл тигізіп ұту керек.'],
         en: ['Asyk', 'Asyk are knucklebones used for an old game. You have to knock out the other bone with a good throw.'],
         zh: ['羊拐骨', '羊拐骨是一种古老游戏用的小骨头，要准确地把别人的骨头打出去。'],
-        uz: ['Асиқ', 'Асиқ — қадимий ўйин учун суякчалар. Бошқасининг суякчасини аниқ уриб чиқариш керак.'],
+        uz: ['Asiq', 'Asiq — qadimiy o\'yin uchun suyakchalar. Boshqasining suyakchasini aniq urib chiqarish kerak.'],
         tg: ['Асик', 'Асик — устухонакҳо барои бозии қадимӣ. Бояд устухонаки дигарро дақиқ зад.'],
         ug: ['Асиқ', 'Асиқ — қәдимки оюн үчүн ишлитилидиған сөңәкчиләр. Башқисиниң сөңикини ениқ уруп чиқириш керәк.']
       } },
@@ -178,7 +178,7 @@
         kz: ['Мемлекеттік ту', 'Қазақстан туында аспан түстес өрісте күн мен қыран бейнеленген.'],
         en: ['Flag', 'The flag of Kazakhstan shows a sun and a steppe eagle on a sky-blue field.'],
         zh: ['国旗', '哈萨克斯坦国旗在天蓝色的底上有太阳和草原鹰。'],
-        uz: ['Байроқ', 'Қозоғистон байроғида осмон ранг майдонда қуёш ва даштлар бургути тасвирланган.'],
+        uz: ['Bayroq', 'Qozog\'iston bayrog\'ida osmon rang maydonda quyosh va dashtlar burguti tasvirlangan.'],
         tg: ['Парчам', 'Дар парчами Қазоқистон офтоб ва уқоби дашт дар заминаи осмонӣ тасвир шудааст.'],
         ug: ['Байрақ', 'Қазақстан байриқида асман рәңлик йәргә қуяш вә дала бүркүти сизилған.']
       } },
@@ -189,7 +189,7 @@
         kz: ['Хан Тәңірі', 'Хан Тәңірі — Қазақстан мен Қырғызстан шекарасындағы тау. Оның биіктігі жеті мың метрден асады.'],
         en: ['Khan Tengri', 'Khan Tengri is a mountain on the border of Kazakhstan and Kyrgyzstan. It is more than seven thousand meters high.'],
         zh: ['汗腾格里峰', '汗腾格里峰在哈萨克斯坦和吉尔吉斯斯坦的边界上，高度超过七千米。'],
-        uz: ['Хон-Тангри', 'Хон-Тангри — Қозоғистон ва Қирғизистон чегарасидаги тоғ. Унинг баландлиги етти минг метрдан ошади.'],
+        uz: ['Xon-Tangri', 'Xon-Tangri — Qozog\'iston va Qirg\'iziston chegarasidagi tog\'. Uning balandligi yetti ming metrdan oshadi.'],
         tg: ['Хон-Тенгри', 'Хон-Тенгри — кӯҳ дар сарҳади Қазоқистон ва Қирғизистон. Баландии он аз ҳафт ҳазор метр зиёд аст.'],
         ug: ['Хан тәңри', 'Хан тәңри — Қазақстан билән қирғизистан чеграсидики тағ. Униң егизлики йәттә миң метирдин ашиду.']
       } },
@@ -200,7 +200,7 @@
         kz: ['Байқоңыр', 'Байқоңыр — ғарыш айлағы. Осы жерден 1961 жылы Юрий Гагарин ғарышқа ұшты.'],
         en: ['Baikonur', 'Baikonur is a spaceport. Yuri Gagarin flew into space from here in 1961.'],
         zh: ['拜科努尔', '拜科努尔是航天发射场，1961年尤里·加加林从这里飞向太空。'],
-        uz: ['Байконур', 'Байконур — космодром. Бу ердан 1961 йилда Юрий Гагарин космосга учган.'],
+        uz: ['Baykonur', 'Baykonur — kosmodrom. Bu yerdan 1961 yilda Yuriy Gagarin kosmosga uchgan.'],
         tg: ['Байконур', 'Байконур — кайҳонвард-майдон аст. Аз ин ҷо соли 1961 Юрий Гагарин ба кайҳон парвоз кард.'],
         ug: ['Байқоңур', 'Байқоңур — аләм пәрваз мәйдани. 1961-йили юрий гагарин бу йәрдин аләмгә учқан.']
       } },
@@ -211,7 +211,7 @@
         kz: ['Балқаш көлі', 'Балқаш көлі ерекше: оның бір жағының суы тұщы, екінші жағы тұзды.'],
         en: ['Lake Balkhash', 'Lake Balkhash is special: the water on one side is fresh and on the other side is salty.'],
         zh: ['巴尔喀什湖', '巴尔喀什湖很特别：一边的水是淡水，另一边的水是咸水。'],
-        uz: ['Балхаш кўли', 'Балхаш кўли алоҳида: унинг бир тарафидаги сув чучук, иккинчи тарафидагиси шўр.'],
+        uz: ['Balxash ko\'li', 'Balxash ko\'li alohida: uning bir tarafidagi suv chuchuk, ikkinchi tarafidagisi sho\'r.'],
         tg: ['Кӯли Балхаш', 'Кӯли Балхаш хос аст: оби як тарафи он ширин, тарафи дигараш шӯр аст.'],
         ug: ['Балқаш көли', 'Балқаш көли алаһидә: униң бир тәрипидики су чүчүк, йәнә бир тәрипидики су шор.']
       } },
@@ -222,7 +222,7 @@
         kz: ['Шарын шатқалы', 'Шарын шатқалын «Сарайлар аңғары» дейді. Қызыл жартастар мұнара мен қабырғаға ұқсайды.'],
         en: ['Charyn Canyon', 'Charyn Canyon is called the Valley of Castles. The red rocks look like towers and walls.'],
         zh: ['恰伦大峡谷', '恰伦大峡谷被称为城堡谷，红色的岩石像塔楼和城墙。'],
-        uz: ['Чарин каньони', 'Чарин каньонини Қасрлар водийси дейишади. Қизил қоялар минора ва деворларга ўхшайди.'],
+        uz: ['Charin kanoni', 'Charin kanonini Qasrlar vodiysi deyishadi. Qizil qoyalar minora va devorlarga o\'xshaydi.'],
         tg: ['Дараи Чарин', 'Дараи Чаринро Водии қалъаҳо меноманд. Сангҳои сурх ба бурҷу девор монанданд.'],
         ug: ['Чарин җилғиси', 'Чарин җилғисини қәсирләр җилғиси дәп атайду. Қизил қиялар мунар вә тамға охшайду.']
       } },
@@ -233,7 +233,7 @@
         kz: ['Алтын адам', 'Алтын адам — ежелгі сақ жауынгері. Оны Есік қорғанынан тапқан, ол екі мың жылдан астам бұрын өмір сүрген.'],
         en: ['Golden Man', 'The Golden Man was a warrior of the ancient Saka. He was found in the Issyk burial mound and lived over two thousand years ago.'],
         zh: ['黄金人', '黄金人是古代塞人的武士，在伊塞克古墓里被发现，已有两千多年。'],
-        uz: ['Олтин одам', 'Олтин одам — қадимги сак жангчиси. У Иссиқ қўрғонидан топилган, икки минг йилдан ортиқ олдин яшаган.'],
+        uz: ['Oltin odam', 'Oltin odam — qadimgi sak jangchisi. U Issiq qo\'rg\'onidan topilgan, ikki ming yildan ortiq oldin yashagan.'],
         tg: ['Одами тиллоӣ', 'Одами тиллоӣ — ҷанговари сакҳои қадим. Ӯро дар теппаи Исик ёфтанд, зиёда аз ду ҳазор сол пеш зиндагӣ мекард.'],
         ug: ['Алтун адәм', 'Алтун адәм — қәдимки сакларниң җәңчиси. У иссиқ қорғинидин тепилған, икки миң йилдин артуқ илгири яшиған.']
       } }
@@ -294,17 +294,17 @@
       say_album_all: '耶，贴纸册满啦！我集齐了关于哈萨克斯坦的一切。'
     },
     uz: {
-      attic_name: 'Барсикнинг чордоғи', album_h1: 'Қозоғистон стикерлар альбоми', album_lbl: 'Менинг альбомим',
-      album_count: 'Стикерлар: {n} / {total}', album_next: 'Кейинги стикергача: {n} ★',
-      album_done_main: 'Барча стикерлар йиғилди!', album_done_sub: 'Яқинда янгилари чиқади.',
-      album_locked: 'Керак: {n} ★', album_new: 'Янги!',
-      album_hint: 'Стикерни босиб, у ҳақида бил. Юлдузлар сарфланмайди: стикерлар топган юлдузларинг учун ўзи очилади.',
-      say_album_in: 'Бу менинг чордоғим. Бу ерда мен Қозоғистон ҳақидаги стикерларни сақлайман.',
-      say_album_first: 'Ҳозирча стикер йўқ. Ўйнайлик, биринчиси пайдо бўлади!',
-      say_album_new: 'Ура, янги стикер! Тезроқ оч!',
-      say_album_open: 'Мана бу топилма!',
-      say_album_locked: 'Бу стикер ҳали яширин. Ўйна, у очилади!',
-      say_album_all: 'Ура, альбом тўлди! Мен Қозоғистон ҳақида ҳамма нарсани йиғдим.'
+      attic_name: 'Barsikning chordog\'i', album_h1: 'Qozog\'iston stikerlar albomi', album_lbl: 'Mening albomim',
+      album_count: 'Stikerlar: {n} / {total}', album_next: 'Keyingi stikergacha: {n} ★',
+      album_done_main: 'Barcha stikerlar yig\'ildi!', album_done_sub: 'Yaqinda yangilari chiqadi.',
+      album_locked: 'Kerak: {n} ★', album_new: 'Yangi!',
+      album_hint: 'Stikerni bosib, u haqida bil. Yulduzlar sarflanmaydi: stikerlar topgan yulduzlaring uchun o\'zi ochiladi.',
+      say_album_in: 'Bu mening chordog\'im. Bu yerda men Qozog\'iston haqidagi stikerlarni saqlayman.',
+      say_album_first: 'Hozircha stiker yo\'q. O\'ynaylik, birinchisi paydo bo\'ladi!',
+      say_album_new: 'Ura, yangi stiker! Tezroq och!',
+      say_album_open: 'Mana bu topilma!',
+      say_album_locked: 'Bu stiker hali yashirin. O\'yna, u ochiladi!',
+      say_album_all: 'Ura, albom to\'ldi! Men Qozog\'iston haqida hamma narsani yig\'dim.'
     },
     tg: {
       attic_name: 'Болохонаи Барсик', album_h1: 'Албоми стикерҳои Қазоқистон', album_lbl: 'Албоми ман',
