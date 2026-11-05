@@ -46,6 +46,7 @@ def hub():
     soon = []
     for sid, art, col, t, d in soon:
         sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', title:'%s', desc:'%s'}," % (sid, art, col, t, d))
+    sub.append("    {id:'quest', keys:['quest_aul_g2'], quest:true, href:'../../quest/index.html?grade=2', art:'quest', color:'#2F8FD1', badge:'badge_play'},")
     sub.append("    {id:'kaz2', soon:true, href:'#', art:'kaz', color:'#3FB088', titleText:'Қазақ тілі', descText:'Ана тілі, оқу және жазу'},")
     blk = "window.HUB = {\n  grade: 2, dir: 'kz', lang: 'kz', tag: 'kaz_direction_grade2_title', h2: 'hub_title', lead: 'kaz_direction_desc',\n  subjects: [\n" + '\n'.join(sub) + "\n  ]\n};"
     h2 = re.sub(r'window\.HUB = \{.*?\n\};', lambda m: blk, h, flags=re.S); assert h2 != h
