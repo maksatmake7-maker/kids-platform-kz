@@ -8,7 +8,7 @@
 (function(){
   if (window.__uiI18n) return; window.__uiI18n = true;
   var me = document.currentScript, base = (me && me.src) ? me.src.replace(/ui-i18n\.js.*$/, '') : '';
-  var DICT = {}, LOADING = {}, texts = new Map(), attrEls = new Set(), busy = false, ATTRS = ['title', 'aria-label', 'alt', 'placeholder'];
+  var DICT = {}, LOADING = {}, PENDING = {}, texts = new Map(), attrEls = new Set(), busy = false, ATTRS = ['title', 'aria-label', 'alt', 'placeholder'];
   var FB = { fr: 'en', de: 'en' };   // французский и немецкий: чего нет в их словаре — берём из английского (пока перевод не дописан)
   var VER = 0;   // версия словарей: растёт при каждом пополнении, чтобы заново перевести уже переведённое (частично) более ранним пакетом
   window.UI_I18N_REG = function(l, d){   // можно вызывать несколько раз: пакеты дополняют словарь языка, а не заменяют его
@@ -17,6 +17,12 @@
     (d.pat || []).forEach(function(p){ cur0.pat.push([new RegExp(p[0]), p[1], p[2]]); });
     DICT[l] = cur0; VER++;
     run();
+  };
+  /* Для игр: перевод одной строки (UI_I18N_LOOKUP) и ожидание, пока загрузятся все пакеты страницы (UI_I18N_WHEN) */
+  window.UI_I18N_LOOKUP = function(l, str){ var d = DICT[l]; if (!d) return undefined; var r = d.ex[str]; if (r === undefined && d.fb) r = d.fb.ex[str]; return r; };
+  window.UI_I18N_WHEN = function(l, cb){
+    if (!l || l === 'ru'){ cb(); return; }
+    var tries = 0; (function w(){ var d = DICT[l]; if ((d !== undefined && !PENDING[l]) || ++tries > 300) cb(); else { if (d === undefined) load(l); setTimeout(w, 50); } })();
   };
   function cur(){
     var l = document.documentElement.getAttribute('data-current');
@@ -33,12 +39,15 @@
     [/\/grades\/grade-2(?:-kaz)?\/digital\//, 'g2digital'],
     [/\/grades\/grade-2(?:-kaz)?\/poznanie\//, 'g2poznanie'],
     [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2math'],
+    [/\/grades\/grade-3(?:-kaz)?\/estestvo\//, 'g3est'],
+    [/\/grades\/grade-[34](?:-kaz)?\/.*-course\.html$/, 'crsui'],
+    [/\/grades\/grade-[34](?:-kaz)?\//, 'pz2eng'],
     [/\/grades\/grade-4(?:-kaz)?\//, 'g4'],
     [/\/(?:privacy\.html|gift\/)/, 'root'] ];
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math'];
-  var AVAIL = { kz: ['g1', 'g4', 'root'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
+  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
@@ -46,7 +55,7 @@
     PACKS.forEach(function(pk){
       if (!pk[0].test(location.pathname) || (AVAIL[l] || []).indexOf(pk[1]) < 0) return;
       var q = document.createElement('script'); q.src = base + 'ui-' + l + '-' + pk[1] + '.js'; q.async = true;
-      q.onerror = function(){}; document.head.appendChild(q);
+      PENDING[l] = (PENDING[l] || 0) + 1; q.onload = function(){ PENDING[l]--; }; q.onerror = function(){ PENDING[l]--; }; document.head.appendChild(q);
     });
   }
   function one(t, d){   // перевод одной фразы: точное совпадение, запасной вариант с точкой, затем шаблоны (undefined — не нашли)
