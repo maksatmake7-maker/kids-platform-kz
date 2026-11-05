@@ -12407,10 +12407,10 @@ document.addEventListener('DOMContentLoaded', function(){
       var txt = null;
       if(/-course\.html$/.test(location.pathname)) txt = COURSE[lang];
       /* 1 класс переведён на казахский (assets/ui-kz-g1.js): плашку «только на русском» там не показываем */
-      if(lang === 'kz' && /\/grades\/grade-1\//.test(location.pathname)) txt = null;
+      if(lang === 'kz' && /\/grades\/grade-1(?:-kaz)?\//.test(location.pathname)) txt = null;
       else if(window.__mxHeroCfg) txt = GAME[lang];
       /* 1 класс переведён на таджикский и узбекский (assets/ui-tg-g1.js, ui-uz-g1.js): плашку курса не показываем; плашка про вопросы игр остаётся, пока не переведены банки вопросов */
-      else if((lang === 'tg' || lang === 'uz') && /\/grades\/grade-1\//.test(location.pathname)) txt = null;
+      else if((lang === 'tg' || lang === 'uz') && /\/grades\/grade-1(?:-kaz)?\//.test(location.pathname)) txt = null;
       var hd = document.querySelector('header');
       if(!txt || !hd) return;
       var d = document.createElement('div'); d.id = 'mx-langnote'; d.textContent = txt;
