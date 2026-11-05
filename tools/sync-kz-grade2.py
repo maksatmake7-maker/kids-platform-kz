@@ -7,7 +7,8 @@ import re, os
 KZ_VOICE = False
 # предмет (папка) -> (заголовок страницы, ключ курса в русской версии)
 READY = {'fizra': ('Дене шынықтыру', 'fiz2-course.html'), 'izo': ('Бейнелеу өнері', 'izo2-course.html'),
-         'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html')}
+         'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html'),
+         'poznanie': ('Дүниетану', 'poznanie2-course.html')}
 SRC, DST = 'grades/grade-2', 'grades/grade-2-kaz'
 def rd(p): return open(p, encoding='utf-8').read()
 def wr(p, s):
@@ -33,8 +34,9 @@ def hub():
              ('trud', '#8C6F4E', 'trud', 'Трудовое обучение', 'Материалы, инструменты, поделки и выставка')]
     for sid, col, art, t, d in order:
         sub.append("    {id:'%s2', href:'%s/index.html', art:'%s', color:'%s', titleText:'%s', descText:'%s'}," % (sid, sid, art, col, t, d))
+    sub.append("    {id:'poznanie2', href:'poznanie/index.html', art:'poznanie', color:'#F0954C', title:'poznanie_title', descText:'Семья, школа, родной край, карта и символы страны'},")
     soon = [('math2', 'math', '#FFC93C', 'math_title', 'math_desc'), ('estestvo2', 'estestvo', '#6FBF73', 'estestvo_title', 'hub_animalclass_desc'),
-            ('poznanie2', 'poznanie', '#F0954C', 'poznanie_title', 'poznanie_desc'), ('dig2', 'digital', '#5EC3E8', None, None)]
+            ('dig2', 'digital', '#5EC3E8', None, None)]
     for sid, art, col, t, d in soon:
         if t: sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', title:'%s', desc:'%s'}," % (sid, art, col, t, d))
         else: sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', titleText:'Цифровая грамотность', descText:'Компьютер, поиск в сети, Scratch и роботы'}," % (sid, art, col))
