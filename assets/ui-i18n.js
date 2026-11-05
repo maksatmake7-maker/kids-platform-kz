@@ -23,7 +23,8 @@
     return l || 'ru';
   }
   /* Пакеты по классам: тексты уроков и игр лежат отдельно (ui-<язык>-g1.js — 1 класс), чтобы не грузить их на остальных страницах */
-  var PACKS = [ [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'] ];
+  var PACKS = [ [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'],
+    [/\/grades\/grade-2(?:-kaz)?\/fizra\//, 'g2fizra'] ];
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
@@ -113,7 +114,8 @@
       var t = tr(document.title, d); if (t !== null) document.title = t;
     } finally { busy = false; }
   }
-  var timer = null; function later(){ clearTimeout(timer); timer = setTimeout(run, 50); }
+  var timer = null, firstAt = 0;   /* перевод не откладывается дольше ~120 мс, даже если страница постоянно меняется (конфетти, анимации) */
+  function later(){ var now = Date.now(); if (!firstAt) firstAt = now; clearTimeout(timer); timer = setTimeout(function(){ firstAt = 0; run(); }, now - firstAt > 100 ? 0 : 50); }
   function init(){
     run();
     try {

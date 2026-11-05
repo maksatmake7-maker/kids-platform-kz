@@ -3,8 +3,10 @@
 Курсы тех же предметов переводятся словарём assets/ui-kz-g2.js, поэтому копия курса отличается только
 языком (kz включается сам) и скрытой русской озвучкой (KZ_VOICE=True включает кнопку «Послушать»).
 Запуск из корня репозитория:  python3 tools/sync-kz-grade2.py"""
-import re, os
+import re, os, importlib.util
+_sp = importlib.util.spec_from_file_location('mt', 'tools/modernize-trainers.py'); MT = importlib.util.module_from_spec(_sp); _sp.loader.exec_module(MT)
 KZ_VOICE = False
+TRAINERS = {'fizra'}   # предметы, у которых тренажёры уже переведены на казахский (остальные добавляются по мере перевода)
 # предмет (папка) -> (заголовок страницы, ключ курса в русской версии)
 READY = {'fizra': ('Дене шынықтыру', 'fiz2-course.html'), 'izo': ('Бейнелеу өнері', 'izo2-course.html'),
          'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html'),
@@ -25,7 +27,7 @@ def pre_i18n(h, depth):
     tag = '<script src="%sassets/i18n.js"></script>' % ('../' * depth)
     assert tag in h, tag
     pre = "<script>try{localStorage.setItem('bilim_lang_v1','kz')}catch(e){}</script>\n"
-    if not KZ_VOICE: pre += '<style>#ac-speak{display:none !important}</style>\n'
+    if not KZ_VOICE: pre += '<script>window.BILIM_NO_VOICE=1</script>\n<style>#ac-speak,.mxs-snd,.mxs-replay{display:none !important}</style>\n'
     return h.replace(tag, pre + tag, 1)
 def hub():
     h = lang_kz(rd('grades/grade-1-kaz/index.html'))
@@ -53,15 +55,19 @@ def subject(sid):
     h = lang_kz(rd('%s/%s/index.html' % (SRC, sid)))
     h = re.sub(r'<title>.*?</title>', '<title>%s 2 сынып — Білім Аралы</title>' % title, h, count=1)
     h = h.replace('<a href="../index.html" class="back-link" data-i18n="back_home"></a>', '<a href="../index.html" class="back-link" data-i18n="kaz_direction_grade2_title"></a>')
-    # оставляем только карточку курса
-    m = re.search(r'<a href="%s".*?</a>\n' % re.escape(course), h, re.S); assert m, sid
-    card = m.group(0)
-    a = h.index('  <h3 class="quarter-heading"') if '<h3 class="quarter-heading"' in h else h.index('  <div class="island-grid">')
-    b = h.index('</section>', a)
-    h = h[:a] + '  <div class="island-grid">\n    ' + card + '  </div>\n' + h[b:]
+    if sid not in TRAINERS:   # пока тренажёры не переведены — на странице предмета только курс
+        m = re.search(r'<a href="%s".*?</a>\n' % re.escape(course), h, re.S); assert m, sid
+        a = h.index('  <h3 class="quarter-heading"') if '<h3 class="quarter-heading"' in h else h.index('  <div class="island-grid">')
+        b = h.index('</section>', a)
+        h = h[:a] + '  <div class="island-grid">\n    ' + m.group(0) + '  </div>\n' + h[b:]
     wr('%s/%s/index.html' % (DST, sid), pre_i18n(h, 3))
     c = lang_kz(rd('%s/%s/%s' % (SRC, sid, course)))
     wr('%s/%s/%s' % (DST, sid, course), pre_i18n(c, 3))
+    for f in (sorted(os.listdir('%s/%s' % (SRC, sid))) if sid in TRAINERS else []):   # страницы-тренажёры: тот же движок, новый дизайн
+        if not f.endswith('.html') or f == 'index.html' or f.endswith('-course.html'): continue
+        t = rd('%s/%s/%s' % (SRC, sid, f))
+        t = MT.conv(t, MT.SUBJ[sid]) or t
+        wr('%s/%s/%s' % (DST, sid, f), pre_i18n(lang_kz(t), 3))
 hub()
 for s in READY: subject(s)
 print('готово: хаб + %d предмета' % len(READY))
