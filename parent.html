@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/world.css">
 <style>
   .pr{max-width:940px;position:relative;z-index:3;margin:0 auto;padding:10px 16px 50px;}
   .pr .card{background:#fff;border-radius:24px;padding:18px;box-shadow:0 6px 0 rgba(0,0,0,.08);margin-bottom:16px;}
@@ -38,8 +39,7 @@
   @media print{ header,.cloud,.back-link,.no-print,footer{display:none!important;} body{background:#fff!important;} .pr .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;} .pr-sub details{display:block;} }
 </style>
 </head>
-<body>
-<div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div>
+<body class="w-page">
 <header>
   <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
   <div class="lang-toggle">
@@ -106,6 +106,7 @@
 <script src="assets/progress.js"></script>
 <script src="assets/courses-registry.js"></script>
 <script src="assets/rewards.js"></script>
+<script src="assets/world.js"></script>
 <script>
 (function(){
   var R = BilimRewards, esc = R.esc, t = function(k, v){ return HI.t(k, v); };
