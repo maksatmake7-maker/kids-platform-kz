@@ -12,7 +12,7 @@ def conv(h, subj):
     css = '<link rel="stylesheet" href="../../../assets/styles.css">\n'
     assert css in h
     h = h.replace(css, css + '<link rel="stylesheet" href="../../../assets/world.css">\n<link rel="stylesheet" href="../../../assets/subject.css">\n', 1)
-    h = re.sub(r'<body>\n(?:<div class="cloud cloud\d"></div>\n)+', f'<body class="w-page" data-subject="{subj}">\n', h, 1)
+    h = re.sub(r'<body>\n(?:<div class="cloud cloud\d"></div>\n)+', f'<body class="w-page" data-subject="{subj}">\n', h, count=1)
     assert 'class="w-page"' in h
     js = '<script src="../../../assets/progress.js"></script>\n'
     assert js in h
@@ -33,4 +33,4 @@ def main(root):
             if h is None: continue
             open(p, 'w', encoding='utf-8').write(h); n += 1
     print('страниц обновлено:', n)
-main(sys.argv[1])
+if __name__ == '__main__': main(sys.argv[1])

@@ -858,6 +858,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
   function clipUrl(c, L, flat){ return base + (c.ru ? 'ru' : (c.kz ? 'kz' : (c.en ? 'en' : L))) + (!flat && /^(f_)?g2_/.test(c.id) ? '/g2/' : '/') + c.id + '.mp3'; }
   function isG2(c){ return /^(f_)?g2_/.test(c.id); }
   try { enabled = localStorage.getItem('bilim_mx_snd') !== '0'; } catch(e){}
+  if(window.BILIM_NO_VOICE) enabled = false;   /* казахские страницы без казахской озвучки: молчим, а не читаем по-русски */
 
   var MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск|daniel|david|james|google uk english male/i;
   var FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна|samantha|zira|susan/i;
@@ -976,7 +977,7 @@ kvq:'How do you say it in Kazakh?', kvfind:'Find the picture for the word.', kvt
       return Promise.resolve([c]);
     })).then(function(arr){ if(my !== sayGen) return; return say0([].concat.apply([], arr), o); });
   }
-  function setEnabled(v){ enabled = !!v; try { localStorage.setItem('bilim_mx_snd', v ? '1' : '0'); } catch(e){} if(!v) stop(); }
+  function setEnabled(v){ enabled = !!v && !window.BILIM_NO_VOICE; try { localStorage.setItem('bilim_mx_snd', v ? '1' : '0'); } catch(e){} if(!v) stop(); }
 
   window.MXV = {
     lang:lang, forceVoice:forceVoice, tpl:tpl, clips:clips, say:say, stop:stop, praise:praise, oops:oops, misc:misc, allClips:allClips,
