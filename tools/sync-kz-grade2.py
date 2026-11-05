@@ -9,7 +9,8 @@ KZ_VOICE = False
 READY = {'fizra': ('Дене шынықтыру', 'fiz2-course.html'), 'izo': ('Бейнелеу өнері', 'izo2-course.html'),
          'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html'),
          'poznanie': ('Дүниетану', 'poznanie2-course.html'),
-         'estestvo': ('Жаратылыстану', 'estestvo2-course.html')}
+         'estestvo': ('Жаратылыстану', 'estestvo2-course.html'),
+         'digital': ('Цифрлық сауаттылық', 'digital2-course.html')}
 SRC, DST = 'grades/grade-2', 'grades/grade-2-kaz'
 def rd(p): return open(p, encoding='utf-8').read()
 def wr(p, s):
@@ -37,11 +38,10 @@ def hub():
         sub.append("    {id:'%s2', href:'%s/index.html', art:'%s', color:'%s', titleText:'%s', descText:'%s'}," % (sid, sid, art, col, t, d))
     sub.append("    {id:'poznanie2', href:'poznanie/index.html', art:'poznanie', color:'#F0954C', title:'poznanie_title', descText:'Семья, школа, родной край, карта и символы страны'},")
     sub.append("    {id:'estestvo2', href:'estestvo/index.html', art:'estestvo', color:'#6FBF73', title:'estestvo_title', descText:'Исследователь, растения, животные, воздух, вода, космос и магниты'},")
-    soon = [('math2', 'math', '#FFC93C', 'math_title', 'math_desc'),
-            ('dig2', 'digital', '#5EC3E8', None, None)]
+    sub.append("    {id:'dig2', href:'digital/index.html', art:'digital', color:'#5EC3E8', titleText:'Цифровая грамотность', descText:'Компьютер, поиск в сети, Scratch и роботы'},")
+    soon = [('math2', 'math', '#FFC93C', 'math_title', 'math_desc')]
     for sid, art, col, t, d in soon:
-        if t: sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', title:'%s', desc:'%s'}," % (sid, art, col, t, d))
-        else: sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', titleText:'Цифровая грамотность', descText:'Компьютер, поиск в сети, Scratch и роботы'}," % (sid, art, col))
+        sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', title:'%s', desc:'%s'}," % (sid, art, col, t, d))
     sub.append("    {id:'kaz2', soon:true, href:'#', art:'kaz', color:'#3FB088', titleText:'Қазақ тілі', descText:'Ана тілі, оқу және жазу'},")
     blk = "window.HUB = {\n  grade: 2, dir: 'kz', lang: 'kz', tag: 'kaz_direction_grade2_title', h2: 'hub_title', lead: 'kaz_direction_desc',\n  subjects: [\n" + '\n'.join(sub) + "\n  ]\n};"
     h2 = re.sub(r'window\.HUB = \{.*?\n\};', lambda m: blk, h, flags=re.S); assert h2 != h
