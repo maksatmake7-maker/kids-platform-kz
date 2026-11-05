@@ -38,10 +38,44 @@
   function define(spec){
     window.__mxHeroCfg = { theme:spec.theme, icons:spec.icons };
     boot();
-    window.initPz2Game = function(containerId){ __mxLoad(function(){ run(containerId, spec); }); };
+    window.initPz2Game = function(containerId){ __mxLoad(function(){
+      var l = ''; try { l = document.documentElement.getAttribute('data-current') || localStorage.getItem('bilim_lang_v1') || ''; } catch(e){}
+      if(!l || l === 'ru'){ run(containerId, spec); return; }
+      /* ui-i18n.js подгружается отдельно и позже: ждём его (до ~15 с), потом ждём пакеты слов страницы */
+      var tries = 0;
+      (function wait(){
+        if(window.UI_I18N_WHEN){ UI_I18N_WHEN(l, function(){ run(containerId, trSpec(spec, l)); }); return; }
+        if(++tries > 300){ run(containerId, spec); return; }
+        setTimeout(wait, 50);
+      })();
+    }); };
+  }
+
+  /* Перевод спецификации игры по словарю интерфейса (kz и др.): строки берутся из ui-<lang>-*.js, чего нет в словаре — остаётся по-русски */
+  var TR_SKIP = { k:1, key:1, theme:1, c1:1, c2:1, ic:1, icons:1, set:1 };
+  function trSpec(spec, l){
+    var nAll = 0, nTr = 0;
+    function T(x){ var r = window.UI_I18N_LOOKUP(l, x); if(/[А-Яа-яЁё]/.test(x)){ nAll++; if(r !== undefined) nTr++; } return r === undefined ? x : r; }
+    function walk(v, k){
+      if(k in TR_SKIP) return v;
+      if(typeof v === 'string') return T(v);
+      if(Array.isArray(v)) return v.map(function(x){ return walk(x); });
+      if(v && typeof v === 'object'){ var o = {}; for(var kk in v) o[kk] = walk(v[kk], kk); return o; }
+      return v;
+    }
+    var sp = walk(spec);
+    if(nAll && nTr / nAll < 0.7) return spec;   /* игра переведена не целиком — не смешиваем языки, оставляем как есть */
+    sp.__l = l; sp.__T = T; sp.spell = [];
+    (sp.groups || []).forEach(function(g, i){
+      var full = window.UI_I18N_LOOKUP(l, 'Найди: ' + spec.groups[i].find);
+      if(full !== undefined){ g.find = full; g.findFull = 1; }
+    });
+    ['custom','extra1','extra3'].forEach(function(f){ if(spec[f]) sp[f] = spec[f]; });
+    return sp;
   }
 
   function run(containerId, SPEC){
+    var TT = SPEC.__T || function(x){ return x; };
     var M = MX, G = MXG2, rnd = M.rnd, pick = M.pick, shuffle = M.shuffle;
     var GR = SPEC.groups || [], MC = SPEC.mcq || [], TF = SPEC.tf || [];
     function S(sig, t){ t.sig = sig; return t; }
@@ -58,7 +92,7 @@
     var SP = SPEC.spell || [];
     function spellTask(e){
       var opts = [e[1]].concat(e[2]), o5 = e[5] || {};
-      return S('sp' + e[0] + e[1] + (o5.cap || ''), Object.assign(G.choice({ q:o5.cap || 'Допиши слово', say:[G.say(o5.say || ('Допиши слово: ' + e[3] + '.'))], opts:opts, ans:e[1], layout:o5.layout || 'wide', expr:word(e[0]) }),
+      return S('sp' + e[0] + e[1] + (o5.cap || ''), Object.assign(G.choice({ q:o5.cap || TT('Допиши слово'), say:[G.say(o5.say || ('Допиши слово: ' + e[3] + '.'))], opts:opts, ans:e[1], layout:o5.layout || 'wide', expr:word(e[0]) }),
         { expr:word(e[0]), hintSay:[G.say(e[4] + '.')], hint:G.hintCard(word(e[3]), e[4]) }));
     }
     function allItems(){ var a = []; GR.forEach(function(g){ g.items.forEach(function(it){ a.push({ g:g, it:it }); }); }); return a; }
@@ -75,11 +109,11 @@
       if(ps.length > 2 && Math.random() < .5){
         var pool = [it], seen = {}; seen[g.k] = 1;
         shuffle(ALL.filter(function(y){ return y.g.k !== g.k && (y.g.set || 0) === (g.set || 0); })).forEach(function(y){ if(pool.length < 4 && !seen[y.g.k]){ seen[y.g.k] = 1; pool.push(y.it); } });
-        var q = 'Найди: ' + g.find;
+        var q = g.findFull ? g.find : TT('Найди: ') + g.find;
         return S('1p' + g.k + it[1], Object.assign(G.pickPic({ q:q, say:[G.say(q + '.')], items:pool.map(function(p){ return { k:p[1], h:p[0] ? '<span class="e">' + p[0] + '</span>' : '', lab:p[1] }; }), ans:it[1] }), hintItem(g, it)));
       }
       var opts = [g.name].concat(shuffle(ps.filter(function(h){ return h.k !== g.k; })).slice(0, 2).map(function(h){ return h.name; }));
-      return S('1c' + g.k + it[1], Object.assign({ expr:vis(it), cap:it[0] ? it[1] + ' — это…' : (g.wordCap || (SPEC.askAsCap ? (g.ask || SPEC.askQ) : '') || SPEC.wordCap || 'Какое это слово?'), say:[G.say((it[3] || it[1]) + '. ' + (g.ask || SPEC.askQ || 'К какой группе это относится?'))], ans:g.name, opts:G.txtOpts(opts), layout:'card' }, hintItem(g, it)));
+      return S('1c' + g.k + it[1], Object.assign({ expr:vis(it), cap:it[0] ? it[1] + TT(' — это…') : (g.wordCap || (SPEC.askAsCap ? (g.ask || SPEC.askQ) : '') || SPEC.wordCap || TT('Какое это слово?')), say:[G.say((it[3] || it[1]) + '. ' + (g.ask || SPEC.askQ || TT('К какой группе это относится?')))], ans:g.name, opts:G.txtOpts(opts), layout:'card' }, hintItem(g, it)));
     }
     /* ⭐⭐ разложи по корзинам */
     function L2(){
@@ -88,8 +122,8 @@
       var ks = Object.keys(sets).filter(function(k){ return sets[k].length >= 2; }), sk = pick(ks), pool = sets[sk];
       var gs = shuffle(pool).slice(0, Math.min(3, pool.length)), items = [];
       gs.forEach(function(g){ shuffle(g.items).slice(0, gs.length === 2 ? 3 : 2).forEach(function(it){ items.push({ k:g.k, h:it[0] ? it[0] + ' ' + it[1] : it[1] }); }); });
-      return S('2s' + gs.map(function(g){ return g.k; }).sort().join('') + rnd(1, 99999), M.sortTask({ wide:true, items:shuffle(items), say:[G.say(gs[0].sortSay ? gs[0].sortSay : (SPEC.sortSay || 'Разложи по корзинам.'))], cap:gs[0].sortCap || SPEC.sortCap || 'Выбери картинку, потом корзину',
-        buckets:gs.map(function(g){ return { k:g.k, name:g.name, icon:g.ic, c1:g.c1, c2:g.c2 }; }), hintSay:[G.say(gs[0].sortHint || SPEC.sortHint || 'Подумай, к какой группе относится каждый предмет.')] }));
+      return S('2s' + gs.map(function(g){ return g.k; }).sort().join('') + rnd(1, 99999), M.sortTask({ wide:true, items:shuffle(items), say:[G.say(gs[0].sortSay ? gs[0].sortSay : (SPEC.sortSay || TT('Разложи по корзинам.')))], cap:gs[0].sortCap || SPEC.sortCap || TT('Выбери картинку, потом корзину'),
+        buckets:gs.map(function(g){ return { k:g.k, name:g.name, icon:g.ic, c1:g.c1, c2:g.c2 }; }), hintSay:[G.say(gs[0].sortHint || SPEC.sortHint || TT('Подумай, к какой группе относится каждый предмет.'))] }));
     }
     /* ⭐⭐⭐ вопросы и «верно или неверно» */
     function L3(){

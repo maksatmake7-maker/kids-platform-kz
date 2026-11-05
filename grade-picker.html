@@ -258,13 +258,9 @@
     /* 2 класс: русское отделение — полностью; казахское — открыт (первые предметы), остальные острова на хабе в тумане */
     g2.setAttribute('href', d==='kz'?'grades/grade-2-kaz/index.html':'grades/grade-2/index.html'); g2.classList.remove('fog'); g2.classList.add('ready'); g2.removeAttribute('aria-disabled'); g2.removeAttribute('tabindex');
     g2d.setAttribute('data-i18n', d==='kz'?'grade_picker_grade2_kaz_desc':'grade_picker_grade2_desc'); g2b.setAttribute('data-i18n','badge_play'); g2b.textContent='';
-    if(d==='ru'){
-      g3.setAttribute('href','grades/grade-3/index.html'); g3.classList.remove('fog'); g3.classList.add('ready'); g3.removeAttribute('aria-disabled'); g3.removeAttribute('tabindex');
-      g3d.setAttribute('data-i18n','grade_picker_grade3_desc'); g3b.setAttribute('data-i18n','badge_play'); g3b.textContent='';
-    } else {
-      g3.setAttribute('href','#'); g3.classList.add('fog'); g3.classList.remove('ready'); g3.setAttribute('aria-disabled','true'); g3.setAttribute('tabindex','-1');
-      g3d.setAttribute('data-i18n','grade_picker_coming_soon'); g3b.removeAttribute('data-i18n'); g3b.textContent='🔒';
-    }
+    /* 3 класс: русское отделение — полностью; казахское — открыт (первые предметы), остальные острова на хабе в тумане */
+    g3.setAttribute('href', d==='kz'?'grades/grade-3-kaz/index.html':'grades/grade-3/index.html'); g3.classList.remove('fog'); g3.classList.add('ready'); g3.removeAttribute('aria-disabled'); g3.removeAttribute('tabindex');
+    g3d.setAttribute('data-i18n', d==='kz'?'grade_picker_grade3_kaz_desc':'grade_picker_grade3_desc'); g3b.setAttribute('data-i18n','badge_play'); g3b.textContent='';
     if(d==='ru'){
       g4.setAttribute('href','grades/grade-4/index.html'); g4.classList.remove('fog'); g4.classList.add('ready'); g4.removeAttribute('aria-disabled'); g4.removeAttribute('tabindex');
       g4d.setAttribute('data-i18n','grade_picker_grade4_desc'); g4b.setAttribute('data-i18n','badge_play'); g4b.textContent='';
