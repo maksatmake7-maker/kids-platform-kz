@@ -6,7 +6,7 @@
 import re, os, sys
 SUBJ = {'alippe': 'reading', 'anatili': 'kazakh', 'digital': 'digital', 'estestvo': 'estestvo', 'fizra': 'fizra',
         'izo': 'izo', 'matematika': 'math', 'math': 'math', 'muzyka': 'muzyka', 'poznanie': 'poznanie', 'trud': 'trud',
-        'reading': 'reading', 'kazakh': 'kazakh'}
+        'reading': 'reading', 'kazakh': 'kazakh', 'russian': 'reading', 'literature': 'reading', 'english': 'english'}
 def conv(h, subj):
     if 'world.css' in h: return None
     css = '<link rel="stylesheet" href="../../../assets/styles.css">\n'
