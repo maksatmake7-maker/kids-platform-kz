@@ -735,6 +735,7 @@ footer::after{
   opacity:0.55;
   line-height:1.4;
 }
+html[lang="kk"] footer::after{content:"Материалдар Қазақстан Республикасы Оқу-ағарту министрінің 2022 жылғы 16 қыркүйектегі № 399 бұйрығы негізінде дайындалған (Үлгілік оқу бағдарламалары)";}
 
 @media (max-width:560px){
   .speech{position:static; margin:14px auto 0; max-width:220px;}
