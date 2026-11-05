@@ -133,3 +133,22 @@ html[dir=rtl] .w-page .back-link:hover{transform:translateX(3px);}
   .cl,.waves,.glint,.star{animation:none!important;}
   .cl{left:12%;} .cl.c2{left:60%;} .cl.c3{left:34%;} .cl.c4{left:78%;}
 }
+
+/* ===== слайды с Барсиком (assets/slides-barsik.js): Барсик слева, текст в облачке ===== */
+.sb-deck{display:grid; grid-template-columns:170px 1fr; grid-template-areas:"bs slide" "nav nav"; column-gap:18px; align-items:center; min-height:0;}
+.sb-deck .sb-bs{grid-area:bs; width:170px; align-self:end;}
+.sb-deck .slide{grid-area:slide; align-items:flex-start; text-align:left; gap:10px; padding:22px 26px; position:relative;
+  background:#FFF6DD; border-radius:26px; box-shadow:0 5px 0 rgba(120,90,30,.16);}
+.sb-deck .slide::before{content:""; position:absolute; left:-12px; top:50%; width:24px; height:24px; background:#FFF6DD; transform:translateY(-50%) rotate(45deg); border-radius:4px;}
+.sb-deck .slide-icon{width:60px; height:60px; border-radius:50%; background:#fff; box-shadow:0 3px 0 rgba(120,90,30,.16); display:flex; align-items:center; justify-content:center; font-size:2rem;}
+.sb-deck .slide-title{font-size:1.6rem; line-height:1.2;}
+.sb-deck .slide-text{max-width:none; font-size:1.12rem;}
+.sb-deck .slide-nav{grid-area:nav;}
+@media (max-width:640px){
+  .sb-deck{grid-template-columns:1fr; grid-template-areas:"bs" "slide" "nav"; row-gap:14px;}
+  .sb-deck .sb-bs{width:130px; justify-self:center;}
+  .sb-deck .slide::before{left:50%; top:-12px; transform:translateX(-50%) rotate(45deg);}
+}
+
+/* ссылка «Политика конфиденциальности» в подвале: на тёмном фоне мира должна читаться */
+.w-page .feedback-wrap a.privacy-link{color:#fff; text-decoration:underline; text-underline-offset:3px; opacity:.92;}
