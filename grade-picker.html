@@ -182,20 +182,20 @@
 
   /* ---------- подписи, которых нет в i18n.js ---------- */
   var GN={
-    3:{ru:'3 класс',kz:'3 сынып',en:'Grade 3',zh:'三年级',uz:'3-sinf',tg:'Синфи 3',ug:'3-синип'},
-    4:{ru:'4 класс',kz:'4 сынып',en:'Grade 4',zh:'四年级',uz:'4-sinf',tg:'Синфи 4',ug:'4-синип'},
-    5:{ru:'5–11 классы',kz:'5–11 сыныптар',en:'Grades 5–11',zh:'5–11年级',uz:'5–11-sinflar',tg:'Синфҳои 5–11',ug:'5–11-синиплар'}
+    3:{ru:'3 класс',kz:'3 сынып',en:'Grade 3',zh:'三年级',uz:'3-sinf',tg:'Синфи 3',ug:'3-синип',fr:'3e année',de:'3. Klasse'},
+    4:{ru:'4 класс',kz:'4 сынып',en:'Grade 4',zh:'四年级',uz:'4-sinf',tg:'Синфи 4',ug:'4-синип',fr:'4e année',de:'4. Klasse'},
+    5:{ru:'5–11 классы',kz:'5–11 сыныптар',en:'Grades 5–11',zh:'5–11年级',uz:'5–11-sinflar',tg:'Синфҳои 5–11',ug:'5–11-синиплар',fr:'Classes 5–11',de:'Klassen 5–11'}
   };
 
   var BW={
-    h:{ru:'Дальше — за горизонтом',kz:'Әрі қарай — көкжиек артында',en:'Beyond the horizon'},
-    t1:{ru:'Средняя школа',kz:'Орта мектеп',en:'Middle school'},
-    n1:{ru:'Академия · 5–8 классы',kz:'Академия · 5–8 сыныптар',en:'Academy · Grades 5–8'},
-    d1:{ru:'Предметы, цели недели, прогресс по каждой теме',kz:'Пәндер, апталық мақсаттар, әр тақырып бойынша прогресс',en:'Subjects, weekly goals, progress on every topic'},
-    t2:{ru:'Старшая школа',kz:'Жоғары мектеп',en:'High school'},
-    n2:{ru:'Подготовка к ЕНТ · 9–11 классы',kz:'ҰБТ-ға дайындық · 9–11 сыныптар',en:'Exam prep · Grades 9–11'},
-    d2:{ru:'Пробные тесты с таймером, разбор ошибок, цель по баллам',kz:'Таймерлі сынақ тесттер, қателерді талдау, балл мақсаты',en:'Timed mock tests, mistake review, score target'},
-    go:{ru:'Открыть макет →',kz:'Макетті ашу →',en:'Open preview →'}
+    h:{ru:'Дальше — за горизонтом',kz:'Әрі қарай — көкжиек артында',en:'Beyond the horizon',fr:'Au-delà de l’horizon',de:'Hinter dem Horizont'},
+    t1:{ru:'Средняя школа',kz:'Орта мектеп',en:'Middle school',fr:'Collège',de:'Mittelstufe'},
+    n1:{ru:'Академия · 5–8 классы',kz:'Академия · 5–8 сыныптар',en:'Academy · Grades 5–8',fr:'Académie · classes 5–8',de:'Akademie · Klassen 5–8'},
+    d1:{ru:'Предметы, цели недели, прогресс по каждой теме',kz:'Пәндер, апталық мақсаттар, әр тақырып бойынша прогресс',en:'Subjects, weekly goals, progress on every topic',fr:'Matières, objectifs de la semaine, progression par thème',de:'Fächer, Wochenziele, Fortschritt zu jedem Thema'},
+    t2:{ru:'Старшая школа',kz:'Жоғары мектеп',en:'High school',fr:'Lycée',de:'Oberstufe'},
+    n2:{ru:'Подготовка к ЕНТ · 9–11 классы',kz:'ҰБТ-ға дайындық · 9–11 сыныптар',en:'Exam prep · Grades 9–11',fr:'Préparation à l’examen · classes 9–11',de:'Prüfungsvorbereitung · Klassen 9–11'},
+    d2:{ru:'Пробные тесты с таймером, разбор ошибок, цель по баллам',kz:'Таймерлі сынақ тесттер, қателерді талдау, балл мақсаты',en:'Timed mock tests, mistake review, score target',fr:'Tests blancs chronométrés, analyse des erreurs, objectif de points',de:'Probetests mit Zeitlimit, Fehleranalyse, Punkteziel'},
+    go:{ru:'Открыть макет →',kz:'Макетті ашу →',en:'Open preview →',fr:'Ouvrir l’aperçu →',de:'Vorschau öffnen →'}
   };
   function beyond(lang){ if(!BW.h[lang]) lang='ru'; $$('[data-bw]').forEach(function(e){ e.textContent=BW[e.getAttribute('data-bw')][lang]; }); }
     function labels(lang){

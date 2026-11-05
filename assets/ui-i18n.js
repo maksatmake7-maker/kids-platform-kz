@@ -9,6 +9,7 @@
   if (window.__uiI18n) return; window.__uiI18n = true;
   var me = document.currentScript, base = (me && me.src) ? me.src.replace(/ui-i18n\.js.*$/, '') : '';
   var DICT = {}, LOADING = {}, texts = new Map(), attrEls = new Set(), busy = false, ATTRS = ['title', 'aria-label', 'alt', 'placeholder'];
+  var FB = { fr: 'en', de: 'en' };   // французский и немецкий: чего нет в их словаре — берём из английского (пока перевод не дописан)
   var VER = 0;   // версия словарей: растёт при каждом пополнении, чтобы заново перевести уже переведённое (частично) более ранним пакетом
   window.UI_I18N_REG = function(l, d){   // можно вызывать несколько раз: пакеты дополняют словарь языка, а не заменяют его
     var cur0 = DICT[l] || { ex: Object.create(null), pat: [] };
@@ -58,6 +59,7 @@
         r = d.pat[i][1].replace(/\$(?:(\d)|\{(\d+)\})/g, function(_, a, b){ var v = m[+(a || b)]; return v === undefined ? '' : v; }); break;
       }
     }
+    if (r === undefined && d.fb) r = one(t, d.fb);
     return r;
   }
   function tr(str, d){
@@ -116,7 +118,9 @@
     if (busy) return; busy = true;
     try {
       var l = cur(); if (l === 'ru'){ restore(); return; }
-      var d = DICT[l]; if (d === undefined){ load(l); return; } if (!d) return;
+      var d = DICT[l], fbl = FB[l];
+      if (fbl){ load(fbl); if (d === undefined) load(l); if (!d) d = DICT[l] = { ex: Object.create(null), pat: [] }; d.fb = DICT[fbl] || null; }
+      else { if (d === undefined){ load(l); return; } if (!d) return; }
       if (document.body) walk(document.body, d);
       var t = tr(document.title, d); if (t !== null) document.title = t;
     } finally { busy = false; }

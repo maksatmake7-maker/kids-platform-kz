@@ -19,7 +19,7 @@
   function earned(){ return window.House ? House.earned() : 0; }
   function unlocked(){ var e = earned(), n = 0; for (var i = 1; i <= N; i++){ if (need(i) <= e) n = i; else break; } return n; }
   function stateOf(i){ if (need(i + 1) > earned()) return 'locked'; return A.opened[S[i].id] ? 'open' : 'new'; }
-  function txt(s){ var t = s.t[HI.lang()] || s.t.ru; return { name: t[0], fact: t[1] }; }
+  function txt(s){ var t = s.t[HI.lang()] || s.t.en || s.t.ru; return { name: t[0], fact: t[1] }; }
   function svg(s){
     return '<svg viewBox="0 0 120 120" aria-hidden="true"><clipPath id="al-frame"><rect x="9" y="9" width="102" height="102" rx="23"/></clipPath>' +
       '<rect x="3" y="3" width="114" height="114" rx="28" fill="#fff"/><rect x="9" y="9" width="102" height="102" rx="23" fill="' + s.bg + '"/><g clip-path="url(#al-frame)">' + s.art + '</g></svg>';

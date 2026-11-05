@@ -99,7 +99,7 @@
     me.render(0, false);
     try { new MutationObserver(function(){ me.q('.mf-cap').textContent = txt(me.film.scenes[me.i]); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-current'] }); } catch(e){}
   }
-  var SPEECH = { ru: 'ru-RU', kz: 'kk-KZ', en: 'en-US', zh: 'zh-CN', uz: 'uz-UZ', tg: 'tg-TJ', ug: 'ug-CN' };
+  var SPEECH = { ru: 'ru-RU', kz: 'kk-KZ', en: 'en-US', zh: 'zh-CN', uz: 'uz-UZ', tg: 'tg-TJ', ug: 'ug-CN', fr: 'fr-FR', de: 'de-DE' };
   function curLang(){ return document.documentElement.getAttribute('data-current') || 'ru'; }
   function tr(){ try { return (typeof translations !== 'undefined') ? translations : null; } catch(e){ return null; } }
   function hasKey(sc){ var l = curLang(), T = tr(); return !!(sc.key && T && T[l] && T[l][sc.key] !== undefined); }
