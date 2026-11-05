@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<script src="../../../assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<script src="../../../assets/stats.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Цифровая грамотность 4 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="digital">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Цифровой грамотности 4 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Цифровая грамотность 4 класс</h1>
+      <p class="ac-sub">11 уроков: компьютеры, пароли, таблицы, презентации и видео, поиск, браузер, почта, Scratch и роботы</p>
+      <p class="ac-note">Курс по программе 4 класса (приказ №399). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 12</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/digital4/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/digital4/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_digital4course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Цифровая грамотность 4 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по цифровой грамотности</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.d41q = mkQuiz([{"q": "Что такое научно-технический прогресс?", "a": "появление новых изобретений и технологий", "w": ["остановка изобретений", "потеря знаний", "запрет технологий"], "h": "Прогресс делает устройства лучше"}, {"q": "Как изменились компьютеры?", "a": "стали меньше, быстрее и умнее", "w": ["стали больше и медленнее", "исчезли", "не изменились"], "h": "Компьютеры развиваются"}, {"q": "Что умеет современный смартфон?", "a": "звонить, снимать фото и выходить в интернет", "w": ["только звонить", "только включаться", "ничего"], "h": "Смартфон — маленький компьютер"}, {"q": "Что было у первых компьютеров?", "a": "огромный размер и малая мощность", "w": ["маленький размер", "большая мощность", "сенсорный экран"], "h": "Первые машины занимали целые комнаты"}, {"q": "Почему устройства становятся лучше?", "a": "учёные и инженеры придумывают новое", "w": ["они сами растут", "они не меняются", "их приказывают лучше работать"], "h": "Технологии развивают люди"}, {"q": "Что такое умные часы?", "a": "часы с функциями компьютера", "w": ["обычные часы", "будильник", "линейка"], "h": "Они связаны со смартфоном"}, {"q": "Как прогресс помогает людям?", "a": "облегчает связь, учёбу и работу", "w": ["усложняет жизнь", "останавливает работу", "закрывает школы"], "h": "Технологии делают жизнь удобнее"}, {"q": "Чему нужно учиться при новых технологиях?", "a": "безопасно и разумно их использовать", "w": ["не пользоваться никогда", "не слушать взрослых", "скрывать устройства"], "h": "Цифровая грамотность важна"}]);
+GENS.d41t = mkTF([{"q": "Современные смартфоны мощнее первых компьютеров.", "a": "Верно", "h": "Верно. Они очень быстрые"}, {"q": "Первые компьютеры помещались в карман.", "a": "Неверно", "h": "Неверно. Они занимали комнаты"}, {"q": "Прогресс связан с новыми изобретениями.", "a": "Верно", "h": "Верно. Люди придумывают новое"}, {"q": "Устройства никогда не меняются.", "a": "Неверно", "h": "Неверно. Технологии развиваются"}, {"q": "Умные часы — это тоже компьютер.", "a": "Верно", "h": "Верно. Они имеют процессор"}, {"q": "Новые технологии нужно использовать безопасно.", "a": "Верно", "h": "Верно. Это важное правило"}]);
+GENS.d42q = mkQuiz([{"q": "Какой пароль надёжнее?", "a": "длинный, с буквами, цифрами и знаками", "w": ["12345", "имя", "qwerty"], "h": "Сложный пароль трудно подобрать"}, {"q": "Что делать с паролем?", "a": "держать в секрете", "w": ["сообщать другу", "писать на заборе", "показывать всем"], "h": "Пароль — только для тебя"}, {"q": "Можно ли использовать один пароль везде?", "a": "нельзя", "w": ["можно", "нужно", "обязательно"], "h": "Если украдут один, пострадают все аккаунты"}, {"q": "Что делать, если кто-то узнал пароль?", "a": "срочно сменить его", "w": ["ничего", "сообщить всем", "забыть"], "h": "Смена защищает аккаунт"}, {"q": "Что делает пароль слабым?", "a": "короткая длина и простота", "w": ["много символов", "случайные знаки", "длинная фраза"], "h": "Короткий и простой пароль легко угадать"}, {"q": "Кому можно говорить пароль?", "a": "только родителям или тому, кому доверяет семья", "w": ["любому другу", "любому прохожему", "на форуме"], "h": "Пароль — личная тайна"}, {"q": "Почему нельзя использовать дату рождения?", "a": "её легко узнать и угадать", "w": ["она слишком сложная", "она слишком длинная", "она запрещена"], "h": "Личные данные — слабый пароль"}, {"q": "Где хранить пароли безопасно?", "a": "в надёжном месте под присмотром родителей", "w": ["на стикере у монитора", "в чате", "на стене"], "h": "Не оставляй пароли на виду"}]);
+GENS.d42t = mkTF([{"q": "Длинный пароль надёжнее короткого.", "a": "Верно", "h": "Верно. Его труднее подобрать"}, {"q": "Пароль 12345 надёжный.", "a": "Неверно", "h": "Неверно. Он слишком простой"}, {"q": "Пароль нужно держать в секрете.", "a": "Верно", "h": "Верно. Это основа защиты"}, {"q": "Можно использовать одинаковый пароль на всех сайтах.", "a": "Неверно", "h": "Неверно. Это опасно"}, {"q": "Если пароль узнали, его нужно сменить.", "a": "Верно", "h": "Верно. Так мы защищаем аккаунт"}, {"q": "Пароль можно писать на стикере у монитора.", "a": "Неверно", "h": "Неверно. Его увидят другие"}]);
+GENS.d43q = mkQuiz([{"q": "Что такое ячейка?", "a": "пересечение строки и столбца", "w": ["вся таблица", "только заголовок", "только рамка"], "h": "Ячейка — одна клетка таблицы"}, {"q": "Что такое столбец?", "a": "вертикальный ряд ячеек", "w": ["горизонтальный ряд", "одна клетка", "заголовок"], "h": "Столбец идёт сверху вниз"}, {"q": "Что такое строка?", "a": "горизонтальный ряд ячеек", "w": ["вертикальный ряд", "одна клетка", "заголовок"], "h": "Строка идёт слева направо"}, {"q": "Как выделить заголовок?", "a": "закрасить и выровнять по центру", "w": ["стереть", "оставить пустым", "сделать невидимым"], "h": "Заголовок выделяют форматированием"}, {"q": "Зачем нужны таблицы?", "a": "чтобы упорядочить данные", "w": ["чтобы запутать", "чтобы потратить время", "чтобы всё удалить"], "h": "Таблица помогает читать данные"}, {"q": "Как сделать таблицу удобнее для чтения?", "a": "выровнять текст и добавить границы", "w": ["убрать все данные", "сделать мелкий шрифт", "стереть границы"], "h": "Оформление помогает читать"}, {"q": "Что можно вставить в ячейку?", "a": "слово или число", "w": ["только картинку", "только звук", "ничего"], "h": "В ячейки вносят данные"}, {"q": "Что такое форматирование?", "a": "изменение внешнего вида", "w": ["удаление таблицы", "печать", "сохранение"], "h": "Мы меняем шрифт, границы и цвет"}]);
+GENS.d43t = mkTF([{"q": "В таблице есть строки и столбцы.", "a": "Верно", "h": "Верно. Они образуют ячейки"}, {"q": "Столбец — это горизонтальный ряд.", "a": "Неверно", "h": "Неверно. Столбец вертикальный"}, {"q": "Таблицу можно оформлять цветом и границами.", "a": "Верно", "h": "Верно. Это форматирование"}, {"q": "Ячейка — вся таблица целиком.", "a": "Неверно", "h": "Неверно. Это одна клетка"}, {"q": "Текст в ячейке можно выравнивать.", "a": "Верно", "h": "Верно. Например, по центру"}, {"q": "Таблицы нужны, чтобы упорядочивать данные.", "a": "Верно", "h": "Верно. Так их легко читать"}]);
+GENS.d44q = mkQuiz([{"q": "Что такое макет слайда?", "a": "схема расположения объектов", "w": ["звук", "цвет", "шрифт"], "h": "Макет задаёт места заголовка и рисунков"}, {"q": "Какой слайд обычно первый?", "a": "титульный", "w": ["последний", "с рисунком", "с видео"], "h": "Он называет презентацию"}, {"q": "Что такое анимация объекта?", "a": "движение или эффект при показе", "w": ["удаление объекта", "сохранение", "печать"], "h": "Анимация оживляет слайд"}, {"q": "Зачем настраивать анимацию?", "a": "чтобы привлечь внимание к главному", "w": ["чтобы запутать", "чтобы увеличить файл", "чтобы замедлить слайд"], "h": "Анимация выделяет важное"}, {"q": "Чего не стоит делать с анимацией?", "a": "использовать слишком много эффектов", "w": ["не использовать её совсем", "использовать мало", "использовать к месту"], "h": "Лишняя анимация мешает"}, {"q": "Как выбрать макет слайда?", "a": "в зависимости от того, что будет на слайде", "w": ["наугад", "самый яркий", "самый сложный"], "h": "Макет должен подходить содержанию"}, {"q": "Что такое эффект «Появление»?", "a": "объект возникает на слайде", "w": ["объект исчезает", "объект меняет цвет", "объект удаляется"], "h": "Он называется входом"}, {"q": "Что такое эффект «Исчезновение»?", "a": "объект уходит со слайда", "w": ["объект возникает", "объект увеличивается", "объект мигает"], "h": "Он называется выходом"}]);
+GENS.d44t = mkTF([{"q": "Первый слайд — обычно титульный.", "a": "Верно", "h": "Верно. На нём название и автор"}, {"q": "Макет слайда задаёт расположение объектов.", "a": "Верно", "h": "Верно. Это схема слайда"}, {"q": "Анимация должна быть на каждом слайде в избытке.", "a": "Неверно", "h": "Неверно. Лишняя анимация мешает"}, {"q": "Анимацию можно настраивать для объектов.", "a": "Верно", "h": "Верно. Например, для текста и рисунков"}, {"q": "Эффект «Появление» убирает объект.", "a": "Неверно", "h": "Неверно. Он показывает объект"}, {"q": "Макет подбирают под содержание слайда.", "a": "Верно", "h": "Верно. Так презентация понятнее"}]);
+GENS.d45q = mkQuiz([{"q": "Что такое монтаж видео?", "a": "соединение и обработка кадров", "w": ["рисование", "печать", "хранение"], "h": "Монтаж превращает клипы в фильм"}, {"q": "Что значит «обрезать видео»?", "a": "убрать лишнее начало или конец", "w": ["добавить музыку", "склеить клипы", "выключить звук"], "h": "Обрезка убирает ненужное"}, {"q": "Как вставить звук в презентацию?", "a": "через команду вставки звука", "w": ["просто крикнуть", "нажать Esc", "перезагрузить компьютер"], "h": "Звук вставляют через меню"}, {"q": "Какой файл относится к видео?", "a": "клип.mp4", "w": ["фото.jpg", "песня.mp3", "текст.docx"], "h": "mp4 — формат видео"}, {"q": "Какой файл относится к звуку?", "a": "песня.mp3", "w": ["клип.mp4", "фото.jpg", "таблица.xlsx"], "h": "mp3 — звуковой формат"}, {"q": "Что нужно учесть, добавляя фото, звук и видео?", "a": "чтобы они подходили теме", "w": ["чем больше, тем лучше", "без разницы", "нужно только видео"], "h": "Лишнее мешает"}, {"q": "Что такое титры?", "a": "надписи в видео", "w": ["музыка", "звук", "вырезка"], "h": "Титры показывают названия и авторов"}, {"q": "Почему важно уважать авторские права?", "a": "использовать можно материалы, которые разрешено брать", "w": ["любой материал", "чужие материалы без указания", "любое видео из сети"], "h": "Нужно указывать авторов и брать разрешённое"}]);
+GENS.d45t = mkTF([{"q": "Видео можно обрезать в видеоредакторе.", "a": "Верно", "h": "Верно. Лишнее убирают"}, {"q": "Файл с расширением .mp3 — это видео.", "a": "Неверно", "h": "Неверно. Это звук"}, {"q": "В презентацию можно вставлять фото, звук и видео.", "a": "Верно", "h": "Верно. Это делает её интереснее"}, {"q": "Монтаж — это соединение клипов в один ролик.", "a": "Верно", "h": "Верно. Клипы склеивают"}, {"q": "Любые видео из сети можно использовать без ограничений.", "a": "Неверно", "h": "Неверно. Нужно уважать авторские права"}, {"q": "Титры — это надписи в видео.", "a": "Верно", "h": "Верно. Они показывают названия и имена"}]);
+GENS.d46q = mkQuiz([{"q": "Что такое ключевое слово?", "a": "главное слово запроса", "w": ["пароль", "цвет", "звук"], "h": "По ключевым словам ищут информацию"}, {"q": "Какой запрос лучше?", "a": "точный и с ключевыми словами", "w": ["пустой", "из одного слова «привет»", "слишком общий"], "h": "Конкретный запрос даёт лучшие результаты"}, {"q": "Где искать файл на компьютере?", "a": "в поиске по имени или в папках", "w": ["в браузере только", "в холодильнике", "у соседа"], "h": "Файлы хранятся в папках"}, {"q": "Что такое папка?", "a": "место, где лежат файлы", "w": ["рисунок", "звук", "пароль"], "h": "В папке можно хранить файлы"}, {"q": "Как найти файл, если помнишь его имя?", "a": "ввести имя в поиск", "w": ["перезагрузить компьютер", "выключить", "удалить"], "h": "Поиск ищет по имени"}, {"q": "Что проверять в найденной информации?", "a": "надёжность источника", "w": ["цвет сайта", "звук сайта", "название кнопки"], "h": "Не всему в сети можно верить"}, {"q": "Как лучше искать информацию детям?", "a": "вместе со взрослыми", "w": ["одному ночью", "без правил", "на сомнительных сайтах"], "h": "Безопасность прежде всего"}, {"q": "Что поможет найти точный ответ?", "a": "уточнить ключевые слова", "w": ["писать как попало", "закрыть браузер", "нажимать всё подряд"], "h": "Чем точнее слова, тем лучше результат"}]);
+GENS.d46t = mkTF([{"q": "Для поиска нужно использовать ключевые слова.", "a": "Верно", "h": "Верно. Они задают тему"}, {"q": "Запрос «привет» хорошо подходит для поиска фактов.", "a": "Неверно", "h": "Неверно. Он слишком общий"}, {"q": "Файлы хранят в папках.", "a": "Верно", "h": "Верно. Так удобнее искать"}, {"q": "Найденной информации всегда нужно верить.", "a": "Неверно", "h": "Неверно. Нужно проверять источник"}, {"q": "Файл можно искать по имени.", "a": "Верно", "h": "Верно. Для этого есть поиск"}, {"q": "Искать информацию безопаснее вместе со взрослыми.", "a": "Верно", "h": "Верно. Они помогут проверить источник"}]);
+GENS.d47q = mkQuiz([{"q": "Что такое закладка?", "a": "сохранённый адрес сайта", "w": ["пароль", "картинка", "звук"], "h": "Закладка помогает быстро вернуться"}, {"q": "Что показывает история браузера?", "a": "список посещённых страниц", "w": ["список паролей", "список друзей", "список игр"], "h": "История хранит адреса страниц"}, {"q": "Где найти скачанные файлы?", "a": "в списке загрузок", "w": ["в закладках", "в паролях", "в истории только"], "h": "Загрузки — отдельный список"}, {"q": "Откуда можно скачивать файлы?", "a": "с проверенных сайтов с разрешения взрослых", "w": ["с любых сайтов", "из спама", "из рекламы"], "h": "Безопасность важна"}, {"q": "Для чего нужны закладки?", "a": "чтобы быстро открывать нужные сайты", "w": ["чтобы удалять сайты", "чтобы потерять сайты", "чтобы блокировать сайты"], "h": "Закладка — быстрый доступ"}, {"q": "Что делать с подозрительной ссылкой?", "a": "не открывать и сказать взрослому", "w": ["открыть", "переслать друзьям", "скачать файл"], "h": "Ссылки из спама могут быть опасными"}, {"q": "Что можно сделать в истории?", "a": "найти страницу, которую уже открывал", "w": ["создать пароль", "отправить письмо", "сделать закладку"], "h": "История помогает вспомнить"}, {"q": "Что значит «скачать файл»?", "a": "сохранить файл из сети на компьютер", "w": ["удалить файл", "отправить файл", "закрыть файл"], "h": "Файл копируется на устройство"}]);
+GENS.d47t = mkTF([{"q": "Закладка помогает быстро вернуться на сайт.", "a": "Верно", "h": "Верно. Адрес сохраняется"}, {"q": "История браузера хранит пароли.", "a": "Неверно", "h": "Неверно. Она хранит адреса страниц"}, {"q": "Скачивать нужно только с проверенных сайтов.", "a": "Верно", "h": "Верно. Так безопаснее"}, {"q": "Любую ссылку из спама можно открывать.", "a": "Неверно", "h": "Неверно. Она может быть опасной"}, {"q": "Список загрузок показывает скачанные файлы.", "a": "Верно", "h": "Верно. Они в отдельном списке"}, {"q": "Перед скачиванием стоит спросить взрослого.", "a": "Верно", "h": "Верно. Это защита от вирусов"}]);
+GENS.d48q = mkQuiz([{"q": "Что такое вложение?", "a": "файл, прикреплённый к письму", "w": ["тема письма", "адрес", "пароль"], "h": "Вложение отправляется вместе с письмом"}, {"q": "Где написать, о чём письмо?", "a": "в теме письма", "w": ["в адресе", "в вложении", "в папке"], "h": "Тема кратко описывает письмо"}, {"q": "Где хранятся полученные письма?", "a": "во входящих", "w": ["в отправленных", "в спаме", "в корзине только"], "h": "Входящие — полученные письма"}, {"q": "Что делать с письмом от неизвестного с подозрительной ссылкой?", "a": "не открывать и сообщить взрослому", "w": ["открыть ссылку", "переслать другу", "скачать файл"], "h": "Это может быть спам"}, {"q": "Зачем нужны папки в почте?", "a": "чтобы письма были упорядочены", "w": ["чтобы потерять письма", "чтобы удалить письма", "чтобы увеличить шум"], "h": "Папки помогают искать"}, {"q": "Как отправить письмо с файлом?", "a": "прикрепить файл как вложение", "w": ["написать файл в теме", "вписать файл в адрес", "крикнуть"], "h": "Вложение прикрепляют кнопкой"}, {"q": "Что нужно указать для отправки письма?", "a": "адрес получателя", "w": ["пароль получателя", "имя соседа", "погоду"], "h": "Без адреса письмо не дойдёт"}, {"q": "Как вести себя при общении по почте?", "a": "вежливо", "w": ["грубо", "без приветствия", "с насмешкой"], "h": "Вежливость важна и в письмах"}]);
+GENS.d48t = mkTF([{"q": "Вложение — это файл, прикреплённый к письму.", "a": "Верно", "h": "Верно. Он отправляется вместе с письмом"}, {"q": "Адрес пишут в теме письма.", "a": "Неверно", "h": "Неверно. Адрес пишут в поле «Кому»"}, {"q": "Во входящих хранятся полученные письма.", "a": "Верно", "h": "Верно. Они от других людей"}, {"q": "Письма от неизвестных с ссылками нужно открывать.", "a": "Неверно", "h": "Неверно. Это может быть опасно"}, {"q": "В почте можно создавать папки.", "a": "Верно", "h": "Верно. Так письма упорядочены"}, {"q": "В письме нужно быть вежливым.", "a": "Верно", "h": "Верно. Мы уважаем получателя"}]);
+GENS.d49q = mkQuiz([{"q": "Что такое вложенный цикл?", "a": "цикл внутри другого цикла", "w": ["два пароля", "два экрана", "два звука"], "h": "Он повторяет повторение"}, {"q": "Что означает оператор «и»?", "a": "оба условия должны быть верны", "w": ["хотя бы одно верно", "ни одно не верно", "всё равно"], "h": "«И» требует обоих условий"}, {"q": "Что означает оператор «или»?", "a": "достаточно одного верного условия", "w": ["нужны оба", "нужен ни один", "нужно три"], "h": "«Или» работает, если хотя бы одно верно"}, {"q": "Что делает оператор «не»?", "a": "меняет условие на противоположное", "w": ["удаляет условие", "удваивает условие", "ничего"], "h": "«Не» — наоборот"}, {"q": "Какой знак означает «больше»?", "a": ">", "w": ["<", "=", "+"], "h": "Знак > — больше"}, {"q": "Какой знак означает «меньше»?", "a": "<", "w": [">", "=", "-"], "h": "Знак < — меньше"}, {"q": "Когда нужен вложенный цикл?", "a": "когда нужно повторять повторение", "w": ["когда нужно остановить игру", "когда нужно создать пароль", "никогда"], "h": "Например, рисуем сетку"}, {"q": "Что проверяет блок «если»?", "a": "выполняется ли условие", "w": ["цвет экрана", "звук", "громкость"], "h": "Блок выбирает действие"}]);
+GENS.d49t = mkTF([{"q": "Вложенный цикл — это цикл внутри цикла.", "a": "Верно", "h": "Верно. Один повторяет другой"}, {"q": "Оператор «и» срабатывает, когда верно хотя бы одно условие.", "a": "Неверно", "h": "Неверно. «И» требует оба условия"}, {"q": "Оператор «или» срабатывает, если верно хотя бы одно условие.", "a": "Верно", "h": "Верно. Достаточно одного"}, {"q": "Знак < означает «больше».", "a": "Неверно", "h": "Неверно. Он означает «меньше»"}, {"q": "Блок «если» проверяет условие.", "a": "Верно", "h": "Верно. Он выбирает действие"}, {"q": "Оператор «не» меняет условие на противоположное.", "a": "Верно", "h": "Верно. Истина становится ложью"}]);
+GENS.d410q = mkQuiz([{"q": "Что такое переменная?", "a": "место для хранения значения", "w": ["цвет", "звук", "рисунок"], "h": "В ней хранится число или слово"}, {"q": "Зачем нужна переменная «счёт»?", "a": "чтобы считать очки", "w": ["чтобы менять фон", "чтобы рисовать", "чтобы звучать"], "h": "Счёт показывает результат"}, {"q": "Что происходит, когда переменная «жизни» равна нулю?", "a": "игра заканчивается", "w": ["игра начинается", "игрок побеждает", "появляется звук"], "h": "Без жизней игра окончена"}, {"q": "Что нужно сделать перед программированием игры?", "a": "придумать сценарий", "w": ["сразу играть", "выключить компьютер", "стереть всё"], "h": "Сценарий — план игры"}, {"q": "Что такое сценарий игры?", "a": "план героев, цели и правил", "w": ["набор звуков", "список паролей", "картинка"], "h": "Сценарий помогает не запутаться"}, {"q": "Зачем проверять игру?", "a": "чтобы найти и исправить ошибки", "w": ["чтобы испортить", "чтобы забыть", "чтобы удалить"], "h": "Проверка улучшает игру"}, {"q": "Как изменить переменную в Scratch?", "a": "блоком «изменить на»", "w": ["блоком «звук»", "блоком «фон»", "блоком «стоп»"], "h": "Блок меняет значение"}, {"q": "Что можно хранить в переменной?", "a": "число или текст", "w": ["только цвет", "только звук", "только рисунок"], "h": "Значения бывают разными"}]);
+GENS.d410t = mkTF([{"q": "Переменная хранит значение.", "a": "Верно", "h": "Верно. Например, число очков"}, {"q": "Игра не нуждается в сценарии.", "a": "Неверно", "h": "Неверно. Сценарий — план игры"}, {"q": "Переменная «жизни» может уменьшаться.", "a": "Верно", "h": "Верно. При ошибке игрока"}, {"q": "Игру не нужно проверять.", "a": "Неверно", "h": "Неверно. Проверка находит ошибки"}, {"q": "Счёт можно увеличивать при ловле предмета.", "a": "Верно", "h": "Верно. Это типичная игровая логика"}, {"q": "Создавать игру можно по собственному сценарию.", "a": "Верно", "h": "Верно. Это творческое задание"}]);
+GENS.d411q = mkQuiz([{"q": "Что такое робот?", "a": "автоматическая машина для выполнения задач", "w": ["только игрушка", "только картинка", "только песня"], "h": "Роботы помогают людям"}, {"q": "Что делает датчик цвета?", "a": "распознаёт цвета", "w": ["измеряет расстояние", "слышит звук", "ощущает температуру"], "h": "Он видит цвет поверхности"}, {"q": "Что делает датчик ультразвука?", "a": "измеряет расстояние до предмета", "w": ["видит цвета", "слышит музыку", "измеряет вес"], "h": "Он определяет расстояние"}, {"q": "Какой датчик поможет роботу ехать по линии?", "a": "датчик цвета", "w": ["датчик ультразвука", "датчик звука", "датчик времени"], "h": "Он различает линию и фон"}, {"q": "Какой датчик поможет не врезаться в стену?", "a": "датчик ультразвука", "w": ["датчик цвета", "датчик света", "датчик ветра"], "h": "Он измеряет расстояние"}, {"q": "Где применяют роботов?", "a": "в промышленности, медицине, космосе и дома", "w": ["только в сказках", "только в кино", "нигде"], "h": "Роботов используют во многих областях"}, {"q": "Какой робот помогает убирать дома?", "a": "робот-пылесос", "w": ["марсоход", "хирургический робот", "сварщик"], "h": "Он убирает пол"}, {"q": "Что такое марсоход?", "a": "робот для изучения Марса", "w": ["игрушка", "автомобиль", "самолёт"], "h": "Он работает на другой планете"}]);
+GENS.d411t = mkTF([{"q": "Роботы применяются в медицине и в космосе.", "a": "Верно", "h": "Верно. Они помогают людям"}, {"q": "Датчик ультразвука определяет цвет.", "a": "Неверно", "h": "Неверно. Он измеряет расстояние"}, {"q": "Датчик цвета помогает роботу ехать по линии.", "a": "Верно", "h": "Верно. Он различает линию и фон"}, {"q": "Робот-пылесос — пример домашнего робота.", "a": "Верно", "h": "Верно. Он убирает комнату"}, {"q": "Роботов не используют на заводах.", "a": "Неверно", "h": "Неверно. На заводах роботов много"}, {"q": "Датчик ультразвука помогает остановиться перед стеной.", "a": "Верно", "h": "Верно. Он определяет расстояние"}]);
+const LESSONS = [
+  { id: "d41", icon: "", title: "Как менялись компьютеры", goal: "Объяснять, как прогресс меняет компьютеры и мобильные устройства",
+    steps: [
+      Q("d41s1", "infoTap", "Знакомимся с темой", "Привет! Это Барсик. Компьютеры сильно изменились. Нажимай на карточки.", {"need": 5, "items": [{"k": "раньше", "v": "", "t": "Первые компьютеры занимали целые комнаты и умели немного."}, {"k": "сейчас", "v": "", "t": "Смартфон помещается в ладонь и умеет звонить, снимать и искать информацию."}, {"k": "размер", "v": "", "t": "Устройства стали меньше и легче."}, {"k": "скорость", "v": "", "t": "Устройства стали быстрее и мощнее."}, {"k": "возможности", "v": "", "t": "Появились камеры, навигация, видеозвонки и умные часы."}]}),
+      Q("d41s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Раньше"}, {"e": "", "k": "Сейчас"}], "items": [{"g": 0, "e": "", "t": "первый компьютер размером с комнату", "h": "очень большой"}, {"g": 0, "e": "", "t": "телефон с диском для набора номера", "h": "только звонки"}, {"g": 0, "e": "", "t": "кнопочный телефон", "h": "без интернета"}, {"g": 1, "e": "", "t": "смартфон с сенсорным экраном", "h": "звонки, игры, интернет"}, {"g": 1, "e": "", "t": "планшет", "h": "лёгкий и тонкий"}, {"g": 1, "e": "", "t": "умные часы", "h": "на руке"}]}),
+      Q("d41s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Стали меньше"}, {"e": "", "k": "Стали быстрее"}, {"e": "", "k": "Больше возможностей"}], "items": [{"g": 0, "e": "", "t": "компьютер помещается в ладонь", "h": "смартфон"}, {"g": 0, "e": "", "t": "ноутбук в рюкзаке", "h": "портативный"}, {"g": 0, "e": "", "t": "часы с процессором", "h": "маленькое устройство"}, {"g": 1, "e": "", "t": "страница открывается за секунду", "h": "скоростной интернет"}, {"g": 1, "e": "", "t": "видео грузится сразу", "h": "быстрая сеть"}, {"g": 1, "e": "", "t": "программа запускается мгновенно", "h": "мощный процессор"}, {"g": 2, "e": "", "t": "фото и видео в одном устройстве", "h": "камера"}, {"g": 2, "e": "", "t": "навигация по карте", "h": "GPS"}, {"g": 2, "e": "", "t": "видеозвонок с другим городом", "h": "связь"}]}),
+      Q("d41s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d41q"]}),
+      Q("d41s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d41t"]})
+    ] },
+  { id: "d42", icon: "", title: "Надёжный пароль", goal: "Оценивать надёжность пароля и хранить его безопасно",
+    steps: [
+      Q("d42s1", "infoTap", "Знакомимся с темой", "Пароль защищает твои данные. Нажимай на карточки.", {"need": 5, "items": [{"k": "сильный пароль", "v": "", "t": "Надёжный пароль длинный и содержит буквы, цифры и знаки."}, {"k": "слабый пароль", "v": "", "t": "Пароли 12345, qwerty и дата рождения угадать легко."}, {"k": "тайна", "v": "", "t": "Пароль знаешь только ты и родители."}, {"k": "разные пароли", "v": "", "t": "Для разных сайтов нужны разные пароли."}, {"k": "если узнали", "v": "", "t": "Если пароль узнал кто-то другой, смени его."}]}),
+      Q("d42s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Надёжные"}, {"e": "", "k": "Слабые"}], "items": [{"g": 0, "e": "", "t": "длинный набор букв, цифр и знаков", "h": "трудно подобрать"}, {"g": 0, "e": "", "t": "случайные слова с цифрами и знаком", "h": "много символов"}, {"g": 0, "e": "", "t": "пароль, которого нет в словаре", "h": "трудно угадать"}, {"g": 1, "e": "", "t": "12345", "h": "слишком простой"}, {"g": 1, "e": "", "t": "имя и дата рождения", "h": "легко угадать"}, {"g": 1, "e": "", "t": "qwerty", "h": "часто используют"}]}),
+      Q("d42s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Правильно хранить"}, {"e": "", "k": "Нельзя"}], "items": [{"g": 0, "e": "", "t": "держать пароль в секрете", "h": "только для себя"}, {"g": 0, "e": "", "t": "менять пароль при подозрении", "h": "защита"}, {"g": 0, "e": "", "t": "использовать разные пароли", "h": "для разных сайтов"}, {"g": 1, "e": "", "t": "сообщать пароль друзьям", "h": "опасно"}, {"g": 1, "e": "", "t": "писать пароль на стикере у монитора", "h": "видят все"}, {"g": 1, "e": "", "t": "использовать один пароль везде", "h": "легко взломать"}]}),
+      Q("d42s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d42q"]}),
+      Q("d42s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d42t"]})
+    ] },
+  { id: "d43", icon: "", title: "Таблицы в текстовом редакторе", goal: "Создавать и оформлять простые таблицы",
+    steps: [
+      Q("d43s1", "infoTap", "Знакомимся с темой", "Таблица помогает упорядочить данные. Нажимай на карточки.", {"need": 5, "items": [{"k": "строка", "v": "", "t": "Строка — горизонтальный ряд ячеек."}, {"k": "столбец", "v": "", "t": "Столбец — вертикальный ряд ячеек."}, {"k": "ячейка", "v": "", "t": "Ячейка — пересечение строки и столбца."}, {"k": "границы и заливка", "v": "", "t": "Границы и цвет делают таблицу понятнее."}, {"k": "выравнивание", "v": "", "t": "Заголовок выравнивают по центру, числа — по правому краю."}]}),
+      Q("d43s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Строка"}, {"e": "", "k": "Столбец"}, {"e": "", "k": "Ячейка"}], "items": [{"g": 0, "e": "", "t": "горизонтальный ряд ячеек", "h": "слева направо"}, {"g": 0, "e": "", "t": "строка с именами учеников", "h": "ряд"}, {"g": 0, "e": "", "t": "ряд данных об одном предмете", "h": "строка"}, {"g": 1, "e": "", "t": "вертикальный ряд ячеек", "h": "сверху вниз"}, {"g": 1, "e": "", "t": "столбец «Имя»", "h": "вертикально"}, {"g": 1, "e": "", "t": "все оценки по одному предмету", "h": "столбец"}, {"g": 2, "e": "", "t": "пересечение строки и столбца", "h": "одна клетка"}, {"g": 2, "e": "", "t": "клетка, в которую пишем слово", "h": "ячейка"}, {"g": 2, "e": "", "t": "место для одного числа", "h": "ячейка"}]}),
+      Q("d43s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Границы"}, {"e": "", "k": "Заливка"}, {"e": "", "k": "Выравнивание"}], "items": [{"g": 0, "e": "", "t": "сделать рамку толще", "h": "границы"}, {"g": 0, "e": "", "t": "убрать линии таблицы", "h": "границы"}, {"g": 0, "e": "", "t": "выбрать цвет линий", "h": "границы"}, {"g": 1, "e": "", "t": "закрасить заголовок", "h": "цвет ячейки"}, {"g": 1, "e": "", "t": "выделить итоговую строку цветом", "h": "заливка"}, {"g": 1, "e": "", "t": "покрасить ячейки в светлый цвет", "h": "заливка"}, {"g": 2, "e": "", "t": "текст по центру", "h": "выравнивание"}, {"g": 2, "e": "", "t": "числа по правому краю", "h": "выравнивание"}, {"g": 2, "e": "", "t": "заголовок по центру", "h": "выравнивание"}]}),
+      Q("d43s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d43q"]}),
+      Q("d43s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d43t"]})
+    ] },
+  { id: "d44", icon: "", title: "Слайды: макеты и анимация", goal: "Выбирать макет слайда и настраивать анимацию",
+    steps: [
+      Q("d44s1", "infoTap", "Знакомимся с темой", "Хорошая презентация начинается с макета. Нажимай на карточки.", {"need": 5, "items": [{"k": "титульный слайд", "v": "", "t": "На титульном слайде — название и автор."}, {"k": "заголовок и текст", "v": "", "t": "Для списка и определений нужен макет «заголовок и текст»."}, {"k": "картинка и подпись", "v": "", "t": "Для фото, схемы и карты подойдёт макет с картинкой."}, {"k": "анимация", "v": "", "t": "Анимация оживляет объекты: они появляются, выделяются или исчезают."}, {"k": "меру знай", "v": "", "t": "Слишком много эффектов мешает смотреть презентацию."}]}),
+      Q("d44s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Титульный слайд"}, {"e": "", "k": "Заголовок и текст"}, {"e": "", "k": "Картинка и подпись"}], "items": [{"g": 0, "e": "", "t": "название и автор", "h": "первый слайд"}, {"g": 0, "e": "", "t": "тема доклада и имя докладчика", "h": "начало презентации"}, {"g": 0, "e": "", "t": "слайд-обложка", "h": "вступление"}, {"g": 1, "e": "", "t": "заголовок вверху, список под ним", "h": "информация"}, {"g": 1, "e": "", "t": "краткий текст с пунктами", "h": "список"}, {"g": 1, "e": "", "t": "определение и пример", "h": "текстовый слайд"}, {"g": 2, "e": "", "t": "фото с названием", "h": "иллюстрация"}, {"g": 2, "e": "", "t": "схема с пояснением", "h": "рисунок"}, {"g": 2, "e": "", "t": "карта и подпись", "h": "слайд с рисунком"}]}),
+      Q("d44s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Появление"}, {"e": "", "k": "Выделение"}, {"e": "", "k": "Исчезновение"}], "items": [{"g": 0, "e": "", "t": "объект выплывает слева", "h": "вход"}, {"g": 0, "e": "", "t": "текст появляется по буквам", "h": "вход"}, {"g": 0, "e": "", "t": "картинка проявляется", "h": "вход"}, {"g": 1, "e": "", "t": "слово подрагивает", "h": "привлечь внимание"}, {"g": 1, "e": "", "t": "картинка увеличивается и уменьшается", "h": "акцент"}, {"g": 1, "e": "", "t": "цвет объекта мигает", "h": "акцент"}, {"g": 2, "e": "", "t": "объект уплывает вправо", "h": "выход"}, {"g": 2, "e": "", "t": "картинка растворяется", "h": "выход"}, {"g": 2, "e": "", "t": "текст исчезает", "h": "выход"}]}),
+      Q("d44s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d44q"]}),
+      Q("d44s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d44t"]})
+    ] },
+  { id: "d45", icon: "", title: "Видео, звук и фото в презентации", goal: "Монтировать видео и вставлять фото, звук и видео",
+    steps: [
+      Q("d45s1", "infoTap", "Знакомимся с темой", "Мультимедиа делает презентацию живой. Нажимай на карточки.", {"need": 5, "items": [{"k": "обрезка", "v": "", "t": "Обрезка убирает лишнее начало и конец."}, {"k": "склейка", "v": "", "t": "Склейка соединяет клипы по порядку."}, {"k": "титры и музыка", "v": "", "t": "Можно добавить титры, переходы и музыку."}, {"k": "форматы", "v": "", "t": "Фото — .jpg и .png, звук — .mp3 и .wav, видео — .mp4."}, {"k": "авторские права", "v": "", "t": "Используй только те материалы, которые можно брать, и указывай автора."}]}),
+      Q("d45s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Обрезка"}, {"e": "", "k": "Склейка"}, {"e": "", "k": "Добавление"}], "items": [{"g": 0, "e": "", "t": "убрать лишнее начало", "h": "обрезать"}, {"g": 0, "e": "", "t": "убрать лишний конец", "h": "обрезать"}, {"g": 0, "e": "", "t": "вырезать неудачный кусок", "h": "обрезать"}, {"g": 1, "e": "", "t": "соединить два клипа", "h": "склеить"}, {"g": 1, "e": "", "t": "собрать видео из нескольких кадров", "h": "монтаж"}, {"g": 1, "e": "", "t": "поставить клипы по порядку", "h": "склейка"}, {"g": 2, "e": "", "t": "добавить титры", "h": "надпись"}, {"g": 2, "e": "", "t": "добавить музыку", "h": "звук"}, {"g": 2, "e": "", "t": "добавить переход", "h": "эффект"}]}),
+      Q("d45s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Фото"}, {"e": "", "k": "Звук"}, {"e": "", "k": "Видео"}], "items": [{"g": 0, "e": "", "t": "фото.jpg", "h": "изображение"}, {"g": 0, "e": "", "t": "рисунок.png", "h": "изображение"}, {"g": 0, "e": "", "t": "картинка.jpeg", "h": "изображение"}, {"g": 1, "e": "", "t": "песня.mp3", "h": "музыка"}, {"g": 1, "e": "", "t": "голос.wav", "h": "запись голоса"}, {"g": 1, "e": "", "t": "звонок.mp3", "h": "мелодия"}, {"g": 2, "e": "", "t": "клип.mp4", "h": "видео"}, {"g": 2, "e": "", "t": "запись.avi", "h": "видео"}, {"g": 2, "e": "", "t": "ролик.mov", "h": "видео"}]}),
+      Q("d45s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d45q"]}),
+      Q("d45s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d45t"]})
+    ] },
+  { id: "d46", icon: "", title: "Поиск информации", goal: "Искать информацию в браузере и файлы на компьютере",
+    steps: [
+      Q("d46s1", "infoTap", "Знакомимся с темой", "Искать нужно умело. Нажимай на карточки.", {"need": 5, "items": [{"k": "ключевые слова", "v": "", "t": "Ключевые слова — главные слова запроса."}, {"k": "хороший запрос", "v": "", "t": "«Столица Казахстана» работает лучше, чем «привет»."}, {"k": "проверка", "v": "", "t": "Проверяй источник: не всему в сети можно верить."}, {"k": "файлы и папки", "v": "", "t": "Файлы хранят в папках. Искать можно по имени."}, {"k": "вместе со взрослыми", "v": "", "t": "Искать информацию безопаснее вместе со взрослыми."}]}),
+      Q("d46s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Хороший запрос"}, {"e": "", "k": "Слабый запрос"}], "items": [{"g": 0, "e": "", "t": "столица Казахстана", "h": "ключевые слова"}, {"g": 0, "e": "", "t": "как устроен компьютер для детей", "h": "тема и уточнение"}, {"g": 0, "e": "", "t": "Байтерек высота и история", "h": "точные слова"}, {"g": 1, "e": "", "t": "всё про всё", "h": "слишком общий"}, {"g": 1, "e": "", "t": "привет", "h": "ничего не ищет"}, {"g": 1, "e": "", "t": "не знаю", "h": "нет темы"}]}),
+      Q("d46s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Файл"}, {"e": "", "k": "Папка"}], "items": [{"g": 0, "e": "", "t": "реферат.docx", "h": "документ"}, {"g": 0, "e": "", "t": "фото.jpg", "h": "изображение"}, {"g": 0, "e": "", "t": "презентация.pptx", "h": "слайды"}, {"g": 1, "e": "", "t": "Документы", "h": "в ней лежат файлы"}, {"g": 1, "e": "", "t": "Фотографии", "h": "набор изображений"}, {"g": 1, "e": "", "t": "Школа", "h": "папка с работами"}]}),
+      Q("d46s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d46q"]}),
+      Q("d46s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d46t"]})
+    ] },
+  { id: "d47", icon: "", title: "Закладки, история и загрузки", goal: "Пользоваться закладками, историей и загрузками браузера",
+    steps: [
+      Q("d47s1", "infoTap", "Знакомимся с темой", "Браузер умеет запоминать. Нажимай на карточки.", {"need": 5, "items": [{"k": "закладка", "v": "", "t": "Закладка хранит адрес сайта для быстрого возврата."}, {"k": "история", "v": "", "t": "История показывает посещённые страницы."}, {"k": "загрузки", "v": "", "t": "В загрузках — скачанные файлы."}, {"k": "безопасно", "v": "", "t": "Скачивай только с проверенных сайтов и спрашивай взрослого."}, {"k": "осторожно", "v": "", "t": "Не открывай подозрительные ссылки и рекламу."}]}),
+      Q("d47s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Закладка"}, {"e": "", "k": "История"}, {"e": "", "k": "Загрузки"}], "items": [{"g": 0, "e": "", "t": "сохранить адрес любимого сайта", "h": "быстрый доступ"}, {"g": 0, "e": "", "t": "список сохранённых страниц", "h": "избранное"}, {"g": 0, "e": "", "t": "кнопка со звёздочкой", "h": "добавить закладку"}, {"g": 1, "e": "", "t": "список посещённых страниц", "h": "прошлые сайты"}, {"g": 1, "e": "", "t": "найти сайт, который открывал вчера", "h": "поиск в списке"}, {"g": 1, "e": "", "t": "очистить следы посещений", "h": "настройка"}, {"g": 2, "e": "", "t": "список скачанных файлов", "h": "файлы из сети"}, {"g": 2, "e": "", "t": "найти скачанный документ", "h": "в папке загрузок"}, {"g": 2, "e": "", "t": "остановить скачивание", "h": "управление"}]}),
+      Q("d47s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Безопасно"}, {"e": "", "k": "Опасно"}], "items": [{"g": 0, "e": "", "t": "скачивать с проверенного сайта", "h": "надёжно"}, {"g": 0, "e": "", "t": "спросить взрослого перед скачиванием", "h": "разумно"}, {"g": 0, "e": "", "t": "проверить антивирусом", "h": "защита"}, {"g": 1, "e": "", "t": "скачивать с неизвестного сайта", "h": "вирусы"}, {"g": 1, "e": "", "t": "открывать ссылку из спама", "h": "обман"}, {"g": 1, "e": "", "t": "нажимать «Скачать» на подозрительной рекламе", "h": "риск"}]}),
+      Q("d47s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d47q"]}),
+      Q("d47s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d47t"]})
+    ] },
+  { id: "d48", icon: "", title: "Электронная почта", goal: "Отправлять и получать письма с вложениями",
+    steps: [
+      Q("d48s1", "infoTap", "Знакомимся с темой", "Письмо состоит из нескольких частей. Нажимай на карточки.", {"need": 5, "items": [{"k": "адрес", "v": "", "t": "В поле «Кому» пишут адрес получателя."}, {"k": "тема", "v": "", "t": "Тема кратко говорит, о чём письмо."}, {"k": "вложение", "v": "", "t": "Вложение — файл, прикреплённый к письму."}, {"k": "папки", "v": "", "t": "Входящие — полученные, Отправленные — твои письма, Спам — подозрительные."}, {"k": "вежливость", "v": "", "t": "В письме поздоровайся и поблагодари."}]}),
+      Q("d48s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Адрес"}, {"e": "", "k": "Тема"}, {"e": "", "k": "Текст письма"}], "items": [{"g": 0, "e": "", "t": "teacher@school.kz", "h": "кому письмо"}, {"g": 0, "e": "", "t": "friend@mail.kz", "h": "получатель"}, {"g": 0, "e": "", "t": "sister@family.kz", "h": "адрес"}, {"g": 1, "e": "", "t": "Домашнее задание", "h": "о чём письмо"}, {"g": 1, "e": "", "t": "Приглашение на праздник", "h": "кратко о письме"}, {"g": 1, "e": "", "t": "Вопрос по проекту", "h": "суть"}, {"g": 2, "e": "", "t": "Здравствуйте! Отправляю работу.", "h": "основное сообщение"}, {"g": 2, "e": "", "t": "Спасибо за помощь.", "h": "вежливое слово"}, {"g": 2, "e": "", "t": "Жду ответа.", "h": "окончание"}]}),
+      Q("d48s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Входящие"}, {"e": "", "k": "Отправленные"}, {"e": "", "k": "Спам"}], "items": [{"g": 0, "e": "", "t": "письма, которые тебе прислали", "h": "полученные"}, {"g": 0, "e": "", "t": "новое письмо от учителя", "h": "получено"}, {"g": 0, "e": "", "t": "ответ от друга", "h": "входящее"}, {"g": 1, "e": "", "t": "письма, которые отправил ты", "h": "исходящие"}, {"g": 1, "e": "", "t": "письмо учителю с работой", "h": "отправлено"}, {"g": 1, "e": "", "t": "ответ на письмо друга", "h": "твой ответ"}, {"g": 2, "e": "", "t": "реклама и подозрительные письма", "h": "нежелательные"}, {"g": 2, "e": "", "t": "письмо от неизвестного с ссылкой", "h": "опасно"}, {"g": 2, "e": "", "t": "обещание выигрыша", "h": "обман"}]}),
+      Q("d48s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d48q"]}),
+      Q("d48s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d48t"]})
+    ] },
+  { id: "d49", icon: "", title: "Scratch: вложенные циклы и условия", goal: "Использовать вложенные циклы, логику и сравнение",
+    steps: [
+      Q("d49s1", "infoTap", "Знакомимся с темой", "Теперь программы станут умнее. Нажимай на карточки.", {"need": 5, "items": [{"k": "вложенный цикл", "v": "", "t": "Вложенный цикл — цикл внутри цикла. Так рисуют узоры и сетки."}, {"k": "и", "v": "", "t": "Оператор «и» срабатывает, когда верны оба условия."}, {"k": "или", "v": "", "t": "Оператор «или» срабатывает, когда верно хотя бы одно условие."}, {"k": "не", "v": "", "t": "Оператор «не» меняет условие на противоположное."}, {"k": "сравнение", "v": "", "t": "Знаки >, < и = сравнивают числа."}]}),
+      Q("d49s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Вложенный цикл"}, {"e": "", "k": "Логические операторы"}, {"e": "", "k": "Операторы сравнения"}], "items": [{"g": 0, "e": "", "t": "повторять: внутри ещё одно повторение", "h": "цикл в цикле"}, {"g": 0, "e": "", "t": "рисуем ряд квадратов: каждый квадрат — цикл", "h": "вложение"}, {"g": 0, "e": "", "t": "строки и столбцы клеток", "h": "двойной цикл"}, {"g": 1, "e": "", "t": "и: оба условия верны", "h": "логика"}, {"g": 1, "e": "", "t": "или: хотя бы одно верно", "h": "логика"}, {"g": 1, "e": "", "t": "не: делает наоборот", "h": "логика"}, {"g": 2, "e": "", "t": "счёт > 10", "h": "больше"}, {"g": 2, "e": "", "t": "жизни = 0", "h": "равно"}, {"g": 2, "e": "", "t": "скорость < 5", "h": "меньше"}]}),
+      Q("d49s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Цикл"}, {"e": "", "k": "Условие"}], "items": [{"g": 0, "e": "", "t": "повторить 10 раз", "h": "цикл"}, {"g": 0, "e": "", "t": "повторять всегда", "h": "цикл"}, {"g": 0, "e": "", "t": "повторять, пока не...", "h": "цикл"}, {"g": 1, "e": "", "t": "если касается края, то отскочить", "h": "условие"}, {"g": 1, "e": "", "t": "если нажата клавиша, то двигаться", "h": "условие"}, {"g": 1, "e": "", "t": "если счёт больше 5, то победа", "h": "условие"}]}),
+      Q("d49s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d49q"]}),
+      Q("d49s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d49t"]})
+    ] },
+  { id: "d410", icon: "", title: "Переменные и своя игра", goal: "Использовать переменные и создавать игру по сценарию",
+    steps: [
+      Q("d410s1", "infoTap", "Знакомимся с темой", "Игра запоминает счёт и жизни. Нажимай на карточки.", {"need": 5, "items": [{"k": "переменная", "v": "", "t": "Переменная хранит число или текст."}, {"k": "счёт", "v": "", "t": "Счёт растёт, когда игрок ловит предмет."}, {"k": "жизни", "v": "", "t": "Жизни уменьшаются при ошибке. При нуле игра заканчивается."}, {"k": "сценарий", "v": "", "t": "Сценарий — план: герои, цель и правила."}, {"k": "проверка", "v": "", "t": "Поиграй, найди ошибки и исправь их."}]}),
+      Q("d410s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Счёт"}, {"e": "", "k": "Жизни"}, {"e": "", "k": "Время или уровень"}], "items": [{"g": 0, "e": "", "t": "сколько очков набрал игрок", "h": "очки"}, {"g": 0, "e": "", "t": "увеличивается при ловле предмета", "h": "плюс один"}, {"g": 0, "e": "", "t": "показывается на экране", "h": "результат"}, {"g": 1, "e": "", "t": "сколько попыток осталось", "h": "попытки"}, {"g": 1, "e": "", "t": "уменьшается при ошибке", "h": "минус один"}, {"g": 1, "e": "", "t": "при нуле игра заканчивается", "h": "конец"}, {"g": 2, "e": "", "t": "сколько секунд осталось", "h": "время"}, {"g": 2, "e": "", "t": "номер уровня", "h": "уровень"}, {"g": 2, "e": "", "t": "скорость противника", "h": "сложность"}]}),
+      Q("d410s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Сценарий"}, {"e": "", "k": "Создание"}, {"e": "", "k": "Проверка"}], "items": [{"g": 0, "e": "", "t": "придумать героев и цель", "h": "идея"}, {"g": 0, "e": "", "t": "записать правила игры", "h": "правила"}, {"g": 0, "e": "", "t": "нарисовать план уровней", "h": "план"}, {"g": 1, "e": "", "t": "выбрать фон и спрайты", "h": "оформление"}, {"g": 1, "e": "", "t": "собрать блоки программы", "h": "программа"}, {"g": 1, "e": "", "t": "добавить звуки", "h": "оформление"}, {"g": 2, "e": "", "t": "поиграть и найти ошибки", "h": "тест"}, {"g": 2, "e": "", "t": "исправить ошибки", "h": "отладка"}, {"g": 2, "e": "", "t": "дать поиграть другу", "h": "отзыв"}]}),
+      Q("d410s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d410q"]}),
+      Q("d410s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d410t"]})
+    ] },
+  { id: "d411", icon: "", title: "Роботы и датчики", goal: "Приводить примеры роботов и использовать датчики",
+    steps: [
+      Q("d411s1", "infoTap", "Знакомимся с темой", "Роботы работают везде. Нажимай на карточки.", {"need": 5, "items": [{"k": "где работают", "v": "", "t": "Роботы работают на заводах, в больницах, дома и в космосе."}, {"k": "домашние", "v": "", "t": "Робот-пылесос убирает комнату."}, {"k": "космос", "v": "", "t": "Марсоход изучает другую планету."}, {"k": "датчик цвета", "v": "", "t": "Датчик цвета помогает ехать по линии и сортировать кубики."}, {"k": "ультразвук", "v": "", "t": "Датчик ультразвука измеряет расстояние до предмета."}]}),
+      Q("d411s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Промышленность"}, {"e": "", "k": "Медицина"}, {"e": "", "k": "Дом"}], "items": [{"g": 0, "e": "", "t": "робот-сварщик на заводе", "h": "точная работа"}, {"g": 0, "e": "", "t": "робот-манипулятор на конвейере", "h": "сборка"}, {"g": 0, "e": "", "t": "погрузчик-робот на складе", "h": "перевозит грузы"}, {"g": 1, "e": "", "t": "хирургический робот", "h": "помогает врачу"}, {"g": 1, "e": "", "t": "робот-помощник в больнице", "h": "доставляет лекарства"}, {"g": 1, "e": "", "t": "протез с датчиками", "h": "помощь людям"}, {"g": 2, "e": "", "t": "робот-пылесос", "h": "убирает комнату"}, {"g": 2, "e": "", "t": "робот-газонокосилка", "h": "стрижёт траву"}, {"g": 2, "e": "", "t": "умная колонка", "h": "помощник"}]}),
+      Q("d411s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Датчик цвета"}, {"e": "", "k": "Датчик ультразвука"}], "items": [{"g": 0, "e": "", "t": "робот едет по чёрной линии", "h": "цвет линии"}, {"g": 0, "e": "", "t": "сортировка кубиков по цвету", "h": "цвет"}, {"g": 0, "e": "", "t": "остановка на красной метке", "h": "цвет"}, {"g": 1, "e": "", "t": "робот останавливается перед стеной", "h": "расстояние"}, {"g": 1, "e": "", "t": "парковка: сигнал при приближении", "h": "расстояние"}, {"g": 1, "e": "", "t": "измерение расстояния до предмета", "h": "расстояние"}]}),
+      Q("d411s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["d411q"]}),
+      Q("d411s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["d411t"]})
+    ] },
+  { id: "d4fin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("d4fin1", 'finale', 'Курс пройден!', "Поздравляю! Ты узнал про пароли, таблицы, презентации, почту, Scratch и роботов. Закрепляй знания в играх!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
