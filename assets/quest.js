@@ -65,7 +65,8 @@
   function plural(n){
     var l = HI.lang(), forms = 2;
     if (l === 'ru'){ var m10 = n % 10, m100 = n % 100; return (m10 === 1 && m100 !== 11) ? 0 : (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) ? 1 : 2; }
-    if (l === 'en') return n === 1 ? 0 : 1;
+    if (l === 'en' || l === 'de') return n === 1 ? 0 : 1;
+    if (l === 'fr') return n < 2 ? 0 : 1;
     return 0;
   }
   function noun(n, key){
