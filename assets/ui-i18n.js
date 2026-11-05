@@ -25,7 +25,8 @@
   /* Пакеты по классам: тексты уроков и игр лежат отдельно (ui-<язык>-g1.js — 1 класс), чтобы не грузить их на остальных страницах */
   var PACKS = [ [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'],
     [/\/grades\/grade-2(?:-kaz)?\/fizra\//, 'g2fizra'],
-    [/\/grades\/grade-2(?:-kaz)?\/izo\//, 'g2izo'] ];
+    [/\/grades\/grade-2(?:-kaz)?\/izo\//, 'g2izo'],
+    [/\/grades\/grade-2(?:-kaz)?\/muzyka\//, 'g2muzyka'] ];
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
