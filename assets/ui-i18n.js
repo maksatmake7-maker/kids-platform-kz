@@ -32,13 +32,18 @@
     [/\/grades\/grade-2(?:-kaz)?\/estestvo\//, 'g2estestvo'],
     [/\/grades\/grade-2(?:-kaz)?\/digital\//, 'g2digital'],
     [/\/grades\/grade-2(?:-kaz)?\/poznanie\//, 'g2poznanie'],
-    [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2math'] ];
+    [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2math'],
+    [/\/(?:privacy\.html|gift\/)/, 'root'] ];
+  /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
+     Добавили новый файл пакета — впишите его сюда. */
+  var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math'];
+  var AVAIL = { kz: ['g1', 'root'].concat(G2ALL), uz: ['g1', 'root'], tg: ['g1', 'root'], en: ['root'], zh: ['root'], ug: ['root'], fr: [], de: [] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
     s.onerror = function(){ DICT[l] = null; }; document.head.appendChild(s);
     PACKS.forEach(function(pk){
-      if (!pk[0].test(location.pathname)) return;
+      if (!pk[0].test(location.pathname) || (AVAIL[l] || []).indexOf(pk[1]) < 0) return;
       var q = document.createElement('script'); q.src = base + 'ui-' + l + '-' + pk[1] + '.js'; q.async = true;
       q.onerror = function(){}; document.head.appendChild(q);
     });

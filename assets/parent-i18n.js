@@ -235,6 +235,79 @@
       tq_fizra: "Дәрстики мәшиқни маңа өгәт һәм униң немишқа пайдилиқ икәнликини чүшәндүр."
     }
   };
+  /* zh / uz / tg / ug: перенос прогресса на другое устройство (черновой перевод, нужна проверка носителями). */
+  Object.assign(D.zh, {
+    "xf_h": "把进度转移到另一台设备",
+    "xf_lead": "进度保存在这台设备的浏览器中。要在另一部手机、平板或电脑上继续，请在这里获取代码，然后在那里的同一栏目中输入。",
+    "xf_make": "获取代码",
+    "xf_copy": "复制",
+    "xf_copied": "代码已复制。",
+    "xf_ready": "代码已生成。请复制它，并在另一台设备的同一栏目中输入。",
+    "xf_note": "代码包含孩子的全部进度：星星、已完成的课时、贴纸。请不要发给陌生人。我们不会在任何地方保存它。",
+    "xf_in_h": "我有代码",
+    "xf_in_ph": "请在此粘贴代码",
+    "xf_apply": "加载进度",
+    "xf_bad": "代码无效。请检查是否完整复制，开头和结尾不要有空格。",
+    "xf_confirm": "代码中的星星数：{a}。这台设备上目前的星星数：{b}。这台设备上的进度将被替换。",
+    "xf_confirm_less": "注意：代码中的星星比这台设备上的少。确定要替换吗？",
+    "xf_yes": "是，替换",
+    "xf_done": "完成！进度已加载。",
+    "xf_empty": "这台设备上暂时没有可转移的进度。"
+  });
+  Object.assign(D.uz, {
+    "xf_h": "Taraqqiyotni boshqa qurilmaga ko'chirish",
+    "xf_lead": "Taraqqiyot shu qurilmadagi brauzerda saqlanadi. Boshqa telefon, planshet yoki kompyuterda davom etish uchun bu yerda kod oling va u yerda shu bo'limga kiriting.",
+    "xf_make": "Kod olish",
+    "xf_copy": "Nusxalash",
+    "xf_copied": "Kod nusxalandi.",
+    "xf_ready": "Kod tayyor. Uni nusxalang va boshqa qurilmada shu bo'limga kiriting.",
+    "xf_note": "Kodda bolaning butun taraqqiyoti bor: yulduzlar, o'tilgan darslar, stikerlar. Uni begonalarga yubormang. Biz uni hech qayerda saqlamaymiz.",
+    "xf_in_h": "Menda kod bor",
+    "xf_in_ph": "Kodni shu yerga qo'ying",
+    "xf_apply": "Taraqqiyotni yuklash",
+    "xf_bad": "Kod to'g'ri kelmadi. Uning to'liq nusxalanganini, boshida va oxirida bo'sh joy yo'qligini tekshiring.",
+    "xf_confirm": "Kodda: {a} ta yulduz. Shu qurilmada hozir: {b} ta yulduz. Shu qurilmadagi taraqqiyot almashtiriladi.",
+    "xf_confirm_less": "Diqqat: kodda yulduzlar shu qurilmadagidan kam. Baribir almashtiraymi?",
+    "xf_yes": "Ha, almashtirish",
+    "xf_done": "Tayyor! Taraqqiyot yuklandi.",
+    "xf_empty": "Shu qurilmada ko'chirish uchun hozircha taraqqiyot yo'q."
+  });
+  Object.assign(D.tg, {
+    "xf_h": "Интиқоли пешрафт ба дастгоҳи дигар",
+    "xf_lead": "Пешрафт дар браузери ҳамин дастгоҳ нигоҳ дошта мешавад. Барои идома додан дар телефон, планшет ё компютери дигар, дар ин ҷо код бигиред ва онро дар он ҷо, дар ҳамин бахш ворид кунед.",
+    "xf_make": "Гирифтани код",
+    "xf_copy": "Нусха бардоштан",
+    "xf_copied": "Код нусха шуд.",
+    "xf_ready": "Код тайёр аст. Онро нусха бардоред ва дар дастгоҳи дигар, дар ҳамин бахш ворид кунед.",
+    "xf_note": "Дар код тамоми пешрафти кӯдак ҳаст: ситораҳо, дарсҳои гузашта, стикерҳо. Онро ба шахсони бегона нафиристед. Мо онро дар ҳеч ҷо нигоҳ намедорем.",
+    "xf_in_h": "Ман код дорам",
+    "xf_in_ph": "Кодро ин ҷо гузоред",
+    "xf_apply": "Бор кардани пешрафт",
+    "xf_bad": "Код мувофиқ наомад. Санҷед, ки он пурра нусха шудааст ва дар аввал ва охир фосила нест.",
+    "xf_confirm": "Дар код: {a} ситора. Дар ин дастгоҳ ҳоло: {b} ситора. Пешрафти ин дастгоҳ иваз карда мешавад.",
+    "xf_confirm_less": "Диққат: дар код ситораҳо нисбат ба ин дастгоҳ камтаранд. Ба ҳар ҳол иваз кунем?",
+    "xf_yes": "Бале, иваз кардан",
+    "xf_done": "Тайёр! Пешрафт бор карда шуд.",
+    "xf_empty": "Дар ин дастгоҳ ҳоло пешрафт барои интиқол нест."
+  });
+  Object.assign(D.ug, {
+    "xf_h": "Мәңгүләшни башқа түзүлмигә көчүрүш",
+    "xf_lead": "Мәңгүләш мушу түзүлмидики браузерда сақлиниду. Башқа телефон, планшет яки компютерда давам қилиш үчүн, бу йәрдин код елип, уни у йәрдә мушу бөлүмгә киргүзүң.",
+    "xf_make": "Код елиш",
+    "xf_copy": "Көчүрүш",
+    "xf_copied": "Код көчүрүлди.",
+    "xf_ready": "Код тәйяр. Уни көчүрүп, башқа түзүлмидә мушу бөлүмгә киргүзүң.",
+    "xf_note": "Кодта баланиң пүтүн мәңгүлиши бар: юлтузлар, өтүлгән дәрсләр, чаплақлар. Уни бейгана кишиләргә әвәтмәң. Биз уни һеч йәрдә сақлимаймиз.",
+    "xf_in_h": "Мәндә код бар",
+    "xf_in_ph": "Кодни мошу йәргә чаплаң",
+    "xf_apply": "Мәңгүләшни жүкләш",
+    "xf_bad": "Код тоғра кәлмиди. Униң толуқ көчүрүлгәнлигини, башлиниши вә ахирида бош орун йоқлиғини тәкшүрүң.",
+    "xf_confirm": "Кодта: {a} юлтуз. Мушу түзүлмидә һазир: {b} юлтуз. Мушу түзүлмидики мәңгүләш алмаштурулиду.",
+    "xf_confirm_less": "Диққәт: кодтики юлтузлар мушу түзүлмидикидин аз. Шундаққиму алмаштурамсиз?",
+    "xf_yes": "Һә, алмаштуруш",
+    "xf_done": "Тәйяр! Мәңгүләш жүкләнди.",
+    "xf_empty": "Мушу түзүлмидә көчүрүшкә һазирчә мәңгүләш йоқ."
+  });
   /* французский и немецкий: черновой перевод (нужна проверка носителями). */
   D.fr = {
     "p_title": "Pour les parents",
