@@ -334,6 +334,67 @@
     }
   };
 
+  /* французский и немецкий: черновой перевод (нужна проверка носителями). */
+  UI.fr = {
+    "attic_name": "Le grenier de Barsik",
+    "album_h1": "Album d'autocollants du Kazakhstan",
+    "album_lbl": "Mon album",
+    "album_count": "Autocollants : {n} sur {total}",
+    "album_next": "Avant le prochain autocollant : {n} ★",
+    "album_done_main": "Tous les autocollants sont collectés !",
+    "album_done_sub": "De nouveaux arriveront bientôt.",
+    "album_locked": "Il faut {n} ★",
+    "album_new": "Nouveau !",
+    "album_hint": "Touche un autocollant pour en savoir plus. Les étoiles ne sont pas dépensées : les autocollants s'ouvrent tout seuls grâce aux étoiles que tu as gagnées.",
+    "say_album_in": "Voici mon grenier. J'y garde mes autocollants sur le Kazakhstan.",
+    "say_album_first": "Pas encore d'autocollants. Jouons, et le premier apparaîtra !",
+    "say_album_new": "Hourra, un nouvel autocollant ! Ouvre-le vite !",
+    "say_album_open": "Quelle trouvaille !",
+    "say_album_locked": "Cet autocollant est encore caché. Joue, et il s'ouvrira !",
+    "say_album_all": "Hourra, l'album est complet ! J'ai tout rassemblé sur le Kazakhstan."
+  };
+  UI.de = {
+    "attic_name": "Barsiks Dachboden",
+    "album_h1": "Kasachstan-Stickeralbum",
+    "album_lbl": "Mein Album",
+    "album_count": "Sticker: {n} von {total}",
+    "album_next": "Bis zum nächsten Sticker: {n} ★",
+    "album_done_main": "Alle Sticker sind gesammelt!",
+    "album_done_sub": "Bald kommen neue dazu.",
+    "album_locked": "Benötigt {n} ★",
+    "album_new": "Neu!",
+    "album_hint": "Tippe auf einen Sticker, um mehr über ihn zu erfahren. Sterne werden dabei nicht ausgegeben: Die Sticker öffnen sich von selbst für die Sterne, die du verdient hast.",
+    "say_album_in": "Das ist mein Dachboden. Hier bewahre ich meine Sticker über Kasachstan auf.",
+    "say_album_first": "Noch keine Sticker. Lass uns spielen, dann erscheint der erste!",
+    "say_album_new": "Hurra, ein neuer Sticker! Mach ihn schnell auf!",
+    "say_album_open": "Was für ein Fund!",
+    "say_album_locked": "Dieser Sticker ist noch versteckt. Spiel weiter, dann öffnet er sich!",
+    "say_album_all": "Hurra, das Album ist voll! Ich habe alles über Kasachstan gesammelt."
+  };
+  var STFD = {
+    "baursak": {fr: ["Baursak", "Les baursaks sont de petits beignets moelleux de pâte frite. On les sert aux invités."], de: ["Baursak", "Baursaks sind luftige Stücke aus frittiertem Teig. Sie werden den Gästen serviert."]},
+    "yurt": {fr: ["Yourte", "On peut démonter une yourte et la transporter rapidement. Les nomades y vivaient."], de: ["Jurte", "Eine Jurte kann man schnell abbauen und transportieren. Nomaden lebten darin."]},
+    "dombra": {fr: ["Dombra", "La dombra a deux cordes. On y joue des kuis."], de: ["Dombra", "Die Dombra hat zwei Saiten. Man spielt darauf Kuis."]},
+    "tulip": {fr: ["Tulipe", "Des tulipes sauvages poussent dans les steppes et les montagnes du Kazakhstan. Au printemps, elles forment de vifs tapis de fleurs."], de: ["Tulpe", "In den Steppen und Bergen Kasachstans wachsen wilde Tulpen. Im Frühling blühen sie wie leuchtende Teppiche."]},
+    "apple": {fr: ["Pomme", "Le nom de la ville d'Almaty vient du mot « alma », qui veut dire pomme. Des pommiers sauvages poussent dans les montagnes voisines."], de: ["Apfel", "Der Name der Stadt Almaty kommt vom Wort „alma“, das Apfel bedeutet. In den Bergen in der Nähe wachsen wilde Apfelbäume."]},
+    "snowleopard": {fr: ["Panthère des neiges", "La panthère des neiges, ou once, vit très haut dans les montagnes. Il est presque impossible de l'apercevoir."], de: ["Schneeleopard", "Der Schneeleopard, auch Irbis genannt, lebt hoch oben in den Bergen. Man bekommt ihn fast nie zu Gesicht."]},
+    "baiterek": {fr: ["Baïterek", "Le Baïterek est une tour d'Astana haute de 105 mètres. À son sommet, il y a une boule dorée."], de: ["Baiterek", "Der Baiterek ist ein 105 Meter hoher Turm in Astana. Oben trägt er eine goldene Kugel."]},
+    "camel": {fr: ["Chameau", "Un chameau peut marcher longtemps sans boire. On l'appelle le vaisseau du désert."], de: ["Kamel", "Ein Kamel kann lange ohne Wasser laufen. Man nennt es das Schiff der Wüste."]},
+    "shanyrak": {fr: ["Chanyrak", "Le chanyrak est l'ouverture ronde au sommet de la yourte. Il figure aussi sur les armoiries du Kazakhstan."], de: ["Schanyrak", "Der Schanyrak ist die runde Öffnung oben in der Jurte. Er ist auch auf dem Wappen Kasachstans zu sehen."]},
+    "beshbarmak": {fr: ["Bechbarmak", "Bechbarmak veut dire « cinq doigts » : on le mange avec les mains. Ce plat est servi sur la table des fêtes."], de: ["Beschbarmak", "Beschbarmak bedeutet „fünf Finger“, denn man isst es mit den Händen. Es wird auf festlichen Tischen serviert."]},
+    "eagle": {fr: ["Aigle royal", "L'aigle royal est un grand aigle. Les chasseurs kazakhs l'apprivoisent et chassent avec lui."], de: ["Steinadler", "Der Steinadler ist ein großer Adler. Kasachische Jäger zähmen ihn und jagen gemeinsam mit ihm."]},
+    "tenge": {fr: ["Tenge", "Le tenge est la monnaie du Kazakhstan. Il a été introduit en 1993."], de: ["Tenge", "Der Tenge ist das Geld Kasachstans. Er wurde 1993 eingeführt."]},
+    "nauryz": {fr: ["Nauryz", "Nauryz est la fête du printemps. On la célèbre les 21, 22 et 23 mars."], de: ["Nauryz", "Nauryz ist das Frühlingsfest. Es wird am 21., 22. und 23. März gefeiert."]},
+    "asyk": {fr: ["Asyk", "Les asyk sont des osselets pour un jeu très ancien. Il faut faire sortir avec adresse l'osselet de l'adversaire."], de: ["Asyk", "Asyk sind Knöchelchen für ein altes Spiel. Man muss mit gutem Wurf den Knochen des anderen herausschlagen."]},
+    "flag": {fr: ["Drapeau", "Le drapeau du Kazakhstan montre un soleil et un aigle des steppes sur un fond bleu ciel."], de: ["Flagge", "Die Flagge Kasachstans zeigt eine Sonne und einen Steppenadler auf himmelblauem Grund."]},
+    "mountains": {fr: ["Khan Tengri", "Le Khan Tengri est une montagne à la frontière du Kazakhstan et du Kirghizistan. Elle dépasse sept mille mètres d'altitude."], de: ["Khan Tengri", "Der Khan Tengri ist ein Berg an der Grenze zwischen Kasachstan und Kirgisistan. Er ist mehr als siebentausend Meter hoch."]},
+    "baikonur": {fr: ["Baïkonour", "Baïkonour est un cosmodrome. C'est d'ici que Iouri Gagarine s'est envolé dans l'espace en 1961."], de: ["Baikonur", "Baikonur ist ein Weltraumbahnhof. Von hier flog 1961 Juri Gagarin ins All."]},
+    "balkhash": {fr: ["Lac Balkhach", "Le lac Balkhach est spécial : l'eau y est douce d'un côté et salée de l'autre."], de: ["Balchaschsee", "Der Balchaschsee ist etwas Besonderes: Auf der einen Seite ist das Wasser süß, auf der anderen salzig."]},
+    "charyn": {fr: ["Canyon de Charyn", "Le canyon de Charyn est appelé la Vallée des châteaux. Les roches rouges ressemblent à des tours et à des murailles."], de: ["Scharyn-Canyon", "Der Scharyn-Canyon wird das Tal der Burgen genannt. Die roten Felsen sehen aus wie Türme und Mauern."]},
+    "goldman": {fr: ["Homme d'or", "L'Homme d'or était un guerrier des anciens Saces. Il a été découvert dans le kourgane d'Issyk et a plus de deux mille ans."], de: ["Goldener Mann", "Der Goldene Mann war ein Krieger der alten Saken. Er wurde im Hügelgrab von Issyk gefunden und ist über zweitausend Jahre alt."]}
+  };
+  S.forEach(function(s){ var x = STFD[s.id]; if (x){ s.t.fr = x.fr; s.t.de = x.de; } });
+
   var H = window.HI;
   if (H && H.T){
     Object.keys(UI).forEach(function(l){ if (H.T[l]) for (var k in UI[l]) H.T[l][k] = UI[l][k]; });
