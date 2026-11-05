@@ -16,7 +16,7 @@
              assets/audio/count_explain-kz.mp3
              assets/audio/count_explain-uz.mp3
    textKey — это ключ из i18n.js (например "count_explain"),
-   lang — код языка (ru, kz, en, zh, uz, tg, ug).
+   lang — код языка (ru, kz, en, zh, uz, tg, ug, fr, de).
    Как только такой файл появляется в репозитории — сайт начинает
    использовать его автоматически, без изменений в коде.
 */
@@ -28,7 +28,9 @@ var LANG_TO_SPEECH_CODE = {
   zh: 'zh-CN',
   uz: 'uz-UZ',
   tg: 'tg-TJ',
-  ug: 'ug-CN'
+  ug: 'ug-CN',
+  fr: 'fr-FR',
+  de: 'de-DE'
 };
 
 function speakWithBrowserTTS(text, btn){

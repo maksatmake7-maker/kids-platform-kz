@@ -12367,6 +12367,10 @@ const translations = {
   }
 };
 
+/* Французский и немецкий: собственные переводы добавляются в translations.fr / translations.de (Object.assign), а пока ключа нет — показывается английский (цепочка прототипов), так что пустых мест на страницах нет. */
+translations.fr = Object.create(translations.en);
+translations.de = Object.create(translations.en);
+
 function applyLang(lang){
   if(!translations[lang]) lang = 'ru';
   document.documentElement.setAttribute('data-current', lang);
@@ -12395,6 +12399,23 @@ function savedLang(){
   return null;
 }
 
+/* Кнопки «Français» и «Deutsch» добавляются во все переключатели языка автоматически (в HTML страниц их писать не нужно). */
+(function(){
+  var EXTRA = [['fr', 'Français'], ['de', 'Deutsch']];
+  function add(){
+    document.querySelectorAll('.lang-toggle').forEach(function(box){
+      if(box.querySelector('.lang-menu')) return;   /* меню уже собрано world.js */
+      EXTRA.forEach(function(x){
+        if(box.querySelector('button[data-lang="' + x[0] + '"]')) return;
+        var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-lang', x[0]); b.setAttribute('onclick', "applyLang('" + x[0] + "')"); b.textContent = x[1];
+        box.appendChild(b);
+      });
+    });
+  }
+  add();
+  document.addEventListener('DOMContentLoaded', add);
+})();
+
 document.addEventListener('DOMContentLoaded', function(){
   applyLang(savedLang() || 'ru');
 });
@@ -12407,13 +12428,17 @@ document.addEventListener('DOMContentLoaded', function(){
     zh: '本课程目前仅提供俄语版。',
     uz: 'Bu kurs hozircha faqat rus tilida.',
     tg: 'Ин курс ҳоло танҳо бо забони русӣ аст.',
-    ug: 'Бу дәрс һазирчә пәқәт русчә.'
+    ug: 'Бу дәрс һазирчә пәқәт русчә.',
+    fr: 'Ce cours n’est disponible qu’en russe pour le moment.',
+    de: 'Dieser Kurs ist vorerst nur auf Russisch verfügbar.'
   };
   var GAME = {
     zh: '游戏中的题目目前仅提供俄语、哈萨克语和英语版本。',
     uz: 'Topshiriqlar hozircha rus, qozoq va ingliz tillarida.',
     tg: 'Супоришҳо ҳоло бо забонҳои русӣ, қазоқӣ ва англисӣ мавҷуданд.',
-    ug: 'Вәзипиләр һазирчә русчә, қазақчә вә инглизчә бар.'
+    ug: 'Вәзипиләр һазирчә русчә, қазақчә вә инглизчә бар.',
+    fr: 'Les questions des jeux sont pour l’instant en russe, en kazakh et en anglais.',
+    de: 'Die Aufgaben in den Spielen gibt es vorerst auf Russisch, Kasachisch und Englisch.'
   };
   function note(lang){
     try {
@@ -12517,9 +12542,11 @@ document.addEventListener('click', function(e){
       uz: '✉ Fikr va takliflar (kattalar uchun)',
       zh: '✉ 意见与建议（供成年人使用）',
       tg: '✉ Фикру пешниҳодҳо (барои калонсолон)',
-      ug: '✉ Пикир вә тәклипләр (чоңлар үчүн)'
+      ug: '✉ Пикир вә тәклипләр (чоңлар үчүн)',
+      fr: '✉ Avis et suggestions (pour les adultes)',
+      de: '✉ Feedback und Vorschläge (für Erwachsene)'
     };
-    var PRIV = { ru: 'Политика конфиденциальности', kz: 'Құпиялылық саясаты', en: 'Privacy policy', uz: 'Maxfiylik siyosati', zh: '隐私政策', tg: 'Сиёсати махфият', ug: 'Мәхпийәтлик сиясити' };
+    var PRIV = { ru: 'Политика конфиденциальности', kz: 'Құпиялылық саясаты', en: 'Privacy policy', uz: 'Maxfiylik siyosati', zh: '隐私政策', tg: 'Сиёсати махфият', ug: 'Мәхпийәтлик сиясити', fr: 'Politique de confidentialité', de: 'Datenschutzerklärung' };
     var COPY = {
       ru: '© 2026 Суннатов М. Н. «Білім Аралы». Все права защищены.',
       kz: '© 2026 Суннатов М. Н. «Білім Аралы». Барлық құқықтар қорғалған.',
@@ -12527,7 +12554,9 @@ document.addEventListener('click', function(e){
       uz: '© 2026 M. N. Sunnatov. «Білім Аралы». Barcha huquqlar himoyalangan.',
       zh: '© 2026 M. N. Sunnatov。“Білім Аралы”。保留所有权利。',
       tg: '© 2026 М. Н. Суннатов. «Білім Аралы». Ҳамаи ҳуқуқҳо ҳифз шудаанд.',
-      ug: '© 2026 М. Н. Суннатов. «Білім Аралы». Һәммә һоқуқ қоғдалған.'
+      ug: '© 2026 М. Н. Суннатов. «Білім Аралы». Һәммә һоқуқ қоғдалған.',
+      fr: '© 2026 M. N. Sunnatov. « Білім Аралы ». Tous droits réservés.',
+      de: '© 2026 M. N. Sunnatov. „Білім Аралы“. Alle Rechte vorbehalten.'
     };
     function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if(s && TXT[s]) return s; } catch(e){} return 'ru'; }
     function paint(l){

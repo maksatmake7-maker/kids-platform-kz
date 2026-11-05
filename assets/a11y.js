@@ -23,6 +23,12 @@
     en: { btn: '👁 My mode', h: 'My mode', lead: 'Choose what is easier for you. It is remembered on this device.',
       hint: 'Handy if small text is hard to read or motion on the screen tires you out.',
       big: 'Bigger text', read: 'Easy-to-read font', calm: 'Less motion', focus: 'Clear outlines on buttons', contrast: 'Higher contrast', close: 'Done', reset: 'Reset all' }
+    ,fr: { btn: '👁 Mon mode', h: 'Mon mode', lead: 'Choisis ce qui est le plus pratique pour toi. Cela est mémorisé sur cet appareil.',
+      hint: 'Pratique si le petit texte est difficile à lire ou si les mouvements à l’écran te fatiguent.',
+      big: 'Texte plus grand', read: 'Police facile à lire', calm: 'Moins de mouvement', focus: 'Contours nets sur les boutons', contrast: 'Contraste plus élevé', close: 'Terminé', reset: 'Tout réinitialiser' }
+    ,de: { btn: '👁 Mein Modus', h: 'Mein Modus', lead: 'Wähle, was für dich einfacher ist. Das wird auf diesem Gerät gespeichert.',
+      hint: 'Praktisch, wenn kleine Schrift schwer zu lesen ist oder Bewegung auf dem Bildschirm dich müde macht.',
+      big: 'Größere Schrift', read: 'Gut lesbare Schrift', calm: 'Weniger Bewegung', focus: 'Klare Rahmen an Buttons', contrast: 'Höherer Kontrast', close: 'Fertig', reset: 'Alles zurücksetzen' }
     ,uz: { btn: '👁 Mening rejimim', h: 'Mening rejimim', lead: 'O\'zingga qulayini tanla. Bu shu qurilmada saqlanadi.',
       hint: 'Mayda matnni o\'qish qiyin bo\'lsa yoki ekrandagi harakatdan tez charchasang, qulay.',
       big: 'Matn kattaroq', read: 'O\'qishga qulay shrift', calm: 'Harakat kam', focus: 'Tugmalarning aniq chiziqlari', contrast: 'Kontrast yuqoriroq', close: 'Tayyor', reset: 'Hammasini bekor qilish' },

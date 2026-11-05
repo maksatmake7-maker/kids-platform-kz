@@ -1,5 +1,5 @@
 /* ===== Білім Аралы — переводы «Дома Барсика» (дом, гардероб) на 7 языков =====
-   Языки: ru, kz, en, zh, uz (латиница), tg, ug (арабское письмо, справа налево) — как в assets/i18n.js.
+   Языки: ru, kz, en, zh, uz (латиница), tg, ug (арабское письмо, справа налево), fr, de — как в assets/i18n.js.
    Подключать после assets/i18n.js (он задаёт applyLang) и до house-back.js / house.js.
 
    Что делает:
@@ -12,7 +12,7 @@
    Тексты на казахском проверяет Максат. Остальные языки — рабочий перевод, его стоит показать носителям. */
 (function(){
   'use strict';
-  var LANGS = ['ru', 'kz', 'en', 'zh', 'uz', 'tg', 'ug'];
+  var LANGS = ['ru', 'kz', 'en', 'zh', 'uz', 'tg', 'ug', 'fr', 'de'];
   var SKEY = 'bilim_lang_v1';
 
   var T = {};
@@ -269,6 +269,9 @@
     say_bye: 'Йәнә келиң! Мән күтимән.'
   };
 
+  /* французский и немецкий: пока без собственных строк берём английские (цепочка прототипов); свои строки — Object.assign(T.fr, {...}) */
+  T.fr = Object.create(T.en); T.de = Object.create(T.en);
+
   /* ---------------------------------------------------------------- движок */
   var urlLang = null;
   try { var m = /[?&]lang=([a-z]{2})/.exec(location.search); if (m && T[m[1]]) urlLang = m[1]; } catch(e){}
@@ -290,7 +293,7 @@
   function games(n){
     var d = T[cur], form;
     if (cur === 'ru'){ var m10 = n % 10, m100 = n % 100; form = (m10 === 1 && m100 !== 11) ? 'one' : (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) ? 'few' : 'many'; }
-    else if (cur === 'en') form = (n === 1) ? 'one' : 'other';
+    else if (cur === 'en' || cur === 'fr' || cur === 'de') form = (n === 1) ? 'one' : 'other';
     else form = 'other';
     return d['games_' + form] || d.games_other || d.games_one || T.ru.games_many;
   }

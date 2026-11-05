@@ -17,17 +17,17 @@
   /* Значения вариантов должны ТОЧНО совпадать с вариантами в Google-форме (русский / казахский в одной строке). */
   var TYPES = [
     { v: 'Ошибка на сайте, что-то не работает / Сайттағы қате, бірдеңе жұмыс істемейді',
-      ru: 'Ошибка на сайте, что-то не работает', kz: 'Сайттағы қате, бірдеңе жұмыс істемейді', en: 'A bug: something does not work', uz: 'Saytdagi xato, nimadir ishlamayapti', zh: '网站错误，某些功能不能用', tg: 'Хато дар сайт, чизе кор намекунад', ug: 'Тор бекәттики хаталиқ, бир нәрсә ишлимәйду' },
+      ru: 'Ошибка на сайте, что-то не работает', kz: 'Сайттағы қате, бірдеңе жұмыс істемейді', en: 'A bug: something does not work', fr: 'Un bug : quelque chose ne fonctionne pas', de: 'Ein Fehler: etwas funktioniert nicht', uz: 'Saytdagi xato, nimadir ishlamayapti', zh: '网站错误，某些功能不能用', tg: 'Хато дар сайт, чизе кор намекунад', ug: 'Тор бекәттики хаталиқ, бир нәрсә ишлимәйду' },
     { v: 'Идея или предложение / Идея немесе ұсыныс',
-      ru: 'Идея или предложение', kz: 'Идея немесе ұсыныс', en: 'An idea or suggestion', uz: 'G\'oya yoki taklif', zh: '想法或建议', tg: 'Ғоя ё пешниҳод', ug: 'Идийә яки тәклип' },
+      ru: 'Идея или предложение', kz: 'Идея немесе ұсыныс', en: 'An idea or suggestion', fr: 'Une idée ou une suggestion', de: 'Eine Idee oder ein Vorschlag', uz: 'G\'oya yoki taklif', zh: '想法或建议', tg: 'Ғоя ё пешниҳод', ug: 'Идийә яки тәклип' },
     { v: 'Вопрос / Сұрақ',
-      ru: 'Вопрос', kz: 'Сұрақ', en: 'A question', uz: 'Savol', zh: '问题', tg: 'Савол', ug: 'Соал' },
+      ru: 'Вопрос', kz: 'Сұрақ', en: 'A question', fr: 'Une question', de: 'Eine Frage', uz: 'Savol', zh: '问题', tg: 'Савол', ug: 'Соал' },
     { v: 'Спасибо, что понравилось / Рахмет, ұнағаны',
-      ru: 'Спасибо, что понравилось', kz: 'Рахмет, ұнағаны', en: 'Thanks, what I liked', uz: 'Rahmat, yoqqani uchun', zh: '谢谢，我很喜欢', tg: 'Ташаккур, ки маъқул шуд', ug: 'Рәһмәт, яхши көрдүм' },
+      ru: 'Спасибо, что понравилось', kz: 'Рахмет, ұнағаны', en: 'Thanks, what I liked', fr: 'Merci, j’ai aimé', de: 'Danke, das hat mir gefallen', uz: 'Rahmat, yoqqani uchun', zh: '谢谢，我很喜欢', tg: 'Ташаккур, ки маъқул шуд', ug: 'Рәһмәт, яхши көрдүм' },
     { v: 'Ошибка в задании или в тексте / Тапсырмадағы немесе мәтіндегі қате',
-      ru: 'Ошибка в задании или в тексте', kz: 'Тапсырмадағы немесе мәтіндегі қате', en: 'A mistake in a task or text', uz: 'Topshiriq yoki matndagi xato', zh: '题目或文字中的错误', tg: 'Хато дар супориш ё матн', ug: 'Тапшуруқ яки текисттики хаталиқ' },
+      ru: 'Ошибка в задании или в тексте', kz: 'Тапсырмадағы немесе мәтіндегі қате', en: 'A mistake in a task or text', fr: 'Une erreur dans un exercice ou un texte', de: 'Ein Fehler in einer Aufgabe oder einem Text', uz: 'Topshiriq yoki matndagi xato', zh: '题目或文字中的错误', tg: 'Хато дар супориш ё матн', ug: 'Тапшуруқ яки текисттики хаталиқ' },
     { v: 'Другое / Басқа',
-      ru: 'Другое', kz: 'Басқа', en: 'Other', uz: 'Boshqa', zh: '其他', tg: 'Дигар', ug: 'Башқа' }
+      ru: 'Другое', kz: 'Басқа', en: 'Other', fr: 'Autre', de: 'Sonstiges', uz: 'Boshqa', zh: '其他', tg: 'Дигар', ug: 'Башқа' }
   ];
 
   var TXT = {
@@ -53,6 +53,18 @@
     zh: { h: '请告诉我们您的想法', t: '您想写些什么？', pick: '请选择一项', d: '请详细说明', ph: '您在网站上做了什么，期望什么，结果如何？', warn: '请不要填写孩子的姓名、电话、地址、学校和其他个人信息。只需描述发生了什么。目前不会通过邮件回复。', priv: '隐私政策', cancel: '取消', send: '发送', sending: '正在发送…', need: '请选择您要写的内容，并写几句话。', fail: '发送失败。请检查网络后重试。', wait: '消息刚刚发送。请稍等一下。', okh: '谢谢！', ok: '已收到您的消息。作者会阅读每一条反馈。', close: '关闭', adults: '供成年人使用：家长和老师。' },
     tg: { h: 'Фикри худро бигӯед', t: 'Дар бораи чӣ навиштан мехоҳед?', pick: 'Вариантро интихоб кунед', d: 'Муфассалтар нависед', ph: 'Дар сайт чӣ кор кардед, чиро интизор будед ва чӣ шуд?', warn: 'Лутфан, номи кӯдак, телефон, суроға, мактаб ва дигар маълумоти шахсиро НАНАВИСЕД. Кифоя аст, ки чӣ рӯй дод, тасвир кунед. Ҷавоб тавассути почтаи электронӣ ҳоло фиристода намешавад.', priv: 'Сиёсати махфият', cancel: 'Бекор кардан', send: 'Фиристодан', sending: 'Фиристода истодааст…', need: 'Интихоб кунед, ки дар бораи чӣ менависед ва якчанд калима нависед.', fail: 'Фиристода нашуд. Интернетро санҷед ва бори дигар кӯшиш кунед.', wait: 'Паём ҳамин ҳоло фиристода шуд. Каме интизор шавед.', okh: 'Ташаккур!', ok: 'Паём қабул шуд. Муаллиф ҳамаи фикрҳоро мехонад.', close: 'Пӯшидан', adults: 'Барои калонсолон: падару модарон ва омӯзгорон.' },
     ug: { h: 'Пикириңизни ейтиң', t: 'Немә һәққидә язмақчисиз?', pick: 'Таллаң', d: 'Тәпсилий йезиң', ph: 'Тор бекәттә немә қилдиңиз, немә күттиңиз вә немә болди?', warn: 'Балиниң исми-фамилиси, телефони, адреси, мәктипи вә башқа шәхсий учурларни язмаң. Немә болғанлиқини тәсвирлисиңизла йетәрлик. Електронлуқ хәт арқилиқ җаваб техи әвәтилмәйду.', priv: 'Мәхпийәтлик сиясити', cancel: 'Бикар қилиш', send: 'Әвәтиш', sending: 'Әвәтиливатиду…', need: 'Немә һәққидә язидиғанлиқиңизни таллап, бир нәччә сөз йезиң.', fail: 'Әвәткили болмиди. Торни тәкшүрүп, қайта синаң.', wait: 'Учур һазирла әвәтилди. Сәл сақлаң.', okh: 'Рәһмәт!', ok: 'Учур қобул қилинди. Аптор барлиқ пикирләрни оқуйду.', close: 'Тақаш', adults: 'Чоңлар үчүн: ата-ана вә оқутқучилар.' }
+    ,fr: { h: 'Dis-nous ce que tu en penses', t: 'De quoi veux-tu parler ?', pick: 'Choisis une option', d: 'Dis-nous-en plus',
+      ph: 'Que faisais-tu sur le site, qu’attendais-tu et que s’est-il passé ?',
+      warn: 'Merci de NE PAS indiquer le nom d’un enfant, un numéro de téléphone, une adresse, une école ou d’autres données personnelles. Décris simplement ce qui s’est passé. Les réponses par e-mail ne sont pas encore envoyées.',
+      priv: 'Politique de confidentialité', cancel: 'Annuler', send: 'Envoyer', sending: 'Envoi…',
+      need: 'Choisis le sujet et ajoute quelques mots.', fail: 'Envoi impossible. Vérifie ta connexion internet et réessaie.', wait: 'Ton message vient d’être envoyé. Patiente un peu.',
+      okh: 'Merci !', ok: 'Message reçu. L’auteur lit tous les messages.', close: 'Fermer', adults: 'Pour les adultes : parents et enseignants.' },
+    de: { h: 'Sag uns, was du denkst', t: 'Worüber möchtest du schreiben?', pick: 'Bitte wähle eine Option', d: 'Erzähl uns mehr',
+      ph: 'Was hast du auf der Seite gemacht, was hast du erwartet und was ist passiert?',
+      warn: 'Bitte schreibe KEINEN Namen eines Kindes, keine Telefonnummer, Adresse, Schule oder andere persönliche Daten. Beschreibe einfach, was passiert ist. Antworten per E-Mail werden noch nicht gesendet.',
+      priv: 'Datenschutzerklärung', cancel: 'Abbrechen', send: 'Senden', sending: 'Wird gesendet…',
+      need: 'Wähle, worüber du schreibst, und füge ein paar Worte hinzu.', fail: 'Senden nicht möglich. Prüfe deine Internetverbindung und versuche es noch einmal.', wait: 'Deine Nachricht wurde gerade gesendet. Bitte warte einen Moment.',
+      okh: 'Danke!', ok: 'Nachricht erhalten. Der Autor liest alle Nachrichten.', close: 'Schließen', adults: 'Für Erwachsene: Eltern und Lehrkräfte.' }
   };
 
   var CSS =

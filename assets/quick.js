@@ -21,10 +21,10 @@
   }
   var PHONE = '<svg viewBox="0 0 34 30" aria-hidden="true"><rect x="10" y="2" width="14" height="26" rx="3" fill="#FFF7E3" stroke="#1D3557" stroke-width="2"/><path d="M17 8 V19 M13 15 L17 19 L21 15" fill="none" stroke="#3F8F6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   /* подписи кнопки установки и подсказка для iPhone */
-  var INST = {ru:'Установить на экран', kz:'Экранға орнату', en:'Add to home screen', zh:'添加到主屏幕', uz:'Bosh ekranga qo\'shish', tg:'Ба экрани асосӣ илова кун', ug:'Асасий екранға қошуш'};
-  var IOS = {ru:'Нажми «Поделиться», затем «На экран Домой».', kz:'«Бөлісу» түймесін басып, «Басты экранға» таңда.', en:'Tap Share, then Add to Home Screen.', zh:'点按“分享”，再选“添加到主屏幕”。', uz:'«Ulashish» tugmasini bosib, «Bosh ekranga qo\'shish»ni tanlang.', tg:'«Мубодила»-ро пахш карда, «Ба экрани асосӣ»-ро интихоб кунед.', ug:'«Һәмбәһирләш» ни бесип, «асасий екранға қошуш» ни таллаң.'};
+  var INST = {ru:'Установить на экран', kz:'Экранға орнату', en:'Add to home screen', zh:'添加到主屏幕', uz:'Bosh ekranga qo\'shish', tg:'Ба экрани асосӣ илова кун', ug:'Асасий екранға қошуш', fr:'Ajouter à l’écran d’accueil', de:'Zum Startbildschirm hinzufügen'};
+  var IOS = {ru:'Нажми «Поделиться», затем «На экран Домой».', kz:'«Бөлісу» түймесін басып, «Басты экранға» таңда.', en:'Tap Share, then Add to Home Screen.', zh:'点按“分享”，再选“添加到主屏幕”。', uz:'«Ulashish» tugmasini bosib, «Bosh ekranga qo\'shish»ni tanlang.', tg:'«Мубодила»-ро пахш карда, «Ба экрани асосӣ»-ро интихоб кунед.', ug:'«Һәмбәһирләш» ни бесип, «асасий екранға қошуш» ни таллаң.', fr:'Appuie sur Partager, puis sur « Sur l’écran d’accueil ».', de:'Tippe auf „Teilen“ und dann auf „Zum Home-Bildschirm“.'};
   /* названия дома — те же слова, что в assets/house-i18n.js */
-  var HOUSE_NAME = {ru:'Дом Барсика', kz:'Барсиктің үйі', en:"Barsik's House", zh:'巴雷斯的家', uz:'Barsikning uyi', tg:'Хонаи Барсик', ug:'Барсикниң өйи'};
+  var HOUSE_NAME = {ru:'Дом Барсика', kz:'Барсиктің үйі', en:"Barsik's House", zh:'巴雷斯的家', uz:'Barsikning uyi', tg:'Хонаи Барсик', ug:'Барсикниң өйи', fr:'La maison de Barsik', de:'Barsiks Haus'};
   function curLang(el){
     var l = document.documentElement.getAttribute('data-current');
     if (l) return l;

@@ -490,9 +490,11 @@ html[dir=rtl] .subjects .direction-btn::after{content:"‹";}
     zh:'你好！我是巴尔西克，你的知识岛向导！',
     uz:'Salom! Men Barsikman — bilim orolida sening yo\'lboshchingman!',
     tg:'Салом! Ман Барсик — роҳнамои ту дар ҷазираи дониш!',
-    ug:'Яхшимусиз! Мән Барсик — Білім Аралыдики йетәкчиңиз!'
+    ug:'Яхшимусиз! Мән Барсик — Білім Аралыдики йетәкчиңиз!',
+    fr:'Salut ! Je suis Barsik — ton guide sur l\u2019île de la connaissance !',
+    de:'Hallo! Ich bin Barsik — dein Begleiter auf der Insel des Wissens!'
   };
-  var LANGTAG={ru:'ru-RU',kz:'kk-KZ',en:'en-US',zh:'zh-CN',uz:'uz-UZ',tg:'tg-TJ',ug:'ug-CN'};
+  var LANGTAG={ru:'ru-RU',kz:'kk-KZ',en:'en-US',zh:'zh-CN',uz:'uz-UZ',tg:'tg-TJ',ug:'ug-CN',fr:'fr-FR',de:'de-DE'};
   var curLang='ru';
   function setLang(l){ if(!HELLO[l]) l='ru'; curLang=l; E.hello.textContent=HELLO[l]; }
   var _al=window.applyLang; window.applyLang=function(l){ _al.apply(this,arguments); setLang(l); };
