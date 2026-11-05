@@ -28,7 +28,8 @@
     [/\/grades\/grade-2(?:-kaz)?\/izo\//, 'g2izo'],
     [/\/grades\/grade-2(?:-kaz)?\/muzyka\//, 'g2muzyka'],
     [/\/grades\/grade-2(?:-kaz)?\/trud\//, 'g2trud'],
-    [/\/grades\/grade-2(?:-kaz)?\/estestvo\//, 'g2estestvo'] ];
+    [/\/grades\/grade-2(?:-kaz)?\/estestvo\//, 'g2estestvo'],
+    [/\/grades\/grade-2(?:-kaz)?\/digital\//, 'g2digital'] ];
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
