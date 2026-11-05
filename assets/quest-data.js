@@ -748,5 +748,9 @@
     "qa_h_seq4": "Sieh nach, um wie viel jede Zahl wächst. Auch dieses „um wie viel“ ändert sich: Jedes Mal addieren wir 1 mehr.",
     "qa_o_c5": "Richtig! Schau, in der Ferne sieht man schon Omas Jurte."
   };
+  /* родительный падеж («из 5 малышей») нужен только русскому; в остальных языках берём ту же форму, что и для обычного числа */
+  Object.keys(D).forEach(function(l){ var d = D[l]; if (l === 'ru') return;
+    if (d.qa_nn_kid && !d.qa_nn_kidg) d.qa_nn_kidg = d.qa_nn_kid;
+    if (d.qa_nn_baursak && !d.qa_nn_baursakg) d.qa_nn_baursakg = d.qa_nn_baursak; });
   Object.keys(D).forEach(function(l){ if (H.T[l]) for (var k in D[l]) H.T[l][k] = D[l][k]; });
 })();
