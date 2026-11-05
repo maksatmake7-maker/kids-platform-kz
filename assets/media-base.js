@@ -17,6 +17,11 @@
    и политика конфиденциальности согласована с юристом. */
 window.BILIM_AUTH_ENABLED = false;
 
+/* ВЫКЛЮЧАТЕЛЬ БЛОКИРОВКИ ЧЕТВЕРТЕЙ (assets/progress.js, applyQuarterLocks).
+   false — все четверти открыты (идёт проверка сайта), true — следующая четверть открывается после прохождения предыдущей.
+   Включить перед запуском сайта для детей. */
+window.BILIM_QUARTER_LOCKS = false;
+
 (function(){
   'use strict';
   if (window.BilimMedia) return;

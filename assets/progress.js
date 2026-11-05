@@ -205,6 +205,7 @@ function applyQuarterLocks(){
   blocks.forEach(function(block){
     var required = block.getAttribute('data-requires');
     if(!required) return;
+    if(window.BILIM_QUARTER_LOCKS === false){ block.classList.remove('locked'); return; }   // выключатель в assets/media-base.js
     var keys = required.split(',').map(function(k){ return k.trim(); }).filter(Boolean);
     var allDone = keys.every(function(k){ return isGameCompleted(k); });
 
