@@ -1238,7 +1238,7 @@ const translations = {
     carryadd_s6_title: "Ты умеешь считать через десяток!",
     carryadd_s6_text: "Барсик гордится тобой — теперь ты умеешь складывать числа с переходом через десяток! Готов проверить себя в игре?",
     grade_picker_grade2_desc: "11 предметов",
-    grade_picker_grade2_kaz_desc: "Открыто 7 предметов, остальные скоро",
+    grade_picker_grade2_kaz_desc: "Открыто 8 предметов, остальные скоро",
     grade_picker_grade3_desc: "12 предметов",
     grade_picker_grade4_desc: "Математика",
     problem2step_explain: "Барсик приглашает тебя решать задачи в два действия! Внимательно прочитай задачу — сначала сделай одно действие, потом другое, и найди ответ. Готов?",
@@ -3004,7 +3004,7 @@ const translations = {
     carryadd_s6_title: "Сен ондық арқылы санай аласың!",
     carryadd_s6_text: "Барсик сені мақтан тұтады — енді сен сандарды ондықтан өтіп қоса аласың! Ойында өзіңді тексеруге дайынсың ба?",
     grade_picker_grade2_desc: "11 пән",
-    grade_picker_grade2_kaz_desc: "7 пән ашық, қалғаны жақында",
+    grade_picker_grade2_kaz_desc: "8 пән ашық, қалғаны жақында",
     grade_picker_grade3_desc: "12 пән",
     grade_picker_grade4_desc: "Математика",
     problem2step_explain: "Барсик сені екі әрекетті есептер шығаруға шақырады! Есепті мұқият оқы — алдымен бір әрекет жаса, содан кейін екіншісін, жауапты тап. Дайынсың ба?",
@@ -4770,7 +4770,7 @@ const translations = {
     carryadd_s6_title: "You Can Count Past a Ten!",
     carryadd_s6_text: "Barsik is proud of you — now you can add numbers that pass through a ten! Ready to test yourself in the game?",
     grade_picker_grade2_desc: "11 subjects",
-    grade_picker_grade2_kaz_desc: "7 subjects open, more soon",
+    grade_picker_grade2_kaz_desc: "8 subjects open, more soon",
     grade_picker_grade3_desc: "12 subjects",
     grade_picker_grade4_desc: "Maths",
     problem2step_explain: "Barsik invites you to solve two-step word problems! Read the problem carefully — do one step first, then the other, and find the answer. Ready?",
@@ -6536,7 +6536,7 @@ const translations = {
     carryadd_s6_title: "你学会凑十法啦！",
     carryadd_s6_text: "巴雷斯为你感到骄傲——现在你会用凑十法做加法了！准备好在游戏里检验一下自己了吗？",
     grade_picker_grade2_desc: "11门学科",
-    grade_picker_grade2_kaz_desc: "已开放7门学科，更多即将上线",
+    grade_picker_grade2_kaz_desc: "已开放8门学科，更多即将上线",
     grade_picker_grade3_desc: "数学",
     grade_picker_grade4_desc: "数学",
     problem2step_explain: "巴雷斯邀请你解答两步应用题！仔细读题——先算一步，再算另一步，找出答案。准备好了吗？",
@@ -8302,7 +8302,7 @@ const translations = {
     carryadd_s6_title: "Sen o'nlikdan o'tib qo'sha olasan!",
     carryadd_s6_text: "Barsik sen bilan faxrlanadi — endi sen o'nlikdan o'tadigan sonlarni qo'sha olasan! O'yinda o'zingni sinab ko'rishga tayyormisan?",
     grade_picker_grade2_desc: "11 ta fan",
-    grade_picker_grade2_kaz_desc: "7 ta fan ochiq, qolganlari tez orada",
+    grade_picker_grade2_kaz_desc: "8 ta fan ochiq, qolganlari tez orada",
     grade_picker_grade3_desc: "Matematika",
     grade_picker_grade4_desc: "Matematika",
     problem2step_explain: "Barsik sizni ikki amalli masalalarni yechishga taklif qiladi! Masalani diqqat bilan o'qi — avval bir amalni bajar, keyin ikkinchisini, javobni top. Tayyormisan?",
@@ -10068,7 +10068,7 @@ const translations = {
     carryadd_s6_title: "Ту метавонӣ аз даҳгона гузашта ҷамъ кунӣ!",
     carryadd_s6_text: "Барсик ба ту ифтихор мекунад — акнун ту метавонӣ ададҳоеро, ки аз даҳгона мегузаранд, ҷамъ кунӣ! Омодаӣ худро дар бозӣ санҷӣ?",
     grade_picker_grade2_desc: "11 фан",
-    grade_picker_grade2_kaz_desc: "7 фан кушода аст, боқӣ ба зудӣ",
+    grade_picker_grade2_kaz_desc: "8 фан кушода аст, боқӣ ба зудӣ",
     grade_picker_grade3_desc: "Математика",
     grade_picker_grade4_desc: "Математика",
     problem2step_explain: "Барсик туро ба ҳалли масъалаҳои дуамалӣ даъват мекунад! Масъаларо бодиққат хон — аввал як амал кун, баъд дигарашро, ва ҷавобро ёб. Омодаӣ?",
@@ -11834,7 +11834,7 @@ const translations = {
     carryadd_s6_title: "Сиз ондиктин өтүп қошалайсиз!",
     carryadd_s6_text: "Барсик сиздин пәхирлиниду — әмди сиз ондиктин өтидиған санларни қошалайсиз! Оюнда өзиңизни синап беқишқа тәйярмусиз?",
     grade_picker_grade2_desc: "11 пән",
-    grade_picker_grade2_kaz_desc: "7 пән ечилған, қалғини пат арида",
+    grade_picker_grade2_kaz_desc: "8 пән ечилған, қалғини пат арида",
     grade_picker_grade3_desc: "Математика",
     grade_picker_grade4_desc: "Математика",
     problem2step_explain: "Барсик сизни икки әмәллик мәсилиләрни һәл қилишқа тәклип қилиду! Мәсилини диққәт билән оқуң — алди билән бир әмәлни, андин йәнә бирини қилиң вә җавабни тепиң. Тәйярмусиз?",
@@ -12421,7 +12421,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var txt = null;
       if(/-course\.html$/.test(location.pathname)) txt = COURSE[lang];
       /* 1 класс переведён на казахский (assets/ui-kz-g1.js): плашку «только на русском» там не показываем */
-      if(lang === 'kz' && /\/grades\/(?:grade-1(?:-kaz)?|grade-2-kaz|grade-2\/(?:fizra|izo|muzyka|trud|poznanie|estestvo|digital))\//.test(location.pathname)) txt = null;
+      if(lang === 'kz' && /\/grades\/(?:grade-1(?:-kaz)?|grade-2-kaz|grade-2\/(?:fizra|izo|muzyka|trud|poznanie|estestvo|digital|math))\//.test(location.pathname)) txt = null;
       else if(window.__mxHeroCfg) txt = GAME[lang];
       /* 1 класс переведён на таджикский и узбекский (assets/ui-tg-g1.js, ui-uz-g1.js): плашку курса не показываем; плашка про вопросы игр остаётся, пока не переведены банки вопросов */
       else if((lang === 'tg' || lang === 'uz') && /\/grades\/grade-1(?:-kaz)?\//.test(location.pathname)) txt = null;

@@ -10,7 +10,8 @@ READY = {'fizra': ('Дене шынықтыру', 'fiz2-course.html'), 'izo': ('
          'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html'),
          'poznanie': ('Дүниетану', 'poznanie2-course.html'),
          'estestvo': ('Жаратылыстану', 'estestvo2-course.html'),
-         'digital': ('Цифрлық сауаттылық', 'digital2-course.html')}
+         'digital': ('Цифрлық сауаттылық', 'digital2-course.html'),
+         'math': ('Математика', 'math2-course.html')}
 SRC, DST = 'grades/grade-2', 'grades/grade-2-kaz'
 def rd(p): return open(p, encoding='utf-8').read()
 def wr(p, s):
@@ -39,7 +40,8 @@ def hub():
     sub.append("    {id:'poznanie2', href:'poznanie/index.html', art:'poznanie', color:'#F0954C', title:'poznanie_title', descText:'Семья, школа, родной край, карта и символы страны'},")
     sub.append("    {id:'estestvo2', href:'estestvo/index.html', art:'estestvo', color:'#6FBF73', title:'estestvo_title', descText:'Исследователь, растения, животные, воздух, вода, космос и магниты'},")
     sub.append("    {id:'dig2', href:'digital/index.html', art:'digital', color:'#5EC3E8', titleText:'Цифровая грамотность', descText:'Компьютер, поиск в сети, Scratch и роботы'},")
-    soon = [('math2', 'math', '#FFC93C', 'math_title', 'math_desc')]
+    sub.append("    {id:'math2', href:'math/index.html', art:'math', color:'#FFC93C', title:'math_title', descText:'Числа до 100, умножение и деление, периметр, время и задачи'},")
+    soon = []
     for sid, art, col, t, d in soon:
         sub.append("    {id:'%s', soon:true, href:'#', art:'%s', color:'%s', title:'%s', desc:'%s'}," % (sid, art, col, t, d))
     sub.append("    {id:'kaz2', soon:true, href:'#', art:'kaz', color:'#3FB088', titleText:'Қазақ тілі', descText:'Ана тілі, оқу және жазу'},")
