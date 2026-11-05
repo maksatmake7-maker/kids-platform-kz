@@ -6,7 +6,7 @@
 import re, os, importlib.util
 _sp = importlib.util.spec_from_file_location('mt', 'tools/modernize-trainers.py'); MT = importlib.util.module_from_spec(_sp); _sp.loader.exec_module(MT)
 KZ_VOICE = False
-TRAINERS = {'fizra', 'izo', 'muzyka', 'trud'}   # предметы, у которых тренажёры уже переведены на казахский (остальные добавляются по мере перевода)
+TRAINERS = {'fizra', 'izo', 'muzyka', 'trud', 'estestvo'}   # предметы, у которых тренажёры уже переведены на казахский (остальные добавляются по мере перевода)
 # предмет (папка) -> (заголовок страницы, ключ курса в русской версии)
 READY = {'fizra': ('Дене шынықтыру', 'fiz2-course.html'), 'izo': ('Бейнелеу өнері', 'izo2-course.html'),
          'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html'),
