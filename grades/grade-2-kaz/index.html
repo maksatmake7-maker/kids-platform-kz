@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<script src="../../assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<script src="../../assets/stats.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Қазақ бөлімі 2 сынып — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="stylesheet" href="../../assets/world.css">
+<link rel="stylesheet" href="../../assets/hub.css">
+</head>
+<body class="w-page">
+
+<header>
+  <a href="../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button class="active" data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
+  </div>
+</header>
+
+<div class="hub-top"><a href="../../grade-picker.html?dir=kz" class="back-link" id="hubBack">← К выбору класса</a></div>
+
+<div id="hub"></div>
+
+<footer data-i18n="footer"></footer>
+
+<script src="../../assets/i18n.js"></script>
+<script src="../../assets/progress.js"></script>
+<script src="../../assets/barsik.js"></script>
+<script src="../../assets/world.js"></script>
+<script>
+window.HUB = {
+  grade: 2, dir: 'kz', lang: 'kz', tag: 'kaz_direction_grade2_title', h2: 'hub_title', lead: 'kaz_direction_desc',
+  subjects: [
+    {id:'fizra2', href:'fizra/index.html', art:'fizra', color:'#4DB6AC', titleText:'Физическая культура', descText:'Здоровье, разминка, бег, игры и честная игра'},
+    {id:'izo2', href:'izo/index.html', art:'izo', color:'#E8618C', titleText:'Изобразительное искусство', descText:'Краски, линии, лепка, узоры и поделки'},
+    {id:'muzyka2', href:'muzyka/index.html', art:'muzyka', color:'#C77DD9', titleText:'Музыка', descText:'Слушаем музыку, ритм, ноты, инструменты и песни'},
+    {id:'trud2', href:'trud/index.html', art:'trud', color:'#8C6F4E', titleText:'Трудовое обучение', descText:'Материалы, инструменты, поделки и выставка'},
+    {id:'math2', soon:true, href:'#', art:'math', color:'#FFC93C', title:'math_title', desc:'math_desc'},
+    {id:'estestvo2', soon:true, href:'#', art:'estestvo', color:'#6FBF73', title:'estestvo_title', desc:'hub_animalclass_desc'},
+    {id:'poznanie2', soon:true, href:'#', art:'poznanie', color:'#F0954C', title:'poznanie_title', desc:'poznanie_desc'},
+    {id:'dig2', soon:true, href:'#', art:'digital', color:'#5EC3E8', titleText:'Цифровая грамотность', descText:'Компьютер, поиск в сети, Scratch и роботы'},
+    {id:'kaz2', soon:true, href:'#', art:'kaz', color:'#3FB088', titleText:'Қазақ тілі', descText:'Ана тілі, оқу және жазу'},
+  ]
+};
+</script>
+<script src="../../assets/hub.js"></script>
+</body>
+</html>

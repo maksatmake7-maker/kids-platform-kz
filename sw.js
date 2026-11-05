@@ -6,7 +6,7 @@
    • аудио и видео НЕ сохраняются (браузер запрашивает их кусками) — без интернета голос Барсика не звучит, остаётся текст;
    • чужие адреса (сервер прогресса на Railway, шрифты) не трогаются.
    Чтобы сбросить сохранённое после крупных изменений, поменяйте V. */
-const V = 'bilim-v8';
+const V = 'bilim-v9';
 const SHELL = [
   './', 'index.html', 'grade-picker.html', 'offline.html', 'manifest.webmanifest',
   'assets/pwa/icon-192.png', 'assets/pwa/icon-512.png',
@@ -16,7 +16,7 @@ const SHELL = [
   'assets/house.js', 'assets/house.css', 'assets/house-i18n.js', 'assets/house-back.js', 'assets/gift.css',
   'house/index.html', 'house/wardrobe.html', 'house/attic.html', 'gift/index.html', 'gift/gift-data.js',
   'assets/album.js', 'assets/album-data.js', 'assets/album.css',
-  'grades/grade-1/index.html', 'grades/grade-1-kaz/index.html', 'grades/grade-2/index.html', 'grades/grade-3/index.html', 'grades/grade-4/index.html'
+  'grades/grade-1/index.html', 'grades/grade-1-kaz/index.html', 'grades/grade-2/index.html', 'grades/grade-2-kaz/index.html', 'grades/grade-3/index.html', 'grades/grade-4/index.html'
 ];
 
 self.addEventListener('install', function(e){
