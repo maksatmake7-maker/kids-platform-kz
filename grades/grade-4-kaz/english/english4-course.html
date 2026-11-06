@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<script src="../../../assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<script src="../../../assets/stats.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Английский язык 4 класс — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="english">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button class="active" data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Английского языка 4 класса</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Английский язык 4 класс</h1>
+      <p class="ac-sub">15 уроков: звуки, to be, числа, множественное число, местоимения, there is, предлоги, описание, вопросы, мой день, can, хобби, was/were, Present Continuous, письмо</p>
+      <p class="ac-note">Курс для 4 класса (уровень A1.2). Каждый урок: объяснение, игра и проверка.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 16</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>try{localStorage.setItem('bilim_lang_v1','kz')}catch(e){}</script>
+<script>window.BILIM_NO_VOICE=1</script>
+<style>#ac-speak,.mxs-snd,.mxs-replay{display:none !important}</style>
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/english4/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/english4/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_english4course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Ты прошёл курс «Английский язык 4 класса». Теперь можно повторять темы в играх.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Игры по английскому языку</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Верно', 'Неверно'], ans: it.a, hint: it.h }; };
+}
+GENS.en41q = mkQuiz([{"q": "Вставь слово: The … is on the sea.  (Корабль в море)", "a": "ship", "w": ["chip", "tip", "am"], "h": "Буквы sh дают звук «ш»."}, {"q": "Вставь слово: Sit on the ….  (Сядь на стул)", "a": "chair", "w": ["share", "three", "am"], "h": "Ch в начале слова — звук «ч»."}, {"q": "Вставь слово: I have … pens.  (У меня три ручки)", "a": "three", "w": ["tree", "free", "am"], "h": "Th — язык между зубами."}, {"q": "Вставь слово: cat — …  (Кошка — шляпа)", "a": "hat", "w": ["dog", "cup", "am"], "h": "Cat и hat заканчиваются одинаково: -at."}, {"q": "Вставь слово: I am read….  (Я читаю)", "a": "ing", "w": ["ed", "er", "am"], "h": "Окончание -ing показывает действие сейчас."}, {"q": "Вставь слово: Look at the …!  (Посмотри на звезду)", "a": "star", "w": ["tar", "sar", "am"], "h": "St — два звука рядом: «с» и «т»."}, {"q": "Вставь слово: The … is fast.  (Самолёт быстрый)", "a": "plane", "w": ["pane", "lane", "am"], "h": "Pl — два звука подряд: «п» и «л»."}, {"q": "Вставь слово: Give me your ha….  (Дай мне руку)", "a": "nd", "w": ["ng", "nt", "am"], "h": "В слове hand в конце звуки «н» и «д»."}]);
+GENS.en41t = mkTF([{"q": "«ship» начинается со звука «ш».", "a": "Верно", "h": "Верно. Sh — звук «ш»."}, {"q": "«chair» начинается с буквы «s».", "a": "Неверно", "h": "Неверно. Chair начинается с ch."}, {"q": "В слове «three» вначале буквы th.", "a": "Верно", "h": "Верно. Th — особый звук."}, {"q": "Слова «cat» и «hat» рифмуются.", "a": "Верно", "h": "Верно. Оба заканчиваются на -at."}, {"q": "«star» начинается с блока «st».", "a": "Верно", "h": "Верно. St — два звука подряд."}, {"q": "В слове «plane» нет блока «pl».", "a": "Неверно", "h": "Неверно. Plane начинается с pl."}]);
+GENS.en42q = mkQuiz([{"q": "Вставь слово: I … Aidar.  (Я Айдар)", "a": "am", "w": ["is", "are", "a"], "h": "С I говорим am."}, {"q": "Вставь слово: He … my friend.  (Он мой друг)", "a": "is", "w": ["am", "are", "a"], "h": "С he, she, it говорим is."}, {"q": "Вставь слово: We … from Kazakhstan.  (Мы из Казахстана)", "a": "are", "w": ["is", "am", "a"], "h": "С we, you, they говорим are."}, {"q": "Вставь слово: They … teachers.  (Они учителя)", "a": "are", "w": ["is", "am", "a"], "h": "С they говорим are."}, {"q": "Вставь слово: … you ready?  (Ты готов)", "a": "Are", "w": ["Is", "Am", "am"], "h": "В вопросе are ставим вперёд: Are you…?"}, {"q": "Вставь слово: She … hungry.  (Она не голодна)", "a": "is not", "w": ["are not", "am not", "am"], "h": "Для отрицания добавляем not: is not."}, {"q": "Вставь слово: I … nine years old.  (Мне девять лет)", "a": "am", "w": ["have", "is", "a"], "h": "Возраст: I am … years old."}, {"q": "Вставь слово: Who … your teacher?  (Кто твой учитель)", "a": "is", "w": ["are", "am", "a"], "h": "Who is — кто он, кто она."}, {"q": "Вставь слово: These … my friends.  (Это мои друзья)", "a": "are", "w": ["is", "am", "a"], "h": "Друзей много — are."}, {"q": "Вставь слово: … mum at home?  (Мама дома)", "a": "Is", "w": ["Are", "Am", "am"], "h": "С mum говорим is: Is mum…?"}]);
+GENS.en42t = mkTF([{"q": "С «I» говорим «am».", "a": "Верно", "h": "Верно. I am."}, {"q": "С «he» говорим «are».", "a": "Неверно", "h": "Неверно. He is."}, {"q": "С «they» говорим «are».", "a": "Верно", "h": "Верно. They are."}, {"q": "«She is» значит «Она есть, она».", "a": "Верно", "h": "Верно. She is — она …"}, {"q": "Вопрос: «Is you ready?»", "a": "Неверно", "h": "Неверно. Are you ready?"}, {"q": "«I am nine» значит «Мне девять лет».", "a": "Верно", "h": "Верно. Возраст: I am … years old."}]);
+GENS.en43q = mkQuiz([{"q": "Вставь слово: The … lesson.  (Первый урок)", "a": "first", "w": ["one", "third", "am"], "h": "First — первый."}, {"q": "Вставь слово: … children.  (Двадцать детей)", "a": "Twenty", "w": ["Twelve", "Two", "am"], "h": "Twenty — 20, twelve — 12."}, {"q": "Вставь слово: The … place.  (Третье место)", "a": "third", "w": ["three", "thirty", "am"], "h": "Third — третий, three — три."}, {"q": "Вставь слово: I am ….  (Мне тринадцать)", "a": "thirteen", "w": ["thirty", "three", "am"], "h": "Thirteen — 13, thirty — 30."}, {"q": "Вставь слово: A … pupils.  (Сто учеников)", "a": "hundred", "w": ["thousand", "tenth", "am"], "h": "A hundred — 100."}, {"q": "Вставь слово: The … of March.  (Пятое марта)", "a": "fifth", "w": ["five", "fifty", "am"], "h": "Fifth — пятый, five — пять."}, {"q": "Вставь слово: There are … children in class.  (В классе двенадцать детей)", "a": "twelve", "w": ["twenty", "two", "am"], "h": "Twelve — 12."}, {"q": "Вставь слово: This is my … place.  (Это моё девятое место)", "a": "ninth", "w": ["nine", "ninety", "am"], "h": "Ninth — девятый."}, {"q": "Вставь слово: A … years.  (Тысяча лет)", "a": "thousand", "w": ["hundred", "tenth", "am"], "h": "A thousand — 1000."}]);
+GENS.en43t = mkTF([{"q": "«first» — это «первый».", "a": "Верно", "h": "Верно. First — первый."}, {"q": "«thirteen» — это 30.", "a": "Неверно", "h": "Неверно. Thirteen — 13, thirty — 30."}, {"q": "«a hundred» — это 100.", "a": "Верно", "h": "Верно. A hundred — 100."}, {"q": "«a thousand» — это 100.", "a": "Неверно", "h": "Неверно. A thousand — 1000."}, {"q": "«third» — это «третий».", "a": "Верно", "h": "Верно. Third — третий."}, {"q": "«fifty» — это 15.", "a": "Неверно", "h": "Неверно. Fifty — 50, fifteen — 15."}]);
+GENS.en44q = mkQuiz([{"q": "Вставь слово: Three ….  (Три книги)", "a": "books", "w": ["book", "bookes", "am"], "h": "Когда много, добавляем -s."}, {"q": "Вставь слово: Two ….  (Две коробки)", "a": "boxes", "w": ["boxs", "box", "am"], "h": "После x, s, ch, sh добавляем -es."}, {"q": "Вставь слово: I have … apple.  (У меня есть яблоко)", "a": "an", "w": ["a", "the", "am"], "h": "Перед гласным звуком ставим an."}, {"q": "Вставь слово: This is … book.  (Это книга Айдара)", "a": "Aidar’s", "w": ["Aidars", "Aidars’", "am"], "h": "Принадлежность: имя + ’s."}, {"q": "Вставь слово: Four ….  (Четверо детей)", "a": "children", "w": ["childs", "childrens", "am"], "h": "Child — особая форма children."}, {"q": "Вставь слово: He is … friend.  (Он друг)", "a": "a", "w": ["an", "—", "am"], "h": "Перед согласным звуком ставим a."}, {"q": "Вставь слово: Two ….  (Две женщины)", "a": "women", "w": ["womans", "womens", "am"], "h": "Woman — особая форма women."}, {"q": "Вставь слово: … sun is bright.  (Солнце яркое)", "a": "The", "w": ["A", "An", "am"], "h": "Одно известное нам солнце — the."}, {"q": "Вставь слово: These are my ….  (Это мои зубы)", "a": "teeth", "w": ["tooths", "toothes", "am"], "h": "Tooth — особая форма teeth."}, {"q": "Вставь слово: It is … ball.  (Это мяч Дины)", "a": "Dina’s", "w": ["Dinas", "Dina", "am"], "h": "Принадлежность: имя + ’s."}]);
+GENS.en44t = mkTF([{"q": "«a» ставим перед гласным звуком.", "a": "Неверно", "h": "Неверно. Перед гласным — an."}, {"q": "«an» ставим перед гласным звуком.", "a": "Верно", "h": "Верно. An apple."}, {"q": "Множественное от «box» — «boxes».", "a": "Верно", "h": "Верно. После x — -es."}, {"q": "Множественное от «child» — «childs».", "a": "Неверно", "h": "Неверно. Child — children."}, {"q": "«Aidar’s book» значит «книга Айдара».", "a": "Верно", "h": "Верно. ’s показывает, чьё."}, {"q": "Множественное от «man» — «men».", "a": "Верно", "h": "Верно. Особая форма."}]);
+GENS.en45q = mkQuiz([{"q": "Вставь слово: … is my pencil.  (Это мой карандаш)", "a": "This", "w": ["These", "Those", "am"], "h": "This — этот (один рядом)."}, {"q": "Вставь слово: … houses are far.  (Те дома далеко)", "a": "Those", "w": ["This", "That", "am"], "h": "Those — те (много, далеко)."}, {"q": "Вставь слово: … books are interesting.  (Эти книги интересные)", "a": "These", "w": ["This", "That", "am"], "h": "These — эти (много, рядом)."}, {"q": "Вставь слово: Give … the pen, please.  (Дай мне ручку)", "a": "me", "w": ["I", "my", "am"], "h": "После глагола — me (меня, мне)."}, {"q": "Вставь слово: This is … class.  (Это наш класс)", "a": "our", "w": ["we", "us", "am"], "h": "Our — наш; we — мы."}, {"q": "Вставь слово: This bag is ….  (Эта сумка моя)", "a": "mine", "w": ["my", "me", "am"], "h": "Mine — мой (без существительного)."}, {"q": "Вставь слово: We like ….  (Мы любим её)", "a": "her", "w": ["she", "hers", "am"], "h": "После глагола — her."}, {"q": "Вставь слово: Is that book …?  (Та книга твоя)", "a": "yours", "w": ["you", "your", "am"], "h": "Yours — твой (без существительного)."}, {"q": "Вставь слово: He likes ….  (Он любит их)", "a": "them", "w": ["they", "their", "am"], "h": "После глагола — them."}, {"q": "Вставь слово: They help ….  (Они помогают нам)", "a": "us", "w": ["we", "our", "am"], "h": "После глагола — us."}]);
+GENS.en45t = mkTF([{"q": "«This» — этот предмет рядом.", "a": "Верно", "h": "Верно. This — этот."}, {"q": "«Those» — это один предмет.", "a": "Неверно", "h": "Неверно. Those — те (много)."}, {"q": "«me» значит «меня, мне».", "a": "Верно", "h": "Верно. Me — меня, мне."}, {"q": "После глагола ставим «they».", "a": "Неверно", "h": "Неверно. После глагола — them."}, {"q": "«mine» значит «мой» (без слова после).", "a": "Верно", "h": "Верно. This pencil is mine."}, {"q": "«your» и «yours» — одно и то же.", "a": "Неверно", "h": "Неверно. Your book / the book is yours."}]);
+GENS.en46q = mkQuiz([{"q": "Вставь слово: I … a dog.  (У меня есть собака)", "a": "have got", "w": ["has got", "is got", "am"], "h": "С I говорим have got."}, {"q": "Вставь слово: She … a cat.  (У неё есть кошка)", "a": "has got", "w": ["have got", "is got", "am"], "h": "С he, she, it говорим has got."}, {"q": "Вставь слово: There … a lamp in the room.  (В комнате лампа)", "a": "is", "w": ["are", "am", "a"], "h": "Один предмет — there is."}, {"q": "Вставь слово: There … many desks in the class.  (В классе много парт)", "a": "are", "w": ["is", "am", "a"], "h": "Много предметов — there are."}, {"q": "Вставь слово: We … a rabbit.  (У нас нет кролика)", "a": "haven’t got", "w": ["hasn’t got", "aren’t got", "am"], "h": "Отрицание: haven’t got."}, {"q": "Вставь слово: … you got a hamster?  (У тебя есть хомяк)", "a": "Have", "w": ["Has", "Are", "am"], "h": "Вопрос: Have + you + got?"}, {"q": "Вставь слово: … he got a parrot?  (У него есть попугай)", "a": "Has", "w": ["Have", "Is", "am"], "h": "С he говорим Has he got?"}, {"q": "Вставь слово: There … any windows in the library.  (В библиотеке нет окон)", "a": "aren’t", "w": ["isn’t", "haven’t", "am"], "h": "Отрицание со многими: there aren’t."}, {"q": "Вставь слово: … there a board in the class?  (В классе есть доска)", "a": "Is", "w": ["Are", "Has", "am"], "h": "Вопрос с одним предметом: Is there…?"}]);
+GENS.en46t = mkTF([{"q": "С «I» говорим «have got».", "a": "Верно", "h": "Верно. I have got."}, {"q": "С «she» говорим «have got».", "a": "Неверно", "h": "Неверно. She has got."}, {"q": "«There is» — для одного предмета.", "a": "Верно", "h": "Верно. There is a book."}, {"q": "«There is» — для многих предметов.", "a": "Неверно", "h": "Неверно. There are many books."}, {"q": "Вопрос: «Has he got a bike?»", "a": "Верно", "h": "Верно. С he — has."}, {"q": "Отрицание: «She haven’t got a pet».", "a": "Неверно", "h": "Неверно. She hasn’t got a pet."}]);
+GENS.en47q = mkQuiz([{"q": "Вставь слово: The book is … the table.  (Книга на столе)", "a": "on", "w": ["in", "under", "am"], "h": "On — на поверхности."}, {"q": "Вставь слово: The cat is … the bed.  (Кошка под кроватью)", "a": "under", "w": ["on", "in", "am"], "h": "Under — под."}, {"q": "Вставь слово: Turn ….  (Поверни налево)", "a": "left", "w": ["right", "straight", "am"], "h": "Left — налево."}, {"q": "Вставь слово: Go ….  (Иди прямо)", "a": "straight", "w": ["left", "across", "am"], "h": "Straight — прямо."}, {"q": "Вставь слово: The bank is … the park.  (Банк рядом с парком)", "a": "next to", "w": ["under", "across", "am"], "h": "Next to — рядом с."}, {"q": "Вставь слово: The school is … the shop and the park.  (Школа между магазином и парком)", "a": "between", "w": ["behind", "under", "am"], "h": "Between — между двумя."}, {"q": "Вставь слово: We are … the classroom.  (Мы в классе)", "a": "in", "w": ["on", "at", "am"], "h": "In — внутри."}, {"q": "Вставь слово: Go … the road.  (Перейди дорогу)", "a": "across", "w": ["along", "under", "am"], "h": "Across — на другую сторону."}, {"q": "Вставь слово: Go … the river.  (Иди вдоль реки)", "a": "along", "w": ["across", "between", "am"], "h": "Along — вдоль."}, {"q": "Вставь слово: See you … five o’clock.  (Встретимся в пять часов)", "a": "at", "w": ["in", "on", "am"], "h": "Точное время — at."}]);
+GENS.en47t = mkTF([{"q": "«under» значит «под».", "a": "Верно", "h": "Верно. Under — под."}, {"q": "«left» значит «направо».", "a": "Неверно", "h": "Неверно. Left — налево, right — направо."}, {"q": "«between» — между двумя предметами.", "a": "Верно", "h": "Верно. Between."}, {"q": "«go straight» значит «иди прямо».", "a": "Верно", "h": "Верно. Straight — прямо."}, {"q": "«across» значит «вдоль».", "a": "Неверно", "h": "Неверно. Across — через; along — вдоль."}, {"q": "«next to» значит «рядом с».", "a": "Верно", "h": "Верно. Next to."}]);
+GENS.en48q = mkQuiz([{"q": "Вставь слово: This is … big brother.  (Это мой старший брат)", "a": "my", "w": ["me", "I", "am"], "h": "My — мой (перед словом)."}, {"q": "Вставь слово: She is ….  (Она добрая)", "a": "kind", "w": ["kindly", "kinds", "am"], "h": "После is идёт слово-описание."}, {"q": "Вставь слово: … sister is tall.  (Его сестра высокая)", "a": "His", "w": ["He", "Him", "am"], "h": "His — его (перед словом)."}, {"q": "Вставь слово: … dog is small.  (Её собака маленькая)", "a": "Her", "w": ["She", "His", "am"], "h": "Her — её."}, {"q": "Вставь слово: He is a … boy.  (Он умный мальчик)", "a": "clever", "w": ["cleverly", "clevers", "am"], "h": "Прилагательное стоит перед словом."}, {"q": "Вставь слово: This bag is ….  (Эта сумка тяжёлая)", "a": "heavy", "w": ["light", "thin", "am"], "h": "Heavy — тяжёлый."}, {"q": "Вставь слово: They are … children.  (Они храбрые дети)", "a": "brave", "w": ["braves", "bravely", "am"], "h": "Прилагательное не меняется."}, {"q": "Вставь слово: We love … new classroom.  (Мы любим наш новый класс)", "a": "our", "w": ["we", "us", "am"], "h": "Our — наш."}, {"q": "Вставь слово: This is … beautiful house.  (Это их красивый дом)", "a": "their", "w": ["they", "them", "am"], "h": "Their — их."}]);
+GENS.en48t = mkTF([{"q": "«tall» значит «высокий».", "a": "Верно", "h": "Верно. Tall — высокий."}, {"q": "«his» значит «её».", "a": "Неверно", "h": "Неверно. His — его, her — её."}, {"q": "Прилагательное стоит перед словом: «a big dog».", "a": "Верно", "h": "Верно. Big dog."}, {"q": "«kind» значит «злой».", "a": "Неверно", "h": "Неверно. Kind — добрый."}, {"q": "«their» значит «их».", "a": "Верно", "h": "Верно. Their house — их дом."}, {"q": "«light» значит «тяжёлый».", "a": "Неверно", "h": "Неверно. Light — лёгкий; heavy — тяжёлый."}]);
+GENS.en49q = mkQuiz([{"q": "Вставь слово: … is this?  (Кто это)", "a": "Who", "w": ["What", "Where", "am"], "h": "Who — про людей."}, {"q": "Вставь слово: … is this?  (Что это)", "a": "What", "w": ["Who", "Where", "am"], "h": "What — про предметы."}, {"q": "Вставь слово: … is my bag?  (Где мой портфель)", "a": "Where", "w": ["Who", "Whose", "am"], "h": "Where — где."}, {"q": "Вставь слово: … pen is this?  (Чья это ручка)", "a": "Whose", "w": ["Who", "Which", "am"], "h": "Whose — чей."}, {"q": "Вставь слово: How … books are there?  (Сколько здесь книг)", "a": "many", "w": ["much", "old", "am"], "h": "Книги можно посчитать — how many."}, {"q": "Вставь слово: How … are you?  (Сколько тебе лет)", "a": "old", "w": ["many", "long", "am"], "h": "How old — сколько лет."}, {"q": "Вставь слово: … colour do you like?  (Какой цвет тебе нравится)", "a": "Which", "w": ["Who", "Where", "am"], "h": "Which — какой из нескольких."}, {"q": "Вставь слово: … is your English lesson?  (Когда у тебя урок английского)", "a": "When", "w": ["Where", "Why", "am"], "h": "When — когда."}, {"q": "Вставь слово: … are you sad?  (Почему ты грустный)", "a": "Why", "w": ["Where", "Who", "am"], "h": "Why — почему."}, {"q": "Вставь слово: … your name?  (Как тебя зовут)", "a": "What’s", "w": ["Who’s", "Where’s", "am"], "h": "What’s your name? — как тебя зовут."}]);
+GENS.en49t = mkTF([{"q": "«Who» — это «кто».", "a": "Верно", "h": "Верно. Who — кто."}, {"q": "«Where» — это «когда».", "a": "Неверно", "h": "Неверно. Where — где; when — когда."}, {"q": "«How many» — про то, что можно посчитать.", "a": "Верно", "h": "Верно. How many books?"}, {"q": "«Whose» — это «чей».", "a": "Верно", "h": "Верно. Whose pen?"}, {"q": "«Why» — это «как».", "a": "Неверно", "h": "Неверно. Why — почему; how — как."}, {"q": "«How old» — «сколько лет».", "a": "Верно", "h": "Верно. How old are you?"}]);
+GENS.en410q = mkQuiz([{"q": "Вставь слово: I … at seven.  (Я встаю в семь)", "a": "get up", "w": ["gets up", "getting up", "am"], "h": "С I глагол без изменений."}, {"q": "Вставь слово: He … at seven.  (Он встаёт в семь)", "a": "gets up", "w": ["get up", "getting up", "am"], "h": "С he, she, it добавляем -s."}, {"q": "Вставь слово: We … breakfast at eight.  (Мы завтракаем в восемь)", "a": "have", "w": ["has", "having", "am"], "h": "С we говорим have."}, {"q": "Вставь слово: She … to school on foot.  (Она идёт в школу пешком)", "a": "goes", "w": ["go", "going", "am"], "h": "Go → goes (с she)."}, {"q": "Вставь слово: I … do my homework.  (Я всегда делаю уроки)", "a": "always", "w": ["never", "sometimes", "am"], "h": "Always — всегда."}, {"q": "Вставь слово: He … comes late.  (Он никогда не опаздывает)", "a": "never", "w": ["always", "often", "am"], "h": "Never — никогда."}, {"q": "Вставь слово: He … eat fish.  (Он не ест рыбу)", "a": "doesn’t", "w": ["don’t", "isn’t", "am"], "h": "С he отрицание — doesn’t."}, {"q": "Вставь слово: … you like ice cream?  (Ты любишь мороженое)", "a": "Do", "w": ["Does", "Are", "am"], "h": "Вопрос с you: Do you…?"}, {"q": "Вставь слово: … she dance?  (Она танцует)", "a": "Does", "w": ["Do", "Is", "am"], "h": "Вопрос с she: Does she…?"}, {"q": "Вставь слово: We … go to the park.  (Мы иногда ходим в парк)", "a": "sometimes", "w": ["never", "always", "am"], "h": "Sometimes — иногда."}]);
+GENS.en410t = mkTF([{"q": "«always» значит «всегда».", "a": "Верно", "h": "Верно. Always — всегда."}, {"q": "«never» значит «часто».", "a": "Неверно", "h": "Неверно. Never — никогда; often — часто."}, {"q": "С «he» глагол получает «-s»: He gets up.", "a": "Верно", "h": "Верно. He gets up."}, {"q": "С «I» говорим «I gets up».", "a": "Неверно", "h": "Неверно. I get up."}, {"q": "Вопрос: «Does she dance?»", "a": "Верно", "h": "Верно. С she — does."}, {"q": "Отрицание с he: «He don’t like fish».", "a": "Неверно", "h": "Неверно. He doesn’t like fish."}]);
+GENS.en411q = mkQuiz([{"q": "Вставь слово: I … swim.  (Я умею плавать)", "a": "can", "w": ["must", "am", "a"], "h": "Can — умею."}, {"q": "Вставь слово: … I come in?  (Можно мне войти)", "a": "Can", "w": ["Must", "Are", "am"], "h": "Can I…? — можно мне?"}, {"q": "Вставь слово: … your book.  (Открой книгу)", "a": "Open", "w": ["Opens", "Opening", "am"], "h": "Просьба — глагол без изменений."}, {"q": "Вставь слово: You … run in the classroom.  (Нельзя бегать в классе)", "a": "mustn’t", "w": ["must", "can’t", "am"], "h": "Mustn’t — нельзя."}, {"q": "Вставь слово: We … listen to the teacher.  (Мы должны слушать учителя)", "a": "must", "w": ["mustn’t", "can’t", "am"], "h": "Must — должен."}, {"q": "Вставь слово: … play!  (Давай играть)", "a": "Let’s", "w": ["Lets", "Let", "am"], "h": "Let’s + глагол."}, {"q": "Вставь слово: … talk loudly!  (Не говори громко)", "a": "Don’t", "w": ["Not", "Doesn’t", "am"], "h": "Запрет: Don’t + глагол."}, {"q": "Вставь слово: She … swim.  (Она не умеет плавать)", "a": "can’t", "w": ["mustn’t", "doesn’t", "am"], "h": "Can’t — не умеет."}, {"q": "Вставь слово: You … wash your hands.  (Нужно мыть руки)", "a": "must", "w": ["can", "mustn’t", "am"], "h": "Must — нужно."}]);
+GENS.en411t = mkTF([{"q": "«can’t» значит «не могу».", "a": "Верно", "h": "Верно. Can’t."}, {"q": "«must» значит «нельзя».", "a": "Неверно", "h": "Неверно. Must — должен; mustn’t — нельзя."}, {"q": "«mustn’t» значит «нельзя».", "a": "Верно", "h": "Верно. Mustn’t."}, {"q": "После «let’s» глагол с «-ing».", "a": "Неверно", "h": "Неверно. Let’s + глагол без изменений."}, {"q": "«Can I…?» значит «Можно мне…?»", "a": "Верно", "h": "Верно. Can I come in?"}, {"q": "«Don’t» — запрет.", "a": "Верно", "h": "Верно. Don’t run!"}]);
+GENS.en412q = mkQuiz([{"q": "Вставь слово: I like ….  (Я люблю читать)", "a": "reading", "w": ["read", "reads", "am"], "h": "После like глагол с -ing."}, {"q": "Вставь слово: She … dancing.  (Она любит танцевать)", "a": "likes", "w": ["like", "liking", "am"], "h": "С she — likes."}, {"q": "Вставь слово: We … swimming.  (Мы любим плавать)", "a": "like", "w": ["likes", "liking", "am"], "h": "С we — like."}, {"q": "Вставь слово: I go ….  (Я хожу плавать)", "a": "swimming", "w": ["swim", "swims", "am"], "h": "Go + глагол с -ing."}, {"q": "Вставь слово: He … to play football.  (Он хочет играть в футбол)", "a": "wants", "w": ["want", "wanting", "am"], "h": "С he — wants."}, {"q": "Вставь слово: I enjoy ….  (Мне нравится рисовать)", "a": "drawing", "w": ["draw", "draws", "am"], "h": "После enjoy глагол с -ing."}, {"q": "Вставь слово: I study … be a doctor.  (Я учусь, чтобы стать врачом)", "a": "to", "w": ["for", "by", "am"], "h": "Цель — to + глагол."}, {"q": "Вставь слово: We go ….  (Мы ходим кататься на велосипедах)", "a": "cycling", "w": ["cycle", "cycles", "am"], "h": "Go + глагол с -ing."}, {"q": "Вставь слово: She … to play tennis.  (Она хотела бы поиграть в теннис)", "a": "would like", "w": ["like", "wants", "am"], "h": "Would like to — хотел бы."}]);
+GENS.en412t = mkTF([{"q": "После «like» глагол ставим с «-ing»: «I like swimming».", "a": "Верно", "h": "Верно. Like + -ing."}, {"q": "«go swimming» значит «ходить плавать».", "a": "Верно", "h": "Верно. Go swimming."}, {"q": "«hate» значит «обожаю».", "a": "Неверно", "h": "Неверно. Hate — ненавижу; love — обожаю."}, {"q": "«would like» значит «хотел бы».", "a": "Верно", "h": "Верно. Would like."}, {"q": "«enjoy» значит «ненавижу».", "a": "Неверно", "h": "Неверно. Enjoy — получаю удовольствие."}, {"q": "«I want to play» — правильно.", "a": "Верно", "h": "Верно. Want + to + глагол."}]);
+GENS.en413q = mkQuiz([{"q": "Вставь слово: Yesterday I … at home.  (Вчера я был дома)", "a": "was", "w": ["were", "am", "a"], "h": "I → was."}, {"q": "Вставь слово: They … in the park.  (Они были в парке)", "a": "were", "w": ["was", "are", "am"], "h": "They → were."}, {"q": "Вставь слово: She … at school.  (Она была в школе)", "a": "was", "w": ["were", "is", "am"], "h": "She → was."}, {"q": "Вставь слово: We … at the zoo.  (Мы были в зоопарке)", "a": "were", "w": ["was", "are", "am"], "h": "We → were."}, {"q": "Вставь слово: The film … interesting.  (Фильм был интересный)", "a": "was", "w": ["were", "is", "am"], "h": "Один предмет — was."}, {"q": "Вставь слово: He … at home.  (Он не был дома)", "a": "wasn’t", "w": ["weren’t", "isn’t", "am"], "h": "Отрицание: wasn’t."}, {"q": "Вставь слово: … you at school yesterday?  (Ты вчера был в школе)", "a": "Were", "w": ["Was", "Are", "am"], "h": "С you → were."}, {"q": "Вставь слово: Where … you yesterday?  (Где ты была вчера)", "a": "were", "w": ["was", "are", "am"], "h": "С you → were."}, {"q": "Вставь слово: The children … at the cinema.  (Дети были в кино)", "a": "were", "w": ["was", "is", "am"], "h": "Много — were."}]);
+GENS.en413t = mkTF([{"q": "С «I» говорим «was».", "a": "Верно", "h": "Верно. I was."}, {"q": "С «they» говорим «was».", "a": "Неверно", "h": "Неверно. They were."}, {"q": "«yesterday» значит «вчера».", "a": "Верно", "h": "Верно. Yesterday."}, {"q": "«wasn’t» значит «не был».", "a": "Верно", "h": "Верно. Wasn’t."}, {"q": "«were» — это «был» (один человек).", "a": "Неверно", "h": "Неверно. Were — были; was — был."}, {"q": "Вопрос: «Was you at home?»", "a": "Неверно", "h": "Неверно. Were you at home?"}]);
+GENS.en414q = mkQuiz([{"q": "Вставь слово: I am … now.  (Я читаю сейчас)", "a": "reading", "w": ["read", "reads", "am"], "h": "Am + глагол с -ing."}, {"q": "Вставь слово: She is ….  (Она бежит)", "a": "running", "w": ["run", "runs", "am"], "h": "Is + глагол с -ing."}, {"q": "Вставь слово: They are ….  (Они играют)", "a": "playing", "w": ["play", "plays", "am"], "h": "Are + глагол с -ing."}, {"q": "Вставь слово: He is … a letter.  (Он пишет письмо)", "a": "writing", "w": ["write", "writeing", "am"], "h": "Write → writing (e пропадает)."}, {"q": "Вставь слово: We are ….  (Мы едим)", "a": "eating", "w": ["eat", "eats", "am"], "h": "Are + глагол с -ing."}, {"q": "Вставь слово: What are you …?  (Что ты делаешь)", "a": "doing", "w": ["do", "does", "am"], "h": "Are you + глагол с -ing."}, {"q": "Вставь слово: The cat ….  (Кот спит)", "a": "is sleeping", "w": ["sleeping", "are sleeping", "am"], "h": "Is + sleeping."}, {"q": "Вставь слово: The children ….  (Дети не бегут)", "a": "aren’t running", "w": ["isn’t running", "don’t run", "am"], "h": "Отрицание: aren’t + глагол с -ing."}, {"q": "Вставь слово: … she sitting?  (Она сидит)", "a": "Is", "w": ["Are", "Does", "am"], "h": "Вопрос: Is she sitting?"}]);
+GENS.en414t = mkTF([{"q": "Present continuous: «I am reading».", "a": "Верно", "h": "Верно. Am + глагол с -ing."}, {"q": "С «she» говорим «She am running».", "a": "Неверно", "h": "Неверно. She is running."}, {"q": "«now» значит «сейчас».", "a": "Верно", "h": "Верно. Now."}, {"q": "«write» → «writing».", "a": "Верно", "h": "Верно. Пишем -ing без e."}, {"q": "«running» — это «бегать».", "a": "Неверно", "h": "Неверно. Running — бегу, бегущий."}, {"q": "Вопрос: «Is she sitting?»", "a": "Верно", "h": "Верно. Is + she + sitting."}]);
+GENS.en415q = mkQuiz([{"q": "Вставь слово: I like tea … milk.  (Я люблю чай и молоко)", "a": "and", "w": ["but", "or", "am"], "h": "And — и."}, {"q": "Вставь слово: I like tea, … I don’t like coffee.  (Я люблю чай, но не люблю кофе)", "a": "but", "w": ["and", "or", "am"], "h": "But — но."}, {"q": "Вставь слово: Do you want tea … coffee?  (Хочешь чай или кофе)", "a": "or", "w": ["and", "but", "am"], "h": "Or — или."}, {"q": "Вставь слово: … Aidar,  (Дорогой Айдар,)", "a": "Dear", "w": ["Love", "Bye", "am"], "h": "Письмо начинаем с Dear."}, {"q": "Вставь слово: We went to the park … we went home.  (Мы пошли в парк, а потом домой)", "a": "and then", "w": ["but then", "or then", "am"], "h": "Then — потом."}, {"q": "Вставь слово: My name is ….  (Меня зовут Дана)", "a": "Dana", "w": ["dana", "DANA", "am"], "h": "Имена пишем с заглавной буквы."}, {"q": "Вставь слово: What is your name…  (Как тебя зовут)", "a": "?", "w": [".", "!", "am"], "h": "В конце вопроса ставим «?»."}, {"q": "Вставь слово: I am nine years old…  (Мне девять лет)", "a": ".", "w": ["?", ",", "am"], "h": "В конце обычного предложения ставим точку."}, {"q": "Вставь слово: We love football, … we play every day.  (Мы любим футбол, поэтому играем каждый день)", "a": "so", "w": ["but", "or", "am"], "h": "So — поэтому."}]);
+GENS.en415t = mkTF([{"q": "Предложение начинаем с «capital letter».", "a": "Верно", "h": "Верно. Capital letter — заглавная буква."}, {"q": "В конце вопроса ставим «full stop».", "a": "Неверно", "h": "Неверно. В конце вопроса — question mark."}, {"q": "«and» значит «и».", "a": "Верно", "h": "Верно. And — и."}, {"q": "«but» значит «или».", "a": "Неверно", "h": "Неверно. But — но; or — или."}, {"q": "Письмо друзьям начинаем со слова «Dear».", "a": "Верно", "h": "Верно. Dear Aidar."}, {"q": "«because» значит «поэтому».", "a": "Неверно", "h": "Неверно. Because — потому что; so — поэтому."}]);
+const LESSONS = [
+  { id: "en41", icon: "", title: "Sounds — звуки и буквы", goal: "Читать слова с sh, ch, th",
+    steps: [
+      Q("en41s1", "infoTap", "Знакомимся с темой", "Hello! Это Барсик. Давай послушаем английские звуки. Нажимай на карточки.", {"need": 4, "items": [{"k": "sh", "v": "", "t": "Буквы sh читаются как мягкое «ш»: ship, shop, sheep, shirt."}, {"k": "ch", "v": "", "t": "Буквы ch читаются как «ч»: chair, cheese, chicken."}, {"k": "th", "v": "", "t": "Буквы th читаются, когда язык между зубами: three, thank, think."}, {"k": "как читать", "v": "", "t": "Слушай слово, повторяй вслух и сравнивай свой голос с образцом."}]}),
+      Q("en41s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Начинается с sh"}, {"e": "", "k": "Начинается с ch"}, {"e": "", "k": "Начинается с th"}], "items": [{"g": 0, "e": "", "t": "ship", "h": "корабль"}, {"g": 0, "e": "", "t": "shop", "h": "магазин"}, {"g": 0, "e": "", "t": "sheep", "h": "овца"}, {"g": 1, "e": "", "t": "chair", "h": "стул"}, {"g": 1, "e": "", "t": "cheese", "h": "сыр"}, {"g": 1, "e": "", "t": "chicken", "h": "курица"}, {"g": 2, "e": "", "t": "three", "h": "три"}, {"g": 2, "e": "", "t": "thank", "h": "спасибо"}, {"g": 2, "e": "", "t": "think", "h": "думать"}]}),
+      Q("en41s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en41q"]}),
+      Q("en41s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en41t"]})
+    ] },
+  { id: "en42", icon: "", title: "I am, you are, he is", goal: "Говорить о себе и других с глаголом to be",
+    steps: [
+      Q("en42s1", "infoTap", "Знакомимся с темой", "Глагол to be — самый нужный английский глагол. Нажимай на карточки.", {"need": 5, "items": [{"k": "I am", "v": "", "t": "С местоимением I говорим am: I am nine. I’m Aidar."}, {"k": "he, she, it", "v": "", "t": "С he, she, it говорим is: He is a doctor. She is happy."}, {"k": "we, you, they", "v": "", "t": "С we, you, they говорим are: We are friends. They are from China."}, {"k": "вопрос", "v": "", "t": "В вопросе глагол ставим вперёд: Are you ready? Is she a teacher?"}, {"k": "профессии и страны", "v": "", "t": "teacher — учитель, doctor — врач, Kazakhstan — Казахстан, Russia — Россия."}]}),
+      Q("en42s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Профессии"}, {"e": "", "k": "Страны"}, {"e": "", "k": "Как ты себя чувствуешь"}], "items": [{"g": 0, "e": "", "t": "teacher", "h": "учитель"}, {"g": 0, "e": "", "t": "doctor", "h": "врач"}, {"g": 0, "e": "", "t": "driver", "h": "водитель"}, {"g": 1, "e": "", "t": "Kazakhstan", "h": "Казахстан"}, {"g": 1, "e": "", "t": "Russia", "h": "Россия"}, {"g": 1, "e": "", "t": "China", "h": "Китай"}, {"g": 2, "e": "", "t": "happy", "h": "счастливый"}, {"g": 2, "e": "", "t": "sad", "h": "грустный"}, {"g": 2, "e": "", "t": "tired", "h": "усталый"}]}),
+      Q("en42s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en42q"]}),
+      Q("en42s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en42t"]})
+    ] },
+  { id: "en43", icon: "", title: "Numbers — числа до 1000", goal: "Называть числа и порядковые числительные",
+    steps: [
+      Q("en43s1", "infoTap", "Знакомимся с темой", "Считаем по-английски. Нажимай на карточки.", {"need": 5, "items": [{"k": "1–20", "v": "", "t": "one, two, three, … ten, eleven, twelve, thirteen … twenty."}, {"k": "десятки", "v": "", "t": "twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety."}, {"k": "сотни", "v": "", "t": "a hundred — сто, two hundred — двести, a thousand — тысяча."}, {"k": "составные числа", "v": "", "t": "Между десятками и единицами ставим дефис: twenty-one, thirty-five."}, {"k": "порядковые", "v": "", "t": "first, second, third, fourth, fifth — первый, второй, третий, четвёртый, пятый."}]}),
+      Q("en43s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Числа 1–20"}, {"e": "", "k": "Десятки и сотни"}, {"e": "", "k": "Порядковые числа"}], "items": [{"g": 0, "e": "", "t": "one", "h": "один"}, {"g": 0, "e": "", "t": "five", "h": "пять"}, {"g": 0, "e": "", "t": "eight", "h": "восемь"}, {"g": 1, "e": "", "t": "twenty", "h": "двадцать"}, {"g": 1, "e": "", "t": "thirty", "h": "тридцать"}, {"g": 1, "e": "", "t": "fifty", "h": "пятьдесят"}, {"g": 2, "e": "", "t": "first", "h": "первый"}, {"g": 2, "e": "", "t": "second", "h": "второй"}, {"g": 2, "e": "", "t": "third", "h": "третий"}]}),
+      Q("en43s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en43q"]}),
+      Q("en43s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en43t"]})
+    ] },
+  { id: "en44", icon: "", title: "One or many?", goal: "Образовывать множественное число существительных",
+    steps: [
+      Q("en44s1", "infoTap", "Знакомимся с темой", "Один предмет или много? Нажимай на карточки.", {"need": 4, "items": [{"k": "-s", "v": "", "t": "Чаще всего добавляем -s: book — books, pen — pens."}, {"k": "-es", "v": "", "t": "Если слово заканчивается на -s, -x, -ch, -sh, добавляем -es: box — boxes, bus — buses, watch — watches."}, {"k": "особые формы", "v": "", "t": "Есть слова с особой формой: child — children, man — men, woman — women, foot — feet, tooth — teeth."}, {"k": "как запомнить", "v": "", "t": "Особые формы нужно запомнить, как отдельные слова."}]}),
+      Q("en44s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Окончание -s"}, {"e": "", "k": "Окончание -es"}, {"e": "", "k": "Особые формы"}], "items": [{"g": 0, "e": "", "t": "book", "h": "книга"}, {"g": 0, "e": "", "t": "pen", "h": "ручка"}, {"g": 0, "e": "", "t": "cat", "h": "кошка"}, {"g": 1, "e": "", "t": "box", "h": "коробка"}, {"g": 1, "e": "", "t": "bus", "h": "автобус"}, {"g": 1, "e": "", "t": "watch", "h": "часы"}, {"g": 2, "e": "", "t": "child", "h": "ребёнок (children)"}, {"g": 2, "e": "", "t": "man", "h": "мужчина (men)"}, {"g": 2, "e": "", "t": "woman", "h": "женщина (women)"}]}),
+      Q("en44s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en44q"]}),
+      Q("en44s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en44t"]})
+    ] },
+  { id: "en45", icon: "", title: "Pronouns — местоимения", goal: "Использовать личные и притяжательные местоимения",
+    steps: [
+      Q("en45s1", "infoTap", "Знакомимся с темой", "Вместо имён мы говорим местоимениями. Нажимай на карточки.", {"need": 4, "items": [{"k": "кто", "v": "", "t": "I, you, he, she, it, we, they — личные местоимения: кто делает действие."}, {"k": "кого", "v": "", "t": "me, you, him, her, it, us, them — кого или кому: Give it to me."}, {"k": "чей", "v": "", "t": "my, your, his, her, its, our, their — чей: my book, his pen."}, {"k": "пара", "v": "", "t": "I — me — my; he — him — his; she — her — her."}]}),
+      Q("en45s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Кто (подлежащее)"}, {"e": "", "k": "Кого, кому"}, {"e": "", "k": "Чей: мой, твой"}], "items": [{"g": 0, "e": "", "t": "I", "h": "я"}, {"g": 0, "e": "", "t": "you", "h": "ты, вы"}, {"g": 0, "e": "", "t": "he", "h": "он"}, {"g": 1, "e": "", "t": "me", "h": "меня, мне"}, {"g": 1, "e": "", "t": "you", "h": "тебя, тебе"}, {"g": 1, "e": "", "t": "him", "h": "его, ему"}, {"g": 2, "e": "", "t": "my", "h": "мой"}, {"g": 2, "e": "", "t": "your", "h": "твой"}, {"g": 2, "e": "", "t": "his", "h": "его"}]}),
+      Q("en45s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en45q"]}),
+      Q("en45s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en45t"]})
+    ] },
+  { id: "en46", icon: "", title: "I have got, there is", goal: "Говорить о том, что у нас есть, и что где находится",
+    steps: [
+      Q("en46s1", "infoTap", "Знакомимся с темой", "Расскажем о том, что у нас есть. Нажимай на карточки.", {"need": 5, "items": [{"k": "have got", "v": "", "t": "I have got a dog. — У меня есть собака. He has got a cat. — У него есть кошка."}, {"k": "отрицание", "v": "", "t": "I haven’t got a hamster. She hasn’t got a parrot."}, {"k": "вопрос", "v": "", "t": "Have you got a rabbit? — Yes, I have. / No, I haven’t."}, {"k": "there is", "v": "", "t": "There is a lamp in the room. — В комнате есть лампа."}, {"k": "there are", "v": "", "t": "There are two desks in the classroom. — В классе две парты."}]}),
+      Q("en46s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Домашние животные"}, {"e": "", "k": "В комнате"}, {"e": "", "k": "В школе"}], "items": [{"g": 0, "e": "", "t": "dog", "h": "собака"}, {"g": 0, "e": "", "t": "cat", "h": "кошка"}, {"g": 0, "e": "", "t": "rabbit", "h": "кролик"}, {"g": 1, "e": "", "t": "bed", "h": "кровать"}, {"g": 1, "e": "", "t": "table", "h": "стол"}, {"g": 1, "e": "", "t": "lamp", "h": "лампа"}, {"g": 2, "e": "", "t": "library", "h": "библиотека"}, {"g": 2, "e": "", "t": "gym", "h": "спортзал"}, {"g": 2, "e": "", "t": "canteen", "h": "столовая"}]}),
+      Q("en46s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en46q"]}),
+      Q("en46s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en46t"]})
+    ] },
+  { id: "en47", icon: "", title: "Where is it?", goal: "Описывать, где находится предмет, и как пройти",
+    steps: [
+      Q("en47s1", "infoTap", "Знакомимся с темой", "Предлоги места и направления. Нажимай на карточки.", {"need": 4, "items": [{"k": "in, on, under", "v": "", "t": "in — в, on — на, under — под: The cat is under the table."}, {"k": "behind, between", "v": "", "t": "behind — за, between — между: The park is between the shop and the bank."}, {"k": "направления", "v": "", "t": "turn left — поверните налево, turn right — направо, go straight — идите прямо."}, {"k": "места в городе", "v": "", "t": "park — парк, shop — магазин, bank — банк, cinema — кинотеатр, hospital — больница."}]}),
+      Q("en47s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Где находится"}, {"e": "", "k": "Направления"}, {"e": "", "k": "Места в городе"}], "items": [{"g": 0, "e": "", "t": "in", "h": "в"}, {"g": 0, "e": "", "t": "on", "h": "на"}, {"g": 0, "e": "", "t": "under", "h": "под"}, {"g": 1, "e": "", "t": "turn left", "h": "поверни налево"}, {"g": 1, "e": "", "t": "turn right", "h": "поверни направо"}, {"g": 1, "e": "", "t": "go straight", "h": "иди прямо"}, {"g": 2, "e": "", "t": "park", "h": "парк"}, {"g": 2, "e": "", "t": "shop", "h": "магазин"}, {"g": 2, "e": "", "t": "bank", "h": "банк"}]}),
+      Q("en47s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en47q"]}),
+      Q("en47s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en47t"]})
+    ] },
+  { id: "en48", icon: "", title: "Describing — какой он?", goal: "Описывать людей и предметы прилагательными",
+    steps: [
+      Q("en48s1", "infoTap", "Знакомимся с темой", "Прилагательные отвечают на вопрос «какой?». Нажимай на карточки.", {"need": 4, "items": [{"k": "внешность", "v": "", "t": "tall — высокий, short — низкий, thin — худой, young — молодой."}, {"k": "характер", "v": "", "t": "kind — добрый, funny — смешной, clever — умный, shy — застенчивый, brave — смелый."}, {"k": "предметы", "v": "", "t": "big — большой, small — маленький, new — новый, heavy — тяжёлый, light — лёгкий."}, {"k": "порядок слов", "v": "", "t": "Прилагательное стоит перед существительным: a big dog. После to be — отдельно: The dog is big."}]}),
+      Q("en48s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Как выглядит"}, {"e": "", "k": "Какой характер"}, {"e": "", "k": "Какой предмет"}], "items": [{"g": 0, "e": "", "t": "tall", "h": "высокий"}, {"g": 0, "e": "", "t": "short", "h": "низкий"}, {"g": 0, "e": "", "t": "fat", "h": "толстый"}, {"g": 1, "e": "", "t": "kind", "h": "добрый"}, {"g": 1, "e": "", "t": "funny", "h": "смешной"}, {"g": 1, "e": "", "t": "clever", "h": "умный"}, {"g": 2, "e": "", "t": "big", "h": "большой"}, {"g": 2, "e": "", "t": "small", "h": "маленький"}, {"g": 2, "e": "", "t": "new", "h": "новый"}]}),
+      Q("en48s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en48q"]}),
+      Q("en48s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en48t"]})
+    ] },
+  { id: "en49", icon: "", title: "Questions — вопросы", goal: "Задавать вопросы и отвечать на них",
+    steps: [
+      Q("en49s1", "infoTap", "Знакомимся с темой", "Вопросы помогают узнавать новое. Нажимай на карточки.", {"need": 4, "items": [{"k": "who, what, where", "v": "", "t": "who — кто, what — что, where — где, when — когда, why — почему."}, {"k": "which, whose", "v": "", "t": "which — какой (из), whose — чей, how many — сколько (для счётных), how much — сколько (для несчётных)."}, {"k": "how old", "v": "", "t": "How old are you? — Сколько тебе лет? I am nine."}, {"k": "краткие ответы", "v": "", "t": "Do you like tea? — Yes, I do. / No, I don’t."}]}),
+      Q("en49s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Кто, что, где"}, {"e": "", "k": "Какой, чей, сколько"}, {"e": "", "k": "Ответы"}], "items": [{"g": 0, "e": "", "t": "who", "h": "кто"}, {"g": 0, "e": "", "t": "what", "h": "что"}, {"g": 0, "e": "", "t": "where", "h": "где"}, {"g": 1, "e": "", "t": "which", "h": "какой, который"}, {"g": 1, "e": "", "t": "whose", "h": "чей"}, {"g": 1, "e": "", "t": "how many", "h": "сколько (много)"}, {"g": 2, "e": "", "t": "yes, I do", "h": "да"}, {"g": 2, "e": "", "t": "no, I don’t", "h": "нет"}, {"g": 2, "e": "", "t": "at school", "h": "в школе"}]}),
+      Q("en49s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en49q"]}),
+      Q("en49s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en49t"]})
+    ] },
+  { id: "en410", icon: "", title: "My day — мой день", goal: "Рассказывать о своём распорядке дня",
+    steps: [
+      Q("en410s1", "infoTap", "Знакомимся с темой", "Расскажем, как проходит день. Нажимай на карточки.", {"need": 4, "items": [{"k": "действия", "v": "", "t": "get up — вставать, wash — умываться, have breakfast — завтракать, go to school — идти в школу, do homework — делать домашнее задание."}, {"k": "как часто", "v": "", "t": "always — всегда, usually — обычно, often — часто, sometimes — иногда, never — никогда."}, {"k": "время дня", "v": "", "t": "morning — утро, afternoon — день, evening — вечер, night — ночь."}, {"k": "he, she", "v": "", "t": "С he, she, it к глаголу добавляем -s: She gets up at seven."}]}),
+      Q("en410s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Действия за день"}, {"e": "", "k": "Как часто"}, {"e": "", "k": "Время"}], "items": [{"g": 0, "e": "", "t": "get up", "h": "вставать"}, {"g": 0, "e": "", "t": "wash", "h": "умываться"}, {"g": 0, "e": "", "t": "have breakfast", "h": "завтракать"}, {"g": 1, "e": "", "t": "always", "h": "всегда"}, {"g": 1, "e": "", "t": "usually", "h": "обычно"}, {"g": 1, "e": "", "t": "often", "h": "часто"}, {"g": 2, "e": "", "t": "morning", "h": "утро"}, {"g": 2, "e": "", "t": "afternoon", "h": "день"}, {"g": 2, "e": "", "t": "evening", "h": "вечер"}]}),
+      Q("en410s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en410q"]}),
+      Q("en410s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en410t"]})
+    ] },
+  { id: "en411", icon: "", title: "Can, must, let’s", goal: "Говорить, что можем и должны, и предлагать",
+    steps: [
+      Q("en411s1", "infoTap", "Знакомимся с темой", "Помощники can, must и let’s. Нажимай на карточки.", {"need": 4, "items": [{"k": "can", "v": "", "t": "can — могу, умею: I can swim. Can I come in? — Можно войти?"}, {"k": "can’t", "v": "", "t": "can’t — не могу: I can’t dance."}, {"k": "must", "v": "", "t": "must — должен: You must listen. mustn’t — нельзя: You mustn’t run in the corridor."}, {"k": "let’s", "v": "", "t": "Let’s — давай(те): Let’s play! Let’s go!"}]}),
+      Q("en411s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Могу / умею"}, {"e": "", "k": "Правила"}, {"e": "", "k": "Предложения"}], "items": [{"g": 0, "e": "", "t": "can", "h": "могу, умею"}, {"g": 0, "e": "", "t": "can’t", "h": "не могу"}, {"g": 0, "e": "", "t": "Can I", "h": "можно мне"}, {"g": 1, "e": "", "t": "must", "h": "должен"}, {"g": 1, "e": "", "t": "mustn’t", "h": "нельзя"}, {"g": 1, "e": "", "t": "listen", "h": "слушай"}, {"g": 2, "e": "", "t": "let’s", "h": "давай"}, {"g": 2, "e": "", "t": "play", "h": "играть"}, {"g": 2, "e": "", "t": "go", "h": "идти"}]}),
+      Q("en411s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en411q"]}),
+      Q("en411s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en411t"]})
+    ] },
+  { id: "en412", icon: "", title: "Hobbies — увлечения", goal: "Рассказывать о хобби и спорте",
+    steps: [
+      Q("en412s1", "infoTap", "Знакомимся с темой", "Расскажем о любимых занятиях. Нажимай на карточки.", {"need": 4, "items": [{"k": "занятия", "v": "", "t": "reading — чтение, drawing — рисование, swimming — плавание, dancing — танцы, cycling — велоспорт."}, {"k": "спорт", "v": "", "t": "football — футбол, tennis — теннис, chess — шахматы, volleyball — волейбол, karate — карате."}, {"k": "нравится", "v": "", "t": "like — нравится, love — обожаю, enjoy — получаю удовольствие, hate — ненавижу."}, {"k": "пример", "v": "", "t": "I like reading. She enjoys swimming."}]}),
+      Q("en412s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Занятия"}, {"e": "", "k": "Спорт"}, {"e": "", "k": "Нравится"}], "items": [{"g": 0, "e": "", "t": "reading", "h": "чтение"}, {"g": 0, "e": "", "t": "drawing", "h": "рисование"}, {"g": 0, "e": "", "t": "swimming", "h": "плавание"}, {"g": 1, "e": "", "t": "football", "h": "футбол"}, {"g": 1, "e": "", "t": "tennis", "h": "теннис"}, {"g": 1, "e": "", "t": "chess", "h": "шахматы"}, {"g": 2, "e": "", "t": "like", "h": "нравится"}, {"g": 2, "e": "", "t": "love", "h": "обожаю"}, {"g": 2, "e": "", "t": "enjoy", "h": "получаю удовольствие"}]}),
+      Q("en412s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en412q"]}),
+      Q("en412s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en412t"]})
+    ] },
+  { id: "en413", icon: "", title: "Was / were — было, были", goal: "Говорить о прошлом с was и were",
+    steps: [
+      Q("en413s1", "infoTap", "Знакомимся с темой", "Рассказываем о прошлом. Нажимай на карточки.", {"need": 4, "items": [{"k": "was", "v": "", "t": "I was, he was, she was, it was — я был, он был, она была, оно было."}, {"k": "were", "v": "", "t": "we were, you were, they were — мы были, вы были, они были."}, {"k": "время", "v": "", "t": "yesterday — вчера, last week — на прошлой неделе, last year — в прошлом году, two days ago — два дня назад."}, {"k": "вопрос", "v": "", "t": "Were you at school yesterday? — Yes, I was. / No, I wasn’t."}]}),
+      Q("en413s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Когда это было"}, {"e": "", "k": "Где мы были"}, {"e": "", "k": "Каким это было"}], "items": [{"g": 0, "e": "", "t": "yesterday", "h": "вчера"}, {"g": 0, "e": "", "t": "last week", "h": "на прошлой неделе"}, {"g": 0, "e": "", "t": "last year", "h": "в прошлом году"}, {"g": 1, "e": "", "t": "at home", "h": "дома"}, {"g": 1, "e": "", "t": "at school", "h": "в школе"}, {"g": 1, "e": "", "t": "at the zoo", "h": "в зоопарке"}, {"g": 2, "e": "", "t": "good", "h": "хороший"}, {"g": 2, "e": "", "t": "bad", "h": "плохой"}, {"g": 2, "e": "", "t": "great", "h": "отличный"}]}),
+      Q("en413s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en413q"]}),
+      Q("en413s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en413t"]})
+    ] },
+  { id: "en414", icon: "", title: "Right now — что делаю сейчас", goal: "Говорить о том, что происходит сейчас",
+    steps: [
+      Q("en414s1", "infoTap", "Знакомимся с темой", "Расскажем, что происходит прямо сейчас. Нажимай на карточки.", {"need": 4, "items": [{"k": "форма", "v": "", "t": "am / is / are + глагол с -ing: I am reading. She is writing. They are running."}, {"k": "now", "v": "", "t": "Сигнальные слова: now — сейчас, right now — прямо сейчас, at the moment — в данный момент, look! — смотри!"}, {"k": "вопрос", "v": "", "t": "Are you eating? — Yes, I am. / No, I’m not."}, {"k": "где", "v": "", "t": "in the garden — в саду, in the kitchen — на кухне, at the lesson — на уроке."}]}),
+      Q("en414s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Что делаю"}, {"e": "", "k": "Сейчас"}, {"e": "", "k": "Где это"}], "items": [{"g": 0, "e": "", "t": "reading", "h": "читаю"}, {"g": 0, "e": "", "t": "writing", "h": "пишу"}, {"g": 0, "e": "", "t": "running", "h": "бегу"}, {"g": 1, "e": "", "t": "now", "h": "сейчас"}, {"g": 1, "e": "", "t": "right now", "h": "прямо сейчас"}, {"g": 1, "e": "", "t": "at the moment", "h": "в данный момент"}, {"g": 2, "e": "", "t": "in the garden", "h": "в саду"}, {"g": 2, "e": "", "t": "in the kitchen", "h": "на кухне"}, {"g": 2, "e": "", "t": "in the street", "h": "на улице"}]}),
+      Q("en414s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en414q"]}),
+      Q("en414s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en414t"]})
+    ] },
+  { id: "en415", icon: "", title: "Writing — пишем письма и объявления", goal: "Писать короткий текст, открытку и письмо",
+    steps: [
+      Q("en415s1", "infoTap", "Знакомимся с темой", "Учимся писать по-английски. Нажимай на карточки.", {"need": 4, "items": [{"k": "соединяем", "v": "", "t": "and — и, but — но, then — потом, or — или, because — потому что."}, {"k": "знаки", "v": "", "t": "В начале предложения — заглавная буква (capital letter), в конце — точка (full stop) или вопросительный знак (question mark)."}, {"k": "открытка", "v": "", "t": "Happy birthday! Best wishes! Thank you! — открытки и поздравления."}, {"k": "письмо", "v": "", "t": "Письмо начинаем с Dear …, заканчиваем Love, … или Best wishes, …"}]}),
+      Q("en415s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Соединяем мысли"}, {"e": "", "k": "Знаки"}, {"e": "", "k": "Открытка и письмо"}], "items": [{"g": 0, "e": "", "t": "and", "h": "и"}, {"g": 0, "e": "", "t": "but", "h": "но"}, {"g": 0, "e": "", "t": "then", "h": "потом"}, {"g": 1, "e": "", "t": "capital letter", "h": "заглавная буква"}, {"g": 1, "e": "", "t": "full stop", "h": "точка"}, {"g": 1, "e": "", "t": "comma", "h": "запятая"}, {"g": 2, "e": "", "t": "Dear", "h": "дорогой"}, {"g": 2, "e": "", "t": "best wishes", "h": "с наилучшими пожеланиями"}, {"g": 2, "e": "", "t": "love", "h": "с любовью"}]}),
+      Q("en415s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["en415q"]}),
+      Q("en415s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["en415t"]})
+    ] },
+  { id: "en4fin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("en4fin1", 'finale', 'Курс пройден!', "Congratulations! Ты повторил английские слова и грамматику. Закрепляй знания в играх!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
