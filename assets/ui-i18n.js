@@ -39,6 +39,7 @@
     [/\/grades\/grade-2(?:-kaz)?\/digital\//, 'g2digital'],
     [/\/grades\/grade-2(?:-kaz)?\/poznanie\//, 'g2poznanie'],
     [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2math'],
+    [/\/grades\/grade-1(?:-kaz)?\/english\//, 'g1eng'],
     [/\/grades\/grade-3(?:-kaz)?\/estestvo\//, 'g3est'],
     [/\/grades\/grade-3(?:-kaz)?\/poznanie\//, 'g3poz'],
     [/\/grades\/grade-3(?:-kaz)?\/izo\//, 'g3izo'],
@@ -64,7 +65,7 @@
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math'];
-  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
+  var AVAIL = { kz: ['g1', 'g1eng', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
