@@ -57,12 +57,13 @@
     [/\/grades\/grade-4(?:-kaz)?\/digital\//, 'g4dig'],
     [/\/grades\/grade-4(?:-kaz)?\/estestvo\//, 'g4est'],
     [/\/grades\/grade-4(?:-kaz)?\/poznanie\//, 'g4poz'],
+    [/\/grades\/grade-4(?:-kaz)?\/math\//, 'g4math'],
     [/\/grades\/grade-4(?:-kaz)?\//, 'g4'],
     [/\/(?:privacy\.html|gift\/)/, 'root'] ];
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math'];
-  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
+  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
@@ -77,8 +78,8 @@
   var KZW = { 1:['f','R'], 2:['f','V'], 3:['f','U'], 4:['f','U'], 5:['f','U'], 6:['b','V'], 7:['f','V'], 8:['f','Z'], 9:['b','Z'],
     10:['b','N'], 20:['b','V'], 30:['b','Z'], 40:['b','U'], 50:['f','W'], 60:['b','U'], 70:['f','U'], 80:['f','N'], 90:['b','N'], 100:['f','Z'], 1000:['b','N'], 1000000:['b','N'], 0:['f','R'] };
   function kzNum(v, cs){
-    if (!/^\d+$/.test(v)) return undefined;
-    var n = parseInt(v, 10), key;
+    var vv = v.replace(/ /g, ''); if (!/^\d+$/.test(vv)) return undefined;   // «9 248 140» — пробелы между классами не мешают
+    var n = parseInt(vv, 10), key;
     if (n === 0) key = 0; else if (n % 10) key = n % 10; else if (n % 100) key = n % 100; else if (n % 1000) key = 100; else if (n % 1000000) key = 1000; else key = 1000000;
     var w = KZW[key], f = w[0] === 'f', t = w[1], sf;
     if (cs === 'dat') sf = (t === 'U' ? (f ? 'ке' : 'қа') : (f ? 'ге' : 'ға'));
@@ -87,6 +88,32 @@
     else if (cs === 'gen') sf = (t === 'U' ? (f ? 'тің' : 'тың') : (t === 'V' || t === 'N') ? (f ? 'нің' : 'ның') : (f ? 'дің' : 'дың'));
     else return undefined;
     return v + '-' + sf;
+  }
+  /* Числа прописью: «тридцать пять миллионов» → число → казахские слова («отыз бес миллион») */
+  var RUW = { 'ноль':0, 'один':1, 'одна':1, 'одно':1, 'одну':1, 'одном':1, 'одного':1, 'два':2, 'две':2, 'три':3, 'четыре':4, 'пять':5, 'шесть':6, 'семь':7, 'восемь':8, 'девять':9, 'десять':10,
+    'одиннадцать':11, 'двенадцать':12, 'тринадцать':13, 'четырнадцать':14, 'пятнадцать':15, 'шестнадцать':16, 'семнадцать':17, 'восемнадцать':18, 'девятнадцать':19,
+    'двадцать':20, 'тридцать':30, 'сорок':40, 'пятьдесят':50, 'шестьдесят':60, 'семьдесят':70, 'восемьдесят':80, 'девяносто':90,
+    'сто':100, 'двести':200, 'триста':300, 'четыреста':400, 'пятьсот':500, 'шестьсот':600, 'семьсот':700, 'восемьсот':800, 'девятьсот':900 };
+  var KZU = ['нөл', 'бір', 'екі', 'үш', 'төрт', 'бес', 'алты', 'жеті', 'сегіз', 'тоғыз'], KZT = ['', 'он', 'жиырма', 'отыз', 'қырық', 'елу', 'алпыс', 'жетпіс', 'сексен', 'тоқсан'];
+  function kzW3(n){
+    var h = Math.floor(n / 100), t = Math.floor(n % 100 / 10), u = n % 10, o = [];
+    if (h) o.push(h > 1 ? KZU[h] + ' жүз' : 'жүз'); if (t) o.push(KZT[t]); if (u) o.push(KZU[u]);
+    return o.join(' ');
+  }
+  function kzNW(s){
+    var w = s.split(' '), total = 0, cur = 0;
+    for (var i = 0; i < w.length; i++){
+      var x = w[i];
+      if (RUW[x] !== undefined) cur += RUW[x];
+      else if (/^тысяч/.test(x)){ total += (cur || 1) * 1000; cur = 0; }
+      else if (/^миллион/.test(x)){ total += (cur || 1) * 1000000; cur = 0; }
+      else return undefined;
+    }
+    total += cur;
+    var mil = Math.floor(total / 1000000), th = Math.floor(total % 1000000 / 1000), rest = total % 1000, parts = [];
+    if (mil) parts.push(kzW3(mil % 1000) + ' миллион'); if (th) parts.push(kzW3(th) + ' мың');
+    if (rest || !parts.length) parts.push(rest ? kzW3(rest) : 'нөл');
+    return parts.join(' ');
   }
   function kzList(v, d){   // «сова, пчела и орёл» → переводим каждое слово по словарю
     var parts = v.split(/(, | и )/), out = [];
@@ -112,6 +139,7 @@
           if (sub === undefined && pre){ var tg = pre.slice(0, -1);   // вычисляемые теги: падежи казахских числительных, список слов, вложенная фраза
             if (/^n(dat|abl|loc|gen)$/.test(tg)) sub = kzNum(m[k], tg.slice(1));
             else if (tg === 'ls') sub = kzList(m[k], d);
+            else if (tg === 'nw') sub = kzNW(m[k]);
             else if (tg === 'tr'){ var sx = tr(m[k], d); if (sx !== null) sub = sx; } }
           if (sub !== undefined) m[k] = sub; }); }
         r = d.pat[i][1].replace(/\$(?:(\d)|\{(\d+)\})/g, function(_, a, b){ var v = m[+(a || b)]; return v === undefined ? '' : v; }); break;
