@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<script src="../../../assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<script src="../../../assets/stats.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Қазақ тілі 3-сынып — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;}
+  .gm-task{max-width:460px;margin:0 auto 8px;} .gm-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#1D3557;padding:6px 10px;border-radius:12px;background:#FFF1C9;border:2px solid #F5B400;} .gm-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;} .gm-ti.ok{background:#E9F7EC;border-color:#3FAE5A;color:#2F8A47;}
+  .gm-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;} .gm-col{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;} .gm-col.cur{outline:4px solid #F5B400;}
+  .gm-canvas{display:block;width:100%;max-width:420px;margin:6px auto;background:#FFFDF4;border:3px solid #DCE6F0;border-radius:18px;touch-action:none;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-gal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0;}
+  .nc-gc{background:#F5F8FA;border:3px solid #DCE3EA;border-radius:18px;padding:8px;cursor:pointer;line-height:0;transition:all .15s;}
+  .nc-gc:hover{border-color:#1D3557;} .nc-gc.seen{background:#EEF6FF;border-color:#9DB9D8;} .nc-gc.cur{background:#FFF1C9;border-color:#F5B400;transform:scale(1.05);}
+  .nc-big{width:100%;max-width:340px;height:auto;display:block;margin:6px auto;}
+  .nc-part{cursor:pointer;transition:filter .2s;} .nc-part:hover{filter:brightness(1.1);} .nc-part.cur{filter:drop-shadow(0 0 6px #F5B400);}
+  .nc-pt{cursor:pointer;} .nc-pt:hover circle{fill:#EAF3FF;}
+  @media (max-width:520px){.nc-gc svg{max-width:64px;height:auto;} .nc-gc.wide svg{max-width:130px;}}
+  /* ===== математика 2 класс: свои элементы ===== */
+  .m2-big{font-size:1.5rem;line-height:1.4;margin:10px 0 14px;} .m2-big small{font-size:.9rem;color:#5A6B7D;font-weight:700;}
+  .m2-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .m2-tab{font:800 1.05rem 'Baloo 2',sans-serif;min-width:46px;padding:7px 12px;border-radius:14px;border:3px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .m2-tab:hover{background:#EAF3FF;} .m2-tab.cur{border-color:#F5B400;background:#FFF1C9;} .m2-tab.seen{border-color:#3FAE5A;} .m2-tab.cur.seen{border-color:#F5B400;}
+  .m2-show{min-height:90px;text-align:center;margin-top:6px;} .m2-ex{max-width:520px;margin:6px auto;line-height:1.5;font-weight:700;}
+  .m2-vis{margin:6px auto;} .m2-plus{font:800 1.6rem 'Baloo 2',sans-serif;color:#1D3557;margin:0;}
+  .m2-chart{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:480px;margin:0 auto 8px;}
+  .m2-cell{font:800 .82rem 'Baloo 2',sans-serif;padding:7px 0;border-radius:7px;border:2px solid transparent;background:#F3F7FB;color:#1D3557;cursor:pointer;}
+  .m2-cell:nth-child(10n+1),.m2-cell:nth-child(10n){background:#E8F1FB;} .m2-cell:hover{background:#EAF3FF;} .m2-cell.cur{border-color:#F5B400;background:#FFF1C9;} .m2-cell.seen{border-color:#3FAE5A;} .m2-cell.cur.seen{border-color:#F5B400;}
+  .m2-bl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-end;margin:8px auto;max-width:460px;min-height:62px;}
+  .m2-h{width:58px;height:58px;background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/5.8px 5.8px,#F5B400;border-radius:4px;border:2px solid #C98F00;box-sizing:border-box;}
+  .m2-t{width:12px;height:58px;background:repeating-linear-gradient(#3B82F6 0 4.8px,#fff 4.8px 5.8px);border-radius:3px;border:1px solid #2563EB;box-sizing:border-box;}
+  .m2-os{display:grid;grid-template-columns:repeat(5,12px);gap:3px;align-content:end;} .m2-o{width:12px;height:12px;background:#E0574A;border-radius:3px;display:block;}
+  .m2-bl.sm .m2-h{width:46px;height:46px;background-size:4.6px 4.6px;}
+  .m2-pt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-pt th{background:#1D3557;color:#fff;padding:6px 18px;font-size:.95rem;border:2px solid #1D3557;} .m2-pt td{border:2px solid #1D3557;text-align:center;padding:6px 10px;font-size:1.9rem;font-weight:800;color:#1D3557;min-width:96px;background:#fff;}
+  .m2-pt.big td{font-size:2.4rem;}
+  .m2-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .m2-groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:6px auto;} .m2-grp{display:flex;flex-direction:column;align-items:center;gap:3px;border:2px solid #CFE0F2;border-radius:12px;padding:5px 7px;background:#F7FAFD;}
+  .m2-grp b{font:800 1.05rem 'Baloo 2',sans-serif;color:#1D3557;} .m2-dots{display:flex;gap:3px;} .m2-dots i{width:11px;height:11px;border-radius:50%;background:#3B82F6;display:block;}
+  .m2-pairs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:420px;margin:8px auto;} .m2-pr{display:flex;gap:3px;border:2px dashed #3FAE5A;border-radius:14px;padding:5px 7px;} .m2-pr.one{border-color:#E0574A;} .m2-pr i{width:16px;height:16px;border-radius:50%;background:#F5B400;display:block;}
+  .m2-split{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:10px auto;} .m2-part{display:flex;flex-wrap:wrap;gap:3px;width:68px;min-height:44px;border:3px solid;border-radius:12px;padding:5px;justify-content:center;align-content:center;} .m2-part i{width:12px;height:12px;border-radius:50%;display:block;}
+  .m2-line{width:100%;max-width:440px;display:block;margin:8px auto;}
+  .m2-colbox{display:flex;justify-content:center;margin:8px 0;}
+  .m2-col{border-collapse:collapse;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;} .m2-col th{font-size:.82rem;padding:4px 14px;color:#fff;background:#1D3557;border:2px solid #1D3557;} .m2-col td{width:68px;height:44px;text-align:center;font-size:1.9rem;border-left:2px solid #CFE0F2;border-right:2px solid #CFE0F2;}
+  .m2-col td.op{width:34px;border:none;font-size:1.7rem;text-align:right;color:#E0574A;} .m2-col tr.nt td{height:26px;font-size:1rem;color:#E0574A;} .m2-col tr.ln td{border-bottom:3px solid #1D3557;} .m2-col td.cut{text-decoration:line-through;color:#8B95A3;text-decoration-color:#E0574A;}
+  .m2-col tr.rs td{color:#3FAE5A;font-size:2.1rem;}
+  .m2-tfs{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px 0;} .m2-tfs .m2-plus{margin:0;}
+  .m2-tf{display:grid;grid-template-columns:repeat(5,24px);gap:3px;padding:5px;border:3px solid #1D3557;border-radius:8px;background:#fff;} .m2-tf i{width:24px;height:24px;border-radius:50%;background:#EEF2F6;display:block;} .m2-tf i.r{background:#E0574A;} .m2-tf i.b{background:#3B82F6;}
+  .m2-ctl{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0;font-weight:800;color:#1D3557;} .m2-ctl b{font:800 1.6rem 'Baloo 2',sans-serif;min-width:30px;text-align:center;} .m2-ctl .ac-btn{padding:4px 16px;font-size:1.3rem;}
+  .m2-mt{margin:8px auto;border-collapse:collapse;font-family:'Baloo 2',sans-serif;} .m2-mt th{background:#1D3557;color:#fff;padding:5px 18px;border:2px solid #1D3557;font-size:.95rem;} .m2-mt td{border:2px solid #CFE0F2;text-align:center;padding:4px 14px;font-size:1.2rem;font-weight:800;color:#1D3557;background:#fff;}
+  .m2-fig{width:100%;max-width:440px;display:block;margin:8px auto;} .m2-fig.sm{max-width:240px;}
+  .m2-money{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:8px 0;} .m2-coin{width:56px;height:56px;} .m2-note{width:108px;height:58px;}
+  .m2-cbrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;} .m2-cbtn{min-width:96px;} .m2-cbtn.on{outline:4px solid #F5B400;}
+  .m2-cbfound{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;min-height:10px;} .m2-cbchip{background:#fff;border:2px solid #CFE0F2;border-radius:12px;padding:3px 9px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:.9rem;}
+  .m2-dccur{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;font-size:1.5rem;text-align:center;margin:4px 0;}
+  .e2-emo{font-size:3.6rem;line-height:1.15;text-align:center;margin:4px 0;} .e2-name{font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .e2-card{min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px auto;max-width:340px;background:#F3F7FB;border:3px solid #CFE0F2;border-radius:20px;padding:10px;}
+  .e2-ord{display:flex;flex-direction:column;gap:6px;max-width:460px;margin:6px auto;} .e2-ostep{background:#E8F7EC;border:2px solid #3FAE5A;border-radius:12px;padding:6px 12px;font-weight:800;color:#1D3557;text-align:left;} .e2-ostep b{display:inline-block;background:#3FAE5A;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;margin-right:6px;}
+  .e2-obtn{max-width:460px;white-space:normal;text-align:left;}
+  .e2-pond{min-height:120px;text-align:center;} .e2-water{text-align:center;background:linear-gradient(#BFE3FF,#6DB8F2);border-radius:0 0 18px 18px;font-size:1.2rem;letter-spacing:6px;max-width:300px;margin:0 auto;padding:6px;}
+  .e2-sink{animation:e2sink 1.4s ease-in forwards;} .e2-float{animation:e2float 1.4s ease-in-out infinite alternate;}
+  @keyframes e2sink{from{transform:translateY(0)}to{transform:translateY(70px);opacity:.55}} @keyframes e2float{from{transform:translateY(0)}to{transform:translateY(8px)}}
+  .e2-tbl td,.e2-tbl th{font-size:.95rem;}
+.ac-licon:empty{display:none}.e2-emo:empty{display:none}</style>
+</head>
+<body class="w-page" data-subject="kazakh">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button class="active" data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Қазақ тілі 3-сынып ойындары</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Қазақ тілі 3-сынып</h1>
+      <p class="ac-sub">21 сабақ: әріптер, мәтін түрлері, қаратпа, жұрнақ, түбірлес сөздер, бастауыш пен баяндауыш, мәндес және қарама-қарсы сөздер, тәуелдік жалғау, сөз таптары, болымсыз етістік, сан есім және хат жанрлары</p>
+      <p class="ac-note">Курс 3-сынып бағдарламасы бойынша жасалған (№399 бұйрығы, 12-қосымша). Әр сабақта: түсіндірме, ойын және тексеру. Мәтіндерді Максат тексереді.</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 22</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>try{localStorage.setItem('bilim_lang_v1','kz')}catch(e){}</script>
+<script>window.BILIM_NO_VOICE=1</script>
+<style>#ac-speak,.mxs-snd,.mxs-replay{display:none !important}</style>
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/kazakh3/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/kazakh3/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_kazakh3kz_course_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= сцены и данные: математика 2 класс ================= */
+const SCENES = {};
+const GENS = {};
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+function dec(n, a, b, c){ const m = n % 100, d = n % 10; if (m >= 11 && m <= 14) return c; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c; }
+const dDes = n => n + ' ' + dec(n, 'десяток', 'десятка', 'десятков');
+const dEd = n => n + ' ' + dec(n, 'единица', 'единицы', 'единиц');
+const dSot = n => n + ' ' + dec(n, 'сотня', 'сотни', 'сотен');
+const ONES_W = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+const TENS_W = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+const HUND_W = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+function ruNum(n){
+  if (n === 0) return 'ноль'; if (n === 1000) return 'тысяча';
+  const s = []; if (n >= 100){ s.push(HUND_W[Math.floor(n / 100)]); n %= 100; }
+  if (n >= 20){ s.push(TENS_W[Math.floor(n / 10)]); n %= 10; }
+  if (n > 0) s.push(ONES_W[n]); return s.join(' ');
+}
+/* 4 варианта ответа: правильный + случайные из подготовленных ошибок */
+function opts4(c, cands){
+  const set = [c];
+  shuffle(cands).forEach(x => { if (set.length < 4 && set.indexOf(x) < 0 && !(typeof x === 'number' && x < 0)) set.push(x); });
+  let k = 1; while (set.length < 4 && typeof c === 'number'){ const x = c + (k % 2 ? k : -k); if (set.indexOf(x) < 0 && x >= 0) set.push(x); k++; }
+  return shuffle(set);
+}
+const big = t => '<div class="ac-qtxt m2-big">' + t + '</div>';
+
+/* нажимаем карточки и читаем: items [{k, t}] */
+SCENES.infoTap = function(stage, st, ctx){
+  const items = st.items, seen = {}; let n = 0; const need = Math.min(st.need || 4, items.length);
+  stage.innerHTML = '<div class="m2-tabs" id="i-l"></div><div class="m2-show" id="i-s"><div class="ac-qtxt" style="margin-top:20px">' + (st.prompt || 'Нажимай на карточки') + '</div></div>';
+  const l = $('#i-l', stage), s = $('#i-s', stage);
+  l.innerHTML = items.map((it, i) => '<button class="m2-tab" data-i="' + i + '">' + it.k + '</button>').join('');
+  $$('.m2-tab', l).forEach(b => b.onclick = function(){
+    const i = +b.dataset.i; $$('.m2-tab', l).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    if (!seen[i]){ seen[i] = 1; n++; }
+    s.innerHTML = (items[i].v ? '<div class="m2-vis">' + items[i].v + '</div>' : '') + '<div class="ac-qtxt m2-ex">' + items[i].t + '</div>';
+    if (n >= need){ ctx.fb('Хорошо! Можно идти дальше или посмотреть остальное.', 'ok'); ctx.done(); } else ctx.fb('Просмотрено: ' + n + ' из ' + need + ' нужных.', 'info');
+  });
+};
+
+SCENES.sortGroups = function(stage, st, ctx){
+  const items = shuffle(st.items).slice(0, st.take || st.items.length); let i = 0;
+  stage.innerHTML = '<div class="ac-qcount" id="s-c"></div><div class="ac-qtxt m2-big">' + (st.q || 'В какую группу относится?') + '</div><div class="e2-card" id="s-card"></div><div class="m2-cbrow" id="s-g"></div>';
+  $('#s-g', stage).innerHTML = st.groups.map((g, k) => '<button class="ac-btn ac-alt m2-cbtn" data-g="' + k + '">' + (g.e ? g.e + ' ' : '') + g.k + '</button>').join('');
+  function show(){
+    if (i >= items.length){ $('#s-card', stage).innerHTML = '<div style="font-size:3rem">🌟</div>'; $('#s-c', stage).textContent = ''; $('#s-g', stage).style.display = 'none'; ctx.fb('Все карточки разложены!', 'ok'); ctx.done(); return; }
+    const it = items[i]; $('#s-c', stage).textContent = 'Карточка ' + (i + 1) + ' из ' + items.length;
+    $('#s-card', stage).setAttribute('data-g', it.g); $('#s-card', stage).innerHTML = (it.e ? '<div class="e2-emo">' + it.e + '</div>' : '') + '<div class="e2-name">' + it.t + '</div>';
+  }
+  $$('[data-g]', $('#s-g', stage)).forEach(b => b.onclick = function(){
+    if (i >= items.length) return; const it = items[i];
+    if (+b.dataset.g === it.g){ ctx.fb(pick(PRAISE) + (it.h ? ' ' + it.h : ''), 'ok'); i++; show(); }
+    else { ctx.miss(); ctx.fb(it.h ? 'Подумай ещё. ' + it.h : 'Подумай ещё: «' + it.t + '» относится к другой группе.', 'bad'); }
+  });
+  show();
+};
+/* расставляем шаги по порядку. tasks [{q, steps:[...] (правильный порядок)}] */
+SCENES.orderSteps = function(stage, st, ctx){
+  let ti = 0, got = [], T, pool;
+  stage.innerHTML = '<div class="ac-qcount" id="o-c"></div><div class="ac-qtxt m2-big" id="o-q"></div><div class="e2-ord" id="o-got"></div><div class="m2-cbrow" id="o-pool"></div>';
+  function next(){
+    T = st.tasks[ti]; got = []; pool = shuffle(T.steps.map((s, k) => ({ s: s, k: k })));
+    if (pool.length > 1 && pool.every((p, k) => p.k === k)) pool = pool.reverse();
+    $('#o-c', stage).textContent = st.tasks.length > 1 ? 'Задание ' + (ti + 1) + ' из ' + st.tasks.length : ''; $('#o-q', stage).textContent = T.q; ctx.fb('', 'info'); draw();
+  }
+  function draw(){
+    $('#o-got', stage).innerHTML = got.map((g, k) => '<div class="e2-ostep"><b>' + (k + 1) + '</b> ' + g.s + '</div>').join('');
+    $('#o-pool', stage).innerHTML = pool.map((p, k) => '<button class="ac-btn ac-alt m2-cbtn e2-obtn" data-k="' + p.k + '">' + p.s + '</button>').join('');
+    $$('[data-k]', $('#o-pool', stage)).forEach(b => b.onclick = function(){
+      const k = +b.dataset.k;
+      if (k === got.length){
+        got.push(pool.find(p => p.k === k)); pool = pool.filter(p => p.k !== k); ctx.fb(pick(PRAISE), 'ok'); draw();
+        if (!pool.length){ ti++; if (ti >= st.tasks.length){ $('#o-q', stage).textContent = 'Всё расставлено верно! 🌟'; $('#o-pool', stage).style.display = 'none'; ctx.fb(T.done || 'Порядок верный!', 'ok'); ctx.done(); } else setTimeout(() => { if (ctx.alive()) next(); }, 1300); }
+      } else { ctx.miss(); ctx.fb(T.hint || 'Сейчас должен идти другой шаг. Подумай, что происходит раньше.', 'bad'); }
+    });
+  }
+  next();
+};
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Сен «Қазақ тілі 3-сынып» курсын аяқтадың. Енді тақырыптарды ойындарда қайталауға болады.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Қазақ тілі ойындары</a></div></div>';
+};
+const Q = (id, scene, title, text, extra) => Object.assign({ id: id, scene: scene, gate: true, title: title, text: text }, extra || {});
+
+function mkQuiz(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: shuffle([it.a].concat(shuffle(it.w).slice(0, 3))), ans: it.a, hint: it.h, wide: true }; };
+}
+function mkTF(bank){ let queue = [];
+  return function(){ if (!queue.length) queue = shuffle(bank); const it = queue.pop(); const long = it.q.length > 70;
+    return { html: '<div class="ac-qtxt' + (long ? '' : ' m2-big') + '">' + it.q + '</div>', opts: ['Дұрыс', 'Бұрыс'], ans: it.a, hint: it.h }; };
+}
+GENS.kk31q = mkQuiz([{"q": "Қай сөз дұрыс жазылған?", "a": "вокзал", "w": ["бокзал", "фокзал", "вогзал"], "h": "«Вокзал» — в әрпімен жазылады"}, {"q": "Қай сөз дұрыс жазылған?", "a": "цирк", "w": ["сирк", "чирк", "ширк"], "h": "«Цирк» — ц әрпімен жазылады"}, {"q": "Қай сөз дұрыс жазылған?", "a": "футбол", "w": ["фудбол", "пудбол", "вутбол"], "h": "«Футбол» — ф әрпімен басталады"}, {"q": "Қай сөз дұрыс жазылған?", "a": "чемпион", "w": ["шемпион", "семпион", "цемпион"], "h": "«Чемпион» — ч әрпімен жазылады"}, {"q": "Қай сөз дұрыс жазылған?", "a": "экран", "w": ["екран", "икран", "ейкран"], "h": "«Экран» — э әрпімен басталады"}, {"q": "Э, ф, в, ц әріптері қай сөздерде жазылады?", "a": "басқа тілден енген сөздерде", "w": ["тек қазақтың төл сөздерінде", "тек сан есімдерде", "тек етістіктерде"], "h": "Бұл әріптер көбіне басқа тілден енген сөздерде жазылады"}, {"q": "Қай сөзде «ч» әрпі бар?", "a": "чемодан", "w": ["шелек", "шай", "шеберхана"], "h": "«Чемодан» сөзінде ч әрпі бар"}, {"q": "«Фонтан» сөзі қай әріптен басталады?", "a": "ф", "w": ["в", "п", "х"], "h": "Фонтан — ф әрпімен басталады"}]);
+GENS.kk31t = mkTF([{"q": "«Цех» сөзі «ц» әрпімен жазылады", "a": "Дұрыс", "h": "Дұрыс: цех"}, {"q": "«Вагон» сөзі «б» әрпімен жазылады", "a": "Бұрыс", "h": "Вагон — в әрпімен жазылады"}, {"q": "«Эстафета» сөзі «э» әрпімен басталады", "a": "Дұрыс", "h": "Дұрыс: эстафета"}, {"q": "«Ф» әрпі көбіне басқа тілден енген сөздерде жазылады", "a": "Дұрыс", "h": "Дұрыс: футбол, фильм"}, {"q": "«Сенбі» сөзі айтылғанда «сембі» болып естіледі", "a": "Дұрыс", "h": "Қатар тұрған н мен б үндесіп, м болып айтылады: сенбі — сембі"}, {"q": "«Жангүл» есімі «Жаңгүл» болып айтылады", "a": "Дұрыс", "h": "Н мен г қатар тұрғанда үндесіп, ң болып естіледі"}, {"q": "«Чемпион» сөзі «ш» әрпімен жазылады", "a": "Бұрыс", "h": "Чемпион — ч әрпімен жазылады"}, {"q": "«Фильм» сөзінде «в» әрпі бар", "a": "Бұрыс", "h": "Фильм — ф әрпімен жазылады"}]);
+GENS.kk32q = mkQuiz([{"q": "Қандай мәтін «Не болды?» сұрағына жауап береді?", "a": "әңгімелеу", "w": ["сипаттау", "пайымдау", "хабарландыру"], "h": "Оқиғаны баяндайтын мәтін — әңгімелеу"}, {"q": "Заттың белгісін көрсететін мәтін қалай аталады?", "a": "сипаттау", "w": ["әңгімелеу", "пайымдау", "күнделік"], "h": "«Қандай?» сұрағына жауап беретін мәтін — сипаттау"}, {"q": "Себебін түсіндіретін, «неге?» деген сұраққа жауап беретін мәтін:", "a": "пайымдау", "w": ["әңгімелеу", "сипаттау", "хат"], "h": "Себебін түсіндіретін мәтін — пайымдау"}, {"q": "Пайымдау қандай бөліктерден тұрады?", "a": "түсіндіру, дәлелдеу, қорытынды", "w": ["тақырып, сурет, жоспар", "сұрақ, жауап, көмек", "кіріспе, ән, би"], "h": "Пайымдаудың үш бөлігі бар: түсіндіру, дәлелдеу, қорытынды"}, {"q": "«Өйткені ағаштар ауаны тазартады» — пайымдаудың қай бөлігі?", "a": "дәлелдеу", "w": ["түсіндіру", "қорытынды", "тақырып"], "h": "Себебін айтып тұр: дәлелдеу"}, {"q": "«Сондықтан орманды қорғау керек» — пайымдаудың қай бөлігі?", "a": "қорытынды", "w": ["түсіндіру", "дәлелдеу", "тақырып"], "h": "«Сондықтан» — түйін жасайды: қорытынды"}, {"q": "Мәтіннің құрылымдық бөліктері қайсы?", "a": "кіріспе, негізгі бөлім, қорытынды", "w": ["ән, күй, би", "сурет, дыбыс, әріп", "қол, аяқ, бас"], "h": "Мәтін кіріспеден, негізгі бөлімнен, қорытындыдан тұрады"}, {"q": "«Қоян — ақ, жұмсақ жануар» — қай мәтін түрі?", "a": "сипаттау", "w": ["әңгімелеу", "пайымдау", "шақыру"], "h": "Белгісін айтып тұр: қандай? — ақ, жұмсақ"}]);
+GENS.kk32t = mkTF([{"q": "Әңгімелеуде оқиға баяндалады", "a": "Дұрыс", "h": "Дұрыс: не болды?"}, {"q": "Сипаттауда заттың белгісі айтылады", "a": "Дұрыс", "h": "Дұрыс: қандай?"}, {"q": "Пайымдауда себебі түсіндіріледі", "a": "Дұрыс", "h": "Дұрыс: неге? өйткені..."}, {"q": "Пайымдау қорытындыдан басталады", "a": "Бұрыс", "h": "Пайымдау түсіндіруден басталады, қорытындымен аяқталады"}, {"q": "«Сондықтан» сөзі қорытынды жасағанда айтылады", "a": "Дұрыс", "h": "Дұрыс: сондықтан орманды қорғау керек"}, {"q": "«Өйткені» сөзі дәлелдеуде қолданылады", "a": "Дұрыс", "h": "Дұрыс: өйткені — себебін көрсетеді"}, {"q": "Мәтінде бір ғана сөйлем болады", "a": "Бұрыс", "h": "Мәтін байланысқан бірнеше сөйлемнен тұрады"}, {"q": "«Қар жауды» — сипаттау", "a": "Бұрыс", "h": "Бұл — әңгімелеу: не болды?"}]);
+GENS.kk33q = mkQuiz([{"q": "«Тышқан түнде тамақ іздейді, күндіз ұясында ұйықтайды» мәтініне қандай тақырып лайық?", "a": "Түнгі тышқан", "w": ["Жаз мезгілі", "Менің үйім", "Орман аңдары"], "h": "Тақырып мәтін не туралы екенін көрсетеді"}, {"q": "«Жарық болмаса, өсімдік өспейді. Жарық — өмір көзі» мәтінінің негізгі ойы қандай?", "a": "Жарық — өмір үшін қажет", "w": ["Қараңғы — қорқынышты", "Өсімдік көк болады", "Күн — тек жазда шығады"], "h": "Негізгі ой — мәтіннің түйіні"}, {"q": "Жоспар не үшін керек?", "a": "мәтіннің ретін көрсету үшін", "w": ["мәтінді жою үшін", "сурет салу үшін", "сөз санау үшін"], "h": "Жоспар мәтіннің бөліктерін ретімен көрсетеді"}, {"q": "Жоспардың бірінші тармағы қалай жазылады?", "a": "1. деп нөмірленеді", "w": ["а) соңында тұрады", "тақырыппен бірдей", "суретпен ауыстырылады"], "h": "Жоспар тармақтары 1, 2, 3 болып нөмірленеді"}, {"q": "«Балалар ағаш отырғызды. Енді бақша жасыл болды» — негізгі ой қайсы?", "a": "Еңбек жемісі көрінеді", "w": ["Бақша үлкен", "Балалар ойнады", "Ағаш төмен өседі"], "h": "Түйін: еңбектің нәтижесі бар"}, {"q": "Мәтіннің тақырыбы нені білдіреді?", "a": "мәтін не туралы екенін", "w": ["мәтіннің соңын", "автордың жасын", "мәтіннің бетін"], "h": "Тақырып мәтін туралы айтады"}, {"q": "Тірек сөздер не үшін керек?", "a": "мәтін мазмұнын еске түсіру үшін", "w": ["мәтінді жасыру үшін", "сөз құрамын табу үшін", "сурет салу үшін"], "h": "Тірек сөздер мазмұнды еске түсіруге көмектеседі"}, {"q": "Мәтіннің негізгі ойын қалай табамыз?", "a": "мәтінді түгел оқып, қорытынды жасап", "w": ["бір әріпке қарап", "тек суретке қарап", "бірінші сөзді оқып"], "h": "Негізгі ой мәтінді түсінген соң анықталады"}]);
+GENS.kk33t = mkTF([{"q": "Тақырып мәтіннің не туралы екенін көрсетеді", "a": "Дұрыс", "h": "Дұрыс: тақырып — мәтін туралы"}, {"q": "Негізгі ой — мәтіннің түйіні", "a": "Дұрыс", "h": "Дұрыс: мәтін не үйретеді"}, {"q": "Жоспар тармақтары мәтіннің ретіне сай болуы керек", "a": "Дұрыс", "h": "Дұрыс: ретімен жазылады"}, {"q": "Жоспарда мәтіннің барлық сөзі қайталанады", "a": "Бұрыс", "h": "Жоспар қысқа жазылады"}, {"q": "Мәтіннің тақырыбы мазмұнға сай болмаса да болады", "a": "Бұрыс", "h": "Тақырып мазмұнға сай болуы керек"}, {"q": "Тірек сөздер мазмұнды еске түсіреді", "a": "Дұрыс", "h": "Дұрыс: тірек сөз — көмекші"}, {"q": "«Тірі табиғат» — тақырып бола алады", "a": "Дұрыс", "h": "Дұрыс: мәтін табиғат туралы"}, {"q": "Негізгі ойды табу үшін мәтінді оқу міндетті емес", "a": "Бұрыс", "h": "Мәтінді оқып, түсіну керек"}]);
+GENS.kk34q = mkQuiz([{"q": "Қай сөйлемде үтір дұрыс қойылған?", "a": "Дана, дәптеріңді әкел.", "w": ["Дана дәптеріңді, әкел.", "Дана дәптеріңді әкел,", "Дана, дәптеріңді, әкел."], "h": "Қаратпа сөзден кейін үтір қойылады"}, {"q": "«Әрине, мен барамын» сөйлемінде қыстырма сөз қайсы?", "a": "әрине", "w": ["мен", "барамын", "сөйлем"], "h": "Әрине — сөйлеушінің сенімін білдіреді"}, {"q": "«Апа, шай ішіңіз» сөйлемінде қаратпа сөз қайсы?", "a": "апа", "w": ["шай", "ішіңіз", "сөйлем"], "h": "Апа — біреуге бағытталған сөз"}, {"q": "Қыстырма сөзден кейін қандай белгі қойылады?", "a": "үтір", "w": ["сұрақ белгісі", "қос нүкте", "сызықша"], "h": "Қыстырма сөзден кейін үтір қойылады"}, {"q": "Қаратпа сөз нені білдіреді?", "a": "кімге айтылғанын", "w": ["уақытты", "санды", "орынды"], "h": "Қаратпа сөз сөйлемнің кімге бағытталғанын көрсетеді"}, {"q": "Қай сөз қыстырма сөз бола алады?", "a": "шамасы", "w": ["үй", "оқушы", "тау"], "h": "Шамасы — болжамды білдіретін қыстырма сөз"}, {"q": "Қай сөйлемде қаратпа сөз бар?", "a": "Айдар, сен қайда барасың?", "w": ["Айдар мектепке барды.", "Біз сабақ оқыдық.", "Бүгін күн ашық."], "h": "Бірінші сөйлемде Айдар — қаратпа сөз"}, {"q": "«Меніңше, бұл — дұрыс жауап» сөйлемінде «меніңше» не?", "a": "қыстырма сөз", "w": ["қаратпа сөз", "зат есім", "етістік"], "h": "Меніңше — пікірді білдіретін қыстырма сөз"}]);
+GENS.kk34t = mkTF([{"q": "Қаратпа сөзден кейін үтір қойылады", "a": "Дұрыс", "h": "Дұрыс: Айдар, мұнда кел"}, {"q": "Қыстырма сөзден кейін үтір қойылмайды", "a": "Бұрыс", "h": "Қыстырма сөзден кейін үтір қойылады"}, {"q": "«Әрине» — қыстырма сөз бола алады", "a": "Дұрыс", "h": "Дұрыс: Әрине, барамын"}, {"q": "«Достар, ойнайық!» сөйлемінде «достар» — қаратпа", "a": "Дұрыс", "h": "Дұрыс: достарға бағытталған"}, {"q": "Қаратпа сөз әрқашан сөйлемнің соңында тұрады", "a": "Бұрыс", "h": "Қаратпа сөз сөйлемнің басында, ортасында немесе соңында тұруы мүмкін"}, {"q": "«Шамасы» — болжамды білдіретін қыстырма сөз", "a": "Дұрыс", "h": "Дұрыс: шамасы, жаңбыр жауады"}, {"q": "Қыстырма сөз сөйлем мүшесі болмайды", "a": "Дұрыс", "h": "Дұрыс: ол сөйлеушінің көзқарасын білдіреді"}, {"q": "Қаратпа сөз кім туралы айтылатынын білдіреді", "a": "Бұрыс", "h": "Қаратпа сөз — кімге айтылатынын білдіреді"}]);
+GENS.kk35q = mkQuiz([{"q": "Жабық сұраққа қандай жауап беріледі?", "a": "«иә» немесе «жоқ»", "w": ["толық әңгіме", "өлең", "сурет"], "h": "Жабық сұраққа қысқа жауап беріледі"}, {"q": "Ашық сұраққа қандай жауап беріледі?", "a": "толық жауап", "w": ["тек «иә»", "тек «жоқ»", "тек сан"], "h": "Ашық сұраққа ойды түсіндіру керек"}, {"q": "Қай сұрақ жабық?", "a": "Қоян — жануар ма?", "w": ["Қоян қайда тұрады?", "Қоян не жейді?", "Қоян неге ақ?"], "h": "Бұл сұраққа «иә» деп жауап беруге болады"}, {"q": "Қай сұрақ ашық?", "a": "Орман неге керек?", "w": ["Орман жасыл ма?", "Орман үлкен бе?", "Орман бар ма?"], "h": "Бұл сұраққа түсіндіріп жауап беру керек"}, {"q": "«...ма?», «...ме?» — қандай сұрақтың белгісі?", "a": "жабық сұрақтың", "w": ["ашық сұрақтың", "бұйрықтың", "хабарландырудың"], "h": "Жабық сұрақ -ма, -ме, -ба, -бе, -па, -пе жұрнағымен жасалады"}, {"q": "«Неге?», «қалай?» — қандай сұрақтар?", "a": "ашық сұрақтар", "w": ["жабық сұрақтар", "бұйрық сөйлемдер", "қаратпа сөздер"], "h": "Бұл сұрақтарға түсіндіріп жауап береміз"}, {"q": "Сұрақ құрастырғанда «неге?» сөзі нені сұрайды?", "a": "себебін", "w": ["уақытын", "санын", "түсін"], "h": "«Неге?» — себебін сұрайды"}, {"q": "Мәтін бойынша сұрақ құрастыру не үшін керек?", "a": "мәтінді түсінгенімді тексеру үшін", "w": ["мәтінді жою үшін", "әріп санау үшін", "сурет салу үшін"], "h": "Сұрақ қою арқылы мәтінді жақсы түсінеміз"}]);
+GENS.kk35t = mkTF([{"q": "Жабық сұраққа «иә» немесе «жоқ» деп жауап береді", "a": "Дұрыс", "h": "Дұрыс: Қоян — жануар ма? — Иә"}, {"q": "Ашық сұраққа бір сөзбен жауап беру жеткілікті", "a": "Бұрыс", "h": "Ашық сұраққа ойды түсіндіру керек"}, {"q": "«Неге?» — ашық сұрақ сөзі", "a": "Дұрыс", "h": "Дұрыс: неге? себебін сұрайды"}, {"q": "«Орман жасыл ма?» — ашық сұрақ", "a": "Бұрыс", "h": "Бұл — жабық сұрақ"}, {"q": "Сұрақ мәтінді түсінуге көмектеседі", "a": "Дұрыс", "h": "Дұрыс: сұрақ арқылы ойлаймыз"}, {"q": "«Қалай?» — ашық сұрақ сөзі", "a": "Дұрыс", "h": "Дұрыс: әдісін сұрайды"}, {"q": "Жабық сұрақ -ма, -ме жұрнақтарымен жасалады", "a": "Дұрыс", "h": "Дұрыс: ма, ме, ба, бе, па, пе"}, {"q": "Сұрақтың соңына нүкте қойылады", "a": "Бұрыс", "h": "Сұрақтың соңына сұрақ белгісі қойылады"}]);
+GENS.kk36q = mkQuiz([{"q": "«Ауыз» сөзіне -ы жалғанса:", "a": "аузы", "w": ["ауызы", "ауызі", "ауыы"], "h": "Ауыз — аузы: ы дыбысы түсіп қалады"}, {"q": "«Қалпақ» сөзіне -ы жалғанса:", "a": "қалпағы", "w": ["қалпақы", "қалпакы", "қалпагы"], "h": "Қалпақ — қалпағы: қ дыбысы ғ болады"}, {"q": "«Көйлек» сөзіне -і жалғанса:", "a": "көйлегі", "w": ["көйлекі", "көйлеғі", "көйлеқі"], "h": "Көйлек — көйлегі: к дыбысы г болады"}, {"q": "«Мұрын» сөзіне -ы жалғанса:", "a": "мұрны", "w": ["мұрыны", "мұрнұ", "мұрнү"], "h": "Мұрын — мұрны: ы дыбысы түсіп қалады"}, {"q": "«Жүрек» сөзіне -і жалғанса:", "a": "жүрегі", "w": ["жүрекі", "жүреғі", "жүреки"], "h": "Жүрек — жүрегі"}, {"q": "«Қарын» сөзіне -ы жалғанса:", "a": "қарны", "w": ["қарыны", "қарнұ", "қаруны"], "h": "Қарын — қарны"}, {"q": "«Бұтақ» сөзіне -ы жалғанса:", "a": "бұтағы", "w": ["бұтақы", "бұтаға", "бұтағұ"], "h": "Бұтақ — бұтағы"}, {"q": "«Орын» сөзіне -ы жалғанса:", "a": "орны", "w": ["орыны", "орнұ", "оруны"], "h": "Орын — орны"}]);
+GENS.kk36t = mkTF([{"q": "«Ауыз» сөзіне қосымша жалғанғанда «ы» түсіп қалады", "a": "Дұрыс", "h": "Дұрыс: аузы"}, {"q": "«Қалпақ» — «қалпақы» болып жазылады", "a": "Бұрыс", "h": "Дұрысы: қалпағы"}, {"q": "«Көйлек» — «көйлегі» болып жазылады", "a": "Дұрыс", "h": "Дұрыс: к дыбысы г болады"}, {"q": "Барлық сөздің соңғы дыбысы қосымша жалғанғанда өзгереді", "a": "Бұрыс", "h": "Кейбір сөздер ғана өзгереді: үй — үйі"}, {"q": "«Мұрын» — «мұрны»", "a": "Дұрыс", "h": "Дұрыс: ы түсіп қалады"}, {"q": "«Тарақ» сөзіне -ы жалғанса, «тарағы» болады", "a": "Дұрыс", "h": "Дұрыс: қ дыбысы ғ болады"}, {"q": "«Үй» сөзіне -і жалғанса, «үйі» болады", "a": "Дұрыс", "h": "Дұрыс: үй өзгермейді"}, {"q": "«Жүрек» — «жүреги» болып жазылады", "a": "Бұрыс", "h": "Дұрысы: жүрегі"}]);
+GENS.kk37q = mkQuiz([{"q": "Ән айтатын адам қалай аталады?", "a": "әнші", "w": ["әнсіз", "әндер", "әнге"], "h": "Ән + ші = әнші"}, {"q": "«Дос» сөзіне -тық жалғанса:", "a": "достық", "w": ["достар", "досты", "достан"], "h": "Дос + тық = достық"}, {"q": "Күші бар адам:", "a": "күшті", "w": ["күшсіз", "күштер", "күшші"], "h": "Күш + ті = күшті"}, {"q": "«Жоқ» дегенді білдіретін жұрнақ қайсы?", "a": "-сыз, -сіз", "w": ["-лы, -лі", "-шы, -ші", "-лық, -лік"], "h": "Ақылсыз — ақылы жоқ"}, {"q": "«Көңіл» сөзіне -ді жалғанса:", "a": "көңілді", "w": ["көңілші", "көңіллік", "көңілсыз"], "h": "Көңіл + ді = көңілді"}, {"q": "«Балық» ұстайтын адам:", "a": "балықшы", "w": ["балықты", "балықсыз", "балықтық"], "h": "Балық + шы = балықшы"}, {"q": "«Ер» сөзіне -лік жалғанса:", "a": "ерлік", "w": ["ерші", "ерлі", "ерсіз"], "h": "Ер + лік = ерлік"}, {"q": "Жұрнақ жалғанғанда не пайда болады?", "a": "жаңа сөз", "w": ["жаңа әріп ғана", "сан", "тыныс белгісі"], "h": "Жұрнақ жаңа мағыналы туынды сөз жасайды"}]);
+GENS.kk37t = mkTF([{"q": "Жұрнақ туынды сөз жасайды", "a": "Дұрыс", "h": "Дұрыс: ән + ші = әнші"}, {"q": "«-сыз» жұрнағы бар екенін білдіреді", "a": "Бұрыс", "h": "«-сыз» жоқ екенін білдіреді"}, {"q": "«Таулы» сөзі «тау» сөзінен жасалған", "a": "Дұрыс", "h": "Дұрыс: тау + лы"}, {"q": "«Достық» — туынды сөз", "a": "Дұрыс", "h": "Дұрыс: дос + тық"}, {"q": "«Суретші» — «сурет» түбірінен жасалған", "a": "Дұрыс", "h": "Дұрыс: сурет + ші"}, {"q": "«Ақылды» мен «ақылсыз» мағыналары бірдей", "a": "Бұрыс", "h": "Ақылды — ақылы бар, ақылсыз — ақылы жоқ"}, {"q": "Жұрнақ сөздің түбірінен бұрын тұрады", "a": "Бұрыс", "h": "Жұрнақ түбірден кейін жалғанады"}, {"q": "«Күйші» — күй шертетін адам", "a": "Дұрыс", "h": "Дұрыс: күй + ші"}]);
+GENS.kk38q = mkQuiz([{"q": "Қай сөз «оқу» сөзімен түбірлес?", "a": "оқушы", "w": ["жазушы", "әнші", "суретші"], "h": "Оқу мен оқушы — оқы- түбірінен"}, {"q": "Қай сөз «жазу» сөзімен түбірлес?", "a": "жазушы", "w": ["оқушы", "аңшы", "күйші"], "h": "Жазу мен жазушы — жаз- түбірінен"}, {"q": "Түбірлес сөздер дегеніміз не?", "a": "бір түбірден жасалған сөздер", "w": ["бір әріптен басталатын сөздер", "қарама-қарсы сөздер", "бірдей жазылатын сөздер"], "h": "Түбірлес сөздердің түбірі ортақ"}, {"q": "Қай сөз «еңбек» сөзімен түбірлес?", "a": "еңбекқор", "w": ["енші", "сенбі", "ертең"], "h": "Еңбек + қор = еңбекқор"}, {"q": "«Оқулық» сөзінің түбірі қайсы?", "a": "оқы", "w": ["лық", "оқулы", "оқул"], "h": "Оқулық = оқы + лық"}, {"q": "Қай қатарда барлық сөз түбірлес?", "a": "жазу, жазушы, жазба", "w": ["жазу, оқу, ән", "жазушы, оқушы, әнші", "жаз, күз, қыс"], "h": "Бұл қатардың бәрі жаз- түбірінен"}, {"q": "«Жазба» сөзінің түбірі қайсы?", "a": "жаз", "w": ["жазба", "ба", "жазб"], "h": "Жазба = жаз + ба"}, {"q": "Түбірлес сөздердің мағынасы қандай болады?", "a": "жақын, бірақ бірдей емес", "w": ["бірдей", "қарама-қарсы", "ешқандай байланыс жоқ"], "h": "Түбірі бір, бірақ мағынасы әртүрлі"}]);
+GENS.kk38t = mkTF([{"q": "Түбірлес сөздердің түбірі ортақ", "a": "Дұрыс", "h": "Дұрыс: жазу, жазушы, жазба"}, {"q": "«Оқу» мен «оқушы» түбірлес сөздер", "a": "Дұрыс", "h": "Дұрыс: оқы- түбірінен"}, {"q": "«Жазу» мен «оқу» түбірлес сөздер", "a": "Бұрыс", "h": "Түбірлері әртүрлі: жаз- және оқы-"}, {"q": "Түбірлес сөздерде түбір өзгермейді", "a": "Бұрыс", "h": "Кейде түбір аздап өзгереді: оқу, оқушы"}, {"q": "«Еңбекші» мен «еңбекқор» түбірлес", "a": "Дұрыс", "h": "Дұрыс: еңбек түбірінен"}, {"q": "«Жазушы» — туынды сөз", "a": "Дұрыс", "h": "Дұрыс: жаз + ушы"}, {"q": "Түбірлес сөздер әрқашан бірдей жазылады", "a": "Бұрыс", "h": "Олардың жұрнақтары әртүрлі"}, {"q": "Сөздің түбірі — оның негізгі бөлігі", "a": "Дұрыс", "h": "Дұрыс: түбір — мағынаның өзегі"}]);
+GENS.kk39q = mkQuiz([{"q": "Бастауыш қандай сұраққа жауап береді?", "a": "кім? не?", "w": ["қандай?", "қайда?", "қашан?"], "h": "Бастауыш: кім? не?"}, {"q": "«Қар жауды» сөйлемінде бастауыш қайсы?", "a": "қар", "w": ["жауды", "сөйлем", "қарсы"], "h": "Не жауды? — қар"}, {"q": "«Қар жауды» сөйлемінде баяндауыш қайсы?", "a": "жауды", "w": ["қар", "жау", "жаудыр"], "h": "Қар не істеді? — жауды"}, {"q": "Қай сөйлемде сызықша қойылады?", "a": "Абай — ұлы ақын.", "w": ["Бала ойнайды.", "Қар жауды.", "Күн шықты."], "h": "Бастауыш пен баяндауыш зат есім: сызықша қойылады"}, {"q": "Бастауыш пен баяндауыш қалай аталады?", "a": "тұрлаулы мүшелер", "w": ["тұрлаусыз мүшелер", "бірыңғай мүшелер", "қыстырма сөздер"], "h": "Бастауыш пен баяндауыш — сөйлемнің тұрлаулы мүшелері"}, {"q": "«Бұл — біздің мектеп» сөйлемінде сызықша не үшін қойылған?", "a": "баяндауыш зат есім болғандықтан", "w": ["сұрақ болғандықтан", "қаратпа болғандықтан", "қыстырма болғандықтан"], "h": "Бастауыш «бұл», баяндауыш — зат есім"}, {"q": "Баяндауыш көбіне қандай сөз табынан болады?", "a": "етістіктен", "w": ["сан есімнен", "шылаудан", "қаратпадан"], "h": "Баяндауыш көбіне етістік болады"}, {"q": "«Ол — мұғалім» сөйлемінде бастауыш қайсы?", "a": "ол", "w": ["мұғалім", "сызықша", "сөйлем"], "h": "Кім? — ол"}]);
+GENS.kk39t = mkTF([{"q": "Бастауыш «кім? не?» сұрағына жауап береді", "a": "Дұрыс", "h": "Дұрыс: Айдар оқиды — кім оқиды? — Айдар"}, {"q": "Баяндауыш тек зат есімнен болады", "a": "Бұрыс", "h": "Баяндауыш көбіне етістіктен болады"}, {"q": "«Астана — Қазақстанның астанасы» сөйлемінде сызықша қойылған", "a": "Дұрыс", "h": "Дұрыс: екі зат есім"}, {"q": "«Бала ойнайды» сөйлемінде сызықша қойылады", "a": "Бұрыс", "h": "Баяндауыш етістік: сызықша жоқ"}, {"q": "Бастауыш пен баяндауыш — тұрлаулы мүшелер", "a": "Дұрыс", "h": "Дұрыс: сөйлемнің негізі"}, {"q": "Бастауыш та, баяндауыш та сөйлемде болуы керек", "a": "Дұрыс", "h": "Дұрыс: бұл — сөйлемнің негізі"}, {"q": "«Бұл — үй» сөйлемінде «бұл» баяндауыш", "a": "Бұрыс", "h": "«Бұл» — бастауыш"}, {"q": "Баяндауыш «не істеді?» сұрағына жауап бере алады", "a": "Дұрыс", "h": "Дұрыс: ойнады, оқыды"}]);
+GENS.kk310q = mkQuiz([{"q": "Жалаң сөйлемде қандай мүшелер болады?", "a": "тек бастауыш пен баяндауыш", "w": ["тек тұрлаусыз мүшелер", "тек қаратпа", "тек сан есім"], "h": "Жалаң сөйлем тұрлаулы мүшелерден тұрады"}, {"q": "Жайылма сөйлемде қандай мүшелер бар?", "a": "тұрлаусыз мүшелер де бар", "w": ["бастауыш жоқ", "баяндауыш жоқ", "тек үтір бар"], "h": "Жайылма сөйлемде тұрлаусыз мүшелер қатысады"}, {"q": "Қай сөйлем жалаң?", "a": "Қар жауды.", "w": ["Ақ қар ақырын жауды.", "Кішкентай құс аспанға ұшты.", "Жылы күн таңертең шықты."], "h": "Бұл сөйлемде тек бастауыш пен баяндауыш бар"}, {"q": "Қай сөйлем жайылма?", "a": "Ақ қар ақырын жауды.", "w": ["Қар жауды.", "Күн шықты.", "Балалар ойнады."], "h": "Бұл сөйлемде «ақ», «ақырын» — тұрлаусыз мүшелер"}, {"q": "«Ақ қар жауды» сөйлемінде «ақ» қандай сұраққа жауап береді?", "a": "қандай?", "w": ["кім?", "қайда?", "қашан?"], "h": "Қандай қар? — ақ"}, {"q": "Бастауыш пен баяндауыш қалай аталады?", "a": "тұрлаулы мүшелер", "w": ["тұрлаусыз мүшелер", "қаратпа", "қыстырма сөз"], "h": "Сөйлемнің негізін құрайды"}, {"q": "Тұрлаусыз мүшелер не істейді?", "a": "сөйлемді жайып, түсіндіреді", "w": ["сөйлемді жояды", "сөйлемді бастайды", "сөйлемді тоқтатады"], "h": "Олар сөйлемді толықтырады"}, {"q": "«Құс ұшты» сөйлеміне бір сөз қосып, жайылма ету үшін қайсысын таңдайсың?", "a": "Кішкентай құс ұшты.", "w": ["Құс ұшты.", "Ұшты құс.", "Құс."], "h": "Анықтауыш «кішкентай» сөйлемді жайды"}]);
+GENS.kk310t = mkTF([{"q": "Жалаң сөйлемде тұрлаусыз мүше болмайды", "a": "Дұрыс", "h": "Дұрыс: тек бастауыш, баяндауыш"}, {"q": "Жайылма сөйлемде тек бастауыш болады", "a": "Бұрыс", "h": "Жайылма сөйлемде тұрлаусыз мүшелер де болады"}, {"q": "«Балалар ойнады» — жалаң сөйлем", "a": "Дұрыс", "h": "Дұрыс: бастауыш және баяндауыш"}, {"q": "«Көңілді балалар ойнады» — жайылма сөйлем", "a": "Дұрыс", "h": "Дұрыс: «көңілді» — тұрлаусыз мүше"}, {"q": "Сөйлемге сөз қосу арқылы оны жайылма етуге болады", "a": "Дұрыс", "h": "Дұрыс: Құс ұшты → Кішкентай құс ұшты"}, {"q": "Тұрлаусыз мүшесіз сөйлем болмайды", "a": "Бұрыс", "h": "Тұрлаусыз мүшесіз де сөйлем бола алады"}, {"q": "«Күн шықты» — жайылма сөйлем", "a": "Бұрыс", "h": "Бұл — жалаң сөйлем"}, {"q": "Тұрлаулы мүшелер — бастауыш пен баяндауыш", "a": "Дұрыс", "h": "Дұрыс"}]);
+GENS.kk311q = mkQuiz([{"q": "«Үлкен» сөзіне қарама-қарсы сөз:", "a": "кіші", "w": ["ірі", "зор", "биік"], "h": "Үлкен — кіші"}, {"q": "«Батыл» сөзімен мәндес сөз:", "a": "ержүрек", "w": ["қорқақ", "жалқау", "баяу"], "h": "Батыл — ержүрек"}, {"q": "«Әдемі» сөзімен мәндес сөз:", "a": "сұлу", "w": ["ұсқынсыз", "жаман", "суық"], "h": "Әдемі — сұлу"}, {"q": "«Ақ» сөзіне қарама-қарсы сөз:", "a": "қара", "w": ["сары", "көк", "қызыл"], "h": "Ақ — қара"}, {"q": "«Биік» сөзіне қарама-қарсы сөз:", "a": "аласа", "w": ["ұзын", "зор", "жуан"], "h": "Биік — аласа"}, {"q": "«Қуану» сөзімен мәндес сөз:", "a": "шаттану", "w": ["жылау", "ренжу", "ұйықтау"], "h": "Қуану — шаттану"}, {"q": "Мәндес сөздерді не деп атаймыз?", "a": "синоним", "w": ["антоним", "түбір", "жұрнақ"], "h": "Мағынасы жақын сөздер — синонимдер"}, {"q": "Қарама-қарсы мағыналы сөздерді не деп атаймыз?", "a": "антоним", "w": ["синоним", "жалғау", "түбір"], "h": "Қарама-қарсы мағыналы сөздер — антонимдер"}]);
+GENS.kk311t = mkTF([{"q": "«Жылы» мен «суық» — қарама-қарсы сөздер", "a": "Дұрыс", "h": "Дұрыс: антоним"}, {"q": "«Үлкен» мен «ірі» — қарама-қарсы сөздер", "a": "Бұрыс", "h": "Бұлар — мәндес сөздер"}, {"q": "«Әдемі» мен «сұлу» — мәндес сөздер", "a": "Дұрыс", "h": "Дұрыс: синоним"}, {"q": "«Ашық» пен «жабық» — мәндес сөздер", "a": "Бұрыс", "h": "Бұлар — қарама-қарсы сөздер"}, {"q": "Мәндес сөздердің мағынасы жақын болады", "a": "Дұрыс", "h": "Дұрыс: әдемі — сұлу"}, {"q": "«Ақ» пен «қара» — антонимдер", "a": "Дұрыс", "h": "Дұрыс: қарама-қарсы"}, {"q": "Бір сөздің бірнеше мәндес сөзі болуы мүмкін", "a": "Дұрыс", "h": "Дұрыс: үлкен — ірі, зор"}, {"q": "Антонимдер бірдей мағыналы сөздер", "a": "Бұрыс", "h": "Антонимдер қарама-қарсы мағыналы сөздер"}]);
+GENS.kk312q = mkQuiz([{"q": "«Алтын жүзік» тіркесінде «алтын» қай мағынада?", "a": "тура мағынада", "w": ["ауыспалы мағынада", "жұрнақ ретінде", "қыстырма ретінде"], "h": "Алтыннан жасалған жүзік"}, {"q": "«Алтын қолды шебер» тіркесінде «алтын» қай мағынада?", "a": "ауыспалы мағынада", "w": ["тура мағынада", "түбір ретінде", "қаратпа ретінде"], "h": "Алтын қол — ебі бар, шебер"}, {"q": "«Ащы шындық» тіркесінде «ащы» қай мағынада?", "a": "ауыспалы мағынада", "w": ["тура мағынада", "тек түс ретінде", "сан ретінде"], "h": "Ащы шындық — ауыр шындық"}, {"q": "«Ащы дәрі» тіркесінде «ащы» қай мағынада?", "a": "тура мағынада", "w": ["ауыспалы мағынада", "қыстырма ретінде", "жұрнақ ретінде"], "h": "Дәрінің дәмі ащы"}, {"q": "«Тәтті сөз» тіркесінде «тәтті» қай мағынада?", "a": "ауыспалы мағынада", "w": ["тура мағынада", "тек түс ретінде", "сан ретінде"], "h": "Тәтті сөз — жағымды сөз"}, {"q": "Сөздің өз мағынасы қалай аталады?", "a": "тура мағына", "w": ["ауыспалы мағына", "қыстырма мағына", "қаратпа мағына"], "h": "Сөздің өз мағынасы — тура мағына"}, {"q": "«Жұмсақ мінез» тіркесінде «жұмсақ» қай мағынада?", "a": "ауыспалы мағынада", "w": ["тура мағынада", "жұрнақ ретінде", "сан ретінде"], "h": "Жұмсақ мінез — жайлы мінез"}, {"q": "Ауыспалы мағына қайда қолданылады?", "a": "сөйлеуде, әңгімеде", "w": ["тек сандарда", "тек әріптерде", "тек есімдерде"], "h": "Сөз басқа мағынада да қолданыла алады"}]);
+GENS.kk312t = mkTF([{"q": "«Алтын жүзік» — тура мағына", "a": "Дұрыс", "h": "Дұрыс: алтыннан жасалған"}, {"q": "«Алтын қол» — тура мағынадағы тіркес", "a": "Бұрыс", "h": "Бұл ауыспалы мағына: ебі бар шебер"}, {"q": "Ауыспалы мағына сөздің басқа мағынада қолданылуы", "a": "Дұрыс", "h": "Дұрыс: тәтті сөз"}, {"q": "«Ащы шындық» — ауыспалы мағына", "a": "Дұрыс", "h": "Дұрыс: ауыр шындық"}, {"q": "Бір сөз тура да, ауыспалы да мағынада қолданыла алады", "a": "Дұрыс", "h": "Дұрыс: ащы дәрі, ащы шындық"}, {"q": "Тура және ауыспалы мағына бір-бірінен өзгеше", "a": "Дұрыс", "h": "Дұрыс: мәнмәтінге қараймыз"}, {"q": "«Ауыр сөмке» — ауыспалы мағына", "a": "Бұрыс", "h": "Бұл тура мағына: салмағы ауыр"}, {"q": "Сөздің мағынасын сөйлемге қарап түсінеміз", "a": "Дұрыс", "h": "Дұрыс: мәнмәтін көмектеседі"}]);
+GENS.kk313q = mkQuiz([{"q": "«Менің» (кітап) — қалай болады?", "a": "кітабым", "w": ["кітабың", "кітабы", "кітабымыз"], "h": "Менің кітабым"}, {"q": "«Сенің» (дәптер) — қалай болады?", "a": "дәптерің", "w": ["дәптерім", "дәптері", "дәптеріміз"], "h": "Сенің дәптерің"}, {"q": "«Оның» (үй) — қалай болады?", "a": "үйі", "w": ["үйім", "үйің", "үйіміз"], "h": "Оның үйі"}, {"q": "«Біздің» (үй) — қалай болады?", "a": "үйіміз", "w": ["үйім", "үйіңіз", "үйі"], "h": "Біздің үйіміз"}, {"q": "«Сіздің» (дәптер) — қалай болады?", "a": "дәптеріңіз", "w": ["дәптеріміз", "дәптерім", "дәптері"], "h": "Сіздің дәптеріңіз"}, {"q": "«Менің» (әже) — қалай болады?", "a": "әжем", "w": ["әжең", "әжесі", "әжеміз"], "h": "Менің әжем"}, {"q": "«Оның» (әже) — қалай болады?", "a": "әжесі", "w": ["әжем", "әжең", "әжеміз"], "h": "Оның әжесі"}, {"q": "Тәуелдік жалғау нені білдіреді?", "a": "заттың кімдікі екенін", "w": ["істің уақытын", "заттың санын", "сұрақ екенін"], "h": "Менің, сенің, оның деген мағынаны береді"}]);
+GENS.kk313t = mkTF([{"q": "«Менің кітабым» — тәуелдік жалғау қолданылған", "a": "Дұрыс", "h": "Дұрыс: -ым"}, {"q": "«Сенің дәптерің» дегеннің орнына «сенің дәптерім» айтады", "a": "Бұрыс", "h": "Дұрысы: сенің дәптерің"}, {"q": "«Біздің үйіміз» — біздің деген жіктік қосымшасы бар", "a": "Дұрыс", "h": "Дұрыс: -іміз"}, {"q": "«Әжем» сөзі «менің әжем» дегенді білдіреді", "a": "Дұрыс", "h": "Дұрыс: әже + м"}, {"q": "«Оның дәптері» — үшінші жақ", "a": "Дұрыс", "h": "Дұрыс: -і"}, {"q": "«Сіздің кітабыңыз» — «сіздің» сөзіне сәйкес", "a": "Дұрыс", "h": "Дұрыс: -ыңыз"}, {"q": "Тәуелдік жалғау тек етістікке жалғанады", "a": "Бұрыс", "h": "Тәуелдік жалғау зат есімге жалғанады"}, {"q": "«Менің үйім» дегенде «үй» сөзіне -ім жалғанған", "a": "Дұрыс", "h": "Дұрыс: үй + ім"}]);
+GENS.kk314q = mkQuiz([{"q": "«Сурет» қай сөз табы?", "a": "зат есім", "w": ["сын есім", "сан есім", "етістік"], "h": "Сурет — не?"}, {"q": "«Әсем» қай сөз табы?", "a": "сын есім", "w": ["зат есім", "сан есім", "етістік"], "h": "Әсем — қандай?"}, {"q": "«Бес» қай сөз табы?", "a": "сан есім", "w": ["зат есім", "сын есім", "етістік"], "h": "Бес — қанша?"}, {"q": "«Билейді» қай сөз табы?", "a": "етістік", "w": ["зат есім", "сын есім", "сан есім"], "h": "Билейді — не істейді?"}, {"q": "Зат есім қандай сұраққа жауап береді?", "a": "кім? не?", "w": ["қандай?", "қанша?", "не істеді?"], "h": "Кім? Не?"}, {"q": "Сын есім қандай сұраққа жауап береді?", "a": "қандай?", "w": ["кім?", "қанша?", "не істеді?"], "h": "Қандай?"}, {"q": "Сан есім қандай сұраққа жауап береді?", "a": "қанша?", "w": ["қандай?", "кім?", "не істеді?"], "h": "Қанша?"}, {"q": "Етістік қандай сұраққа жауап береді?", "a": "не істеді?", "w": ["қандай?", "қанша?", "кім?"], "h": "Не істеді?"}]);
+GENS.kk314t = mkTF([{"q": "«Сазгер» — зат есім", "a": "Дұрыс", "h": "Дұрыс: кім?"}, {"q": "«Нәзік» — етістік", "a": "Бұрыс", "h": "Бұл — сын есім: қандай?"}, {"q": "«Жүз» — сан есім", "a": "Дұрыс", "h": "Дұрыс: қанша?"}, {"q": "«Айтты» — етістік", "a": "Дұрыс", "h": "Дұрыс: не істеді?"}, {"q": "Сын есім заттың қандай екенін білдіреді", "a": "Дұрыс", "h": "Дұрыс: қандай?"}, {"q": "Сан есім заттың санын білдіреді", "a": "Дұрыс", "h": "Дұрыс: қанша?"}, {"q": "«Күй» сөзі — сан есім", "a": "Бұрыс", "h": "Бұл — зат есім"}, {"q": "Етістік істің қимылын білдіреді", "a": "Дұрыс", "h": "Дұрыс: не істейді?"}]);
+GENS.kk315q = mkQuiz([{"q": "«Тау» — қандай сөз?", "a": "негізгі сөз", "w": ["туынды сөз", "қосымша", "жұрнақ"], "h": "Тау — жұрнақсыз түбір"}, {"q": "«Таулы» — қандай сөз?", "a": "туынды сөз", "w": ["негізгі сөз", "түбір", "жалғау"], "h": "Тау + лы = таулы"}, {"q": "«Әнші» — қандай сөз?", "a": "туынды сөз", "w": ["негізгі сөз", "түбір", "жалғау"], "h": "Ән + ші"}, {"q": "«Су» — қандай сөз?", "a": "негізгі сөз", "w": ["туынды сөз", "жұрнақ", "қосымша"], "h": "Су — түбір"}, {"q": "«Күшті» — қандай сөз?", "a": "туынды сөз", "w": ["негізгі сөз", "түбір", "жалғау"], "h": "Күш + ті"}, {"q": "Туынды сөз қалай жасалады?", "a": "түбірге жұрнақ жалғанып", "w": ["әріп қосылмай", "сан қосылып", "тыныс белгісі қойылып"], "h": "Түбір + жұрнақ"}, {"q": "«Жаз» — қандай сөз?", "a": "негізгі сөз", "w": ["туынды сөз", "жұрнақ", "жалғау"], "h": "Жаз — етістіктің түбірі"}, {"q": "«Келтір» — қандай сөз?", "a": "туынды сөз", "w": ["негізгі сөз", "түбір", "жалғау"], "h": "Кел + тір"}]);
+GENS.kk315t = mkTF([{"q": "Туынды сөз жұрнақ арқылы жасалады", "a": "Дұрыс", "h": "Дұрыс: түбір + жұрнақ"}, {"q": "«Көл» — туынды сөз", "a": "Бұрыс", "h": "Бұл — негізгі сөз"}, {"q": "«Балалық» — туынды сөз", "a": "Дұрыс", "h": "Дұрыс: бала + лық"}, {"q": "«Жол» — негізгі сөз", "a": "Дұрыс", "h": "Дұрыс: түбір"}, {"q": "«Көңілсіз» — туынды сын есім", "a": "Дұрыс", "h": "Дұрыс: көңіл + сіз"}, {"q": "«Оқыт» — негізгі етістік", "a": "Бұрыс", "h": "Бұл — туынды етістік: оқы + т"}, {"q": "Негізгі сөзде жұрнақ болмайды", "a": "Дұрыс", "h": "Дұрыс: түбірдің өзі"}, {"q": "«Жылы» — туынды сөз", "a": "Бұрыс", "h": "Бұл — негізгі сөз"}]);
+GENS.kk316q = mkQuiz([{"q": "«Оқиды» етістігінің болымсыз түрі:", "a": "оқымайды", "w": ["оқыбайды", "оқыпайды", "оқиымайды"], "h": "Оқы + ма + йды"}, {"q": "«Жазады» етістігінің болымсыз түрі:", "a": "жазбайды", "w": ["жазмайды", "жазпайды", "жазамайды"], "h": "Жаз + ба + йды"}, {"q": "«Барады» етістігінің болымсыз түрі:", "a": "бармайды", "w": ["барбайды", "барпайды", "баралмайды"], "h": "Бар + ма + йды"}, {"q": "«Келеді» етістігінің болымсыз түрі:", "a": "келмейді", "w": ["келбейді", "келпейді", "келемейді"], "h": "Кел + ме + йді"}, {"q": "«Көреді» етістігінің болымсыз түрі:", "a": "көрмейді", "w": ["көрбейді", "көрпейді", "көремейді"], "h": "Көр + ме + йді"}, {"q": "«Айтады» етістігінің болымсыз түрі:", "a": "айтпайды", "w": ["айтмайды", "айтбайды", "айтамайды"], "h": "Айт + па + йды"}, {"q": "«Ойнайды» етістігінің болымсыз түрі:", "a": "ойнамайды", "w": ["ойнабайды", "ойнапайды", "ойнайымайды"], "h": "Ойна + ма + йды"}, {"q": "Болымсыз етістік нені білдіреді?", "a": "істің болмағанын", "w": ["істің болғанын", "істің санын", "істің түсін"], "h": "Болымсыз — іс істелмейді"}]);
+GENS.kk316t = mkTF([{"q": "«Оқымайды» — болымсыз етістік", "a": "Дұрыс", "h": "Дұрыс: оқы + ма + йды"}, {"q": "«Бармайды» — болымды етістік", "a": "Бұрыс", "h": "Бұл — болымсыз етістік"}, {"q": "«Келеді» — болымды етістік", "a": "Дұрыс", "h": "Дұрыс: істеліп жатыр"}, {"q": "Болымсыз етістік жұрнағы: -ма, -ме, -ба, -бе, -па, -пе", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "«Жазбайды» — болымды етістік", "a": "Бұрыс", "h": "Бұл — болымсыз етістік"}, {"q": "«Көрмейді» — болымсыз етістік", "a": "Дұрыс", "h": "Дұрыс: көр + ме + йді"}, {"q": "«Айтпайды» — болымды етістік", "a": "Бұрыс", "h": "Бұл — болымсыз етістік"}, {"q": "Болымсыз етістік «істемейді» дегенді білдіреді", "a": "Дұрыс", "h": "Дұрыс"}]);
+GENS.kk317q = mkQuiz([{"q": "«Үш» сөзінен реттік сан есім жасасақ:", "a": "үшінші", "w": ["үшіншы", "үшенші", "үшнші"], "h": "Үш + інші = үшінші"}, {"q": "«Төрт» сөзінен реттік сан есім жасасақ:", "a": "төртінші", "w": ["төртіншы", "төртенші", "төртнші"], "h": "Төрт + інші = төртінші"}, {"q": "«Алты» сөзінен реттік сан есім жасасақ:", "a": "алтыншы", "w": ["алтынші", "алтышы", "алтыіншы"], "h": "Алты + ыншы = алтыншы"}, {"q": "«Жеті» сөзінен реттік сан есім жасасақ:", "a": "жетінші", "w": ["жетіншы", "жетенші", "жетнші"], "h": "Жеті + інші = жетінші"}, {"q": "«Он» сөзінен реттік сан есім жасасақ:", "a": "оныншы", "w": ["онінші", "оншы", "онншы"], "h": "Он + ыншы = оныншы"}, {"q": "Есептік сан есім қандай сұраққа жауап береді?", "a": "қанша?", "w": ["нешінші?", "қандай?", "кім?"], "h": "Қанша?"}, {"q": "Реттік сан есім қандай сұраққа жауап береді?", "a": "нешінші?", "w": ["қанша?", "қандай?", "кім?"], "h": "Нешінші?"}, {"q": "«Екінші» қандай сан есім?", "a": "реттік", "w": ["есептік", "негізгі", "туынды емес"], "h": "Екінші — нешінші?"}]);
+GENS.kk317t = mkTF([{"q": "«Бірінші» — реттік сан есім", "a": "Дұрыс", "h": "Дұрыс: нешінші?"}, {"q": "«Жиырма» — реттік сан есім", "a": "Бұрыс", "h": "Бұл — есептік сан есім"}, {"q": "Реттік сан есім заттың ретін білдіреді", "a": "Дұрыс", "h": "Дұрыс: нешінші?"}, {"q": "«Оныншы» — есептік сан есім", "a": "Бұрыс", "h": "Бұл — реттік сан есім"}, {"q": "«Бес» — есептік сан есім", "a": "Дұрыс", "h": "Дұрыс: қанша?"}, {"q": "«Үшінші» — реттік сан есім", "a": "Дұрыс", "h": "Дұрыс: нешінші?"}, {"q": "Есептік сан есім заттың санын білдіреді", "a": "Дұрыс", "h": "Дұрыс: қанша?"}, {"q": "«Алтыншы» — «алты» сөзінен жасалған", "a": "Дұрыс", "h": "Дұрыс: алты + ыншы"}]);
+GENS.kk318q = mkQuiz([{"q": "«Биік» сөзінің салыстырмалы шырайы:", "a": "биігірек", "w": ["биікірек", "биіқірек", "биікрек"], "h": "Биік — биігірек"}, {"q": "«Үлкен» сөзінің салыстырмалы шырайы:", "a": "үлкенірек", "w": ["үлкенрек", "үлкенырақ", "үлкірек"], "h": "Үлкен — үлкенірек"}, {"q": "«Жылы» сөзінің салыстырмалы шырайы:", "a": "жылырақ", "w": ["жылыірек", "жылырек", "жылыырақ"], "h": "Жылы — жылырақ"}, {"q": "«Жеңіл» сөзінің салыстырмалы шырайы:", "a": "жеңілірек", "w": ["жеңілрек", "жеңілырақ", "жеңлірек"], "h": "Жеңіл — жеңілірек"}, {"q": "«Ұзын» сөзінің салыстырмалы шырайы:", "a": "ұзынырақ", "w": ["ұзынірек", "ұзынрақ", "ұзірек"], "h": "Ұзын — ұзынырақ"}, {"q": "«-рақ, -рек» жұрнағы нені білдіреді?", "a": "салыстыруды", "w": ["санды", "уақытты", "жерді"], "h": "Салыстырмалы шырай: көбірек, аздау"}, {"q": "Қай сөйлемде салыстырмалы шырай бар?", "a": "Мына тау анау таудан биігірек.", "w": ["Тау биік.", "Тау көрінеді.", "Таулар көп."], "h": "Салыстырмалы шырай: биігірек"}, {"q": "«Мен сенен үлкенірекпін» сөйлемінде салыстырмалы шырайлы сөз:", "a": "үлкенірек", "w": ["мен", "сен", "пін"], "h": "Үлкен + ірек"}]);
+GENS.kk318t = mkTF([{"q": "«Биігірек» — салыстырмалы шырай", "a": "Дұрыс", "h": "Дұрыс: биік + ірек"}, {"q": "«Жылы» — салыстырмалы шырай", "a": "Бұрыс", "h": "Бұл — қарапайым түрі"}, {"q": "«-рақ, -рек» жұрнақтары салыстыруды білдіреді", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "«Үлкенірек» — «үлкен» сөзінен жасалған", "a": "Дұрыс", "h": "Дұрыс: үлкен + ірек"}, {"q": "«Биік» сөзі «биіқірек» болып өзгереді", "a": "Бұрыс", "h": "Дұрысы: биігірек"}, {"q": "Салыстырмалы шырай сын есімнен жасалады", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "«Жеңілірек» — қарапайым түрі", "a": "Бұрыс", "h": "Бұл — салыстырмалы шырай"}, {"q": "Салыстырмалы шырай екі затты салыстырады", "a": "Дұрыс", "h": "Дұрыс"}]);
+GENS.kk319q = mkQuiz([{"q": "Көркем мәтіннің мақсаты не?", "a": "сезім мен бейне беру", "w": ["дәл өлшем беру", "тек сан беру", "нұсқау беру"], "h": "Көркем мәтін оқырманның сезіміне әсер етеді"}, {"q": "Ғылыми-танымдық мәтіннің мақсаты не?", "a": "мәлімет беру", "w": ["өлең жазу", "ертегі айту", "қыстырма сөз беру"], "h": "Ғылыми-танымдық мәтін ақпарат береді"}, {"q": "«Дала көгілдір шапанын жамылды» қандай мәтінге тән?", "a": "көркем мәтінге", "w": ["ғылыми мәтінге", "нұсқаулыққа", "хабарландыруға"], "h": "Бұл — бейнелеу"}, {"q": "«Су 100 градуста қайнайды» қандай мәтінге тән?", "a": "ғылыми-танымдық мәтінге", "w": ["көркем мәтінге", "ертегіге", "өлеңге"], "h": "Бұл — дәл мәлімет"}, {"q": "Көркем мәтінде көбіне не қолданылады?", "a": "бейнелі сөздер", "w": ["формулалар", "кестелер", "тек сандар"], "h": "Теңеу, бейнелеу"}, {"q": "Ғылыми-танымдық мәтінде көбіне не қолданылады?", "a": "дәл мәліметтер", "w": ["бейнелі сөздер", "теңеулер", "қаратпа сөздер"], "h": "Дәл атаулар мен сандар"}, {"q": "Қай мәтін ертегі, әңгіме, өлеңге жақын?", "a": "көркем мәтін", "w": ["ғылыми-танымдық мәтін", "нұсқаулық", "хабарландыру"], "h": "Көркем әдебиет"}, {"q": "Ғылыми-танымдық мәтінді кім жиі оқиды?", "a": "білім алғысы келетін адам", "w": ["тек ақындар", "тек сазгерлер", "ешкім"], "h": "Ол жаңа ақпарат береді"}]);
+GENS.kk319t = mkTF([{"q": "Көркем мәтін оқырманның сезіміне әсер етеді", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Ғылыми-танымдық мәтінде бейнелі сөздер көп болады", "a": "Бұрыс", "h": "Онда дәл мәлімет көп болады"}, {"q": "«Су 100 градуста қайнайды» — ғылыми-танымдық мәтін", "a": "Дұрыс", "h": "Дұрыс: дәл мәлімет"}, {"q": "«Дала көгілдір шапанын жамылды» — ғылыми мәтін", "a": "Бұрыс", "h": "Бұл — көркем мәтін"}, {"q": "Көркем мәтін теңеу, бейнелеуді қолданады", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Ғылыми-танымдық мәтін ақпарат береді", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Көркем мәтін мен ғылыми мәтіннің мақсаты бірдей", "a": "Бұрыс", "h": "Мақсаттары әртүрлі"}, {"q": "Екі мәтінді салыстыруға болады", "a": "Дұрыс", "h": "Дұрыс: мақсаты, тілі, құрылымы бойынша"}]);
+GENS.kk320q = mkQuiz([{"q": "«Құрметті Айгүл!» сөздері қай мәтінде болады?", "a": "хатта", "w": ["нұсқаулықта", "хабарландыруда", "күнделікте"], "h": "Хат — құрметті... деп басталады"}, {"q": "«Сізді мерекеге шақырамыз» қай мәтінге жатады?", "a": "шақыруға", "w": ["хатқа", "нұсқаулыққа", "күнделікке"], "h": "Бұл — шақыру"}, {"q": "«Алдымен қолыңды жу» қай мәтінге жатады?", "a": "нұсқаулыққа", "w": ["шақыруға", "хатқа", "күнделікке"], "h": "Нұсқаулық қадамдарды ретімен көрсетеді"}, {"q": "«Бүгін мектепте мереке болды» қай мәтінге жатады?", "a": "күнделікке", "w": ["шақыруға", "хабарландыруға", "нұсқаулыққа"], "h": "Күнделік — өз ойың мен оқиғаң"}, {"q": "«Назар аударыңыз!» сөзі қай мәтінде болады?", "a": "хабарландыруда", "w": ["хатта", "күнделікте", "шақыруда"], "h": "Хабарландыру назар аудартады"}, {"q": "Шақыруда нені көрсету керек?", "a": "қашан және қайда өтетінін", "w": ["тек атын", "тек түсін", "тек санын"], "h": "Уақыты мен орны"}, {"q": "Нұсқаулықта іс-әрекеттер қалай беріледі?", "a": "ретімен", "w": ["қалауынша", "ретсіз", "өлеңмен"], "h": "Алдымен, содан кейін, соңында"}, {"q": "Хаттың соңы қалай аяқталады?", "a": "қол қойып, қоштасып", "w": ["сұрақпен", "сызықшамен", "санмен"], "h": "Қош бол, досың..."}]);
+GENS.kk320t = mkTF([{"q": "Хат «құрметті...» деп басталуы мүмкін", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Шақыруда уақыт пен орын көрсетілмейді", "a": "Бұрыс", "h": "Көрсетілуі керек"}, {"q": "Нұсқаулық қадамдарды ретімен береді", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Күнделікте өз оқиғаңды жазасың", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Хабарландыру назар аудартады", "a": "Дұрыс", "h": "Дұрыс: Назар аударыңыз!"}, {"q": "Нұсқаулықта «алдымен, содан кейін» сөздері болмайды", "a": "Бұрыс", "h": "Бұл сөздер қадамдарды көрсетеді"}, {"q": "Хатта кімге жазылғаны көрсетіледі", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Күнделік ғылыми мәтін болып саналады", "a": "Бұрыс", "h": "Күнделік — жеке мәтін"}]);
+GENS.kk321q = mkQuiz([{"q": "«Әнші» сөзінің түбірі қайсы?", "a": "ән", "w": ["ші", "әнші", "нші"], "h": "Ән + ші"}, {"q": "«Таулы» сөзіндегі жұрнақ қайсы?", "a": "-лы", "w": ["тау", "-у", "-ау"], "h": "Тау + лы"}, {"q": "«Достық» сөзінің түбірі қайсы?", "a": "дос", "w": ["тық", "достық", "ық"], "h": "Дос + тық"}, {"q": "«Ақылсыз» сөзіндегі жұрнақ қайсы?", "a": "-сыз", "w": ["ақыл", "-ыз", "-ыл"], "h": "Ақыл + сыз"}, {"q": "Жұрнақ сөздің қай жағына жалғанады?", "a": "түбірден кейін", "w": ["түбірден бұрын", "сөздің ортасына", "әріпке"], "h": "Түбір + жұрнақ"}, {"q": "«Суретші» сөзінің түбірі қайсы?", "a": "сурет", "w": ["ші", "суретші", "ретші"], "h": "Сурет + ші"}, {"q": "Түбір дегеніміз не?", "a": "сөздің негізгі бөлігі", "w": ["сөздің жалғауы", "сөйлем мүшесі", "тыныс белгісі"], "h": "Түбір — мағынаның өзегі"}, {"q": "«Күшті» сөзіндегі жұрнақ қайсы?", "a": "-ті", "w": ["күш", "-ш", "-ші"], "h": "Күш + ті"}]);
+GENS.kk321t = mkTF([{"q": "Түбір — сөздің негізгі бөлігі", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Жұрнақ түбірден бұрын тұрады", "a": "Бұрыс", "h": "Жұрнақ түбірден кейін жалғанады"}, {"q": "«Әнші» сөзінің түбірі — «ән»", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "«Достық» сөзіндегі жұрнақ — «-тық»", "a": "Дұрыс", "h": "Дұрыс: дос + тық"}, {"q": "«Таулы» сөзінің түбірі — «лы»", "a": "Бұрыс", "h": "Түбірі — тау, жұрнағы — -лы"}, {"q": "Жұрнақ жаңа сөз жасайды", "a": "Дұрыс", "h": "Дұрыс"}, {"q": "Барлық сөзде жұрнақ болады", "a": "Бұрыс", "h": "Негізгі сөздерде жұрнақ болмайды: тау, су"}, {"q": "«Суретші» — сурет + ші", "a": "Дұрыс", "h": "Дұрыс"}]);
+const LESSONS = [
+  { id: "kk31", icon: "", title: "Э, ф, в, ц, ч әріптері", goal: "Қазақ тіліне басқа тілден енген сөздерді дұрыс жазу",
+    steps: [
+      Q("kk31s1", "infoTap", "Знакомимся с темой", "Сәлем! Бұл — Барсик. Кейбір әріптер басқа тілден енген сөздерде жазылады. Карточкаларды бас.", {"need": 4, "items": [{"k": "э әрпі", "v": "", "t": "Э — басқа тілден енген сөздерде: эстафета, экран, электр."}, {"k": "ф және в әріптері", "v": "", "t": "Ф, в — алынған сөздерде: фабрика, физика, вагон, вокзал."}, {"k": "ц және ч әріптері", "v": "", "t": "Ц — цирк, цех. Ч — чемпион, чек."}, {"k": "есіңде болсын", "v": "", "t": "Қазақ сөздерінде бұл әріптер жазылмайды: қазақша сөздер өз дыбыстарымен жазылады."}]}),
+      Q("kk31s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Э әрпі"}, {"e": "", "k": "Ф әрпі"}, {"e": "", "k": "В әрпі"}], "items": [{"g": 0, "e": "", "t": "экран", "h": "э"}, {"g": 0, "e": "", "t": "эстафета", "h": "э"}, {"g": 0, "e": "", "t": "экскурсия", "h": "э"}, {"g": 1, "e": "", "t": "футбол", "h": "ф"}, {"g": 1, "e": "", "t": "фонтан", "h": "ф"}, {"g": 1, "e": "", "t": "фильм", "h": "ф"}, {"g": 2, "e": "", "t": "вагон", "h": "в"}, {"g": 2, "e": "", "t": "вокзал", "h": "в"}, {"g": 2, "e": "", "t": "вулкан", "h": "в"}]}),
+      Q("kk31s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Ц әрпі"}, {"e": "", "k": "Ч әрпі"}], "items": [{"g": 0, "e": "", "t": "цирк", "h": "ц"}, {"g": 0, "e": "", "t": "цех", "h": "ц"}, {"g": 0, "e": "", "t": "центр", "h": "ц"}, {"g": 1, "e": "", "t": "чемпион", "h": "ч"}, {"g": 1, "e": "", "t": "чемодан", "h": "ч"}, {"g": 1, "e": "", "t": "чек", "h": "ч"}]}),
+      Q("kk31s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk31q"]}),
+      Q("kk31s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk31t"]})
+    ] },
+  { id: "kk32", icon: "", title: "Мәтін түрлері және құрылымы", goal: "Әңгімелеу, сипаттау, пайымдау мәтінін ажырату",
+    steps: [
+      Q("kk32s1", "infoTap", "Знакомимся с темой", "Мәтіннің үш түрі бар. Карточкаларды бас.", {"need": 4, "items": [{"k": "әңгімелеу", "v": "", "t": "Әңгімелеуде оқиға баяндалады: не болды? Кеше біз саябаққа бардық."}, {"k": "сипаттау", "v": "", "t": "Сипаттауда заттың белгісі айтылады: қандай? Күз — салқын, жапырақтары сары."}, {"k": "пайымдау", "v": "", "t": "Пайымдау: неге? Ағашты қорғау керек, өйткені ол ауаны тазартады."}, {"k": "мәтін құрылымы", "v": "", "t": "Мәтін кіріспеден, негізгі бөлімнен және қорытындыдан тұрады."}]}),
+      Q("kk32s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Әңгімелеу"}, {"e": "", "k": "Сипаттау"}, {"e": "", "k": "Пайымдау"}], "items": [{"g": 0, "e": "", "t": "Көктемде қоян ұясынан шықты.", "h": "оқиға"}, {"g": 0, "e": "", "t": "Түлкі орманнан өтіп, жылғаға жетті.", "h": "оқиға"}, {"g": 0, "e": "", "t": "Таңертең құс ұясын жасады.", "h": "оқиға"}, {"g": 1, "e": "", "t": "Қоян — ақ, жұмсақ, құлағы ұзын жануар.", "h": "белгісі"}, {"g": 1, "e": "", "t": "Орман — жасыл, тыныш, салқын.", "h": "белгісі"}, {"g": 1, "e": "", "t": "Құс — кішкентай, қанаты жеңіл.", "h": "белгісі"}, {"g": 2, "e": "", "t": "Құстарды қорғау керек, өйткені олар зиянды жәндіктерді жейді.", "h": "себебі"}, {"g": 2, "e": "", "t": "Орман — таза ауа көзі, сондықтан ағаштарды кеспеу керек.", "h": "себебі"}, {"g": 2, "e": "", "t": "Табиғатты сақтаймыз, себебі ол — біздің үйіміз.", "h": "себебі"}]}),
+      Q("kk32s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Түсіндіру"}, {"e": "", "k": "Дәлелдеу"}, {"e": "", "k": "Қорытынды"}], "items": [{"g": 0, "e": "", "t": "Орман — ағаштар өсетін үлкен алқап.", "h": "не екенін түсіндіреді"}, {"g": 0, "e": "", "t": "Өзен — жер бетімен аққан су.", "h": "не екенін түсіндіреді"}, {"g": 1, "e": "", "t": "Өйткені ағаштар ауаны тазартады.", "h": "себебін айтады"}, {"g": 1, "e": "", "t": "Себебі өзен жануарларға су береді.", "h": "себебін айтады"}, {"g": 2, "e": "", "t": "Сондықтан орманды қорғау керек.", "h": "түйін"}, {"g": 2, "e": "", "t": "Сондықтан өзенді таза ұстау керек.", "h": "түйін"}]}),
+      Q("kk32s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk32q"]}),
+      Q("kk32s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk32t"]})
+    ] },
+  { id: "kk33", icon: "", title: "Тақырып, негізгі ой, жоспар", goal: "Мәтіннің тақырыбы мен негізгі ойын табу",
+    steps: [
+      Q("kk33s1", "infoTap", "Знакомимся с темой", "Мәтін не туралы? Мәтін не үйретеді? Карточкаларды бас.", {"need": 4, "items": [{"k": "тақырып", "v": "", "t": "Тақырып — мәтін не туралы екенін көрсетеді: «Менің Отаным»."}, {"k": "негізгі ой", "v": "", "t": "Негізгі ой — мәтіннің түйіні: «Табиғатты аялау керек»."}, {"k": "жоспар", "v": "", "t": "Жоспар — мәтіннің бөліктерінің аты: 1) Кіріспе. 2) Негізгі бөлім. 3) Қорытынды."}, {"k": "қалай табамыз", "v": "", "t": "Мәтінді мұқият оқып, әр бөлікке тақырып қоямыз."}]}),
+      Q("kk33s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Тақырып"}, {"e": "", "k": "Негізгі ой"}, {"e": "", "k": "Жоспар тармағы"}], "items": [{"g": 0, "e": "", "t": "Тірі табиғат", "h": "мәтін табиғат туралы"}, {"g": 0, "e": "", "t": "Қоянның өмірі", "h": "мәтін қоян туралы"}, {"g": 0, "e": "", "t": "Жарық пен қараңғылық", "h": "мәтін жарық туралы"}, {"g": 1, "e": "", "t": "Табиғатты қорғау — әрқайсымыздың міндетіміз.", "h": "түйін"}, {"g": 1, "e": "", "t": "Жарық — өмірдің көзі.", "h": "түйін"}, {"g": 1, "e": "", "t": "Жануарларға қамқор болу керек.", "h": "түйін"}, {"g": 2, "e": "", "t": "1. Қоян ұясынан шықты.", "h": "бірінші бөлік"}, {"g": 2, "e": "", "t": "2. Ол қорек іздеді.", "h": "екінші бөлік"}, {"g": 2, "e": "", "t": "3. Қоян үйіне оралды.", "h": "үшінші бөлік"}]}),
+      Q("kk33s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk33q"]}),
+      Q("kk33s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk33t"]})
+    ] },
+  { id: "kk34", icon: "", title: "Қаратпа және қыстырма сөздер", goal: "Қаратпа мен қыстырма сөзді тыныс белгісімен дұрыс жазу",
+    steps: [
+      Q("kk34s1", "infoTap", "Знакомимся с темой", "Қаратпа — біреуге айтылған сөз. Карточкаларды бас.", {"need": 4, "items": [{"k": "қаратпа", "v": "", "t": "Қаратпа — біреуге айтылған сөз: Айгүл, мұнда кел!"}, {"k": "қаратпа мен үтір", "v": "", "t": "Қаратпаның екі жағынан үтір қойылады: Мақсат, қайда барасың?"}, {"k": "қыстырма сөз", "v": "", "t": "Қыстырма сөз ойды білдіреді: әрине, шамасы, мүмкін."}, {"k": "мысал", "v": "", "t": "Бұл, әрине, дұрыс жауап."}]}),
+      Q("kk34s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Қаратпа сөз бар"}, {"e": "", "k": "Қыстырма сөз бар"}], "items": [{"g": 0, "e": "", "t": "Айдар, мұнда кел.", "h": "қаратпа — Айдар"}, {"g": 0, "e": "", "t": "Апа, маған көмектесіңіз.", "h": "қаратпа — апа"}, {"g": 0, "e": "", "t": "Достар, ойнайық!", "h": "қаратпа — достар"}, {"g": 1, "e": "", "t": "Әрине, мен барамын.", "h": "қыстырма — әрине"}, {"g": 1, "e": "", "t": "Меніңше, бұл дұрыс.", "h": "қыстырма — меніңше"}, {"g": 1, "e": "", "t": "Шамасы, жаңбыр жауады.", "h": "қыстырма — шамасы"}]}),
+      Q("kk34s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk34q"]}),
+      Q("kk34s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk34t"]})
+    ] },
+  { id: "kk35", icon: "", title: "Ашық және жабық сұрақтар", goal: "Ашық және жабық сұрақтарды ажырату",
+    steps: [
+      Q("kk35s1", "infoTap", "Знакомимся с темой", "Сұрақ қоя білу — маңызды. Карточкаларды бас.", {"need": 4, "items": [{"k": "жабық сұрақ", "v": "", "t": "Жабық сұраққа «иә» немесе «жоқ» деп жауап беруге болады: Сен мектепке барасың ба?"}, {"k": "ашық сұрақ", "v": "", "t": "Ашық сұрақты кім? неге? қалай? деп бастаймыз: Неге күз салқын?"}, {"k": "ашық сұраққа жауап", "v": "", "t": "Ашық сұраққа толық жауап беру керек."}, {"k": "мысал", "v": "", "t": "Сен кітап оқисың ба? — жабық. Сен қандай кітап оқисың? — ашық."}]}),
+      Q("kk35s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Жабық сұрақ"}, {"e": "", "k": "Ашық сұрақ"}], "items": [{"g": 0, "e": "", "t": "Қоян — жануар ма?", "h": "иә / жоқ"}, {"g": 0, "e": "", "t": "Орман жасыл ма?", "h": "иә / жоқ"}, {"g": 0, "e": "", "t": "Сен бүгін мектепке бардың ба?", "h": "иә / жоқ"}, {"g": 1, "e": "", "t": "Орман неге керек?", "h": "түсіндіру керек"}, {"g": 1, "e": "", "t": "Тірі табиғатты қалай қорғаймыз?", "h": "түсіндіру керек"}, {"g": 1, "e": "", "t": "Күн неге жарық береді?", "h": "түсіндіру керек"}]}),
+      Q("kk35s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk35q"]}),
+      Q("kk35s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk35t"]})
+    ] },
+  { id: "kk36", icon: "", title: "Қосымша жалғанғанда сөз өзгереді", goal: "Қосымша жалғанғанда түбірдің өзгеруін білу",
+    steps: [
+      Q("kk36s1", "infoTap", "Знакомимся с темой", "Қосымша жалғанғанда кейбір сөздер өзгереді. Карточкаларды бас.", {"need": 4, "items": [{"k": "дауыс түсіп қалады", "v": "", "t": "Ауыз — аузы, мұрын — мұрны, қарын — қарны, орын — орны."}, {"k": "қатаң дыбыс ұяңға айналады", "v": "", "t": "Қалпақ — қалпағы, тарақ — тарағы, көйлек — көйлегі, жүрек — жүрегі."}, {"k": "өзгермейтін сөздер", "v": "", "t": "Үй — үйі, дос — досы, қала — қаласы."}, {"k": "есіңде болсын", "v": "", "t": "Сөзді дауыстап айтып көр: қалай естілсе, солай жазамыз."}]}),
+      Q("kk36s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Дауысты түсіп қалады"}, {"e": "", "k": "Қатаң дыбыс ұяңға айналады"}, {"e": "", "k": "Өзгермейді"}], "items": [{"g": 0, "e": "", "t": "аузы", "h": "ауыз + ы"}, {"g": 0, "e": "", "t": "мұрны", "h": "мұрын + ы"}, {"g": 0, "e": "", "t": "қарны", "h": "қарын + ы"}, {"g": 1, "e": "", "t": "қалпағы", "h": "қалпақ + ы"}, {"g": 1, "e": "", "t": "тарағы", "h": "тарақ + ы"}, {"g": 1, "e": "", "t": "көйлегі", "h": "көйлек + і"}, {"g": 2, "e": "", "t": "үйі", "h": "үй + і"}, {"g": 2, "e": "", "t": "досы", "h": "дос + ы"}, {"g": 2, "e": "", "t": "қаласы", "h": "қала + сы"}]}),
+      Q("kk36s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk36q"]}),
+      Q("kk36s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk36t"]})
+    ] },
+  { id: "kk37", icon: "", title: "Жұрнақтар", goal: "Жұрнақтың жаңа сөз жасайтынын түсіну",
+    steps: [
+      Q("kk37s1", "infoTap", "Знакомимся с темой", "Жұрнақ жаңа сөз жасайды. Карточкаларды бас.", {"need": 4, "items": [{"k": "-шы, -ші", "v": "", "t": "Ән — әнші, күй — күйші, аң — аңшы, балық — балықшы."}, {"k": "-лық, -лік", "v": "", "t": "Дос — достық, бала — балалық, ер — ерлік."}, {"k": "-лы, -ды, -ты", "v": "", "t": "Тау — таулы, ақыл — ақылды, күш — күшті."}, {"k": "-сыз, -сіз", "v": "", "t": "Ақылсыз, күшсіз, көңілсіз: жоқ екенін білдіреді."}]}),
+      Q("kk37s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "-шы, -ші"}, {"e": "", "k": "-лық, -лік, -дық, -тық"}, {"e": "", "k": "-лы, -ді, -ты"}], "items": [{"g": 0, "e": "", "t": "әнші", "h": "ән + ші"}, {"g": 0, "e": "", "t": "күйші", "h": "күй + ші"}, {"g": 0, "e": "", "t": "суретші", "h": "сурет + ші"}, {"g": 1, "e": "", "t": "достық", "h": "дос + тық"}, {"g": 1, "e": "", "t": "балалық", "h": "бала + лық"}, {"g": 1, "e": "", "t": "ерлік", "h": "ер + лік"}, {"g": 2, "e": "", "t": "ақылды", "h": "ақыл + ды"}, {"g": 2, "e": "", "t": "күшті", "h": "күш + ті"}, {"g": 2, "e": "", "t": "көңілді", "h": "көңіл + ді"}]}),
+      Q("kk37s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk37q"]}),
+      Q("kk37s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk37t"]})
+    ] },
+  { id: "kk38", icon: "", title: "Түбірлес сөздер", goal: "Түбірлес сөздерді табу",
+    steps: [
+      Q("kk38s1", "infoTap", "Знакомимся с темой", "Бір түбірден жасалған сөздер түбірлес болады. Карточкаларды бас.", {"need": 4, "items": [{"k": "түбірлес сөздер", "v": "", "t": "Түбірлес сөздердің түбірі бір: жазу, жазушы, жазба."}, {"k": "оқы-", "v": "", "t": "Оқу, оқушы, оқулық, оқытушы — түбірі «оқы»."}, {"k": "еңбек", "v": "", "t": "Еңбекші, еңбекқор, еңбекақы — түбірі «еңбек»."}, {"k": "мағынасы", "v": "", "t": "Түбірлес сөздердің мағынасы жақын, бірақ бірдей емес."}]}),
+      Q("kk38s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Түбір: жаз-"}, {"e": "", "k": "Түбір: оқы-"}, {"e": "", "k": "Түбір: еңбек"}], "items": [{"g": 0, "e": "", "t": "жазу", "h": "жаз + у"}, {"g": 0, "e": "", "t": "жазушы", "h": "жаз + ушы"}, {"g": 0, "e": "", "t": "жазба", "h": "жаз + ба"}, {"g": 1, "e": "", "t": "оқу", "h": "оқы + у"}, {"g": 1, "e": "", "t": "оқушы", "h": "оқы + ушы"}, {"g": 1, "e": "", "t": "оқулық", "h": "оқы + лық"}, {"g": 2, "e": "", "t": "еңбекші", "h": "еңбек + ші"}, {"g": 2, "e": "", "t": "еңбекқор", "h": "еңбек + қор"}, {"g": 2, "e": "", "t": "еңбекақы", "h": "еңбек + ақы"}]}),
+      Q("kk38s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk38q"]}),
+      Q("kk38s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk38t"]})
+    ] },
+  { id: "kk39", icon: "", title: "Бастауыш және баяндауыш", goal: "Сөйлемнің тұрлаулы мүшелерін табу және сызықша қою",
+    steps: [
+      Q("kk39s1", "infoTap", "Знакомимся с темой", "Сөйлемнің негізі — бастауыш пен баяндауыш. Карточкаларды бас.", {"need": 4, "items": [{"k": "бастауыш", "v": "", "t": "Бастауыш — кім? не? Қар жауды: не жауды? — қар."}, {"k": "баяндауыш", "v": "", "t": "Баяндауыш — не істеді? Қар не істеді? — жауды."}, {"k": "тұрлаулы мүшелер", "v": "", "t": "Бастауыш пен баяндауыш — сөйлемнің тұрлаулы мүшелері."}, {"k": "сызықша", "v": "", "t": "Бастауыш пен баяндауыш зат есім болса, сызықша қойылады: Абай — ақын."}]}),
+      Q("kk39s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Бастауыш"}, {"e": "", "k": "Баяндауыш"}], "items": [{"g": 0, "e": "", "t": "Айдар", "h": "Айдар кітап оқиды."}, {"g": 0, "e": "", "t": "құстар", "h": "Құстар ұшып кетті."}, {"g": 0, "e": "", "t": "қар", "h": "Қар жауды."}, {"g": 1, "e": "", "t": "оқиды", "h": "Айдар кітап оқиды."}, {"g": 1, "e": "", "t": "ұшып кетті", "h": "Құстар ұшып кетті."}, {"g": 1, "e": "", "t": "жауды", "h": "Қар жауды."}]}),
+      Q("kk39s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Сызықша қойылады"}, {"e": "", "k": "Сызықша қойылмайды"}], "items": [{"g": 0, "e": "", "t": "Астана — Қазақстанның астанасы.", "h": "зат есім + зат есім"}, {"g": 0, "e": "", "t": "Абай — ұлы ақын.", "h": "зат есім + зат есім"}, {"g": 0, "e": "", "t": "Бұл — біздің мектеп.", "h": "«бұл» + зат есім"}, {"g": 1, "e": "", "t": "Бала ойнайды.", "h": "баяндауыш — етістік"}, {"g": 1, "e": "", "t": "Күн шықты.", "h": "баяндауыш — етістік"}, {"g": 1, "e": "", "t": "Құстар ұшып кетті.", "h": "баяндауыш — етістік"}]}),
+      Q("kk39s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk39q"]}),
+      Q("kk39s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk39t"]})
+    ] },
+  { id: "kk310", icon: "", title: "Жалаң және жайылма сөйлем", goal: "Жалаң және жайылма сөйлемді ажырату",
+    steps: [
+      Q("kk310s1", "infoTap", "Знакомимся с темой", "Сөйлем кішкентай да, үлкен де болады. Карточкаларды бас.", {"need": 4, "items": [{"k": "жалаң сөйлем", "v": "", "t": "Жалаң сөйлемде тек бастауыш пен баяндауыш бар: Қар жауды."}, {"k": "жайылма сөйлем", "v": "", "t": "Жайылма сөйлемде тұрлаусыз мүшелер де бар: Ақ қар ақырын жауды."}, {"k": "тұрлаусыз мүшелер", "v": "", "t": "Тұрлаусыз мүшелер сөйлемді жайып, түсіндіреді."}, {"k": "мысал", "v": "", "t": "Құс ұшты — жалаң. Кішкентай құс аспанға ұшты — жайылма."}]}),
+      Q("kk310s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Жалаң сөйлем"}, {"e": "", "k": "Жайылма сөйлем"}], "items": [{"g": 0, "e": "", "t": "Балалар ойнады.", "h": "бастауыш + баяндауыш"}, {"g": 0, "e": "", "t": "Қар жауды.", "h": "бастауыш + баяндауыш"}, {"g": 0, "e": "", "t": "Құс ұшты.", "h": "бастауыш + баяндауыш"}, {"g": 1, "e": "", "t": "Көктемде мектеп жанындағы балалар көңілді ойнады.", "h": "тұрлаусыз мүшелер бар"}, {"g": 1, "e": "", "t": "Ақ қар ақырын жауды.", "h": "тұрлаусыз мүшелер бар"}, {"g": 1, "e": "", "t": "Кішкентай құс аспанға ұшты.", "h": "тұрлаусыз мүшелер бар"}]}),
+      Q("kk310s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk310q"]}),
+      Q("kk310s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk310t"]})
+    ] },
+  { id: "kk311", icon: "", title: "Мәндес және қарама-қарсы сөздер", goal: "Синоним мен антонимді ажырату",
+    steps: [
+      Q("kk311s1", "infoTap", "Знакомимся с темой", "Сөздердің мағынасы жақын не қарама-қарсы болады. Карточкаларды бас.", {"need": 4, "items": [{"k": "мәндес сөздер", "v": "", "t": "Мәндес сөздердің мағынасы жақын: әдемі — сұлу, батыл — ержүрек."}, {"k": "қарама-қарсы сөздер", "v": "", "t": "Қарама-қарсы сөздердің мағынасы қайшы: үлкен — кіші, ақ — қара."}, {"k": "синоним мен антоним", "v": "", "t": "Мәндес сөздер — синонимдер, қарама-қарсы сөздер — антонимдер."}, {"k": "мысал", "v": "", "t": "Қуану — шаттану (мәндес). Жылы — суық (қарама-қарсы)."}]}),
+      Q("kk311s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Мәндес сөздер"}, {"e": "", "k": "Қарама-қарсы сөздер"}], "items": [{"g": 0, "e": "", "t": "әдемі — сұлу", "h": "көркем мағына"}, {"g": 0, "e": "", "t": "батыл — ержүрек", "h": "қорықпайтын"}, {"g": 0, "e": "", "t": "қуану — шаттану", "h": "қуаныш"}, {"g": 1, "e": "", "t": "үлкен — кіші", "h": "көлемі"}, {"g": 1, "e": "", "t": "ақ — қара", "h": "түсі"}, {"g": 1, "e": "", "t": "жылы — суық", "h": "температурасы"}]}),
+      Q("kk311s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk311q"]}),
+      Q("kk311s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk311t"]})
+    ] },
+  { id: "kk312", icon: "", title: "Тура және ауыспалы мағына", goal: "Сөздің тура және ауыспалы мағынасын ажырату",
+    steps: [
+      Q("kk312s1", "infoTap", "Знакомимся с темой", "Сөз кейде басқа мағынада қолданылады. Карточкаларды бас.", {"need": 4, "items": [{"k": "тура мағына", "v": "", "t": "Тура мағына — сөздің өз мағынасы: алтын жүзік, ащы дәрі."}, {"k": "ауыспалы мағына", "v": "", "t": "Ауыспалы мағына — басқа мағына: алтын қолды шебер, ащы шындық."}, {"k": "тәтті", "v": "", "t": "Тәтті алма — тура мағына. Тәтті сөз — ауыспалы мағына."}, {"k": "қалай ажыратамыз", "v": "", "t": "Мағынасын сөйлемге қарап анықтаймыз."}]}),
+      Q("kk312s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Тура мағына"}, {"e": "", "k": "Ауыспалы мағына"}], "items": [{"g": 0, "e": "", "t": "алтын жүзік", "h": "алтыннан жасалған"}, {"g": 0, "e": "", "t": "тәтті алма", "h": "дәмі тәтті"}, {"g": 0, "e": "", "t": "ащы дәрі", "h": "дәмі ащы"}, {"g": 1, "e": "", "t": "алтын қолды шебер", "h": "ебі бар шебер"}, {"g": 1, "e": "", "t": "тәтті сөз", "h": "жағымды сөз"}, {"g": 1, "e": "", "t": "ащы шындық", "h": "ауыр шындық"}]}),
+      Q("kk312s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk312q"]}),
+      Q("kk312s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk312t"]})
+    ] },
+  { id: "kk313", icon: "", title: "Тәуелдік жалғау", goal: "Тәуелдік жалғауды дұрыс қолдану",
+    steps: [
+      Q("kk313s1", "infoTap", "Знакомимся с темой", "Тәуелдік жалғау заттың кімдікі екенін көрсетеді. Карточкаларды бас.", {"need": 5, "items": [{"k": "менің", "v": "", "t": "Менің кітабым, дәптерім, үйім, әжем."}, {"k": "сенің", "v": "", "t": "Сенің кітабың, дәптерің, үйің, әжең."}, {"k": "оның", "v": "", "t": "Оның кітабы, дәптері, үйі, әжесі."}, {"k": "біздің", "v": "", "t": "Біздің кітабымыз, дәптеріміз, үйіміз, әжеміз."}, {"k": "сіздің", "v": "", "t": "Сіздің кітабыңыз, дәптеріңіз, үйіңіз, әжеңіз."}]}),
+      Q("kk313s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Менің..."}, {"e": "", "k": "Сенің..."}, {"e": "", "k": "Оның..."}], "items": [{"g": 0, "e": "", "t": "кітабым", "h": "кітап + ым"}, {"g": 0, "e": "", "t": "дәптерім", "h": "дәптер + ім"}, {"g": 0, "e": "", "t": "үйім", "h": "үй + ім"}, {"g": 1, "e": "", "t": "кітабың", "h": "кітап + ың"}, {"g": 1, "e": "", "t": "дәптерің", "h": "дәптер + ің"}, {"g": 1, "e": "", "t": "үйің", "h": "үй + ің"}, {"g": 2, "e": "", "t": "кітабы", "h": "кітап + ы"}, {"g": 2, "e": "", "t": "дәптері", "h": "дәптер + і"}, {"g": 2, "e": "", "t": "үйі", "h": "үй + і"}]}),
+      Q("kk313s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Біздің..."}, {"e": "", "k": "Сіздің..."}], "items": [{"g": 0, "e": "", "t": "кітабымыз", "h": "кітап + ымыз"}, {"g": 0, "e": "", "t": "дәптеріміз", "h": "дәптер + іміз"}, {"g": 0, "e": "", "t": "үйіміз", "h": "үй + іміз"}, {"g": 1, "e": "", "t": "кітабыңыз", "h": "кітап + ыңыз"}, {"g": 1, "e": "", "t": "дәптеріңіз", "h": "дәптер + іңіз"}, {"g": 1, "e": "", "t": "үйіңіз", "h": "үй + іңіз"}]}),
+      Q("kk313s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk313q"]}),
+      Q("kk313s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk313t"]})
+    ] },
+  { id: "kk314", icon: "", title: "Сөз таптары", goal: "Зат есім, сын есім, сан есім, етістікті ажырату",
+    steps: [
+      Q("kk314s1", "infoTap", "Знакомимся с темой", "Әр сөз тобының өз сұрағы бар. Карточкаларды бас.", {"need": 4, "items": [{"k": "зат есім", "v": "", "t": "Зат есім — кім? не? Сурет, әнші, күй."}, {"k": "сын есім", "v": "", "t": "Сын есім — қандай? Әсем, нәзік, жарқын."}, {"k": "сан есім", "v": "", "t": "Сан есім — қанша? Бес, он екі, жүз."}, {"k": "етістік", "v": "", "t": "Етістік — не істеді? Сызады, шертеді, билейді."}]}),
+      Q("kk314s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Зат есім (кім? не?)"}, {"e": "", "k": "Сын есім (қандай?)"}, {"e": "", "k": "Сан есім (қанша?)"}], "items": [{"g": 0, "e": "", "t": "сурет", "h": "не?"}, {"g": 0, "e": "", "t": "әнші", "h": "кім?"}, {"g": 0, "e": "", "t": "күй", "h": "не?"}, {"g": 1, "e": "", "t": "әсем", "h": "қандай?"}, {"g": 1, "e": "", "t": "жарқын", "h": "қандай?"}, {"g": 1, "e": "", "t": "нәзік", "h": "қандай?"}, {"g": 2, "e": "", "t": "бес", "h": "қанша?"}, {"g": 2, "e": "", "t": "он екі", "h": "қанша?"}, {"g": 2, "e": "", "t": "үш", "h": "қанша?"}]}),
+      Q("kk314s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk314q"]}),
+      Q("kk314s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk314t"]})
+    ] },
+  { id: "kk315", icon: "", title: "Негізгі және туынды сөз", goal: "Негізгі және туынды сөзді ажырату",
+    steps: [
+      Q("kk315s1", "infoTap", "Знакомимся с темой", "Жұрнақсыз сөз негізгі, жұрнақты сөз туынды болады. Карточкаларды бас.", {"need": 4, "items": [{"k": "негізгі сөз", "v": "", "t": "Негізгі сөзде жұрнақ болмайды: тау, су, көл, жаз, оқы."}, {"k": "туынды сөз", "v": "", "t": "Туынды сөз жұрнақпен жасалады: әнші, достық, таулы, көңілсіз."}, {"k": "туынды етістік", "v": "", "t": "Жаз — жазыл, оқы — оқыт, кел — келтір."}, {"k": "есіңде болсын", "v": "", "t": "Түбір + жұрнақ = туынды сөз."}]}),
+      Q("kk315s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Негізгі зат есім"}, {"e": "", "k": "Туынды зат есім"}], "items": [{"g": 0, "e": "", "t": "тау", "h": "түбір"}, {"g": 0, "e": "", "t": "жол", "h": "түбір"}, {"g": 0, "e": "", "t": "су", "h": "түбір"}, {"g": 1, "e": "", "t": "әнші", "h": "ән + ші"}, {"g": 1, "e": "", "t": "суретші", "h": "сурет + ші"}, {"g": 1, "e": "", "t": "достық", "h": "дос + тық"}]}),
+      Q("kk315s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Негізгі сын есім"}, {"e": "", "k": "Туынды сын есім"}], "items": [{"g": 0, "e": "", "t": "ақ", "h": "түбір"}, {"g": 0, "e": "", "t": "жасыл", "h": "түбір"}, {"g": 0, "e": "", "t": "биік", "h": "түбір"}, {"g": 1, "e": "", "t": "ақылды", "h": "ақыл + ды"}, {"g": 1, "e": "", "t": "күшті", "h": "күш + ті"}, {"g": 1, "e": "", "t": "таулы", "h": "тау + лы"}]}),
+      Q("kk315s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk315q"]}),
+      Q("kk315s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk315t"]})
+    ] },
+  { id: "kk316", icon: "", title: "Болымды және болымсыз етістік", goal: "Етістіктің болымды және болымсыз түрін жасау",
+    steps: [
+      Q("kk316s1", "infoTap", "Знакомимся с темой", "Етістік іс болғанын не болмағанын білдіреді. Карточкаларды бас.", {"need": 4, "items": [{"k": "болымды", "v": "", "t": "Болымды: оқиды, жазады, барады, келеді."}, {"k": "болымсыз", "v": "", "t": "Болымсыз: оқымайды, жазбайды, бармайды, келмейді."}, {"k": "жұрнақтар", "v": "", "t": "Болымсыз жұрнақтар: -ма, -ме, -ба, -бе, -па, -пе."}, {"k": "мысал", "v": "", "t": "Көреді — көрмейді. Айтады — айтпайды."}]}),
+      Q("kk316s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Болымды етістік"}, {"e": "", "k": "Болымсыз етістік"}], "items": [{"g": 0, "e": "", "t": "оқиды", "h": "істейді"}, {"g": 0, "e": "", "t": "жазады", "h": "істейді"}, {"g": 0, "e": "", "t": "барады", "h": "істейді"}, {"g": 1, "e": "", "t": "оқымайды", "h": "оқы + ма + йды"}, {"g": 1, "e": "", "t": "жазбайды", "h": "жаз + ба + йды"}, {"g": 1, "e": "", "t": "бармайды", "h": "бар + ма + йды"}]}),
+      Q("kk316s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk316q"]}),
+      Q("kk316s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk316t"]})
+    ] },
+  { id: "kk317", icon: "", title: "Есептік және реттік сан есім", goal: "Есептік және реттік сан есімді қолдану",
+    steps: [
+      Q("kk317s1", "infoTap", "Знакомимся с темой", "Сан есім санды немесе ретті көрсетеді. Карточкаларды бас.", {"need": 4, "items": [{"k": "есептік", "v": "", "t": "Есептік сан есім — қанша? Бір, екі, үш, он."}, {"k": "реттік", "v": "", "t": "Реттік сан есім — нешінші? Бірінші, екінші, үшінші."}, {"k": "жасалуы", "v": "", "t": "Үш — үшінші, төрт — төртінші, алты — алтыншы, он — оныншы."}, {"k": "есіңде болсын", "v": "", "t": "Реттік сан есім заттың ретін көрсетеді."}]}),
+      Q("kk317s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Есептік сан есім (қанша?)"}, {"e": "", "k": "Реттік сан есім (нешінші?)"}], "items": [{"g": 0, "e": "", "t": "бір", "h": "қанша?"}, {"g": 0, "e": "", "t": "жеті", "h": "қанша?"}, {"g": 0, "e": "", "t": "он", "h": "қанша?"}, {"g": 1, "e": "", "t": "бірінші", "h": "нешінші?"}, {"g": 1, "e": "", "t": "екінші", "h": "нешінші?"}, {"g": 1, "e": "", "t": "үшінші", "h": "нешінші?"}]}),
+      Q("kk317s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk317q"]}),
+      Q("kk317s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk317t"]})
+    ] },
+  { id: "kk318", icon: "", title: "Салыстырмалы шырай", goal: "Салыстырмалы шырайды қолдану",
+    steps: [
+      Q("kk318s1", "infoTap", "Знакомимся с темой", "Сын есім заттарды салыстыра алады. Карточкаларды бас.", {"need": 4, "items": [{"k": "жұрнақтар", "v": "", "t": "Салыстырмалы шырай: -рақ, -рек, -ырақ, -ірек."}, {"k": "мысалдар", "v": "", "t": "Биік — биігірек, үлкен — үлкенірек, жылы — жылырақ."}, {"k": "сөйлем", "v": "", "t": "Мына тау анау таудан биігірек."}, {"k": "есіңде болсын", "v": "", "t": "Салыстырмалы шырай екі затты салыстырады."}]}),
+      Q("kk318s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Қарапайым түрі"}, {"e": "", "k": "Салыстырмалы шырай"}], "items": [{"g": 0, "e": "", "t": "биік", "h": "қарапайым"}, {"g": 0, "e": "", "t": "үлкен", "h": "қарапайым"}, {"g": 0, "e": "", "t": "жылы", "h": "қарапайым"}, {"g": 1, "e": "", "t": "биігірек", "h": "биік + ірек"}, {"g": 1, "e": "", "t": "үлкенірек", "h": "үлкен + ірек"}, {"g": 1, "e": "", "t": "жылырақ", "h": "жылы + рақ"}]}),
+      Q("kk318s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk318q"]}),
+      Q("kk318s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk318t"]})
+    ] },
+  { id: "kk319", icon: "", title: "Көркем және ғылыми-танымдық мәтін", goal: "Мәтіндердің екі түрін салыстыру",
+    steps: [
+      Q("kk319s1", "infoTap", "Знакомимся с темой", "Мәтіндердің мақсаты әртүрлі. Карточкаларды бас.", {"need": 4, "items": [{"k": "көркем мәтін", "v": "", "t": "Көркем мәтін сезімге әсер етеді: «Дала көгілдір шапанын жамылды»."}, {"k": "ғылыми-танымдық мәтін", "v": "", "t": "Ғылыми-танымдық мәтін ақпарат береді: «Су 100 градуста қайнайды»."}, {"k": "тілі", "v": "", "t": "Көркем мәтінде бейнелі сөздер көп. Ғылыми мәтінде дәл мәліметтер көп."}, {"k": "салыстыр", "v": "", "t": "Екі мәтіннің мақсатын, тілін салыстырып көр."}]}),
+      Q("kk319s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Көркем мәтін"}, {"e": "", "k": "Ғылыми-танымдық мәтін"}], "items": [{"g": 0, "e": "", "t": "Таңертең күн шығып, тау басында алтын сәуле ойнады.", "h": "бейнелі сөздер"}, {"g": 0, "e": "", "t": "Жел жапырақтармен сыбырласып тұрғандай болды.", "h": "теңеу"}, {"g": 0, "e": "", "t": "Көктем келіп, дала көгілдір шапанын жамылды.", "h": "бейнелеу"}, {"g": 1, "e": "", "t": "Су 100 градуста қайнайды.", "h": "дәл мәлімет"}, {"g": 1, "e": "", "t": "Жер — Күн жүйесіндегі үшінші планета.", "h": "ақпарат"}, {"g": 1, "e": "", "t": "Бақа — қосмекенділер тобына жатады.", "h": "жіктеу"}]}),
+      Q("kk319s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk319q"]}),
+      Q("kk319s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk319t"]})
+    ] },
+  { id: "kk320", icon: "", title: "Хат, шақыру, нұсқаулық", goal: "Хат, шақыру, нұсқаулық, күнделік, хабарландыруды ажырату",
+    steps: [
+      Q("kk320s1", "infoTap", "Знакомимся с темой", "Мәтіннің түрі оның мақсатына байланысты. Карточкаларды бас.", {"need": 5, "items": [{"k": "хат", "v": "", "t": "Хат: Құрметті Айгүл! ... Қош бол, досың Нұрлан."}, {"k": "шақыру", "v": "", "t": "Шақыруда қашан және қайда екені көрсетіледі."}, {"k": "нұсқаулық", "v": "", "t": "Нұсқаулық: алдымен, содан кейін, соңында."}, {"k": "күнделік", "v": "", "t": "Күнделікте өз оқиғаңды жазасың: Бүгін ..."}, {"k": "хабарландыру", "v": "", "t": "Хабарландыру: Назар аударыңыз! ..."}]}),
+      Q("kk320s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 8, "groups": [{"e": "", "k": "Хат"}, {"e": "", "k": "Шақыру"}, {"e": "", "k": "Нұсқаулық"}], "items": [{"g": 0, "e": "", "t": "Құрметті Айгүл! Саған сәлем жолдаймын.", "h": "хаттың басы"}, {"g": 0, "e": "", "t": "Қош бол, досың Нұрлан.", "h": "хаттың соңы"}, {"g": 0, "e": "", "t": "Сені сағындым, жақында жазамын.", "h": "хаттағы сөз"}, {"g": 1, "e": "", "t": "Сізді мерекеге шақырамыз!", "h": "шақыру сөзі"}, {"g": 1, "e": "", "t": "Мереке 20 қазанда сағат 15:00-де өтеді.", "h": "уақыты"}, {"g": 1, "e": "", "t": "Келуіңізді сұраймыз.", "h": "шақыру сөзі"}, {"g": 2, "e": "", "t": "Алдымен қолыңды сабындап жу.", "h": "бірінші қадам"}, {"g": 2, "e": "", "t": "Содан кейін таза суға шай.", "h": "екінші қадам"}, {"g": 2, "e": "", "t": "Соңында сүлгімен сүрт.", "h": "соңғы қадам"}]}),
+      Q("kk320s3", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Күнделік"}, {"e": "", "k": "Хабарландыру"}], "items": [{"g": 0, "e": "", "t": "Бүгін мектепте мереке болды.", "h": "бүгінгі оқиға"}, {"g": 0, "e": "", "t": "Мен ән айттым, достарым қол соқты.", "h": "менің ісім"}, {"g": 0, "e": "", "t": "Кешке әжемнің үйіне бардым.", "h": "менің ісім"}, {"g": 1, "e": "", "t": "Назар аударыңыз! Жиналыс 12 қарашада өтеді.", "h": "хабарландыру"}, {"g": 1, "e": "", "t": "Мектеп кітапханасы сенбіде жұмыс істемейді.", "h": "хабар"}, {"g": 1, "e": "", "t": "Шара сағат 10:00-де басталады.", "h": "хабар"}]}),
+      Q("kk320s4", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk320q"]}),
+      Q("kk320s5", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk320t"]})
+    ] },
+  { id: "kk321", icon: "", title: "Түбір және жұрнақ", goal: "Сөздің түбірі мен жұрнағын табу",
+    steps: [
+      Q("kk321s1", "infoTap", "Знакомимся с темой", "Сөз бөліктерден тұрады. Карточкаларды бас.", {"need": 4, "items": [{"k": "түбір", "v": "", "t": "Түбір — сөздің негізгі бөлігі: бала, жаз, тау."}, {"k": "жұрнақ", "v": "", "t": "Жұрнақ түбірден кейін жалғанады: -шы, -лық, -сыз."}, {"k": "мысал", "v": "", "t": "Әнші = ән + ші. Таулы = тау + лы. Достық = дос + тық."}, {"k": "есіңде болсын", "v": "", "t": "Жұрнақ жаңа сөз жасайды."}]}),
+      Q("kk321s2", "sortGroups", "Разложи по группам", "Разложи карточки по группам. Выбери, к какой группе относится каждая карточка.", {"q": "В какую группу относится?", "take": 6, "groups": [{"e": "", "k": "Түбір"}, {"e": "", "k": "Жұрнақ"}], "items": [{"g": 0, "e": "", "t": "бала", "h": "түбір"}, {"g": 0, "e": "", "t": "жаз", "h": "түбір"}, {"g": 0, "e": "", "t": "тау", "h": "түбір"}, {"g": 1, "e": "", "t": "-шы", "h": "әнші"}, {"g": 1, "e": "", "t": "-лық", "h": "достық"}, {"g": 1, "e": "", "t": "-сыз", "h": "ақылсыз"}]}),
+      Q("kk321s3", "quiz", "Проверяем себя", "Проверим, что ты запомнил. Выбери верный ответ.", {"count": 6, "gens": ["kk321q"]}),
+      Q("kk321s4", "quiz", "Верно или неверно", "Верно или неверно? Подумай и выбери ответ.", {"count": 5, "gens": ["kk321t"]})
+    ] },
+  { id: "kk3fin", icon: '', title: 'Итоговый урок', goal: 'Повторить главное из курса',
+    steps: [
+      Q("kk3fin1", 'finale', 'Курс пройден!', "Жарайсың! Сен әріптерді, мәтін түрлерін, жұрнақтарды, сөз таптарын және етістікті қайталадың. Білімді ойындарда бекіт!", {})
+    ] }
+];
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  if ($('#ac-auto').checked) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
