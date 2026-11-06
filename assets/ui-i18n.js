@@ -54,12 +54,13 @@
     [/\/grades\/grade-4(?:-kaz)?\/muzyka\//, 'g4mus'],
     [/\/grades\/grade-4(?:-kaz)?\/trud\//, 'g4trud'],
     [/\/grades\/grade-4(?:-kaz)?\/izo\//, 'g4izo'],
+    [/\/grades\/grade-4(?:-kaz)?\/digital\//, 'g4dig'],
     [/\/grades\/grade-4(?:-kaz)?\//, 'g4'],
     [/\/(?:privacy\.html|gift\/)/, 'root'] ];
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math'];
-  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
+  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
