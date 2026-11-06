@@ -46,6 +46,7 @@
     [/\/grades\/grade-3(?:-kaz)?\/trud\//, 'g3trud'],
     [/\/grades\/grade-3(?:-kaz)?\/fizra\//, 'g3fiz'],
     [/\/grades\/grade-3(?:-kaz)?\/digital\//, 'g3dig'],
+    [/\/grades\/grade-3(?:-kaz)?\/math\//, 'g3math'],
     [/\/grades\/grade-[34](?:-kaz)?\/.*-course\.html$/, 'crsui'],
     [/\/grades\/grade-[34](?:-kaz)?\//, 'pz2eng'],
     [/\/grades\/grade-4(?:-kaz)?\//, 'g4'],
@@ -53,7 +54,7 @@
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math'];
-  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
+  var AVAIL = { kz: ['g1', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root'], tg: ['g1', 'g4', 'root'], en: ['g4', 'root'], zh: ['g4', 'root'], ug: ['g4', 'root'], fr: [], de: [] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
@@ -63,6 +64,29 @@
       var q = document.createElement('script'); q.src = base + 'ui-' + l + '-' + pk[1] + '.js'; q.async = true;
       PENDING[l] = (PENDING[l] || 0) + 1; q.onload = function(){ PENDING[l]--; }; q.onerror = function(){ PENDING[l]--; }; document.head.appendChild(q);
     });
+  }
+  /* Казахские падежные окончания для чисел (по последнему слову прочтения числа): «5» + dat → «5-ке», «20» + abl → «20-дан» */
+  var KZW = { 1:['f','R'], 2:['f','V'], 3:['f','U'], 4:['f','U'], 5:['f','U'], 6:['b','V'], 7:['f','V'], 8:['f','Z'], 9:['b','Z'],
+    10:['b','N'], 20:['b','V'], 30:['b','Z'], 40:['b','U'], 50:['f','W'], 60:['b','U'], 70:['f','U'], 80:['f','N'], 90:['b','N'], 100:['f','Z'], 1000:['b','N'], 1000000:['b','N'], 0:['f','R'] };
+  function kzNum(v, cs){
+    if (!/^\d+$/.test(v)) return undefined;
+    var n = parseInt(v, 10), key;
+    if (n === 0) key = 0; else if (n % 10) key = n % 10; else if (n % 100) key = n % 100; else if (n % 1000) key = 100; else if (n % 1000000) key = 1000; else key = 1000000;
+    var w = KZW[key], f = w[0] === 'f', t = w[1], sf;
+    if (cs === 'dat') sf = (t === 'U' ? (f ? 'ке' : 'қа') : (f ? 'ге' : 'ға'));
+    else if (cs === 'abl') sf = (t === 'U' ? (f ? 'тен' : 'тан') : t === 'N' ? (f ? 'нен' : 'нан') : (f ? 'ден' : 'дан'));
+    else if (cs === 'loc') sf = (t === 'U' ? (f ? 'те' : 'та') : (f ? 'де' : 'да'));
+    else if (cs === 'gen') sf = (t === 'U' ? (f ? 'тің' : 'тың') : (t === 'V' || t === 'N') ? (f ? 'нің' : 'ның') : (f ? 'дің' : 'дың'));
+    else return undefined;
+    return v + '-' + sf;
+  }
+  function kzList(v, d){   // «сова, пчела и орёл» → переводим каждое слово по словарю
+    var parts = v.split(/(, | и )/), out = [];
+    for (var i = 0; i < parts.length; i++){
+      if (i % 2){ out.push(parts[i] === ' и ' ? ' және ' : ', '); continue; }
+      var x = d.ex[parts[i]]; out.push(x === undefined ? parts[i] : x);
+    }
+    return out.join('');
   }
   function one(t, d){   // перевод одной фразы: точное совпадение, запасной вариант с точкой, затем шаблоны (undefined — не нашли)
     var r = d.ex[t];
@@ -76,7 +100,12 @@
         var m = d.pat[i][0].exec(t); if (!m) continue;
         var g = d.pat[i][2];   // номер группы, которую надо перевести по словарю (например название урока)
         if (g){ [].concat(g).forEach(function(k){ var pre = ''; if (typeof k === 'string'){ var q = k.split(':'); k = +q[0]; pre = q[1] + ':'; }   // g — номер группы, массив номеров или «номер:префикс» (словарь по контексту)
-          var sub = pre ? d.ex[pre + m[k]] : undefined; if (sub === undefined) sub = d.ex[m[k]]; if (sub !== undefined) m[k] = sub; }); }
+          var sub = pre ? d.ex[pre + m[k]] : undefined; if (sub === undefined) sub = d.ex[m[k]];
+          if (sub === undefined && pre){ var tg = pre.slice(0, -1);   // вычисляемые теги: падежи казахских числительных, список слов, вложенная фраза
+            if (/^n(dat|abl|loc|gen)$/.test(tg)) sub = kzNum(m[k], tg.slice(1));
+            else if (tg === 'ls') sub = kzList(m[k], d);
+            else if (tg === 'tr'){ var sx = tr(m[k], d); if (sx !== null) sub = sx; } }
+          if (sub !== undefined) m[k] = sub; }); }
         r = d.pat[i][1].replace(/\$(?:(\d)|\{(\d+)\})/g, function(_, a, b){ var v = m[+(a || b)]; return v === undefined ? '' : v; }); break;
       }
     }
@@ -89,8 +118,20 @@
     var r = one(t, d);
     if (r === undefined && t.length < 600 && /[.!?…] \S/.test(t)){   // несколько предложений подряд (озвучка Барсика склеивает фразы): переводим по предложениям, но только если переведены ВСЕ
       var parts = t.replace(/([.!?…]) (?=\S)/g, '$1\u0001').split('\u0001'), out = [];
-      for (var j = 0; j < parts.length; j++){ var x = one(parts[j], d); if (x === undefined){ out = null; break; } out.push(x); }
+      for (var j = 0; j < parts.length; j++){ var x = one(parts[j], d); if (x === undefined){ if (!/[А-Яа-яЁё]/.test(parts[j])){ out.push(parts[j]); continue; } out = null; break; } out.push(x); }   // части без букв (формулы «375 + 95 = 470») оставляем как есть
       if (out) r = out.join(' ');
+    }
+    if (r === undefined && /<br\s*\/?>/i.test(t) && t.length < 3000){   // разбор из нескольких строк через <br>: переводим каждую строку отдельно (строки без букв — формулы — оставляем как есть)
+      var segs = t.split(/(<br\s*\/?>)/i), out2 = [], ok = true, any = false;
+      for (var q2 = 0; q2 < segs.length && ok; q2++){
+        var sg = segs[q2];
+        if (q2 % 2 || !/[А-Яа-яЁё]/.test(sg.replace(/<[^>]+>/g, ''))){ out2.push(sg); continue; }
+        var pre2 = '', post2 = '', mm = /^(<b>)(.*)(<\/b>)$/.exec(sg); if (mm){ pre2 = mm[1]; post2 = mm[3]; sg = mm[2]; }
+        var dec = sg.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'), x2 = tr(dec, d);
+        if (x2 === null){ ok = false; break; }
+        out2.push(pre2 + x2.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + post2); any = true;
+      }
+      if (ok && any) r = out2.join('');
     }
     if (r === undefined || r === t) return null;
     return str.match(/^\s*/)[0] + r + str.match(/\s*$/)[0];
