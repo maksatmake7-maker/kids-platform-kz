@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<script src="../../../assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<script src="../../../assets/stats.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс: Цифровая грамотность — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/styles.css">
+<link rel="stylesheet" href="../../../assets/world.css">
+<link rel="stylesheet" href="../../../assets/subject.css">
+<style>
+  /* Стили только для этого курса (префикс ac-) — остальной сайт не затрагивают */
+  .ac-shell{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:10px 16px 80px;}
+  .ac-back{display:inline-block;color:#fff;font-weight:800;text-decoration:none;opacity:1;background:rgba(29,53,87,.6);border:none;font-size:.95rem;cursor:pointer;font-family:'Nunito',sans-serif;padding:7px 16px;border-radius:999px;}
+  .ac-back:hover{opacity:1;}
+  .ac-card{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 12px 0 rgba(29,53,87,.08),0 18px 34px rgba(29,53,87,.12);}
+  .ac-card h1,.ac-card h2{font-family:'Baloo 2',sans-serif;color:#1D3557;text-align:center;}
+  .ac-sub{text-align:center;color:#5C7690;font-weight:700;margin:4px 0 8px;}
+  .ac-note{text-align:center;font-size:.8rem;color:#8B95A3;margin-bottom:16px;}
+
+  /* ----- карта курса ----- */
+  .ac-progress{display:flex;align-items:center;gap:12px;max-width:520px;margin:12px auto 22px;}
+  .ac-progress-bar{flex:1;height:14px;background:#E5EAF0;border-radius:999px;overflow:hidden;}
+  .ac-progress-fill{height:100%;background:linear-gradient(90deg,#FFC93C,#FF9F1C);border-radius:999px;transition:width .5s ease;}
+  .ac-progress-txt{font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;white-space:nowrap;}
+  .ac-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .ac-lcard{border:2px solid #E1E8EF;border-radius:20px;padding:16px;text-align:left;background:#FAFCFE;display:flex;flex-direction:column;gap:6px;}
+  .ac-lcard.ac-done{border-color:#3FAE5A;background:#F3FBF4;}
+  .ac-lnum{font-size:.78rem;font-weight:800;color:#8B95A3;text-transform:uppercase;letter-spacing:.04em;}
+  .ac-licon{font-size:2.2rem;line-height:1;}
+  .ac-ltitle{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.2rem;color:#1D3557;line-height:1.15;}
+  .ac-lgoal{font-size:.9rem;color:#5C6B7A;flex:1;}
+  .ac-lstars{font-size:1.1rem;letter-spacing:2px;min-height:1.4em;}
+  .ac-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;background:#1D3557;color:#fff;border:none;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+  .ac-btn:hover:not(:disabled){transform:translateY(-1px);background:#27487a;}
+  .ac-btn:disabled{opacity:.4;cursor:default;}
+  .ac-btn.ac-alt{background:#fff;color:#1D3557;border:2px solid #1D3557;}
+  .ac-btn.ac-go{background:#3FB088;}
+  .ac-btn.ac-go:hover:not(:disabled){background:#35a07a;}
+  .ac-btn.ac-pulse{animation:acPulse 1.2s ease-in-out infinite;}
+  @keyframes acPulse{0%,100%{box-shadow:0 0 0 0 rgba(63,176,136,.5);}50%{box-shadow:0 0 0 10px rgba(63,176,136,0);}}
+
+  /* ----- урок ----- */
+  .ac-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .ac-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;background:rgba(29,53,87,.6);padding:7px 12px;border-radius:999px;}
+  .ac-sdot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:2px solid transparent;}
+  .ac-sdot.ac-sd-done{background:#FFC93C;}
+  .ac-sdot.ac-sd-cur{background:#fff;border-color:#FFC93C;transform:scale(1.25);}
+  .ac-stephead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .ac-stepno{font-size:.8rem;font-weight:800;color:#8B95A3;white-space:nowrap;}
+  .ac-guide{display:flex;gap:12px;align-items:flex-start;margin:10px 0 8px;}
+  .ac-mascot{width:104px;flex:none;}
+  @keyframes acBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .ac-bubble{position:relative;background:#EEF6FF;border-radius:18px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:#1D3557;text-align:left;flex:1;}
+  .ac-bubble::before{content:'';position:absolute;left:-8px;top:18px;border:8px solid transparent;border-right-color:#EEF6FF;border-left:0;}
+  .ac-bubble b{color:#E8453C;}
+  .ac-speakrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;padding-left:4px;}
+  .ac-speak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid #1D3557;color:#1D3557;font-family:'Baloo 2',sans-serif;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+  .ac-speak:hover{background:#1D3557;color:#fff;}
+  .ac-speak.ac-on{background:#F4847A;border-color:#F4847A;color:#fff;}
+  .ac-auto{font-size:.85rem;color:#5C7690;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .ac-stage{margin:8px 0 6px;min-height:80px;}
+  .ac-fb{text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;min-height:1.7em;margin:8px 0;font-size:1.05rem;}
+  .ac-fb.ac-ok{color:#1D6B2E;} .ac-fb.ac-bad{color:#8C2A20;} .ac-fb.ac-info{color:#1D3557;}
+  .ac-nav{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+
+  .ac-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-eq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.4rem;color:#1D3557;text-align:center;margin:6px 0;min-height:1.3em;}
+  .ac-eq .n1,.ac-red{color:#E8453C;} .ac-eq .n2,.ac-grn{color:#5B9A1E;} .ac-eq b{color:#1D3557;}
+  .ac-bigeq{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.8rem;text-align:center;color:#1D3557;margin:10px 0 18px;}
+
+  /* сцены */
+  .ac-join{width:100%;height:auto;max-height:340px;display:block;}
+  .ac-mv{transition:transform .9s cubic-bezier(.45,0,.2,1);}
+  .ac-frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:8px auto;}
+  .ac-cell{aspect-ratio:1;border-radius:14px;background:#EEF3F8;border:2px dashed #C9D5E2;transition:all .25s ease;}
+  .ac-cell.a{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);border:none;transform:scale(.92);}
+  .ac-cell.b{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);border:none;transform:scale(.92);}
+  .ac-steprow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+  .ac-stp{display:flex;align-items:center;gap:8px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;}
+  .ac-stp button{width:40px;height:40px;border-radius:50%;border:2px solid #1D3557;background:#fff;color:#1D3557;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1;}
+  .ac-stp button:hover:not(:disabled){background:#1D3557;color:#fff;} .ac-stp button:disabled{opacity:.35;cursor:default;}
+  .ac-stp .v{min-width:30px;text-align:center;font-size:1.5rem;}
+  .ac-goal{text-align:center;font-weight:800;font-size:1.1rem;margin:4px 0;}
+  .ac-chips{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 6px;font-family:'Baloo 2',sans-serif;font-size:2.3rem;font-weight:800;}
+  .ac-chip{border:3px solid #CBD6E2;border-radius:16px;background:#F5F8FA;min-width:62px;padding:2px 12px;cursor:pointer;color:#1D3557;font:inherit;transition:all .2s;}
+  .ac-chip:hover{border-color:#1D3557;}
+  .ac-chip.on.k0{background:#FFE3DF;border-color:#E8453C;} .ac-chip.on.k1{background:#FFF1C9;border-color:#F5B400;} .ac-chip.on.k2{background:#DFF5E1;border-color:#3FAE5A;}
+  .ac-chipname{text-align:center;min-height:2.6em;font-weight:800;font-size:1.05rem;}
+  .ac-op{color:#F2A03D;}
+  .ac-nl{width:100%;height:auto;display:block;}
+  .ac-nl text{font-family:'Baloo 2',sans-serif;font-weight:800;}
+  .ac-nlnum circle{fill:#fff;stroke:#1D3557;stroke-width:2;transition:all .2s;}
+  .ac-nlnum text{fill:#1D3557;font-size:16px;}
+  .ac-nlnum.on circle{fill:#FFC93C;stroke:#E8A200;}
+  .ac-nlnum.click{cursor:pointer;} .ac-nlnum.click:hover circle{fill:#EAF3FF;}
+  .ac-nlnum.bad circle{fill:#FBE4E1;stroke:#E0574A;}
+  .ac-nlnum.good circle{fill:#DFF5E1;stroke:#3FAE5A;}
+  .ac-count{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-pop{background:#FFF1C9;border:3px solid #F5B400;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;animation:acPopIn .45s ease;}
+  .ac-big{background:#FFE3DF;border:3px solid #E8453C;border-radius:14px;min-width:54px;text-align:center;padding:2px 10px;}
+  @keyframes acPopIn{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.2);}100%{transform:scale(1);opacity:1;}}
+  .ac-house{max-width:420px;margin:6px auto 0;}
+  .ac-roof{height:84px;background:linear-gradient(180deg,#FF8A7A,#E8453C);clip-path:polygon(50% 0,100% 100%,0 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;}
+  .ac-hbody{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#FFE9B8;padding:14px;border-radius:0 0 18px 18px;}
+  .ac-win{min-height:130px;background:#CDEBFF;border:5px solid #8B5E34;border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;justify-content:center;padding:8px;}
+  .ac-dot{width:26px;height:26px;border-radius:50%;animation:acPopIn .3s ease;}
+  .ac-dot.l{background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);} .ac-dot.r{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .ac-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0;}
+  .ac-pair{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#F5F8FA;border-radius:12px;padding:6px 12px;font-family:'Baloo 2',sans-serif;font-weight:800;color:#1D3557;opacity:0;animation:acSlide .45s ease forwards;}
+  .ac-pair .dots{display:flex;gap:3px;}
+  .ac-pair .dots i{width:11px;height:11px;border-radius:50%;display:block;} .ac-pair .dots i.l{background:#E8453C;} .ac-pair .dots i.r{background:#F5B400;}
+  @keyframes acSlide{0%{opacity:0;transform:translateX(-14px);}100%{opacity:1;transform:none;}}
+  .ac-swap{position:relative;height:110px;margin:10px 0;}
+  .ac-grp{position:absolute;top:0;width:41%;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:center;height:100%;transition:left .9s cubic-bezier(.45,0,.2,1);}
+  .ac-swap .ac-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.6rem;color:#F2A03D;}
+  .ac-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+  .ac-tab{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.1rem;border:2px solid #1D3557;color:#1D3557;background:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;}
+  .ac-tab.on{background:#1D3557;color:#fff;}
+  .ac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .ac-tray{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;min-width:88px;min-height:56px;max-width:230px;padding:8px;border-radius:16px;background:#F5F8FA;}
+  .ac-tray.empty{border:3px dashed #B8C4D2;background:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.8rem;color:#8B95A3;}
+  .ac-sign{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.2rem;color:#F2A03D;}
+  .ac-tbl{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:600px;margin:8px auto;}
+  .ac-tc{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(.7rem,2.7vw,1.1rem);border:none;padding:0;}
+  .ac-th{background:#FFE9B8;color:#8A5A00;} .ac-th.rowh{background:#FFE3DF;color:#B8402F;} .ac-corner{background:transparent;color:#F2A03D;}
+  .ac-void{background:#F1F4F7;}
+  .ac-cellbtn{background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .15s;}
+  .ac-cellbtn:hover{background:#DDEBFA;}
+  .ac-cellbtn.rowhl{background:#FFE3DF;} .ac-cellbtn.colhl{background:#FFF1C9;} .ac-cellbtn.cur{background:#1D3557;color:#fff;transform:scale(1.1);} .ac-cellbtn.mirror{background:#3FB088;color:#fff;}
+  .ac-cellbtn.found{background:#DFF5E1;color:#1D6B2E;box-shadow:inset 0 0 0 2px #3FAE5A;} .ac-cellbtn.flash{background:#FBE4E1;color:#8C2A20;}
+  .ac-qcount{text-align:center;font-size:.85rem;font-weight:800;color:#8B95A3;margin-bottom:4px;}
+  .ac-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto;}
+  .ac-opt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;padding:14px 8px;border-radius:16px;border:2px solid #DCE3EA;background:#F5F8FA;color:#1D3557;cursor:pointer;transition:all .2s;}
+  .ac-opt:hover:not(:disabled){border-color:#1D3557;} .ac-opt:disabled{cursor:default;}
+  .ac-opt.ok{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;} .ac-opt.bad{background:#FBE4E1;border-color:#E0574A;color:#8C2A20;opacity:.8;}
+  .ac-hint{background:#FFF8E1;border-left:5px solid #F5B400;border-radius:10px;padding:10px 14px;margin:14px auto 0;max-width:520px;text-align:left;font-size:.98rem;color:#5A4300;}
+  .ac-qpics{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;}
+  .ac-qtxt{text-align:center;font-weight:800;font-size:1.15rem;margin:6px 0 12px;}
+  .ac-finish{text-align:center;padding:10px 0;}
+  .ac-stars{font-size:3.4rem;letter-spacing:6px;margin:8px 0;}
+  .ac-stars span{display:inline-block;animation:acPopIn .6s ease both;}
+  .ac-link{text-decoration:none;display:inline-block;}
+  @media (max-width:520px){
+    .ac-card{padding:20px 14px 18px;} .ac-eq{font-size:2rem;} .ac-bigeq{font-size:2.3rem;}
+    .ac-mascot{width:78px;} .ac-bubble{font-size:.96rem;padding:10px 12px;}
+    .ac-opt{font-size:1.3rem;} .ac-chips{font-size:1.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){.ac-btn.ac-pulse{animation:none;}.ac-mv,.ac-grp{transition:none;}}
+  /* ----- курс «Числа и счёт» ----- */
+  .nc-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:480px;margin:8px auto;}
+  .nc-it{position:relative;background:#F5F8FA;border:2px solid #DCE3EA;border-radius:16px;padding:6px;cursor:pointer;transition:all .2s;line-height:0;}
+  .nc-it:hover:not(:disabled){border-color:#1D3557;}
+  .nc-it.counted{background:#FFF1C9;border-color:#F5B400;cursor:default;}
+  .nc-badge{position:absolute;right:-6px;top:-8px;min-width:24px;height:24px;border-radius:12px;background:#E8453C;color:#fff;font:800 .95rem 'Baloo 2',sans-serif;line-height:24px;text-align:center;padding:0 5px;animation:acPopIn .35s ease;}
+  .nc-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:430px;margin:10px auto;}
+  .nc-chip{min-width:52px;height:52px;border-radius:14px;border:3px solid #CBD6E2;background:#F5F8FA;color:#1D3557;font:800 1.6rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-chip:hover{border-color:#1D3557;}
+  .nc-chip.seen{background:#EEF6FF;border-color:#9DB9D8;}
+  .nc-chip.cur{background:#FFC93C;border-color:#E8A200;transform:scale(1.1);}
+  .nc-chip.prev{background:#FFE3DF;border-color:#E8453C;}
+  .nc-chip.next{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-show{text-align:center;min-height:130px;margin:6px 0;}
+  .nc-show .big{font:800 3.6rem 'Baloo 2',sans-serif;color:#1D3557;line-height:1.1;}
+  .nc-show .wd{font:800 1.4rem 'Baloo 2',sans-serif;color:#E8453C;}
+  .nc-dots{display:grid;grid-template-columns:repeat(5,22px);gap:6px;justify-content:center;margin:8px auto;}
+  .nc-dots i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);display:block;animation:acPopIn .3s ease both;}
+  .nc-dots i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  .nc-seq{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 16px;}
+  .nc-cell{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 6px;border-radius:14px;background:#F5F8FA;border:3px solid #CBD6E2;font:800 1.7rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .nc-cell.q{background:#FFF1C9;border-color:#F5B400;color:#E8A200;}
+  .nc-cell.done{background:#DFF5E1;border-color:#3FAE5A;color:#1D6B2E;}
+  .nc-cell.empty{background:#fff;border-style:dashed;color:#B8C4D2;}
+  .nc-tiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;}
+  .nc-tile{min-width:62px;height:62px;border-radius:16px;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 1.9rem 'Baloo 2',sans-serif;cursor:pointer;transition:all .15s;}
+  .nc-tile:hover:not(:disabled){background:#EEF6FF;}
+  .nc-tile:disabled{opacity:.25;cursor:default;}
+  .nc-tile.bad{background:#FBE4E1;border-color:#E0574A;animation:ncShake .35s;}
+  @keyframes ncShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .nc-balls{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:520px;margin:6px auto;}
+  .nc-ball{background:none;border:0;padding:2px;cursor:pointer;line-height:0;transition:transform .2s,opacity .3s;}
+  .nc-ball:hover:not(:disabled){transform:translateY(-4px);}
+  .nc-ball.dim{opacity:.35;} .nc-ball.pop{animation:acPopIn .5s ease;}
+  .nc-ball.bad{animation:ncShake .35s;}
+  .nc-ball svg{width:46px;height:68px;display:block;}
+  @media (max-width:520px){.nc-ball{padding:1px;} .nc-ball svg{width:34px;height:50px;} .nc-bnum{font-size:.8rem;}}
+  .nc-bnum{display:block;text-align:center;font:800 .95rem 'Baloo 2',sans-serif;color:#5C7690;line-height:1.1;margin-top:2px;}
+  .nc-rocket{display:block;margin:0 auto;width:100%;max-width:230px;height:auto;}
+  .nc-rk{transition:transform .6s linear;}
+  .nc-count{text-align:center;font:800 4.4rem 'Baloo 2',sans-serif;color:#E8453C;line-height:1;min-height:1.1em;}
+  .nc-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+  .nc-grps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:8px auto 12px;}
+  .nc-grp{display:grid;gap:3px;padding:7px;border-radius:12px;background:#EEF6FF;border:2px solid #9DB9D8;justify-content:center;}
+  .nc-grp i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);display:block;}
+  .nc-skip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:flex-start;align-items:flex-start;min-height:120px;margin:10px 0;}
+  .nc-skip .ac-pop{min-width:48px;font:800 1.5rem 'Baloo 2',sans-serif;color:#1D3557;}
+  @media (max-width:520px){.nc-cell{min-width:44px;height:46px;font-size:1.45rem;} .nc-chip{min-width:46px;height:46px;font-size:1.4rem;} .nc-show .big{font-size:3rem;}}
+  .nc-rk.shake{animation:ncShake .3s linear infinite;}
+  .nc-pg{display:grid;gap:4px;justify-content:center;margin:12px auto;}
+  .nc-pc{display:flex;flex-direction:column;align-items:center;}
+  .nc-pc .sl{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .4s;}
+  .nc-pc .ln{width:4px;height:26px;background:#7FA6CF;border-radius:2px;opacity:0;transition:opacity .6s;}
+  .nc-pg.on .ln.ok{opacity:1;}
+  .nc-pg.on .sl.extra svg{filter:drop-shadow(0 0 6px #FFB020);}
+  .nc-pg.on .sl.extra:not(:empty){box-shadow:0 0 0 3px #FFB020;background:#FFF1C9;}
+  .nc-sign{display:inline-block;min-width:54px;color:#F2A03D;}
+  .nc-strip{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;max-width:560px;margin:10px auto 4px;}
+  .nc-nb{aspect-ratio:1;border-radius:50%;border:3px solid #1D3557;background:#fff;color:#1D3557;font:800 clamp(.8rem,3.6vw,1.35rem) 'Baloo 2',sans-serif;cursor:pointer;padding:0;transition:all .15s;}
+  .nc-nb:hover{background:#EAF3FF;} .nc-nb.on{background:#FFC93C;border-color:#E8A200;} .nc-nb.good{background:#DFF5E1;border-color:#3FAE5A;}
+  .nc-axis{display:flex;align-items:center;gap:8px;max-width:560px;margin:0 auto;font:800 .85rem 'Nunito',sans-serif;color:#5C7690;}
+  .nc-axis i{flex:1;height:4px;background:#1D3557;border-radius:2px;position:relative;} .nc-axis i::after{content:'';position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left:10px solid #1D3557;border-right:0;}
+  .nc-tf{display:grid;grid-template-columns:repeat(5,38px);gap:4px;padding:8px;border:3px solid #1D3557;border-radius:14px;background:#fff;}
+  .nc-tf .c{width:38px;height:38px;border-radius:50%;background:#F1F4F7;display:flex;align-items:center;justify-content:center;}
+  .nc-tf i{width:30px;height:30px;border-radius:50%;display:block;background:radial-gradient(circle at 35% 30%,#FF9A8F,#E8453C);animation:acPopIn .3s ease;}
+  .nc-tf i.y{background:radial-gradient(circle at 35% 30%,#FFE082,#F5B400);}
+  @media (max-width:520px){.nc-tf{grid-template-columns:repeat(5,28px);gap:3px;padding:6px;} .nc-tf .c{width:28px;height:28px;} .nc-tf i{width:22px;height:22px;}}
+  .nc-bl{display:flex;gap:6px;align-items:flex-end;justify-content:center;flex-wrap:wrap;margin:8px 0;}
+  .nc-rod{display:block;box-sizing:border-box;width:18px;height:88px;border:2.5px solid #1D3557;border-radius:5px;background:repeating-linear-gradient(to bottom,#FFD35C 0 7.8px,#E8A200 7.8px 8.8px);animation:acPopIn .3s ease;transition:opacity .4s,filter .4s;}
+  .nc-rod.nw{background:repeating-linear-gradient(to bottom,#7FD99F 0 7.8px,#3FAE5A 7.8px 8.8px);}
+  .nc-rod.off{opacity:.22;filter:grayscale(1);}
+  .nc-us{display:grid;grid-template-columns:repeat(3,18px);gap:3px;margin-left:10px;align-content:end;}
+  .nc-un{display:block;box-sizing:border-box;width:18px;height:18px;border:2.5px solid #1D3557;border-radius:4px;background:#FF9A8F;animation:acPopIn .3s ease;}
+  @media (max-width:520px){.nc-rod{width:14px;height:72px;background:repeating-linear-gradient(to bottom,#FFD35C 0 6.2px,#E8A200 6.2px 7.2px);} .nc-rod.nw{background:repeating-linear-gradient(to bottom,#7FD99F 0 6.2px,#3FAE5A 6.2px 7.2px);} .nc-bl{gap:4px;} .nc-us{grid-template-columns:repeat(3,14px);margin-left:6px;} .nc-un{width:14px;height:14px;}}
+  .nc-th-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0;}
+  .nc-groups{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+  .nc-grp{display:inline-flex;padding:4px 8px;border:3px dashed #9DB9D8;border-radius:16px;margin:4px;}
+  .nc-grp .nc-th-row{margin:4px 0;max-width:210px;}
+  .nc-pool{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:50px;margin:8px 0;}
+  .nc-pk{border:0;background:none;padding:3px;cursor:pointer;border-radius:12px;line-height:0;transition:all .15s;}
+  .nc-pk:hover{background:#EEF6FF;} .nc-pk.sel{background:#FFE9A8;box-shadow:0 0 0 3px #F5B400;}
+  .nc-plates{display:flex;gap:12px;justify-content:center;margin-top:6px;}
+  .nc-plate{flex:1;max-width:190px;min-height:110px;border:3px solid #1D3557;border-radius:50% 50% 24px 24px / 30% 30% 24px 24px;background:#F5F8FA;padding:8px 6px;}
+  .nc-plate .lb{display:block;font:800 .85rem 'Baloo 2',sans-serif;color:#5C7690;text-align:center;margin-bottom:2px;}
+  .nc-plate .in{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;}
+  @media (max-width:520px){.nc-th-row svg,.nc-pool svg{width:30px;height:30px;} .nc-grp .nc-th-row{max-width:150px;} .nc-plate{min-height:96px;}}
+  /* ----- курс «Мир вокруг нас» ----- */
+  .es-pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 10px;}
+  .es-pb{border:3px solid transparent;border-radius:16px;background:#F3F7FB;font-size:2.1rem;line-height:1;padding:8px 12px;cursor:pointer;transition:all .15s;font-family:inherit;color:#1D3557;}
+  .es-pb:hover{background:#EAF3FF;transform:translateY(-2px);} .es-pb.cur{border-color:#F5B400;background:#FFF1C9;} .es-pb.seen{border-color:#3FAE5A;}
+  .es-pb small{display:block;font:800 .78rem 'Baloo 2',sans-serif;margin-top:3px;}
+  .es-card{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:8px auto;padding:12px 18px;border-radius:22px;background:#F5F8FA;border:3px solid #DCE6F0;text-align:center;font:800 1.1rem/1.3 'Baloo 2',sans-serif;color:#1D3557;min-height:130px;justify-content:center;}
+  .es-card .em{font-size:3.6rem;line-height:1.1;} .es-card .nm{font-size:1.35rem;} .es-card .tx{font-weight:700;font-size:1rem;color:#41566E;}
+  .es-card .num{font:800 2.8rem 'Baloo 2',sans-serif;color:#E8453C;letter-spacing:.08em;}
+  .es-opt-em{font-size:2.4rem;line-height:1;}
+  @media (max-width:520px){.es-card .em{font-size:3rem;} .es-fopt{width:118px;}}
+  .es-plant{display:block;width:min(100%,250px);margin:6px auto;}
+  .es-plant svg{display:block;width:100%;height:auto;}
+  .es-bigem{font-size:5.5rem;line-height:1.1;text-align:center;min-height:100px;transition:all .3s;}
+  .es-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;}
+  .es-nb{border:3px solid #1D3557;border-radius:999px;background:#fff;color:#1D3557;font:800 1.05rem 'Baloo 2',sans-serif;padding:9px 18px;cursor:pointer;} .es-nb.seen{background:#DFF5E1;border-color:#3FAE5A;} .es-nb:disabled{opacity:.6;cursor:default;}
+  .es-mag{font-size:4.6rem;line-height:1;text-align:center;margin:4px 0 0;}
+  .dg-seq{list-style:none;counter-reset:sq;margin:6px auto 10px;padding:0;max-width:460px;display:flex;flex-direction:column;gap:6px;} .dg-seq li{counter-increment:sq;background:#E9F7EC;border:2px solid #3FAE5A;border-radius:14px;padding:6px 12px;font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;} .dg-seq li::before{content:counter(sq) '. ';color:#2F8A47;} .dg-sqe{font-size:1.4rem;}
+  .dg-task{max-width:460px;margin:0 auto 8px;display:flex;flex-direction:column;gap:3px;} .dg-ti{font:800 .92rem/1.3 'Baloo 2',sans-serif;color:#7A8CA3;padding:4px 10px;border-radius:12px;background:#F5F8FA;} .dg-ti.ok{color:#2F8A47;background:#E9F7EC;} .dg-ti.cur{color:#1D3557;background:#FFF1C9;border:2px solid #F5B400;} .dg-ti small{display:block;font-weight:700;font-size:.8rem;color:#41566E;margin-top:2px;}
+  .dg-tb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:6px 0;}
+  .dg-b{border:3px solid #DCE6F0;border-radius:14px;background:#fff;color:#1D3557;font:800 .9rem 'Baloo 2',sans-serif;padding:6px 10px;cursor:pointer;line-height:1.1;} .dg-b small{display:block;font-size:.68rem;} .dg-b.on{border-color:#F5B400;background:#FFF1C9;} .dg-b:hover{background:#EAF3FF;}
+  .dg-t i{display:inline-block;width:16px;height:16px;border-radius:50%;border:2px solid #1D3557;vertical-align:-3px;margin-right:5px;}
+  .dg-sw{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;margin-top:2px;} .dg-c{width:34px;height:34px;border-radius:50%;border:3px solid #1D3557;cursor:pointer;padding:0;}
+  .dg-sp{width:8px;} .dg-hint{font:700 .88rem 'Baloo 2',sans-serif;color:#5C7690;}
+  .dg-cv{display:block;width:100%;max-width:460px;margin:6px auto;touch-action:none;border-radius:12px;cursor:crosshair;background:#fff;}
+  .dg-grid{position:relative;margin:8px auto;background:#F5F8FA;border:3px solid #1D3557;border-radius:12px;max-width:100%;} .dg-cell{position:absolute;box-sizing:border-box;border:1px solid #DCE6F0;display:flex;align-items:center;justify-content:center;font-size:1.9rem;} .dg-bot{position:absolute;display:flex;align-items:center;justify-content:center;font-size:2rem;transition:left .25s,top .25s;}
+  .dg-prog{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;min-height:38px;margin:6px 0;} .dg-pc{background:#E4F2FF;border:2px solid #5EC3E8;border-radius:10px;padding:2px 7px;font:800 1rem 'Baloo 2',sans-serif;color:#1D3557;}
+  .dg-cmd{font-size:1.4rem;} .dg-go{background:#3FAE5A;border-color:#2F8A47;color:#fff;}
+  .es-pb.pull{transform:translateY(-34px) scale(1.12);background:#DFF5E1;border-color:#3FAE5A;} .es-pb.nope{animation:ncShake .35s linear 1;background:#FFE4E1;}
+  .kz-let{font:800 2.6rem/1 'Baloo 2',sans-serif;color:#1D3557;display:block;}
+  .es-card .kzbig{font:800 3.4rem/1.1 'Baloo 2',sans-serif;color:#2F9BE6;} .es-card .kzw{font:800 2rem/1.1 'Baloo 2',sans-serif;color:#1D3557;}
+  .kz-click{cursor:pointer;} .kz-spk{display:inline-block;margin-top:2px;padding:4px 14px;border-radius:14px;background:#FFE08A;font-size:1.2rem;box-shadow:0 3px 0 rgba(0,0,0,.15);}
+  .kz-sw{display:inline-block;width:3.2rem;height:3.2rem;border-radius:22%;vertical-align:middle;box-shadow:inset 0 -.2rem 0 rgba(0,0,0,.18);}
+  .kz-ord{display:flex;gap:10px;justify-content:center;margin:10px 0;min-height:64px;flex-wrap:wrap;} .kz-ord span{width:62px;height:62px;border-radius:16px;border:3px dashed #B8C6D6;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:#F5F8FA;} .kz-ord span.f{border-style:solid;border-color:#3FAE5A;background:#DFF5E1;}
+</style>
+</head>
+<body class="w-page">
+
+<!-- общие рисунки (градиенты и тени) для всех сцен -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-red" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FF9A8F"/><stop offset=".55" stop-color="#E53935"/><stop offset="1" stop-color="#B71C1C"/></radialGradient>
+    <radialGradient id="g-green" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D4EE86"/><stop offset=".55" stop-color="#7CB342"/><stop offset="1" stop-color="#4E8A1E"/></radialGradient>
+    <linearGradient id="g-basket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0AE6A"/><stop offset="1" stop-color="#A9722F"/></linearGradient>
+    <filter id="f-soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D3557" flood-opacity=".25"/></filter>
+  </defs>
+</svg>
+
+<header>
+  <a href="../../../index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button class="active" data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
+  </div>
+</header>
+
+<main class="ac-shell">
+
+  <!-- ===== КАРТА КУРСА ===== -->
+  <section id="ac-v-map">
+    <a href="index.html" class="ac-back" style="margin-bottom:14px">← Цифровая грамотность</a>
+    <div class="ac-card">
+      <div id="ac-mapbs" style="width:118px;margin:0 auto 4px" aria-hidden="true"></div>
+      <h1>Курс: Цифровая грамотность</h1>
+      <p class="ac-sub">12 уроков · устройства, виды информации, Интернет и безопасность, графический редактор, алгоритмы и робот</p>
+      <p class="ac-note">🧪 Новый курс в обновлённом формате</p>
+      <div class="ac-progress">
+        <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
+        <div class="ac-progress-txt" id="ac-ptxt">0 из 5</div>
+      </div>
+      <div class="ac-map" id="ac-map"></div>
+    </div>
+  </section>
+
+  <!-- ===== УРОК ===== -->
+  <section id="ac-v-lesson" style="display:none">
+    <div class="ac-topbar">
+      <button class="ac-back" id="ac-tomap">← К карте курса</button>
+      <div class="ac-dots" id="ac-dots"></div>
+    </div>
+    <div class="ac-card">
+      <div class="ac-stephead">
+        <span class="ac-stepno" id="ac-stepno"></span>
+        <span class="ac-stepno" id="ac-lessonname"></span>
+      </div>
+      <h2 id="ac-title"></h2>
+      <div class="ac-guide">
+        <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
+        <div class="ac-bubble" id="ac-bubble"></div>
+      </div>
+      <div class="ac-speakrow">
+        <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
+        <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
+      </div>
+      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
+      <div class="ac-nav">
+        <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
+        <button class="ac-btn ac-go" id="ac-next">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ИТОГ УРОКА ===== -->
+  <section id="ac-v-end" style="display:none">
+    <div class="ac-card ac-finish">
+      <div id="ac-endbs" style="width:170px;margin:0 auto" aria-hidden="true"></div>
+      <h2 id="ac-endtitle">Урок пройден!</h2>
+      <div class="ac-stars" id="ac-endstars"></div>
+      <p class="ac-sub" id="ac-endtext"></p>
+      <div class="ac-actions" style="margin-top:18px">
+        <button class="ac-btn ac-alt" id="ac-endmap">К карте курса</button>
+        <button class="ac-btn ac-go" id="ac-endnext">Следующий урок →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>try{localStorage.setItem('bilim_lang_v1','kz')}catch(e){}</script>
+<style>#ac-speak{display:none !important}</style>
+<script src="../../../assets/i18n.js"></script>
+<script src="../../../assets/progress.js"></script>
+<script src="../../../assets/barsik.js"></script>
+<script src="../../../assets/lesson-video.js"></script>
+<script src="../../../assets/world.js"></script>
+<script src="../../../assets/subject.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= помощники ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const PRAISE = ['Верно! 🎉', 'Отлично! ⭐', 'Молодец! 👏', 'Так держать! 🚀', 'Точно! ✅'];
+function nums(correct, lo, hi){ // 4 варианта ответа
+  const set = new Set([correct]);
+  const near = shuffle([correct - 2, correct - 1, correct + 1, correct + 2, correct + 3, correct - 3]).filter(x => x >= lo && x <= hi);
+  for (const x of near){ if (set.size >= 4) break; set.add(x); }
+  let k = lo; while (set.size < 4 && k <= hi){ set.add(k++); }
+  return shuffle(Array.from(set));
+}
+
+/* ================= рисунки ================= */
+function appleG(r, color){
+  const g = color === 'green' ? 'g-green' : 'g-red';
+  return '<ellipse cx="0" cy="' + (r*.08) + '" rx="' + r + '" ry="' + (r*.92) + '" fill="url(#' + g + ')" filter="url(#f-soft)"/>' +
+    '<path d="M0 ' + (-r*.78) + ' q' + (r*.05) + ' ' + (-r*.45) + ' ' + (r*.3) + ' ' + (-r*.58) + '" stroke="#6B4423" stroke-width="' + Math.max(1.5, r*.12) + '" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="' + (r*.45) + '" cy="' + (-r*.95) + '" rx="' + (r*.36) + '" ry="' + (r*.16) + '" transform="rotate(-28 ' + (r*.45) + ' ' + (-r*.95) + ')" fill="#4CAF50"/>' +
+    '<ellipse cx="' + (-r*.4) + '" cy="' + (-r*.25) + '" rx="' + (r*.14) + '" ry="' + (r*.28) + '" transform="rotate(20 ' + (-r*.4) + ' ' + (-r*.25) + ')" fill="#fff" opacity=".4"/>';
+}
+function appleInline(color, size){ return '<svg class="ac-ap" width="' + size + '" height="' + size + '" viewBox="-21 -26 42 46" aria-hidden="true">' + appleG(17, color) + '</svg>'; }
+function apples(n, color, size){ let s = ''; for (let i = 0; i < n; i++) s += appleInline(color, size || 34); return s; }
+function basketSVG(cx, w, top, h){
+  const x1 = cx - w/2, x2 = cx + w/2, i = w*.07;
+  let s = '<g filter="url(#f-soft)"><path d="M' + x1 + ' ' + top + ' L' + x2 + ' ' + top + ' L' + (x2 - i) + ' ' + (top + h) + ' Q' + cx + ' ' + (top + h + 8) + ' ' + (x1 + i) + ' ' + (top + h) + ' Z" fill="url(#g-basket)"/></g>';
+  for (let k = 1; k <= 3; k++){ const y = top + k*h/4; s += '<line x1="' + (x1 + i*k/4) + '" y1="' + y + '" x2="' + (x2 - i*k/4) + '" y2="' + y + '" stroke="#7A4B17" stroke-opacity=".35" stroke-width="2"/>'; }
+  for (let x = x1 + w/6; x < x2 - 2; x += w/6){ s += '<line x1="' + x + '" y1="' + top + '" x2="' + (x - (x - cx)*.07) + '" y2="' + (top + h) + '" stroke="#7A4B17" stroke-opacity=".22" stroke-width="2"/>'; }
+  s += '<rect x="' + (x1 - 5) + '" y="' + (top - 5) + '" width="' + (w + 10) + '" height="12" rx="6" fill="#B8792F"/>';
+  return s;
+}
+function hareG(){
+  const st = 'fill="#fff" stroke="#B8C4D2" stroke-width="1.5"';
+  return '<g class="hf"><ellipse cx="0" cy="-8" rx="17" ry="13" ' + st + '/>' +
+    '<circle cx="-17" cy="-9" r="5.5" ' + st + '/>' +
+    '<ellipse cx="9" cy="-28" rx="4.5" ry="13" ' + st + ' transform="rotate(-8 9 -28)"/><ellipse cx="9.5" cy="-28" rx="2" ry="9" fill="#FFB6C1" transform="rotate(-8 9 -28)"/>' +
+    '<ellipse cx="18" cy="-27" rx="4.5" ry="12" ' + st + ' transform="rotate(12 18 -27)"/><ellipse cx="18" cy="-27" rx="2" ry="8" fill="#FFB6C1" transform="rotate(12 18 -27)"/>' +
+    '<circle cx="14" cy="-14" r="10" ' + st + '/><circle cx="18" cy="-16" r="1.8" fill="#1D3557"/><ellipse cx="23.5" cy="-12" rx="2" ry="1.4" fill="#FF8FA3"/>' +
+    '<ellipse cx="-4" cy="-1" rx="7" ry="4" ' + st + '/></g>';
+}
+
+/* числовой луч */
+function Line(maxN){
+  const W = 680, X0 = 34, DX = (W - 2*X0) / maxN, LY = 128, HY = 112;
+  const xAt = n => X0 + n * DX;
+  let s = '<svg class="ac-nl" viewBox="0 0 ' + W + ' 180" role="img" aria-label="Числовой луч">';
+  s += '<line x1="' + (X0 - 14) + '" y1="' + LY + '" x2="' + (W - X0 + 18) + '" y2="' + LY + '" stroke="#1D3557" stroke-width="4" stroke-linecap="round"/>';
+  s += '<path d="M' + (W - X0 + 10) + ' ' + (LY - 8) + ' L' + (W - X0 + 22) + ' ' + LY + ' L' + (W - X0 + 10) + ' ' + (LY + 8) + '" fill="none" stroke="#1D3557" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>';
+  s += '<g class="nl-arcs"></g>';
+  for (let n = 0; n <= maxN; n++){
+    s += '<line x1="' + xAt(n) + '" y1="' + (LY - 6) + '" x2="' + xAt(n) + '" y2="' + (LY + 6) + '" stroke="#1D3557" stroke-width="3"/>';
+    s += '<g class="ac-nlnum" data-n="' + n + '"><circle cx="' + xAt(n) + '" cy="' + (LY + 30) + '" r="16"/><text x="' + xAt(n) + '" y="' + (LY + 36) + '" text-anchor="middle">' + n + '</text></g>';
+  }
+  s += '<g class="nl-hare" transform="translate(' + xAt(0) + ',' + HY + ')">' + hareG() + '</g></svg>';
+  return { html: s, xAt: xAt, LY: LY, HY: HY, maxN: maxN };
+}
+function placeHare(root, L, n){ root.querySelector('.nl-hare').setAttribute('transform', 'translate(' + L.xAt(n) + ',' + L.HY + ')'); }
+function hopTo(root, L, from, to, dur){
+  dur = dur || 440;
+  const hare = root.querySelector('.nl-hare'), x0 = L.xAt(from), x1 = L.xAt(to);
+  return new Promise(function(res){
+    const t0 = performance.now();
+    (function f(t){
+      const k = Math.min(1, (t - t0) / dur);
+      hare.setAttribute('transform', 'translate(' + (x0 + (x1 - x0) * k) + ',' + (L.HY - Math.sin(Math.PI * k) * 36) + ')');
+      if (k < 1) requestAnimationFrame(f); else res();
+    })(t0);
+  });
+}
+function addArc(root, L, from, to, label){
+  const x0 = L.xAt(from), x1 = L.xAt(to), m = (x0 + x1) / 2;
+  root.querySelector('.nl-arcs').insertAdjacentHTML('beforeend',
+    '<path d="M' + x0 + ' ' + (L.LY - 4) + ' Q' + m + ' ' + (L.LY - 62) + ' ' + x1 + ' ' + (L.LY - 4) + '" fill="none" stroke="#FF6B5B" stroke-width="3" stroke-dasharray="5 5" stroke-linecap="round"/>' +
+    '<circle cx="' + m + '" cy="' + (L.LY - 33) + '" r="10" fill="#FF6B5B"/><text x="' + m + '" y="' + (L.LY - 29) + '" text-anchor="middle" font-size="12" fill="#fff">' + label + '</text>');
+}
+function lightNum(root, n, cls){ const g = root.querySelector('.ac-nlnum[data-n="' + n + '"]'); if (g) g.classList.add(cls || 'on'); }
+async function runHops(root, L, a, b, alive){
+  placeHare(root, L, a); lightNum(root, a);
+  let cur = a;
+  for (let k = 1; k <= b; k++){
+    await hopTo(root, L, cur, cur + 1);
+    if (!alive()) return false;
+    addArc(root, L, cur, cur + 1, k); cur++; lightNum(root, cur);
+    await sleep(120);
+  }
+  return true;
+}
+function staticLine(a, b){ // рисунок для вопроса: старт и прыжки
+  const L = Line(12), tmp = document.createElement('div');
+  tmp.innerHTML = L.html;
+  const root = tmp;
+  placeHare(root, L, a); lightNum(root, a);
+  for (let k = 1; k <= b; k++) addArc(root, L, a + k - 1, a + k, k);
+  return tmp.innerHTML;
+}
+
+/* ================= озвучка =================
+   1) пробуем готовый mp3: assets/audio/dig/<id>.mp3 (потом сюда лягут файлы ElevenLabs);
+   2) если файла нет — читает голос браузера. */
+let audioEl = null, speakToken = 0;
+const BS = window.Barsik ? Barsik.mount($('#ac-barsik')) : null;
+const BSM = window.Barsik ? Barsik.mount($('#ac-mapbs'), { state: 'wave' }) : null;
+let BSE = null;
+const bsTalk = on => { if (BS) BS.talk(on); };
+const bsReact = (s, ms) => { if (BS) BS.react(s, ms); };
+function ttsClean(t){
+  return t.replace(/<[^>]+>/g, ' ').replace(/\+/g, ' плюс ').replace(/=/g, ' равно ').replace(/[−–]/g, ' минус ').replace(/≠/g, ' не равно ').replace(/☐/g, ' окошко ').replace(/\?/g, '?').replace(/\s+/g, ' ').trim();
+}
+const MALE_RE = /pavel|dmitri|dmitry|dmitriy|yuri|yury|maxim|ivan|aleksandr|alexander|mikhail|boris|павел|дмитр|юри|максим|иван|александр|михаил|борис|male|мужск/i;
+const FEMALE_RE = /milena|alena|katya|svetlana|dariya|daria|irina|tatyana|elena|anna|female|женск|милена|алён|алена|катя|светлан|дарь|ирин|татьян|елен|анна/i;
+function bestVoice(){
+  const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const ru = vs.filter(v => /^ru/i.test(v.lang));
+  if (!ru.length) return null;
+  /* Барсик — мальчик: сначала ищем мужской голос, женские опускаем вниз */
+  const score = v => (MALE_RE.test(v.name) ? 20 : 0) - (FEMALE_RE.test(v.name) ? 8 : 0) + (/natural|online|neural/i.test(v.name) ? 4 : 0) + (v.localService ? 0 : 1);
+  return ru.sort((a, b) => score(b) - score(a))[0];
+}
+function stopSpeak(){
+  speakToken++; bsTalk(false);
+  try { if (audioEl){ audioEl.pause(); audioEl = null; } } catch(e){}
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e){}
+  const b = $('#ac-speak'); if (b){ b.classList.remove('ac-on'); b.textContent = '🔊 Послушать'; }
+}
+function speak(id, text){
+  stopSpeak();
+  const tok = speakToken, btn = $('#ac-speak');
+  const end = () => { if (tok === speakToken){ btn.classList.remove('ac-on'); btn.textContent = '🔊 Послушать'; bsTalk(false); } };
+  const tts = () => {
+    if (tok !== speakToken || !window.speechSynthesis) return end();
+    const u = new SpeechSynthesisUtterance(ttsClean(text));
+    u.lang = 'ru-RU'; u.rate = .92; u.pitch = 1;
+    const v = bestVoice(); if (v) u.voice = v; if (!v || !MALE_RE.test(v.name)) u.pitch = .6; /* нет явно мужского голоса: делаем ниже, чтобы звучало не по-девичьи */
+    u.onend = end; u.onerror = end;
+    speechSynthesis.speak(u);
+  };
+  btn.classList.add('ac-on'); btn.textContent = '⏹ Стоп'; bsTalk(true);
+  let fell = false;
+  const fallback = () => { if (fell) return; fell = true; tts(); };
+  try {
+    audioEl = new Audio('../../../assets/audio/dig/' + id + '.mp3');
+    audioEl.onended = end; audioEl.onerror = fallback;
+    const p = audioEl.play(); if (p && p.catch) p.catch(fallback);
+  } catch(e){ fallback(); }
+}
+
+/* ================= сохранение ================= */
+const KEY = 'bilim_digcourse_v1';
+function loadP(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function saveP(p){ try { localStorage.setItem(KEY, JSON.stringify(p)); } catch(e){} }
+function loadAuto(){ try { return localStorage.getItem(KEY + '_auto') === '1'; } catch(e){ return false; } }
+function saveAuto(v){ try { localStorage.setItem(KEY + '_auto', v ? '1' : '0'); } catch(e){} }
+
+/* ================= помощники курса «Цифровая грамотность» ================= */
+function $$(s, r){ return Array.from((r || document).querySelectorAll(s)); }
+const svgE = e => '<span style="font-size:2.3rem;line-height:1">' + e + '</span>';
+
+/* ================= данные ================= */
+/* устройства: [ключ, значок, название, загадка (описание), чем занимается] */
+const DEV = [
+  ['monitor', '🖥️', 'Монитор', 'На нём мы видим картинки и буквы.', 'out'],
+  ['keyboard', '⌨️', 'Клавиатура', 'Ей печатают буквы и цифры.', 'ctl'],
+  ['mouse', '🖱️', 'Мышь', 'Ей двигают стрелку и нажимают.', 'ctl'],
+  ['printer', '🖨️', 'Принтер', 'Он печатает на бумаге.', 'out'],
+  ['speaker', '🔊', 'Колонки', 'Они громко играют звук.', 'out'],
+  ['laptop', '💻', 'Ноутбук', 'Это компьютер, который можно носить с собой.', 'both'],
+  ['headphones', '🎧', 'Наушники', 'В них звук слышишь только ты.', 'out'],
+  ['joystick', '🕹️', 'Джойстик', 'Им управляют в играх.', 'ctl']
+];
+const DD = {}; DEV.forEach(d => DD[d[0]] = d);
+const dtext = d => d[2] + '. ' + ({ monitor: 'На мониторе мы видим картинки и буквы.', keyboard: 'Клавиатурой мы печатаем буквы и цифры.', mouse: 'Мышкой мы двигаем стрелку и нажимаем.', printer: 'Принтер печатает на бумаге.', speaker: 'Колонки громко играют звук.', laptop: 'Ноутбук — это компьютер, который можно носить с собой.', headphones: 'В наушниках звук слышишь только ты.', joystick: 'Джойстиком управляют в играх.' })[d[0]];
+const RULES = [['Сидеть прямо и не слишком близко к экрану', 1, 'Так не устают спина и глаза.'], ['Делать перерыв, когда устали глаза', 1, 'Глазам и спине нужен отдых.'], ['Рассказывать незнакомым людям свой пароль', 0, 'Пароль — это секрет. Его знают только ты и родители.'], ['Трогать розетку и провода', 0, 'Электричество опасно, розетки и провода трогать нельзя.'], ['Есть и пить над клавиатурой', 0, 'Крошки и вода могут испортить клавиатуру.'], ['Позвать взрослого, если на экране что-то напугало', 1, 'Взрослые помогут и объяснят.'], ['Сидеть за компьютером весь день без перерыва', 0, 'Долго сидеть вредно: нужны перерывы и движение.'], ['Мыть руки перед работой на компьютере', 1, 'Чистые руки — чистая клавиатура и мышь.']];
+/* алгоритмы: порядок действий */
+const ALG = [
+  [['🚰', 'Открыть кран'], ['🧼', 'Намылить руки'], ['💦', 'Смыть мыло'], ['🧻', 'Вытереть руки']],
+  [['📄', 'Взять лист'], ['✏️', 'Нарисовать рисунок'], ['🎨', 'Раскрасить'], ['🖼️', 'Показать маме']],
+  [['⌨️', 'Напечатать текст'], ['🖨️', 'Нажать «печать»'], ['📃', 'Принтер печатает'], ['📄', 'Взять готовый лист']],
+  [['🎧', 'Надеть наушники'], ['▶️', 'Нажать кнопку «пуск»'], ['🎵', 'Слушать музыку'], ['⏹️', 'Нажать «стоп»']],
+  [['🥚', 'Взять яйцо'], ['🍳', 'Разбить на сковородку'], ['🔥', 'Пожарить'], ['🍽️', 'Положить на тарелку']]
+];
+const aHint = s => s.map((x, i) => (i + 1) + '. ' + x[0] + ' ' + x[1]).join('; ');
+
+/* ================= генераторы вопросов ================= */
+const GENS = {
+  devName(){
+    const d = pick(DEV), set = shuffle([d].concat(shuffle(DEV.filter(x => x !== d)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Как называется это устройство?</div><div class="es-card"><div class="em" style="font-size:4.4rem">' + d[1] + '</div></div>', opts: set.map(x => x[2]), ans: d[2], hint: dtext(d) };
+  },
+  devFind(){
+    const d = pick(DEV), set = shuffle([d].concat(shuffle(DEV.filter(x => x !== d)).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Найди устройство</div><div class="es-card"><div class="nm">' + d[2] + '</div></div>', svgopts: true, opts: set.map(x => svgE(x[1])), ans: svgE(d[1]), hint: dtext(d) };
+  },
+  devDo(){
+    const d = pick(DEV), set = shuffle([d].concat(shuffle(DEV.filter(x => x !== d && x[3] !== d[3])).slice(0, 3)));
+    return { html: '<div class="ac-qtxt">Что это за устройство?</div><div class="es-card"><div class="em">🤔</div><div class="tx">' + d[3] + '</div></div>', opts: set.map(x => x[2]), ans: d[2], hint: dtext(d) };
+  },
+  devGroup(){
+    const d = pick(DEV.filter(x => x[4] !== 'both')), y = d[4] === 'ctl';
+    return { html: '<div class="ac-qtxt">Что делает это устройство?</div><div class="es-card"><div class="em">' + d[1] + '</div><div class="nm">' + d[2] + '</div></div>', opts: ['Им управляют', 'Показывает, печатает или звучит'], ans: y ? 'Им управляют' : 'Показывает, печатает или звучит', wide: true,
+      hint: dtext(d) + (y ? ' Таким устройством мы управляем компьютером или игрой.' : ' Оно показывает, печатает или играет звук.') };
+  },
+  ruleYN(){
+    const r = pick(RULES);
+    return { html: '<div class="ac-qtxt">Это правильно или неправильно?</div><div class="es-card"><div class="em">💻</div><div class="tx" style="font-size:1.15rem">' + r[0] + '</div></div>', opts: ['Правильно', 'Неправильно'], ans: r[1] ? 'Правильно' : 'Неправильно', hint: (r[1] ? 'Это правильно. ' : 'Это неправильно. ') + r[2] };
+  },
+  algFirst(){
+    const s = pick(ALG);
+    return { html: '<div class="ac-qtxt">Что нужно сделать <b>первым</b>?</div>', opts: shuffle(s.map(x => x[1])), ans: s[0][1], wide: true, hint: 'Правильный порядок: ' + aHint(s) + '.' };
+  },
+  algLast(){
+    const s = pick(ALG);
+    return { html: '<div class="ac-qtxt">Что нужно сделать <b>последним</b>?</div>', opts: shuffle(s.map(x => x[1])), ans: s[3][1], wide: true, hint: 'Правильный порядок: ' + aHint(s) + '.' };
+  },
+  algNext(){
+    const s = pick(ALG), i = rnd(0, 2), oth = s.filter((x, j) => j !== i);
+    return { html: '<div class="ac-qtxt">Что делаем <b>сразу после</b> этого шага?</div><div class="es-card"><div class="em">' + s[i][0] + '</div><div class="nm">' + s[i][1] + '</div></div>', opts: shuffle(oth.map(x => x[1])), ans: s[i + 1][1], wide: true, hint: 'Правильный порядок: ' + aHint(s) + '.' };
+  }
+};
+
+/* ================= сцены ================= */
+const SCENES = {};
+SCENES.video = window.LessonVideoScene;
+function tapScene(stage, ctx, o){
+  const seen = {};
+  stage.innerHTML = '<div class="es-pick" id="t-p"></div><div class="es-card" id="t-c"><div class="tx">Нажми на карточку 👆</div></div>';
+  $('#t-p', stage).innerHTML = o.items.map(it => '<button class="es-pb" data-k="' + it.k + '" aria-label="выбрать">' + it.b + (it.small ? '<small>' + it.small + '</small>' : '') + '</button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const k = b.dataset.k, it = o.items.find(x => x.k === k); seen[k] = 1;
+    $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#t-c', stage).innerHTML = it.card;
+    const n = Object.keys(seen).length;
+    if (n >= o.need){ ctx.fb(o.done, 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + '. Нужно хотя бы ' + o.need + '.', 'info');
+  });
+}
+SCENES.devTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 8, done: 'Теперь ты знаешь устройства компьютера!',
+  items: DEV.map(d => ({ k: d[0], b: d[1], small: d[2], card: '<div class="em">' + d[1] + '</div><div class="nm">' + d[2] + '</div><div class="tx">' + dtext(d).slice(d[2].length + 2) + '</div>' })) });
+SCENES.rulesTap = (stage, st, ctx) => tapScene(stage, ctx, { need: 6, done: 'Помни эти правила, когда садишься за компьютер!',
+  items: RULES.map((r, i) => ({ k: 'r' + i, b: r[1] ? '✅' : '⛔', small: r[1] ? 'Правило' : 'Нельзя', card: '<div class="em">' + (r[1] ? '✅' : '⛔') + '</div><div class="nm" style="font-size:1.15rem">' + r[0] + '</div><div class="tx">' + r[2] + '</div>' })) });
+/* --- расставь шаги по порядку (алгоритм) --- */
+SCENES.algBuild = function(stage, st, ctx){
+  const list = shuffle(ALG).slice(0, 3); let si = 0, pos = 0;
+  function round(){
+    const s = list[si]; pos = 0; const order = shuffle(s.map((x, i) => i));
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:6px">Порядок ' + (si + 1) + ' из ' + list.length + '. Нажимай по порядку: что делаем сначала, что потом.</div><div class="kz-ord" id="o-slots">' + s.map(() => '<span></span>').join('') + '</div><div class="es-pick" id="o-p"></div><div class="es-card" id="o-c"><div class="tx">Начни с того, что делаем первым.</div></div>';
+    $('#o-p', stage).innerHTML = order.map(i => '<button class="es-pb" data-i="' + i + '" aria-label="шаг">' + s[i][0] + '<small>' + s[i][1] + '</small></button>').join('');
+    $$('#o-p .es-pb', stage).forEach(b => b.onclick = function(){
+      const i = +b.dataset.i;
+      if (i === pos){
+        const sl = $$('#o-slots span', stage)[pos]; sl.textContent = s[i][0]; sl.classList.add('f'); b.disabled = true; b.style.opacity = .25; $('#o-c', stage).innerHTML = '<div class="nm">' + (pos + 1) + '. ' + s[i][1] + '</div>'; pos++;
+        if (pos >= s.length){
+          si++;
+          if (si >= list.length){ ctx.fb('Все порядки действий собраны верно!', 'ok'); ctx.done(); } else { ctx.fb('Верно! Теперь следующее задание.', 'ok'); setTimeout(() => { if (ctx.alive()) round(); }, 1100); }
+        }
+      } else { ctx.miss(); b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); $('#o-c', stage).innerHTML = '<div class="tx">Не то. Подумай, что делаем раньше.</div>'; }
+    });
+  }
+  round();
+};
+
+/* ================= содержание курса ================= */
+const LESSONS = [
+  { id: 'd1', icon: '🖥️', title: 'Устройства компьютера', goal: 'Называть основные устройства компьютера',
+    steps: [
+      { id: 'd1v0', scene: 'video', gate: true, silent: true, title: 'Видео: Устройства компьютера',
+        src: '../../../assets/video/grade1-digital-dig-d1.mp4', poster: '../../../assets/video/grade1-digital-dig-d1.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd1s1', scene: 'devTap', gate: true, title: 'Знакомимся с устройствами',
+        text: 'Привет! Это Барсик. Сегодня мы познакомимся с компьютером. У компьютера есть разные устройства. Монитор, клавиатура, мышь, принтер, колонки, ноутбук, наушники и джойстик. Нажимай на каждое и узнавай, для чего оно нужно.' },
+      { id: 'd1s2', scene: 'quiz', gate: true, count: 6, gens: ['devName'], title: 'Как называется устройство?',
+        text: 'Посмотри на картинку и выбери название устройства.' },
+      { id: 'd1s3', scene: 'quiz', gate: true, count: 6, gens: ['devFind'], title: 'Найди устройство',
+        text: 'Теперь наоборот. Прочитай название и найди нужную картинку.' }
+    ] },
+  { id: 'd2', icon: '⌨️', title: 'Что делает устройство?', goal: 'Знать, для чего нужны устройства',
+    steps: [
+      { id: 'd2v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что делает устройство?',
+        src: '../../../assets/video/grade1-digital-dig-d2.mp4', poster: '../../../assets/video/grade1-digital-dig-d2.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd2s1', scene: 'quiz', gate: true, count: 6, gens: ['devDo'], title: 'Угадай устройство',
+        text: 'Я опишу устройство, а ты угадаешь, что это. Читай внимательно.' },
+      { id: 'd2s2', scene: 'quiz', gate: true, count: 6, gens: ['devGroup'], title: 'Управляем или смотрим?',
+        text: 'Одними устройствами мы управляем: это клавиатура, мышь и джойстик. Другие показывают, печатают или звучат: монитор, принтер, колонки и наушники. Реши, к какой группе относится устройство.' },
+      { id: 'd2s3', scene: 'quiz', gate: true, count: 8, gens: ['devName', 'devFind', 'devDo', 'devGroup'], title: 'Проверим себя',
+        text: 'Повторим всё вместе: названия, описания и группы устройств.' }
+    ] },
+  { id: 'd3', icon: '🧘', title: 'Правила работы', goal: 'Знать правила безопасной работы за компьютером',
+    steps: [
+      { id: 'd3v0', scene: 'video', gate: true, silent: true, title: 'Видео: Правила работы',
+        src: '../../../assets/video/grade1-digital-dig-d3.mp4', poster: '../../../assets/video/grade1-digital-dig-d3.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd3s1', scene: 'rulesTap', gate: true, title: 'Правила за компьютером',
+        text: 'За компьютером нужно вести себя правильно. Сиди прямо и не слишком близко к экрану. Делай перерывы, когда устали глаза. Не трогай розетки и провода. Никому не говори свой пароль. А если что-то напугало, позови взрослого. Нажимай на карточки и читай.' },
+      { id: 'd3s2', scene: 'quiz', gate: true, count: 6, gens: ['ruleYN'], title: 'Правильно или нет?',
+        text: 'Прочитай правило и скажи, правильно ли так делать.' },
+      { id: 'd3s3', scene: 'quiz', gate: true, count: 8, gens: ['ruleYN', 'devDo'], title: 'Проверим правила',
+        text: 'Ещё раз проверим правила и устройства.' }
+    ] },
+  { id: 'd4', icon: '🧩', title: 'Порядок действий', goal: 'Понимать, что действия выполняются по порядку',
+    steps: [
+      { id: 'd4v0', scene: 'video', gate: true, silent: true, title: 'Видео: Порядок действий',
+        src: '../../../assets/video/grade1-digital-dig-d4.mp4', poster: '../../../assets/video/grade1-digital-dig-d4.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd4s1', scene: 'algBuild', gate: true, title: 'Расставь шаги по порядку',
+        text: 'Компьютер умеет выполнять действия только по порядку, шаг за шагом. Такой порядок действий называют алгоритмом. Попробуй сам. Нажимай на шаги по порядку: что делаем сначала, что потом.' },
+      { id: 'd4s2', scene: 'quiz', gate: true, count: 6, gens: ['algFirst', 'algLast', 'algNext'], title: 'Что делаем раньше?',
+        text: 'Ответь, что нужно сделать первым, последним, а что сразу после этого шага.' },
+      { id: 'd4s3', scene: 'quiz', gate: true, count: 10, gens: ['devName', 'devFind', 'devDo', 'devGroup', 'ruleYN', 'algFirst', 'algLast', 'algNext'], title: 'Смешанные задания',
+        text: 'Последняя проверка курса. Устройства, правила и порядок действий.' },
+      { id: 'd4s4', scene: 'finale', title: 'Курс пройден!',
+        text: 'Теперь ты знаешь устройства компьютера, правила безопасной работы и умеешь расставлять шаги по порядку. Дальше тренируйся в играх. Я буду рядом!' }
+    ] }
+];
+
+/* ===================== Новые уроки курса «Цифровая грамотность» (приказ №399, прил. 27, 1 класс) ===================== */
+function qaGen(arr){
+  let deck = [];
+  return function(){
+    if (!deck.length) deck = shuffle(arr);
+    const it = deck.pop();
+    const opts = shuffle([it.a].concat(shuffle(it.w).slice(0, 3)));
+    const card = it.e ? '<div class="es-card"><div class="em">' + it.e + '</div>' + (it.n ? '<div class="nm">' + it.n + '</div>' : '') + '</div>' : '';
+    return { html: '<div class="ac-qtxt">' + it.q + '</div>' + card, opts: opts, ans: it.a, wide: !!it.wide, hint: it.h };
+  };
+}
+const SEN = ['Зрительная', 'Слуховая', 'Обонятельная', 'Вкусовая', 'Тактильная'];
+const FRM = ['Текстовая', 'Числовая', 'Графическая', 'Звуковая', 'Видео'];
+const wr = (a, arr) => arr.filter(x => x !== a);
+const D = {};
+D.sense = [
+  ['Ты увидел красный сигнал светофора.', '🚦', 'Зрительная', 'Светофор мы видим глазами.'],
+  ['Ты услышал звонок на урок.', '🔔', 'Слуховая', 'Звонок мы слышим ушами.'],
+  ['Ты почувствовал запах свежего хлеба.', '🍞', 'Обонятельная', 'Запахи мы чувствуем носом.'],
+  ['Ты попробовал лимон. Он кислый.', '🍋', 'Вкусовая', 'Вкус мы узнаём языком.'],
+  ['Ты потрогал горячий чайник.', '☕', 'Тактильная', 'Горячее и холодное мы чувствуем кожей, руками.'],
+  ['Ты смотришь на красивую картинку.', '🖼️', 'Зрительная', 'Картинку мы видим глазами.'],
+  ['Ты слушаешь песню.', '🎵', 'Слуховая', 'Песню мы слышим ушами.'],
+  ['Ты погладил мягкого кота.', '🐱', 'Тактильная', 'Мягкость мы чувствуем рукой.']
+].map(x => ({ q: x[0] + '<br>Какая это информация?', e: x[1], a: x[2], w: wr(x[2], SEN), h: x[3] }));
+D.organ = [
+  { q: 'Чем мы воспринимаем зрительную информацию?', a: 'Глазами', w: ['Ушами', 'Носом', 'Языком'], h: 'Видим мы глазами.' },
+  { q: 'Чем мы воспринимаем слуховую информацию?', a: 'Ушами', w: ['Глазами', 'Носом', 'Языком'], h: 'Слышим мы ушами.' },
+  { q: 'Чем мы воспринимаем запахи?', a: 'Носом', w: ['Глазами', 'Ушами', 'Языком'], h: 'Запахи чувствуем носом. Это обонятельная информация.' },
+  { q: 'Чем мы узнаём вкус?', a: 'Языком', w: ['Глазами', 'Ушами', 'Носом'], h: 'Вкус узнаём языком. Это вкусовая информация.' },
+  { q: 'Чем мы узнаём, тёплый предмет или холодный?', a: 'Кожей, руками', w: ['Ушами', 'Глазами', 'Носом'], wide: true, h: 'Это тактильная информация: её воспринимает кожа.' }
+];
+D.form = [
+  ['Сообщение из слов: «Привет, Асан!»', '💬', 'Текстовая', 'Слова и буквы — это текст.'],
+  ['Цена в магазине: 1500 тенге.', '🏷️', 'Числовая', 'Цифры и числа — это числовая информация.'],
+  ['Фотография кота.', '📷', 'Графическая', 'Рисунки, фото и схемы — это графическая информация.'],
+  ['Любимая песня.', '🎶', 'Звуковая', 'Музыка и голос — это звуковая информация.'],
+  ['Мультфильм.', '🎬', 'Видео', 'Видео — это движущиеся картинки со звуком.'],
+  ['Нарисованная карта города.', '🗺️', 'Графическая', 'Карта — это рисунок, значит, информация графическая.'],
+  ['Номер телефона 8 701 123 45 67.', '📞', 'Числовая', 'Номер состоит из цифр.'],
+  ['Рассказ в книге без картинок.', '📖', 'Текстовая', 'Рассказ записан словами и буквами.'],
+  ['Запись голоса учителя.', '🎙️', 'Звуковая', 'Голос — это звук.'],
+  ['Ролик с играющими щенками.', '🐶', 'Видео', 'Ролик — движущиеся картинки: видео.']
+].map(x => ({ q: x[0] + '<br>Какая это информация по форме?', e: x[1], a: x[2], w: wr(x[2], FRM), h: x[3], wide: false }));
+D.chan = [
+  { q: 'Учитель рассказывает урок. Кто здесь источник информации?', a: 'Учитель', w: ['Ученик', 'Парта', 'Звонок'], h: 'Источник передаёт информацию: учитель.' },
+  { q: 'Учитель рассказывает урок. Кто здесь приёмник информации?', a: 'Ученик', w: ['Учитель', 'Мел', 'Портфель'], h: 'Приёмник получает информацию: ученик.' },
+  { q: 'Мама звонит тебе по телефону. Что здесь канал связи?', a: 'Телефон', w: ['Мама', 'Ты', 'Подушка'], h: 'Канал связи — путь, по которому идёт информация: телефонная связь.' },
+  { q: 'Папа прислал тебе сообщение. Кто приёмник?', a: 'Ты', w: ['Папа', 'Лампа', 'Стол'], h: 'Ты получаешь сообщение: ты приёмник.' },
+  { q: 'Через что идёт голос учителя до учеников?', a: 'Через воздух', w: ['Через провод', 'Через бумагу', 'Через воду'], h: 'Звук идёт по воздуху. Воздух здесь — канал связи.' },
+  { q: 'Что можно назвать каналом связи?', a: 'Письмо', w: ['Яблоко', 'Стул', 'Карандаш'], h: 'Письмо несёт информацию от одного человека к другому.' },
+  { q: 'Что может быть источником информации?', a: 'Книга', w: ['Подушка', 'Ложка', 'Камень'], h: 'Книга передаёт нам знания: это источник.' },
+  { q: 'Кто получает информацию?', a: 'Приёмник', w: ['Источник', 'Канал'], h: 'Получает информацию приёмник.' },
+  { q: 'Кто передаёт информацию?', a: 'Источник', w: ['Приёмник', 'Канал'], h: 'Передаёт информацию источник.' }
+];
+D.net = [
+  { q: 'Что такое Интернет?', a: 'Сеть, которая соединяет компьютеры', w: ['Вид игрушки', 'Одна большая книга', 'Название мультфильма'], wide: true, h: 'Интернет — большая сеть, соединяющая компьютеры и телефоны по всему миру.' },
+  { q: 'Ты хочешь узнать, как живут пингвины. Что можно сделать?', e: '🐧', a: 'Поискать в Интернете с взрослым', w: ['Не узнавать', 'Ждать, пока само узнается'], wide: true, h: 'Информацию можно найти в Интернете. Лучше искать вместе со взрослым.' },
+  { q: 'Бабушка живёт в другом городе. Как с ней увидеться?', e: '👵', a: 'Видеозвонок через Интернет', w: ['Это невозможно', 'Ждать десять лет'], wide: true, h: 'По Интернету можно говорить и видеть друг друга.' },
+  { q: 'Для чего можно использовать Интернет?', a: 'Учиться, искать, общаться', w: ['Только спать', 'Только готовить еду'], wide: true, h: 'Интернет помогает учиться, искать информацию и общаться.' },
+  { q: 'Что нужно, чтобы выйти в Интернет?', a: 'Устройство и подключение к сети', w: ['Только мяч', 'Только тетрадь'], wide: true, h: 'Нужен компьютер или телефон и подключение к сети.' },
+  { q: 'Где можно смотреть обучающие видео?', e: '🎓', a: 'В Интернете', w: ['В холодильнике', 'В портфеле'], h: 'Обучающие видео есть в Интернете.' },
+  { q: 'Как с помощью Интернета можно отдохнуть?', a: 'Послушать музыку, посмотреть мультфильм', w: ['Помыть посуду', 'Подмести пол'], wide: true, h: 'В Интернете есть музыка, мультфильмы и игры.' }
+];
+D.trust = [
+  ['«Ты выиграл телефон! Скорее нажми на ссылку!»', '🎁', 'Обман', 'Так обманывают: приз за нажатие ссылки обычно ложь.'],
+  ['«Пришли мне свой пароль, и я верну тебе игру».', '🔑', 'Обман', 'Пароль никому нельзя отправлять. Так воруют аккаунты.'],
+  ['На сайте школы написано расписание уроков.', '🏫', 'Можно доверять', 'Официальный сайт школы надёжен. Если сомневаешься, спроси учителя.'],
+  ['Незнакомец пишет: «Пришли свои фото».', '👤', 'Обман', 'Незнакомцам фото не отправляют, это опасно.'],
+  ['«Нажми и скачай игру бесплатно — получишь подарок!»', '🎮', 'Обман', 'Нельзя нажимать на странные ссылки без разрешения взрослых.'],
+  ['Сайт музея: часы работы музея.', '🏛️', 'Можно доверять', 'Сайт музея — надёжный источник.']
+].map(x => ({ q: x[0] + '<br>Можно ли этому верить?', e: x[1], a: x[2], w: wr(x[2], ['Обман', 'Можно доверять']), h: x[3] }));
+D.useful = [
+  ['Видео, как правильно чистить зубы.', '🪥', 'Полезная', 'Это учит заботиться о здоровье.'],
+  ['Мультфильм про дружбу для детей.', '🎬', 'Полезная', 'Добрый мультфильм учит хорошему.'],
+  ['Ролик, где дети дерутся.', '🥊', 'Вредная', 'Такое смотреть не нужно: оно может напугать и научить плохому.'],
+  ['Игра, где много крови и страшных монстров.', '👹', 'Вредная', 'Такая игра не для детей.'],
+  ['Урок о том, как растут цветы.', '🌷', 'Полезная', 'Такой урок учит интересным вещам.'],
+  ['Страница, где пишут: «Не мойте руки, это вредно».', '🧼', 'Вредная', 'Это неправда: руки мыть нужно!']
+].map(x => ({ q: x[0] + '<br>Какая это информация?', e: x[1], a: x[2], w: wr(x[2], ['Полезная', 'Вредная']), h: x[3] }));
+D.priv = [
+  ['Свой домашний адрес', 'Нельзя', 'Адрес нельзя сообщать незнакомым людям.'],
+  ['Свой пароль', 'Нельзя', 'Пароль знают только ты и родители.'],
+  ['Свой номер телефона', 'Нельзя', 'Номер телефона — личная информация.'],
+  ['Свою фамилию и номер школы', 'Нельзя', 'По ним можно найти тебя.'],
+  ['Любимый мультфильм', 'Можно', 'Это не личная информация.'],
+  ['Любимый цвет', 'Можно', 'Это не опасно.'],
+  ['Фото, где видно твой дом и номер', 'Нельзя', 'По фото можно узнать, где ты живёшь.'],
+  ['Любимое блюдо', 'Можно', 'Это можно рассказать.']
+].map(x => ({ q: 'Можно ли рассказать незнакомцу в Интернете?<br><b>' + x[0] + '</b>', e: '🔒', a: x[1], w: wr(x[1], ['Можно', 'Нельзя']), h: x[2] }));
+D.safe = [
+  { q: 'Незнакомец в сети просит твой адрес. Что делать?', a: 'Не отвечать и рассказать взрослым', w: ['Отправить адрес', 'Отправить фото', 'Дать адрес друга'], wide: true, h: 'Личную информацию незнакомым не сообщают. Нужно рассказать взрослым.' },
+  { q: 'Тебе пришла странная ссылка. Что делать?', a: 'Не нажимать, показать взрослым', w: ['Сразу нажать', 'Переслать друзьям'], wide: true, h: 'Странные ссылки могут быть опасны.' },
+  { q: 'Какой пароль лучше?', a: 'Сложный, и никому его не говорить', w: ['12345', 'Моё имя', 'Мой день рождения'], wide: true, h: 'Пароль должен быть сложным, и его знают только ты и родители.' },
+  { q: 'Кому можно сказать свой пароль?', a: 'Только родителям', w: ['Другу из игры', 'Незнакомцу', 'Всему классу'], wide: true, h: 'Пароль знают только ты и родители.' },
+  { q: 'В сети тебя обижают или пугают. Что делать?', a: 'Рассказать взрослым', w: ['Молчать', 'Ответить грубо'], wide: true, h: 'Взрослые помогут. Всегда рассказывай им о таком.' },
+  { q: 'Любая ли информация в Интернете правдива?', a: 'Нет, не вся', w: ['Да, вся'], h: 'В Интернете бывает неправда. Важную информацию проверяют вместе со взрослыми.' }
+];
+D.gedT = [
+  { q: 'Линия, которая обводит фигуру, называется ...', a: 'контур', w: ['заливка', 'фон', 'палитра'], h: 'Контур — линия вокруг фигуры.' },
+  { q: 'Цвет внутри фигуры называется ...', a: 'заливка', w: ['контур', 'фон', 'палитра'], h: 'Заливка — цвет внутри фигуры.' },
+  { q: 'Цвет за всеми фигурами называется ...', a: 'фон', w: ['контур', 'заливка', 'палитра'], h: 'Фон — цвет холста позади фигур.' },
+  { q: 'Набор цветов, из которого мы выбираем, называется ...', a: 'палитра', w: ['контур', 'ластик', 'мышка'], h: 'Палитра — набор цветов.' },
+  { q: 'Какие стандартные фигуры есть в редакторе?', a: 'Круг, квадрат, треугольник', w: ['Кот, собака, слон', 'Яблоко, груша, слива', 'Стол, стул, шкаф'], wide: true, h: 'Стандартные фигуры: круг, квадрат, треугольник и другие.' },
+  { q: 'Из каких фигур можно нарисовать домик?', e: '🏠', a: 'Квадрат и треугольник сверху', w: ['Круг и круг', 'Только звезда'], wide: true, h: 'Стена — квадрат, а крыша — треугольник.' }
+];
+D.gedE = [
+  { q: 'Что нужно сделать перед копированием фигуры?', a: 'Выделить её', w: ['Закрасить фон', 'Выключить компьютер', 'Повернуть её'], wide: true, h: 'Копировать можно только выделенный фрагмент.' },
+  { q: 'Как выделить фрагмент рисунка?', a: 'Обвести рамкой', w: ['Нажать «Повернуть»', 'Выбрать цвет фона'], wide: true, h: 'Выделение делают рамкой: прямоугольной или овальной.' },
+  { q: 'Какие инструменты делают копию фигуры?', a: 'Копировать и Вставить', w: ['Повернуть и Отразить', 'Вырезать и Отразить'], wide: true, h: 'Копировать запоминает фигуру, Вставить размещает её ещё раз.' },
+  { q: 'Какие инструменты переносят фигуру в другое место?', a: 'Вырезать и Вставить', w: ['Копировать и Отразить', 'Повернуть и Копировать'], wide: true, h: 'Вырезать убирает фигуру, Вставить кладёт её в новое место.' },
+  { q: 'Какой инструмент сделает зеркальное отражение?', a: 'Отразить', w: ['Вырезать', 'Вставить', 'Копировать'], h: 'Отразить переворачивает фигуру как в зеркале.' },
+  { q: 'Каким инструментом можно повернуть фигуру?', a: 'Повернуть', w: ['Вырезать', 'Вставить', 'Копировать'], h: 'Повернуть меняет наклон фигуры.' },
+  { q: 'Чем закрашивают фигуру одним щелчком?', e: '🪣', a: 'Заливкой цветом (ведёрко)', w: ['Копированием', 'Вырезанием'], wide: true, h: 'Ведёрко заливает фигуру или фон выбранным цветом.' }
+];
+D.algD = [
+  { q: 'Как называется понятный порядок действий, который ведёт к цели?', a: 'Алгоритм', w: ['Картинка', 'Мышка', 'Принтер'], h: 'Алгоритм — порядок действий, например, как почистить зубы.' },
+  { q: 'Один шаг в алгоритме называют ...', a: 'действие', w: ['игра', 'адрес', 'экран'], h: 'Действие — один шаг: открыть кран, взять щётку.' },
+  { q: 'Команда — это ...', a: 'приказ исполнителю сделать действие', w: ['название игры', 'цвет на экране', 'вид сети'], wide: true, h: 'Команда говорит исполнителю, что сделать: «Шаг вперёд!».' },
+  { q: 'Кто выполняет команды?', a: 'Исполнитель', w: ['Алгоритм', 'Клавиатура', 'Заливка'], h: 'Команды выполняет исполнитель: человек, робот или компьютер.' },
+  { q: 'Кто может быть исполнителем?', e: '🤖', a: 'Робот', w: ['Облако', 'Камень', 'Радуга'], h: 'Исполнитель умеет выполнять команды: робот, человек, компьютер.' },
+  { q: 'Что такое система команд исполнителя?', a: 'Все команды, которые он понимает', w: ['Название исполнителя', 'Его цвет', 'Его возраст'], wide: true, h: 'Исполнитель понимает только команды из своей системы.' },
+  { q: 'Робот понимает команды «вверх, вниз, влево, вправо». Можно ли приказать ему «Прыгни»?', e: '🤖', a: 'Нет, такой команды нет', w: ['Да, всегда', 'Только днём'], wide: true, h: 'Исполнитель выполняет только команды из своей системы.' }
+];
+D.algL = [
+  { q: 'Что из этого алгоритм?', a: 'Открыть кран, намылить руки, смыть мыло, вытереть', w: ['Красный шарик', 'Большой дом', 'Кот спит'], wide: true, h: 'Алгоритм — это порядок действий.' },
+  { q: 'Где в жизни используют алгоритм?', e: '🍲', a: 'Рецепт блюда', w: ['Облако на небе', 'Цвет травы', 'Тень от дерева'], wide: true, h: 'Рецепт — алгоритм приготовления блюда.' },
+  { q: 'Алгоритм перехода дороги. Что сделать первым?', e: '🚦', a: 'Остановиться у края дороги', w: ['Побежать', 'Закрыть глаза', 'Крикнуть'], wide: true, h: 'Сначала остановись, посмотри на светофор и по сторонам.' },
+  { q: 'Алгоритм чистки зубов: паста на щётке. Что дальше?', e: '🪥', a: 'Чистим зубы', w: ['Ложимся спать', 'Моем пол'], wide: true, h: 'После пасты на щётку нужно чистить зубы.' },
+  { q: 'Инструкция к конструктору или игре — это ...', a: 'алгоритм', w: ['картинка в рамке', 'мебель'], h: 'В инструкции шаги идут по порядку: это алгоритм.' },
+  { q: 'Что не является алгоритмом?', a: 'Красный воздушный шарик', w: ['Рецепт блина', 'Инструкция к игре', 'Правило перехода дороги'], wide: true, h: 'Шарик — предмет, а алгоритм — порядок действий.' }
+];
+Object.assign(GENS, { sense: qaGen(D.sense), organ: qaGen(D.organ), form: qaGen(D.form), chan: qaGen(D.chan), net: qaGen(D.net), trust: qaGen(D.trust), useful: qaGen(D.useful),
+  priv: qaGen(D.priv), safe: qaGen(D.safe), gedT: qaGen(D.gedT), gedE: qaGen(D.gedE), algD: qaGen(D.algD), algL: qaGen(D.algL) });
+
+/* ---- новые сцены ---- */
+SCENES.infoTap = function(stage, st, ctx){
+  const seen = {}, need = st.need || st.cards.length;
+  stage.innerHTML = '<div class="es-pick" id="i-p"></div><div class="es-card" id="i-c"><div class="tx">Нажми на картинку 👆</div></div>';
+  $('#i-p', stage).innerHTML = st.cards.map((c, i) => '<button class="es-pb" data-i="' + i + '" aria-label="' + c.b + '">' + c.e + '<small>' + c.b + '</small></button>').join('');
+  $$('.es-pb', stage).forEach(b => b.onclick = function(){
+    const c = st.cards[+b.dataset.i]; seen[b.dataset.i] = 1; $$('.es-pb', stage).forEach(x => x.classList.remove('cur')); b.classList.add('cur', 'seen');
+    $('#i-c', stage).innerHTML = '<div class="em">' + c.e + '</div><div class="nm">' + (c.nm || c.b) + '</div><div class="tx">' + c.tx + '</div>';
+    const n = Object.keys(seen).length;
+    if (n >= need){ ctx.fb('Здорово! Всё посмотрели.', 'ok'); ctx.done(); } else ctx.fb('Осмотрено: ' + n + ' из ' + need + '.', 'info');
+  });
+};
+SCENES.seqBuild = function(stage, st, ctx){
+  let pos = 0;
+  stage.innerHTML = '<div class="ac-qtxt">' + st.q + '</div><ol class="dg-seq" id="sq-d"></ol><div class="es-pick" id="sq-p"></div>';
+  const done = $('#sq-d', stage), pool = $('#sq-p', stage);
+  shuffle(st.items.map((x, i) => i)).forEach(function(i){
+    const it = st.items[i], b = document.createElement('button'); b.className = 'es-pb'; b.innerHTML = (it.e || '') + '<small style="font-size:.95rem">' + it.t + '</small>';
+    b.onclick = function(){
+      if (i === pos){
+        b.disabled = true; b.style.visibility = 'hidden'; pos++;
+        const li = document.createElement('li'); li.innerHTML = (it.e ? '<span class="dg-sqe">' + it.e + '</span> ' : '') + it.t; done.appendChild(li);
+        if (pos >= st.items.length){ ctx.fb(st.ok || 'Всё верно!', 'ok'); ctx.done(); } else ctx.fb('Верно! Что дальше?', 'ok');
+      } else {
+        ctx.miss(); ctx.fb('Пока не сюда. ' + (st.hint || 'Подумай, что идёт раньше.'), 'bad');
+        b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope');
+      }
+    };
+    pool.appendChild(b);
+  });
+};
+/* --- мини-графический редактор --- */
+const PAL = [['красный', '#E8453C'], ['жёлтый', '#F5B400'], ['зелёный', '#3FAE5A'], ['синий', '#2F7BE6'], ['голубой', '#BFE3FF'], ['розовый', '#FF9EC4'], ['чёрный', '#25324A'], ['белый', '#FFFFFF']];
+const palC = k => { if (k === 'нет') return 'none'; const p = PAL.find(x => x[0] === k); return p ? p[1] : '#fff'; };
+const SHP = [['circle', '⚪', 'Круг'], ['square', '⬜', 'Квадрат'], ['triangle', '🔺', 'Треугольник'], ['star', '⭐', 'Звезда'], ['arrow', '➡️', 'Стрелка']];
+function geoSVG(t, p){
+  if (t === 'circle') return '<circle r="' + p + '"/>';
+  if (t === 'square') return '<rect x="' + (-p) + '" y="' + (-p) + '" width="' + (2 * p) + '" height="' + (2 * p) + '" rx="4"/>';
+  if (t === 'triangle') return '<polygon points="0,' + (-p) + ' ' + p + ',' + (p * .8) + ' ' + (-p) + ',' + (p * .8) + '"/>';
+  if (t === 'star'){ let pts = []; for (let i = 0; i < 10; i++){ const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? p * .45 : p; pts.push((Math.cos(a) * r).toFixed(1) + ',' + (Math.sin(a) * r).toFixed(1)); } return '<polygon points="' + pts.join(' ') + '"/>'; }
+  return '<path d="M' + (-p) + ',' + (-p / 2) + ' L0,' + (-p / 2) + ' L0,' + (-p) + ' L' + p + ',0 L0,' + p + ' L0,' + (p / 2) + ' L' + (-p) + ',' + (p / 2) + ' Z"/>';
+}
+SCENES.gEdit = function(stage, st, ctx){
+  const S = { shapes: (st.pre || []).map((s, i) => Object.assign({ id: i + 1, s: 30, rot: 0, flip: false, sw: 3, dash: false }, s)), bg: 'белый', sel: [], clip: [], tool: st.ui === 'edit' ? 'select' : 'draw', shape: 'circle', target: 'stroke', stroke: 'чёрный', fill: 'нет', sw: 3, dash: false, form: 'rect', log: [], hist: [], uid: 100 };
+  let ti = 0, drag = null;
+  window.__ge = S;
+  stage.innerHTML = '<div class="dg-task" id="g-task"></div><div class="dg-tb" id="g-tool"></div><div class="dg-tb" id="g-prop"></div><div class="dg-tb" id="g-pal"></div>' +
+    '<svg id="g-cv" class="dg-cv" viewBox="0 0 360 240" role="img" aria-label="Холст"></svg><div class="dg-tb" id="g-act"></div>';
+  const svg = $('#g-cv', stage);
+  const snap = () => { S.hist.push(JSON.stringify({ shapes: S.shapes, bg: S.bg })); if (S.hist.length > 30) S.hist.shift(); };
+  const hit = (x, y) => { for (let i = S.shapes.length - 1; i >= 0; i--){ const s = S.shapes[i]; if (Math.abs(x - s.x) <= s.s * 1.05 && Math.abs(y - s.y) <= s.s * 1.05) return s; } return null; };
+  function drawCanvas(){
+    let h = '<rect width="360" height="240" rx="10" fill="' + palC(S.bg) + '" stroke="#DCE6F0" stroke-width="3"/>';
+    S.shapes.forEach(s => {
+      h += '<g data-id="' + s.id + '" transform="translate(' + s.x + ',' + s.y + ') rotate(' + s.rot + ') scale(' + (s.flip ? -1 : 1) + ',1)" fill="' + palC(s.fill) + '" stroke="' + palC(s.stroke) + '" stroke-width="' + s.sw + '"' + (s.dash ? ' stroke-dasharray="8 6"' : '') + ' stroke-linejoin="round">' + geoSVG(s.type, s.s) + '</g>';
+    });
+    S.shapes.filter(s => S.sel.indexOf(s.id) >= 0).forEach(s => { h += '<rect x="' + (s.x - s.s - 8) + '" y="' + (s.y - s.s - 8) + '" width="' + (2 * s.s + 16) + '" height="' + (2 * s.s + 16) + '" fill="none" stroke="#2F7BE6" stroke-width="2.5" stroke-dasharray="6 4"/>'; });
+    if (drag && drag.moved){
+      const x = Math.min(drag.x0, drag.x1), y = Math.min(drag.y0, drag.y1), w = Math.abs(drag.x1 - drag.x0), hh = Math.abs(drag.y1 - drag.y0);
+      h += S.form === 'oval' ? '<ellipse cx="' + (x + w / 2) + '" cy="' + (y + hh / 2) + '" rx="' + (w / 2) + '" ry="' + (hh / 2) + '" fill="rgba(47,123,230,.12)" stroke="#2F7BE6" stroke-width="2" stroke-dasharray="6 4"/>'
+        : '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + hh + '" fill="rgba(47,123,230,.12)" stroke="#2F7BE6" stroke-width="2" stroke-dasharray="6 4"/>';
+    }
+    svg.innerHTML = h;
+  }
+  const btn = (a, label, on, extra) => '<button class="dg-b' + (on ? ' on' : '') + '" data-a="' + a + '"' + (extra || '') + '>' + label + '</button>';
+  function drawUI(){
+    const draw = st.ui !== 'edit';
+    $('#g-tool', stage).innerHTML = (draw ? btn('t:draw', '✏️ Рисовать', S.tool === 'draw') : '') + btn('t:select', '🔲 Выделить', S.tool === 'select') + btn('t:bucket', '🪣 Заливка', S.tool === 'bucket') + btn('undo', '↩️ Назад', false);
+    $('#g-prop', stage).innerHTML = S.tool === 'draw'
+      ? SHP.map(x => btn('s:' + x[0], x[1] + '<small>' + x[2] + '</small>', S.shape === x[0])).join('') + '<span class="dg-sp"></span>' + btn('w:3', 'Контур: тонкий', S.sw === 3 && !S.dash) + btn('w:9', 'толстый', S.sw === 9 && !S.dash) + btn('w:d', 'пунктир', S.dash)
+      : S.tool === 'select' ? btn('f:rect', '▭ Рамка прямоугольная', S.form === 'rect') + btn('f:oval', '◯ Рамка овальная', S.form === 'oval') : '<span class="dg-hint">Выбери цвет заливки и нажми на фигуру или на фон</span>';
+    const tg = [['stroke', 'Линия', S.stroke], ['fill', 'Заливка', S.fill], ['bg', 'Фон', S.bg]];
+    $('#g-pal', stage).innerHTML = tg.map(t => '<button class="dg-b dg-t' + (S.target === t[0] ? ' on' : '') + '" data-a="g:' + t[0] + '"><i style="background:' + palC(t[2]) + (t[2] === 'нет' ? ';background:repeating-linear-gradient(45deg,#fff,#fff 3px,#f3a 3px,#f3a 5px)' : '') + '"></i>' + t[1] + '</button>').join('') +
+      '<div class="dg-sw">' + (S.target === 'fill' ? '<button class="dg-c" data-a="c:нет" title="без заливки" aria-label="без заливки" style="background:repeating-linear-gradient(45deg,#fff,#fff 3px,#f3a 3px,#f3a 5px)"></button>' : '') +
+      PAL.map(p => '<button class="dg-c" data-a="c:' + p[0] + '" title="' + p[0] + '" aria-label="' + p[0] + '" style="background:' + p[1] + '"></button>').join('') + '</div>';
+    $('#g-act', stage).innerHTML = st.ui === 'edit' ? btn('copy', '📄 Копировать') + btn('cut', '✂️ Вырезать') + btn('paste', '📋 Вставить') + btn('rot', '🔄 Повернуть') + btn('flip', '↔️ Отразить') : '';
+  }
+  function tasks(){
+    const T = st.tasks; let h = '';
+    if (ti < T.length){ h = '<div class="dg-ti cur"><b>Задание ' + (ti + 1) + ' из ' + T.length + '.</b> ' + T[ti].t + (T[ti].h ? '<small>' + T[ti].h + '</small>' : '') + '</div>'; }
+    else h = '<div class="dg-ti ok">✅ Все ' + T.length + ' заданий выполнены!</div>';
+    $('#g-task', stage).innerHTML = h;
+  }
+  function check(){
+    const T = st.tasks;
+    while (ti < T.length && T[ti].ok(S)){ ti++; }
+    tasks();
+    if (ti >= T.length && !S.fin){ S.fin = true; ctx.fb('Все задания выполнены!', 'ok'); ctx.done(); }
+  }
+  function upd(){ drawCanvas(); drawUI(); check(); }
+  const msg = (t, k) => ctx.fb(t, k || 'info');
+  const needSel = () => { if (!S.sel.length){ msg('Сначала выдели фигуру инструментом «Выделить».', 'bad'); return false; } return true; };
+  const pt = e => { const r = svg.getBoundingClientRect(); return [(e.clientX - r.left) * 360 / r.width, (e.clientY - r.top) * 240 / r.height]; };
+  svg.onpointerdown = function(e){
+    const [x, y] = pt(e); try { svg.setPointerCapture(e.pointerId); } catch(_){}
+    if (S.tool === 'draw'){
+      snap(); S.shapes.push({ id: ++S.uid, type: S.shape, x: Math.round(x), y: Math.round(y), s: 30, rot: 0, flip: false, stroke: S.stroke, fill: S.fill, sw: S.sw, dash: S.dash });
+      S.log.push('draw'); upd();
+    } else if (S.tool === 'bucket'){
+      const s = hit(x, y), col = S.fill === 'нет' ? 'жёлтый' : S.fill; snap();
+      if (s){ s.fill = col; S.log.push('bucket'); } else { S.bg = col; S.log.push('bucketbg'); }
+      upd();
+    } else { drag = { x0: x, y0: y, x1: x, y1: y, moved: false }; }
+  };
+  svg.onpointermove = function(e){ if (!drag) return; const [x, y] = pt(e); drag.x1 = x; drag.y1 = y; if (Math.abs(x - drag.x0) + Math.abs(y - drag.y0) > 10){ drag.moved = true; drawCanvas(); } };
+  svg.onpointerup = function(e){
+    if (!drag) return; const d = drag; drag = null;
+    if (!d.moved){ const s = hit(d.x0, d.y0); S.sel = s ? [s.id] : []; S.log.push('select'); }
+    else {
+      const x = Math.min(d.x0, d.x1), y = Math.min(d.y0, d.y1), w = Math.abs(d.x1 - d.x0), h = Math.abs(d.y1 - d.y0);
+      S.sel = S.shapes.filter(s => S.form === 'oval' ? Math.pow((s.x - x - w / 2) / (w / 2), 2) + Math.pow((s.y - y - h / 2) / (h / 2), 2) <= 1 : (s.x >= x && s.x <= x + w && s.y >= y && s.y <= y + h)).map(s => s.id);
+      S.log.push('select');
+    }
+    if (S.sel.length) msg('Выделено фигур: ' + S.sel.length + '. Теперь можно копировать, вырезать, поворачивать.', 'ok'); else msg('Ничего не выделено. Обведи фигуру рамкой.', 'info');
+    upd();
+  };
+  stage.onclick = function(e){
+    const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, k = a.split(':')[1];
+    if (a.indexOf('t:') === 0){ S.tool = k; if (k !== 'select' && st.ui !== 'edit') S.sel = []; }
+    else if (a.indexOf('s:') === 0){ S.shape = k; }
+    else if (a.indexOf('w:') === 0){ if (k === 'd'){ S.dash = true; S.sw = 3; } else { S.dash = false; S.sw = +k; } }
+    else if (a.indexOf('f:') === 0){ S.form = k; }
+    else if (a.indexOf('g:') === 0){ S.target = k; }
+    else if (a.indexOf('c:') === 0){ S[S.target] = k; }
+    else if (a === 'undo'){ const h = S.hist.pop(); if (h){ const o = JSON.parse(h); S.shapes = o.shapes; S.bg = o.bg; S.sel = []; } }
+    else if (a === 'copy'){ if (needSel()){ S.clip = S.shapes.filter(s => S.sel.indexOf(s.id) >= 0).map(s => Object.assign({}, s)); S.log.push('copy'); msg('Скопировано. Теперь нажми «Вставить».', 'ok'); } }
+    else if (a === 'cut'){ if (needSel()){ snap(); S.clip = S.shapes.filter(s => S.sel.indexOf(s.id) >= 0).map(s => Object.assign({}, s)); S.shapes = S.shapes.filter(s => S.sel.indexOf(s.id) < 0); S.sel = []; S.log.push('cut'); msg('Вырезано. Теперь нажми «Вставить».', 'ok'); } }
+    else if (a === 'paste'){ if (!S.clip.length) msg('Сначала скопируй или вырежи фигуру.', 'bad'); else { snap(); const ids = []; S.clip.forEach(c => { const n = Object.assign({}, c, { id: ++S.uid, x: Math.min(330, c.x + 50), y: Math.min(210, c.y + 40) }); S.shapes.push(n); ids.push(n.id); }); S.sel = ids; S.log.push('paste'); msg('Вставлено!', 'ok'); } }
+    else if (a === 'rot'){ if (needSel()){ snap(); S.shapes.forEach(s => { if (S.sel.indexOf(s.id) >= 0) s.rot = (s.rot + 90) % 360; }); S.log.push('rot'); } }
+    else if (a === 'flip'){ if (needSel()){ snap(); S.shapes.forEach(s => { if (S.sel.indexOf(s.id) >= 0) s.flip = !s.flip; }); S.log.push('flip'); } }
+    upd();
+  };
+  upd();
+};
+/* --- робот-исполнитель --- */
+SCENES.robot = function(stage, st, ctx){
+  let li = 0, prog = [], busy = false;
+  const DIR = { U: [0, -1, '⬆️', 'вверх'], D: [0, 1, '⬇️', 'вниз'], L: [-1, 0, '⬅️', 'влево'], R: [1, 0, '➡️', 'вправо'] };
+  function level(){
+    const L = st.levels[li], C = 52; prog = []; busy = false; window.__rb = { L: L, prog: prog };
+    stage.innerHTML = '<div class="tx" style="text-align:center;font-weight:800;color:#41566E;margin-bottom:4px">Уровень ' + (li + 1) + ' из ' + st.levels.length + '. Составь алгоритм: не больше ' + L.max + ' команд.</div>' +
+      '<div class="dg-grid" id="r-g" style="width:' + (L.cols * C) + 'px;height:' + (L.rows * C) + 'px"></div>' +
+      '<div class="dg-prog" id="r-p"></div><div class="dg-tb" id="r-c">' + Object.keys(DIR).map(k => '<button class="dg-b dg-cmd" data-c="' + k + '">' + DIR[k][2] + '<small>' + DIR[k][3] + '</small></button>').join('') + '</div>' +
+      '<div class="dg-tb"><button class="dg-b dg-go" id="r-go">▶️ Пуск</button><button class="dg-b" id="r-del">⌫ Убрать</button><button class="dg-b" id="r-clr">🗑️ Сбросить</button></div>';
+    const g = $('#r-g', stage); let pos = L.start.slice();
+    const walls = L.walls.map(w => w.join(','));
+    function draw(){
+      let h = '';
+      for (let r = 0; r < L.rows; r++) for (let c = 0; c < L.cols; c++) h += '<div class="dg-cell" style="left:' + (c * C) + 'px;top:' + (r * C) + 'px;width:' + C + 'px;height:' + C + 'px">' + (walls.indexOf(c + ',' + r) >= 0 ? '🧱' : (c === L.goal[0] && r === L.goal[1] ? '⭐' : '')) + '</div>';
+      h += '<div class="dg-bot" style="left:' + (pos[0] * C) + 'px;top:' + (pos[1] * C) + 'px;width:' + C + 'px;height:' + C + 'px">🤖</div>';
+      g.innerHTML = h;
+    }
+    function plist(){ $('#r-p', stage).innerHTML = prog.length ? prog.map((k, i) => '<span class="dg-pc">' + (i + 1) + DIR[k][2] + '</span>').join('') : '<span class="dg-hint">Нажимай команды: они встанут в алгоритм</span>'; }
+    draw(); plist();
+    $$('#r-c .dg-b', stage).forEach(b => b.onclick = () => { if (busy) return; if (prog.length >= L.max){ ctx.fb('Это максимум команд. Убери лишнее.', 'bad'); return; } prog.push(b.dataset.c); plist(); });
+    $('#r-del', stage).onclick = () => { if (!busy){ prog.pop(); plist(); } };
+    $('#r-clr', stage).onclick = () => { if (!busy){ prog.length = 0; pos = L.start.slice(); draw(); plist(); ctx.fb('', 'info'); } };
+    $('#r-go', stage).onclick = async function(){
+      if (busy) return; if (!prog.length){ ctx.fb('Сначала добавь команды.', 'bad'); return; }
+      busy = true; pos = L.start.slice(); draw(); let ok = true;
+      for (const k of prog){
+        await sleep(st.fast ? 20 : 380); if (!ctx.alive()) return;
+        const nx = [pos[0] + DIR[k][0], pos[1] + DIR[k][1]];
+        if (nx[0] < 0 || nx[1] < 0 || nx[0] >= L.cols || nx[1] >= L.rows || walls.indexOf(nx.join(',')) >= 0){ ok = false; ctx.fb('Робот упёрся в стену! Найди ошибку в алгоритме.', 'bad'); ctx.miss(); break; }
+        pos = nx; draw();
+      }
+      if (ok){
+        if (pos[0] === L.goal[0] && pos[1] === L.goal[1]){
+          li++; if (li >= st.levels.length){ ctx.fb('Робот справился со всеми заданиями!', 'ok'); ctx.done(); return; }
+          ctx.fb('Робот дошёл до звезды! Следующий уровень.', 'ok'); setTimeout(() => { if (ctx.alive()) level(); }, st.fast ? 50 : 1100); return;
+        }
+        ctx.fb('Робот не дошёл до звезды. Проверь порядок команд.', 'bad'); ctx.miss();
+      }
+      await sleep(st.fast ? 20 : 700); if (!ctx.alive()) return; busy = false; pos = L.start.slice(); draw();
+    };
+  }
+  level();
+};
+/* ---- уроки ---- */
+const NEW_LESSONS = [
+  { id: 'd5', icon: '👀', title: 'Как мы получаем информацию', goal: 'Определять виды информации по способу восприятия',
+    steps: [
+      { id: 'd5v0', scene: 'video', gate: true, silent: true, title: 'Видео: Как мы получаем информацию',
+        src: '../../../assets/video/grade1-digital-dig-d5.mp4', poster: '../../../assets/video/grade1-digital-dig-d5.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd5s1', scene: 'infoTap', gate: true, title: 'Пять способов узнавать мир', cards: [
+        { e: '👀', b: 'Глаза', nm: 'Зрительная информация', tx: 'Мы получаем её глазами: картинки, буквы, сигнал светофора.' },
+        { e: '👂', b: 'Уши', nm: 'Слуховая информация', tx: 'Мы получаем её ушами: музыка, речь, звонок.' },
+        { e: '👃', b: 'Нос', nm: 'Обонятельная информация', tx: 'Мы получаем её носом: запах цветов, хлеба, дыма.' },
+        { e: '👅', b: 'Язык', nm: 'Вкусовая информация', tx: 'Мы получаем её языком: сладкое, кислое, солёное, горькое.' },
+        { e: '✋', b: 'Кожа', nm: 'Тактильная информация', tx: 'Мы получаем её кожей и руками: тёплое, холодное, гладкое, колючее.' }],
+        text: 'Привет! Это Барсик. Мир вокруг мы узнаём пятью способами. Глазами, ушами, носом, языком и кожей. Нажимай на картинки и узнавай, как называется каждая информация.' },
+      { id: 'd5s2', scene: 'quiz', gate: true, count: 5, gens: ['organ'], title: 'Чем мы воспринимаем?', text: 'Выбери, каким органом мы воспринимаем информацию.' },
+      { id: 'd5s3', scene: 'quiz', gate: true, count: 8, gens: ['sense'], title: 'Какая это информация?', text: 'Прочитай историю и скажи, какая это информация: зрительная, слуховая, обонятельная, вкусовая или тактильная.' }
+    ] },
+  { id: 'd6', icon: '📝', title: 'Формы информации', goal: 'Различать информацию по форме: текст, числа, рисунки, звук, видео',
+    steps: [
+      { id: 'd6v0', scene: 'video', gate: true, silent: true, title: 'Видео: Формы информации',
+        src: '../../../assets/video/grade1-digital-dig-d6.mp4', poster: '../../../assets/video/grade1-digital-dig-d6.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd6s1', scene: 'infoTap', gate: true, title: 'Как выглядит информация', cards: [
+        { e: '📝', b: 'Текст', nm: 'Текстовая информация', tx: 'Слова и буквы: сообщение, книга, подпись к картинке.' },
+        { e: '🔢', b: 'Числа', nm: 'Числовая информация', tx: 'Цифры и числа: цена, номер телефона, возраст.' },
+        { e: '🖼️', b: 'Рисунок', nm: 'Графическая информация', tx: 'Рисунки, фотографии, схемы и карты.' },
+        { e: '🎵', b: 'Звук', nm: 'Звуковая информация', tx: 'Музыка, песня, голос, шум.' },
+        { e: '🎬', b: 'Видео', nm: 'Видеоинформация', tx: 'Движущиеся картинки со звуком: мультфильм, ролик.' }],
+        text: 'Информацию можно записать по-разному. Это называется формой представления. Бывает текст, числа, рисунки, звук и видео. Нажимай на картинки.' },
+      { id: 'd6s2', scene: 'quiz', gate: true, count: 8, gens: ['form'], title: 'Какая это форма?', text: 'Определи, в какой форме представлена информация.' },
+      { id: 'd6s3', scene: 'quiz', gate: true, count: 8, gens: ['form', 'sense', 'organ'], title: 'Проверим себя', text: 'Повторим всё: способы восприятия и формы информации.' }
+    ] },
+  { id: 'd7', icon: '📡', title: 'Передача информации', goal: 'Приводить примеры источников, каналов связи и приёмников информации',
+    steps: [
+      { id: 'd7v0', scene: 'video', gate: true, silent: true, title: 'Видео: Передача информации',
+        src: '../../../assets/video/grade1-digital-dig-d7.mp4', poster: '../../../assets/video/grade1-digital-dig-d7.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd7s1', scene: 'infoTap', gate: true, title: 'Источник, канал, приёмник', cards: [
+        { e: '🗣️', b: 'Источник', nm: 'Источник информации', tx: 'Тот, кто передаёт информацию: учитель, мама, книга, телевизор.' },
+        { e: '📡', b: 'Канал связи', nm: 'Канал связи', tx: 'Путь, по которому идёт информация: воздух (голос), телефон, письмо, Интернет.' },
+        { e: '👂', b: 'Приёмник', nm: 'Приёмник информации', tx: 'Тот, кто получает информацию: ты, твои уши и глаза, телефон, компьютер.' }],
+        text: 'Когда мы передаём информацию, участвуют трое. Источник — кто передаёт. Канал связи — путь, по которому информация идёт. Приёмник — тот, кто получает. Нажимай на картинки.' },
+      { id: 'd7s2', scene: 'seqBuild', gate: true, title: 'Передача по телефону', q: 'Расставь по порядку: откуда идёт информация и куда.', hint: 'Сначала тот, кто говорит.', ok: 'Верно: источник, канал, приёмник!',
+        items: [{ e: '👩', t: 'Мама говорит (источник)' }, { e: '📱', t: 'Телефон передаёт голос (канал связи)' }, { e: '🧒', t: 'Ты слушаешь (приёмник)' }],
+        text: 'Мама звонит тебе по телефону. Расставь по порядку: источник, канал связи и приёмник.' },
+      { id: 'd7s3', scene: 'quiz', gate: true, count: 8, gens: ['chan'], title: 'Кто есть кто?', text: 'Найди в каждой истории источник, канал связи и приёмник информации.' }
+    ] },
+  { id: 'd8', icon: '🌐', title: 'Что такое Интернет', goal: 'Приводить примеры использования сети Интернет в жизни человека',
+    steps: [
+      { id: 'd8v0', scene: 'video', gate: true, silent: true, title: 'Видео: Что такое Интернет',
+        src: '../../../assets/video/grade1-digital-dig-d8.mp4', poster: '../../../assets/video/grade1-digital-dig-d8.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd8s1', scene: 'infoTap', gate: true, title: 'Для чего нужен Интернет', cards: [
+        { e: '🌐', b: 'Сеть', nm: 'Что такое Интернет', tx: 'Интернет — большая сеть. Она соединяет компьютеры и телефоны по всему миру.' },
+        { e: '🔎', b: 'Поиск', nm: 'Искать информацию', tx: 'Можно найти ответ на вопрос: как растут цветы, где живут пингвины.' },
+        { e: '📚', b: 'Учёба', nm: 'Учиться', tx: 'Можно смотреть уроки, читать и выполнять задания.' },
+        { e: '💬', b: 'Общение', nm: 'Общаться', tx: 'Можно писать и звонить родным, показывать им фото и видео.' },
+        { e: '🎬', b: 'Отдых', nm: 'Отдыхать', tx: 'Можно слушать музыку, смотреть мультфильмы и играть.' }],
+        text: 'Интернет — это большая сеть, которая соединяет компьютеры и телефоны по всему миру. Нажимай на картинки и узнай, как люди используют Интернет.' },
+      { id: 'd8s2', scene: 'quiz', gate: true, count: 7, gens: ['net'], title: 'Как помогает Интернет?', text: 'Подумай, как можно использовать Интернет в жизни.' }
+    ] },
+  { id: 'd9', icon: '🛡️', title: 'Безопасность в сети', goal: 'Понимать, что не вся информация в сети достоверна и полезна, беречь личные данные',
+    steps: [
+      { id: 'd9v0', scene: 'video', gate: true, silent: true, title: 'Видео: Безопасность в сети',
+        src: '../../../assets/video/grade1-digital-dig-d9.mp4', poster: '../../../assets/video/grade1-digital-dig-d9.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd9s1', scene: 'quiz', gate: true, count: 6, gens: ['trust'], title: 'Можно ли этому верить?', text: 'В Интернете не вся информация правдива. Бывают обманщики. Прочитай и реши, можно ли верить.' },
+      { id: 'd9s2', scene: 'quiz', gate: true, count: 6, gens: ['useful'], title: 'Полезная или вредная?', text: 'Информация бывает полезной, а бывает вредной. Подумай, какая она.' },
+      { id: 'd9s3', scene: 'quiz', gate: true, count: 8, gens: ['priv'], title: 'Личная информация', text: 'Личную информацию нельзя сообщать незнакомым людям: адрес, телефон, пароль, школу. Реши, что можно, а что нельзя.' },
+      { id: 'd9s4', scene: 'quiz', gate: true, count: 6, gens: ['safe', 'priv', 'trust'], title: 'Как вести себя в сети', text: 'Проверим, как ты умеешь защищать себя в Интернете. Если что-то странное, всегда расскажи взрослым.' }
+    ] },
+  { id: 'd10', icon: '🎨', title: 'Рисуем фигурами', goal: 'Создавать изображение из стандартных фигур, выбирать цвет, контур, заливку и фон',
+    steps: [
+      { id: 'd10v0', scene: 'video', gate: true, silent: true, title: 'Видео: Рисуем фигурами',
+        src: '../../../assets/video/grade1-digital-dig-d10.mp4', poster: '../../../assets/video/grade1-digital-dig-d10.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd10s1', scene: 'infoTap', gate: true, title: 'Графический редактор', cards: [
+        { e: '⭐', b: 'Фигуры', nm: 'Стандартные фигуры', tx: 'Круг, квадрат, треугольник, звезда, стрелка. Из них можно составить рисунок.' },
+        { e: '🎨', b: 'Палитра', nm: 'Палитра', tx: 'Палитра — набор цветов. Из неё выбирают цвет линии, заливки или фона.' },
+        { e: '🖍️', b: 'Контур', nm: 'Контур', tx: 'Контур — линия вокруг фигуры. Он может быть тонким, толстым или пунктиром.' },
+        { e: '🪣', b: 'Заливка', nm: 'Заливка', tx: 'Заливка — цвет внутри фигуры.' },
+        { e: '🖼️', b: 'Фон', nm: 'Фон', tx: 'Фон — цвет холста позади фигур.' }],
+        text: 'В графическом редакторе можно рисовать на компьютере. У редактора есть фигуры, палитра цветов, контур, заливка и фон. Нажимай на картинки.' },
+      { id: 'd10s2', scene: 'quiz', gate: true, count: 6, gens: ['gedT'], title: 'Как называется?', text: 'Вспомни названия: контур, заливка, фон и палитра.' },
+      { id: 'd10s3', scene: 'gEdit', gate: true, ui: 'draw', title: 'Рисуем в редакторе', tasks: [
+        { t: 'Нарисуй на холсте круг и квадрат', h: 'Выбери фигуру (Круг), нажми на холст. Потом выбери Квадрат и снова нажми на холст.', ok: S => S.shapes.some(s => s.type === 'circle') && S.shapes.some(s => s.type === 'square') },
+        { t: 'Выбери красный цвет линии и нарисуй треугольник', h: 'Внизу выбери «Линия», потом красный цвет. Затем фигура Треугольник и нажми на холст.', ok: S => S.shapes.some(s => s.type === 'triangle' && s.stroke === 'красный') },
+        { t: 'Выбери голубой цвет фона', h: 'Нажми кнопку «Фон», затем голубой цвет.', ok: S => S.bg === 'голубой' },
+        { t: 'Нарисуй фигуру с толстым контуром', h: 'Выбери «Контур: толстый» и нажми на холст.', ok: S => S.shapes.some(s => s.sw >= 9) },
+        { t: 'Нарисуй фигуру с жёлтой заливкой', h: 'Нажми «Заливка», выбери жёлтый цвет, потом нарисуй любую фигуру.', ok: S => S.shapes.some(s => s.fill === 'жёлтый') }],
+        text: 'Теперь попробуй сам! Выполняй задания по порядку. Нажимай на кнопки с фигурами и цветами, потом на холст.' }
+    ] },
+  { id: 'd11', icon: '✂️', title: 'Правим рисунок', goal: 'Выделять фрагмент, копировать, вырезать, вставлять, поворачивать и отражать, закрашивать',
+    steps: [
+      { id: 'd11v0', scene: 'video', gate: true, silent: true, title: 'Видео: Правим рисунок',
+        src: '../../../assets/video/grade1-digital-dig-d11.mp4', poster: '../../../assets/video/grade1-digital-dig-d11.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd11s1', scene: 'infoTap', gate: true, title: 'Инструменты правки', cards: [
+        { e: '🔲', b: 'Выделить', nm: 'Выделение', tx: 'Чтобы работать с фрагментом, его нужно выделить рамкой: прямоугольной или овальной.' },
+        { e: '📄', b: 'Копировать', nm: 'Копировать и вставить', tx: 'Копировать запоминает фрагмент, Вставить кладёт его ещё раз. Так получается копия.' },
+        { e: '✂️', b: 'Вырезать', nm: 'Вырезать и вставить', tx: 'Вырезать убирает фрагмент, Вставить кладёт его в другое место.' },
+        { e: '🔄', b: 'Повернуть', nm: 'Повернуть', tx: 'Поворот наклоняет фигуру: на четверть оборота за раз.' },
+        { e: '↔️', b: 'Отразить', nm: 'Отразить', tx: 'Отражение переворачивает фигуру как в зеркале.' },
+        { e: '🪣', b: 'Заливка', nm: 'Заливка цветом', tx: 'Выбери цвет, нажми на фигуру — она закрасится. Нажми на фон — закрасится фон.' }],
+        text: 'Рисунок можно править. Выделить фрагмент, скопировать, вырезать, вставить, повернуть, отразить и закрасить. Нажимай на картинки.' },
+      { id: 'd11s2', scene: 'gEdit', gate: true, ui: 'edit',
+        pre: [{ type: 'circle', x: 70, y: 70, stroke: 'зелёный', fill: 'голубой' }, { type: 'square', x: 180, y: 70, stroke: 'чёрный', fill: 'белый' }, { type: 'arrow', x: 120, y: 170, stroke: 'красный', fill: 'розовый' }],
+        title: 'Правим картинку', tasks: [
+          { t: 'Выдели круг рамкой', h: 'Выбери «Выделить» и обведи круг рамкой: нажми и тяни.', ok: S => S.sel.some(id => (S.shapes.find(s => s.id === id) || {}).type === 'circle') },
+          { t: 'Скопируй круг и вставь копию', h: 'Нажми «Копировать», затем «Вставить».', ok: S => S.shapes.filter(s => s.type === 'circle').length >= 2 },
+          { t: 'Вырежь квадрат и вставь его в другое место', h: 'Выдели квадрат, нажми «Вырезать», потом «Вставить».', ok: S => S.log.indexOf('cut') >= 0 && S.log.lastIndexOf('paste') > S.log.indexOf('cut') && S.shapes.filter(s => s.type === 'square').length === 1 },
+          { t: 'Поверни стрелку', h: 'Выдели стрелку и нажми «Повернуть».', ok: S => S.shapes.some(s => s.type === 'arrow' && s.rot !== 0) },
+          { t: 'Отрази стрелку', h: 'Стрелка выделена? Нажми «Отразить».', ok: S => S.shapes.some(s => s.type === 'arrow' && s.flip) },
+          { t: 'Закрась квадрат красным инструментом «Заливка»', h: 'Выбери «Заливка», цель «Заливка» в палитре и красный цвет. Нажми на квадрат.', ok: S => S.shapes.some(s => s.type === 'square' && s.fill === 'красный') && S.log.indexOf('bucket') >= 0 }],
+        text: 'На холсте уже есть три фигуры. Выполняй задания по порядку: выдели, скопируй, вырежи, поверни, отрази и закрась.' },
+      { id: 'd11s3', scene: 'quiz', gate: true, count: 6, gens: ['gedE', 'gedT'], title: 'Что делает инструмент?', text: 'Вспомни, что делает каждый инструмент.' }
+    ] },
+  { id: 'd12', icon: '🤖', title: 'Алгоритмы и роботы', goal: 'Объяснять понятия алгоритм, действие, команда; определять исполнителя и систему команд; приводить примеры алгоритмов',
+    steps: [
+      { id: 'd12v0', scene: 'video', gate: true, silent: true, title: 'Видео: Алгоритмы и роботы',
+        src: '../../../assets/video/grade1-digital-dig-d12.mp4', poster: '../../../assets/video/grade1-digital-dig-d12.jpg',
+        text: 'Посмотри видео от Барсика. Когда досмотришь, нажми «Дальше» — и тебя ждут задания.' },
+      { id: 'd12s1', scene: 'infoTap', gate: true, title: 'Слова-помощники', cards: [
+        { e: '📋', b: 'Алгоритм', nm: 'Алгоритм', tx: 'Понятный порядок действий, который ведёт к цели. Например: как помыть руки.' },
+        { e: '👣', b: 'Действие', nm: 'Действие', tx: 'Один шаг: открыть кран, взять мыло.' },
+        { e: '📣', b: 'Команда', nm: 'Команда', tx: 'Приказ исполнителю сделать одно действие: «Шаг вперёд!».' },
+        { e: '🤖', b: 'Исполнитель', nm: 'Исполнитель', tx: 'Тот, кто выполняет команды: человек, робот или компьютер.' },
+        { e: '🔤', b: 'Система команд', nm: 'Система команд', tx: 'Все команды, которые понимает исполнитель. Наш робот знает четыре: вверх, вниз, влево, вправо.' }],
+        text: 'Сегодня узнаем важные слова. Алгоритм — порядок действий. Действие — один шаг. Команда — приказ. Исполнитель — тот, кто выполняет команды. А система команд — это все команды, которые он понимает.' },
+      { id: 'd12s2', scene: 'quiz', gate: true, count: 7, gens: ['algD'], title: 'Что это за слово?', text: 'Вспомни слова: алгоритм, действие, команда, исполнитель, система команд.' },
+      { id: 'd12s3', scene: 'robot', gate: true, title: 'Управляем роботом', levels: [
+        { cols: 4, rows: 3, start: [0, 0], goal: [3, 0], walls: [], max: 4, sol: 'RRR' },
+        { cols: 4, rows: 3, start: [0, 2], goal: [3, 0], walls: [[1, 2], [1, 1]], max: 6, sol: 'UURRR' },
+        { cols: 5, rows: 4, start: [0, 0], goal: [4, 3], walls: [[1, 0], [1, 1], [3, 2], [3, 3]], max: 10, sol: 'DDRRURRDD' }],
+        text: 'Ты исполнитель команд для робота. Составь алгоритм из команд так, чтобы робот дошёл до звезды и не упёрся в стену. Нажимай команды, потом «Пуск».' },
+      { id: 'd12s4', scene: 'quiz', gate: true, count: 6, gens: ['algL'], title: 'Алгоритмы в жизни', text: 'Алгоритмы есть везде: в рецептах, инструкциях, правилах. Найди примеры.' },
+      { id: 'd12s5', scene: 'quiz', gate: true, count: 12, gens: ['devName', 'devDo', 'ruleYN', 'algFirst', 'sense', 'form', 'chan', 'net', 'trust', 'priv', 'gedE', 'algD'], title: 'Смешанные задания', text: 'Последняя проверка курса: устройства, информация, Интернет, редактор и алгоритмы.' },
+      { id: 'd12s6', scene: 'finale', title: 'Курс пройден!', text: 'Теперь ты знаешь устройства компьютера, виды информации, правила безопасности в Интернете, умеешь рисовать в графическом редакторе и составлять алгоритмы для робота. Дальше тренируйся в играх. Я буду рядом!' }
+    ] }
+];
+(function(){
+  const d4 = LESSONS.find(l => l.id === 'd4'); d4.steps = d4.steps.filter(s => s.scene !== 'finale');
+  NEW_LESSONS.forEach(l => LESSONS.push(l));
+})();
+
+/* --- общий исполнитель вопросов --- */
+SCENES.quiz = function(stage, st, ctx){
+  let i = 0, locked = false;
+  stage.innerHTML = '<div class="ac-qcount" id="q-cnt"></div><div id="q-body"></div><div class="ac-opts" id="q-opts"></div><div class="ac-hint" id="q-hint" style="display:none"></div>';
+  function next(){
+    if (i >= st.count){ $('#q-body', stage).innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🌟</div><div class="ac-qtxt">Все вопросы позади!</div></div>'; $('#q-opts', stage).innerHTML = ''; $('#q-cnt', stage).textContent = ''; $('#q-hint', stage).style.display = 'none'; ctx.done(); return; }
+    const q = GENS[pick(st.gens)](); locked = false;
+    $('#q-cnt', stage).textContent = 'Вопрос ' + (i + 1) + ' из ' + st.count;
+    $('#q-body', stage).innerHTML = q.html || ''; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
+    const o = $('#q-opts', stage); o.style.gridTemplateColumns = (!q.svgopts && (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8))) ? '1fr' : ''; o.innerHTML = '';
+    q.opts.forEach(function(v){
+      const b = document.createElement('button'); b.className = 'ac-opt' + (q.svgopts ? ' svg' : '');
+      if (q.svgopts) b.innerHTML = v; else b.textContent = v;
+      b.onclick = function(){
+        if (locked) return;
+        if (v === q.ans){
+          locked = true; b.classList.add('ok'); $$('.ac-opt', o).forEach(x => x.disabled = true);
+          ctx.fb(pick(PRAISE), 'ok'); i++; setTimeout(() => { if (ctx.alive()) next(); }, 1000);
+        } else {
+          b.classList.add('bad'); b.disabled = true; ctx.miss(); ctx.fb('Подумай ещё — смотри подсказку', 'bad');
+          const h = $('#q-hint', stage); h.style.display = ''; h.innerHTML = '💡 ' + q.hint;
+        }
+      };
+      o.appendChild(b);
+    });
+  }
+  next();
+};
+
+SCENES.finale = function(stage, st, ctx){
+  stage.innerHTML = '<div class="ac-finish"><div style="font-size:3rem">🎯</div><p class="ac-sub">Теперь можно тренироваться без конца — задания каждый раз новые.</p><div class="ac-actions"><a class="ac-btn ac-go ac-link" href="index.html">Все игры по цифровой грамотности →</a></div></div>';
+};
+
+/* ================= движок ================= */
+const S = { li: 0, si: 0, mist: 0, token: 0, passed: {} };
+let P = loadP();
+function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
+const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
+
+function renderMap(){
+  let done = 0, h = '';
+  LESSONS.forEach(function(L, i){
+    const st = P[L.id] || 0; if (st) done++;
+    h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
+  });
+  $('#ac-map').innerHTML = h;
+  $('#ac-pfill').style.width = (done * 100 / LESSONS.length) + '%';
+  $('#ac-ptxt').textContent = done + ' из ' + LESSONS.length;
+  $$('#ac-map .ac-btn').forEach(b => b.onclick = () => openLesson(+b.dataset.i));
+}
+function openLesson(i){ S.li = i; S.si = 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }
+function renderDots(){
+  const L = LESSONS[S.li]; let h = '';
+  L.steps.forEach((s, k) => { h += '<span class="ac-sdot' + (S.passed[k] ? ' ac-sd-done' : '') + (k === S.si ? ' ac-sd-cur' : '') + '"></span>'; });
+  $('#ac-dots').innerHTML = h;
+}
+function renderStep(){
+  stopSpeak();
+  const L = LESSONS[S.li], st = L.steps[S.si], tok = ++S.token, stage = $('#ac-stage');
+  const gated = !!st.gate && !S.passed[S.si];
+  $('#ac-stepno').textContent = 'Шаг ' + (S.si + 1) + ' из ' + L.steps.length;
+  $('#ac-lessonname').textContent = 'Урок ' + (S.li + 1) + ': ' + L.title;
+  $('#ac-title').textContent = st.title;
+  $('#ac-bubble').innerHTML = st.text;
+  stage.innerHTML = ''; $('#ac-fb').textContent = ''; $('#ac-fb').className = 'ac-fb';
+  const next = $('#ac-next'), prev = $('#ac-prev');
+  next.disabled = gated; next.classList.remove('ac-pulse');
+  if (BS){ BS.base(gated ? 'think' : 'idle'); if (S.si === 0) BS.react('wave', 2400); }
+  next.textContent = S.si === L.steps.length - 1 ? 'Завершить урок ✓' : 'Дальше →';
+  prev.disabled = S.si === 0;
+  const ctx = {
+    alive: () => tok === S.token,
+    done: () => { if (tok !== S.token) return; S.passed[S.si] = true; next.disabled = false; if (BS) BS.base('idle'); if (!S.passed['_p' + S.si]){ S.passed['_p' + S.si] = 1; next.classList.add('ac-pulse'); } renderDots(); },
+    miss: () => { S.mist++; },
+    fb: (t, kind) => { if (kind === 'ok') bsReact('happy', 1500); else if (kind === 'bad') bsReact('oops', 1600); const f = $('#ac-fb'); f.textContent = t; f.className = 'ac-fb ' + (kind === 'ok' ? 'ac-ok' : kind === 'bad' ? 'ac-bad' : 'ac-info'); }
+  };
+  renderDots();
+  SCENES[st.scene](stage, st, ctx);
+  $('.ac-speakrow').style.display = st.silent ? 'none' : '';
+  if ($('#ac-auto').checked && !st.silent) speak(st.id, st.say || st.text);
+}
+/* ===== награды: звёзды сайта, наклейка за курс, журнал занятий ===== */
+function courseReward(L, oldStars, newStars){
+  try {
+    const slug = KEY.replace(/^bilim_/, '').replace(/_v\d+$/, '');
+    const gain = Math.max(0, newStars - oldStars) * 3;
+    if (gain > 0 && window.recordGameResult) recordGameResult('course_' + slug + '_' + L.id, gain, 9); /* внутри уже пишется журнал занятий */
+    else if (window.logActivity) logActivity();
+    if (LESSONS.every(x => (P[x.id] || 0) > 0)){
+      let al = {}; try { al = JSON.parse(localStorage.getItem('bilim_stickers_v1')) || {}; } catch(e){}
+      if (!al[slug]){
+        al[slug] = Date.now(); try { localStorage.setItem('bilim_stickers_v1', JSON.stringify(al)); } catch(e){}
+        const name = document.title.replace(/^Курс:\s*/, '').replace(/\s*—.*$/, '');
+        if (window.showCelebrationQueue) showCelebrationQueue([{ type: 'achievement', icon: '🏅', titleKey: 'Курс «' + name + '» пройден! Наклейка добавлена в альбом.' }]);
+      }
+    }
+  } catch(e){}
+}
+function finishLesson(){
+  const L = LESSONS[S.li];
+  const stars = S.mist <= 1 ? 3 : S.mist <= 4 ? 2 : 1;
+  const oldStars = P[L.id] || 0; P[L.id] = Math.max(oldStars, stars); saveP(P); courseReward(L, oldStars, stars);
+  stopSpeak();
+  $('#ac-endtitle').textContent = 'Урок «' + L.title + '» пройден!';
+  let h = ''; for (let k = 0; k < 3; k++) h += '<span style="animation-delay:' + (k * 250) + 'ms;color:' + (k < stars ? '#F5B400' : '#D5DCE4') + '">★</span>';
+  $('#ac-endstars').innerHTML = h;
+  $('#ac-endtext').textContent = S.mist === 0 ? 'Без единой ошибки — великолепно!' : S.mist <= 4 ? 'Ошибок: ' + S.mist + '. Хороший результат!' : 'Ошибок: ' + S.mist + '. Можно пройти урок ещё раз и улучшить результат.';
+  $('#ac-endnext').style.display = S.li < LESSONS.length - 1 ? '' : 'none';
+  if (BS) BS.talk(false);
+  if (!BSE && window.Barsik) BSE = Barsik.mount($('#ac-endbs'));
+  if (BSE) BSE.set(stars >= 2 ? 'cheer' : 'happy');
+  view('end');
+}
+$('#ac-next').onclick = function(){
+  const L = LESSONS[S.li];
+  if (S.si < L.steps.length - 1){ S.si++; renderStep(); window.scrollTo(0, 0); } else finishLesson();
+};
+$('#ac-prev').onclick = function(){ if (S.si > 0){ S.si--; renderStep(); } };
+$('#ac-tomap').onclick = function(){ stopSpeak(); if (BS) BS.base('idle'); S.token++; renderMap(); view('map'); };
+$('#ac-endmap').onclick = function(){ renderMap(); view('map'); };
+$('#ac-endnext').onclick = function(){ openLesson(S.li + 1); };
+$('#ac-speak').onclick = function(){
+  if (this.classList.contains('ac-on')){ stopSpeak(); return; }
+  const st = LESSONS[S.li].steps[S.si]; speak(st.id, st.say || st.text);
+};
+$('#ac-auto').checked = loadAuto();
+$('#ac-auto').onchange = function(){ saveAuto(this.checked); if (this.checked){ const st = LESSONS[S.li].steps[S.si]; if (!st.silent) speak(st.id, st.say || st.text); } else stopSpeak(); };
+if (window.speechSynthesis){ speechSynthesis.onvoiceschanged = function(){}; speechSynthesis.getVoices(); }
+
+window.__ac = { open: function(l, s){ S.li = l; S.si = s || 0; S.mist = 0; S.passed = {}; view('lesson'); renderStep(); }, LESSONS: LESSONS, GENS: GENS }; // для проверки
+renderMap();
+})();
+</script>
+</body>
+</html>
