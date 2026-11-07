@@ -1230,3 +1230,35 @@ UI_I18N_REG('uz',{ ex:{
   "Емен жаңғағы":"Eman mevasi",
   "ағаш":"daraxt"
 }, pat:[["^Өрнекте\\ (.+?),\\ (.+?)\\ және\\ (.+?)\\ қайталанады\\.\\ Келесісі\\ —\\ (.+?)\\.$", "Naqshda $1, $2 va $3 takrorlanadi. Keyingisi — $4.", [1, 2, 3, 4]], ["^Өрнекте\\ (.+?)\\ және\\ (.+?)\\ қайталанады\\.\\ Келесісі\\ —\\ (.+?)\\.$", "Naqshda $1 va $2 takrorlanadi. Keyingisi — $3.", [1, 2, 3]], ["^Жолақ\\ нөлден\\ басталып,\\ (.+?)\\ санына\\ дейін\\ жетеді\\.\\ Оның\\ ұзындығы\\ (.+?)\\ сантиметр\\.$", "Chiziqcha noldan boshlanib, $1 gacha boradi. Uning uzunligi $2 santimetr.", [1, 2]], ["^Ұзынырақ\\ жолақ\\ —\\ әрі\\ қарай\\ созылатыны\\.\\ Оның\\ ұзындығы\\ (.+?)\\ сантиметр\\.$", "Uzunroq chiziqcha — nariroqqa cho'zilgani. Uning uzunligi $1 santimetr.", [1]], ["^Қысқарақ\\ жолақ\\ —\\ аз\\ созылатыны\\.\\ Оның\\ ұзындығы\\ (.+?)\\ сантиметр\\.$", "Qisqaroq chiziqcha — kamroq cho'zilgani. Uning uzunligi $1 santimetr.", [1]], ["^(.+?)\\ жұмсақ:\\ оны\\ оңай\\ мыжып,\\ пішінін\\ өзгертуге\\ болады\\.$", "$1 yumshoq: uni oson ezish va shaklini o'zgartirish mumkin.", [1]], ["^(.+?)\\ қатты:\\ оны\\ бүгу\\ және\\ мыжу\\ қиын\\.$", "$1 qattiq: uni egish va ezish qiyin.", [1]], ["^(.+?)\\ —\\ табиғи\\ материал\\.\\ Оны\\ зауытта\\ жасамайды,\\ ол\\ табиғатта\\ бар\\.$", "$1 — tabiiy material. Uni zavodda yasamaydi, u tabiatda bor.", [1]], ["^Жаттығуды\\ тап:\\ (.+?)\\.$", "Mashqni top: $1.", [1]], ["^Тап:\\ (.+?)$", "Top: $1", [1]], ["^Тап:\\ (.+?)\\.$", "Top: $1.", [1]], ["^—\\ (.+?)$", "— $1", [1]]]});
+
+/* добавлено из других пакетов */
+UI_I18N_REG('uz',{ ex:{
+  "Пластилин":"Plastilin",
+  "бумага":"qog'oz"
+}});
+
+/* добавлено из других пакетов */
+UI_I18N_REG('uz',{ ex:{
+  "Пластилин":"Plastilin",
+  "бумага":"qog'oz",
+  "линейка":"chizg'ich",
+  "Бұл қандай материал?":"Bu qanday material?",
+  "Что дальше в узоре?":"Naqshda keyin nima?",
+  "жёлтая звезда":"sariq yulduz",
+  "На что похож этот казахский узор?":"Bu qozoq naqshi nimaga o'xshaydi?",
+  "На рога барана":"Qo'chqor shoxiga",
+  "На крылья бабочки":"Kapalak qanotiga",
+  "На следы кошки":"Mushuk izlariga",
+  "Этот узор называется «қошқар мүйіз». Так рисуют рога барана.":"Bu naqsh «қошқар мүйіз» deb ataladi. Qo'chqor shoxi shunday chiziladi.",
+  "глина":"loy",
+  "пластилин":"plastilin"
+}});
+
+UI_I18N_REG('uz',{ ex:{
+  "Семь игр по программе: материалы и их свойства, инструменты и безопасность, измерение, приёмы работы, природные материалы, национальные узоры, выставка и оценка.":"Dastur bo'yicha yettita o'yin: materiallar va ularning xususiyatlari, asboblar va xavfsizlik, o'lchash, ish usullari, tabiiy materiallar, milliy naqshlar, ko'rgazma va baholash.",
+  "Бумага тонкая и лёгкая. Она легко рвётся и режется.":"Qog'oz yupqa va yengil. U oson yirtiladi va kesiladi.",
+  "бутылка":"shisha",
+  "коробка":"quti",
+  "Линейкой измеряют длину и проводят прямые линии.":"Chizg'ich bilan uzunlik o'lchanadi va to'g'ri chiziqlar chiziladi.",
+  "игла":"igna"
+}});
