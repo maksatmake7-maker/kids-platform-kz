@@ -6,11 +6,12 @@
 import re, os, importlib.util
 _sp = importlib.util.spec_from_file_location('mt', 'tools/modernize-trainers.py'); MT = importlib.util.module_from_spec(_sp); _sp.loader.exec_module(MT)
 KZ_VOICE = False
-TRAINERS = {'fizra', 'izo', 'muzyka', 'trud', 'estestvo', 'digital', 'poznanie', 'math'}   # предметы, у которых тренажёры уже переведены на казахский (остальные добавляются по мере перевода)
+TRAINERS = {'fizra', 'izo', 'muzyka', 'trud', 'estestvo', 'digital', 'poznanie', 'samopoznanie', 'math'}   # предметы, у которых тренажёры уже переведены на казахский (остальные добавляются по мере перевода)
 # предмет (папка) -> (заголовок страницы, ключ курса в русской версии)
 READY = {'fizra': ('Дене шынықтыру', 'fiz2-course.html'), 'izo': ('Бейнелеу өнері', 'izo2-course.html'),
          'muzyka': ('Музыка', 'muz2-course.html'), 'trud': ('Еңбекке баулу', 'trud2-course.html'),
          'poznanie': ('Дүниетану', 'poznanie2-course.html'),
+         'samopoznanie': ('Өзін-өзі тану', 'samopoznanie2-course.html'),
          'estestvo': ('Жаратылыстану', 'estestvo2-course.html'),
          'digital': ('Цифрлық сауаттылық', 'digital2-course.html'),
          'math': ('Математика', 'math2-course.html')}
@@ -40,6 +41,7 @@ def hub():
     for sid, col, art, t, d in order:
         sub.append("    {id:'%s2', href:'%s/index.html', art:'%s', color:'%s', titleText:'%s', descText:'%s'}," % (sid, sid, art, col, t, d))
     sub.append("    {id:'poznanie2', href:'poznanie/index.html', art:'poznanie', color:'#F0954C', title:'poznanie_title', descText:'Семья, школа, родной край, карта и символы страны'},")
+    sub.append("    {id:'samo2', href:'samopoznanie/index.html', art:'samo', color:'#EF6F8F', titleText:'Самопознание', descText:'Добрые дела, дружба, семья и любовь к Родине'},")
     sub.append("    {id:'estestvo2', href:'estestvo/index.html', art:'estestvo', color:'#6FBF73', title:'estestvo_title', descText:'Исследователь, растения, животные, воздух, вода, космос и магниты'},")
     sub.append("    {id:'dig2', href:'digital/index.html', art:'digital', color:'#5EC3E8', titleText:'Цифровая грамотность', descText:'Компьютер, поиск в сети, Scratch и роботы'},")
     sub.append("    {id:'math2', href:'math/index.html', art:'math', color:'#FFC93C', title:'math_title', descText:'Числа до 100, умножение и деление, периметр, время и задачи'},")

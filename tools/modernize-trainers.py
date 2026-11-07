@@ -5,7 +5,7 @@
 Идемпотентно: страницы, где уже есть world.css, пропускаются."""
 import re, os, sys
 SUBJ = {'alippe': 'reading', 'anatili': 'kazakh', 'digital': 'digital', 'estestvo': 'estestvo', 'fizra': 'fizra',
-        'izo': 'izo', 'matematika': 'math', 'math': 'math', 'muzyka': 'muzyka', 'poznanie': 'poznanie', 'trud': 'trud',
+        'izo': 'izo', 'matematika': 'math', 'math': 'math', 'muzyka': 'muzyka', 'poznanie': 'poznanie', 'samopoznanie': 'poznanie', 'trud': 'trud',
         'reading': 'reading', 'kazakh': 'kazakh', 'russian': 'reading', 'literature': 'reading', 'english': 'english'}
 def conv(h, subj):
     if 'world.css' in h: return None
