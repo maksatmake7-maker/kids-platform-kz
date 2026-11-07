@@ -23583,3 +23583,6 @@ UI_I18N_REG('uz',{ ex:{
   "Жануарларды орысша атаймыз":"Hayvonlarni ruscha ataymiz",
   "Адамдар мен заттарды орысша атаймыз":"Odamlar va narsalarni ruscha ataymiz"
 }});
+
+/* Казахский отдел: шаблоны задач и вопросительные слова */
+UI_I18N_REG('uz',{ ex:{"Қайда?": "Qayerda?", "Кім?": "Kim?"}, pat:[["^(\\d+) (\\S+) болды\\. Тағы (\\d+) (\\S+) қосты\\. (\\S+) неше болды\\?$", "$1 ta $2 bor edi. Yana $3 ta $2 qo'shildi. Hozir nechta $2 bor?"], ["^(\\d+) (\\S+) болды\\. (\\d+) (\\S+) алып кетті\\. (\\S+) неше қалды\\?$", "$1 ta $2 bor edi. $3 ta $2 olib ketildi. Nechta $2 qoldi?"]] });
