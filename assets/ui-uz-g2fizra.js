@@ -1231,3 +1231,18 @@ UI_I18N_REG('uz',{ ex:{
   "Доппен ұрып шығару":"Vishibaloy",
   "Иық жазылған, бас көтерілген":"Yelkalar tik, bosh ko'tarilgan"
 }, pat:[["^Алысқа\\ секірген\\ —\\ жалауы\\ бастау\\ сызығынан\\ алыс\\ тұрған\\.\\ Бұл\\ (.+?)\\ метр\\.$", "Qaysi bayrog'i startdan uzoqroq turgan kishi uzoqroq sakragan. Bu $1 metr.", [1]], ["^Аз\\ секірген\\ —\\ жалауы\\ бастау\\ сызығына\\ жақын\\ тұрған\\.\\ Бұл\\ (.+?)\\ метр\\.$", "Qaysi bayrog'i startga yaqinroq turgan kishi kamroq sakragan. Bu $1 metr.", [1]], ["^Жаттығуды\\ тап:\\ (.+?)\\.$", "Mashqni top: $1.", [1]], ["^Жаттығуды\\ тап:\\ (.+?)$", "Mashqni top: $1", [1]], ["^Тап:\\ (.+?)$", "Top: $1", [1]], ["^Тап:\\ (.+?)\\.$", "Top: $1.", [1]], ["^—\\ (.+?)$", "— $1", [1]]]});
+
+/* добавлено из других пакетов */
+UI_I18N_REG('uz',{ ex:{
+  "Это можно или нельзя?":"Bu mumkinmi yoki mumkin emasmi?",
+  "Можно":"Mumkin",
+  "Мұны қашан жасаймыз?":"Qachon buni qilamiz?"
+}});
+
+UI_I18N_REG('uz',{ ex:{
+  "руки в стороны":"qo'llar yonga",
+  "прыжок":"sakrash",
+  "наклон":"engashish",
+  "равновесие":"muvozanat",
+  "приседание":"cho'kkalash"
+}});
