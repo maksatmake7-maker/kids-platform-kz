@@ -115,6 +115,13 @@
         '<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M76 28 Q90 18 104 28"><animate attributeName="opacity" values="1;.25;1" dur="2s" repeatCount="indefinite"/></path><path d="M82 34 Q90 28 98 34"><animate attributeName="opacity" values="1;.25;1" dur="2s" begin=".3s" repeatCount="indefinite"/></path></g><circle cx="90" cy="39" r="2.2" fill="#fff"/>' +
         '<rect x="132" y="86" width="14" height="9" rx="4.5" fill="#EAF3FB" stroke="#B9C9DB" stroke-width="1.5"/><rect x="36" y="88" width="20" height="8" rx="2" fill="#FFC93C"/><g fill="#fff" opacity=".8"><rect x="39" y="90" width="3" height="3"/><rect x="44" y="90" width="3" height="3"/><rect x="49" y="90" width="3" height="3"/></g>';
     },
+    samo: function(){
+      return '<path d="M90 100 C54 76 50 46 72 40 C82 37 90 44 90 52 C90 44 98 37 108 40 C130 46 126 76 90 100Z" fill="#EF6F8F" stroke="#B93F5F" stroke-width="2.5" stroke-linejoin="round"/>' +
+        '<path d="M70 50 Q74 44 80 44" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/>' +
+        '<g transform="translate(138 40)"><polygon points="0,-9 2.6,-3 9,-2.4 4.2,2 5.6,8.6 0,5.2 -5.6,8.6 -4.2,2 -9,-2.4 -2.6,-3" fill="#FFC93C"><animateTransform attributeName="transform" type="rotate" values="0;20;0" dur="3s" repeatCount="indefinite"/></polygon></g>' +
+        '<g transform="translate(40 52)"><polygon points="0,-6 1.8,-2 6,-1.6 2.8,1.4 3.8,5.8 0,3.4 -3.8,5.8 -2.8,1.4 -6,-1.6 -1.8,-2" fill="#FFC93C"/></g>' +
+        '<animateTransform attributeName="transform" type="scale" additive="sum" values="1;1.04;1" dur="2.4s" repeatCount="indefinite"/>';
+    },
     poznanie: function(){
       return '<g><g transform="rotate(-16 90 62)"><circle cx="90" cy="62" r="30" fill="#4DA8E8"/>' +
         '<path d="M72 48 Q82 40 92 48 Q86 58 94 64 Q86 76 78 70 Q70 60 72 48Z" fill="#6FCB7D"/><path d="M98 54 Q112 50 116 62 Q108 70 100 68Z" fill="#6FCB7D"/><path d="M96 78 Q106 76 108 84 Q100 88 96 84Z" fill="#6FCB7D"/>' +
