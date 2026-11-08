@@ -54,6 +54,7 @@
   /* Перевод спецификации игры по словарю интерфейса (kz и др.): строки берутся из ui-<lang>-*.js, чего нет в словаре — остаётся по-русски */
   var TR_SKIP = { k:1, key:1, theme:1, c1:1, c2:1, ic:1, icons:1, set:1 };
   function trSpec(spec, l){
+    if(spec.noTr) return spec;   /* noTr:1 — уроки русского для казахских школ: русские слова не переводим */
     var nAll = 0, nTr = 0;
     function T(x){ var r = window.UI_I18N_LOOKUP(l, x); if(/[А-Яа-яЁё]/.test(x)){ nAll++; if(r !== undefined) nTr++; } return r === undefined ? x : r; }
     function walk(v, k){

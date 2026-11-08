@@ -186,7 +186,7 @@
     var seenP = new Set(), w0 = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n0;
     while ((n0 = w0.nextNode())){
       var p0 = n0.parentNode; if (!p0 || seenP.has(p0) || !p0.children || !p0.children.length || p0.children.length > 8) continue;
-      seenP.add(p0); if (/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p0.nodeName)) continue;
+      seenP.add(p0); if (/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p0.nodeName) || (p0.closest && p0.closest('[data-no-ui-tr]'))) continue;
       var rec0 = htmls.get(p0), h0 = p0.innerHTML;
       if (rec0 && rec0.out === h0){
         if (rec0.ver === VER) continue;
@@ -197,7 +197,7 @@
       var o0 = tr(h0, d); if (o0 !== null){ htmls.set(p0, { orig: h0, out: o0, ver: VER }); p0.innerHTML = o0; }
     }
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, list = [];
-    while ((n = w.nextNode())){ var p = n.parentNode; if (p && !/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p.nodeName)) list.push(n); }
+    while ((n = w.nextNode())){ var p = n.parentNode; if (p && !/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p.nodeName) && !(p.closest && p.closest('[data-no-ui-tr]'))) list.push(n); }
     list.forEach(function(n){
       var rec = texts.get(n), v = n.nodeValue;
       if (rec && rec.out === v){
