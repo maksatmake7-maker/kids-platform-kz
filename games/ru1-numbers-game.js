@@ -2,7 +2,7 @@
 (function(){ var g = PZ2.g;
 function G(a){ var o = g.apply(null, a); o.findFull = 1; return o; }
 PZ2.define({
-  key:"ru1numbers", theme:"sky", icons:[], askAsCap:true,
+  key:"ru1numbers", theme:"sky", icons:[], askAsCap:true, noTr:1,
   askQ:"Бұл қай сан?", wordCap:"Бұл қай сан?",
   sortSay:"Сөздерді себетке салып шық.", sortCap:"Сөзді таңда, содан кейін себетті таңда", sortHint:"Әр сөз қай топқа жататынын ойлан.",
   groups:[

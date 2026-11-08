@@ -2,7 +2,7 @@
 (function(){ var g = PZ2.g;
 function G(a){ var o = g.apply(null, a); o.findFull = 1; return o; }
 PZ2.define({
-  key:"ru1animals", theme:"meadow", icons:[], askAsCap:true,
+  key:"ru1animals", theme:"meadow", icons:[], askAsCap:true, noTr:1,
   askQ:"Бұл қандай жануар?", wordCap:"Бұл қандай жануар?",
   sortSay:"Сөздерді себетке салып шық.", sortCap:"Сөзді таңда, содан кейін себетті таңда", sortHint:"Әр сөз қай топқа жататынын ойлан.",
   groups:[
