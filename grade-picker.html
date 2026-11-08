@@ -252,18 +252,24 @@
   /* ---------- направление: ru / kz ---------- */
   var params=new URLSearchParams(location.search), dir=params.get('dir')==='kz'?'kz':'ru';
   var g1=$('#grade-1-link'), g2=$('#grade-2-link'), g2d=$('#grade-2-desc'), g2b=$('#grade-2-badge'), g3=$('#grade-3-link'), g3d=$('#grade-3-desc'), g3b=$('#grade-3-badge'), g4=$('#grade-4-link'), g4d=$('#grade-4-desc'), g4b=$('#grade-4-badge');
+  /* ---------- «класс готов к показу» ---------- */
+  var READY = window.BILIM_GRADES_READY || {1:true,2:true,3:true,4:true};
+  var PREVIEW = false;
+  try{ var pq=new URLSearchParams(location.search).get('preview'); if(pq==='1') localStorage.setItem('bilim_preview','1'); else if(pq==='0') localStorage.removeItem('bilim_preview'); PREVIEW = localStorage.getItem('bilim_preview')==='1'; }catch(e){}   /* ?preview=1 — владелец видит все классы, даже ещё не готовые (запоминается в браузере; ?preview=0 — выключить) */
+  function setGrade(n, a, desc, badge, d){
+    if(READY[n]!==false || PREVIEW){
+      a.setAttribute('href', 'grades/grade-'+n+(d==='kz'?'-kaz':'')+'/index.html'); a.classList.remove('fog'); a.classList.add('ready'); a.removeAttribute('aria-disabled'); a.removeAttribute('tabindex');
+      desc.setAttribute('data-i18n', 'grade_picker_grade'+n+(d==='kz'?'_kaz':'')+'_desc'); badge.setAttribute('data-i18n','badge_play'); badge.textContent='';
+    } else {
+      a.setAttribute('href', '#'); a.classList.add('fog'); a.classList.remove('ready'); a.setAttribute('aria-disabled','true'); a.setAttribute('tabindex','-1');
+      desc.setAttribute('data-i18n','grade_picker_coming_soon'); badge.removeAttribute('data-i18n'); badge.textContent='🔒';
+    }
+  }
   function setDir(d, quiet){
     dir=d;
     g1.setAttribute('href', d==='kz'?'grades/grade-1-kaz/index.html':'grades/grade-1/index.html');
-    /* 2 класс: русское отделение — полностью; казахское — открыт (первые предметы), остальные острова на хабе в тумане */
-    g2.setAttribute('href', d==='kz'?'grades/grade-2-kaz/index.html':'grades/grade-2/index.html'); g2.classList.remove('fog'); g2.classList.add('ready'); g2.removeAttribute('aria-disabled'); g2.removeAttribute('tabindex');
-    g2d.setAttribute('data-i18n', d==='kz'?'grade_picker_grade2_kaz_desc':'grade_picker_grade2_desc'); g2b.setAttribute('data-i18n','badge_play'); g2b.textContent='';
-    /* 3 класс: русское отделение — полностью; казахское — открыт (первые предметы), остальные острова на хабе в тумане */
-    g3.setAttribute('href', d==='kz'?'grades/grade-3-kaz/index.html':'grades/grade-3/index.html'); g3.classList.remove('fog'); g3.classList.add('ready'); g3.removeAttribute('aria-disabled'); g3.removeAttribute('tabindex');
-    g3d.setAttribute('data-i18n', d==='kz'?'grade_picker_grade3_kaz_desc':'grade_picker_grade3_desc'); g3b.setAttribute('data-i18n','badge_play'); g3b.textContent='';
-    /* 4 класс: русское отделение — полностью; казахское — открыт (первые предметы), остальные острова на хабе в тумане */
-    g4.setAttribute('href', d==='kz'?'grades/grade-4-kaz/index.html':'grades/grade-4/index.html'); g4.classList.remove('fog'); g4.classList.add('ready'); g4.removeAttribute('aria-disabled'); g4.removeAttribute('tabindex');
-    g4d.setAttribute('data-i18n', d==='kz'?'grade_picker_grade4_kaz_desc':'grade_picker_grade4_desc'); g4b.setAttribute('data-i18n','badge_play'); g4b.textContent='';
+    /* какие классы открыты — решает выключатель BILIM_GRADES_READY (assets/media-base.js); закрытый класс остаётся в тумане с надписью «Скоро» */
+    [[2,g2,g2d,g2b],[3,g3,g3d,g3b],[4,g4,g4d,g4b]].forEach(function(x){ setGrade(x[0],x[1],x[2],x[3],d); });
     $$('#boat-sw button, .boat-sw button').forEach(function(b){ var on=b.getAttribute('data-d')===d; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }); $('#flagp').setAttribute('fill', d==='kz'?'#3FB088':'#FF6B5B');
     try{ history.replaceState(null,'','?dir='+d); }catch(e){}
     applyLang(d==='kz' ? 'kz' : (quiet ? (savedLang()||'ru') : 'ru'));   /* при открытии — запомненный язык, при переключении лодки — язык направления */
