@@ -225,7 +225,12 @@
       if (fbl){ load(fbl); if (d === undefined) load(l); if (!d) d = DICT[l] = { ex: Object.create(null), pat: [] }; d.fb = DICT[fbl] || null; }
       else { if (d === undefined){ load(l); return; } if (!d) return; }
       if (document.body) walk(document.body, d);
-      var t = tr(document.title, d); if (t !== null) document.title = t;
+      var t = tr(document.title, d);
+      if (t === null){   /* заголовок вида «Название — Білім Аралы»: переводим название отдельно, бренд сохраняем */
+        var tm = /^(.*?)( — Білім Аралы)$/.exec(document.title);
+        if (tm){ var t2 = tr(tm[1], d); if (t2 !== null) t = t2 + tm[2]; }
+      }
+      if (t !== null) document.title = t;
     } finally { busy = false; }
   }
   var timer = null, firstAt = 0;   /* перевод не откладывается дольше ~120 мс, даже если страница постоянно меняется (конфетти, анимации) */
