@@ -34,7 +34,7 @@
   <h2>Краски, линии, лепка и узоры</h2>
   <p class="lead">Семь игр по программе: виды искусства, линия и штрих, цвет, лепка, узоры, дизайн и архитектура, творческая работа.</p>
 
-  <h3 class="quarter-heading">Виды искусства и материалы</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="izo2-course.html" class="island izo ready" style="text-decoration:none;">
       <h3>Курс: Изобразительное искусство 2 класс</h3>
@@ -51,6 +51,10 @@
       <p>Учимся рисовать линиями и штрихами, по наблюдению, по памяти и по воображению</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="izo2art,izo2line">
     <a href="color.html" class="island izo ready" style="text-decoration:none;">
       <h3>Краски и цвета</h3>
       <p>Смешиваем краски и узнаём тёплые и холодные цвета</p>
@@ -62,9 +66,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Узоры, постройки и творчество</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="izo2art,izo2line,izo2color,izo2sculpt">
     <a href="ornament.html" class="island izo ready" style="text-decoration:none;">
       <h3>Узоры и орнаменты</h3>
       <p>Находим ритм и симметрию в узорах, знакомимся с казахскими узорами</p>
@@ -75,12 +80,18 @@
       <p>Из каких форм состоят здания, и как придумывают красивые вещи</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="izo2art,izo2line,izo2color,izo2sculpt,izo2ornament,izo2design">
     <a href="create.html" class="island izo ready" style="text-decoration:none;">
       <h3>Моя творческая работа</h3>
       <p>Передаём настроение и время года цветом, готовим работу к показу</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>

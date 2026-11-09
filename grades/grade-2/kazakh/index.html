@@ -34,7 +34,7 @@
   <h2>Говорим по-казахски</h2>
   <p class="lead">Десять игр по темам программы. Барсик объясняет по-русски, а казахские слова и фразы звучат по-казахски.</p>
 
-  <h3 class="quarter-heading">Я, семья, школа и родной край</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="me.html" class="island kaz ready" style="text-decoration:none;">
       <h3>Все обо мне</h3>
@@ -51,15 +51,15 @@
       <p>Слова о школе, вопросы «кто?» и «что?»</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="kz2me,kz2family,kz2school">
     <a href="home.html" class="island kaz ready" style="text-decoration:none;">
       <h3>Мой родной край</h3>
       <p>Слова о родном крае, природе и населённых местах</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading">Здоровье, традиции, природа и путешествия</h3>
-  <div class="island-grid">
     <a href="sport.html" class="island kaz ready" style="text-decoration:none;">
       <h3>Здоровье и спорт</h3>
       <p>Слова о спорте и здоровье</p>
@@ -70,6 +70,11 @@
       <p>Жанры текстов, музыка и традиции</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="kz2me,kz2family,kz2school,kz2home,kz2sport,kz2folk">
     <a href="nature.html" class="island kaz ready" style="text-decoration:none;">
       <h3>Окружающая среда</h3>
       <p>Дикие и домашние животные, растения</p>
@@ -81,9 +86,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Буквы и слова</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="kz2me,kz2family,kz2school,kz2home,kz2sport,kz2folk,kz2nature,kz2travel">
     <a href="letters.html" class="island kaz ready" style="text-decoration:none;">
       <h3>Особые буквы</h3>
       <p>Особые казахские буквы в словах</p>
@@ -95,6 +101,7 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>

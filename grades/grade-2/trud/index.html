@@ -34,7 +34,7 @@
   <h2>Мастерим, измеряем и показываем</h2>
   <p class="lead">Семь игр по программе: материалы и их свойства, инструменты и безопасность, измерение, приёмы работы, природные материалы, национальные узоры, выставка и оценка.</p>
 
-  <h3 class="quarter-heading">Материалы, инструменты и измерение</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="trud2-course.html" class="island trud ready" style="text-decoration:none;">
       <h3>Курс: Трудовое обучение 2 класс</h3>
@@ -51,20 +51,25 @@
       <p>Знакомимся с инструментами и правилами безопасной работы</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="trud2mat,trud2tools">
     <a href="measure.html" class="island trud ready" style="text-decoration:none;">
       <h3>Измеряем и размечаем</h3>
       <p>Измеряем полоски линейкой и учимся размечать детали</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading">Работа, природа, узоры и выставка</h3>
-  <div class="island-grid">
     <a href="make.html" class="island trud ready" style="text-decoration:none;">
       <h3>Приёмы работы и порядок</h3>
       <p>Выбираем приёмы работы и учимся планировать, как сделать поделку</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="trud2mat,trud2tools,trud2measure,trud2make">
     <a href="nature.html" class="island trud ready" style="text-decoration:none;">
       <h3>Природные и бросовые материалы</h3>
       <p>Собираем природные материалы бережно и находим вторую жизнь бросовым</p>
@@ -75,12 +80,18 @@
       <p>Находим повторяющиеся элементы и знакомимся с национальными изделиями</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="trud2mat,trud2tools,trud2measure,trud2make,trud2nature,trud2national">
     <a href="present.html" class="island trud ready" style="text-decoration:none;">
       <h3>Идея, выставка и оценка</h3>
       <p>Придумываем идею, показываем свою работу и вежливо оцениваем</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>

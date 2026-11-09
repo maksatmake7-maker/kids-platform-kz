@@ -34,17 +34,13 @@
   <h2>Добрые дела и общечеловеческие ценности</h2>
   <p class="lead">Семнадцать игр по темам года: мудрость Абая, сказки Андерсена, знания, школа, доброта, честность, семья, уважение, прощение, дружба, любовь, родной край, природа, страна, красота и праздник детства.</p>
 
-  <h3 class="quarter-heading">Курс</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="samopoznanie2-course.html" class="island poznanie ready" style="text-decoration:none;">
       <h3>Курс: Самопознание 2 класс</h3>
       <p>17 уроков · мудрость веков, дружная семья, быть человеком, как прекрасен этот мир</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading">Мудрость веков</h3>
-  <div class="island-grid">
     <a href="samabay.html" class="island poznanie ready" style="text-decoration:none;">
       <h3>Мудрость великого Абая</h3>
       <p>Абай, его семья и добрые советы</p>
@@ -67,8 +63,8 @@
     </a>
   </div>
 
-  <h3 class="quarter-heading">Дружная семья</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="sam2abay,sam2andersen,sam2znanie,sam2school">
     <a href="samkind.html" class="island poznanie ready" style="text-decoration:none;">
       <h3>Добротой себя измерь</h3>
       <p>Добрые дела и добрые слова</p>
@@ -90,9 +86,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Быть человеком</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="sam2abay,sam2andersen,sam2znanie,sam2school,sam2kind,sam2deeds,sam2honest,sam2family">
     <a href="samrespect.html" class="island poznanie ready" style="text-decoration:none;">
       <h3>Учимся уважать себя и других</h3>
       <p>Уважение к людям и к себе</p>
@@ -114,9 +111,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Как прекрасен этот мир!</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="sam2abay,sam2andersen,sam2znanie,sam2school,sam2kind,sam2deeds,sam2honest,sam2family,sam2respect,sam2forgive,sam2friend,sam2love">
     <a href="samkrai.html" class="island poznanie ready" style="text-decoration:none;">
       <h3>Край, где мы с тобой растём</h3>
       <p>Родной край и любовь к Родине</p>
@@ -143,7 +141,7 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
-
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>
