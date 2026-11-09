@@ -37,6 +37,7 @@
   <h2 data-i18n="hub_title"></h2>
   <p class="lead" data-i18n="hub_lead"></p>
 
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="fiz-course.html" class="island fizra ready" style="text-decoration:none;">
       <span class="emoji">🎓</span>
@@ -44,10 +45,6 @@
       <p>13 уроков · здоровье, безопасность, разминка, движения, гимнастика, игры, цели и планы, роли, творчество</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
-  <div class="island-grid">
     <a href="exercise.html" class="island fizra ready" style="text-decoration:none;">
       <span class="emoji">🤸</span>
       <h3 data-i18n="hub_exercise_title"></h3>
@@ -57,7 +54,7 @@
   </div>
 
   <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
-  <div class="island-grid">
+  <div class="island-grid" data-requires="exercise">
     <a href="natgames.html" class="island fizra ready" style="text-decoration:none;">
       <span class="emoji">🎪</span>
       <h3 data-i18n="hub_natgames_title"></h3>
@@ -68,7 +65,7 @@
   <p class="locked-message" data-i18n="locked_message"></p>
 
   <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
-  <div class="island-grid">
+  <div class="island-grid" data-requires="exercise,natgames">
     <a href="jumprope.html" class="island fizra ready" style="text-decoration:none;">
       <span class="emoji">🏃</span>
       <h3 data-i18n="hub_jumprope_title"></h3>
@@ -79,7 +76,7 @@
   <p class="locked-message" data-i18n="locked_message"></p>
 
   <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
-  <div class="island-grid">
+  <div class="island-grid" data-requires="exercise,natgames,jumprope">
     <a href="ballgames.html" class="island fizra ready" style="text-decoration:none;">
       <span class="emoji">⚽</span>
       <h3 data-i18n="ballgames_title"></h3>

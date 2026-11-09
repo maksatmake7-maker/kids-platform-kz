@@ -34,7 +34,7 @@
   <h2>Двигаемся, играем и растём здоровыми</h2>
   <p class="lead">Семь игр по программе: здоровье, разминка и безопасность, бег и прыжки, гимнастика, игры с мячом, казахские национальные игры, командная и честная игра.</p>
 
-  <h3 class="quarter-heading">Здоровье, разминка и безопасность</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="fiz2-course.html" class="island fizra ready" style="text-decoration:none;">
       <h3>Курс: Физическая культура 2 класс</h3>
@@ -53,8 +53,8 @@
     </a>
   </div>
 
-  <h3 class="quarter-heading">Бег, гимнастика и игры</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="fiz2health,fiz2warm">
     <a href="run.html" class="island fizra ready" style="text-decoration:none;">
       <h3>Бег, прыжки и метание</h3>
       <p>Узнаём виды бега, прыжков и метания и сравниваем результаты</p>
@@ -65,26 +65,33 @@
       <p>Тренируем равновесие, лазанье, силу и правильную осанку</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="fiz2health,fiz2warm,fiz2run,fiz2gym">
     <a href="ball.html" class="island fizra ready" style="text-decoration:none;">
       <h3>Игры с мячом</h3>
       <p>Бросаем, ловим и ведём мяч и знакомимся с подвижными играми</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading">Национальные игры и командная игра</h3>
-  <div class="island-grid">
     <a href="kaz.html" class="island fizra ready" style="text-decoration:none;">
       <h3>Казахские национальные игры</h3>
       <p>Знакомимся с казахскими национальными играми</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="fiz2health,fiz2warm,fiz2run,fiz2gym,fiz2ball,fiz2kaz">
     <a href="team.html" class="island fizra ready" style="text-decoration:none;">
       <h3>Команда, роли и честная игра</h3>
       <p>Учимся играть в команде, играть честно и уважать соперников</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>

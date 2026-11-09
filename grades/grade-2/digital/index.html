@@ -34,7 +34,7 @@
   <h2>Компьютер, программы и роботы</h2>
   <p class="lead">Пятнадцать игр по программе: устройства компьютера, файлы и папки, поиск в сети, клавиатура и текст, алгоритмы, Scratch и мультфильм, звук, роботы и проект «Танцующий робот».</p>
 
-  <h3 class="quarter-heading">Компьютер и безопасность</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="digital2-course.html" class="island digital ready" style="text-decoration:none;">
       <h3>Курс: Цифровая грамотность 2 класс</h3>
@@ -63,8 +63,8 @@
     </a>
   </div>
 
-  <h3 class="quarter-heading">Информация и творчество</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="dig2safe,dig2io,dig2files,dig2web">
     <a href="keys.html" class="island digital ready" style="text-decoration:none;">
       <h3>Знакомство с клавиатурой</h3>
       <p>Пробел, Enter, Shift, Backspace, Delete и стрелки</p>
@@ -85,6 +85,11 @@
       <p>Алгоритм ветвления и словесная запись алгоритма</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
+  </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
+
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="dig2safe,dig2io,dig2files,dig2web,dig2keys,dig2train,dig2text,dig2algo">
     <a href="scratch.html" class="island digital ready" style="text-decoration:none;">
       <h3>Мой герой в Scratch</h3>
       <p>Создаём героя, управляем им и устраиваем диалог</p>
@@ -106,9 +111,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Роботы</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="dig2safe,dig2io,dig2files,dig2web,dig2keys,dig2train,dig2text,dig2algo,dig2scratch,dig2cartoon,dig2graph,dig2sound">
     <a href="robot.html" class="island digital ready" style="text-decoration:none;">
       <h3>Робот в движении</h3>
       <p>Программируем робота: вперёд, назад, повороты и датчик касания</p>
@@ -125,6 +131,7 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>

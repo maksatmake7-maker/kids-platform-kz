@@ -37,7 +37,7 @@
   <h2>Әдебиетпен ойнап танысамыз</h2>
   <p class="lead">Он жеті ойын: ауыз әдебиеті, мақал-мәтел, мысал, ақындар мен жазушылар, мерекелер, табиғат және туған өлке.</p>
 
-  <h3 class="quarter-heading">Халық шығармасы</h3>
+  <h3 class="quarter-heading" data-i18n="q1_heading"></h3>
   <div class="island-grid">
     <a href="genres.html" class="island read ready" style="text-decoration:none;">
       <span class="emoji">📖</span>
@@ -65,8 +65,8 @@
     </a>
   </div>
 
-  <h3 class="quarter-heading">Көркем сөз</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q2_heading"></h3>
+  <div class="island-grid" data-requires="lt2genres,lt2proverbs,lt2riddles,lt2fairy">
     <a href="fable.html" class="island read ready" style="text-decoration:none;">
       <span class="emoji">🐜</span>
       <h3>Мысал: кім қандай?</h3>
@@ -85,10 +85,6 @@
       <p>Қай сөздер ұйқасады?</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading">Ақындар мен жазушылар</h3>
-  <div class="island-grid">
     <a href="authors.html" class="island read ready" style="text-decoration:none;">
       <span class="emoji">✍️</span>
       <h3>Ақын ба, жазушы ма?</h3>
@@ -96,9 +92,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Мерекелер және рәміздер</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q3_heading"></h3>
+  <div class="island-grid" data-requires="lt2genres,lt2proverbs,lt2riddles,lt2fairy,lt2fable,lt2simile,lt2rhyme,lt2authors">
     <a href="nauryz.html" class="island read ready" style="text-decoration:none;">
       <span class="emoji">🌷</span>
       <h3>Наурыз мерекесі</h3>
@@ -111,10 +108,6 @@
       <p>Ту, Елтаңба, Әнұран</p>
       <span class="badge" data-i18n="badge_play"></span>
     </a>
-  </div>
-
-  <h3 class="quarter-heading">Табиғат және туған өлке</h3>
-  <div class="island-grid">
     <a href="malsh.html" class="island read ready" style="text-decoration:none;">
       <span class="emoji">🐎</span>
       <h3>Төрт түлік және төлдері</h3>
@@ -134,9 +127,10 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
+  <p class="locked-message" data-i18n="locked_message"></p>
 
-  <h3 class="quarter-heading">Отбасы, мектеп, денсаулық, саяхат</h3>
-  <div class="island-grid">
+  <h3 class="quarter-heading" data-i18n="q4_heading"></h3>
+  <div class="island-grid" data-requires="lt2genres,lt2proverbs,lt2riddles,lt2fairy,lt2fable,lt2simile,lt2rhyme,lt2authors,lt2nauryz,lt2symbols,lt2malsh,lt2nature,lt2homeland">
     <a href="family.html" class="island read ready" style="text-decoration:none;">
       <span class="emoji">👨‍👩‍👧</span>
       <h3>Менің отбасым</h3>
@@ -162,7 +156,7 @@
       <span class="badge" data-i18n="badge_play"></span>
     </a>
   </div>
-
+  <p class="locked-message" data-i18n="locked_message"></p>
 </section>
 
 <footer data-i18n="footer"></footer>
