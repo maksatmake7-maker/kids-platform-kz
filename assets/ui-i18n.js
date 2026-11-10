@@ -30,7 +30,7 @@
     return l || 'ru';
   }
   /* Пакеты по классам: тексты уроков и игр лежат отдельно (ui-<язык>-g1.js — 1 класс), чтобы не грузить их на остальных страницах */
-  var PACKS = [ [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-1(?:-kaz)?\//, 'g1b'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'],
+  var PACKS = [ [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-1(?:-kaz)?\//, 'g1b'], [/\/grades\/grade-1-kaz\//, 'kd1'], [/\/grades\/grade-2-kaz\//, 'kd2'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'],
     [/\/grades\/grade-2(?:-kaz)?\/fizra\//, 'g2fizra'],
     [/\/grades\/grade-2(?:-kaz)?\/izo\//, 'g2izo'],
     [/\/grades\/grade-2(?:-kaz)?\/muzyka\//, 'g2muzyka'],
@@ -67,7 +67,7 @@
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math', 'g2samo', 'g2eng'];
-  var AVAIL = { kz: ['g1', 'g1b', 'g1eng', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka'], tg: ['g1', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka'], en: ['g1', 'g1b', 'g4', 'root', 'g2', 'g2m', 'g2fizra', 'g2izo', 'g2trud', 'g2estestvo', 'g2poznanie', 'g2math', 'g2digital', 'g2samo', 'g2eng', 'g2muzyka'], zh: ['g1', 'g4', 'root'], ug: ['g1', 'g4', 'root'], fr: ['g1'], de: ['g1'] };
+  var AVAIL = { kz: ['g1', 'g1b', 'g1eng', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'kd1', 'kd2', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka'], tg: ['g1', 'kd1', 'kd2', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka'], en: ['g1', 'g1b', 'kd1', 'kd2', 'g4', 'root', 'g2', 'g2m', 'g2fizra', 'g2izo', 'g2trud', 'g2estestvo', 'g2poznanie', 'g2math', 'g2digital', 'g2samo', 'g2eng', 'g2muzyka'], zh: ['g1', 'g4', 'root'], ug: ['g1', 'g4', 'root'], fr: ['g1'], de: ['g1'] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
