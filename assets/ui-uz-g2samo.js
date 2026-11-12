@@ -1342,3 +1342,6 @@ ex:{
 "Это относится к группе «Что объединяет народы»": "Bu «Xalqlarni nima birlashtiradi» guruhiga tegishli",
 "Это относится к группе «Что чувствует честный человек»": "Bu «Halol odam nimani his qiladi» guruhiga tegishli"
 }});
+
+/* g2pats */
+UI_I18N_REG('uz',{ex:{},pat:[["^Это относится к группе «(.+)»$", "Bu “$1” guruhiga tegishli", [1]], ["^Найди: (.+)$", "Top: $1", [1]], ["^— (.+)$", "— $1", [1]], ["^: (.+)$", ": $1", [1]], ["^Допиши слово: (.+)$", "So‘zni to‘ldir: $1", [1]], ["^([^A-Za-zА-Яа-яЁё0-9\\s«»]{1,6}) (.+)$", "$1 $2", [2]], ["^Просмотрено: (\\d+) из (\\d+) нужных\\.$", "Ko‘rib chiqildi: kerakli $2 tadan $1 tasi."]]});

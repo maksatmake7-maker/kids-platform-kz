@@ -6070,3 +6070,6 @@ ex:{
 "Десять игр по программе: устройства компьютера, файлы и папки, поиск в сети, клавиатура, алгоритмы, Scratch, звук и роботы.": "Dastur bo‘yicha o‘nta o‘yin: kompyuter qurilmalari, fayllar va papkalar, tarmoqda qidirish, klaviatura, algoritmlar, Scratch, ovoz va robotlar.",
 "Создаём, копируем, перемещаем и удаляем файлы и папки": "Fayllar va papkalarni yaratamiz, nusxalaymiz, ko‘chiramiz va o‘chiramiz"
 }});
+
+/* g2pats */
+UI_I18N_REG('uz',{ex:{},pat:[["^Это относится к группе «(.+)»$", "Bu “$1” guruhiga tegishli", [1]], ["^Найди: (.+)$", "Top: $1", [1]], ["^— (.+)$", "— $1", [1]], ["^: (.+)$", ": $1", [1]], ["^Допиши слово: (.+)$", "So‘zni to‘ldir: $1", [1]], ["^Просмотрено: (\\d+) из (\\d+) нужных\\.$", "Ko‘rib chiqildi: kerakli $2 tadan $1 tasi."], ["^Карточка (\\d+) из (\\d+)$", "Kartochka $1 / $2"], ["^💡 Найди, где заканчивается красный столбик, и прочитай число на шкале: (\\d+)\\. На шкале между подписанными числами стоят чёрточки через два градуса\\.$", "💡 Qizil ustun qayerda tugashini top va shkaladagi sonni o‘qi: $1. Shkalada yozilgan sonlar orasidagi chiziqchalar ikki gradusdan turadi."], ["^💡 Посчитай знаки (.+?) в таблице: их (\\d+)\\.$", "💡 Jadvaldagi $1 belgilarini sana: ular $2 ta."]]});

@@ -1246,3 +1246,6 @@ UI_I18N_REG('uz',{ ex:{
   "равновесие":"muvozanat",
   "приседание":"cho'kkalash"
 }});
+
+/* g2pats */
+UI_I18N_REG('uz',{ex:{},pat:[["^Дальше прыгнул тот, чей флажок стоит дальше от старта\\. Это (\\d+(?:[.,]\\d+)?) метров\\.$", "Uzoqroq sakragan — bayrog‘i startdan uzoqroqda turgan kishi. Bu $1 metr."], ["^Меньше прыгнул тот, чей флажок ближе к старту\\. Это (\\d+(?:[.,]\\d+)?) метров\\.$", "Kamroq sakragan — bayrog‘i startga yaqinroq turgan kishi. Bu $1 metr."], ["^Найди упражнение: (.+)\\.$", "Mashqni top: $1.", [1]], ["^Найди упражнение: (.+)$", "Mashqni top: $1", [1]], ["^Найди: (.+)$", "Top: $1", [1]], ["^Найди (.+?)\\.$", "Top: $1.", [1]], ["^— (.+)$", "— $1", [1]]]});
