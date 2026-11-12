@@ -44,11 +44,28 @@
       /* ui-i18n.js подгружается отдельно и позже: ждём его (до ~15 с), потом ждём пакеты слов страницы */
       var tries = 0;
       (function wait(){
-        if(window.UI_I18N_WHEN){ UI_I18N_WHEN(l, function(){ run(containerId, trSpec(spec, l)); }); return; }
+        if(window.UI_I18N_WHEN){ UI_I18N_WHEN(l, function(){ withRW(l, function(){ run(containerId, trSpec(spec, l)); }); }); return; }
         if(++tries > 300){ run(containerId, spec); return; }
         setTimeout(wait, 50);
       })();
     }); };
+  }
+
+  /* Русские слова уроков русского языка (assets/ru-words.js): в интерфейсе на другом языке показываем «русский — перевод» */
+  /* + тексты игр чтения 1 класса на казахском и английском (ui-<язык>-rdg1.js дописываются в словарь интерфейса) */
+  function withRW(l, cb){
+    var steps = [];
+    if(!window.RU_WORDS) steps.push(base + '../assets/ru-words.js');
+    if((l === 'kz' || l === 'en') && !(window.__rdg1 && window.__rdg1[l])) steps.push(base + '../assets/ui-' + l + '-rdg1.js');
+    (function next(){ if(!steps.length){ if(l === 'kz' || l === 'en'){ window.__rdg1 = window.__rdg1 || {}; window.__rdg1[l] = 1; } cb(); return; } load(steps.shift(), next); })();
+  }
+  function isWordish(x){ return /^[А-Яа-яЁё]{1,}([ -][А-Яа-яЁё]+)*[.?!]?$/.test(x) && x.length < 90; }
+  function bil(x, l){
+    var RW = window.RU_WORDS || {}, e = RW[x];
+    if(!e) return null;
+    var t = e[l];
+    if(!t || t === x) return x;
+    return x.indexOf(' — ') > -1 ? x + ' (' + t + ')' : x + ' — ' + t;
   }
 
   /* Перевод спецификации игры по словарю интерфейса (kz и др.): строки берутся из ui-<lang>-*.js, чего нет в словаре — остаётся по-русски */
@@ -56,7 +73,10 @@
   function trSpec(spec, l){
     if(spec.noTr) return spec;   /* noTr:1 — уроки русского для казахских школ: русские слова не переводим */
     var nAll = 0, nTr = 0;
-    function T(x){ var r = window.UI_I18N_LOOKUP(l, x); if(/[А-Яа-яЁё]/.test(x)){ nAll++; if(r !== undefined) nTr++; } return r === undefined ? x : r; }
+    var RW0 = window.RU_WORDS || {}, rwg = !!spec.rw || /^bk1/.test(spec.key || '');   /* уроки русского языка (чтение, 1 класс; другие игры включаются флагом rw:1): слова показываем «русский — перевод» */
+    function T(x){ var r = window.UI_I18N_LOOKUP(l, x);
+      var cnt = rwg ? (/[А-Яа-яЁё]{2}/.test(x) && (x.indexOf(' ') > -1 || RW0[x])) : /[А-Яа-яЁё]/.test(x);   /* в играх со словами: считаем фразы и слова из списка; буквы, звуки и варианты написания — нет */
+      if(cnt){ nAll++; if(r !== undefined || RW0[x]) nTr++; } return r === undefined ? x : r; }
     function walk(v, k){
       if(k in TR_SKIP) return v;
       if(typeof v === 'string') return T(v);
@@ -65,6 +85,25 @@
       return v;
     }
     var sp = walk(spec);
+    /* учебные слова: карточки и варианты ответов-слов показываем как «русский — перевод» */
+    var RW = rwg ? (window.RU_WORDS || {}) : {};
+    (spec.groups || []).forEach(function(g, i){
+      (g.items || []).forEach(function(it, j){
+        var b = RW[it[1]] ? bil(it[1], l) : null;
+        if(b === null) return;
+        var o = sp.groups[i].items[j];
+        if(o[1] !== b){ if(it[3] === undefined || it[3] === '') o[3] = it[1]; o[1] = b; }
+      });
+    });
+    if(rwg) (spec.mcq || []).forEach(function(q, i){
+      var opts = [q[1]].concat(q[2]).filter(function(x){ return /[А-Яа-яЁё]/.test(x); });
+      if(!opts.length) return;
+      var ok = opts.every(function(x){ return RW[x]; });                       /* все варианты — учебные слова: «русский — перевод» */
+      if(!ok && !opts.every(function(x){ return isWordish(x) && x.indexOf(' ') < 0; })) return;   /* варианты-фразы — обычный перевод */
+      var m = sp.mcq[i];                                                        /* варианты написания («ручька», «айдар») — остаются как есть, без подсказки переводом */
+      m[1] = ok ? bil(q[1], l) : q[1];
+      m[2] = q[2].map(function(x){ return ok && RW[x] ? bil(x, l) : x; });
+    });
     if(nAll && nTr / nAll < 0.7) return spec;   /* игра переведена не целиком — не смешиваем языки, оставляем как есть */
     sp.__l = l; sp.__T = T; sp.spell = [];
     (sp.groups || []).forEach(function(g, i){
