@@ -149,7 +149,7 @@
         r = d.pat[i][1].replace(/\$(?:(\d)|\{(\d+)\})/g, function(_, a, b){ var v = m[+(a || b)]; return v === undefined ? '' : v; }); break;
       }
     }
-    if (d.fb && r !== undefined && /[А-Яа-яЁё]/.test(r)){ var fx = one(t, d.fb); if (fx !== undefined) r = fx; }   // шаблон fr/de оставил русские слова — берём английский вариант целиком
+    if (d.fb && r !== undefined && /[А-Яа-яЁё]/.test(r) && r.indexOf(t) !== 0){ var fx = one(t, d.fb); if (fx !== undefined) r = fx; }   // шаблон fr/de оставил русские слова — берём английский вариант целиком (кроме формата «русский — перевод»: он начинается с исходного текста)
     if (r === undefined && d.fb) r = one(t, d.fb);
     return r;
   }
