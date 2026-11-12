@@ -44,7 +44,7 @@
       /* ui-i18n.js подгружается отдельно и позже: ждём его (до ~15 с), потом ждём пакеты слов страницы */
       var tries = 0;
       (function wait(){
-        if(window.UI_I18N_WHEN){ UI_I18N_WHEN(l, function(){ withRW(l, function(){ run(containerId, trSpec(spec, l)); }); }); return; }
+        if(window.UI_I18N_WHEN){ UI_I18N_WHEN(l, function(){ withRW(spec, l, function(){ run(containerId, trSpec(spec, l)); }); }); return; }
         if(++tries > 300){ run(containerId, spec); return; }
         setTimeout(wait, 50);
       })();
@@ -53,11 +53,14 @@
 
   /* Русские слова уроков русского языка (assets/ru-words.js): в интерфейсе на другом языке показываем «русский — перевод» */
   /* + тексты игр чтения 1 класса на казахском и английском (ui-<язык>-rdg1.js дописываются в словарь интерфейса) */
-  function withRW(l, cb){
-    var steps = [];
+  function withRW(spec, l, cb){
+    var steps = [], key = spec.key || '', pk = null;
     if(!window.RU_WORDS) steps.push(base + '../assets/ru-words.js');
-    if((l === 'kz' || l === 'en') && !(window.__rdg1 && window.__rdg1[l])) steps.push(base + '../assets/ui-' + l + '-rdg1.js');
-    (function next(){ if(!steps.length){ if(l === 'kz' || l === 'en'){ window.__rdg1 = window.__rdg1 || {}; window.__rdg1[l] = 1; } cb(); return; } load(steps.shift(), next); })();
+    if(/^bk1/.test(key) && (l === 'kz' || l === 'en')) pk = 'rdg1';           /* игры «Грамоты» 1 класса */
+    else if(/^ru1/.test(key) && l !== 'kz' && l !== 'ru') pk = 'rus1k';       /* уроки русского, казахское отделение 1 класса */
+    window.__rwPk = window.__rwPk || {};
+    if(pk && !window.__rwPk[pk + l]) steps.push(base + '../assets/ui-' + l + '-' + pk + '.js');
+    (function next(){ if(!steps.length){ if(pk) window.__rwPk[pk + l] = 1; cb(); return; } load(steps.shift(), next); })();
   }
   function isWordish(x){ return /^[А-Яа-яЁё]{1,}([ -][А-Яа-яЁё]+)*[.?!]?$/.test(x) && x.length < 90; }
   function bil(x, l){
@@ -71,10 +74,12 @@
   /* Перевод спецификации игры по словарю интерфейса (kz и др.): строки берутся из ui-<lang>-*.js, чего нет в словаре — остаётся по-русски */
   var TR_SKIP = { k:1, key:1, theme:1, c1:1, c2:1, ic:1, icons:1, set:1 };
   function trSpec(spec, l){
-    if(spec.noTr) return spec;   /* noTr:1 — уроки русского для казахских школ: русские слова не переводим */
+    var ru1 = /^ru1/.test(spec.key || '');   /* уроки русского, казахское отделение 1 класса: слова «русский — перевод», подписи на языке интерфейса */
+    if(spec.noTr && !ru1) return spec;   /* noTr:1 — остальные уроки русского для казахских школ пока без перевода */
     var nAll = 0, nTr = 0;
-    var RW0 = window.RU_WORDS || {}, rwg = !!spec.rw || /^bk1/.test(spec.key || '');   /* уроки русского языка (чтение, 1 класс; другие игры включаются флагом rw:1): слова показываем «русский — перевод» */
-    function T(x){ var r = window.UI_I18N_LOOKUP(l, x);
+    var RW0 = window.RU_WORDS || {}, rwg = !!spec.rw || /^bk1/.test(spec.key || '') || ru1;   /* уроки русского языка (чтение, 1 класс; другие игры включаются флагом rw:1): слова показываем «русский — перевод» */
+    function T(x){ if(ru1 && (l === 'kz' || RW0[x])) return x;   /* казахский — подписи уже по-казахски; русские слова не переводим */
+      var r = window.UI_I18N_LOOKUP(l, x);
       var cnt = rwg ? (/[А-Яа-яЁё]{2}/.test(x) && (x.indexOf(' ') > -1 || RW0[x])) : /[А-Яа-яЁё]/.test(x);   /* в играх со словами: считаем фразы и слова из списка; буквы, звуки и варианты написания — нет */
       if(cnt){ nAll++; if(r !== undefined || RW0[x]) nTr++; } return r === undefined ? x : r; }
     function walk(v, k){
@@ -95,7 +100,8 @@
         if(o[1] !== b){ if(it[3] === undefined || it[3] === '') o[3] = it[1]; o[1] = b; }
       });
     });
-    if(rwg) (spec.mcq || []).forEach(function(q, i){
+    if(ru1) (spec.groups || []).forEach(function(g, i){ var b = RW[g.name] ? bil(g.name, l) : null; if(b !== null) sp.groups[i].name = b; });
+    if(rwg && !ru1) (spec.mcq || []).forEach(function(q, i){
       var opts = [q[1]].concat(q[2]).filter(function(x){ return /[А-Яа-яЁё]/.test(x); });
       if(!opts.length) return;
       var ok = opts.every(function(x){ return RW[x]; });                       /* все варианты — учебные слова: «русский — перевод» */
@@ -104,7 +110,7 @@
       m[1] = ok ? bil(q[1], l) : q[1];
       m[2] = q[2].map(function(x){ return ok && RW[x] ? bil(x, l) : x; });
     });
-    if(nAll && nTr / nAll < 0.7) return spec;   /* игра переведена не целиком — не смешиваем языки, оставляем как есть */
+    if(!(ru1 && l === 'kz') && nAll && nTr / nAll < 0.7) return spec;   /* игра переведена не целиком — не смешиваем языки, оставляем как есть */
     sp.__l = l; sp.__T = T; sp.spell = [];
     (sp.groups || []).forEach(function(g, i){
       var full = window.UI_I18N_LOOKUP(l, 'Найди: ' + spec.groups[i].find);
