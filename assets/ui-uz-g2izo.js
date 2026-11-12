@@ -1548,3 +1548,9 @@ UI_I18N_REG('uz',{ ex:{
 }});
 
 UI_I18N_REG('uz',{ ex:{ "Сәндік-қолданбалы өнер":"Amaliy-bezak san'ati" }});
+
+/* g2full:g2izo */
+UI_I18N_REG('uz',{
+ex:{
+"Волнистая линия изгибается, как волны.": "To‘lqinsimon chiziq to‘lqinlar kabi egiladi."
+}});
