@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<script src="assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<script src="assets/stats.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поддержать проект — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/world.css">
+<style>
+  .dn{max-width:720px;margin:0 auto;padding:10px 16px 50px;position:relative;z-index:3}
+  .dn-card{background:#fff;border-radius:28px;padding:26px 22px 28px;box-shadow:0 8px 0 rgba(0,0,0,.08)}
+  .dn-card h1{font:800 clamp(1.6rem,5vw,2.2rem)/1.2 'Baloo 2',sans-serif;color:#1D3557;text-align:center;margin-bottom:10px}
+  .dn-lead{color:#35506B;font-weight:700;font-size:1.05rem;line-height:1.5;text-align:center;margin-bottom:18px}
+  .dn-row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:14px;background:#F4F8FC;margin-bottom:8px;flex-wrap:wrap}
+  .dn-k{color:#5C7690;font-weight:700;font-size:.85rem;flex:0 0 100%}
+  .dn-v{color:#1D3557;font-weight:800;font-size:1.05rem;word-break:break-all;flex:1 1 auto}
+  .dn-copy{border:0;border-radius:999px;padding:6px 14px;background:#FFE08A;color:#1D3557;font:800 .85rem Nunito,Arial,sans-serif;cursor:pointer}
+  .dn-pay{display:block;text-align:center;margin:16px auto 6px;padding:14px 22px;border-radius:999px;background:#FF6B5B;color:#fff;font:800 1.1rem 'Baloo 2',sans-serif;text-decoration:none;max-width:340px;box-shadow:0 5px 0 rgba(0,0,0,.15)}
+  .dn-qr{text-align:center;margin:14px 0 4px}.dn-qr img{width:min(240px,70vw);height:auto;border-radius:16px;border:4px solid #FFC93C;background:#fff}
+  .dn-note{color:#5C7690;font-weight:600;font-size:.82rem;line-height:1.45;text-align:center;margin-top:14px}
+  .dn-off{text-align:center;color:#35506B;font-weight:800}
+</style>
+</head>
+<body class="w-page">
+<header>
+  <a href="index.html" class="logo"><span class="logo-dot">🐆</span> Білім Аралы</a>
+  <div class="lang-toggle">
+    <button class="active" data-lang="ru" onclick="applyLang('ru')">RU</button>
+    <button data-lang="kz" onclick="applyLang('kz')">ҚАЗ</button>
+    <button data-lang="en" onclick="applyLang('en')">EN</button>
+    <button data-lang="zh" onclick="applyLang('zh')">中文</button>
+    <button data-lang="uz" onclick="applyLang('uz')">O'ZB</button>
+    <button data-lang="tg" onclick="applyLang('tg')">ТҶК</button>
+    <button data-lang="ug" onclick="applyLang('ug')">Уйғурчә</button>
+  </div>
+</header>
+<main class="dn">
+  <a href="index.html" class="back-link" data-i18n="back_home">← На главную</a>
+  <div class="dn-card">
+    <h1 id="dn-title">💛 Поддержать проект</h1>
+    <p class="dn-lead" id="dn-lead"></p>
+    <div id="dn-body"></div>
+    <p class="dn-note" id="dn-note"></p>
+  </div>
+</main>
+<footer data-i18n="footer"></footer>
+<script src="assets/donate-config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/world.js"></script>
+<script>
+(function(){
+  var T = {
+    ru:{t:'💛 Поддержать проект',lead:'Сайт «Білім Аралы» бесплатный и останется бесплатным для детей. Если вы хотите помочь его развитию — переводите любую сумму, спасибо!',recipient:'Получатель',iin:'ИИН/БИН',iban:'Счёт (IBAN)',bank:'Банк',bik:'БИК',kbe:'КБе',purpose:'Назначение платежа',purposeV:'Благотворительное пожертвование на развитие проекта «Білім Аралы»',copy:'Копировать',copied:'Скопировано ✓',pay:'Оплатить',scan:'Или отсканируйте QR-код в банковском приложении',note:'Пожертвование добровольное. Спасибо, что помогаете детям учиться!',off:'Реквизиты скоро появятся.'},
+    kz:{t:'💛 Жобаны қолдау',lead:'«Білім Аралы» сайты тегін және балалар үшін тегін болып қала береді. Дамуына көмектескіңіз келсе — кез келген соманы аударыңыз, рахмет!',recipient:'Алушы',iin:'ЖСН/БСН',iban:'Шот (IBAN)',bank:'Банк',bik:'БИК',kbe:'КБе',purpose:'Төлем мақсаты',purposeV:'«Білім Аралы» жобасын дамытуға қайырымдылық',copy:'Көшіру',copied:'Көшірілді ✓',pay:'Төлеу',scan:'Немесе банк қосымшасында QR-кодты сканерлеңіз',note:'Қайырымдылық ерікті түрде жасалады. Балаларға оқуға көмектескеніңіз үшін рахмет!',off:'Деректемелер жақында пайда болады.'},
+    en:{t:'💛 Support the project',lead:'“Білім Аралы” is free and will stay free for children. If you would like to help it grow, any amount is welcome — thank you!',recipient:'Recipient',iin:'Tax ID',iban:'Account (IBAN)',bank:'Bank',bik:'Bank code (BIC)',kbe:'KBe',purpose:'Payment purpose',purposeV:'Charitable donation for the development of the “Білім Аралы” project',copy:'Copy',copied:'Copied ✓',pay:'Pay',scan:'Or scan the QR code in your banking app',note:'Donations are voluntary. Thank you for helping children learn!',off:'Payment details are coming soon.'},
+    zh:{t:'💛 支持本项目',lead:'“Білім Аралы”对孩子们免费，并将一直免费。如果您愿意支持它的发展，欢迎任意金额，谢谢！',recipient:'收款人',iin:'税号',iban:'账号（IBAN）',bank:'银行',bik:'银行代码（BIC）',kbe:'KBe',purpose:'付款用途',purposeV:'为“Білім Аралы”项目发展的慈善捐款',copy:'复制',copied:'已复制 ✓',pay:'支付',scan:'或在银行应用中扫描二维码',note:'捐款出于自愿。感谢您帮助孩子们学习！',off:'收款信息即将提供。'},
+    uz:{t:'💛 Loyihani qoʻllab-quvvatlash',lead:'«Білім Аралы» bolalar uchun bepul va bepul boʻlib qoladi. Rivojlanishiga yordam bermoqchi boʻlsangiz — istalgan summani oʻtkazing, rahmat!',recipient:'Oluvchi',iin:'STIR/BIN',iban:'Hisob raqami (IBAN)',bank:'Bank',bik:'BIK',kbe:'KBe',purpose:'Toʻlov maqsadi',purposeV:'«Білім Аралы» loyihasini rivojlantirish uchun xayriya',copy:'Nusxalash',copied:'Nusxalandi ✓',pay:'Toʻlash',scan:'Yoki bank ilovasida QR-kodni skanerlang',note:'Xayriya ixtiyoriy. Bolalarga oʻqishda yordam bergani uchun rahmat!',off:'Rekvizitlar tez orada paydo boʻladi.'},
+    tg:{t:'💛 Дастгирии лоиҳа',lead:'«Білім Аралы» барои кӯдакон ройгон аст ва ройгон мемонад. Агар мехоҳед ба рушди он кӯмак кунед — ҳар маблағеро гузаронед, ташаккур!',recipient:'Гиранда',iin:'ШМС/БИН',iban:'Ҳисоб (IBAN)',bank:'Бонк',bik:'БИК',kbe:'КБе',purpose:'Мақсади пардохт',purposeV:'Хайрия барои рушди лоиҳаи «Білім Аралы»',copy:'Нусхабардорӣ',copied:'Нусха шуд ✓',pay:'Пардохт',scan:'Ё QR-кодро дар барномаи бонкӣ скан кунед',note:'Хайрия ихтиёрӣ аст. Ташаккур, ки ба кӯдакон дар омӯзиш кӯмак мекунед!',off:'Маълумоти пардохт ба зудӣ пайдо мешавад.'},
+    ug:{t:'💛 Лайиһини қоллаш',lead:'«Білім Аралы» балилар үчүн бекар вә бекар болуп қалиду. Тәрәққиятиға ярдәм бәргиңиз кәлсә — һәр қандақ санни аударсаңиз болиду, рәхмәт!',recipient:'Алғучи',iin:'ИИН/БИН',iban:'Һесап (IBAN)',bank:'Банка',bik:'БИК',kbe:'КБе',purpose:'Төләмниң мәхсити',purposeV:'«Білім Аралы» лайиһисиниң тәрәққиятиға хәйрихаһлиқ',copy:'Көчүрүш',copied:'Көчүрүлди ✓',pay:'Төләш',scan:'Яки банка қошумчисида QR-кодни скан қилиң',note:'Хәйрихаһлиқ ихтиярий. Балиларға оқушқа ярдәмләшкәнликиңиз үчүн рәхмәт!',off:'Реквизитлар жиқинда пәйда болиду.'},
+    fr:{t:'💛 Soutenir le projet',lead:'« Білім Аралы » est gratuit et le restera pour les enfants. Si vous souhaitez aider son développement, tout montant est le bienvenu — merci !',recipient:'Bénéficiaire',iin:'Numéro fiscal',iban:'Compte (IBAN)',bank:'Banque',bik:'Code banque (BIC)',kbe:'KBe',purpose:'Motif du paiement',purposeV:'Don de bienfaisance pour le développement du projet « Білім Аралы »',copy:'Copier',copied:'Copié ✓',pay:'Payer',scan:'Ou scannez le QR code dans votre application bancaire',note:'Le don est volontaire. Merci d’aider les enfants à apprendre !',off:'Les coordonnées de paiement arrivent bientôt.'},
+    de:{t:'💛 Projekt unterstützen',lead:'„Білім Аралы“ ist für Kinder kostenlos und bleibt es. Wenn Sie die Weiterentwicklung unterstützen möchten, ist jeder Betrag willkommen — danke!',recipient:'Empfänger',iin:'Steuernummer',iban:'Konto (IBAN)',bank:'Bank',bik:'Bankcode (BIC)',kbe:'KBe',purpose:'Verwendungszweck',purposeV:'Spende für die Entwicklung des Projekts „Білім Аралы“',copy:'Kopieren',copied:'Kopiert ✓',pay:'Bezahlen',scan:'Oder scannen Sie den QR-Code in Ihrer Banking-App',note:'Spenden sind freiwillig. Danke, dass Sie Kindern beim Lernen helfen!',off:'Zahlungsdaten folgen in Kürze.'}
+  };
+  function lang(){ try{ var s=localStorage.getItem('bilim_lang_v1'); if(s && T[s]) return s; }catch(e){} return 'ru'; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function paint(l){
+    var t = T[l] || T.ru, D = window.DONATE || {};
+    document.getElementById('dn-title').textContent = t.t;
+    document.getElementById('dn-lead').textContent = t.lead;
+    document.getElementById('dn-note').textContent = D.enabled ? t.note : '';
+    document.title = t.t.replace('💛 ','') + ' — Білім Аралы';
+    var h = '';
+    if(!D.enabled){ h = '<p class="dn-off">'+esc(t.off)+'</p>'; }
+    else {
+      [['recipient',D.recipient],['iin',D.iin],['iban',D.iban],['bank',D.bank],['bik',D.bik],['kbe',D.kbe],['purpose',t.purposeV]].forEach(function(r){
+        if(!r[1]) return;
+        h += '<div class="dn-row"><div class="dn-k">'+esc(t[r[0]])+'</div><div class="dn-v">'+esc(r[1])+'</div><button type="button" class="dn-copy" data-v="'+esc(r[1])+'">'+esc(t.copy)+'</button></div>';
+      });
+      if(D.kaspiUrl) h += '<a class="dn-pay" href="'+esc(D.kaspiUrl)+'" target="_blank" rel="noopener">'+esc(t.pay)+'</a>';
+      if(D.qr) h += '<div class="dn-qr"><img src="'+esc(D.qr)+'" alt="QR"><div class="dn-note">'+esc(t.scan)+'</div></div>';
+    }
+    document.getElementById('dn-body').innerHTML = h;
+    Array.prototype.forEach.call(document.querySelectorAll('.dn-copy'), function(b){
+      b.onclick = function(){
+        var v = b.getAttribute('data-v');
+        function done(){ var o=b.textContent; b.textContent=t.copied; setTimeout(function(){b.textContent=o;},1500); }
+        try{ navigator.clipboard.writeText(v).then(done,done); }catch(e){ done(); }
+      };
+    });
+  }
+  var orig = window.applyLang;
+  window.applyLang = function(l){ if(orig) orig(l); paint(T[l] ? l : 'ru'); };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ paint(lang()); }); else paint(lang());
+})();
+</script>
+</body>
+</html>
