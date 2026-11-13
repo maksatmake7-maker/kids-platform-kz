@@ -1548,3 +1548,12 @@ UI_I18N_REG('uz',{ ex:{
 }});
 
 UI_I18N_REG('uz',{ ex:{ "Сәндік-қолданбалы өнер":"Amaliy-bezak san'ati" }});
+
+/* g2full:g2izo */
+UI_I18N_REG('uz',{
+ex:{
+"Волнистая линия изгибается, как волны.": "To‘lqinsimon chiziq to‘lqinlar kabi egiladi."
+}});
+
+/* g2pats */
+UI_I18N_REG('uz',{ex:{},pat:[["^В узоре повторяются (.+), (.+) и (.+)\\. Дальше нужен (.+)\\.$", "Naqshda $1, $2 va $3 takrorlanadi. Keyingisi $4 bo‘lishi kerak.", [1, 2, 3, 4]], ["^В узоре повторяются (.+) и (.+)\\. Дальше нужен (.+)\\.$", "Naqshda $1 va $2 takrorlanadi. Keyingisi $3 bo‘lishi kerak.", [1, 2, 3]], ["^Что получится, если смешать (.+) и (.+) краски\\?$", "$1 va $2 bo‘yoqlarni aralashtirsak, nima hosil bo‘ladi?", [1, 2]], ["^Какую краску добавить к (.+), чтобы получился (.+) цвет\\?$", "$1 rangga qaysi bo‘yoqni qo‘shsak, $2 rang hosil bo‘ladi?", [1, 2]], ["^Что получится, если к (.+) краске добавить (.+)\\?$", "$1 bo‘yoqqa $2 qo‘shsak, nima hosil bo‘ladi?", [1, 2]], ["^(.+) и (.+) дают (.+) цвет\\.$", "$1 va $2 — $3 rang hosil qiladi.", [1, 2, 3]], ["^Найди упражнение: (.+)\\.$", "Mashqni top: $1.", [1]], ["^Найди: (.+)$", "Top: $1", [1]], ["^Найди (.+?)\\.$", "Top: $1.", [1]], ["^— (.+)$", "— $1", [1]]]});
