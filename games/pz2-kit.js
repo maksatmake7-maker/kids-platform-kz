@@ -58,6 +58,7 @@
     if(!window.RU_WORDS) steps.push(base + '../assets/ru-words.js');
     if(/^bk1/.test(key) && (l === 'kz' || l === 'en')) pk = 'rdg1';           /* игры «Грамоты» 1 класса */
     else if(/^ru1/.test(key) && l !== 'kz' && l !== 'ru') pk = 'rus1k';       /* уроки русского, казахское отделение 1 класса */
+    else if(/^(rus2|lit2)/.test(key) && l !== 'ru') pk = 'rus2';              /* «Русский язык» и «Литература», 2 класс (русское отделение) */
     window.__rwPk = window.__rwPk || {};
     if(pk && !window.__rwPk[pk + l]) steps.push(base + '../assets/ui-' + l + '-' + pk + '.js');
     (function next(){ if(!steps.length){ if(pk) window.__rwPk[pk + l] = 1; cb(); return; } load(steps.shift(), next); })();
@@ -74,13 +75,14 @@
   /* Перевод спецификации игры по словарю интерфейса (kz и др.): строки берутся из ui-<lang>-*.js, чего нет в словаре — остаётся по-русски */
   var TR_SKIP = { k:1, key:1, theme:1, c1:1, c2:1, ic:1, icons:1, set:1 };
   function trSpec(spec, l){
-    var ru1 = /^ru1/.test(spec.key || '');   /* уроки русского, казахское отделение 1 класса: слова «русский — перевод», подписи на языке интерфейса */
+    var ru1 = /^ru1/.test(spec.key || ''), r2 = /^(rus2|lit2)/.test(spec.key || '');   /* уроки русского, казахское отделение 1 класса: слова «русский — перевод», подписи на языке интерфейса */
     if(spec.noTr && !ru1) return spec;   /* noTr:1 — остальные уроки русского для казахских школ пока без перевода */
     var nAll = 0, nTr = 0;
     var RW0 = window.RU_WORDS || {}, rwg = !!spec.rw || /^bk1/.test(spec.key || '') || ru1;   /* уроки русского языка (чтение, 1 класс; другие игры включаются флагом rw:1): слова показываем «русский — перевод» */
+    function LK(x){ var r = window.UI_I18N_LOOKUP(l, x); if(r === undefined && r2 && RW0[x] && RW0[x][l]) r = RW0[x][l]; return r; }
     function T(x){ if(ru1 && (l === 'kz' || RW0[x])) return x;   /* казахский — подписи уже по-казахски; русские слова не переводим */
-      var r = window.UI_I18N_LOOKUP(l, x);
-      var cnt = rwg ? (/[А-Яа-яЁё]{2}/.test(x) && (x.indexOf(' ') > -1 || RW0[x])) : /[А-Яа-яЁё]/.test(x);   /* в играх со словами: считаем фразы и слова из списка; буквы, звуки и варианты написания — нет */
+      var r = LK(x);
+      var cnt = r2 ? (/[А-Яа-яЁё]{2}/.test(x) && x.indexOf(' ') > -1) : rwg ? (/[А-Яа-яЁё]{2}/.test(x) && (x.indexOf(' ') > -1 || RW0[x])) : /[А-Яа-яЁё]/.test(x);   /* в играх со словами: считаем фразы и слова из списка; буквы, звуки и варианты написания — нет */
       if(cnt){ nAll++; if(r !== undefined || RW0[x]) nTr++; } return r === undefined ? x : r; }
     function walk(v, k){
       if(k in TR_SKIP) return v;
@@ -110,8 +112,21 @@
       m[1] = ok ? bil(q[1], l) : q[1];
       m[2] = q[2].map(function(x){ return ok && RW[x] ? bil(x, l) : x; });
     });
+    if(r2){   /* учебные слова, ответы и названия групп — «русский — перевод»; варианты написания («ручька») остаются как есть */
+      var B = function(x){ var t = LK(x); if(t === undefined || t === x) return x; return x.indexOf(' — ') > -1 ? x + ' (' + t + ')' : x + ' — ' + t; };
+      var fixOpts = function(c, w){ var all = [c].concat(w), a = all.filter(function(x){ return /[А-Яа-яЁё]{2}/.test(x); });
+        if(!a.length) return null;
+        if(!a.every(function(x){ return LK(x) !== undefined; })) return [c, w];
+        return [B(c), w.map(B)]; };
+      (spec.groups || []).forEach(function(g, i){
+        sp.groups[i].name = B(g.name);
+        (g.items || []).forEach(function(it, j){ var b = B(it[1]); if(b === it[1]) return; var o = sp.groups[i].items[j]; if(it[3] === undefined || it[3] === '') o[3] = it[1]; o[1] = b; });
+      });
+      (spec.mcq || []).forEach(function(q, i){ var f = fixOpts(q[1], q[2]); if(f){ sp.mcq[i][1] = f[0]; sp.mcq[i][2] = f[1]; } });
+      (spec.spell || []).forEach(function(q, i){ var f = fixOpts(q[1], q[2]); if(f){ sp.spell[i][1] = f[0]; sp.spell[i][2] = f[1]; } });
+    }
     if(!(ru1 && l === 'kz') && nAll && nTr / nAll < 0.7) return spec;   /* игра переведена не целиком — не смешиваем языки, оставляем как есть */
-    sp.__l = l; sp.__T = T; sp.spell = [];
+    sp.__l = l; sp.__T = T; if(!r2) sp.spell = [];
     (sp.groups || []).forEach(function(g, i){
       var full = window.UI_I18N_LOOKUP(l, 'Найди: ' + spec.groups[i].find);
       if(full !== undefined){ g.find = full; g.findFull = 1; }
