@@ -461,6 +461,7 @@ ex:{
 "На рога барана": "A ram's horns",
 "На следы кошки": "A cat's paw prints",
 "7 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "7 lessons: materials, tools, measuring, work techniques, natural materials, national patterns, exhibition",
+"20 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "20 lessons: materials, tools, measuring, work techniques, natural materials, national patterns, exhibition",
 "Выбирать приёмы работы и планировать изготовление": "Choose work techniques and plan the making",
 "Знать инструменты и безопасно с ними работать": "Know the tools and work with them safely",
 "Измерять длину линейкой и размечать детали": "Measure length with a ruler and mark out pieces",
