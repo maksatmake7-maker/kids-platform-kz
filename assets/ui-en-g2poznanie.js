@@ -1,6 +1,11 @@
 /* English: grade 2 trainers — poznanie (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"закон дружбы": "the law of friendship",
+"закон тишины": "the law of silence",
+"слабый ветер": "a light wind",
+"лёгкий дождь": "light rain",
+
 "Закон дружбы": "The law of friendship",
 "закон лени": "the law of laziness",
 "Закон класса": "A class law",

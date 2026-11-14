@@ -1,6 +1,14 @@
 /* English: grade 2 trainers — izo (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"цвета тёплые": "the colours are warm",
+"без листьев": "without leaves",
+"на потолке": "on the ceiling",
+"замораживаем": "we freeze it",
+"осенний лес": "an autumn forest",
+"белым мелом": "with white chalk",
+"горячий воск": "hot wax",
+
 "Жанр картины": "The genre of a painting",
 "Какая форма?": "Which shape?",
 "приёмы лепки": "modelling techniques",

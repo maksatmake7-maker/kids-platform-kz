@@ -1,5 +1,31 @@
 /* Білім Аралы — дополнение к словарю 1 класса (игры: цифровая грамотность, естествознание, ИЗО, музыка, труд, познание) */
 UI_I18N_REG("en",{ex:{
+"Какой номер у службы?": "What is the number of the service?",
+"Какой день недели перед днём «суббота»?": "Which day of the week is before Saturday?",
+"В гардеробе": "In the cloakroom",
+"В библиотеке": "In the library",
+"В спортзале": "In the gym",
+"В столовой": "In the canteen",
+"Прячет свои": "Hides its own",
+"Перед сном": "Before sleep",
+"Вместо обеда": "Instead of lunch",
+"Мимо школы": "Past the school",
+"На востоке": "In the east",
+"В магазине": "In a shop",
+"Из пластика": "Made of plastic",
+"Из алюминия": "Made of aluminium",
+"На тетрадях": "On exercise books",
+"На телефонах": "On phones",
+"Чужих людей": "Strangers",
+"Только себя": "Only himself",
+"Свой народ": "His own people",
+"31 октября": "31 October",
+"16 декабря": "16 December",
+"1 сентября": "1 September",
+"семнадцать": "seventeen",
+"Сколько кружков нужно добавить, чтобы рамка заполнилась? (всего 10)": "How many counters must be added to fill the frame? (10 in all)",
+"Считаем по 2. Какое число потерялось?": "Counting by 2s. Which number is lost?",
+
 "🎬 Видео-урок": "🎬 Video lesson",
 "Видео не загрузилось. Можно пропустить": "The video did not load. You can skip it",
 "Пропустить видео": "Skip the video",
@@ -5680,4 +5706,4 @@ UI_I18N_REG("en",{ex:{
 "фигурка из глины": "a clay figure",
 "цельная фигура": "a whole figure"
 },
-pat:[["^([^:.!]{3,60}): (.+)$", "$1: $2", [1, 2]], ["^Верно\\. (.+)$", "Correct. $1", [1]], ["^Неверно\\. (.+)$", "Not quite. $1", [1]], ["^Вопрос (\\d+) из (\\d+)$", "Question $1 of $2"], ["^Посмотрено чисел: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Numbers viewed: $1 (at least $2 needed)"], ["^Разобрано чисел: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Numbers studied: $1 (at least $2 needed)"], ["^Разобрано примеров: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Examples studied: $1 (at least $2 needed)"], ["^Разобрано задач: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Problems studied: $1 (at least $2 needed)"], ["^Сравнено пар: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Pairs compared: $1 (at least $2 needed)"], ["^Случай (\\d+) из (\\d+)$", "Case $1 of $2"], ["^Задача (\\d+) из (\\d+)$", "Problem $1 of $2"], ["^Пример (\\d+) из (\\d+)$", "Example $1 of $2"]]});
+pat:[["^Верно\\. (.+)$", "Correct. $1", [1]], ["^Неверно\\. (.+)$", "Not quite. $1", [1]], ["^Вопрос (\\d+) из (\\d+)$", "Question $1 of $2"], ["^Посмотрено чисел: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Numbers viewed: $1 (at least $2 needed)"], ["^Разобрано чисел: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Numbers studied: $1 (at least $2 needed)"], ["^Разобрано примеров: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Examples studied: $1 (at least $2 needed)"], ["^Разобрано задач: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Problems studied: $1 (at least $2 needed)"], ["^Сравнено пар: (\\d+) \\(нужно хотя бы (\\d+)\\)$", "Pairs compared: $1 (at least $2 needed)"], ["^Случай (\\d+) из (\\d+)$", "Case $1 of $2"], ["^Задача (\\d+) из (\\d+)$", "Problem $1 of $2"], ["^Пример (\\d+) из (\\d+)$", "Example $1 of $2"], ["^Для пешехода горит (\\S+) свет\\. Что делаем\\?$", "The $1 light is on for pedestrians. What do we do?"], ["^Число (\\d+) — это десяток и сколько единиц\\?$", "The number $1 is a ten and how many ones?"], ["^Какая цифра в числе (\\d+) стоит на месте единиц \\(справа\\)\\?$", "Which digit in the number $1 is in the ones place (on the right)?"], ["^Какое число стоит сразу перед числом (\\d+)\\?$", "Which number comes right before the number $1?"], ["^У каждого из (\\d+) ребят по 2 варежки\\. Сколько всего варежек\\? Считай по 2\\.$", "Each of the $1 children has 2 mittens. How many mittens in all? Count by 2s."], ["^([^:.!]{3,60}): (.+)$", "$1: $2", [1, 2]]]});

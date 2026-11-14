@@ -1,6 +1,10 @@
 /* English: grade 2 trainers — fizra (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"всем телом": "with the whole body",
+"кистями рук": "with the wrists",
+"кривые плечи": "crooked shoulders",
+
 "сбор мячей": "collecting balls",
 "На дальность": "For distance",
 "обманывать": "cheat",
