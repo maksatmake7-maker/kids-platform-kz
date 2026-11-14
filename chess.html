@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<script src="assets/media-base.js"></script>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шахматы — Білім Аралы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D3557;--coral:#FF6B5B;--sun:#FFD34D;--grass:#3FB088;--lt:#FDEFC8;--dk:#6FBF8F;--card:#FFFDF4;}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Nunito,Arial,sans-serif;color:var(--ink);min-height:100vh;background:linear-gradient(180deg,#BFE6F7 0%,#E3F6FB 45%,#FFF8E8 100%);-webkit-tap-highlight-color:transparent}
+h1,h2,h3{font-family:'Baloo 2',Nunito,sans-serif;margin:0}
+#app{max-width:640px;margin:0 auto;padding:14px 14px 40px}
+.ch-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.ch-top h1{font-size:clamp(1.7rem,7vw,2.3rem);flex:1 1 100%;order:3;text-align:center;text-shadow:0 2px 0 rgba(255,255,255,.7)}
+.ch-top #chLang{margin-left:auto}
+.ch-back{font-weight:800;color:var(--ink);text-decoration:none;background:#fff;border-radius:999px;padding:7px 14px;box-shadow:0 3px 0 rgba(29,53,87,.15);font-size:.9rem}
+#chLang{font:800 .85rem Nunito,Arial,sans-serif;border:2px solid rgba(29,53,87,.2);border-radius:999px;padding:6px 10px;background:#fff;color:var(--ink)}
+.ch-card{background:var(--card);border-radius:22px;padding:18px 16px 20px;box-shadow:0 6px 0 rgba(29,53,87,.12),0 14px 30px rgba(29,53,87,.12)}
+.ch-card h2{font-size:1.25rem;margin:14px 0 8px}
+.ch-sub{margin:0;font-weight:700;font-size:1.02rem;line-height:1.4}
+.ch-levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.ch-lv{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 4px 7px;border-radius:16px;border:3px solid #E5DCC0;background:#fff;color:var(--ink);font-family:inherit;cursor:pointer;transition:transform .12s}
+.ch-lv b{font:800 1.6rem/1 'Baloo 2',sans-serif}
+.ch-lv span{font-weight:800;font-size:.78rem}
+.ch-lv small{font-weight:700;font-size:.7rem;opacity:.7}
+.ch-lv:hover{transform:translateY(-2px)}
+.ch-lv.on{border-color:var(--coral);background:#FFF0EC;box-shadow:0 0 0 3px rgba(255,107,91,.2)}
+.ch-lv i{position:absolute;top:2px;right:7px;font-style:normal;color:#F2A900;font-size:1.05rem}
+.ch-colors{display:flex;gap:8px;flex-wrap:wrap}
+.ch-opt{flex:1;min-width:96px;padding:11px 8px;border-radius:14px;border:3px solid #E5DCC0;background:#fff;font:800 1rem Nunito,sans-serif;color:var(--ink);cursor:pointer}
+.ch-opt.on{border-color:var(--grass);background:#E8F8F0}
+.ch-btn{font:800 1rem Nunito,sans-serif;border:0;border-radius:14px;padding:11px 16px;background:var(--sun);color:var(--ink);cursor:pointer;box-shadow:0 4px 0 rgba(29,53,87,.2);transition:transform .1s}
+.ch-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(29,53,87,.2)}
+.ch-btn:disabled{opacity:.45;cursor:default}
+.ch-go{background:var(--coral);color:#fff;width:100%;margin-top:16px;font-size:1.15rem;padding:14px}
+.ch-sec{background:#fff;border:2px solid rgba(29,53,87,.18)}
+.ch-link{display:block;margin:14px auto 0;background:none;border:0;font:800 .95rem Nunito,sans-serif;color:var(--ink);text-decoration:underline;cursor:pointer}
+.ch-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:2px 2px 8px;flex-wrap:wrap}
+.ch-status{font:800 1.1rem 'Baloo 2',Nunito,sans-serif;padding:5px 14px;border-radius:999px;background:#fff;box-shadow:0 3px 0 rgba(29,53,87,.12)}
+.ch-status.good{background:#DDF6E8}.ch-status.bad{background:#FFE0DB;color:#B3261E}
+.ch-lvl{font-weight:800;font-size:.85rem;background:rgba(255,255,255,.7);padding:5px 12px;border-radius:999px}
+.ch-cap{min-height:26px;display:flex;flex-wrap:wrap;gap:0;font-size:1.25rem;line-height:1.1;margin:2px 4px;align-items:center}
+.ch-cap .pc{font-size:1.25rem}
+.ch-board-wrap{display:flex;justify-content:center}
+.ch-board{--cell:min(calc((100vw - 40px)/8),calc((100vh - 330px)/8),68px);width:calc(var(--cell)*8);height:calc(var(--cell)*8);display:grid;grid-template-columns:repeat(8,var(--cell));grid-template-rows:repeat(8,var(--cell));border:5px solid #8C5A2B;border-radius:12px;overflow:hidden;box-sizing:content-box;box-shadow:0 8px 0 #6C431D,0 16px 28px rgba(29,53,87,.3);user-select:none;-webkit-user-select:none;touch-action:manipulation}
+@media (max-height:640px){.ch-board{--cell:min(calc((100vw - 40px)/8),56px)}}
+.ch-sq{position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ch-sq.lt{background:var(--lt)}.ch-sq.dk{background:var(--dk)}
+.ch-sq.last{box-shadow:inset 0 0 0 100px rgba(255,211,77,.5)}
+.ch-sq.sel{box-shadow:inset 0 0 0 100px rgba(255,211,77,.85)}
+.ch-sq.chk{box-shadow:inset 0 0 0 100px rgba(255,80,60,.55)}
+.ch-sq.hint{box-shadow:inset 0 0 0 100px rgba(80,170,255,.55);animation:chp .7s ease-in-out infinite alternate}
+@keyframes chp{to{filter:brightness(1.18)}}
+.ch-sq.dot::after{content:"";position:absolute;width:30%;height:30%;border-radius:50%;background:rgba(29,53,87,.28)}
+.ch-sq.cap::after{content:"";position:absolute;inset:6%;border-radius:50%;border:4px solid rgba(255,107,91,.8)}
+.ch-sq em{position:absolute;font-style:normal;font-weight:800;font-size:.6rem;opacity:.55;line-height:1}
+.ch-sq em.rk{top:2px;left:3px}.ch-sq em.fl{bottom:1px;right:3px}
+.pc{font-family:"Segoe UI Symbol","Noto Sans Symbols 2","Noto Sans Symbols","DejaVu Sans","Apple Symbols",sans-serif;font-weight:400;line-height:1}
+.ch-sq .pc{font-size:calc(var(--cell)*.82);position:relative;z-index:1;transition:transform .12s}
+.ch-sq:hover .pc{transform:scale(1.06)}
+.pc.w{color:#fff;-webkit-text-stroke:1.4px #1D3557;paint-order:stroke fill;text-shadow:0 2px 0 rgba(29,53,87,.35)}
+.pc.b{color:#2B2B3A;text-shadow:0 1px 0 rgba(255,255,255,.35)}
+.ch-bubble{display:flex;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:9px 14px;margin:12px 0 10px;font-weight:800;box-shadow:0 3px 0 rgba(29,53,87,.12);min-height:48px}
+.ch-bubble.pop{animation:chpop .35s ease}
+@keyframes chpop{from{transform:scale(.96);opacity:.4}to{transform:none;opacity:1}}
+.ch-b-ic{font-size:1.8rem}
+.ch-btns{display:flex;flex-wrap:wrap;gap:8px}
+.ch-btns .ch-btn{flex:1 1 130px;font-size:.92rem;padding:10px 8px}
+.ch-modal{position:fixed;inset:0;background:rgba(20,40,70,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.ch-modal[hidden]{display:none}
+.ch-dlg{background:var(--card);border-radius:22px;padding:20px 18px;max-width:430px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.35);max-height:90vh;overflow:auto}
+.ch-dlg h3{font-size:1.4rem;margin-bottom:12px;text-align:center}
+.ch-dbtn{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.ch-dbtn .ch-go{margin-top:0}
+.ch-promo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.ch-promo button{display:flex;flex-direction:column;align-items:center;gap:2px;width:80px;padding:8px 4px;border-radius:14px;border:3px solid #E5DCC0;background:#fff;cursor:pointer;font-family:inherit;color:var(--ink)}
+.ch-promo .pc{font-size:2.6rem}.ch-promo small{font-weight:800;font-size:.75rem}
+.ch-promo button:hover{border-color:var(--coral)}
+.ch-help{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.ch-help li{display:flex;gap:12px;align-items:center;font-weight:700;font-size:.95rem;line-height:1.35}
+.ch-help .pc{font-size:2.2rem;flex:none;width:2.4rem;text-align:center}
+.ch-goal{margin:12px 0 0;font-weight:800;text-align:center}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="assets/chess-text.js"></script>
+<script src="assets/chess-engine.js"></script>
+<script src="assets/chess.js"></script>
+</body>
+</html>
