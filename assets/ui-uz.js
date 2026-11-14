@@ -759,6 +759,7 @@ ex:{
 "Десять игр по программе 3 класса: жанры, пословицы, герои, тема и основная мысль, план, виды чтения и поиск информации.": "3-sinf dasturi bo'yicha o'n o'yin: janrlar, maqollar, qahramonlar, mavzu va asosiy fikr, reja, o'qish turlari va axborot qidirish.",
 "Курс: Литературное чтение 3 класс": "Kurs: Adabiy o'qish 3-sinf",
 "10 уроков · жанры, герои, тема, план, виды чтения и источники информации": "10 ta dars · janrlar, qahramonlar, mavzu, reja, o'qish turlari va axborot manbalari",
+"28 уроков · жанры, герои, тема, план, виды чтения и источники информации": "28 ta dars · janrlar, qahramonlar, mavzu, reja, o'qish turlari va axborot manbalari",
 "Жанры: сказка, рассказ, стихотворение, басня": "Janrlar: ertak, hikoya, she'r, masal",
 "Определяем жанр произведения по названию и по особенностям": "Asarning janrini nomiga va xususiyatlariga qarab aniqlaymiz",
 "Заканчиваем пословицы, понимаем их смысл и используем в речи": "Maqollarni tugallaymiz, ma'nosini tushunamiz va nutqda ishlatamiz",

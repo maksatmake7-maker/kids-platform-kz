@@ -760,6 +760,7 @@ ex:{
 "Десять игр по программе 3 класса: жанры, пословицы, герои, тема и основная мысль, план, виды чтения и поиск информации.": "Zehn Spiele für den Lehrplan der 3. Klasse: Gattungen, Sprichwörter, Helden, Thema und Hauptgedanke, Gliederung, Leseformen und Informationssuche.",
 "Курс: Литературное чтение 3 класс": "Kurs: Literarisches Lesen, 3. Klasse",
 "10 уроков · жанры, герои, тема, план, виды чтения и источники информации": "10 Lektionen · Gattungen, Helden, Thema, Gliederung, Leseformen und Informationsquellen",
+"28 уроков · жанры, герои, тема, план, виды чтения и источники информации": "28 Lektionen · Gattungen, Helden, Thema, Gliederung, Leseformen und Informationsquellen",
 "Жанры: сказка, рассказ, стихотворение, басня": "Gattungen: Märchen, Erzählung, Gedicht, Fabel",
 "Определяем жанр произведения по названию и по особенностям": "Wir bestimmen die Gattung eines Werkes anhand seines Titels und seiner Merkmale",
 "Заканчиваем пословицы, понимаем их смысл и используем в речи": "Wir vervollständigen Sprichwörter, verstehen ihre Bedeutung und verwenden sie beim Sprechen",

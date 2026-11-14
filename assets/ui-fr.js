@@ -760,6 +760,7 @@ ex:{
 "Десять игр по программе 3 класса: жанры, пословицы, герои, тема и основная мысль, план, виды чтения и поиск информации.": "Dix jeux pour le programme de 3e classe : genres, proverbes, héros, thème et idée principale, plan, types de lecture et recherche d'informations.",
 "Курс: Литературное чтение 3 класс": "Cours : Lecture littéraire, 3e classe",
 "10 уроков · жанры, герои, тема, план, виды чтения и источники информации": "10 leçons · genres, héros, thème, plan, types de lecture et sources d'information",
+"28 уроков · жанры, герои, тема, план, виды чтения и источники информации": "28 leçons · genres, héros, thème, plan, types de lecture et sources d'information",
 "Жанры: сказка, рассказ, стихотворение, басня": "Genres : conte, histoire, poème, fable",
 "Определяем жанр произведения по названию и по особенностям": "Nous identifions le genre d'une œuvre d'après son titre et ses caractéristiques",
 "Заканчиваем пословицы, понимаем их смысл и используем в речи": "Nous complétons des proverbes, comprenons leur sens et les utilisons à l'oral",
