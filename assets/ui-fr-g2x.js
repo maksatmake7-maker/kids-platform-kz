@@ -3,6 +3,7 @@ UI_I18N_REG('fr',{
 ex:{
 "100 минут": "100 minutes",
 "15 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "15 leçons : famille et arbre généalogique, société, travail, peuples, école, pays natal, carte, ville, droits et fêtes, météo, voyages, histoire, Otrar et symboles du pays",
+"20 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "20 leçons : famille et arbre généalogique, société, travail, peuples, école, pays natal, carte, ville, droits et fêtes, météo, voyages, histoire, Otrar et symboles du pays",
 "18 игр: слова и фразы по темам года": "18 jeux : mots et phrases par thèmes de l'année",
 "25 игр: темп, ритм, кюи, композиторы и песни": "25 jeux : tempo, rythme, kuys, compositeurs et chansons",
 "27 игр: жанры, герои, фольклор, произведения года": "27 jeux : genres, héros, folklore, œuvres de l'année",

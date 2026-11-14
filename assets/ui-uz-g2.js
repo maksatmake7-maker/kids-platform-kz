@@ -5611,6 +5611,7 @@ ex:{
 "дружба": "do‘stlik",
 "родословная": "nasabnoma",
 "15 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "15 ta dars: oila va nasabnoma, jamiyat, mehnat, xalqlar, maktab, ona yurt, xarita, shahar, huquqlar va bayramlar, ob-havo, sayohatlar, tarix, O‘tror va mamlakat ramzlari",
+"20 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "20 ta dars: oila va nasabnoma, jamiyat, mehnat, xalqlar, maktab, ona yurt, xarita, shahar, huquqlar va bayramlar, ob-havo, sayohatlar, tarix, O‘tror va mamlakat ramzlari",
 "Поздравляю! Ты узнал про семью и родословную, общество, труд людей, народы Казахстана, школу, родной край, карту, город, права, погоду, путешествия, историю, древний Отрар и символы Казахстана. Теперь закрепляй знания в играх.": "Tabriklayman! Sen oila va nasabnoma, jamiyat, odamlar mehnati, Qozog‘iston xalqlari, maktab, ona yurt, xarita, shahar, huquqlar, ob-havo, sayohatlar, tarix, qadimiy O‘tror va Qozog‘iston ramzlari haqida bilib oldin. Endi bilimlaringni o‘yinlarda mustahkamla.",
 "Самопознание": "O‘zlikni anglash",
 "Добрые дела, дружба, семья и любовь к Родине": "Yaxshi ishlar, do‘stlik, oila va Vatanga muhabbat",
