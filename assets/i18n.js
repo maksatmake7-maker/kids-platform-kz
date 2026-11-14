@@ -16673,7 +16673,7 @@ document.addEventListener('click', function(e){
     }
     function mk(cls){ var a = document.createElement('a'); a.className = 'donate-link ' + cls; a.href = base + 'donate.html'; return a; }
     function init(){
-      if (!window.DONATE || !window.DONATE.enabled) return;
+      if (!window.DONATE || !(window.DONATE.enabled || window.DONATE.showButton)) return;
       var st = document.createElement('style');
       st.textContent = 'a.donate-link{display:inline-block;padding:8px 16px;border-radius:999px;background:#FFE08A;color:#1D3557;font:800 .85rem/1.2 Nunito,Arial,sans-serif;text-decoration:none;box-shadow:0 3px 0 rgba(29,53,87,.18);white-space:nowrap}'
         + 'a.donate-link:hover{background:#FFC93C}'
