@@ -157,6 +157,7 @@ UI_I18N_REG('uz',{ ex:{
 UI_I18N_REG('uz',{
 ex:{
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 ta dars: salomatlik, qizdirinish, yugurish va sakrash, gimnastika, to‘p o‘yinlari, milliy o‘yinlar, jamoaviy o‘yin",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 ta dars: salomatlik, qizdirinish, yugurish va sakrash, gimnastika, to‘p o‘yinlari, milliy o‘yinlar, jamoaviy o‘yin",
 "Алтыбакан — большие качели, их ставят на праздниках.": "Altibakan — katta belanchak, uni bayramlarda quradilar.",
 "Асык — игра с косточками-альчиками.": "Asiq — asiq suyakchalari bilan o‘ynaladigan o‘yin.",
 "Аударыспак — борьба двух всадников верхом.": "Audarispaq — ikki chavandozning ot ustidagi kurashi.",
@@ -419,6 +420,7 @@ ex:{
 "💡 Чем шире жест, тем громче": "💡 Imo qancha keng bo‘lsa, shuncha baland",
 "💡 Это композитор Пётр Ильич Чайковский": "💡 Bu kompozitor Pyotr Ilyich Chaykovskiy",
 "7 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "7 ta dars: materiallar, asboblar, o‘lchash, ishlash usullari, tabiiy materiallar, milliy naqshlar, ko‘rgazma",
+"20 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "20 ta dars: materiallar, asboblar, o‘lchash, ishlash usullari, tabiiy materiallar, milliy naqshlar, ko‘rgazma",
 "А эта полоска доходит до цифры 7. Её длина семь сантиметров.": "Bu chiziqcha esa 7 raqamigacha yetadi. Uning uzunligi yetti santimetr.",
 "В конце рассказывают о работе и показывают её на выставке.": "Oxirida ish haqida gapirib beradilar va uni ko‘rgazmada ko‘rsatadilar.",
 "В природе берут только опавшее. Живые цветы и ветки трогать нельзя.": "Tabiatda faqat to‘kilganini olinadi. Tirik gul va shoxlarga tegish mumkin emas.",
@@ -772,6 +774,7 @@ ex:{
 "💡 Футбол — игра с мячом": "💡 Futbol — to‘p o‘yini",
 "💡 Честная игра — по правилам": "💡 Halol o‘yin — qoidalar bo‘yicha o‘ynash",
 "7 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "7 ta dars: san’at turlari, chiziqlar, bo‘yoqlar, shakl yasash, naqshlar, dizayn va me’morchilik, ijodiy ish",
+"17 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "17 ta dars: san’at turlari, chiziqlar, bo‘yoqlar, shakl yasash, naqshlar, dizayn va me’morchilik, ijodiy ish",
 "Архитектор придумывает здания, а дизайнер придумывает красивые и удобные вещи.": "Me’mor binolarni o‘ylab topadi, dizayner esa chiroyli va qulay narsalarni o‘ylab topadi.",
 "Архитектор придумывает здания. У дома стены-куб и треугольная крыша.": "Me’mor binolarni o‘ylab topadi. Uyning devorlari kub, tomi esa uchburchak shaklida.",
 "Белая краска делает цвет светлее, а чёрная делает цвет темнее.": "Oq bo‘yoq rangni ochroq qiladi, qora bo‘yoq esa rangni to‘qroq qiladi.",
@@ -5608,6 +5611,7 @@ ex:{
 "дружба": "do‘stlik",
 "родословная": "nasabnoma",
 "15 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "15 ta dars: oila va nasabnoma, jamiyat, mehnat, xalqlar, maktab, ona yurt, xarita, shahar, huquqlar va bayramlar, ob-havo, sayohatlar, tarix, O‘tror va mamlakat ramzlari",
+"20 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "20 ta dars: oila va nasabnoma, jamiyat, mehnat, xalqlar, maktab, ona yurt, xarita, shahar, huquqlar va bayramlar, ob-havo, sayohatlar, tarix, O‘tror va mamlakat ramzlari",
 "Поздравляю! Ты узнал про семью и родословную, общество, труд людей, народы Казахстана, школу, родной край, карту, город, права, погоду, путешествия, историю, древний Отрар и символы Казахстана. Теперь закрепляй знания в играх.": "Tabriklayman! Sen oila va nasabnoma, jamiyat, odamlar mehnati, Qozog‘iston xalqlari, maktab, ona yurt, xarita, shahar, huquqlar, ob-havo, sayohatlar, tarix, qadimiy O‘tror va Qozog‘iston ramzlari haqida bilib oldin. Endi bilimlaringni o‘yinlarda mustahkamla.",
 "Самопознание": "O‘zlikni anglash",
 "Добрые дела, дружба, семья и любовь к Родине": "Yaxshi ishlar, do‘stlik, oila va Vatanga muhabbat",

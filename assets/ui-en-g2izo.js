@@ -483,6 +483,7 @@ ex:{
 "На следы кошки": "A cat's paw prints",
 "Волнистая линия изгибается, как волны.": "A wavy line curves like waves.",
 "7 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "7 lessons: kinds of art, lines, paints, modeling, patterns, design and architecture, creative work",
+"17 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "17 lessons: kinds of art, lines, paints, modeling, patterns, design and architecture, creative work",
 "Лепить фигурки разными приёмами": "Model figures using different techniques",
 "Находить ритм и симметрию, создавать узоры": "Find rhythm and symmetry, create patterns",
 "Передавать настроение и время года цветом и показывать свою работу": "Show mood and season with color and present your work",

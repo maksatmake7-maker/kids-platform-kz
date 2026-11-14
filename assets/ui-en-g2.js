@@ -2,6 +2,7 @@
 UI_I18N_REG('en',{
 ex:{
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 lessons: health, warm-up, running and jumping, gymnastics, ball games, national games, team game",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 lessons: health, warm-up, running and jumping, gymnastics, ball games, national games, team game",
 "Алтыбакан": "Altybakan",
 "Алтыбакан — большие качели, их ставят на праздниках.": "Altybakan is a big swing, set up at holidays.",
 "Алтыбакан — это мяч": "Altybakan is a ball",
@@ -795,6 +796,7 @@ ex:{
 "💡 Чем шире жест, тем громче": "💡 The wider the gesture, the louder",
 "💡 Это композитор Пётр Ильич Чайковский": "💡 This is the composer Pyotr Ilyich Tchaikovsky",
 "7 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "7 lessons: materials, tools, measuring, working methods, natural materials, national patterns, exhibition",
+"20 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "20 lessons: materials, tools, measuring, working methods, natural materials, national patterns, exhibition",
 "А эта полоска доходит до цифры 7. Её длина семь сантиметров.": "And this strip reaches the number 7. Its length is seven centimetres.",
 "Аппликация из фигур": "Appliqué from shapes",
 "Бегут играть": "They run off to play",
@@ -1545,6 +1547,7 @@ ex:{
 "💡 Футбол — игра с мячом": "💡 Football is a ball game",
 "💡 Честная игра — по правилам": "💡 Fair play means playing by the rules",
 "7 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "7 lessons: kinds of art, lines, paints, modelling, patterns, design and architecture, creative work",
+"17 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "17 lessons: kinds of art, lines, paints, modelling, patterns, design and architecture, creative work",
 "Абылхан Кастеев — известный казахский…": "Abylkhan Kasteev is a famous Kazakh…",
 "Автопортрет — художник рисует себя": "A self-portrait is when an artist draws themselves",
 "Акварель": "Watercolour",
@@ -7016,6 +7019,7 @@ ex:{
 "дружба": "friendship",
 "родословная": "genealogy",
 "15 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "15 lessons: family and genealogy, society, work, peoples, school, native land, map, city, rights and holidays, weather, travel, history, Otrar and symbols of the country",
+"20 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "20 lessons: family and genealogy, society, work, peoples, school, native land, map, city, rights and holidays, weather, travel, history, Otrar and symbols of the country",
 "Поздравляю! Ты узнал про семью и родословную, общество, труд людей, народы Казахстана, школу, родной край, карту, город, права, погоду, путешествия, историю, древний Отрар и символы Казахстана. Теперь закрепляй знания в играх.": "Congratulations! You learned about the family and genealogy, society, people's work, the peoples of Kazakhstan, school, native land, the map, the city, rights, weather, travel, history, ancient Otrar and the symbols of Kazakhstan. Now consolidate your knowledge in the games.",
 "Самопознание": "Self-knowledge",
 "Добрые дела, дружба, семья и любовь к Родине": "Kind deeds, friendship, family and love for the Motherland",
