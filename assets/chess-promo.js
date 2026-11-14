@@ -98,7 +98,8 @@
       shortTimer = setInterval(function(){ if (card) return; pill.classList.remove('mini'); setTimeout(function(){ if (!card) pill.classList.add('mini'); }, 6000); }, 70000);
     }
     var shown = false; try { shown = sessionStorage.getItem('bilim_chess_pop') === '1'; } catch(e){}
-    if (!shown && !isHub) popTimer = setTimeout(function(){ if (!card && !document.hidden) { pill.classList.remove('mini'); toggleCard(true); } }, 4 * 60 * 1000);
+    var isCourse = /-course\.html/.test(location.pathname);   // на уроках-курсах карточка сама не всплывает: не мешаем ответам
+    if (!shown && !isHub && !isCourse) popTimer = setTimeout(function(){ if (!card && !document.hidden) { pill.classList.remove('mini'); toggleCard(true); } }, 4 * 60 * 1000);
     var cur = lang(); setInterval(function(){ var l = lang(); if (l !== cur){ cur = l; paint(); } }, 1500);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
