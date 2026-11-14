@@ -777,6 +777,7 @@ ex:{
 "Игры по программе 3 класса: числа до 1000, сложение и вычитание, таблица умножения, уравнения и логика.": "Spiele für den Lehrplan der 3. Klasse: Zahlen bis 1000, Addition und Subtraktion, Einmaleins, Gleichungen und Logik.",
 "Курс: Математика 3 класс": "Kurs: Mathematik, 3. Klasse",
 "15 уроков · числа до 1000, умножение и деление, дроби, площадь, величины, время, деньги, задачи и логика": "15 Lektionen · Zahlen bis 1000, Multiplikation und Division, Brüche, Fläche, Größen, Zeit, Geld, Sachaufgaben und Logik",
+"27 уроков · числа до 1000, умножение и деление, дроби, площадь, величины, время, деньги, задачи и логика": "27 Lektionen · Zahlen bis 1000, Multiplikation und Division, Brüche, Fläche, Größen, Zeit, Geld, Sachaufgaben und Logik",
 "Читаем и составляем числа до 1000, сравниваем и считаем сотнями и тысячами": "Wir lesen und schreiben Zahlen bis 1000, vergleichen sie und zählen in Hundertern und Tausendern",
 "Складываем и вычитаем трёхзначные числа, проверяем и решаем задачи": "Wir addieren und subtrahieren dreistellige Zahlen, prüfen sie und lösen Sachaufgaben",
 "Умножаем и делим на 0 и 1, переставляем множители, проверяем равенства": "Wir multiplizieren und dividieren mit 0 und 1, vertauschen die Faktoren und prüfen Gleichungen",

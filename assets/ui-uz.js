@@ -776,6 +776,7 @@ ex:{
 "Игры по программе 3 класса: числа до 1000, сложение и вычитание, таблица умножения, уравнения и логика.": "3-sinf dasturi bo'yicha o'yinlar: 1000 gacha sonlar, qo'shish va ayirish, ko'paytirish jadvali, tenglamalar va mantiq.",
 "Курс: Математика 3 класс": "Kurs: Matematika 3-sinf",
 "15 уроков · числа до 1000, умножение и деление, дроби, площадь, величины, время, деньги, задачи и логика": "15 ta dars · 1000 gacha sonlar, ko'paytirish va bo'lish, kasrlar, yuza, kattaliklar, vaqt, pul, masalalar va mantiq",
+"27 уроков · числа до 1000, умножение и деление, дроби, площадь, величины, время, деньги, задачи и логика": "27 ta dars · 1000 gacha sonlar, ko'paytirish va bo'lish, kasrlar, yuza, kattaliklar, vaqt, pul, masalalar va mantiq",
 "Читаем и составляем числа до 1000, сравниваем и считаем сотнями и тысячами": "1000 gacha sonlarni o'qiymiz va tuzamiz, taqqoslaymiz va yuzlab va minglab sanaymiz",
 "Складываем и вычитаем трёхзначные числа, проверяем и решаем задачи": "Uch xonali sonlarni qo'shamiz va ayiramiz, tekshiramiz va masalalar yechamiz",
 "Умножаем и делим на 0 и 1, переставляем множители, проверяем равенства": "0 va 1 ga ko'paytiramiz va bo'lamiz, ko'paytuvchilarni o'rnini almashtiramiz, tengliklarni tekshiramiz",

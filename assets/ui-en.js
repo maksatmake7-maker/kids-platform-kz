@@ -777,6 +777,7 @@ ex:{
 "Игры по программе 3 класса: числа до 1000, сложение и вычитание, таблица умножения, уравнения и логика.": "Games for the Grade 3 programme: numbers up to 1000, addition and subtraction, the multiplication table, equations and logic.",
 "Курс: Математика 3 класс": "Course: Mathematics, Grade 3",
 "15 уроков · числа до 1000, умножение и деление, дроби, площадь, величины, время, деньги, задачи и логика": "15 lessons · numbers up to 1000, multiplication and division, fractions, area, quantities, time, money, word problems and logic",
+"27 уроков · числа до 1000, умножение и деление, дроби, площадь, величины, время, деньги, задачи и логика": "27 lessons · numbers up to 1000, multiplication and division, fractions, area, quantities, time, money, word problems and logic",
 "Читаем и составляем числа до 1000, сравниваем и считаем сотнями и тысячами": "We read and write numbers up to 1000, compare them and count in hundreds and thousands",
 "Складываем и вычитаем трёхзначные числа, проверяем и решаем задачи": "We add and subtract three-digit numbers, check them and solve word problems",
 "Умножаем и делим на 0 и 1, переставляем множители, проверяем равенства": "We multiply and divide by 0 and 1, swap the factors and check equalities",
