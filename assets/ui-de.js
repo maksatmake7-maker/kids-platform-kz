@@ -837,6 +837,7 @@ ex:{
 "Десять игр по программе 3 класса: части речи, правила письма, части слова, предложения, слова и тексты.": "Zehn Spiele für den Lehrplan der 3. Klasse: Wortarten, Rechtschreibregeln, Wortteile, Sätze, Wörter und Texte.",
 "Курс: Русский язык 3 класс": "Kurs: Russische Sprache, 3. Klasse",
 "10 уроков · части речи, правила письма, части слова, предложение, слова и текст": "10 Lektionen · Wortarten, Rechtschreibregeln, Wortteile, Satz, Wörter und Text",
+"31 урок · части речи, правила письма, части слова, предложение, слова и текст": "31 Lektionen · Wortarten, Rechtschreibregeln, Wortteile, Satz, Wörter und Text",
 "Находим и проверяем безударные гласные в корне и учим слова, которые надо запомнить": "Wir finden und prüfen unbetonte Vokale im Wortstamm und lernen Wörter, die man sich merken muss",
 "Проверяем парные и непроизносимые согласные и пишем слова с удвоенными согласными": "Wir prüfen paarige und stumme Konsonanten und schreiben Wörter mit Doppelkonsonanten",
 "Различаем описание и повествование, художественные и нехудожественные тексты и ищем информацию": "Wir unterscheiden eine Beschreibung von einer Erzählung und literarische von nichtliterarischen Texten und suchen Informationen",

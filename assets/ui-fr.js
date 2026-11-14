@@ -837,6 +837,7 @@ ex:{
 "Десять игр по программе 3 класса: части речи, правила письма, части слова, предложения, слова и тексты.": "Dix jeux pour le programme de 3e classe : parties du discours, règles d'orthographe, parties d'un mot, phrases, mots et textes.",
 "Курс: Русский язык 3 класс": "Cours : Langue russe, 3e classe",
 "10 уроков · части речи, правила письма, части слова, предложение, слова и текст": "10 leçons · parties du discours, règles d'orthographe, parties d'un mot, phrase, mots et texte",
+"31 урок · части речи, правила письма, части слова, предложение, слова и текст": "31 leçons · parties du discours, règles d'orthographe, parties d'un mot, phrase, mots et texte",
 "Находим и проверяем безударные гласные в корне и учим слова, которые надо запомнить": "Nous trouvons et vérifions les voyelles atones dans la racine et apprenons des mots à retenir",
 "Проверяем парные и непроизносимые согласные и пишем слова с удвоенными согласными": "Nous vérifions les consonnes appariées et muettes et écrivons des mots avec des consonnes doubles",
 "Различаем описание и повествование, художественные и нехудожественные тексты и ищем информацию": "Nous distinguons une description d'un récit et les textes littéraires des textes non littéraires, et cherchons des informations",

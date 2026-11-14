@@ -837,6 +837,7 @@ ex:{
 "Десять игр по программе 3 класса: части речи, правила письма, части слова, предложения, слова и тексты.": "Ten games for the Grade 3 programme: parts of speech, spelling rules, parts of a word, sentences, words and texts.",
 "Курс: Русский язык 3 класс": "Course: Russian language, Grade 3",
 "10 уроков · части речи, правила письма, части слова, предложение, слова и текст": "10 lessons · parts of speech, spelling rules, parts of a word, sentence, words and text",
+"31 урок · части речи, правила письма, части слова, предложение, слова и текст": "31 lessons · parts of speech, spelling rules, parts of a word, sentence, words and text",
 "Находим и проверяем безударные гласные в корне и учим слова, которые надо запомнить": "We find and check unstressed vowels in the root and learn words that must be remembered",
 "Проверяем парные и непроизносимые согласные и пишем слова с удвоенными согласными": "We check paired and silent consonants and write words with double consonants",
 "Различаем описание и повествование, художественные и нехудожественные тексты и ищем информацию": "We tell a description from a narrative and literary from non-literary texts and look for information",
