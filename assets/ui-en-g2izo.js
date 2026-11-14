@@ -1,6 +1,14 @@
 /* English: grade 2 trainers — izo (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"говорят тихо": "speak quietly",
+"вытягивание": "pulling out",
+"смачивание": "wetting",
+"крыша-шляпа": "a hat-shaped roof",
+"выбрасываем": "we throw away",
+"не трогаем": "we do not touch",
+"голубой лёд": "light-blue ice",
+
 "цвета тёплые": "the colours are warm",
 "без листьев": "without leaves",
 "на потолке": "on the ceiling",

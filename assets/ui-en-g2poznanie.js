@@ -1,6 +1,9 @@
 /* English: grade 2 trainers — poznanie (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"родственники": "relatives",
+"коричневый": "brown",
+
 "закон дружбы": "the law of friendship",
 "закон тишины": "the law of silence",
 "слабый ветер": "a light wind",

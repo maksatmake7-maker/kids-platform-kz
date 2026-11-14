@@ -1,6 +1,10 @@
 /* English: grade 2 trainers — fizra (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"не замечать": "not notice",
+"сгорбившись": "hunched over",
+"только майка": "only a T-shirt",
+
 "всем телом": "with the whole body",
 "кистями рук": "with the wrists",
 "кривые плечи": "crooked shoulders",

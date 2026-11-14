@@ -1,5 +1,21 @@
 /* Білім Аралы — дополнение к словарю 1 класса (игры: цифровая грамотность, естествознание, ИЗО, музыка, труд, познание) */
 UI_I18N_REG("en",{ex:{
+"Какое это время года?": "Which season is it?",
+"Мама и папа": "Mum and dad",
+"Учит детей": "Teaches children",
+"Лечит людей": "Treats people",
+"Тушит пожары": "Puts out fires",
+"Из больницы": "From the hospital",
+"Из пекарни": "From the bakery",
+"Родственники": "Relatives",
+"Только море": "Only the sea",
+"Космонавты": "Astronauts",
+"Только леса": "Only forests",
+"Только поля": "Only fields",
+"Только горы": "Only mountains",
+"Каким числом записывается слово?": "Which number is written by the word?",
+"четырнадцать": "fourteen",
+
 "Какой номер у службы?": "What is the number of the service?",
 "Какой день недели перед днём «суббота»?": "Which day of the week is before Saturday?",
 "В гардеробе": "In the cloakroom",
