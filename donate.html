@@ -71,10 +71,10 @@
     var t = T[l] || T.ru, D = window.DONATE || {};
     document.getElementById('dn-title').textContent = t.t;
     document.getElementById('dn-lead').textContent = t.lead;
-    document.getElementById('dn-note').textContent = D.enabled ? t.note : '';
+    document.getElementById('dn-note').textContent = (D.enabled && (D.recipient||D.iban||D.kaspiUrl||D.qr)) ? t.note : '';
     document.title = t.t.replace('💛 ','') + ' — Білім Аралы';
     var h = '';
-    if(!D.enabled){ h = '<p class="dn-off">'+esc(t.off)+'</p>'; }
+    if(!D.enabled || !(D.recipient||D.iban||D.kaspiUrl||D.qr)){ h = '<p class="dn-off">'+esc(t.off)+'</p>'; }
     else {
       [['recipient',D.recipient],['iin',D.iin],['iban',D.iban],['bank',D.bank],['bik',D.bik],['kbe',D.kbe],['purpose',t.purposeV]].forEach(function(r){
         if(!r[1]) return;
