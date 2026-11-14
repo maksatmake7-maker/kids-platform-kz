@@ -22,6 +22,7 @@ UI_I18N_REG("uz",{ex:{
 "7 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "7 ta dars: san'at turlari, chiziqlar, ranglar, loydan yasash, naqshlar, dizayn va me'morchilik, ijodiy ish",
 "17 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "17 ta dars: san'at turlari, chiziqlar, ranglar, loydan yasash, naqshlar, dizayn va me'morchilik, ijodiy ish",
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 ta dars: salomatlik, qizdirinish, yugurish va sakrash, gimnastika, to'p o'yinlari, milliy o'yinlar, jamoaviy o'yin",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 ta dars: salomatlik, qizdirinish, yugurish va sakrash, gimnastika, to'p o'yinlari, milliy o'yinlar, jamoaviy o'yin",
 "7 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "7 ta dars: materiallar, asboblar, o'lchash, ish usullari, tabiiy materiallar, milliy naqshlar, ko'rgazma",
 "20 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "20 ta dars: materiallar, asboblar, o'lchash, ish usullari, tabiiy materiallar, milliy naqshlar, ko'rgazma",
 "8 м": "8 m",

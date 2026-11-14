@@ -2,6 +2,7 @@
 UI_I18N_REG('en',{
 ex:{
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 lessons: health, warm-up, running and jumping, gymnastics, ball games, national games, team game",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 lessons: health, warm-up, running and jumping, gymnastics, ball games, national games, team game",
 "Алтыбакан": "Altybakan",
 "Алтыбакан — большие качели, их ставят на праздниках.": "Altybakan is a big swing, set up at holidays.",
 "Алтыбакан — это мяч": "Altybakan is a ball",

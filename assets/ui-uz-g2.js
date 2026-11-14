@@ -157,6 +157,7 @@ UI_I18N_REG('uz',{ ex:{
 UI_I18N_REG('uz',{
 ex:{
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 ta dars: salomatlik, qizdirinish, yugurish va sakrash, gimnastika, to‘p o‘yinlari, milliy o‘yinlar, jamoaviy o‘yin",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 ta dars: salomatlik, qizdirinish, yugurish va sakrash, gimnastika, to‘p o‘yinlari, milliy o‘yinlar, jamoaviy o‘yin",
 "Алтыбакан — большие качели, их ставят на праздниках.": "Altibakan — katta belanchak, uni bayramlarda quradilar.",
 "Асык — игра с косточками-альчиками.": "Asiq — asiq suyakchalari bilan o‘ynaladigan o‘yin.",
 "Аударыспак — борьба двух всадников верхом.": "Audarispaq — ikki chavandozning ot ustidagi kurashi.",
