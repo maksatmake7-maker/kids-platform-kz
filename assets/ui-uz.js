@@ -836,6 +836,7 @@ ex:{
 "Десять игр по программе 3 класса: части речи, правила письма, части слова, предложения, слова и тексты.": "3-sinf dasturi bo'yicha o'n o'yin: so'z turkumlari, yozuv qoidalari, so'z qismlari, gaplar, so'zlar va matnlar.",
 "Курс: Русский язык 3 класс": "Kurs: Rus tili 3-sinf",
 "10 уроков · части речи, правила письма, части слова, предложение, слова и текст": "10 ta dars · so'z turkumlari, yozuv qoidalari, so'z qismlari, gap, so'zlar va matn",
+"31 урок · части речи, правила письма, части слова, предложение, слова и текст": "31 ta dars · so'z turkumlari, yozuv qoidalari, so'z qismlari, gap, so'zlar va matn",
 "Находим и проверяем безударные гласные в корне и учим слова, которые надо запомнить": "Ildizdagi urg'usiz unlilarni topamiz va tekshiramiz va eslab qolish kerak bo'lgan so'zlarni o'rganamiz",
 "Проверяем парные и непроизносимые согласные и пишем слова с удвоенными согласными": "Juft va talaffuz qilinmaydigan undoshlarni tekshiramiz va qo'sh undoshli so'zlarni yozamiz",
 "Различаем описание и повествование, художественные и нехудожественные тексты и ищем информацию": "Tasvir va bayonni, badiiy va badiiy bo'lmagan matnlarni farqlaymiz va axborot izlaymiz",
