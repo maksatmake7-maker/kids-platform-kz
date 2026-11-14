@@ -7019,6 +7019,7 @@ ex:{
 "дружба": "friendship",
 "родословная": "genealogy",
 "15 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "15 lessons: family and genealogy, society, work, peoples, school, native land, map, city, rights and holidays, weather, travel, history, Otrar and symbols of the country",
+"20 уроков: семья и родословная, общество, труд, народы, школа, родной край, карта, город, права и праздники, погода, путешествия, история, Отрар и символы страны": "20 lessons: family and genealogy, society, work, peoples, school, native land, map, city, rights and holidays, weather, travel, history, Otrar and symbols of the country",
 "Поздравляю! Ты узнал про семью и родословную, общество, труд людей, народы Казахстана, школу, родной край, карту, город, права, погоду, путешествия, историю, древний Отрар и символы Казахстана. Теперь закрепляй знания в играх.": "Congratulations! You learned about the family and genealogy, society, people's work, the peoples of Kazakhstan, school, native land, the map, the city, rights, weather, travel, history, ancient Otrar and the symbols of Kazakhstan. Now consolidate your knowledge in the games.",
 "Самопознание": "Self-knowledge",
 "Добрые дела, дружба, семья и любовь к Родине": "Kind deeds, friendship, family and love for the Motherland",
