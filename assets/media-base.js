@@ -28,7 +28,7 @@ window.BILIM_QUARTER_LOCKS = false;
    1 класс всегда открыт. Когда класс проверен и готов — поменяйте здесь false на true и сохраните файл.
    Владелец сайта может посмотреть и неготовые классы: откройте выбор класса с хвостом ?preview=1
    (браузер запомнит; вернуть как у всех — ?preview=0). */
-window.BILIM_GRADES_READY = { 1: true, 2: true, 3: false, 4: false };
+window.BILIM_GRADES_READY = { 1: true, 2: true, 3: true, 4: false };
 
 (function(){
   'use strict';
