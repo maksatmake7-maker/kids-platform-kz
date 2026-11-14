@@ -198,3 +198,11 @@ window.BILIM_GRADES_READY = { 1: true, 2: true, 3: false, 4: false };
 
   window.BilimMedia = { base: base, url: url, local: localUrl };
 })();
+
+/* Кнопка «Устал? Сыграй в шахматы» на всех страницах (assets/chess-promo.js; сама игра — chess.html) */
+(function(){
+  try {
+    var s = document.currentScript; if (!s || !s.src || /\/chess\.html/.test(location.pathname)) return;
+    var q = document.createElement('script'); q.src = s.src.replace(/media-base\.js.*$/, 'chess-promo.js'); q.async = true; document.head.appendChild(q);
+  } catch(e){}
+})();
