@@ -320,7 +320,7 @@
         <div class="ac-progress-bar"><div class="ac-progress-fill" id="ac-pfill" style="width:0%"></div></div>
         <div class="ac-progress-txt" id="ac-ptxt">0 из 36</div>
       </div>
-      <div class="ac-map" id="ac-map"></div>
+      <div class="ac-map" id="ac-map" data-no-ui-tr></div>
     </div>
   </section>
 
@@ -333,18 +333,18 @@
     <div class="ac-card">
       <div class="ac-stephead">
         <span class="ac-stepno" id="ac-stepno"></span>
-        <span class="ac-stepno" id="ac-lessonname"></span>
+        <span class="ac-stepno" id="ac-lessonname" data-no-ui-tr></span>
       </div>
-      <h2 id="ac-title"></h2>
+      <h2 id="ac-title" data-no-ui-tr></h2>
       <div class="ac-guide">
         <div class="ac-mascot" id="ac-barsik" aria-hidden="true"></div>
-        <div class="ac-bubble" id="ac-bubble"></div>
+        <div class="ac-bubble" id="ac-bubble" data-no-ui-tr></div>
       </div>
       <div class="ac-speakrow">
         <button class="ac-speak" id="ac-speak">🔊 Послушать</button>
         <label class="ac-auto"><input type="checkbox" id="ac-auto"> Барсик читает вслух сам</label>
       </div>
-      <div class="ac-stage" id="ac-stage"></div>
+      <div class="ac-stage" id="ac-stage" data-no-ui-tr></div>
       <div class="ac-fb" id="ac-fb" aria-live="polite"></div>
       <div class="ac-nav">
         <button class="ac-btn ac-alt" id="ac-prev">← Назад</button>
@@ -541,7 +541,7 @@ SCENES.quiz = function(stage, st, ctx){
     $('#q-body', stage).innerHTML = q.html; $('#q-hint', stage).style.display = 'none'; ctx.fb('', 'info');
     const o = $('#q-opts', stage); o.style.gridTemplateColumns = (q.wide || q.opts.some(v => typeof v === 'string' && v.length > 8)) ? '1fr' : ''; o.innerHTML = '';
     q.opts.forEach(function(v){
-      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = v;
+      const b = document.createElement('button'); b.className = 'ac-opt'; b.textContent = (v === 'Верно' ? 'Дұрыс' : v === 'Неверно' ? 'Бұрыс' : v);
       b.onclick = function(){
         if (locked) return;
         if (v === q.ans){
