@@ -735,6 +735,15 @@ footer::after{
   opacity:0.55;
   line-height:1.4;
 }
+html[data-current="kz"] footer::after{content:"Материалдар Қазақстан Республикасы Оқу-ағарту министрінің 2022 жылғы 16 қыркүйектегі № 399 бұйрығы (Үлгілік оқу бағдарламалары) негізінде дайындалған";}
+html[data-current="en"] footer::after{content:"Materials are prepared on the basis of Order No. 399 of the Minister of Education of the Republic of Kazakhstan dated 16 September 2022 (Model Curricula)";}
+html[data-current="zh"] footer::after{content:"教材依据哈萨克斯坦共和国教育部长2022年9月16日第399号令（示范教学大纲）编写";}
+html[data-current="uz"] footer::after{content:"Materiallar Qozogʻiston Respublikasi Maorif vazirining 2022-yil 16-sentyabrdagi 399-son buyrugʻi (Namunaviy oʻquv dasturlari) asosida tayyorlangan";}
+html[data-current="tg"] footer::after{content:"Маводҳо дар асоси Фармоиши № 399-и Вазири маорифи Ҷумҳурии Қазоқистон аз 16 сентябри соли 2022 (Барномаҳои таълимии намунавӣ) тайёр карда шудаанд";}
+html[data-current="ug"] footer::after{content:"Материаллар Қазақстан Җумһурийити Маарип министириниң 2022-йил 16-сентәбирдики № 399 буйруғи (Үлгилик оқуш программилири) асасида тәйярланған";}
+html[data-current="fr"] footer::after{content:"Supports préparés sur la base de l’arrêté n° 399 du ministre de l’Éducation de la République du Kazakhstan du 16 septembre 2022 (programmes scolaires types)";}
+html[data-current="de"] footer::after{content:"Die Materialien wurden auf Grundlage der Verordnung Nr. 399 des Bildungsministers der Republik Kasachstan vom 16. September 2022 (Musterlehrpläne) erstellt";}
+
 html[lang="kk"] footer::after{content:"Материалдар Қазақстан Республикасы Оқу-ағарту министрінің 2022 жылғы 16 қыркүйектегі № 399 бұйрығы негізінде дайындалған (Үлгілік оқу бағдарламалары)";}
 
 @media (max-width:560px){

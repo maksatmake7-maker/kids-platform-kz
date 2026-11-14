@@ -23,6 +23,7 @@ const translations = {
     badge_play: "Играть →",
     footer: "Білім Аралы — растём и учимся вместе 🌤️",
     founder_btn: "Основатель и инвестор",
+    donate_btn: "Поддержать проект",
     founder_line: "Основатель и инвестор сайта «Білім Аралы»",
     back_home: "← На главную",
     math_game_title: "Посчитай и узнай!",
@@ -1844,6 +1845,7 @@ const translations = {
     badge_play: "Ойнау →",
     footer: "Білім Аралы — бірге өсіп, бірге үйренейік 🌤️",
     founder_btn: "Негізін қалаушы және инвестор",
+    donate_btn: "Жобаны қолдау",
     founder_line: "«Білім Аралы» сайтының негізін қалаушы және инвесторы",
     back_home: "← Басты бетке",
     math_game_title: "Санап шық!",
@@ -3665,6 +3667,7 @@ const translations = {
     badge_play: "Play →",
     footer: "Bilim Araly — growing and learning together 🌤️",
     founder_btn: "Founder and investor",
+    donate_btn: "Support the project",
     founder_line: "Founder and investor of the «Білім Аралы» website",
     back_home: "← Home",
     math_game_title: "Count and Find Out!",
@@ -5486,6 +5489,7 @@ const translations = {
     badge_play: "开始游戏 →",
     footer: "Bilim Araly——一起成长，一起学习 🌤️",
     founder_btn: "创始人兼投资人",
+    donate_btn: "支持本项目",
     founder_line: "«Білім Аралы» 网站创始人兼投资人",
     back_home: "← 返回首页",
     math_game_title: "数一数吧！",
@@ -7307,6 +7311,7 @@ const translations = {
     badge_play: "O'ynash →",
     footer: "Білім Аралы — birga o'samiz va o'rganamiz 🌤️",
     founder_btn: "Asoschi va investor",
+    donate_btn: "Loyihani qoʻllab-quvvatlash",
     founder_line: "«Білім Аралы» saytining asoschisi va investori",
     back_home: "← Bosh sahifaga",
     math_game_title: "Sanab ol!",
@@ -9128,6 +9133,7 @@ const translations = {
     badge_play: "Бозӣ кардан →",
     footer: "Білім Аралы — якҷоя месабзем ва меомӯзем 🌤️",
     founder_btn: "Асосгузор ва сармоягузор",
+    donate_btn: "Дастгирии лоиҳа",
     founder_line: "Асосгузор ва сармоягузори сайти «Білім Аралы»",
     back_home: "← Ба саҳифаи асосӣ",
     math_game_title: "Бишумор ва бифаҳм!",
@@ -10949,6 +10955,7 @@ const translations = {
     badge_play: "Ойна →",
     footer: "Білім Аралы — биргә өсәйли вә өгинәйли 🌤️",
     founder_btn: "Қурғучи вә мәбләғ салғучи",
+    donate_btn: "Лайиһини қоллаш",
     founder_line: "«Білім Аралы» тор бекитиниң қурғучиси вә мәбләғ салғучиси",
     back_home: "← Баш бәткә",
     math_game_title: "Санап бақ!",
@@ -12776,6 +12783,7 @@ Object.assign(translations.fr, {
   "badge_play": "Jouer →",
   "footer": "Bilim Araly — grandir et apprendre ensemble 🌤️",
   "founder_btn": "Fondateur et investisseur",
+  "donate_btn": "Soutenir le projet",
   "founder_line": "Fondateur et investisseur du site « Білім Аралы »",
   "back_home": "← Accueil",
   "math_game_title": "Compte et découvre !",
@@ -14595,6 +14603,7 @@ Object.assign(translations.de, {
   "badge_play": "Spielen →",
   "footer": "Bilim Araly – gemeinsam wachsen und lernen 🌤️",
   "founder_btn": "Gründer und Investor",
+  "donate_btn": "Projekt unterstützen",
   "founder_line": "Gründer und Investor der Website „Білім Аралы“",
   "back_home": "← Startseite",
   "math_game_title": "Zähle und finde heraus!",
@@ -16646,5 +16655,41 @@ document.addEventListener('click', function(e){
     s.src = me.src.replace(/i18n\.js.*$/, 'feedback.js');
     s.defer = true;
     (document.head || document.documentElement).appendChild(s);
+  } catch(e){}
+})();
+
+
+/* ===== Кнопка «Поддержать проект» на титульной странице: видна только когда в assets/donate-config.js стоит enabled:true ===== */
+(function(){
+  try {
+    var p = location.pathname;
+    if (!(/\/$/.test(p) || /\/index\.html$/.test(p)) || /\/(grades|house|gift|quest)\//.test(p)) return;
+    var me = document.currentScript; if (!me || !me.src) return;
+    var base = me.src.replace(/assets\/i18n\.js.*$/, '');
+    function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if (s && translations[s]) return s; } catch(e){} return 'ru'; }
+    function paint(l){
+      var t = translations[l] || translations.ru, txt = '💛 ' + (t.donate_btn || translations.ru.donate_btn);
+      document.querySelectorAll('a.donate-link').forEach(function(a){ a.textContent = txt; });
+    }
+    function mk(cls){ var a = document.createElement('a'); a.className = 'donate-link ' + cls; a.href = base + 'donate.html'; return a; }
+    function init(){
+      if (!window.DONATE || !window.DONATE.enabled) return;
+      var st = document.createElement('style');
+      st.textContent = 'a.donate-link{display:inline-block;padding:8px 16px;border-radius:999px;background:#FFE08A;color:#1D3557;font:800 .85rem/1.2 Nunito,Arial,sans-serif;text-decoration:none;box-shadow:0 3px 0 rgba(29,53,87,.18);white-space:nowrap}'
+        + 'a.donate-link:hover{background:#FFC93C}'
+        + 'a.donate-link.dl-head{margin-right:8px}'
+        + '@media(max-width:600px){a.donate-link.dl-head{display:none}}'
+        + '.feedback-wrap a.donate-link.dl-foot{border:2px solid rgba(29,53,87,.22)}';
+      document.head.appendChild(st);
+      var au = document.getElementById('auth-link');
+      if (au && au.parentNode) au.parentNode.insertBefore(mk('dl-head'), au);
+      var fw = document.querySelector('.feedback-wrap');
+      if (fw) fw.insertBefore(mk('dl-foot'), fw.firstChild);
+      paint(lang());
+    }
+    function go(){ var s = document.createElement('script'); s.src = base + 'assets/donate-config.js'; s.onload = init; document.head.appendChild(s); }
+    var orig = window.applyLang;
+    window.applyLang = function(l){ if (orig) orig(l); paint(translations[l] ? l : 'ru'); };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
   } catch(e){}
 })();
