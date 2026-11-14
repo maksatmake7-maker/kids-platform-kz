@@ -55,6 +55,7 @@
     [/\/grades\/grade-4(?:-kaz)?\/english\//, 'g4eng'],
     [/\/grades\/grade-[34](?:-kaz)?\/.*-course\.html$/, 'crsui'],
     [/\/grades\/grade-2-kaz\/.*-course\.html$/, 'crsui'],
+    [/\/grades\/grade-1-kaz\/(?:alippe|anatili|rusyaz|english)\/.*-course\.html$/, 'crsui'],
     [/\/grades\/grade-[34](?:-kaz)?\//, 'pz2eng'],
     [/\/grades\/grade-4(?:-kaz)?\/fizra\//, 'g4fiz'],
     [/\/grades\/grade-4(?:-kaz)?\/muzyka\//, 'g4mus'],
