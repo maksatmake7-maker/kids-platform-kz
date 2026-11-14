@@ -446,6 +446,7 @@ ex:{
 "Здоровье, разминка и безопасность": "Sog'liq, qizdirma va xavfsizlik",
 "Курс: Физическая культура 2 класс": "Kurs: Jismoniy tarbiya 2-sinf",
 "7 уроков · здоровье, разминка, бег и прыжки, гимнастика, игры с мячом и честная игра": "7 ta dars · sog'liq, qizdirma, yugurish va sakrash, gimnastika, to'p o'yinlari va adolatli o'yin",
+"13 уроков · здоровье, разминка, бег и прыжки, гимнастика, игры с мячом и честная игра": "13 ta dars · sog'liq, qizdirma, yugurish va sakrash, gimnastika, to'p o'yinlari va adolatli o'yin",
 "Узнаём, как тело меняется при нагрузке и что полезно для здоровья": "Yuklama paytida tana qanday o'zgarishini va sog'liq uchun nima foydaliligini o'rganamiz",
 "Узнаём, зачем нужна разминка, и как безопасно заниматься": "Qizdirma nima uchun kerakligini va xavfsiz shug'ullanishni o'rganamiz",
 "Бег, гимнастика и игры": "Yugurish, gimnastika va o'yinlar",

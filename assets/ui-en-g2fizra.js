@@ -320,6 +320,7 @@ ex:{
 "Метание мяча в цель": "Throwing a ball at a target",
 "Эстафетный бег": "Relay race",
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 lessons: health, warm-up, running and jumping, gymnastics, ball games, national games, team play",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 lessons: health, warm-up, running and jumping, gymnastics, ball games, national games, team play",
 "Бросать, ловить и вести мяч, знать правила игр": "Throw, catch and dribble a ball, know the rules of games",
 "Знать казахские национальные игры и играть честно": "Know Kazakh national games and play fairly",
 "Играть в команде, соблюдать правила и уважать соперников": "Play in a team, follow the rules and respect opponents",

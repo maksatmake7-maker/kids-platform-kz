@@ -16,6 +16,7 @@ ex:{
 "7 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "7 leçons : types d'art, lignes, couleurs, modelage, motifs, design et architecture, travail créatif",
 "17 уроков: виды искусства, линии, краски, лепка, узоры, дизайн и архитектура, творческая работа": "17 leçons : types d'art, lignes, couleurs, modelage, motifs, design et architecture, travail créatif",
 "7 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "7 leçons : santé, échauffement, course et sauts, gymnastique, jeux de balle, jeux nationaux, jeu d'équipe",
+"13 уроков: здоровье, разминка, бег и прыжки, гимнастика, игры с мячом, национальные игры, командная игра": "13 leçons : santé, échauffement, course et sauts, gymnastique, jeux de balle, jeux nationaux, jeu d'équipe",
 "7 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "7 leçons : matériaux, outils, mesure, techniques de travail, matériaux naturels, motifs nationaux, exposition",
 "20 уроков: материалы, инструменты, измерение, приёмы работы, природные материалы, национальные узоры, выставка": "20 leçons : matériaux, outils, mesure, techniques de travail, matériaux naturels, motifs nationaux, exposition",
 "8 м": "8 m",
