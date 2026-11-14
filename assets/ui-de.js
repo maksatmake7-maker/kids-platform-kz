@@ -447,6 +447,7 @@ ex:{
 "Здоровье, разминка и безопасность": "Gesundheit, Aufwärmen und Sicherheit",
 "Курс: Физическая культура 2 класс": "Kurs: Sport, 2. Klasse",
 "7 уроков · здоровье, разминка, бег и прыжки, гимнастика, игры с мячом и честная игра": "7 Lektionen · Gesundheit, Aufwärmen, Laufen und Springen, Gymnastik, Ballspiele und Fairplay",
+"13 уроков · здоровье, разминка, бег и прыжки, гимнастика, игры с мячом и честная игра": "13 Lektionen · Gesundheit, Aufwärmen, Laufen und Springen, Gymnastik, Ballspiele und Fairplay",
 "Узнаём, как тело меняется при нагрузке и что полезно для здоровья": "Wir finden heraus, wie sich der Körper bei Bewegung verändert und was gut für die Gesundheit ist",
 "Узнаём, зачем нужна разминка, и как безопасно заниматься": "Wir finden heraus, wozu man sich aufwärmt und wie man sicher Sport treibt",
 "Бег, гимнастика и игры": "Laufen, Gymnastik und Spiele",
