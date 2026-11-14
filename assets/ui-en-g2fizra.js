@@ -1,6 +1,16 @@
 /* English: grade 2 trainers — fizra (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"сбор мячей": "collecting balls",
+"На дальность": "For distance",
+"обманывать": "cheat",
+"закаливание": "hardening",
+"на дальность": "for distance",
+"Закаливание": "Hardening",
+"не держаться": "do not hold on",
+"перелезание": "climbing over",
+"Не развивает": "Does not develop",
+
 "0 шагов всегда": "0 steps always",
 "Бегаем по своему направлению, не толкаемся, не задеваем соперников, не обманываем.": "We run in our own direction, do not push, do not touch opponents, do not cheat.",
 "Безопасно ли?": "Is it safe?",

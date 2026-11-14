@@ -1,6 +1,26 @@
 /* English: grade 2 trainers — poznanie (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"Закон дружбы": "The law of friendship",
+"закон лени": "the law of laziness",
+"Закон класса": "A class law",
+"хвастаться": "boast",
+"Добрые слова": "Kind words",
+"Добрые дела?": "Good deeds?",
+"Не помогает": "Does not help",
+"милосердный": "merciful",
+"равнодушный": "indifferent",
+"отзывчивый": "responsive",
+"Нездоровая": "Unhealthy",
+"хлеба и каш": "bread and porridge",
+"Земледелие": "Farming",
+"Скотоводство": "Livestock herding",
+"Дары природы": "Gifts of nature",
+"пасут скот": "herd livestock",
+"ловили китов": "hunted whales",
+"Без паники": "Without panic",
+"наводнение": "flood",
+
 "«природа кормит, лечит и одевает людей»?": "\"nature feeds, heals and clothes people\"?",
 "Абай Кунанбаев": "Abai Kunanbayev",
 "Абай Кунанбаев, Ахмет Байтурсынов, Каныш Сатпаев, Бауыржан Момышулы горячо любили Родину. Они служили людям делом.": "Abai Kunanbayev, Akhmet Baitursynov, Kanysh Satpayev and Bauyrzhan Momyshuly loved their Motherland dearly. They served people through their deeds.",

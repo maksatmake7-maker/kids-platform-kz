@@ -1,6 +1,28 @@
 /* English: grade 2 trainers — izo (loaded by ui-i18n.js). */
 UI_I18N_REG('en',{
 ex:{
+"Жанр картины": "The genre of a painting",
+"Какая форма?": "Which shape?",
+"приёмы лепки": "modelling techniques",
+"чёрный цвет": "black colour",
+"настроение": "mood",
+"О содержании": "About the content",
+"форма овощей": "the shape of vegetables",
+"вымыть руки": "wash your hands",
+"кривое пятно": "a crooked blot",
+"наш рисунок": "our drawing",
+"яркий цветок": "a bright flower",
+"фломастеры": "felt-tip pens",
+"Красный + жёлтый = оранжевый, жёлтый + синий = зелёный, красный + синий = фиолетовый.": "Red + yellow = orange, yellow + blue = green, red + blue = violet.",
+"Не подходит": "Does not suit",
+"Какой цвет?": "Which colour?",
+"композиция": "composition",
+"чертёж дома": "a drawing of a house",
+"кисть и вода": "a brush and water",
+"смешивание": "mixing",
+"Обычный дом": "An ordinary house",
+"Симметрично": "Symmetrical",
+
 "«Зимний вечер»": "\"Winter Evening\"",
 "«Тёплый день»": "\"A Warm Day\"",
 "«Тёплый день» и «Зимний вечер». Подбери цвета так, чтобы передать настроение.": "\"A Warm Day\" and \"Winter Evening\". Choose colours to convey the mood.",
