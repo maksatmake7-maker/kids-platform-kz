@@ -41,6 +41,7 @@
     [/\/grades\/grade-2(?:-kaz)?\/poznanie\//, 'g2poznanie'],
     [/\/grades\/grade-2(?:-kaz)?\/samopoznanie\//, 'g2samo'],
     [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2math'],
+    [/\/grades\/grade-1-kaz\/english\/.*-course\.html$/, 'crsui'],
     [/\/grades\/grade-1(?:-kaz)?\/english\//, 'g1eng'],
     [/\/grades\/grade-2(?:-kaz)?\/english\//, 'g2eng'],
     [/\/grades\/grade-3(?:-kaz)?\/estestvo\//, 'g3est'],
