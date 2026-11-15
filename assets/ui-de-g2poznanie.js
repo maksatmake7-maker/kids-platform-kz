@@ -1,6 +1,8 @@
 /* de: g2poznanie — texts of new lessons (loaded by ui-i18n.js). */
 UI_I18N_REG('de',{
 ex:{
+"посмеяться": "lachen",
+
 "Что такое туризм?": "Was ist Tourismus?",
 "16 декабря": "16. Dezember",
 "Что значит: «природа кормит, лечит и одевает людей»?": "Was bedeutet: „Die Natur ernährt, heilt und kleidet die Menschen“?",

@@ -1,6 +1,8 @@
 /* de: g2fizra — texts of new lessons (loaded by ui-i18n.js). */
 UI_I18N_REG('de',{
 ex:{
+"9–10 часов": "9–10 Stunden",
+
 "Встань на середину скакалки: ручки должны доходить до подмышек. Тогда она подобрана правильно.": "Stelle dich in die Mitte des Springseils: Die Griffe müssen bis zu den Achseln reichen. Dann ist es richtig gewählt.",
 "лицом вниз": "mit dem Gesicht nach unten",
 "боком к цели": "seitlich zum Ziel",

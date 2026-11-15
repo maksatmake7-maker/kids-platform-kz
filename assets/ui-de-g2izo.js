@@ -1,6 +1,13 @@
 /* de: g2izo — texts of new lessons (loaded by ui-i18n.js). */
 UI_I18N_REG('de',{
 ex:{
+"густая тень": "dichter Schatten",
+"беспорядочно": "ungeordnet",
+"он без формы": "er hat keine Form",
+"невозможно": "unmöglich",
+"сразу ломаем": "wir brechen sofort",
+"река и лес": "Fluss und Wald",
+
 "Сначала скажи, что видишь на картине: природу, людей, животных, предметы.": "Sage zuerst, was du im Gemälde siehst: die Natur, Menschen, Tiere, Gegenstände.",
 "Пейзаж — произведение, на котором изображена природа: горы, поле, река, лес, небо.": "Eine Landschaft ist ein Werk, das die Natur zeigt: Berge, ein Feld, ein Fluss, ein Wald, der Himmel.",
 "Нарисуй, что окружает тебя: горы, степь, реку, дом. Своё родное место ты знаешь лучше всех.": "Zeichne, was dich umgibt: Berge, die Steppe, einen Fluss, ein Haus. Deinen Heimatort kennst du am besten.",

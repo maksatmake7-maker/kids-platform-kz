@@ -1,6 +1,20 @@
 /* de: g2trud — texts of new lessons (loaded by ui-i18n.js). */
 UI_I18N_REG('de',{
 ex:{
+"сухой лист": "trockenes Blatt",
+"красим стол": "wir streichen den Tisch an",
+"мягкие края": "weiche Kanten",
+"острые углы": "spitze Ecken",
+"где красить": "wo man anmalt",
+"где резать": "wo man schneidet",
+"где писать": "wo man schreibt",
+"высокая трава": "hohes Gras",
+"Что такое симметрия?": "Was ist Symmetrie?",
+"всё разное": "alles verschieden",
+"всё круглое": "alles rund",
+"обе половины одинаковы": "beide Hälften sind gleich",
+"ватные диски": "Wattepads",
+
 "Детали сначала раскладывают, потом клеят.": "Die Teile werden zuerst ausgelegt, dann geklebt.",
 "Портрет — это изображение человека: друга, мамы, бабушки.": "Ein Porträt ist ein Bild eines Menschen: eines Freundes, der Mama, der Oma.",
 "растворить": "auflösen",
