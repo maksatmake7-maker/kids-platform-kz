@@ -1,6 +1,9 @@
 /* de: g2poznanie — texts of new lessons (loaded by ui-i18n.js). */
 UI_I18N_REG('de',{
 ex:{
+"доброволец": "der Freiwillige",
+"покупатель": "der Käufer",
+
 "dir:север": "Norden",
 "dir:восток": "Osten",
 "dir:юг": "Süden",

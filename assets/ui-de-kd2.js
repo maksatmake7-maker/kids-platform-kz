@@ -1,6 +1,21 @@
 /* Білім Аралы — 2 класс, пакет «kd2», язык «de». Черновик перевода — на проверку носителем. */
 UI_I18N_REG('de',{
 ex:{
+"Антонимдер — қарама-қарсы мағыналы сөздер": "Antonyme sind Wörter mit entgegengesetzter Bedeutung",
+"Жалқау": "Faul",
+"Мемлекеттік рәміздер": "Staatssymbole",
+"Нешінші?": "Der Wievielte?",
+"көру": "sehen",
+"Қатаң": "Streng",
+"Қоян…": "Der Hase …",
+"қайда?": "wo?",
+"әуен": "Melodie",
+"Өзен": "Fluss",
+
+"Сиыр": "Kuh",
+"картоп": "Kartoffel",
+"оныншы": "der Zehnte",
+
 "All about me — өзім туралы": "Alles über mich",
 "Animals and actions — аңдар не істей алады": "Tiere und Handlungen",
 "Around school — мектеп төңірегі": "Rund um die Schule",
