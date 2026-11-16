@@ -188,14 +188,14 @@
   };
 
   var BW={
-    h:{ru:'Дальше — за горизонтом',kz:'Әрі қарай — көкжиек артында',en:'Beyond the horizon',fr:'Au-delà de l’horizon',de:'Hinter dem Horizont'},
-    t1:{ru:'Средняя школа',kz:'Орта мектеп',en:'Middle school',fr:'Collège',de:'Mittelstufe'},
-    n1:{ru:'Академия · 5–8 классы',kz:'Академия · 5–8 сыныптар',en:'Academy · Grades 5–8',fr:'Académie · classes 5–8',de:'Akademie · Klassen 5–8'},
-    d1:{ru:'Предметы, цели недели, прогресс по каждой теме',kz:'Пәндер, апталық мақсаттар, әр тақырып бойынша прогресс',en:'Subjects, weekly goals, progress on every topic',fr:'Matières, objectifs de la semaine, progression par thème',de:'Fächer, Wochenziele, Fortschritt zu jedem Thema'},
-    t2:{ru:'Старшая школа',kz:'Жоғары мектеп',en:'High school',fr:'Lycée',de:'Oberstufe'},
-    n2:{ru:'Подготовка к ЕНТ · 9–11 классы',kz:'ҰБТ-ға дайындық · 9–11 сыныптар',en:'Exam prep · Grades 9–11',fr:'Préparation à l’examen · classes 9–11',de:'Prüfungsvorbereitung · Klassen 9–11'},
-    d2:{ru:'Пробные тесты с таймером, разбор ошибок, цель по баллам',kz:'Таймерлі сынақ тесттер, қателерді талдау, балл мақсаты',en:'Timed mock tests, mistake review, score target',fr:'Tests blancs chronométrés, analyse des erreurs, objectif de points',de:'Probetests mit Zeitlimit, Fehleranalyse, Punkteziel'},
-    go:{ru:'Открыть макет →',kz:'Макетті ашу →',en:'Open preview →',fr:'Ouvrir l’aperçu →',de:'Vorschau öffnen →'}
+    h:{ru:'Дальше — за горизонтом',kz:'Әрі қарай — көкжиек артында',en:'Beyond the horizon',fr:'Au-delà de l’horizon',de:'Hinter dem Horizont',tg:'Минбаъд — паси уфуқ',zh:'展望未来',uz:'Yana oldinga — ufq ortida'},
+    t1:{ru:'Средняя школа',kz:'Орта мектеп',en:'Middle school',fr:'Collège',de:'Mittelstufe',tg:'Мактаби миёна',zh:'初中',uz:'O‘rta maktab'},
+    n1:{ru:'Академия · 5–8 классы',kz:'Академия · 5–8 сыныптар',en:'Academy · Grades 5–8',fr:'Académie · classes 5–8',de:'Akademie · Klassen 5–8',tg:'Академия · синфҳои 5–8',zh:'学院 · 5–8 年级',uz:'Akademiya · 5–8-sinflar'},
+    d1:{ru:'Предметы, цели недели, прогресс по каждой теме',kz:'Пәндер, апталық мақсаттар, әр тақырып бойынша прогресс',en:'Subjects, weekly goals, progress on every topic',fr:'Matières, objectifs de la semaine, progression par thème',de:'Fächer, Wochenziele, Fortschritt zu jedem Thema',tg:'Фанҳо, ҳадафҳои ҳафта, пешрафт аз рӯи ҳар мавзӯъ',zh:'学科、每周目标、每个主题的进度',uz:'Fanlar, haftalik maqsadlar, har bir mavzu bo‘yicha taraqqiyot'},
+    t2:{ru:'Старшая школа',kz:'Жоғары мектеп',en:'High school',fr:'Lycée',de:'Oberstufe',tg:'Синфҳои болоӣ',zh:'高中',uz:'Yuqori maktab'},
+    n2:{ru:'Подготовка к ЕНТ · 9–11 классы',kz:'ҰБТ-ға дайындық · 9–11 сыныптар',en:'Exam prep · Grades 9–11',fr:'Préparation à l’examen · classes 9–11',de:'Prüfungsvorbereitung · Klassen 9–11',tg:'Омодагӣ ба ЕНТ · синфҳои 9–11',zh:'考试备考 · 9–11 年级',uz:'Imtihonga tayyorgarlik · 9–11-sinflar'},
+    d2:{ru:'Пробные тесты с таймером, разбор ошибок, цель по баллам',kz:'Таймерлі сынақ тесттер, қателерді талдау, балл мақсаты',en:'Timed mock tests, mistake review, score target',fr:'Tests blancs chronométrés, analyse des erreurs, objectif de points',de:'Probetests mit Zeitlimit, Fehleranalyse, Punkteziel',tg:'Санҷишҳои озмоишӣ бо таймер, таҳлили хатоҳо, ҳадафи холҳо',zh:'限时模拟测试、错题分析、分数目标',uz:'Vaqt o‘lchagichli sinov testlari, xatolar tahlili, ball maqsadi'},
+    go:{ru:'Открыть макет →',kz:'Макетті ашу →',en:'Open preview →',fr:'Ouvrir l’aperçu →',de:'Vorschau öffnen →',tg:'Кушодани макет →',zh:'打开预览 →',uz:'Maketni ochish →'}
   };
   function beyond(lang){ if(!BW.h[lang]) lang='ru'; $$('[data-bw]').forEach(function(e){ e.textContent=BW[e.getAttribute('data-bw')][lang]; }); }
     function labels(lang){
