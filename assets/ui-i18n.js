@@ -76,20 +76,46 @@
     [/\/(?:privacy\.html|gift\/)/, 'root'],
     /*CRB*/
     [/\/grades\/grade-[12]\//, 'sl'],
+    [/\/grades\/grade-1\/estestvo\/estestvo-course\.html$/, 'crestestvog1'],
+    [/\/grades\/grade-1\/math\/addition-course\.html$/, 'cradditiong1'],
+    [/\/grades\/grade-1\/math\/eq-course\.html$/, 'creqg1'],
+    [/\/grades\/grade-1\/math\/number-course\.html$/, 'crnumberg1'],
+    [/\/grades\/grade-1\/math\/sets-course\.html$/, 'crsetsg1'],
+    [/\/grades\/grade-1\/math\/tens-course\.html$/, 'crtensg1'],
     [/\/grades\/grade-1\/trud\/trud-course\.html$/, 'crtrudg1'],
     [/\/grades\/grade-2\/fizra\/fiz2-course\.html$/, 'crfiz2g2'],
     [/\/grades\/grade-2\/poznanie\/poznanie2-course\.html$/, 'crpoznanie2g2'],
+    [/\/grades\/grade-3\/english\/english3-course\.html$/, 'crenglish3g3'],
     [/\/grades\/grade-3\/math\/math3-course\.html$/, 'crmath3g3'],
     [/\/grades\/grade-3\/trud\/trud3-course\.html$/, 'crtrud3g3'],
+    [/\/grades\/grade-1\/digital\/dig-course\.html$/, 'crdigg1'],
+    [/\/grades\/grade-1\/fizra\/fiz-course\.html$/, 'crfizg1'],
+    [/\/grades\/grade-1\/math\/compare-course\.html$/, 'crcompareg1'],
+    [/\/grades\/grade-1\/math\/logic-course\.html$/, 'crlogicg1'],
+    [/\/grades\/grade-1\/math\/pos-course\.html$/, 'crposg1'],
+    [/\/grades\/grade-1\/math\/subtraction-course\.html$/, 'crsubtractiong1'],
+    [/\/grades\/grade-1\/muzyka\/muz-course\.html$/, 'crmuzg1'],
     [/\/grades\/grade-2\/english\/english2-course\.html$/, 'crenglish2g2'],
     [/\/grades\/grade-2\/math\/math2-course\.html$/, 'crmath2g2'],
     [/\/grades\/grade-2\/trud\/trud2-course\.html$/, 'crtrud2g2'],
+    [/\/grades\/grade-3\/fizra\/fizra3-course\.html$/, 'crfizra3g3'],
+    [/\/grades\/grade-3\/poznanie\/poznanie3-course\.html$/, 'crpoznanie3g3'],
     [/\/grades\/grade-1\/english\/english1-course\.html$/, 'crenglish1g1'],
     [/\/grades\/grade-1\/izo\/izo-course\.html$/, 'crizog1'],
+    [/\/grades\/grade-1\/math\/composition-course\.html$/, 'crcompositiong1'],
+    [/\/grades\/grade-1\/math\/measure-course\.html$/, 'crmeasureg1'],
+    [/\/grades\/grade-1\/math\/problems-course\.html$/, 'crproblemsg1'],
+    [/\/grades\/grade-1\/math\/teens-course\.html$/, 'crteensg1'],
     [/\/grades\/grade-1\/poznanie\/poznanie-course\.html$/, 'crpoznanieg1'],
     [/\/grades\/grade-2\/estestvo\/estestvo2-course\.html$/, 'crestestvo2g2'],
     [/\/grades\/grade-2\/muzyka\/muz2-course\.html$/, 'crmuz2g2'],
+    [/\/grades\/grade-3\/digital\/digital3-course\.html$/, 'crdigital3g3'],
     [/\/grades\/grade-3\/izo\/izo3-course\.html$/, 'crizo3g3'],
+    [/\/grades\/grade-3\/samopoznanie\/samopoznanie3-course\.html$/, 'crsamopoznanie3g3'],
+    [/\/grades\/grade-1\/estestvo\/mir-course\.html$/, 'crmirg1'],
+    [/\/grades\/grade-1\/math\/coins-course\.html$/, 'crcoinsg1'],
+    [/\/grades\/grade-1\/math\/half-course\.html$/, 'crhalfg1'],
+    [/\/grades\/grade-1\/math\/pattern-course\.html$/, 'crpatterng1'],
     [/\/grades\/grade-1\/math\/shapes-course\.html$/, 'crshapesg1'],
     [/\/grades\/grade-1\/math\/time-course\.html$/, 'crtimeg1'],
     [/\/grades\/grade-2\/digital\/digital2-course\.html$/, 'crdigital2g2'],
@@ -103,7 +129,7 @@
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math', 'g2samo', 'g2eng'];
   var AVAIL = { kz: ['g1', 'g1b', 'g1eng', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'kd1', 'kd2', 'g2x', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'kdx', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], tg: ['g1', 'kd1', 'kd2', 'g2x', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2poznanie', 'g2samo', 'g2digital', 'kdx', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'g3mx', 'crsui', 'pz2eng', 'gap'], en: ['g1', 'g1b', 'kd1', 'kd2', 'kdx', 'g4', 'root', 'g2', 'g2m', 'g2fizra', 'g2izo', 'g2trud', 'g2estestvo', 'g2poznanie', 'g2math', 'g2digital', 'g2samo', 'g2eng', 'g2muzyka', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], zh: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2poznanie', 'g2', 'g2math', 'g2m', 'g2izo', 'g2trud', 'g2muzyka', 'g2fizra', 'g2estestvo', 'g2digital', 'g2samo', 'g2eng', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], ug: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2', 'g2gap', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital'], fr: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], de: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2poznanie', 'g2muzyka', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'] };
-  /*CRA*/ AVAIL.tg = (AVAIL.tg || []).concat(["sl", "crtrudg1", "crfiz2g2", "crpoznanie2g2", "crmath3g3", "crtrud3g3", "crenglish2g2", "crmath2g2", "crtrud2g2", "crenglish1g1", "crizog1", "crpoznanieg1", "crestestvo2g2", "crmuz2g2", "crizo3g3", "crshapesg1", "crtimeg1", "crdigital2g2", "crizo2g2", "crsamopoznanie2g2", "crestestvo3g3", "crmuzyka3g3"]); /*CRZ*/
+  /*CRA*/ AVAIL.tg = (AVAIL.tg || []).concat(["sl", "crestestvog1", "cradditiong1", "creqg1", "crnumberg1", "crsetsg1", "crtensg1", "crtrudg1", "crfiz2g2", "crpoznanie2g2", "crenglish3g3", "crmath3g3", "crtrud3g3", "crdigg1", "crfizg1", "crcompareg1", "crlogicg1", "crposg1", "crsubtractiong1", "crmuzg1", "crenglish2g2", "crmath2g2", "crtrud2g2", "crfizra3g3", "crpoznanie3g3", "crenglish1g1", "crizog1", "crcompositiong1", "crmeasureg1", "crproblemsg1", "crteensg1", "crpoznanieg1", "crestestvo2g2", "crmuz2g2", "crdigital3g3", "crizo3g3", "crsamopoznanie3g3", "crmirg1", "crcoinsg1", "crhalfg1", "crpatterng1", "crshapesg1", "crtimeg1", "crdigital2g2", "crizo2g2", "crsamopoznanie2g2", "crestestvo3g3", "crmuzyka3g3"]); /*CRZ*/
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
