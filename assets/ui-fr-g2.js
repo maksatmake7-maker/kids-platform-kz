@@ -5360,3 +5360,6 @@ ex:{
 "Новый уровень!": "Nouveau niveau !",
 "Сколько будет": "Combien font"
 }});
+
+/* patterns of new lessons */
+UI_I18N_REG('fr',{ex:{},pat:[["^Вопрос (\\d+) из (\\d+)$", "Question $1 sur $2"], ["^(\\d+) (?:корзина|корзины|корзин) по (\\d+)\\. Нажимай на корзины$", "$1 paniers de $2 chacun. Touche les paniers"], ["^Сколько осталось, когда (?:он|она) отдала? другу\\?$", "Combien en reste-t-il après en avoir donné à un ami ?"],["^Сколько метров забора вокруг прямоугольной грядки\\?$","Combien de mètres de clôture autour de la plate-bande rectangulaire ?"],["^Сколько метров забора вокруг прямоугольной площадки\\?$","Combien de mètres de clôture autour de l’aire de jeux rectangulaire ?"]]});
