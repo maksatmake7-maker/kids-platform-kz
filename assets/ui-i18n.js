@@ -203,14 +203,14 @@
       {
         var nv = d.nt[kk], tail = '';
         if (nv === undefined){ var m1 = /^(.*[^.!?…])([.!?…]+)$/.exec(kk); if (m1 && d.nt[m1[1]] !== undefined){ nv = d.nt[m1[1]]; tail = m1[2]; } else if (d.nt[kk + '.'] !== undefined){ nv = d.nt[kk + '.'].replace(/\.$/, ''); } }
-        if (nv !== undefined){ var ix = 0; r = nv.replace(/N/g, function(){ return nums[ix++]; }) + tail; }
+        if (nv !== undefined){ var ix = 0; r = nv.replace(/(^|[^A-Za-z\u00C0-\u024F])N(?![A-Za-z\u00C0-\u024F])/g, function(m0, p0){ return p0 + nums[ix++]; }) + tail; }
         else if (/(?:^|[^A-Za-zА-Яа-яЁё])[A-Z]{1,2}(?![A-Za-zА-Яа-яЁё])/.test(t)){   // буквы-обозначения (точки, углы: P, AB): заменяем на L, римские цифры не трогаем
           var lets = [], nm2 = [], k2 = t.replace(/(^|[^A-Za-zА-Яа-яЁё])([A-Z]{1,2})(?![A-Za-zА-Яа-яЁё])/g, function(m, p, l){ if (/^(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)$/.test(l)) return m; lets.push(l); return p + 'L'; });
           if (lets.length){
             k2 = k2.replace(/\d+(?:[.,]\d+)?/g, function(x){ nm2.push(x); return 'N'; });
             var nv2 = d.nt[k2], tl = '';
             if (nv2 === undefined){ var m3 = /^(.*[^.!?…])([.!?…]+)$/.exec(k2); if (m3 && d.nt[m3[1]] !== undefined){ nv2 = d.nt[m3[1]]; tl = m3[2]; } else if (d.nt[k2 + '.'] !== undefined){ nv2 = d.nt[k2 + '.'].replace(/\.$/, ''); } }
-            if (nv2 !== undefined){ var i1 = 0, i2 = 0; r = nv2.replace(/[NL]/g, function(c){ return c === 'N' ? nm2[i1++] : lets[i2++]; }) + tl; }
+            if (nv2 !== undefined){ var i1 = 0, i2 = 0; r = nv2.replace(/(^|[^A-Za-z\u00C0-\u024F])([NL])(?![A-Za-z\u00C0-\u024F])/g, function(m0, p0, c){ return p0 + (c === 'N' ? nm2[i1++] : lets[i2++]); }) + tl; }
           }
         }
         if (nv === undefined && r === undefined && d.sl){   // шаблон со слотами: имена → ¶, существительные → §, числа → N
@@ -226,7 +226,7 @@
             var nm3 = []; k3 = k3.replace(/\d+(?:[.,]\d+)?/g, function(x){ nm3.push(x); return 'N'; });
             var nv3 = d.nt[k3], t3 = '';
             if (nv3 === undefined){ var m5 = /^(.*[^.!?…])([.!?…]+)$/.exec(k3); if (m5 && d.nt[m5[1]] !== undefined){ nv3 = d.nt[m5[1]]; t3 = m5[2]; } else if (d.nt[k3 + '.'] !== undefined){ nv3 = d.nt[k3 + '.'].replace(/\.$/, ''); } }
-            if (nv3 !== undefined){ var j1 = 0, j2 = 0, j3 = 0; r = nv3.replace(/N|([§¶])(\d?)/g, function(c, tk, dg){ if (c === 'N') return nm3[j1++]; var arr = tk === '§' ? tw : tp; var ix2 = dg ? (+dg - 1) : (tk === '§' ? j2++ : j3++); return arr[ix2] === undefined ? '' : arr[ix2]; }) + t3; }
+            if (nv3 !== undefined){ var j1 = 0, j2 = 0, j3 = 0; r = nv3.replace(/(^|[^A-Za-z\u00C0-\u024F])N(?![A-Za-z\u00C0-\u024F])|([§¶])(\d?)/g, function(c, p0, tk, dg){ if (tk === undefined) return p0 + nm3[j1++]; var arr = tk === '§' ? tw : tp; var ix2 = dg ? (+dg - 1) : (tk === '§' ? j2++ : j3++); return arr[ix2] === undefined ? '' : arr[ix2]; }) + t3; }
           }
         }
       }
