@@ -16480,6 +16480,8 @@ document.addEventListener('DOMContentLoaded', function(){
       if(/-course\.html$/.test(location.pathname)) txt = COURSE[lang];
       /* 1 класс переведён на казахский (assets/ui-kz-g1.js): плашку «только на русском» там не показываем */
       if(lang === 'kz' && /\/grades\/(?:grade-1(?:-kaz)?|grade-2-kaz|grade-2\/(?:fizra|izo|muzyka|trud|poznanie|estestvo|digital|math)|grade-3(?:-kaz)?\/(?:estestvo|poznanie|izo|muzyka|trud|fizra|digital|math|english)|grade-4(?:-kaz)?\/(?:fizra|muzyka|trud|izo|digital|estestvo|poznanie|math|english)|grade-[34]-kaz\/(?:kazakh|adebiet|samopoznanie)|grade-3-kaz\/rusyaz)\//.test(location.pathname)) txt = null;
+      /* таджикский: 1–3 классы (кроме казахского, русского, литературы и чтения — это предметы на своём языке) переведены, в том числе вопросы игр: плашки не показываем */
+      else if(lang === 'tg' && /\/grades\/grade-[123]\/(?!kazakh\/|literature\/|russian\/|reading\/)/.test(location.pathname)) txt = null;
       else if(window.__mxHeroCfg) txt = GAME[lang];
       /* 1 класс переведён на таджикский и узбекский (assets/ui-tg-g1.js, ui-uz-g1.js): плашку курса не показываем; плашка про вопросы игр остаётся, пока не переведены банки вопросов */
       else if((lang === 'tg' || lang === 'uz') && /\/grades\/grade-1(?:-kaz)?\//.test(location.pathname)) txt = null;

@@ -12,8 +12,10 @@
   var FB = { fr: 'en', de: 'en' };   // французский и немецкий: чего нет в их словаре — берём из английского (пока перевод не дописан)
   var VER = 0;   // версия словарей: растёт при каждом пополнении, чтобы заново перевести уже переведённое (частично) более ранним пакетом
   window.UI_I18N_REG = function(l, d){   // можно вызывать несколько раз: пакеты дополняют словарь языка, а не заменяют его
-    var cur0 = DICT[l] || { ex: Object.create(null), pat: [] };
+    var cur0 = DICT[l] || { ex: Object.create(null), pat: [], nt: Object.create(null) };
     for (var k in d.ex) if (Object.prototype.hasOwnProperty.call(d.ex, k)) cur0.ex[k] = d.ex[k];
+    if (d.and) cur0.and = d.and;
+    if (d.nt) for (var kn in d.nt) if (Object.prototype.hasOwnProperty.call(d.nt, kn)) cur0.nt[kn] = d.nt[kn];   // шаблоны с числами: ключ — русская фраза, где каждое число заменено на N; перевод — с теми же N по порядку
     (d.pat || []).forEach(function(p){ cur0.pat.push([new RegExp(p[0]), p[1], p[2]]); });
     DICT[l] = cur0; VER++;
     run();
@@ -52,6 +54,7 @@
     [/\/grades\/grade-3(?:-kaz)?\/fizra\//, 'g3fiz'],
     [/\/grades\/grade-3(?:-kaz)?\/digital\//, 'g3dig'],
     [/\/grades\/grade-3(?:-kaz)?\/math\//, 'g3math'],
+    [/\/grades\/grade-3(?:-kaz)?\/math\//, 'g3mx'],
     [/\/grades\/grade-3(?:-kaz)?\/english\//, 'g3eng'],
     [/\/grades\/grade-3(?:-kaz)?\/samopoznanie\//, 'g3samo'],
     [/\/grades\/grade-4(?:-kaz)?\/english\//, 'g4eng'],
@@ -68,11 +71,12 @@
     [/\/grades\/grade-4(?:-kaz)?\/poznanie\//, 'g4poz'],
     [/\/grades\/grade-4(?:-kaz)?\/math\//, 'g4math'],
     [/\/grades\/grade-4(?:-kaz)?\//, 'g4'],
-    [/\/(?:privacy\.html|gift\/)/, 'root'] ];
+    [/\/(?:privacy\.html|gift\/)/, 'root'],
+    [/./, 'gap'] ];
   /* Какие пакеты реально лежат в assets (ui-<язык>-<пакет>.js). Остальные не запрашиваем: иначе на каждой странице копятся лишние запросы с ошибкой 404.
      Добавили новый файл пакета — впишите его сюда. */
   var G2ALL = ['g2', 'g2m', 'g2fizra', 'g2izo', 'g2muzyka', 'g2trud', 'g2estestvo', 'g2digital', 'g2poznanie', 'g2math', 'g2samo', 'g2eng'];
-  var AVAIL = { kz: ['g1', 'g1b', 'g1eng', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'kd1', 'kd2', 'g2x', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'kdx', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], tg: ['g1', 'kd1', 'kd2', 'g2x', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2poznanie', 'g2samo', 'g2digital', 'kdx', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], en: ['g1', 'g1b', 'kd1', 'kd2', 'kdx', 'g4', 'root', 'g2', 'g2m', 'g2fizra', 'g2izo', 'g2trud', 'g2estestvo', 'g2poznanie', 'g2math', 'g2digital', 'g2samo', 'g2eng', 'g2muzyka', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], zh: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2poznanie', 'g2', 'g2math', 'g2m', 'g2izo', 'g2trud', 'g2muzyka', 'g2fizra', 'g2estestvo', 'g2digital', 'g2samo', 'g2eng', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], ug: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2', 'g2gap', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital'], fr: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], de: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2poznanie', 'g2muzyka', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'] };
+  var AVAIL = { kz: ['g1', 'g1b', 'g1eng', 'g4', 'root', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g4eng', 'g4fiz', 'g4mus', 'g4trud', 'g4izo', 'g4dig', 'g4est', 'g4poz', 'g4math', 'pz2eng', 'crsui'].concat(G2ALL), uz: ['g1', 'kd1', 'kd2', 'g2x', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'kdx', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], tg: ['g1', 'kd1', 'kd2', 'g2x', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2poznanie', 'g2samo', 'g2digital', 'kdx', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'g3mx', 'crsui', 'pz2eng', 'gap'], en: ['g1', 'g1b', 'kd1', 'kd2', 'kdx', 'g4', 'root', 'g2', 'g2m', 'g2fizra', 'g2izo', 'g2trud', 'g2estestvo', 'g2poznanie', 'g2math', 'g2digital', 'g2samo', 'g2eng', 'g2muzyka', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], zh: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2poznanie', 'g2', 'g2math', 'g2m', 'g2izo', 'g2trud', 'g2muzyka', 'g2fizra', 'g2estestvo', 'g2digital', 'g2samo', 'g2eng', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], ug: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2', 'g2gap', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital'], fr: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'g4', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2muzyka', 'g2poznanie', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'], de: ['g1', 'kd1', 'kd2', 'g2x', 'kdx', 'root', 'g2', 'g2izo', 'g2trud', 'g2fizra', 'g2poznanie', 'g2muzyka', 'g2math', 'g2m', 'g2eng', 'g2estestvo', 'g2samo', 'g2digital', 'g3est', 'g3poz', 'g3izo', 'g3mus', 'g3trud', 'g3fiz', 'g3dig', 'g3math', 'g3eng', 'g3samo', 'crsui', 'pz2eng'] };
   function load(l){
     if (DICT[l] !== undefined || LOADING[l] || !base) return; LOADING[l] = 1;
     var s = document.createElement('script'); s.src = base + 'ui-' + l + '.js'; s.async = true;
@@ -127,7 +131,7 @@
   function kzList(v, d){   // «сова, пчела и орёл» → переводим каждое слово по словарю
     var parts = v.split(/(, | и )/), out = [];
     for (var i = 0; i < parts.length; i++){
-      if (i % 2){ out.push(parts[i] === ' и ' ? ' және ' : ', '); continue; }
+      if (i % 2){ out.push(parts[i] === ' и ' ? (d.and || ' және ') : ', '); continue; }
       var x = d.ex[parts[i]]; out.push(x === undefined ? parts[i] : x);
     }
     return out.join('');
@@ -138,6 +142,14 @@
       var m0 = /^(.*[^.!?…])([.!?…]+)$/.exec(t);
       if (m0){ var x = d.ex[m0[1]]; if (x !== undefined) r = x + m0[2]; }
       else if (d.ex[t + '.'] !== undefined) r = d.ex[t + '.'].replace(/\.$/, '');
+    }
+    if (r === undefined && d.nt){   // быстрый поиск по шаблону с числами (без перебора регулярок)
+      var nums = [], kk = t.replace(/\d+(?:[.,]\d+)?/g, function(x){ nums.push(x); return 'N'; });
+      {
+        var nv = d.nt[kk], tail = '';
+        if (nv === undefined){ var m1 = /^(.*[^.!?…])([.!?…]+)$/.exec(kk); if (m1 && d.nt[m1[1]] !== undefined){ nv = d.nt[m1[1]]; tail = m1[2]; } else if (d.nt[kk + '.'] !== undefined){ nv = d.nt[kk + '.'].replace(/\.$/, ''); } }
+        if (nv !== undefined){ var ix = 0; r = nv.replace(/N/g, function(){ return nums[ix++]; }) + tail; }
+      }
     }
     if (r === undefined){
       for (var i = 0; i < d.pat.length; i++){
@@ -227,7 +239,7 @@
     try {
       var l = cur(); if (l === 'ru'){ restore(); return; }
       var d = DICT[l], fbl = FB[l];
-      if (fbl){ load(fbl); if (d === undefined) load(l); if (!d) d = DICT[l] = { ex: Object.create(null), pat: [] }; d.fb = DICT[fbl] || null; }
+      if (fbl){ load(fbl); if (d === undefined) load(l); if (!d) d = DICT[l] = { ex: Object.create(null), pat: [], nt: Object.create(null) }; d.fb = DICT[fbl] || null; }
       else { if (d === undefined){ load(l); return; } if (!d) return; }
       if (document.body) walk(document.body, d);
       var t = tr(document.title, d);
