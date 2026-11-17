@@ -278,7 +278,7 @@ ex:{
 "Карточка": "Karte",
 "Квилт в переводе с английского — «стёганое полотно». Это разновидность пэчворка, у которой обязательно три слоя.": "Quilt bedeutet auf Englisch „gesteppte Decke“. Das ist eine Spielart des Patchworks, die unbedingt drei Schichten hat.",
 "Квилт имеет три слоя.": "Ein Quilt hat drei Schichten.",
-"Клей": "Клей",
+"Клей": "Kleber",
 "Клей лучше наносить толстым слоем.": "Kleber trägt man besser dick auf.",
 "Клей можно пробовать на вкус.": "Kleber darf man probieren.",
 "Клей наноси тонким слоем.": "Trage den Kleber dünn auf.",

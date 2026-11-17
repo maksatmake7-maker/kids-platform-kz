@@ -278,7 +278,7 @@ ex:{
 "Карточка": "Carte",
 "Квилт в переводе с английского — «стёганое полотно». Это разновидность пэчворка, у которой обязательно три слоя.": "Le quilt, traduit de l'anglais, c'est une « étoffe matelassée ». C'est une variété de patchwork qui comporte obligatoirement trois couches.",
 "Квилт имеет три слоя.": "Le quilt a trois couches.",
-"Клей": "Клей",
+"Клей": "Colle",
 "Клей лучше наносить толстым слоем.": "Il vaut mieux appliquer la colle en couche épaisse.",
 "Клей можно пробовать на вкус.": "On peut goûter la colle.",
 "Клей наноси тонким слоем.": "Applique la colle en couche fine.",

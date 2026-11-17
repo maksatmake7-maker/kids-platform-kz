@@ -1689,7 +1689,7 @@ ex:{
 "компромисс": "compromis",
 "конная игра": "jeu équestre",
 "конфеты": "bonbons",
-"конь": "конь",
+"конь": "cheval",
 "копим на цель": "nous épargnons pour un but",
 "космонавтом": "cosmonaute",
 "космонавты": "cosmonautes",
