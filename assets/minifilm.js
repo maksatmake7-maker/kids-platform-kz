@@ -1,5 +1,8 @@
 /* Белім Аралы — мини-фильмы (свои анимированные уроки вместо чужих видео).
    Фильм = набор сцен {say, svg}. Озвучка: сначала mp3 assets/audio/films/<id>-<n>.mp3, иначе голос браузера. */
+/* подгружаем «исправитель произношения» (см → сантиметров, стоит → находится): assets/ru-speech.js */
+(function(){ if(window.RUSPEECH) return; try { var c = document.currentScript; if(!c || !c.src) return; var s = document.createElement('script'); s.src = c.src.replace(/(?:games|assets)\/[^\/?#]*(?:[?#].*)?$/, 'assets/ru-speech.js'); document.head.appendChild(s); } catch(e){} })();
+
 (function(){
   'use strict';
   var FILMS = {}, PLAYERS = {};

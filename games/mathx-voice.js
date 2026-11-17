@@ -4,6 +4,9 @@
    mp3 лежат в assets/audio/barsik/<язык>/<id>.mp3 (ru, kz, en). Нет mp3 → говорит браузер (голос выбираем мужской).
    Другие языки сайта пока озвучиваются по-русски (см. lang()).
 */
+/* подгружаем «исправитель произношения» (см → сантиметров, стоит → находится): assets/ru-speech.js */
+(function(){ if(window.RUSPEECH) return; try { var c = document.currentScript; if(!c || !c.src) return; var s = document.createElement('script'); s.src = c.src.replace(/(?:games|assets)\/[^\/?#]*(?:[?#].*)?$/, 'assets/ru-speech.js'); document.head.appendChild(s); } catch(e){} })();
+
 (function(){
   var NUM = {
     ru: ['ноль','один','два','три','четыре','пять','шесть','семь','восемь','девять','десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать','двадцать'],

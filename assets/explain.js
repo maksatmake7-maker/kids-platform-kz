@@ -20,6 +20,9 @@
    Как только такой файл появляется в репозитории — сайт начинает
    использовать его автоматически, без изменений в коде.
 */
+/* подгружаем «исправитель произношения» (см → сантиметров, стоит → находится): assets/ru-speech.js */
+(function(){ if(window.RUSPEECH) return; try { var c = document.currentScript; if(!c || !c.src) return; var s = document.createElement('script'); s.src = c.src.replace(/(?:games|assets)\/[^\/?#]*(?:[?#].*)?$/, 'assets/ru-speech.js'); document.head.appendChild(s); } catch(e){} })();
+
 
 var LANG_TO_SPEECH_CODE = {
   ru: 'ru-RU',

@@ -88,7 +88,8 @@
     return has ? out : null;
   }
   function say(text){
-    var k = 'g2_' + hsh(text), sp = romanToArabic(text); V.F.ru[k] = sp;
+    var k = 'g2_' + hsh(text), sp = romanToArabic(text); if(window.RUSPEECH) sp = RUSPEECH.fix(sp);   /* «8 см» → «8 сантиметров», «стоит» → «находится» (assets/ru-speech.js); имя mp3 считается по исходному тексту */
+    V.F.ru[k] = sp;
     var c = { id:'f_' + k, text:sp, ru:true }, pc = pieces(sp);
     if(pc && pc.length) c.pieces = pc;
     return c;
