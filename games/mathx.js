@@ -127,6 +127,7 @@
   + '.mxs-speak{display:flex;align-items:flex-end;gap:6px;padding:4px 12px 0;}'
   + '.mxs-bs{width:104px;flex:none;margin-bottom:-6px;cursor:pointer;}'
   + '.mxs-bubble{position:relative;flex:1;min-width:0;background:#fff;border-radius:24px 24px 24px 6px;padding:8px 50px 8px 12px;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 5px 0 rgba(0,0,0,.12);}'
+  + '.mxs-bubble>.mxs-cap,.mxs-bubble>.mxs-expr{max-width:100%;min-width:0;box-sizing:border-box;}'
   + '.mxs-bubble:before{content:"";position:absolute;left:-9px;bottom:10px;border:9px solid transparent;border-right-color:#fff;border-left:0;}'
   + '.mxs-cap{font:800 1.1rem "Nunito",sans-serif;color:#2D3A55;text-align:center;line-height:1.15;}.mxs-cap:empty{display:none;}'
   + '.mxs-expr{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:2.1rem;line-height:1.1;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 10px;text-align:center;}'
@@ -228,7 +229,7 @@
   + '.mxs-title{font:800 1.7rem "Baloo 2",sans-serif;color:#25324A;background:#fff;border-radius:20px;padding:6px 18px;box-shadow:0 4px 0 rgba(0,0,0,.18);}'
   + '.mxs-stk{font-size:2.4rem;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:300px;}'
   + '.mxs-again{border:none;border-radius:999px;padding:12px 30px;background:linear-gradient(#FFC93C,#FFA400);color:#fff;font:800 1.5rem "Baloo 2",sans-serif;box-shadow:0 5px 0 #C97C00;cursor:pointer;}'
-  + '@media (max-width:480px){.mxs{min-height:620px;}.mxs-bs{width:92px;}.mxs-expr{font-size:1.8rem;}.mxs-expr .q{min-width:38px;height:38px;font-size:1.4rem;}.mxs-o{font-size:2rem;}.mxs-frame{grid-template-columns:repeat(5,30px)}.mxs-cell{width:30px;height:30px;font-size:1.15rem}.mxs-balloon{width:76px;height:104px}.mxs-balloon .b{height:80px;font-size:1.9rem}.mxs-tile{width:24px;height:34px;font-size:.95rem}}'
+  + '@media (max-width:480px){.mxs{min-height:620px;}.mxs-bs{width:78px;}.mxs-speak{gap:4px;padding:4px 8px 0;}.mxs-bubble{padding:8px 44px 8px 10px;}.mxs-cap{font-size:1rem;}.mxs-expr{font-size:1.8rem;}.mxs-expr .q{min-width:38px;height:38px;font-size:1.4rem;}.mxs-o{font-size:2rem;}.mxs-frame{grid-template-columns:repeat(5,30px)}.mxs-cell{width:30px;height:30px;font-size:1.15rem}.mxs-balloon{width:76px;height:104px}.mxs-balloon .b{height:80px;font-size:1.9rem}.mxs-tile{width:24px;height:34px;font-size:.95rem}}'
   + '@media (prefers-reduced-motion:reduce){.mxs *{animation-duration:.01s !important;}}'
   + 'body.mx-play .w-bg *,body.mx-play .w-bg{animation:none !important;}';
   function injectCss(){
@@ -405,6 +406,15 @@
       st.stage = root.querySelector('.mxs'); st.field = root.querySelector('.mxs-field'); st.ans = root.querySelector('.mxs-ans');
       st.expr = root.querySelector('.mxs-expr'); st.cap = root.querySelector('.mxs-cap'); st.fx = root.querySelector('.mxs-fx'); st.lv = root.querySelector('.mxs-lv');
       st.steps = [].slice.call(root.querySelectorAll('.mxs-step')); st.snd = root.querySelector('.mxs-snd');
+      /* длинные слова не должны вылезать за рамку реплики (узкие экраны, длинные переводы): уменьшаем шрифт, пока не поместится */
+      (function(){
+        var bub = root.querySelector('.mxs-bubble'), busy = false, tm = 0;
+        function fit1(el, avail){ el.style.fontSize = ''; fitText(el, avail); }
+        function fit(){ if(busy) return; busy = true; try { var cs = getComputedStyle(bub), av = bub.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); if(av > 40){ fit1(st.cap, av); fit1(st.expr, av); } else tm = setTimeout(later, 200); } catch(e){} busy = false; }
+        function later(){ clearTimeout(tm); tm = setTimeout(fit, 30); }
+        try { new MutationObserver(later).observe(bub, {childList:true, subtree:true, characterData:true}); } catch(e){}
+        window.addEventListener('resize', later); later();
+      })();
       var bsEl = root.querySelector('#mxs-bs');
       bs = null;
       if(window.Barsik){ try { bs = Barsik.mount(bsEl, {state:'idle'}); } catch(e){ bs = null; } }
@@ -494,6 +504,23 @@
         b.addEventListener('click', function(){ if(busy) return; ac(); onAnswer(op.v, b); });
         st.ans.appendChild(b);
       });
+      /* длинные слова в шариках и карточках: уменьшаем шрифт, пока самое длинное слово не поместится */
+      [].forEach.call(st.ans.querySelectorAll('.mxs-balloon'), function(bl){
+        try { var bb = bl.firstChild, card = bl.classList.contains('card'), wide = bl.classList.contains('wide');
+          if(bb.clientWidth >= 30) fitText(bb, bb.clientWidth * (card ? 1 : wide ? 0.88 : 0.8) - (card ? 34 : 0)); } catch(e){}
+      });
+    }
+
+    /* сжимает шрифт элемента (или единственного вложенного слова со своим шрифтом), пока самое длинное неразрывное слово не влезет в avail пикселей */
+    function fitText(el0, avail){
+      var el = el0, n = 0, min = 11;
+      while(el.children.length === 1 && /^(SPAN|DIV|B)$/.test(el.firstElementChild.tagName)) el = el.firstElementChild;
+      if(el.querySelector('button,img,svg,canvas,input')) return;   // внутри кнопки/картинки — это не слово, шрифт не помогает
+      if(el !== el0){ if(el.getAttribute('data-fs0')) el.style.fontSize = el.getAttribute('data-fs0') + 'px'; else el.setAttribute('data-fs0', parseFloat(getComputedStyle(el).fontSize) || 16); }
+      var fs = parseFloat(getComputedStyle(el).fontSize) || 16;
+      function w(){ var st0 = el.style.cssText, inl = getComputedStyle(el).display === 'inline'; if(inl) el.style.display = 'inline-block';
+        el.style.width = 'min-content'; el.style.maxWidth = 'none'; var r = el.offsetWidth; el.style.cssText = st0; return r; }
+      while(n++ < 14 && fs > min && w() > avail){ fs = Math.max(min, fs * 0.92); el.style.fontSize = fs.toFixed(1) + 'px'; }
     }
 
     function centerOf(el){
