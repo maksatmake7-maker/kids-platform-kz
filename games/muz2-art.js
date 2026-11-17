@@ -88,7 +88,8 @@
   }
   var CSS = '.mz-play{border:none;border-radius:999px;padding:10px 26px;background:linear-gradient(#FFD36B,#FF9F43);box-shadow:0 5px 0 #D17A1E;color:#fff;font:800 1.2rem "Baloo 2",sans-serif;cursor:pointer;display:inline-flex;gap:8px;align-items:center;margin:4px 6px}'
     + '.mz-play svg{width:22px;height:22px;fill:#fff}.mz-play .st{display:none}.mz-play.on{background:linear-gradient(#7BE0AD,#2FBF80);box-shadow:0 5px 0 #1D8F5E}.mz-play.on .pl{display:none}.mz-play.on .st{display:inline}'
-    + '.mz-row{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;align-items:center}';
+    + '.mz-row{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;align-items:center}'
+    + '@media (max-width:480px){.mz-play{padding:8px 14px;font-size:1rem;margin:3px 2px;max-width:100%}}';
   (function(){ if(document.getElementById('mz-css')) return; var st = document.createElement('style'); st.id = 'mz-css'; st.textContent = CSS; (document.head || document.documentElement).appendChild(st); })();
 
   /* ---------- рисунки ---------- */
