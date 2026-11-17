@@ -1,3 +1,5 @@
+/* подгружаем «исправитель произношения» (см → сантиметров, стоит → находится) на каждой странице: assets/ru-speech.js */
+(function(){ if(window.RUSPEECH) return; try { var c = document.currentScript; if(!c || !c.src) return; var s = document.createElement('script'); s.src = c.src.replace(/(?:games|assets)\/[^\/?#]*(?:[?#].*)?$/, 'assets/ru-speech.js'); document.head.appendChild(s); } catch(e){} })();
 /* ===== Білім Аралы — переводы (RU / KZ / EN / ZH) =====
    Использование в HTML: <span data-i18n="hero_title"></span>
    Добавляя новую страницу — просто добавляй новые ключи в каждый язык ниже.
