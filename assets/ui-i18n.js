@@ -104,6 +104,7 @@
     [/\/grades\/grade-1\/izo\/izo-course\.html$/, 'crizog1'],
     [/\/grades\/grade-1\/math\/composition-course\.html$/, 'crcompositiong1'],
     [/\/grades\/grade-1\/math\/measure-course\.html$/, 'crmeasureg1'],
+    [/\/grades\/grade-1\/math\/measure-course\.html$/, 'g1gapc'],
     [/\/grades\/grade-1\/math\/problems-course\.html$/, 'crproblemsg1'],
     [/\/grades\/grade-1\/math\/problems-course\.html$/, 'g1gapb'],
     [/\/grades\/grade-1\/math\/teens-course\.html$/, 'crteensg1'],
@@ -140,6 +141,7 @@
   ['uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g3fix'); });
   ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g1gapa'); });
   ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g1gapb'); });
+  ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g1gapc'); });
   if (AVAIL.ug) AVAIL.ug.push('g12fix');
   ['uz','fr','de','zh','en','tg'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g12fix'); });
   /*CRA*/ AVAIL.tg = (AVAIL.tg || []).concat(["sl", "crestestvog1", "cradditiong1", "creqg1", "crnumberg1", "crsetsg1", "crtensg1", "crtrudg1", "crfiz2g2", "crpoznanie2g2", "crenglish3g3", "crmath3g3", "crtrud3g3", "crdigg1", "crfizg1", "crcompareg1", "crlogicg1", "crposg1", "crsubtractiong1", "crmuzg1", "crenglish2g2", "crmath2g2", "crtrud2g2", "crfizra3g3", "crpoznanie3g3", "crenglish1g1", "crizog1", "crcompositiong1", "crmeasureg1", "crproblemsg1", "crteensg1", "crpoznanieg1", "crestestvo2g2", "crmuz2g2", "crdigital3g3", "crizo3g3", "crsamopoznanie3g3", "crmirg1", "crcoinsg1", "crhalfg1", "crpatterng1", "crshapesg1", "crtimeg1", "crdigital2g2", "crizo2g2", "crsamopoznanie2g2", "crestestvo3g3", "crmuzyka3g3"]); /*CRZ*/
