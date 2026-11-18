@@ -2137,6 +2137,22 @@ LESSONS.push(
         { k: 'схема', t: 'Схема тоже модель: отрезок делят на части, части подписывают числами, а вопрос обозначают знаком вопроса.' } ] }),
       Q('m42s2', 'quiz', 'Выбираем модель', 'Прочитай задачу и выбери подходящую запись.', { count: 8, gens: ['modelQ'] }),
       Q('m42s3', 'quiz', 'Повторяем весь курс', 'Вперемешку задачи, выражения и уравнения.', { count: 8, gens: ['modelQ', 'ratCalc', 'eqGen'] })
+    ] },
+  { id: 'mq1', icon: '📝', title: 'Проверочная работа за 1 четверть', goal: 'Проверить всё, что изучено за четверть',
+    steps: [
+      Q('mq1s1', 'quiz', 'Проверочная работа', 'Реши задания по всем темам четверти. Не торопись и проверяй себя.', { count: 12, gens: ["nextPrev", "lineMark", "countBack", "formNum", "decomp", "blocksNum", "readNum", "placeTable", "cmp", "orderGen", "mentalTens", "hundredsOp", "crossSingle", "crossTwo", "firstAct", "orderOps", "lenRuler", "lenConv", "lenCmp", "lenOps", "dialRead", "jugRead", "thermoRead", "massConv", "massQ", "volQ", "probModel", "wordSimple", "inverseQ"] })
+    ] },
+  { id: 'mq2', icon: '📝', title: 'Проверочная работа за 2 четверть', goal: 'Проверить всё, что изучено за четверть',
+    steps: [
+      Q('mq2s1', 'quiz', 'Проверочная работа', 'Реши задания по всем темам четверти. Не торопись и проверяй себя.', { count: 12, gens: ["hundredsQ", "patternNext", "romanRead", "romanWrite", "colAdd", "colSub", "propQ", "patternBreak", "nextPrev", "cmp", "mentalTens", "crossSingle", "colMix", "timeConv", "timeOps", "clockRead", "setIn", "setNote", "vennCount", "unionEq", "digitsClass", "setBuild", "truth", "pickTrue", "pourQ", "weighQ", "comboQ", "chartRead", "tableRead", "wordSimple", "twoStep", "timesQ", "priceQty"] })
+    ] },
+  { id: 'mq3', icon: '📝', title: 'Проверочная работа за 3 четверть', goal: 'Проверить всё, что изучено за четверть',
+    steps: [
+      Q('mq3s1', 'quiz', 'Проверочная работа', 'Реши задания по всем темам четверти. Не торопись и проверяй себя.', { count: 12, gens: ["groupCount", "evenOdd", "splitQ", "mulAdd", "compMulN", "divQ", "compDivN", "inverse", "tab23", "tab45", "tabAll", "mulOne", "propLetter", "letterExpr", "cmpExpr", "ineq", "eqGen", "orderOps", "moneySum", "moneyBuy", "moneyWays", "angleType", "shapeProp", "polyName", "polySides", "cutQ", "priceQty", "perimProb", "timesQ"] })
+    ] },
+  { id: 'mq4', icon: '📝', title: 'Проверочная работа за 4 четверть', goal: 'Проверить всё, что изучено за четверть',
+    steps: [
+      Q('mq4s1', 'quiz', 'Проверочная работа', 'Реши задания по всем темам четверти. Не торопись и проверяй себя.', { count: 12, gens: ["perimRect", "perimSq", "perimTri", "perimPoly", "perimGrid", "perimSide", "perimFormula", "turnClock", "turnName", "turnFacing", "objType", "objNote", "objFact", "pointsOrder", "scaleAny", "clockRead", "moneySum", "angleType", "timeConv", "lenConv", "polyName", "twoStep", "twoStepExpr", "unkTask", "timesInd", "perimProb", "ratCalc", "ratPick", "modelQ", "eqGen"] })
     ] }
 );
 
@@ -2144,7 +2160,7 @@ LESSONS.push(
 const QOF = { m1:1, m2:1, m3:1, m7:1, m8:1, m18:1, m21:1, m22:1, m31:1, m32:1,
   m4:2, m6:2, m9:2, m10:2, m23:2, m24:2, m37:2, m38:2, m39:2, m40:2,
   m5:3, m11:3, m12:3, m13:3, m14:3, m15:3, m16:3, m17:3, m19:3, m20:3, m25:3, m26:3, m28:3, m33:3, m34:3,
-  m27:4, m29:4, m30:4, m35:4, m36:4, m41:4, m42:4 };
+  mq1:1, mq2:2, mq3:3, mq4:4, m27:4, m29:4, m30:4, m35:4, m36:4, m41:4, m42:4 };
 LESSONS.forEach(function(L, k){ L.q = QOF[L.id] || 4; L.o = k; });
 LESSONS.sort(function(a, b){ return a.q - b.q || a.o - b.o; });
 LESSONS[LESSONS.length - 1].steps.push({ id: 'mfin', scene: 'finale', gate: false, title: 'Ты молодец!', text: 'Ты прошёл все уроки курса. Теперь заходи в тренажёры и тренируйся, пока всё не станет получаться легко и быстро.' });
