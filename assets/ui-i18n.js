@@ -34,7 +34,7 @@
     return l || 'ru';
   }
   /* Пакеты по классам: тексты уроков и игр лежат отдельно (ui-<язык>-g1.js — 1 класс), чтобы не грузить их на остальных страницах */
-  var PACKS = [ [/\/grades\/grade-[123]\/.*-course\.html$/, 'g123gapz'], [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-1(?:-kaz)?\//, 'g1b'], [/\/grades\/grade-1-kaz\//, 'kd1'], [/\/grades\/grade-2-kaz\//, 'kd2'], [/\/grades\/grade-[12]-kaz\//, 'kdx'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2x'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'],
+  var PACKS = [ [/\/grades\/grade-[123]\/(?:kazakh|russian|literature)\/.*-course\.html$/, 'g123langz'], [/\/grades\/grade-[123]\/.*-course\.html$/, 'g123gapz'], [/\/grades\/grade-1(?:-kaz)?\//, 'g1'], [/\/grades\/grade-1(?:-kaz)?\//, 'g1b'], [/\/grades\/grade-1-kaz\//, 'kd1'], [/\/grades\/grade-2-kaz\//, 'kd2'], [/\/grades\/grade-[12]-kaz\//, 'kdx'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2x'], [/\/grades\/grade-2(?:-kaz)?\//, 'g2'], [/\/grades\/grade-2(?:-kaz)?\/math\//, 'g2m'],
     [/\/grades\/grade-2(?:-kaz)?\/fizra\//, 'g2fizra'],
     [/\/grades\/grade-2(?:-kaz)?\/izo\//, 'g2izo'],
     [/\/grades\/grade-2(?:-kaz)?\//, 'g2gap'],
@@ -150,6 +150,7 @@
   ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g2gapa'); });
   ['uz', 'fr', 'de', 'en', 'zh', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('sl', 'crmath2g2'); });   /* слоты задач и динамические шаблоны математики 2 класса */
   ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g123gapz'); });
+  ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g123langz'); });
   if (AVAIL.ug) AVAIL.ug.push('g12fix');
   ['uz','fr','de','zh','en','tg'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g12fix'); });
   /*CRA*/ AVAIL.tg = (AVAIL.tg || []).concat(["sl", "crestestvog1", "cradditiong1", "creqg1", "crnumberg1", "crsetsg1", "crtensg1", "crtrudg1", "crfiz2g2", "crpoznanie2g2", "crenglish3g3", "crmath3g3", "crtrud3g3", "crdigg1", "crfizg1", "crcompareg1", "crlogicg1", "crposg1", "crsubtractiong1", "crmuzg1", "crenglish2g2", "crmath2g2", "crtrud2g2", "crfizra3g3", "crpoznanie3g3", "crenglish1g1", "crizog1", "crcompositiong1", "crmeasureg1", "crproblemsg1", "crteensg1", "crpoznanieg1", "crestestvo2g2", "crmuz2g2", "crdigital3g3", "crizo3g3", "crsamopoznanie3g3", "crmirg1", "crcoinsg1", "crhalfg1", "crpatterng1", "crshapesg1", "crtimeg1", "crdigital2g2", "crizo2g2", "crsamopoznanie2g2", "crestestvo3g3", "crmuzyka3g3"]); /*CRZ*/
