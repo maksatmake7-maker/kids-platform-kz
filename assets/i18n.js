@@ -16480,6 +16480,8 @@ document.addEventListener('DOMContentLoaded', function(){
       var old = document.getElementById('mx-langnote'); if(old) old.remove();
       var txt = null;
       if(/-course\.html$/.test(location.pathname)) txt = COURSE[lang];
+      /* en/zh/uz/fr/de/ug: курсы 1–3 классов переведены (assets/ui-<язык>-*.js) — плашку «только на русском» там не показываем */
+      if(txt && /^(?:en|zh|uz|fr|de|ug)$/.test(lang) && /\/grades\/grade-[123]\//.test(location.pathname)) txt = null;
       /* 1 класс переведён на казахский (assets/ui-kz-g1.js): плашку «только на русском» там не показываем */
       if(lang === 'kz' && /\/grades\/(?:grade-1(?:-kaz)?|grade-2-kaz|grade-2\/(?:fizra|izo|muzyka|trud|poznanie|estestvo|digital|math)|grade-3(?:-kaz)?\/(?:estestvo|poznanie|izo|muzyka|trud|fizra|digital|math|english)|grade-4(?:-kaz)?\/(?:fizra|muzyka|trud|izo|digital|estestvo|poznanie|math|english)|grade-[34]-kaz\/(?:kazakh|adebiet|samopoznanie)|grade-3-kaz\/rusyaz)\//.test(location.pathname)) txt = null;
       /* таджикский: 1–3 классы (кроме казахского, русского, литературы и чтения — это предметы на своём языке) переведены, в том числе вопросы игр: плашки не показываем */
