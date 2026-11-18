@@ -1242,10 +1242,20 @@ let P = loadP();
 function view(name){ ['map', 'lesson', 'end'].forEach(v => { $('#ac-v-' + v).style.display = v === name ? '' : 'none'; }); window.scrollTo(0, 0); }
 const starsTxt = n => '★'.repeat(n) + '☆'.repeat(3 - n);
 
+/* Четверти по долгосрочному плану типовой программы (приказ № 399): тема → четверть */
+const QOF = { m31:1, m32:1, m33:1, m34:1, m36:1, m39:1, m313:1, m314:1,
+  m37:2, m3n8:2, m38:2, m315:2, m3n1:2, m3n2:2, m3n3:2, m3n4:2, m3n11:2,
+  m3n5:3, m35:3, m3n6:3, m3n7:3, m3n9:3,
+  m310:4, m311:4, m312:4, m3n10:4, m3n12:4, m3fin:4 };
+LESSONS.forEach(function(L, k){ L.q = QOF[L.id] || 4; L.o = k; });
+LESSONS.sort(function(a, b){ return a.q - b.q || (L_isFin(a) - L_isFin(b)) || a.o - b.o; });
+function L_isFin(x){ return x.id === 'm3fin' ? 1 : 0; }
 function renderMap(){
   let done = 0, h = '';
+  let lastQ = 0;
   LESSONS.forEach(function(L, i){
     const st = P[L.id] || 0; if (st) done++;
+    if (L.q !== lastQ){ lastQ = L.q; h += '<h3 class="ac-qh quarter-heading" data-i18n="q' + L.q + '_heading" style="grid-column:1/-1;margin:14px 0 2px;font-size:20px">' + L.q + '-я четверть</h3>'; }
     h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
   });
   $('#ac-map').innerHTML = h;
