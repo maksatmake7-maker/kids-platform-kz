@@ -852,7 +852,7 @@ function renderMap(){
   let done = 0, h = '';
   LESSONS.forEach(function(L, i){
     const st = P[L.id] || 0; if (st) done++;
-    if (GRP[L.id]) h += '<h3 class="ac-grp" style="grid-column:1/-1;margin:10px 0 0;font-family:Baloo 2,sans-serif;color:#2B4A8B">' + GRP[L.id] + '</h3>';
+    if (GRP[L.id]) h += '<h3 class="ac-qhead" style="grid-column:1/-1;margin:10px 0 0;font-family:Baloo 2,sans-serif;color:#2B4A8B">' + GRP[L.id] + '</h3>';
     h += '<div class="ac-lcard' + (st ? ' ac-done' : '') + '"><div class="ac-lnum">Урок ' + (i + 1) + '</div><div class="ac-licon">' + L.icon + '</div><div class="ac-ltitle">' + L.title + '</div><div class="ac-lgoal">' + L.goal + '</div><div class="ac-lstars" style="color:#F5B400">' + (st ? starsTxt(st) : '') + '</div><button class="ac-btn' + (st ? ' ac-alt' : ' ac-go') + '" data-i="' + i + '">' + (st ? 'Пройти снова' : 'Начать') + '</button></div>';
   });
   $('#ac-map').innerHTML = h;
