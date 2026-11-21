@@ -76,6 +76,7 @@
     <div class="card" id="teach"></div>
     <div class="card"><h2 data-hi="days_h">Занятия за 14 дней</h2><div class="pr-days" id="days"></div><div class="pr-note" style="margin-top:6px" data-hi="days_note">Столбик — сколько раз за день ребёнок проходил урок или игру.</div></div>
     <div class="card"><h2 data-hi="repeat_h">Что повторить</h2><div id="rep"></div></div>
+    <div class="card" id="pr-work"></div>
     <div class="card"><h2 data-hi="subs_h">Успехи по предметам</h2><div id="subs"></div></div>
     <div class="card no-print">
       <button class="pr-btn" onclick="window.print()"><span aria-hidden="true">🖨️</span> <span data-hi="print">Распечатать или сохранить в PDF</span></button>
@@ -360,6 +361,41 @@
   paintPh();
   var orig = window.applyLang;
   window.applyLang = function(l){ if(orig) orig(l); paintPh(); };
+})();
+</script>
+<script>
+(function(){
+  /* Проекты, итоговые тесты и повторение ошибок 4 класса (данные только на этом устройстве). */
+  var TX = {
+    ru: { h:'Проекты, тесты и повторение ошибок (4 класс)', pj:'Завершённые проекты', pj0:'Пока нет завершённых проектов.', tst:'Итоговые тесты по четвертям (лучший результат из 15)', q:'четв.', left:'Ошибок ждут повторения', fixed:'Исправлено ошибок за всё время', note:'Записи хранятся только на этом устройстве. Чтобы увидеть их на другом, перенесите прогресс по коду ниже.', date:'дата' },
+    kz: { h:'Жобалар, тесттер және қателерді қайталау (4-сынып)', pj:'Аяқталған жобалар', pj0:'Әзірге аяқталған жоба жоқ.', tst:'Тоқсандық қорытынды тесттер (15-тен ең жақсы нәтиже)', q:'тоқсан', left:'Қайталауды күтетін қателер', fixed:'Барлық уақытта түзетілген қателер', note:'Жазбалар тек осы құрылғыда сақталады. Басқа құрылғыда көру үшін төмендегі код арқылы прогресті көшіріңіз.', date:'күні' }
+  };
+  var SUBJ = { en:['english','Английский язык','Ағылшын тілі'], es:['estestvo','Естествознание','Жаратылыстану'], izo:['izo','ИЗО','Бейнелеу өнері'], dig:['digital','Информатика','Информатика'] };
+  function j(k){ try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e){ return {}; } }
+  function esc(x){ return String(x).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function draw(){
+    var el = document.getElementById('pr-work'); if(!el) return;
+    var kz = window.HI && HI.lang && HI.lang() === 'kz', X = kz ? TX.kz : TX.ru, si = kz ? 2 : 1;
+    var pj = j('bilim_proj_v1'), qt = j('bilim_qt_v1'), wr = j('bilim_wrong_v1'), rp = j('bilim_rep_v1');
+    var h = '<h2>' + esc(X.h) + '</h2><h3 style="margin:8px 0 4px">' + esc(X.pj) + '</h3>', rows = [];
+    Object.keys(pj).forEach(function(id){ var p = pj[id]; if(!p || !p.done) return; var c = id.split('4')[0].replace('-',''); var m = SUBJ[{en:'en',es:'es',izo:'izo',dig:'dig'}[c]]; rows.push('<li>' + esc(p.title || id) + (m ? ' · ' + esc(m[si]) : '') + (p.date ? ' · ' + esc(p.date) : '') + '</li>'); });
+    h += rows.length ? '<ul>' + rows.join('') + '</ul>' : '<p class="pr-note">' + esc(X.pj0) + '</p>';
+    h += '<h3 style="margin:10px 0 4px">' + esc(X.tst) + '</h3><div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font:700 .95rem Nunito,sans-serif"><tr><th style="text-align:left;padding:4px 6px"></th>';
+    for(var q = 1; q <= 4; q++) h += '<th style="padding:4px 6px">' + q + ' ' + esc(X.q) + '</th>';
+    h += '</tr>';
+    var left = {};
+    Object.keys(wr).forEach(function(k){ var s = wr[k].subject; left[s] = (left[s] || 0) + 1; });
+    var totalLeft = 0;
+    Object.keys(SUBJ).forEach(function(c){
+      h += '<tr style="border-top:1px solid #E1E8F0"><td style="padding:5px 6px">' + esc(SUBJ[c][si]) + '</td>';
+      for(var q = 1; q <= 4; q++){ var r = qt['qt4' + c + 'q' + q]; h += '<td style="text-align:center;padding:5px 6px">' + (r ? esc(r.best + '/15') : '—') + '</td>'; }
+      h += '</tr>'; totalLeft += left[SUBJ[c][0]] || 0;
+    });
+    h += '</table></div><p style="margin-top:10px"><b>' + esc(X.left) + ':</b> ' + totalLeft + '<br><b>' + esc(X.fixed) + ':</b> ' + (rp.fixed || 0) + '</p><div class="pr-note">' + esc(X.note) + '</div>';
+    el.innerHTML = h;
+  }
+  draw();
+  if(window.HI && HI.on) HI.on(draw);
 })();
 </script>
 </body>
