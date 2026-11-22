@@ -370,7 +370,7 @@
     ru: { h:'Проекты, тесты и повторение ошибок (4 класс)', pj:'Завершённые проекты', pj0:'Пока нет завершённых проектов.', tst:'Итоговые тесты по четвертям (лучший результат из 15)', q:'четв.', left:'Ошибок ждут повторения', fixed:'Исправлено ошибок за всё время', note:'Записи хранятся только на этом устройстве. Чтобы увидеть их на другом, перенесите прогресс по коду ниже.', date:'дата' },
     kz: { h:'Жобалар, тесттер және қателерді қайталау (4-сынып)', pj:'Аяқталған жобалар', pj0:'Әзірге аяқталған жоба жоқ.', tst:'Тоқсандық қорытынды тесттер (15-тен ең жақсы нәтиже)', q:'тоқсан', left:'Қайталауды күтетін қателер', fixed:'Барлық уақытта түзетілген қателер', note:'Жазбалар тек осы құрылғыда сақталады. Басқа құрылғыда көру үшін төмендегі код арқылы прогресті көшіріңіз.', date:'күні' }
   };
-  var SUBJ = { en:['english','Английский язык','Ағылшын тілі'], es:['estestvo','Естествознание','Жаратылыстану'], izo:['izo','ИЗО','Бейнелеу өнері'], kaz:['kazakh','Казахский язык','Қазақ тілі'], dig:['digital','Информатика','Информатика'] };
+  var SUBJ = { en:['english','Английский язык','Ағылшын тілі'], es:['estestvo','Естествознание','Жаратылыстану'], izo:['izo','ИЗО','Бейнелеу өнері'], kaz:['kazakh','Казахский язык','Қазақ тілі'], lit:['literature','Литературное чтение','Әдебиеттік оқу'], dig:['digital','Информатика','Информатика'] };
   function j(k){ try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e){ return {}; } }
   function esc(x){ return String(x).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function draw(){
@@ -378,7 +378,7 @@
     var kz = window.HI && HI.lang && HI.lang() === 'kz', X = kz ? TX.kz : TX.ru, si = kz ? 2 : 1;
     var pj = j('bilim_proj_v1'), qt = j('bilim_qt_v1'), wr = j('bilim_wrong_v1'), rp = j('bilim_rep_v1');
     var h = '<h2>' + esc(X.h) + '</h2><h3 style="margin:8px 0 4px">' + esc(X.pj) + '</h3>', rows = [];
-    Object.keys(pj).forEach(function(id){ var p = pj[id]; if(!p || !p.done) return; var c = id.split('4')[0].replace('-',''); var m = SUBJ[{en:'en',es:'es',izo:'izo',dig:'dig',kaz:'kaz'}[c]]; rows.push('<li>' + esc(p.title || id) + (m ? ' · ' + esc(m[si]) : '') + (p.date ? ' · ' + esc(p.date) : '') + '</li>'); });
+    Object.keys(pj).forEach(function(id){ var p = pj[id]; if(!p || !p.done) return; var c = id.split('4')[0].replace('-',''); var m = SUBJ[{en:'en',es:'es',izo:'izo',dig:'dig',kaz:'kaz',lit:'lit'}[c]]; rows.push('<li>' + esc(p.title || id) + (m ? ' · ' + esc(m[si]) : '') + (p.date ? ' · ' + esc(p.date) : '') + '</li>'); });
     h += rows.length ? '<ul>' + rows.join('') + '</ul>' : '<p class="pr-note">' + esc(X.pj0) + '</p>';
     h += '<h3 style="margin:10px 0 4px">' + esc(X.tst) + '</h3><div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font:700 .95rem Nunito,sans-serif"><tr><th style="text-align:left;padding:4px 6px"></th>';
     for(var q = 1; q <= 4; q++) h += '<th style="padding:4px 6px">' + q + ' ' + esc(X.q) + '</th>';
