@@ -21,9 +21,9 @@
     de: { pill: 'Müde? Spiel Schach!', pillS: 'Schach', title: 'Müde? Hast du Lust auf Schach?', text: 'Weißt du, dass Schach Kinder in jedem Alter fördert?', btn: 'Schach spielen', later: 'Später', chip: '11 Stufen · von Klasse 1 bis Klasse 11' }
   };
   var G = {
-    ru: { zone: '🎮 Зона развлечений', sub: 'Отдых после занятий', g: [['🎬','Стань режиссёром','Снимай свои мультфильмы','rezhisser/index.html','#B79CFF'],['🏃','Поймай, если сможешь','Убеги от соседа','begun/index.html','#66BB6A'],['🎲','Магнат','Путешествие по Казахстану','magnat/index.html','#FFB74D']] },
-    kz: { zone: '🎮 Ойын аймағы', sub: 'Сабақтан кейінгі демалыс', g: [['🎬','Режиссёр бол','Өз мультфильміңді түсір','rezhisser/index.html','#B79CFF'],['🏃','Қуып жетіп көр','Көршіден қаш','begun/index.html','#66BB6A'],['🎲','Магнат','Қазақстан бойынша саяхат','magnat/index.html','#FFB74D']] },
-    en: { zone: '🎮 Fun zone', sub: 'Rest after lessons', g: [['🎬','Be a director','Make your own cartoons','rezhisser/index.html','#B79CFF'],['🏃','Catch me if you can','Run from the neighbour','begun/index.html','#66BB6A'],['🎲','Tycoon','A trip around Kazakhstan','magnat/index.html','#FFB74D']] }
+    ru: { zone: '🎮 Зона развлечений', sub: 'Отдых после занятий', g: [['🎬','Стань режиссёром','Снимай свои мультфильмы','rezhisser/index.html','#B79CFF'],['🎲','Магнат','Путешествие по Казахстану','magnat/index.html','#FFB74D']] },
+    kz: { zone: '🎮 Ойын аймағы', sub: 'Сабақтан кейінгі демалыс', g: [['🎬','Режиссёр бол','Өз мультфильміңді түсір','rezhisser/index.html','#B79CFF'],['🎲','Магнат','Қазақстан бойынша саяхат','magnat/index.html','#FFB74D']] },
+    en: { zone: '🎮 Fun zone', sub: 'Rest after lessons', g: [['🎬','Be a director','Make your own cartoons','rezhisser/index.html','#B79CFF'],['🎲','Tycoon','A trip around Kazakhstan','magnat/index.html','#FFB74D']] }
   };
   function gl(){ var l = lang(); if (G[l]) return G[l]; if (l === 'de' || l === 'fr' || l === 'zh') return G.en; return G.ru; }
   function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if (s && T[s]) return s; } catch(e){} return 'ru'; }
