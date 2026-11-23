@@ -166,7 +166,7 @@
   if (AVAIL.ug) AVAIL.ug.push('g12fix');
   ['uz','fr','de','zh','en','tg'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g12fix'); });
   ['uz','fr','de','zh','en','tg','ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g4math', 'g4mq1', 'g4mq2', 'g4mq3', 'g4mq4', 'g4mqx'); }); /* математика 4 класса */
-  ['en','de'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g4mux', 'g4mu1', 'g4mu2', 'g4mu3', 'g4mu4'); }); /* музыка 4 класса */
+  ['en','de','fr'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g4mux', 'g4mu1', 'g4mu2', 'g4mu3', 'g4mu4'); }); /* музыка 4 класса */
   /*CRA*/ AVAIL.tg = (AVAIL.tg || []).concat(["sl", "crestestvog1", "cradditiong1", "creqg1", "crnumberg1", "crsetsg1", "crtensg1", "crtrudg1", "crfiz2g2", "crpoznanie2g2", "crenglish3g3", "crmath3g3", "crtrud3g3", "crdigg1", "crfizg1", "crcompareg1", "crlogicg1", "crposg1", "crsubtractiong1", "crmuzg1", "crenglish2g2", "crmath2g2", "crtrud2g2", "crfizra3g3", "crpoznanie3g3", "crenglish1g1", "crizog1", "crcompositiong1", "crmeasureg1", "crproblemsg1", "crteensg1", "crpoznanieg1", "crestestvo2g2", "crmuz2g2", "crdigital3g3", "crizo3g3", "crsamopoznanie3g3", "crmirg1", "crcoinsg1", "crhalfg1", "crpatterng1", "crshapesg1", "crtimeg1", "crdigital2g2", "crizo2g2", "crsamopoznanie2g2", "crestestvo3g3", "crmuzyka3g3"]); /*CRZ*/
   AVAIL.tg = (AVAIL.tg || []).concat(['crfin']);
   PACKS.push([/\/grades\/grade-[123]\//, 'g123kzx']); /* kz: добор перевода курсов и игр 1–3 классов */
