@@ -117,7 +117,8 @@ function drawBg(c,bg){
 function stkAt(s,i,t){
   var p, a = 1, dx = 0, dy = 0, sc = 1, rot = s.rot||0;
   p = (t - i*0.25)/0.7;
-  if(UI.playing && s.mv && s.mv!=='none'){ var q = Math.max(0,Math.min(1,t/(CURDUR||4))); dx += (s.mv==='right' ? 1 : -1)*(q-0.5)*520; }
+  var v = 0;
+  if(UI.playing && s.mv && s.mv!=='none'){ var q = Math.max(0,Math.min(1,t/(CURDUR||4))), sm = q*q*(3-2*q); dx += (s.mv==='right' ? 1 : -1)*(sm-0.5)*520; v = 4*q*(1-q); }
   if(s.anim==='fade') a = ease(p);
   else if(s.anim==='slide'){ dx = -(1-ease(p))*420; a = Math.min(1,p*3); }
   else if(s.anim==='zoom') sc = ease(p);
@@ -125,12 +126,18 @@ function stkAt(s,i,t){
   if(s.idle==='float') dy += Math.sin(t*2+i)*10;
   else if(s.idle==='wiggle') rot += Math.sin(t*6+i)*7;
   else if(s.idle==='spin') rot += (t*90)%360;
-  return {a:a,dx:dx,dy:dy,sc:sc,rot:rot};
+  if(s.c){ var d = Math.max(0,Math.min(1,(s.y-200)/140)); sc *= 0.8+0.2*d; a *= 0.82+0.18*d; }
+  return {a:a,dx:dx,dy:dy,sc:sc,rot:rot,v:v};
 }
 function drawStk(c,s,i,t,sel){
   var st = stkAt(s,i,t); if(st.a<=0 || st.sc<=0) return;
-  c.save(); c.globalAlpha = st.a; c.translate(s.x+st.dx, s.y+st.dy); c.rotate(st.rot*Math.PI/180); c.scale(st.sc*(s.flip?-1:1), st.sc);
-  if(s.c && window.RZC){ RZC.draw(c,s.c,s.s,t,s.act||'stand'); }
+  var act = s.act||'stand', te = t, bob = 0, lean = 0;
+  if(s.c && UI.playing && s.mv && s.mv!=='none'){ if(st.v<0.06) act = 'stand'; else { te = t*(0.55+0.45*st.v); lean = (s.mv==='right'?1:-1)*st.v*5; } }
+  if(s.c && act==='walk') bob = -Math.abs(Math.sin(te*9))*s.s*st.sc*0.022;
+  if(s.c){ var fy = s.y+st.dy+0.45*s.s*st.sc, k2 = 1-Math.min(0.5,Math.abs(st.dy)/300);
+    c.save(); c.globalAlpha = st.a*0.28*k2; c.fillStyle = '#1b2a3a'; c.beginPath(); c.ellipse(s.x+st.dx,fy,s.s*st.sc*0.3*k2,s.s*st.sc*0.05*k2,0,0,Math.PI*2); c.fill(); c.restore(); }
+  c.save(); c.globalAlpha = st.a; c.translate(s.x+st.dx, s.y+st.dy+bob); c.rotate((st.rot+lean)*Math.PI/180); c.scale(st.sc*(s.flip?-1:1), st.sc);
+  if(s.c && window.RZC){ RZC.draw(c,s.c,s.s,te,act); }
   else if(s.img){ var im = getImg(s.img); if(im.complete && im.naturalWidth){ var k = s.s/Math.max(im.naturalWidth,im.naturalHeight); c.drawImage(im,-im.naturalWidth*k/2,-im.naturalHeight*k/2,im.naturalWidth*k,im.naturalHeight*k); } }
   else { c.font = s.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillText(s.e,0,0); }
   c.restore();
