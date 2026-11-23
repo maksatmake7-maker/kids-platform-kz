@@ -72,7 +72,7 @@
     [/\/grades\/grade-4(?:-kaz)?\/estestvo\//, 'g4est'],
     [/\/grades\/grade-4(?:-kaz)?\/poznanie\//, 'g4poz'],
     [/\/grades\/grade-4(?:-kaz)?\/math\//, 'g4math'],
-    [/\/grades\/grade-4(?:-kaz)?\/math\/(?:q\dl\d+\.html|index\.html|math4-course\.html)/, 'g4mqx'],
+    [/\/grades\/grade-4(?:-kaz)?\/math\/(?:q\dl\d+\.html|index\.html|math4-course\.html|project-math4-\w+\.html|test-q\d\.html|repeat\.html)/, 'g4mqx'],
     [/\/grades\/grade-4(?:-kaz)?\/math\/(?:q1l\d+\.html|math4-course\.html)/, 'g4mq1'],
     [/\/grades\/grade-4(?:-kaz)?\/math\/(?:q2l\d+\.html|math4-course\.html)/, 'g4mq2'],
     [/\/grades\/grade-4(?:-kaz)?\/math\/(?:q3l\d+\.html|math4-course\.html)/, 'g4mq3'],
@@ -160,6 +160,7 @@
   ['kz', 'uz', 'fr', 'de', 'en', 'zh', 'tg', 'ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g123crs'); });
   if (AVAIL.ug) AVAIL.ug.push('g12fix');
   ['uz','fr','de','zh','en','tg'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g12fix'); });
+  ['uz','fr','de','zh','en','tg','ug'].forEach(function(l){ if (AVAIL[l]) AVAIL[l].push('g4math', 'g4mq1', 'g4mq2', 'g4mq3', 'g4mq4', 'g4mqx'); }); /* математика 4 класса */
   /*CRA*/ AVAIL.tg = (AVAIL.tg || []).concat(["sl", "crestestvog1", "cradditiong1", "creqg1", "crnumberg1", "crsetsg1", "crtensg1", "crtrudg1", "crfiz2g2", "crpoznanie2g2", "crenglish3g3", "crmath3g3", "crtrud3g3", "crdigg1", "crfizg1", "crcompareg1", "crlogicg1", "crposg1", "crsubtractiong1", "crmuzg1", "crenglish2g2", "crmath2g2", "crtrud2g2", "crfizra3g3", "crpoznanie3g3", "crenglish1g1", "crizog1", "crcompositiong1", "crmeasureg1", "crproblemsg1", "crteensg1", "crpoznanieg1", "crestestvo2g2", "crmuz2g2", "crdigital3g3", "crizo3g3", "crsamopoznanie3g3", "crmirg1", "crcoinsg1", "crhalfg1", "crpatterng1", "crshapesg1", "crtimeg1", "crdigital2g2", "crizo2g2", "crsamopoznanie2g2", "crestestvo3g3", "crmuzyka3g3"]); /*CRZ*/
   AVAIL.tg = (AVAIL.tg || []).concat(['crfin']);
   PACKS.push([/\/grades\/grade-[123]\//, 'g123kzx']); /* kz: добор перевода курсов и игр 1–3 классов */
