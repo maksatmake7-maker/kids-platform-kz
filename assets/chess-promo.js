@@ -20,6 +20,12 @@
     fr: { pill: 'Fatigué ? Joue aux échecs !', pillS: 'Échecs', title: 'Fatigué ? Envie de jouer aux échecs ?', text: 'Sais-tu que les échecs font grandir et développent l’enfant à tout âge ?', btn: 'Jouer aux échecs', later: 'Plus tard', chip: '11 niveaux · de la 1re à la 11e année' },
     de: { pill: 'Müde? Spiel Schach!', pillS: 'Schach', title: 'Müde? Hast du Lust auf Schach?', text: 'Weißt du, dass Schach Kinder in jedem Alter fördert?', btn: 'Schach spielen', later: 'Später', chip: '11 Stufen · von Klasse 1 bis Klasse 11' }
   };
+  var G = {
+    ru: { zone: '🎮 Зона развлечений', sub: 'Отдых после занятий', g: [['🎬','Стань режиссёром','Снимай свои мультфильмы','rezhisser/index.html','#B79CFF'],['🏃','Поймай, если сможешь','Убеги от соседа','begun/index.html','#66BB6A'],['🎲','Магнат','Путешествие по Казахстану','magnat/index.html','#FFB74D']] },
+    kz: { zone: '🎮 Ойын аймағы', sub: 'Сабақтан кейінгі демалыс', g: [['🎬','Режиссёр бол','Өз мультфильміңді түсір','rezhisser/index.html','#B79CFF'],['🏃','Қуып жетіп көр','Көршіден қаш','begun/index.html','#66BB6A'],['🎲','Магнат','Қазақстан бойынша саяхат','magnat/index.html','#FFB74D']] },
+    en: { zone: '🎮 Fun zone', sub: 'Rest after lessons', g: [['🎬','Be a director','Make your own cartoons','rezhisser/index.html','#B79CFF'],['🏃','Catch me if you can','Run from the neighbour','begun/index.html','#66BB6A'],['🎲','Tycoon','A trip around Kazakhstan','magnat/index.html','#FFB74D']] }
+  };
+  function gl(){ var l = lang(); if (G[l]) return G[l]; if (l === 'de' || l === 'fr' || l === 'zh') return G.en; return G.ru; }
   function lang(){ try { var s = localStorage.getItem('bilim_lang_v1'); if (s && T[s]) return s; } catch(e){} return 'ru'; }
   function tx(k){ return (T[lang()] || T.ru)[k] || T.ru[k]; }
 
@@ -48,6 +54,11 @@
     '.chp-banner p{margin:0 0 10px;font-weight:700;font-size:clamp(.92rem,2.4vw,1.02rem);line-height:1.4;opacity:.96}' +
     '.chp-banner .btn{display:inline-block;background:#FFD34D;color:#1D3557;font-weight:800;border-radius:14px;padding:9px 18px;box-shadow:0 3px 0 rgba(0,0,0,.2)}' +
     '.chp-banner .chip{display:inline-block;margin-left:8px;font-size:.8rem;font-weight:800;opacity:.9}' +
+    '.chp-zone{max-width:920px;margin:26px auto 30px;padding:0 16px;font-family:Nunito,Arial,sans-serif}.chp-zone .chp-banner{margin:0 auto 14px;padding:0}' +
+    '.chp-zh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 12px}.chp-zh h2{margin:0;font:800 clamp(1.3rem,4vw,1.8rem) "Baloo 2",Nunito,sans-serif;color:#1D3557}.chp-zh span{font-weight:700;opacity:.7;color:#1D3557}' +
+    '.chp-games{margin-bottom:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}' +
+    '.chp-g{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:20px;text-decoration:none;color:#1D3557;background:#fff;border:3px solid var(--gc);box-shadow:0 4px 0 rgba(29,53,87,.18);transition:transform .15s}.chp-g:hover{transform:translateY(-3px)}' +
+    '.chp-g .e{flex:none;display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background:var(--gc);font-size:1.7rem}.chp-g b{display:block;font:800 1.08rem/1.15 "Baloo 2",Nunito,sans-serif}.chp-g small{display:block;font-weight:700;opacity:.75;font-size:.85rem;margin-top:2px}' +
     '@media(max-width:560px){.chp-banner a{flex-direction:column;text-align:center;gap:10px}.chp-banner .chip{display:block;margin:8px 0 0}}';
 
   function injectCss(){ if (document.getElementById('chp-css')) return; var s = document.createElement('style'); s.id = 'chp-css'; s.textContent = CSS; document.head.appendChild(s); }
@@ -56,13 +67,15 @@
     var here = location.href.split(/[?#]/)[0].replace(/index\.html$/, '');
     return here === ROOT || /grade-picker\.html$/.test(here) || /\/grades\/grade-[\w-]+\/$/.test(here);   // главная, выбор класса, страницы классов
   })();
-  var pill, card, banner, popTimer, shortTimer;
+  var zone, pill, card, banner, popTimer, shortTimer;
 
   function mkBanner(){
     var ft = document.querySelector('footer'); if (!ft || !ft.parentNode) return;
     banner = document.createElement('div'); banner.className = 'chp-banner';
     banner.innerHTML = '<a href="' + HREF + '"><span class="chp-board" aria-hidden="true"><b class="a">♚︎</b><b class="b">♞︎</b></span><span><h3></h3><p></p><span class="btn"></span><span class="chip"></span></span></a>';
-    ft.parentNode.insertBefore(banner, ft);
+    zone = document.createElement('div'); zone.className = 'chp-zone';
+    zone.innerHTML = '<div class="chp-zh"><h2></h2><span></span></div><div class="chp-games"></div>';
+    zone.appendChild(banner); ft.parentNode.insertBefore(zone, ft);
   }
   function mkPill(){
     pill = document.createElement('a'); pill.className = 'chp-pill'; pill.href = HREF; pill.setAttribute('role', 'button');
@@ -81,6 +94,8 @@
   function paint(){
     if (pill){ pill.querySelector('.lb').textContent = (isHub ? tx('pill') : tx('pill')); pill.setAttribute('aria-label', tx('title')); }
     if (card){ card.querySelector('h4').textContent = tx('title'); card.querySelector('p').textContent = tx('text'); card.querySelector('.go').textContent = '♟ ' + tx('btn'); card.querySelector('.later').textContent = tx('later'); }
+    if (zone){ var gg = gl(), box = zone.querySelector('.chp-games'); zone.querySelector('.chp-zh h2').textContent = gg.zone; zone.querySelector('.chp-zh span').textContent = gg.sub;
+      box.innerHTML = ''; gg.g.forEach(function(a){ var el = document.createElement('a'); el.className = 'chp-g'; el.href = ROOT + a[3]; el.style.setProperty('--gc', a[4]); el.innerHTML = '<span class="e"></span><span><b></b><small></small></span>'; el.querySelector('.e').textContent = a[0]; el.querySelector('b').textContent = a[1]; el.querySelector('small').textContent = a[2]; box.appendChild(el); }); }
     if (banner){ banner.querySelector('h3').textContent = tx('title'); banner.querySelector('p').textContent = tx('text'); banner.querySelector('.btn').textContent = '♟ ' + tx('btn'); banner.querySelector('.chip').textContent = tx('chip'); }
   }
   function init(){
