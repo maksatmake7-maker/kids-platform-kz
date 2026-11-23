@@ -6,7 +6,7 @@ var W = 960, H = 540, TR = 0.6, MAXSC = 12;
 
 /* ---------- тексты интерфейса ---------- */
 var L = {
-ru:{h2:'Стань режиссёром',title:'Мой ролик',scene:'Сцена',pics:'Картинки',text:'Текст',music:'Музыка',proj:'Проект',play:'Смотреть',stop:'Стоп',make:'Сделать видео',
+ru:{h2:'Стань режиссёром',tpl:'Шаблоны',tplh:'Выбери готовый сценарий — потом поменяй картинки и слова на свои.',tplq:'Заменить твой ролик шаблоном?',voice:'Голос',vhint:'Нажми на микрофон и расскажи, что происходит в этой сцене. Запись идёт до 15 секунд.',vrec:'Записать',vstop:'Готово',vplay:'Послушать',vdel:'Удалить голос',mic_no:'Не удалось включить микрофон. Разреши доступ к микрофону в браузере.',vyes:'Голос записан',vrecnow:'Идёт запись… говори!',c_kz:'Казахстан',c_sport:'Спорт',title:'Мой ролик',scene:'Сцена',pics:'Картинки',text:'Текст',music:'Музыка',proj:'Проект',play:'Смотреть',stop:'Стоп',make:'Сделать видео',
  kid:'Малыш',pro:'Старший',bg:'Фон',dur:'Сколько секунд',trans:'Переход',t_none:'Нет',t_fade:'Плавно',t_slide:'Сдвиг',
  dup:'Копия',del:'Удалить',left:'←',right:'→',add:'+',sc:'Сцена',
  bigger:'Больше',smaller:'Меньше',flip:'Отразить',rot:'Повернуть',front:'Наверх',remove:'Убрать',
@@ -21,7 +21,7 @@ ru:{h2:'Стань режиссёром',title:'Мой ролик',scene:'Сце
  rec:'Записываю ролик… Не закрывай страницу.',done:'Готово! Видео скачано.',noex:'В этом браузере нельзя записать видео. Попробуй Chrome, Edge или Firefox.',
  safe:'Всё делается на твоём устройстве. Ничего не отправляется в интернет.',empty:'Добавь картинки и подпись — и нажми «Смотреть».',
  lead:'Собери свой мультик: выбирай фон, добавляй героев, пиши подписи, включай музыку и скачивай видео!'},
-kz:{h2:'Режиссёр бол',title:'Менің бейнем',scene:'Көрініс',pics:'Суреттер',text:'Мәтін',music:'Музыка',proj:'Жоба',play:'Көру',stop:'Тоқта',make:'Бейне жасау',
+kz:{h2:'Режиссёр бол',tpl:'Үлгілер',tplh:'Дайын сценарийді таңдаңыз — содан соң суреттер мен сөздерді өзіңдікіне ауыстырыңыз.',tplq:'Бейнеңізді үлгімен ауыстырамыз ба?',voice:'Дауыс',vhint:'Микрофонды басып, осы көріністе не болып жатқанын айтыңыз. Жазу 15 секундқа дейін.',vrec:'Жазу',vstop:'Дайын',vplay:'Тыңдау',vdel:'Дауысты жою',mic_no:'Микрофон қосылмады. Браузерде микрофонға рұқсат беріңіз.',vyes:'Дауыс жазылды',vrecnow:'Жазылып жатыр… сөйле!',c_kz:'Қазақстан',c_sport:'Спорт',title:'Менің бейнем',scene:'Көрініс',pics:'Суреттер',text:'Мәтін',music:'Музыка',proj:'Жоба',play:'Көру',stop:'Тоқта',make:'Бейне жасау',
  kid:'Кішкентай',pro:'Үлкен',bg:'Фон',dur:'Неше секунд',trans:'Ауысу',t_none:'Жоқ',t_fade:'Біртіндеп',t_slide:'Сырғу',
  dup:'Көшірме',del:'Жою',left:'←',right:'→',add:'+',sc:'Көрініс',
  bigger:'Үлкенірек',smaller:'Кішірек',flip:'Айналдыр',rot:'Бұр',front:'Үстіне',remove:'Алып тастау',
@@ -36,7 +36,7 @@ kz:{h2:'Режиссёр бол',title:'Менің бейнем',scene:'Көрі
  rec:'Бейне жазылып жатыр… Бетті жаппаңыз.',done:'Дайын! Бейне жүктелді.',noex:'Бұл браузерде бейне жазу мүмкін емес. Chrome, Edge немесе Firefox қолданып көріңіз.',
  safe:'Бәрі сіздің құрылғыңызда жасалады. Интернетке ештеңе жіберілмейді.',empty:'Суреттер мен жазу қосыңыз да, «Көру» батырмасын басыңыз.',
  lead:'Өз мультфильміңді жина: фон таңда, кейіпкерлер қос, жазу жаз, музыка қос да бейнені жүктеп ал!'},
-en:{h2:'Become a director',title:'My video',scene:'Scene',pics:'Pictures',text:'Text',music:'Music',proj:'Project',play:'Play',stop:'Stop',make:'Make video',
+en:{h2:'Become a director',tpl:'Templates',tplh:'Pick a ready story, then change the pictures and words to your own.',tplq:'Replace your video with the template?',voice:'Voice',vhint:'Press the microphone and tell what happens in this scene. Up to 15 seconds.',vrec:'Record',vstop:'Done',vplay:'Listen',vdel:'Delete voice',mic_no:'Could not turn on the microphone. Allow microphone access in the browser.',vyes:'Voice recorded',vrecnow:'Recording… speak!',c_kz:'Kazakhstan',c_sport:'Sport',title:'My video',scene:'Scene',pics:'Pictures',text:'Text',music:'Music',proj:'Project',play:'Play',stop:'Stop',make:'Make video',
  kid:'Kid',pro:'Older',bg:'Background',dur:'Seconds',trans:'Transition',t_none:'None',t_fade:'Fade',t_slide:'Slide',
  dup:'Copy',del:'Delete',left:'←',right:'→',add:'+',sc:'Scene',
  bigger:'Bigger',smaller:'Smaller',flip:'Flip',rot:'Rotate',front:'To front',remove:'Remove',
@@ -63,15 +63,20 @@ var BGS = [
  {a:'#8fd3ff',b:'#e6f7ff',g:'#7ccf6e'},{a:'#ff9a76',b:'#ffe0b0',g:'#7a5a4a',sun:1},{a:'#0b1d4a',b:'#3a2f7a',stars:1},
  {a:'#bfe6ff',b:'#fff3c4',g:'#d4be5c'},{a:'#4fc3f7',b:'#0277bd'},{a:'#a5d6a7',b:'#e8f5e9',g:'#388e3c'},
  {a:'#e3f2fd',b:'#ffffff',g:'#f4f9ff'},{a:'#0d0d2b',b:'#2b1055',stars:1,g:'#4a4a6a'},{a:'#ffe0b2',b:'#ffcc80',g:'#a1744a'},
- {a:'#ffd1e8',b:'#ffd1e8'},{a:'#fff59d',b:'#fff59d'},{a:'#263238',b:'#37474f'}
+ {a:'#ffd1e8',b:'#ffd1e8'},{a:'#fff59d',b:'#fff59d'},{a:'#263238',b:'#37474f'},
+ {a:'#9fd8ff',b:'#e8f6ff',g:'#6fbf73',mount:'#8fa3b8'},{a:'#ff8a65',b:'#ffe0b2',g:'#5d4037',mount:'#6d4c41',sun:1},{a:'#ffd180',b:'#fff3e0',dunes:'#e0b060'},
+ {a:'#1a237e',b:'#ff8a65',city:1},{a:'#81d4fa',b:'#e1f5fe',waves:1,g:'#f5deb3'},{a:'#00acc1',b:'#006064',bubbles:1},
+ {a:'#05051a',b:'#1b1b4b',stars:1,planet:1},{a:'#f8bbd0',b:'#fff9c4',confetti:1}
 ];
 var CATS = {
- animals:['🐆','🦁','🐯','🐶','🐱','🐰','🐻','🐼','🦊','🐴','🐪','🦅','🐑','🐄','🐟','🐢','🦋','🐝'],
- nature:['🌳','🌲','🌴','🌵','🌻','🌷','🍄','⛰️','🌈','☀️','🌙','⭐','☁️','❄️','🔥','💧','🌊','🌾'],
+ animals:['🐆','🦁','🐯','🐶','🐱','🐰','🐻','🐼','🦊','🐴','🐪','🦅','🐑','🐄','🐟','🐢','🦋','🐝','🐺','🦌','🐘','🦒','🦓','🐧','🦉','🐸','🐬','🐙','🦖','🐉','🦄','🐿️'],
+ kz:['⛺','🐪','🐴','🦅','🪕','🌷','🏔️','🐑','🥛','🍲','🍵','🎻','🌾','🐆','🐺','🏹'],
+ nature:['🌳','🌲','🌴','🌵','🌻','🌷','🍄','⛰️','🌈','☀️','🌙','⭐','☁️','❄️','🔥','💧','🌊','🌾','🌸','🍁','⚡','🪐','🌍','☄️'],
  people:['👦','👧','👨','👩','👴','👵','🧑‍🚀','🧑‍🍳','🧑‍🏫','👮','🧑‍⚕️','👸','🤴','🦸','🧙','🤖','👽','🧒'],
- things:['🏠','🚗','🚌','🚂','✈️','🚀','🛶','⛵','🎈','🎁','⚽','🎸','🪕','📚','🔭','💡','🏆','🏰','⛺','🎪'],
+ things:['🏠','🚗','🚌','🚂','✈️','🚀','🛶','⛵','🎈','🎁','⚽','🎸','🪕','📚','🔭','💡','🏆','🏰','⛺','🎪','🛸','🚁','🚒','🚑','🎨','🎬','📷','💻','⏰','🔑','🗺️','🧭'],
  food:['🍎','🍌','🍉','🍓','🍞','🧀','🍕','🍦','🥛','🍯','🍪','🎂'],
- signs:['❤️','✨','💬','❗','❓','🎵','👍','👏','😀','😮','😴','🎉']
+ signs:['❤️','✨','💬','❗','❓','🎵','👍','👏','😀','😮','😴','🎉','😂','😍','🤔','😎','💤','💥'],
+ sport:['⚽','🏀','🏐','🎾','🥇','🏆','🛹','🚴','🏊','🥋','♟️','🎯','⛸️','🏂','🎿','🤸']
 };
 var COLORS = ['#ffffff','#ffeb3b','#ff6b6b','#4c8dff','#2ec27e','#111111'];
 
@@ -100,7 +105,14 @@ function drawBg(c,bg){
   c.fillStyle=g; c.fillRect(0,0,W,H);
   if(d.stars){ c.fillStyle='rgba(255,255,255,.85)'; for(var i=0;i<60;i++){ var x=(i*137)%W, y=(i*89)%(H*0.7), r=1+(i%3); c.beginPath(); c.arc(x,y,r,0,7); c.fill(); } }
   if(d.sun){ c.fillStyle='rgba(255,240,170,.9)'; c.beginPath(); c.arc(W*0.8,H*0.55,60,0,7); c.fill(); }
+  if(d.planet){ c.fillStyle='#ff9800'; c.beginPath(); c.arc(W*0.78,H*0.34,72,0,7); c.fill(); c.strokeStyle='rgba(255,224,178,.9)'; c.lineWidth=9; c.beginPath(); c.ellipse(W*0.78,H*0.34,115,26,-0.35,0,7); c.stroke(); }
+  if(d.mount){ c.fillStyle=d.mount; [[-50,200,400],[250,140,800],[620,220,1010]].forEach(function(m,i){ var pk = [0.35,0.24,0.4][i]; c.beginPath(); c.moveTo(m[0],H*0.76); c.lineTo((m[0]+m[2])/2,H*pk); c.lineTo(m[2],H*0.76); c.closePath(); c.fill(); }); }
+  if(d.dunes){ c.fillStyle=d.dunes; c.beginPath(); c.moveTo(0,H); for(var x=0;x<=W;x+=20) c.lineTo(x,H*0.7+Math.sin(x/140)*28+Math.sin(x/53)*8); c.lineTo(W,H); c.closePath(); c.fill(); }
+  if(d.city){ for(var b=0;b<12;b++){ var bh = 130+((b*53)%150), bx = b*84; c.fillStyle='#1b1f3b'; c.fillRect(bx,H-bh-40,70,bh+40); c.fillStyle='rgba(255,235,120,.85)'; for(var wy=H-bh-24;wy<H-50;wy+=26) for(var wx=bx+10;wx<bx+60;wx+=20) if(((wx+wy)*7)%5<3) c.fillRect(wx,wy,9,12); } }
+  if(d.waves){ c.fillStyle='#29b6f6'; c.fillRect(0,H*0.52,W,H*0.24); c.strokeStyle='rgba(255,255,255,.8)'; c.lineWidth=4; for(var r=0;r<3;r++){ c.beginPath(); for(var wx2=0;wx2<=W;wx2+=16) c.lineTo(wx2,H*(0.58+r*0.06)+Math.sin(wx2/30+r)*5); c.stroke(); } }
   if(d.g){ c.fillStyle=d.g; c.fillRect(0,H*0.76,W,H*0.24); }
+  if(d.bubbles){ c.strokeStyle='rgba(255,255,255,.7)'; c.lineWidth=3; for(var q=0;q<18;q++){ c.beginPath(); c.arc((q*173)%W,(q*97)%H,8+(q%4)*6,0,7); c.stroke(); } }
+  if(d.confetti){ var cols = ['#ff6b6b','#4c8dff','#2ec27e','#ffeb3b','#b79cff']; for(var f=0;f<70;f++){ c.fillStyle = cols[f%5]; c.save(); c.translate((f*131)%W,(f*71)%H); c.rotate(f); c.fillRect(-6,-3,12,6); c.restore(); } }
 }
 function stkAt(s,i,t){
   var p, a = 1, dx = 0, dy = 0, sc = 1, rot = s.rot||0;
@@ -192,18 +204,35 @@ function drawThumbs(){
 }
 function fmt(s){ s = Math.max(0,Math.round(s)); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
 function setTime(T){ var el = document.getElementById('rz-time'); if(el) el.textContent = fmt(T)+' / '+fmt(total()); }
+var BUFS = {}, voiceSrc = [], voiceGain = null, playTok = 0;
+function getBuf(u){
+  if(BUFS[u]) return BUFS[u]; var ac = audioCtx(); if(!ac) return Promise.resolve(null);
+  BUFS[u] = fetch(u).then(function(r){ return r.arrayBuffer(); }).then(function(b){ return new Promise(function(res,rej){ ac.decodeAudioData(b,res,rej); }); }).catch(function(){ return null; });
+  return BUFS[u];
+}
 function play(exportMode){
   if(UI.playing) return; UI.playing = true; UI.exporting = !!exportMode; S.sel = -1; refreshBar();
+  var tok = ++playTok, hasV = S.scenes.some(function(x){ return x.voice; });
+  var pr = hasV ? (audioCtx(), Promise.all(S.scenes.map(function(x){ return x.voice ? getBuf(x.voice) : null; }))) : Promise.resolve([]);
+  pr.then(function(bufs){ if(tok!==playTok || !UI.playing) return; run(bufs,exportMode); });
+}
+function run(bufs,exportMode){
   var tot = total(); t0 = performance.now();
-  if(S.music!=='none'){ var ac = audioCtx(); if(ac){ if(exportMode){ musicStart(musicDest); } else musicStart(null); } }
+  if(S.music!=='none'){ var ac = audioCtx(); if(ac){ if(exportMode) musicStart(musicDest); else musicStart(null); } }
+  if(bufs.some(Boolean) && AC){
+    voiceGain = AC.createGain(); voiceGain.gain.value = 1; voiceGain.connect(AC.destination); if(exportMode && musicDest) voiceGain.connect(musicDest);
+    var acc = 0, base = AC.currentTime+0.05;
+    S.scenes.forEach(function(sc,i){ var b = bufs[i]; if(b){ var src = AC.createBufferSource(); src.buffer = b; src.connect(voiceGain); src.start(base+acc); voiceSrc.push(src); } acc += sc.dur; });
+  }
   (function loop(){
+    if(!UI.playing) return;
     var T = (performance.now()-t0)/1000;
     if(T >= tot){ renderAt(cx,tot-0.001,-1); setTime(tot); finish(); return; }
     renderAt(cx,T,-1); setTime(T); raf = requestAnimationFrame(loop);
   })();
 }
 function finish(){
-  var wasExport = UI.exporting; cancelAnimationFrame(raf); musicStop(); UI.playing = false; UI.exporting = false;
+  var wasExport = UI.exporting; playTok++; cancelAnimationFrame(raf); musicStop(); voiceSrc.forEach(function(x){ try{ x.stop(); }catch(e){} }); voiceSrc = []; if(voiceGain){ try{ voiceGain.disconnect(); }catch(e){} voiceGain = null; } UI.playing = false; UI.exporting = false;
   if(wasExport && rec){ try{ rec.stop(); }catch(e){} }
   refreshBar(); redraw(); setTime(0);
 }
@@ -215,8 +244,8 @@ function exportVideo(){
   var types = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm','video/mp4'], mt = '';
   for(var i=0;i<types.length;i++){ if(MediaRecorder.isTypeSupported(types[i])){ mt = types[i]; break; } }
   musicDest = null; var stream = cv.captureStream(30), usedMusic = S.music!=='none';
-  var ac = usedMusic ? audioCtx() : null;
-  if(usedMusic && ac){ musicDest = ac.createMediaStreamDestination(); musicDest.stream.getAudioTracks().forEach(function(tr){ stream.addTrack(tr); }); }
+  var hasVoice = S.scenes.some(function(x){ return x.voice; }), ac = (usedMusic||hasVoice) ? audioCtx() : null;
+  if(ac){ musicDest = ac.createMediaStreamDestination(); musicDest.stream.getAudioTracks().forEach(function(tr){ stream.addTrack(tr); }); }
   try { rec = new MediaRecorder(stream, mt ? {mimeType:mt, videoBitsPerSecond:4000000} : {}); } catch(e){ alert(t('noex')); return; }
   recChunks = []; var ext = (rec.mimeType||mt||'video/webm').indexOf('mp4')>=0 ? 'mp4' : 'webm';
   rec.ondataavailable = function(e){ if(e.data && e.data.size) recChunks.push(e.data); };
@@ -233,7 +262,7 @@ function exportVideo(){
 
 /* ---------- сохранение ---------- */
 var saveTimer = 0;
-function autosave(){ clearTimeout(saveTimer); saveTimer = setTimeout(function(){ try{ localStorage.setItem('rezh_project_v1',JSON.stringify(S)); }catch(e){ try{ var c = clone(S); c.scenes.forEach(function(sc){ sc.stk = sc.stk.filter(function(s){ return !s.img; }); }); localStorage.setItem('rezh_project_v1',JSON.stringify(c)); }catch(e2){} } },400); }
+function autosave(){ clearTimeout(saveTimer); saveTimer = setTimeout(function(){ try{ localStorage.setItem('rezh_project_v1',JSON.stringify(S)); }catch(e){ try{ var c = clone(S); c.scenes.forEach(function(sc){ sc.stk = sc.stk.filter(function(s){ return !s.img; }); delete sc.voice; }); localStorage.setItem('rezh_project_v1',JSON.stringify(c)); }catch(e2){} } },400); }
 function loadSaved(){ try{ var j = localStorage.getItem('rezh_project_v1'); if(j){ var o = JSON.parse(j); if(o && o.scenes && o.scenes.length){ S = o; S.cur = 0; S.sel = -1; return true; } } }catch(e){} return false; }
 function changed(){ autosave(); redraw(); }
 
@@ -258,7 +287,7 @@ function renderStrip(){
   var strip = document.getElementById('rz-strip'); if(!strip) return; strip.innerHTML = '';
   S.scenes.forEach(function(sc,i){
     var c = h('canvas',{width:264,height:149});
-    var th = h('div',{class:'rz-th'+(i===S.cur?' cur':''),onclick:function(){ if(UI.playing) return; S.cur = i; S.sel = -1; renderAll(); }},[c,h('small',{},[t('sc')+' '+(i+1)+' · '+sc.dur+'с'])]);
+    var th = h('div',{class:'rz-th'+(i===S.cur?' cur':''),onclick:function(){ if(UI.playing) return; S.cur = i; S.sel = -1; renderAll(); }},[c,h('small',{},[t('sc')+' '+(i+1)+' · '+sc.dur+'с'+(sc.voice?' 🎙':'')])]);
     strip.appendChild(th);
   });
   if(S.scenes.length<MAXSC) strip.appendChild(h('button',{class:'rz-add',type:'button',title:t('sc'),onclick:function(){ if(UI.playing) return; S.scenes.push(newScene()); S.cur = S.scenes.length-1; S.sel = -1; changed(); renderAll(); }},['+']));
@@ -271,7 +300,7 @@ function sceneTab(p){
   BGS.forEach(function(b,i){ sw.appendChild(h('button',{type:'button',class:sc.bg===i?'on':'',style:'background:linear-gradient('+b.a+','+b.b+')',onclick:function(){ sc.bg = i; changed(); renderPanel(); }})); });
   p.appendChild(sw);
   p.appendChild(h('h4',{},[t('dur')+': '+sc.dur]));
-  p.appendChild(h('input',{type:'range',min:2,max:10,step:1,value:sc.dur,oninput:function(e){ sc.dur = +e.target.value; p.querySelector('h4:nth-of-type(2)').textContent = t('dur')+': '+sc.dur; autosave(); renderStrip(); setTime(0); }}));
+  p.appendChild(h('input',{type:'range',min:2,max:15,step:1,value:sc.dur,oninput:function(e){ sc.dur = +e.target.value; p.querySelector('h4:nth-of-type(2)').textContent = t('dur')+': '+sc.dur; autosave(); renderStrip(); setTime(0); }}));
   if(S.cur>0){
     var wr = h('div',{class:'adv-only'},[h('h4',{},[t('trans')])]), row = h('div',{class:'rz-row'});
     [['none','t_none'],['fade','t_fade'],['slide','t_slide']].forEach(function(o){ row.appendChild(btn(t(o[1]),'sm'+(sc.trans===o[0]?' on':''),function(){ sc.trans = o[0]; changed(); renderPanel(); })); });
@@ -339,6 +368,83 @@ function textTab(p){
   var w = h('div',{class:'adv-only'},[h('h4',{},[t('tsize')])]);
   w.appendChild(h('input',{type:'range',min:28,max:72,step:2,value:sc.tsize,oninput:function(e){ sc.tsize = +e.target.value; changed(); }})); p.appendChild(w);
 }
+
+/* ---------- голос ---------- */
+var vrec = null;
+function startRec(){
+  if(UI.playing) stopPlay();
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder){ alert(t('mic_no')); return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+    var chunks = [], sc = cur(), tmr; vrec = new MediaRecorder(stream);
+    vrec.ondataavailable = function(e){ if(e.data && e.data.size) chunks.push(e.data); };
+    vrec.onstop = function(){
+      clearTimeout(tmr); stream.getTracks().forEach(function(x){ x.stop(); }); UI.recording = false; vrec = null;
+      var blob = new Blob(chunks,{type:chunks[0] ? chunks[0].type : 'audio/webm'}), fr = new FileReader();
+      fr.onload = function(){
+        sc.voice = fr.result;
+        getBuf(sc.voice).then(function(b){ if(b){ sc.dur = Math.max(sc.dur,Math.min(15,Math.ceil(b.duration))); } changed(); renderAll(); });
+      }; fr.readAsDataURL(blob);
+    };
+    vrec.start(); UI.recording = true; tmr = setTimeout(function(){ if(vrec && vrec.state==='recording') vrec.stop(); },15000); renderPanel();
+  }).catch(function(){ alert(t('mic_no')); });
+}
+function stopRec(){ if(vrec && vrec.state==='recording') vrec.stop(); }
+function voiceTab(p){
+  var sc = cur(); p.appendChild(h('div',{class:'rz-hint'},[t('vhint')]));
+  var r = h('div',{class:'rz-row'});
+  if(UI.recording){ r.appendChild(btn('⏹ '+t('vstop'),'red',stopRec)); p.appendChild(r); p.appendChild(h('div',{class:'rz-hint'},['🔴 '+t('vrecnow')])); return; }
+  r.appendChild(btn('🎙 '+t('vrec'),'go',startRec));
+  if(sc.voice){
+    r.appendChild(btn('▶ '+t('vplay'),'',function(){ try{ new Audio(sc.voice).play(); }catch(e){} }));
+    r.appendChild(btn('🗑 '+t('vdel'),'sm red',function(){ delete sc.voice; changed(); renderAll(); }));
+  }
+  p.appendChild(r);
+  if(sc.voice) p.appendChild(h('div',{class:'rz-hint'},['✅ '+t('vyes')]));
+}
+
+/* ---------- шаблоны ---------- */
+var TPLS = [
+ {id:'hello',music:'merry',n:{ru:'Знакомство',kz:'Танысу',en:'Meet me'},sc:[
+  {bg:0,tp:'top',st:[['🐆',480,300,230,'bounce','wiggle'],['☀️',860,90,110,'fade','spin'],['🌳',140,340,200,'zoom']],tx:{ru:'Привет! Я Барсик!',kz:'Сәлем! Мен Барсикпін!',en:"Hi! I'm Barsik!"}},
+  {bg:5,st:[['🌳',160,330,220,'zoom'],['🦊',480,360,150,'slide','float'],['🌻',800,390,130,'fade'],['🐰',640,380,110,'bounce']],tx:{ru:'Я живу на Острове знаний',kz:'Мен Білім аралында тұрамын',en:'I live on the Island of Knowledge'}},
+  {bg:3,st:[['🐆',380,330,190,'zoom','float'],['👧',560,340,170,'zoom'],['❤️',470,140,110,'bounce','float']],tx:{ru:'Давай дружить!',kz:'Дос болайық!',en:"Let's be friends!"}}]},
+ {id:'space',music:'space',n:{ru:'Полёт в космос',kz:'Ғарышқа сапар',en:'Space trip'},sc:[
+  {bg:7,st:[['🚀',300,320,220,'slide','float'],['⭐',700,120,90,'fade','spin'],['✨',820,260,100,'fade'],['🪐',720,380,150,'zoom']],tx:{ru:'Летим к звёздам!',kz:'Жұлдыздарға ұшамыз!',en:'Flying to the stars!'}},
+  {bg:18,st:[['🛸',620,220,170,'slide','float'],['👽',360,340,190,'bounce','wiggle']],tx:{ru:'Мы встретили гостя с другой планеты',kz:'Басқа планетадан келген қонақпен кездестік',en:'We met a visitor from another planet'}},
+  {bg:0,st:[['🧑‍🚀',480,330,230,'bounce'],['🌍',820,110,110,'zoom','spin']],tx:{ru:'Мы вернулись домой!',kz:'Біз үйге оралдық!',en:'We are back home!'}}]},
+ {id:'nauryz',music:'merry',n:{ru:'Наурыз',kz:'Наурыз',en:'Nauryz'},sc:[
+  {bg:3,tp:'top',st:[['⛺',300,340,240,'zoom'],['🐪',680,360,200,'slide'],['🌷',130,400,100,'fade'],['☀️',860,90,110,'fade','spin']],tx:{ru:'Пришёл праздник Наурыз!',kz:'Наурыз мейрамы келді!',en:'Nauryz has come!'}},
+  {bg:0,st:[['👧',350,340,190,'bounce','wiggle'],['👦',600,340,190,'bounce','wiggle'],['🪕',480,170,120,'zoom','wiggle'],['🎵',800,150,100,'fade','float']],tx:{ru:'Поём и танцуем',kz:'Ән айтып, би билейміз',en:'We sing and dance'}},
+  {bg:19,st:[['🍲',360,330,170,'zoom'],['🥛',560,340,150,'zoom'],['🎉',480,130,120,'bounce','float']],tx:{ru:'Угощаем гостей',kz:'Қонақтарды күтеміз',en:'We treat our guests'}}]},
+ {id:'animals',music:'calm',n:{ru:'Кто где живёт',kz:'Кім қайда тұрады',en:'Who lives where'},sc:[
+  {bg:5,st:[['🦊',300,340,170,'slide'],['🐻',620,330,200,'slide'],['🌲',130,320,200,'zoom'],['🌲',840,330,190,'zoom']],tx:{ru:'В лесу живут лиса и медведь',kz:'Орманда түлкі мен аю тұрады',en:'A fox and a bear live in the forest'}},
+  {bg:17,st:[['🐟',300,250,130,'slide','float'],['🐢',620,340,150,'bounce'],['🐙',500,150,140,'fade','wiggle']],tx:{ru:'В море плавают рыбы и черепахи',kz:'Теңізде балықтар мен тасбақалар жүзеді',en:'Fish and turtles swim in the sea'}},
+  {bg:3,st:[['🐪',320,340,200,'slide'],['🐴',640,350,180,'slide'],['🌾',830,400,110,'fade']],tx:{ru:'В степи пасутся верблюд и конь',kz:'Далада түйе мен жылқы жайылады',en:'A camel and a horse graze in the steppe'}}]},
+ {id:'trip',music:'adv',n:{ru:'Приключение в горах',kz:'Таудағы оқиға',en:'Mountain adventure'},sc:[
+  {bg:12,tp:'top',st:[['🧒',320,350,200,'bounce'],['🏔️',700,300,260,'zoom'],['☁️',200,100,120,'fade','float']],tx:{ru:'Мы идём в горы!',kz:'Біз тауға шықтық!',en:'We are going to the mountains!'}},
+  {bg:13,st:[['⛺',480,350,240,'zoom'],['🔥',700,390,130,'bounce','wiggle'],['🌙',840,100,100,'fade']],tx:{ru:'Ставим палатку на ночь',kz:'Түнеуге шатыр тігеміз',en:'We pitch a tent for the night'}},
+  {bg:0,st:[['🧒',480,350,210,'bounce'],['🌈',480,150,260,'zoom'],['👍',760,300,120,'bounce']],tx:{ru:'Какое классное путешествие!',kz:'Қандай керемет саяхат!',en:'What a great trip!'}}]}
+];
+function buildTpl(tp){
+  var lg = lang();
+  return tp.sc.map(function(d){ var o = newScene(); o.bg = d.bg; o.dur = 4; o.tpos = d.tp||'bot'; o.text = d.tx[lg]||d.tx.ru;
+    o.stk = d.st.map(function(a){ return {e:a[0],x:a[1],y:a[2],s:a[3],flip:false,rot:0,anim:a[4]||'none',idle:a[5]||'none'}; }); return o; });
+}
+function applyTpl(tp){
+  var nonEmpty = S.scenes.length>1 || S.scenes[0].stk.length || S.scenes[0].text;
+  if(nonEmpty && !confirm(t('tplq'))) return;
+  var lg = lang(); S.scenes = buildTpl(tp); S.music = tp.music; S.cur = 0; S.sel = -1; S.title = tp.n[lg]||tp.n.ru; UI.tab = 'scene'; changed(); renderAll();
+}
+function tplTab(p){
+  p.appendChild(h('div',{class:'rz-hint'},[t('tplh')]));
+  TPLS.forEach(function(tp){
+    var c = h('canvas',{width:240,height:135,style:'width:120px;border-radius:8px;background:#000;flex:none'});
+    var row = h('button',{type:'button',class:'rz-btn',style:'display:flex;gap:10px;align-items:center;width:100%;margin:6px 0;text-align:start',onclick:function(){ applyTpl(tp); }},[c,h('span',{},[(tp.n[lang()]||tp.n.ru)])]);
+    p.appendChild(row);
+    var k = c.getContext('2d'); k.setTransform(c.width/W,0,0,c.height/H,0,0); drawScene(k,buildTpl(tp)[0],20,-1);
+  });
+}
+
 function musicTab(p){
   var r = h('div',{class:'rz-row'});
   [['none','m_none'],['merry','m_merry'],['calm','m_calm'],['adv','m_adv'],['space','m_space']].forEach(function(o){
@@ -363,12 +469,12 @@ function projTab(p){
 function renderPanel(){
   var p = document.getElementById('rz-panel'); if(!p) return; p.innerHTML = '';
   var tabs = h('div',{class:'rz-tabs'});
-  [['scene','🎞 '+t('scene')],['pics','🐆 '+t('pics')],['text','💬 '+t('text')],['music','🎵 '+t('music')],['proj','📁 '+t('proj')]].forEach(function(o){
+  [['tpl','🧩 '+t('tpl')],['scene','🎞 '+t('scene')],['pics','🐆 '+t('pics')],['text','💬 '+t('text')],['voice','🎙 '+t('voice')],['music','🎵 '+t('music')],['proj','📁 '+t('proj')]].forEach(function(o){
     tabs.appendChild(h('button',{type:'button',class:'rz-tab'+(UI.tab===o[0]?' on':''),onclick:function(){ UI.tab = o[0]; renderPanel(); }},[o[1]]));
   });
   p.appendChild(tabs);
   var body = h('div'); p.appendChild(body);
-  ({scene:sceneTab,pics:picsTab,text:textTab,music:musicTab,proj:projTab})[UI.tab](body);
+  ({tpl:tplTab,scene:sceneTab,pics:picsTab,text:textTab,voice:voiceTab,music:musicTab,proj:projTab})[UI.tab](body);
   redraw();
 }
 function renderAll(){ renderStrip(); renderPanel(); refreshBar(); setTime(0); redraw(); }
@@ -415,7 +521,7 @@ function init(){
   var root = document.getElementById('rz-app'); if(!root) return;
   try{ UI.adv = localStorage.getItem('rezh_mode')==='adv'; }catch(e){}
   document.body.classList.toggle('rz-adv',UI.adv);
-  if(!loadSaved()) reset();
+  if(!loadSaved()){ reset(); UI.tab = 'tpl'; }
   build(root);
   heads();
   new MutationObserver(function(){ if(UI.playing) return; build(root); heads(); }).observe(document.documentElement,{attributes:true,attributeFilter:['data-current']});
