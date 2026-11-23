@@ -6,7 +6,7 @@ var W = 960, H = 540, TR = 0.6, MAXSC = 12;
 
 /* ---------- тексты интерфейса ---------- */
 var L = {
-ru:{h2:'Стань режиссёром',face:'Куда смотрит',fc_l:'← Влево',fc_r:'Вправо →',act:'Что делает герой',st_stand:'Стоит',st_walk:'Идёт',st_wave:'Машет',st_jump:'Прыгает',st_talk:'Говорит',mv:'Куда идёт',mv_none:'На месте',mv_right:'Вправо',mv_left:'Влево',cam:'Камера',cam_none:'Нет',cam_zin:'Ближе',cam_zout:'Дальше',cam_panl:'Влево',cam_panr:'Вправо',tstyle:'Вид подписи',ts_box:'Плашка',ts_bub:'Облачко',c_beasts:'Звери',tpl:'Шаблоны',tplh:'Выбери готовый сценарий — потом поменяй картинки и слова на свои.',tplq:'Заменить твой ролик шаблоном?',voice:'Голос',vhint:'Нажми на микрофон и расскажи, что происходит в этой сцене. Запись идёт до 15 секунд.',vrec:'Записать',vstop:'Готово',vplay:'Послушать',vdel:'Удалить голос',mic_no:'Не удалось включить микрофон. Разреши доступ к микрофону в браузере.',vyes:'Голос записан',vrecnow:'Идёт запись… говори!',c_kz:'Казахстан',c_sport:'Спорт',title:'Мой ролик',scene:'Сцена',pics:'Картинки',text:'Текст',music:'Музыка',proj:'Проект',play:'Смотреть',stop:'Стоп',make:'Сделать видео',
+ru:{h2:'Стань режиссёром',light:'Время суток',lt_day:'День',lt_eve:'Вечер',lt_night:'Ночь',face:'Куда смотрит',fc_l:'← Влево',fc_r:'Вправо →',act:'Что делает герой',st_stand:'Стоит',st_walk:'Идёт',st_wave:'Машет',st_jump:'Прыгает',st_talk:'Говорит',mv:'Куда идёт',mv_none:'На месте',mv_right:'Вправо',mv_left:'Влево',cam:'Камера',cam_none:'Нет',cam_zin:'Ближе',cam_zout:'Дальше',cam_panl:'Влево',cam_panr:'Вправо',tstyle:'Вид подписи',ts_box:'Плашка',ts_bub:'Облачко',c_beasts:'Звери',tpl:'Шаблоны',tplh:'Выбери готовый сценарий — потом поменяй картинки и слова на свои.',tplq:'Заменить твой ролик шаблоном?',voice:'Голос',vhint:'Нажми на микрофон и расскажи, что происходит в этой сцене. Запись идёт до 15 секунд.',vrec:'Записать',vstop:'Готово',vplay:'Послушать',vdel:'Удалить голос',mic_no:'Не удалось включить микрофон. Разреши доступ к микрофону в браузере.',vyes:'Голос записан',vrecnow:'Идёт запись… говори!',c_kz:'Казахстан',c_sport:'Спорт',title:'Мой ролик',scene:'Сцена',pics:'Картинки',text:'Текст',music:'Музыка',proj:'Проект',play:'Смотреть',stop:'Стоп',make:'Сделать видео',
  kid:'Малыш',pro:'Старший',bg:'Фон',dur:'Сколько секунд',trans:'Переход',t_none:'Нет',t_fade:'Плавно',t_slide:'Сдвиг',
  dup:'Копия',del:'Удалить',left:'←',right:'→',add:'+',sc:'Сцена',
  bigger:'Больше',smaller:'Меньше',flip:'Отразить',rot:'Повернуть',front:'Наверх',remove:'Убрать',
@@ -21,7 +21,7 @@ ru:{h2:'Стань режиссёром',face:'Куда смотрит',fc_l:'�
  rec:'Записываю ролик… Не закрывай страницу.',done:'Готово! Видео скачано.',noex:'В этом браузере нельзя записать видео. Попробуй Chrome, Edge или Firefox.',
  safe:'Всё делается на твоём устройстве. Ничего не отправляется в интернет.',empty:'Добавь картинки и подпись — и нажми «Смотреть».',
  lead:'Собери свой мультик: выбирай фон, добавляй героев, пиши подписи, включай музыку и скачивай видео!'},
-kz:{h2:'Режиссёр бол',face:'Қайда қарайды',fc_l:'← Солға',fc_r:'Оңға →',act:'Кейіпкер не істейді',st_stand:'Тұр',st_walk:'Жүреді',st_wave:'Қол бұлғайды',st_jump:'Секіреді',st_talk:'Сөйлейді',mv:'Қайда барады',mv_none:'Орнында',mv_right:'Оңға',mv_left:'Солға',cam:'Камера',cam_none:'Жоқ',cam_zin:'Жақын',cam_zout:'Алыс',cam_panl:'Солға',cam_panr:'Оңға',tstyle:'Жазу түрі',ts_box:'Тақтайша',ts_bub:'Бұлтша',c_beasts:'Жануарлар',tpl:'Үлгілер',tplh:'Дайын сценарийді таңдаңыз — содан соң суреттер мен сөздерді өзіңдікіне ауыстырыңыз.',tplq:'Бейнеңізді үлгімен ауыстырамыз ба?',voice:'Дауыс',vhint:'Микрофонды басып, осы көріністе не болып жатқанын айтыңыз. Жазу 15 секундқа дейін.',vrec:'Жазу',vstop:'Дайын',vplay:'Тыңдау',vdel:'Дауысты жою',mic_no:'Микрофон қосылмады. Браузерде микрофонға рұқсат беріңіз.',vyes:'Дауыс жазылды',vrecnow:'Жазылып жатыр… сөйле!',c_kz:'Қазақстан',c_sport:'Спорт',title:'Менің бейнем',scene:'Көрініс',pics:'Суреттер',text:'Мәтін',music:'Музыка',proj:'Жоба',play:'Көру',stop:'Тоқта',make:'Бейне жасау',
+kz:{h2:'Режиссёр бол',light:'Тәулік уақыты',lt_day:'Күндіз',lt_eve:'Кеш',lt_night:'Түн',face:'Қайда қарайды',fc_l:'← Солға',fc_r:'Оңға →',act:'Кейіпкер не істейді',st_stand:'Тұр',st_walk:'Жүреді',st_wave:'Қол бұлғайды',st_jump:'Секіреді',st_talk:'Сөйлейді',mv:'Қайда барады',mv_none:'Орнында',mv_right:'Оңға',mv_left:'Солға',cam:'Камера',cam_none:'Жоқ',cam_zin:'Жақын',cam_zout:'Алыс',cam_panl:'Солға',cam_panr:'Оңға',tstyle:'Жазу түрі',ts_box:'Тақтайша',ts_bub:'Бұлтша',c_beasts:'Жануарлар',tpl:'Үлгілер',tplh:'Дайын сценарийді таңдаңыз — содан соң суреттер мен сөздерді өзіңдікіне ауыстырыңыз.',tplq:'Бейнеңізді үлгімен ауыстырамыз ба?',voice:'Дауыс',vhint:'Микрофонды басып, осы көріністе не болып жатқанын айтыңыз. Жазу 15 секундқа дейін.',vrec:'Жазу',vstop:'Дайын',vplay:'Тыңдау',vdel:'Дауысты жою',mic_no:'Микрофон қосылмады. Браузерде микрофонға рұқсат беріңіз.',vyes:'Дауыс жазылды',vrecnow:'Жазылып жатыр… сөйле!',c_kz:'Қазақстан',c_sport:'Спорт',title:'Менің бейнем',scene:'Көрініс',pics:'Суреттер',text:'Мәтін',music:'Музыка',proj:'Жоба',play:'Көру',stop:'Тоқта',make:'Бейне жасау',
  kid:'Кішкентай',pro:'Үлкен',bg:'Фон',dur:'Неше секунд',trans:'Ауысу',t_none:'Жоқ',t_fade:'Біртіндеп',t_slide:'Сырғу',
  dup:'Көшірме',del:'Жою',left:'←',right:'→',add:'+',sc:'Көрініс',
  bigger:'Үлкенірек',smaller:'Кішірек',flip:'Айналдыр',rot:'Бұр',front:'Үстіне',remove:'Алып тастау',
@@ -36,7 +36,7 @@ kz:{h2:'Режиссёр бол',face:'Қайда қарайды',fc_l:'← Со
  rec:'Бейне жазылып жатыр… Бетті жаппаңыз.',done:'Дайын! Бейне жүктелді.',noex:'Бұл браузерде бейне жазу мүмкін емес. Chrome, Edge немесе Firefox қолданып көріңіз.',
  safe:'Бәрі сіздің құрылғыңызда жасалады. Интернетке ештеңе жіберілмейді.',empty:'Суреттер мен жазу қосыңыз да, «Көру» батырмасын басыңыз.',
  lead:'Өз мультфильміңді жина: фон таңда, кейіпкерлер қос, жазу жаз, музыка қос да бейнені жүктеп ал!'},
-en:{h2:'Become a director',face:'Looks',fc_l:'← Left',fc_r:'Right →',act:'What the hero does',st_stand:'Stands',st_walk:'Walks',st_wave:'Waves',st_jump:'Jumps',st_talk:'Talks',mv:'Where to',mv_none:'Stays',mv_right:'Right',mv_left:'Left',cam:'Camera',cam_none:'None',cam_zin:'Closer',cam_zout:'Farther',cam_panl:'Left',cam_panr:'Right',tstyle:'Caption style',ts_box:'Plate',ts_bub:'Bubble',c_beasts:'Beasts',tpl:'Templates',tplh:'Pick a ready story, then change the pictures and words to your own.',tplq:'Replace your video with the template?',voice:'Voice',vhint:'Press the microphone and tell what happens in this scene. Up to 15 seconds.',vrec:'Record',vstop:'Done',vplay:'Listen',vdel:'Delete voice',mic_no:'Could not turn on the microphone. Allow microphone access in the browser.',vyes:'Voice recorded',vrecnow:'Recording… speak!',c_kz:'Kazakhstan',c_sport:'Sport',title:'My video',scene:'Scene',pics:'Pictures',text:'Text',music:'Music',proj:'Project',play:'Play',stop:'Stop',make:'Make video',
+en:{h2:'Become a director',light:'Time of day',lt_day:'Day',lt_eve:'Evening',lt_night:'Night',face:'Looks',fc_l:'← Left',fc_r:'Right →',act:'What the hero does',st_stand:'Stands',st_walk:'Walks',st_wave:'Waves',st_jump:'Jumps',st_talk:'Talks',mv:'Where to',mv_none:'Stays',mv_right:'Right',mv_left:'Left',cam:'Camera',cam_none:'None',cam_zin:'Closer',cam_zout:'Farther',cam_panl:'Left',cam_panr:'Right',tstyle:'Caption style',ts_box:'Plate',ts_bub:'Bubble',c_beasts:'Beasts',tpl:'Templates',tplh:'Pick a ready story, then change the pictures and words to your own.',tplq:'Replace your video with the template?',voice:'Voice',vhint:'Press the microphone and tell what happens in this scene. Up to 15 seconds.',vrec:'Record',vstop:'Done',vplay:'Listen',vdel:'Delete voice',mic_no:'Could not turn on the microphone. Allow microphone access in the browser.',vyes:'Voice recorded',vrecnow:'Recording… speak!',c_kz:'Kazakhstan',c_sport:'Sport',title:'My video',scene:'Scene',pics:'Pictures',text:'Text',music:'Music',proj:'Project',play:'Play',stop:'Stop',make:'Make video',
  kid:'Kid',pro:'Older',bg:'Background',dur:'Seconds',trans:'Transition',t_none:'None',t_fade:'Fade',t_slide:'Slide',
  dup:'Copy',del:'Delete',left:'←',right:'→',add:'+',sc:'Scene',
  bigger:'Bigger',smaller:'Smaller',flip:'Flip',rot:'Rotate',front:'To front',remove:'Remove',
@@ -83,8 +83,8 @@ var COLORS = ['#ffffff','#ffeb3b','#ff6b6b','#4c8dff','#2ec27e','#111111'];
 /* ---------- состояние ---------- */
 var S = { title:'', scenes:[], cur:0, sel:-1, music:'none', vol:0.6 };
 var UI = { tab:'scene', cat:'beasts', adv:false, playing:false, exporting:false, T:0 };
-var imgCache = {}, CURDUR = 4;
-function newScene(){ return {bg:0,stk:[],text:'',tpos:'bot',tstyle:'box',tcol:'#ffffff',tsize:44,dur:4,trans:'fade',cam:'none'}; }
+var imgCache = {}, CURDUR = 4, SPK = null;
+function newScene(){ return {bg:0,stk:[],text:'',tpos:'bot',tstyle:'box',tcol:'#ffffff',tsize:44,dur:4,trans:'fade',cam:'none',light:'day'}; }
 function reset(){ S = {title:t('title'),scenes:[newScene()],cur:0,sel:-1,music:'none',vol:0.6}; }
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
 
@@ -100,19 +100,21 @@ function wrap(c,txt,maxW){
     out.push(line);
   }); return out;
 }
-function drawBg(c,bg){
-  var d = BGS[bg] || BGS[0], g = c.createLinearGradient(0,0,0,H); g.addColorStop(0,d.a); g.addColorStop(1,d.b);
+function drawBg(c,bg,t){
+  t = t||0; var d = BGS[bg] || BGS[0], g = c.createLinearGradient(0,0,0,H); g.addColorStop(0,d.a); g.addColorStop(1,d.b);
   c.fillStyle=g; c.fillRect(0,0,W,H);
-  if(d.stars){ c.fillStyle='rgba(255,255,255,.85)'; for(var i=0;i<60;i++){ var x=(i*137)%W, y=(i*89)%(H*0.7), r=1+(i%3); c.beginPath(); c.arc(x,y,r,0,7); c.fill(); } }
-  if(d.sun){ c.fillStyle='rgba(255,240,170,.9)'; c.beginPath(); c.arc(W*0.8,H*0.55,60,0,7); c.fill(); }
+  if(d.stars){ c.fillStyle='rgba(255,255,255,.85)'; for(var i=0;i<60;i++){ var x=(i*137)%W, y=(i*89)%(H*0.7), r=1+(i%3); c.globalAlpha = 0.45+0.55*Math.abs(Math.sin(t*1.6+i)); c.beginPath(); c.arc(x,y,r,0,7); c.fill(); } c.globalAlpha = 1; }
+  if(d.sun){ c.fillStyle='rgba(255,240,170,.9)'; c.beginPath(); c.arc(W*0.8,H*0.55,60+Math.sin(t*2)*3,0,7); c.fill(); }
   if(d.planet){ c.fillStyle='#ff9800'; c.beginPath(); c.arc(W*0.78,H*0.34,72,0,7); c.fill(); c.strokeStyle='rgba(255,224,178,.9)'; c.lineWidth=9; c.beginPath(); c.ellipse(W*0.78,H*0.34,115,26,-0.35,0,7); c.stroke(); }
   if(d.mount){ c.fillStyle=d.mount; [[-50,200,400],[250,140,800],[620,220,1010]].forEach(function(m,i){ var pk = [0.35,0.24,0.4][i]; c.beginPath(); c.moveTo(m[0],H*0.76); c.lineTo((m[0]+m[2])/2,H*pk); c.lineTo(m[2],H*0.76); c.closePath(); c.fill(); }); }
   if(d.dunes){ c.fillStyle=d.dunes; c.beginPath(); c.moveTo(0,H); for(var x=0;x<=W;x+=20) c.lineTo(x,H*0.7+Math.sin(x/140)*28+Math.sin(x/53)*8); c.lineTo(W,H); c.closePath(); c.fill(); }
   if(d.city){ for(var b=0;b<12;b++){ var bh = 130+((b*53)%150), bx = b*84; c.fillStyle='#1b1f3b'; c.fillRect(bx,H-bh-40,70,bh+40); c.fillStyle='rgba(255,235,120,.85)'; for(var wy=H-bh-24;wy<H-50;wy+=26) for(var wx=bx+10;wx<bx+60;wx+=20) if(((wx+wy)*7)%5<3) c.fillRect(wx,wy,9,12); } }
-  if(d.waves){ c.fillStyle='#29b6f6'; c.fillRect(0,H*0.52,W,H*0.24); c.strokeStyle='rgba(255,255,255,.8)'; c.lineWidth=4; for(var r=0;r<3;r++){ c.beginPath(); for(var wx2=0;wx2<=W;wx2+=16) c.lineTo(wx2,H*(0.58+r*0.06)+Math.sin(wx2/30+r)*5); c.stroke(); } }
-  if(d.g){ c.fillStyle=d.g; c.fillRect(0,H*0.76,W,H*0.24); }
-  if(d.bubbles){ c.strokeStyle='rgba(255,255,255,.7)'; c.lineWidth=3; for(var q=0;q<18;q++){ c.beginPath(); c.arc((q*173)%W,(q*97)%H,8+(q%4)*6,0,7); c.stroke(); } }
-  if(d.confetti){ var cols = ['#ff6b6b','#4c8dff','#2ec27e','#ffeb3b','#b79cff']; for(var f=0;f<70;f++){ c.fillStyle = cols[f%5]; c.save(); c.translate((f*131)%W,(f*71)%H); c.rotate(f); c.fillRect(-6,-3,12,6); c.restore(); } }
+  if(d.waves){ c.fillStyle='#29b6f6'; c.fillRect(0,H*0.52,W,H*0.24); c.strokeStyle='rgba(255,255,255,.8)'; c.lineWidth=4; for(var r=0;r<3;r++){ c.beginPath(); for(var wx2=0;wx2<=W;wx2+=16) c.lineTo(wx2,H*(0.58+r*0.06)+Math.sin(wx2/30+r+t*2)*5+Math.sin(wx2/70-t*1.3)*3); c.stroke(); } }
+  if(d.g){ c.fillStyle=d.g; c.fillRect(0,H*0.76,W,H*0.24);
+    if(bg===0||bg===5||bg===12){ c.strokeStyle='rgba(40,120,50,.55)'; c.lineWidth=3; c.lineCap='round'; for(var gx=6;gx<W;gx+=22){ var sw = Math.sin(t*2.2+gx*0.05)*5; c.beginPath(); c.moveTo(gx,H*0.76+2); c.quadraticCurveTo(gx+sw*0.5,H*0.76-8,gx+sw,H*0.76-16-(gx%3)*3); c.stroke(); } } }
+  if(d.bubbles){ c.strokeStyle='rgba(255,255,255,.7)'; c.lineWidth=3; for(var q=0;q<18;q++){ c.beginPath(); c.arc((q*173+Math.sin(t+q)*14)%W,(((q*97-t*45)%H)+H)%H,8+(q%4)*6,0,7); c.stroke(); } }
+  if(d.confetti){ var cols = ['#ff6b6b','#4c8dff','#2ec27e','#ffeb3b','#b79cff']; for(var f=0;f<70;f++){ c.fillStyle = cols[f%5]; c.save(); c.translate((f*131+Math.sin(t*1.5+f)*20)%W,(f*71+t*70)%H); c.rotate(f+t*2); c.fillRect(-6,-3,12,6); c.restore(); } }
+  if([0,1,3,5,8,12,13,14,16].indexOf(bg)>=0){ c.fillStyle = bg===13||bg===1 ? 'rgba(255,235,220,.75)' : 'rgba(255,255,255,.85)'; for(var k=0;k<3;k++){ var cx = ((k*390+t*(14+k*5))%(W+320))-160, cy = 70+k*52; c.beginPath(); c.arc(cx,cy,30,0,7); c.arc(cx+34,cy-12,38,0,7); c.arc(cx+74,cy,30,0,7); c.fill(); } }
 }
 function stkAt(s,i,t){
   var p, a = 1, dx = 0, dy = 0, sc = 1, rot = s.rot||0;
@@ -137,7 +139,7 @@ function drawStk(c,s,i,t,sel){
   if(s.c){ var fy = s.y+st.dy+0.45*s.s*st.sc, k2 = 1-Math.min(0.5,Math.abs(st.dy)/300);
     c.save(); c.globalAlpha = st.a*0.28*k2; c.fillStyle = '#1b2a3a'; c.beginPath(); c.ellipse(s.x+st.dx,fy,s.s*st.sc*0.3*k2,s.s*st.sc*0.05*k2,0,0,Math.PI*2); c.fill(); c.restore(); }
   c.save(); c.globalAlpha = st.a; c.translate(s.x+st.dx, s.y+st.dy+bob); c.rotate((st.rot+lean)*Math.PI/180); c.scale(st.sc*(s.flip?-1:1), st.sc);
-  if(s.c && window.RZC){ RZC.draw(c,s.c,s.s,te,act); }
+  if(s.c && window.RZC){ RZC.mt = (s===SPK); RZC.draw(c,s.c,s.s,te,act); RZC.mt = false; }
   else if(s.img){ var im = getImg(s.img); if(im.complete && im.naturalWidth){ var k = s.s/Math.max(im.naturalWidth,im.naturalHeight); c.drawImage(im,-im.naturalWidth*k/2,-im.naturalHeight*k/2,im.naturalWidth*k,im.naturalHeight*k); } }
   else { c.font = s.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillText(s.e,0,0); }
   c.restore();
@@ -167,8 +169,11 @@ function drawScene(c,sc,t,sel){
     var z = sc.cam==='zin' ? 1+0.2*q : sc.cam==='zout' ? 1.2-0.2*q : 1.14, px = sc.cam==='panl' ? (0.5-q)*90 : sc.cam==='panr' ? (q-0.5)*90 : 0;
     c.translate(W/2,H/2); c.scale(z,z); c.translate(-W/2+px,-H/2);
   }
-  drawBg(c,sc.bg); sc.stk.forEach(function(s,i){ drawStk(c,s,i,t,sel===i); });
-  c.restore(); drawText(c,sc,t);
+  SPK = null; if(UI.playing){ sc.stk.some(function(s){ if(s.c){ SPK = s; return true; } }); if(!(sc.voice || (sc.text && t < Math.min(sc.dur,0.6+sc.text.length*0.07)))) SPK = null; }
+  drawBg(c,sc.bg,t); sc.stk.forEach(function(s,i){ drawStk(c,s,i,t,sel===i); });
+  c.restore();
+  if(sc.light==='eve'){ c.fillStyle='rgba(255,110,30,.2)'; c.fillRect(0,0,W,H); } else if(sc.light==='night'){ c.fillStyle='rgba(8,16,70,.5)'; c.fillRect(0,0,W,H); }
+  drawText(c,sc,t);
 }
 function total(){ return S.scenes.reduce(function(a,s){ return a+s.dur; },0); }
 function renderAt(c,T,sel){
@@ -333,6 +338,10 @@ function sceneTab(p){
     [['none','t_none'],['fade','t_fade'],['slide','t_slide']].forEach(function(o){ row.appendChild(btn(t(o[1]),'sm'+(sc.trans===o[0]?' on':''),function(){ sc.trans = o[0]; changed(); renderPanel(); })); });
     wr.appendChild(row); p.appendChild(wr);
   }
+  p.appendChild(h('h4',{},['🌗 '+t('light')]));
+  var rl = h('div',{class:'rz-row'});
+  [['day','lt_day'],['eve','lt_eve'],['night','lt_night']].forEach(function(o){ rl.appendChild(btn(t(o[1]),'sm'+(((sc.light)||'day')===o[0]?' on':''),function(){ sc.light = o[0]; changed(); renderPanel(); })); });
+  p.appendChild(rl);
   p.appendChild(h('h4',{},['🎥 '+t('cam')]));
   var rc = h('div',{class:'rz-row'});
   CAM.forEach(function(k){ rc.appendChild(btn(t('cam_'+k),'sm'+((sc.cam||'none')===k?' on':''),function(){ sc.cam = k; changed(); renderPanel(); })); });
