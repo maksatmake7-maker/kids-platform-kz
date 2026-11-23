@@ -1,0 +1,45 @@
+/* Стань режиссёром — редактор роликов */
+.rz{max-width:1180px;margin:0 auto;padding:0 14px 40px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:16px;align-items:start;font-family:'Nunito',sans-serif;color:#1D3557}
+@media(max-width:900px){.rz{grid-template-columns:1fr}}
+.rz button{font-family:inherit;cursor:pointer}
+.rz-card{background:#fff;border:3px solid #DCE6F0;border-radius:22px;box-shadow:0 6px 22px rgba(29,53,87,.12);padding:12px}
+.rz-stagewrap{background:#0b1220;border-radius:16px;overflow:hidden;position:relative;line-height:0}
+.rz-stagewrap canvas{width:100%;height:auto;display:block;touch-action:none}
+.rz-over{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,18,40,.72);color:#fff;font:800 1.2rem 'Baloo 2',sans-serif;line-height:1.3;text-align:center;padding:20px}
+.rz-over.on{display:flex}
+.rz-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.rz-btn{border:0;border-radius:14px;padding:10px 16px;font-weight:800;font-size:1rem;background:#EEF3F9;color:#1D3557;box-shadow:0 3px 0 #D2DCE8}
+.rz-btn:active{transform:translateY(2px);box-shadow:none}
+.rz-btn.go{background:#2EC27E;color:#fff;box-shadow:0 3px 0 #1E9A62}
+.rz-btn.red{background:#FF6B6B;color:#fff;box-shadow:0 3px 0 #D84C4C}
+.rz-btn.pri{background:#4C8DFF;color:#fff;box-shadow:0 3px 0 #2F6BD6}
+.rz-btn.sm{padding:6px 10px;font-size:.9rem}
+.rz-btn.on{outline:3px solid #4C8DFF}
+.rz-btn:disabled{opacity:.45;cursor:default}
+.rz-time{font-weight:800;margin-inline-start:auto;color:#5B6B80}
+.rz-strip{display:flex;gap:10px;overflow-x:auto;padding:12px 2px 4px;margin-top:6px}
+.rz-th{flex:none;width:132px;border:3px solid #DCE6F0;border-radius:12px;background:#fff;padding:3px;position:relative;text-align:center}
+.rz-th.cur{border-color:#4C8DFF;box-shadow:0 0 0 3px rgba(76,141,255,.25)}
+.rz-th canvas{width:100%;height:auto;display:block;border-radius:8px;background:#000}
+.rz-th small{display:block;font-weight:800;font-size:.8rem;color:#5B6B80}
+.rz-add{flex:none;width:132px;border:3px dashed #B8C6D8;border-radius:12px;background:#F7FAFD;font-size:2rem;color:#7B8CA3;font-weight:800}
+.rz-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.rz-tab{border:0;border-radius:12px;padding:8px 12px;font-weight:800;background:#EEF3F9;color:#1D3557}
+.rz-tab.on{background:#4C8DFF;color:#fff}
+.rz-side h4{margin:12px 0 6px;font-family:'Baloo 2',sans-serif;font-size:1.05rem}
+.rz-sw{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.rz-sw button{aspect-ratio:1;border:3px solid #fff;border-radius:12px;box-shadow:0 0 0 2px #DCE6F0}
+.rz-sw button.on{box-shadow:0 0 0 3px #4C8DFF}
+.rz-emo{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.rz-emo button{border:2px solid #E6EDF5;background:#fff;border-radius:10px;font-size:1.6rem;padding:4px 0;line-height:1.2}
+.rz-emo button:active{background:#EAF2FF}
+.rz-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+.rz-side input[type=text],.rz-side textarea,.rz-side select{width:100%;border:2px solid #DCE6F0;border-radius:12px;padding:8px 10px;font:700 1rem 'Nunito',sans-serif;color:#1D3557;background:#fff}
+.rz-side textarea{min-height:80px;resize:vertical}
+.rz-side input[type=range]{width:100%}
+.rz-hint{font-size:.88rem;color:#5B6B80;line-height:1.35;margin:6px 0}
+.rz-modes{display:inline-flex;background:#EEF3F9;border-radius:14px;padding:3px}
+.rz-modes button{border:0;background:transparent;border-radius:11px;padding:7px 12px;font-weight:800;color:#5B6B80}
+.rz-modes button.on{background:#fff;color:#1D3557;box-shadow:0 2px 6px rgba(29,53,87,.18)}
+body:not(.rz-adv) .adv-only{display:none!important}
+.rz-wrap{padding:0 14px}
