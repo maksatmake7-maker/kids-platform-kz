@@ -1,6 +1,9 @@
 /* Стань режиссёром — редактор роликов */
 .rz{max-width:1180px;margin:0 auto;padding:0 14px 40px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:16px;align-items:start;font-family:'Nunito',sans-serif;color:#1D3557}
-@media(max-width:900px){.rz{grid-template-columns:1fr}}
+@media(max-width:900px){.rz{grid-template-columns:minmax(0,1fr)}}
+.rz>*{min-width:0}
+.rz-strip{max-width:100%}
+.rz-panel{min-width:0;max-width:100%}
 .rz button{font-family:inherit;cursor:pointer}
 .rz-card{background:#fff;border:3px solid #DCE6F0;border-radius:22px;box-shadow:0 6px 22px rgba(29,53,87,.12);padding:12px}
 .rz-stagewrap{background:#0b1220;border-radius:16px;overflow:hidden;position:relative;line-height:0}
