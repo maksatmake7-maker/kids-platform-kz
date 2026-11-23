@@ -372,6 +372,8 @@ header{
   background:var(--coral);
 }
 .direction-btn.direction-kaz .direction-emoji{background:var(--meadow);}
+.direction-btn.direction-film{border-color:#B79CFF; background:#F6F1FF;}
+.direction-btn.direction-film .direction-emoji{background:#B79CFF;}
 .direction-label{
   font-family:'Baloo 2',sans-serif;
   font-weight:800;
