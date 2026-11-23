@@ -376,6 +376,8 @@ header{
 .direction-btn.direction-film .direction-emoji{background:#B79CFF;}
 .direction-btn.direction-run{border-color:#66BB6A; background:#EEF9EE;}
 .direction-btn.direction-run .direction-emoji{background:#66BB6A;}
+.direction-btn.direction-game{border-color:#FFB74D; background:#FFF6E5;}
+.direction-btn.direction-game .direction-emoji{background:#FFB74D;}
 .direction-label{
   font-family:'Baloo 2',sans-serif;
   font-weight:800;
