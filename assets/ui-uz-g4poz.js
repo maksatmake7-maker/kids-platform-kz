@@ -9494,5 +9494,11 @@ ex:{
 "Қай тақырыпқа жатады?": "U qaysi mavzuga tegishli?",
 "На 14": "14 tagacha",
 "14 әкімшілік аймаққа": "14 ta ma'muriy birlikka",
-"Населённые пункты, жилища, дороги и транспорт": "Aholi punktlari, uylar, yo'llar va transport"
+"Населённые пункты, жилища, дороги и транспорт": "Aholi punktlari, uylar, yo'llar va transport",
+"Её областной центр — Конаев": "Uning viloyat markazi — Qoʻnayev",
+"Конаев": "Qoʻnayev",
+"Областной центр Алматинской области — Конаев.": "Almati viloyatining viloyat markazi — Qoʻnayev.",
+"Оның орталығы — Қонаев": "Uning markazi — Qoʻnayev",
+"Қонаев": "Qoʻnayev",
+"Алматы облысының орталығы — Қонаев.": "Almati viloyatining markazi — Qoʻnayev."
 }});
