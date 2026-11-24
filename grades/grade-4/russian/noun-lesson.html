@@ -77,6 +77,7 @@ label.ck{display:block;margin:6px 0;cursor:pointer}
 .hide{display:none}
 @media(max-width:560px){.sorts{grid-template-columns:1fr}.stp{min-width:70px;font-size:12px}h1{font-size:25px}}
 </style>
+<style>.vid{margin:6px 0 16px}.vid h3{margin:0 0 8px}</style>
 </head>
 <body>
 <header><a href="../../../index.html" class="logo">🐆 Білім Аралы</a></header>
@@ -88,6 +89,8 @@ label.ck{display:block;margin:6px 0;cursor:pointer}
   <div id="stage"></div>
 </div>
 
+<script src="../../../assets/minifilm.js"></script>
+<script src="../../../assets/films/rus4-noun.js"></script>
 <script>
 (function(){
 "use strict";
@@ -125,6 +128,7 @@ function stepIntro(){
   c.innerHTML='<h2>Зачем нужно склонение?</h2>'+
   '<div class="goal"><b>Цель урока:</b> научиться по трём шагам определять склонение любого имени существительного.</div>'+
   '<p>Существительные меняются по падежам: <i>любовь, любви, любовью, о любви</i>. Окончания у слов в одних и тех же падежах могут совпадать. По этому признаку все существительные делятся на <b>три группы — три склонения</b>.</p>'+
+  '<div class="vid"><h3>🎬 Видео-объяснение (1,5 минуты)</h3><div class="mf" data-film="rus4-noun" id="vidbox"></div></div>'+
   '<h3>Смотри, как это выглядит</h3>'+
   '<table class="t"><tr><th>Падеж</th><th>Вопрос</th><th>жен. род<br>любовь</th><th>муж. род<br>дом</th><th>сред. род<br>окно</th></tr>'+
   '<tr><td class="l">И.п.</td><td>что?</td><td>любовь</td><td>дом</td><td>окно</td></tr>'+
@@ -142,6 +146,7 @@ function stepIntro(){
   '<div class="rule"><b>Запомни:</b> слова с одним значением могут быть разного склонения. Например, <i>папа</i> — 1-е склонение, <i>отец</i> — 2-е.</div>'+
   '<button class="btn" id="n1">Понятно, дальше →</button>';
   $('stage').appendChild(c);
+  try{MF.mount($('vidbox'))}catch(e){}
   $('n1').onclick=function(){S.done[0]=1;goto(1)};
 }
 
