@@ -52,13 +52,13 @@ function run(P){
     var holder=el('div'),i=0,part=0,tried=false;c.appendChild(holder);$('stage').appendChild(c);
     function nextWord(){if(i>=Wz.items.length){mark('wizard');holder.innerHTML='<div class="fb show ok">Отлично! Ты справился со всеми словами.</div><p></p>';holder.lastChild.appendChild(nextBtn('wizard'));return}part=0;tried=false;draw()}
     function draw(){
-      var W=Wz.items[i],st=Wz.steps[part];holder.innerHTML='';
+      var W=Wz.items[i],st=Wz.steps[part],OP=function(k){return (W.opts&&W.opts[k])||Wz.steps[k].opts},TT=function(k){return (W.titles&&W.titles[k])||Wz.steps[k].title};holder.innerHTML='';
       holder.appendChild(el('div','q','Слово №'+(i+1)+' из '+Wz.items.length+': «'+W.w+'»'));
       var done=el('div');holder.appendChild(done);
-      for(var p=0;p<part;p++){var lab=Wz.steps[p].opts.filter(function(o){return o[0]===W.a[p]})[0][1];done.appendChild(el('div','small','✔ '+Wz.steps[p].title+' '+lab))}
-      holder.appendChild(el('h3','',st.title));
+      for(var p=0;p<part;p++){var lab=OP(p).filter(function(o){return o[0]===W.a[p]})[0][1];done.appendChild(el('div','small','✔ '+TT(p)+' '+lab))}
+      holder.appendChild(el('h3','',TT(part)));
       var ob=el('div','opts'),f=fb();
-      st.opts.forEach(function(o){var b=el('button','opt',o[1]);b.onclick=function(){
+      OP(part).forEach(function(o){var b=el('button','opt',o[1]);b.onclick=function(){
         var ok=o[0]===W.a[part];if(!tried)note(st.skill,ok);
         if(ok){b.className='opt good';tried=false;setTimeout(function(){part++;if(part>=Wz.steps.length){i++;nextWord()}else draw()},650)}
         else{b.className='opt bad';tried=true;show(f,false,st.miss+' Попробуй ещё раз.')}};ob.appendChild(b)});
