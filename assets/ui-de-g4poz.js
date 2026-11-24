@@ -9494,5 +9494,11 @@ ex:{
 "Қай тақырыпқа жатады?": "Zu welchem Thema gehört es?",
 "На 14": "In 14",
 "14 әкімшілік аймаққа": "In 14 Verwaltungseinheiten",
-"Населённые пункты, жилища, дороги и транспорт": "Siedlungen, Häuser, Straßen und Verkehrsmittel"
+"Населённые пункты, жилища, дороги и транспорт": "Siedlungen, Häuser, Straßen und Verkehrsmittel",
+"Её областной центр — Конаев": "Sein Regionalzentrum ist Konajew",
+"Конаев": "Konajew",
+"Областной центр Алматинской области — Конаев.": "Das Regionalzentrum des Gebiets Almaty ist Konajew.",
+"Оның орталығы — Қонаев": "Sein Zentrum ist Konajew",
+"Қонаев": "Konajew",
+"Алматы облысының орталығы — Қонаев.": "Das Zentrum des Gebiets Almaty ist Konajew."
 }});
